@@ -1,13 +1,7 @@
 package twilightforest.biomes;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.stats.Achievement;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import twilightforest.TFAchievementPage;
 import twilightforest.block.TFBlocks;
 

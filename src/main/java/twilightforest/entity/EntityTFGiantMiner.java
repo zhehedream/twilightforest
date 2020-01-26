@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import twilightforest.entity.ai.EntityAITFGiantAttackOnCollide;
-import twilightforest.item.TFItems;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -15,6 +13,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import twilightforest.entity.ai.EntityAITFGiantAttackOnCollide;
+import twilightforest.item.TFItems;
 
 public class EntityTFGiantMiner extends EntityMob {
 

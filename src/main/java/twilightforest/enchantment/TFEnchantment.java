@@ -1,12 +1,10 @@
 package twilightforest.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import twilightforest.TwilightForestMod;
 import twilightforest.item.ItemTFFieryArmor;
 import twilightforest.item.ItemTFYetiArmor;
 

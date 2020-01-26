@@ -1,10 +1,10 @@
 package twilightforest.client.renderer.blocks;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import twilightforest.block.BlockTFPlant;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFPlants implements ISimpleBlockRenderingHandler {
 

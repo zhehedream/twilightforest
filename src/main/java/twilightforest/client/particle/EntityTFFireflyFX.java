@@ -5,11 +5,11 @@
 package twilightforest.client.particle;
 
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
 
 
 // Referenced classes of package net.minecraft.src:

@@ -3,6 +3,8 @@ package twilightforest.client.renderer;
 import java.util.Collection;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -16,9 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapData.MapCoord;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TFMagicMapData;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.ItemTFMagicMap;

@@ -2,16 +2,14 @@ package twilightforest.item;
 
 import java.util.Random;
 
-import twilightforest.block.TFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemLilyPad;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import twilightforest.block.TFBlocks;
 
 
 public class ItemBlockTFHugeLilyPad extends ItemLilyPad {

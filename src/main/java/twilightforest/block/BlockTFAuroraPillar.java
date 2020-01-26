@@ -2,6 +2,8 @@ package twilightforest.block;
 
 import java.awt.Color;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,8 +11,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFAuroraPillar extends BlockRotatedPillar {
 

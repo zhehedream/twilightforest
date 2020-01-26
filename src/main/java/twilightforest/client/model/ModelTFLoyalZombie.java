@@ -1,10 +1,10 @@
 package twilightforest.client.model;
 
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.entity.EntityLivingBase;
-
-import org.lwjgl.opengl.GL11;
 
 public class ModelTFLoyalZombie extends ModelZombie {
 	

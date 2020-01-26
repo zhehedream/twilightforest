@@ -2,6 +2,8 @@ package twilightforest.item;
 
 import java.util.HashMap;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,8 +37,6 @@ import twilightforest.entity.passive.EntityTFBoar;
 import twilightforest.entity.passive.EntityTFDeer;
 import twilightforest.entity.passive.EntityTFPenguin;
 import twilightforest.entity.passive.EntityTFRaven;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFTransformPowder extends ItemTF 
 {

@@ -1,5 +1,7 @@
 package twilightforest.client.renderer;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -10,9 +12,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TFMazeMapData;
 import twilightforest.item.ItemTFMazeMap;
 import twilightforest.item.TFItems;

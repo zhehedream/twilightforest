@@ -2,11 +2,7 @@ package twilightforest.client.renderer.entity;
 
 import org.lwjgl.opengl.GL11;
 
-import twilightforest.block.BlockTFSlider;
-import twilightforest.entity.EntityTFSlideBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAnvil;
-import net.minecraft.block.BlockDragonEgg;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -15,6 +11,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import twilightforest.block.BlockTFSlider;
+import twilightforest.entity.EntityTFSlideBlock;
 
 public class RenderTFSlideBlock extends Render {
 	

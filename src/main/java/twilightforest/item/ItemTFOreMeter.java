@@ -2,6 +2,8 @@ package twilightforest.item;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +15,6 @@ import net.minecraft.world.chunk.Chunk;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 
 

@@ -1,12 +1,11 @@
 package twilightforest.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.monster.EntityGhast;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.client.model.ModelTFGhast;
 import twilightforest.entity.boss.EntityTFUrGhast;
 

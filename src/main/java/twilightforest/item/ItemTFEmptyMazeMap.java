@@ -1,5 +1,7 @@
 package twilightforest.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMapBase;
@@ -12,8 +14,6 @@ import twilightforest.TFFeature;
 import twilightforest.TFMazeMapData;
 import twilightforest.TwilightForestMod;
 import twilightforest.world.WorldProviderTwilightForest;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFEmptyMazeMap extends ItemMapBase
 {

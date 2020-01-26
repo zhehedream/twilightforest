@@ -10,7 +10,6 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 

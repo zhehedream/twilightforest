@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -20,9 +21,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.stats.StatisticsFile;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -37,9 +35,6 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFKobold;
 import twilightforest.entity.passive.EntityTFMobileFirefly;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 
 public abstract class TFBiomeBase extends BiomeGenBase  {

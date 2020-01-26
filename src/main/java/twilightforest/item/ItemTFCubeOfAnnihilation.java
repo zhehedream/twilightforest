@@ -4,20 +4,16 @@ import java.util.HashMap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import twilightforest.TwilightForestMod;
-import twilightforest.entity.EntityTFChainBlock;
-import twilightforest.entity.EntityTFCubeOfAnnihilation;
-import twilightforest.entity.EntityTFTwilightWandBolt;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
+import twilightforest.entity.EntityTFCubeOfAnnihilation;
 
 public class ItemTFCubeOfAnnihilation extends ItemTF {
 	

@@ -1,6 +1,5 @@
 package twilightforest.entity;
 
-import twilightforest.TFAchievementPage;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,11 +14,10 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import twilightforest.TFAchievementPage;
 
 
 public class EntityTFAdherent  extends EntityMob implements IRangedAttackMob, ITFCharger {

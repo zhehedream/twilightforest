@@ -2,8 +2,6 @@ package twilightforest.entity.ai;
 
 import java.util.List;
 
-import twilightforest.entity.boss.EntityTFSnowQueen;
-import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -12,6 +10,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+import twilightforest.entity.boss.EntityTFSnowQueen;
+import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 
 public class EntityAITFHoverBeam extends EntityAIBase {
 

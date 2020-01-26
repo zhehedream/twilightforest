@@ -1,6 +1,8 @@
 package twilightforest.client;
 
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -11,9 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 import twilightforest.inventory.ContainerTFUncrafting;
 

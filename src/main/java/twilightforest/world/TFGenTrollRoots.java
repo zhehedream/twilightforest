@@ -2,9 +2,7 @@ package twilightforest.world;
 
 import java.util.Random;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
-import twilightforest.block.BlockTFPlant;
 import twilightforest.block.BlockTFTrollRoot;
 import twilightforest.block.TFBlocks;
 

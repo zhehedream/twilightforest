@@ -3,6 +3,8 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSourceImpl;
 import net.minecraft.block.material.Material;
@@ -24,8 +26,6 @@ import twilightforest.tileentity.TileEntityTFGhastTrapActive;
 import twilightforest.tileentity.TileEntityTFGhastTrapInactive;
 import twilightforest.tileentity.TileEntityTFReverter;
 import twilightforest.tileentity.TileEntityTFTowerBuilder;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 
 

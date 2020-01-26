@@ -2,6 +2,8 @@ package twilightforest.client.renderer;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -14,16 +16,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraftforge.client.IRenderHandler;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.biomes.TFBiomeDarkForest;
+import twilightforest.biomes.TFBiomeFinalPlateau;
 import twilightforest.biomes.TFBiomeFireSwamp;
 import twilightforest.biomes.TFBiomeGlacier;
 import twilightforest.biomes.TFBiomeHighlands;
-import twilightforest.biomes.TFBiomeFinalPlateau;
 import twilightforest.biomes.TFBiomeSnow;
 import twilightforest.biomes.TFBiomeSwamp;
 import twilightforest.biomes.TFBiomeThornlands;

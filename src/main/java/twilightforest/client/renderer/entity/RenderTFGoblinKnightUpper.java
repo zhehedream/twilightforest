@@ -1,10 +1,9 @@
 package twilightforest.client.renderer.entity;
 
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLivingBase;
-
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLivingBase;
 import twilightforest.entity.EntityTFGoblinKnightUpper;
 
 public class RenderTFGoblinKnightUpper extends RenderTFBiped {

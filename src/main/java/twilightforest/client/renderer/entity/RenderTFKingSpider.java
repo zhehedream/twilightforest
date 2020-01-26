@@ -1,12 +1,11 @@
 package twilightforest.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 
 public class RenderTFKingSpider extends RenderSpider {

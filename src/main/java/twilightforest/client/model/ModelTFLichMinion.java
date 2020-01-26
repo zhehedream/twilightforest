@@ -1,13 +1,12 @@
 package twilightforest.client.model;
 
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.entity.boss.EntityTFLichMinion;
 
 

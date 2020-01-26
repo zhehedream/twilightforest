@@ -2,6 +2,8 @@ package twilightforest.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -13,8 +15,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 
 public class BlockTFAuroraSlab extends BlockSlab {

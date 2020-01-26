@@ -2,8 +2,10 @@ package twilightforest.item;
 
 import java.util.List;
 
-import twilightforest.block.BlockTFGiantBlock;
-import twilightforest.block.TFBlocks;
+import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,11 +18,8 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
-
-import com.google.common.collect.Multimap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import twilightforest.block.BlockTFGiantBlock;
+import twilightforest.block.TFBlocks;
 
 public class ItemTFGiantPick extends ItemPickaxe {
 

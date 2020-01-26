@@ -7,6 +7,7 @@ package twilightforest.world;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -31,7 +32,6 @@ import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import twilightforest.TFFeature;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
-import cpw.mods.fml.common.eventhandler.Event.Result;
 
 // Referenced classes of package net.minecraft.src:
 //            IChunkProvider, MapGenCaves, MapGenStronghold, MapGenVillage, 

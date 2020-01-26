@@ -1,5 +1,9 @@
 package twilightforest.client;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelPig;
@@ -95,7 +99,6 @@ import twilightforest.client.renderer.blocks.RenderBlockTFPedestal;
 import twilightforest.client.renderer.blocks.RenderBlockTFPlants;
 import twilightforest.client.renderer.blocks.RenderBlockTFThorns;
 import twilightforest.client.renderer.entity.RenderTFAdherent;
-import twilightforest.client.renderer.entity.RenderTFHarbingerCube;
 import twilightforest.client.renderer.entity.RenderTFBighorn;
 import twilightforest.client.renderer.entity.RenderTFBiped;
 import twilightforest.client.renderer.entity.RenderTFBird;
@@ -110,13 +113,14 @@ import twilightforest.client.renderer.entity.RenderTFFallingIce;
 import twilightforest.client.renderer.entity.RenderTFGenericLiving;
 import twilightforest.client.renderer.entity.RenderTFGiant;
 import twilightforest.client.renderer.entity.RenderTFGoblinKnightUpper;
+import twilightforest.client.renderer.entity.RenderTFHarbingerCube;
 import twilightforest.client.renderer.entity.RenderTFHedgeSpider;
 import twilightforest.client.renderer.entity.RenderTFHydra;
 import twilightforest.client.renderer.entity.RenderTFHydraHead;
 import twilightforest.client.renderer.entity.RenderTFHydraMortar;
+import twilightforest.client.renderer.entity.RenderTFIceCrystal;
 import twilightforest.client.renderer.entity.RenderTFIceExploder;
 import twilightforest.client.renderer.entity.RenderTFIceShooter;
-import twilightforest.client.renderer.entity.RenderTFIceCrystal;
 import twilightforest.client.renderer.entity.RenderTFKingSpider;
 import twilightforest.client.renderer.entity.RenderTFKnightPhantom;
 import twilightforest.client.renderer.entity.RenderTFKobold;
@@ -149,16 +153,11 @@ import twilightforest.client.renderer.entity.RenderTFUrGhast;
 import twilightforest.client.renderer.entity.RenderTFWinterWolf;
 import twilightforest.client.renderer.entity.RenderTFWraith;
 import twilightforest.client.renderer.entity.RenderTFYeti;
-import twilightforest.entity.EntityTFCubeOfAnnihilation;
 import twilightforest.item.TFItems;
 import twilightforest.tileentity.TileEntityTFCicada;
 import twilightforest.tileentity.TileEntityTFFirefly;
 import twilightforest.tileentity.TileEntityTFMoonworm;
 import twilightforest.tileentity.TileEntityTFTrophy;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class TFClientProxy extends TFCommonProxy {
 

@@ -2,13 +2,12 @@ package twilightforest.client.renderer.entity;
 
 import java.nio.FloatBuffer;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFTinyFirefly;
 import twilightforest.entity.passive.EntityTFMobileFirefly;

@@ -1,5 +1,7 @@
 package twilightforest.entity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -19,8 +21,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFMagicAttack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFSlimeBeetle extends EntityMob
 {

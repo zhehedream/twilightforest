@@ -1,5 +1,7 @@
 package twilightforest.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -10,8 +12,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockTFPlant extends ItemBlock {
 

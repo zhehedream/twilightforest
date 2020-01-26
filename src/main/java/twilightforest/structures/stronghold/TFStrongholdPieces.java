@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import twilightforest.structures.StructureTFComponent;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
+import twilightforest.structures.StructureTFComponent;
 
 public class TFStrongholdPieces {
 

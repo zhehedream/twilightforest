@@ -1,11 +1,10 @@
 package twilightforest.entity.ai;
 
-import twilightforest.entity.EntityTFRovingCube;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import twilightforest.entity.EntityTFRovingCube;
 
 public class EntityAICubeMoveToRedstoneSymbols extends EntityAIBase {
 

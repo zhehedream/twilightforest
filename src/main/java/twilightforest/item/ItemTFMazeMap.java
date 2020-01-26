@@ -1,5 +1,7 @@
 package twilightforest.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,8 +21,6 @@ import net.minecraft.world.storage.MapData.MapInfo;
 import twilightforest.TFMapPacketHandler;
 import twilightforest.TFMazeMapData;
 import twilightforest.TwilightForestMod;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFMazeMap extends ItemMap
 {

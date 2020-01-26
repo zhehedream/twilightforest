@@ -3,6 +3,7 @@ package twilightforest.world;
 import java.util.Collection;
 import java.util.Iterator;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureData;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -11,7 +12,6 @@ import net.minecraft.world.gen.structure.StructureStart;
 import twilightforest.TFFeature;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.StructureTFMajorFeatureStart;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 
 public class MapGenTFMajorFeature extends MapGenStructure {

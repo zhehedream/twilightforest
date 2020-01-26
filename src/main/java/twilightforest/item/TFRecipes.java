@@ -2,6 +2,8 @@ package twilightforest.item;
 
 
 import static net.minecraftforge.oredict.RecipeSorter.Category.SHAPELESS;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,8 +16,6 @@ import twilightforest.block.BlockTFFireJet;
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.BlockTFTowerDevice;
 import twilightforest.block.TFBlocks;
-import twilightforest.enchantment.TFEnchantment;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 
 public class TFRecipes {

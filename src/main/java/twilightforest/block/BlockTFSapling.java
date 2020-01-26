@@ -3,6 +3,8 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,8 +27,6 @@ import twilightforest.world.TFGenSmallTwilightOak;
 import twilightforest.world.TFGenSortingTree;
 import twilightforest.world.TFGenTreeOfTime;
 import twilightforest.world.TFGenTreeOfTransformation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFSapling extends BlockSapling
 {

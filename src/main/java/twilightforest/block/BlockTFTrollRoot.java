@@ -3,21 +3,15 @@ package twilightforest.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import twilightforest.TwilightForestMod;
-import twilightforest.item.TFItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+import twilightforest.TwilightForestMod;
+import twilightforest.item.TFItems;
 
 public class BlockTFTrollRoot extends Block implements IShearable {
 

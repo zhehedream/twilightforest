@@ -2,6 +2,8 @@ package twilightforest.entity;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -25,8 +27,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import twilightforest.entity.ai.EntityAITFHeavySpearAttack;
 import twilightforest.item.TFItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFGoblinKnightUpper extends EntityMob {
 	

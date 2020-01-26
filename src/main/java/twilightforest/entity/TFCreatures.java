@@ -3,13 +3,13 @@ package twilightforest.entity;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
-import twilightforest.TwilightForestMod;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
 
 public class TFCreatures {
 

@@ -3,6 +3,8 @@ package twilightforest.item;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,8 +25,6 @@ import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.TFCreatures;
 import twilightforest.entity.TFEntityEggInfo;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFSpawnEgg extends ItemMonsterPlacer {
 

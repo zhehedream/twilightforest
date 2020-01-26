@@ -1,9 +1,9 @@
 package twilightforest.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
-
-import org.lwjgl.opengl.GL11;
 
 public class RenderTFYeti extends RenderTFBiped {
 

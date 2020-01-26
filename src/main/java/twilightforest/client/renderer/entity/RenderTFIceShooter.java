@@ -1,12 +1,10 @@
 package twilightforest.client.renderer.entity;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
-
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 import twilightforest.client.model.ModelTFIceShooter;
-import twilightforest.client.renderer.entity.RenderTFBiped;
 
 public class RenderTFIceShooter extends RenderTFBiped {
 

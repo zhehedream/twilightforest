@@ -1,11 +1,10 @@
 package twilightforest.client.renderer;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFMoonworm;
 import twilightforest.tileentity.TileEntityTFMoonworm;

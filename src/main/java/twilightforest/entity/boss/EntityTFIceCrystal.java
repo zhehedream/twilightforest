@@ -1,6 +1,5 @@
 package twilightforest.entity.boss;
 
-import twilightforest.TwilightForestMod;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -14,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
 
 public class EntityTFIceCrystal extends EntityMob {
 

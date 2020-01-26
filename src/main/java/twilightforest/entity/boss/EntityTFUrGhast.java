@@ -3,6 +3,7 @@ package twilightforest.entity.boss;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -28,7 +29,6 @@ import twilightforest.entity.EntityTFTowerGhast;
 import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.TFWorldChunkManager;
 import twilightforest.world.WorldProviderTwilightForest;
-import cpw.mods.fml.common.FMLLog;
 
 public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayData {
 

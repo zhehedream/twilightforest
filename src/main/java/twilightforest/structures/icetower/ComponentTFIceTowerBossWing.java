@@ -2,11 +2,11 @@ package twilightforest.structures.icetower;
 
 import java.util.Random;
 
-import twilightforest.block.TFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import twilightforest.block.TFBlocks;
 
 public class ComponentTFIceTowerBossWing extends ComponentTFIceTowerWing {
 

@@ -1,14 +1,13 @@
 package twilightforest.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFSnowQueen;
 import twilightforest.entity.boss.EntityTFSnowQueen;

@@ -1,5 +1,7 @@
 package twilightforest.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,8 +14,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFCrumbleHorn extends ItemTF
 {

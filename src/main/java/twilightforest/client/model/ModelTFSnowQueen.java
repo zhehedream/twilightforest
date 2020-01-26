@@ -1,11 +1,11 @@
 package twilightforest.client.model;
 
-import twilightforest.entity.boss.EntityTFSnowQueen;
-import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import twilightforest.entity.boss.EntityTFSnowQueen;
+import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 
 public class ModelTFSnowQueen extends ModelBiped {
 

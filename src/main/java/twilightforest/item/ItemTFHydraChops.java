@@ -1,10 +1,9 @@
 package twilightforest.item;
 
-import twilightforest.TFAchievementPage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import twilightforest.TFAchievementPage;
 
 public class ItemTFHydraChops extends ItemTFFood {
 

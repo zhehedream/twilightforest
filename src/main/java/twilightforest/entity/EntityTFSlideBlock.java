@@ -1,30 +1,22 @@
 package twilightforest.entity;
 
-import io.netty.buffer.ByteBuf;
-
-import java.util.Iterator;
 import java.util.List;
 
-import twilightforest.TwilightForestMod;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
 
 public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawnData {
 

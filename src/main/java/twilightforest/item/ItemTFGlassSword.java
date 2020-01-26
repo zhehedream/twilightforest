@@ -1,6 +1,5 @@
 package twilightforest.item;
 
-import twilightforest.TwilightForestMod;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import twilightforest.TwilightForestMod;
 
 public class ItemTFGlassSword extends ItemSword {
 

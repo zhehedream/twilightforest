@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import twilightforest.TwilightForestMod;
-import twilightforest.item.TFItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -17,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import twilightforest.TwilightForestMod;
+import twilightforest.item.TFItems;
 
 public class BlockTFUberousSoil extends Block implements IGrowable {
 

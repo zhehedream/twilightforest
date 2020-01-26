@@ -3,6 +3,9 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
@@ -26,9 +29,6 @@ import net.minecraft.world.WorldServer;
 import twilightforest.TFAchievementPage;
 import twilightforest.TFTeleporter;
 import twilightforest.TwilightForestMod;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFPortal extends BlockBreakable
 {

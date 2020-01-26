@@ -3,6 +3,8 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -25,8 +27,6 @@ import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFTrophyPedestal extends Block {
 	

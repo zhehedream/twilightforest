@@ -2,6 +2,7 @@ package twilightforest;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -16,7 +17,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFWorld;
-import cpw.mods.fml.common.FMLLog;
 
 
 public class TFTeleporter extends Teleporter 

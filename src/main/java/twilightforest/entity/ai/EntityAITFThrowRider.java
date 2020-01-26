@@ -1,5 +1,6 @@
 package twilightforest.entity.ai;
 
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -7,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 import twilightforest.TFGenericPacketHandler;
 import twilightforest.TwilightForestMod;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 public class EntityAITFThrowRider extends EntityAIBase {
 

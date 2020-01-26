@@ -1,10 +1,9 @@
 package twilightforest.client.renderer.entity;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
-
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 import twilightforest.client.model.ModelTFSnowGuardian;
 
 public class RenderTFSnowGuardian extends RenderTFBiped {

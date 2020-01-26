@@ -1,11 +1,10 @@
 package twilightforest.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFHydraMortar;
 import twilightforest.entity.boss.EntityTFHydraMortar;

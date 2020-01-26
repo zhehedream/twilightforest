@@ -3,6 +3,8 @@ package twilightforest.block;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,8 +22,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import twilightforest.item.TFItems;
 import twilightforest.tileentity.TileEntityTFTrophy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Head trophy similar to (and based partially on) BlockSkull

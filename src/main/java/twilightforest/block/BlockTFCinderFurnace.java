@@ -2,9 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import twilightforest.TwilightForestMod;
-import twilightforest.item.TFItems;
-import twilightforest.tileentity.TileEntityTFCinderFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -14,15 +11,16 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
+import twilightforest.item.TFItems;
+import twilightforest.tileentity.TileEntityTFCinderFurnace;
 
 public class BlockTFCinderFurnace  extends BlockContainer{
 

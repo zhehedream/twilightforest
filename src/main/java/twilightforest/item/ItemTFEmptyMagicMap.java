@@ -1,5 +1,7 @@
 package twilightforest.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMapBase;
@@ -9,8 +11,6 @@ import net.minecraft.world.storage.MapData;
 import twilightforest.TFAchievementPage;
 import twilightforest.TFMagicMapData;
 import twilightforest.TwilightForestMod;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFEmptyMagicMap extends ItemMapBase
 {

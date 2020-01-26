@@ -1,7 +1,7 @@
 package twilightforest.entity.ai;
 
-import twilightforest.entity.EntityTFRovingCube;
 import net.minecraft.entity.ai.EntityAIBase;
+import twilightforest.entity.EntityTFRovingCube;
 
 /**
  * 

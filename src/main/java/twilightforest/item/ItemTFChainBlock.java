@@ -6,10 +6,6 @@ import com.google.common.collect.Sets;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import twilightforest.TwilightForestMod;
-import twilightforest.entity.EntityTFChainBlock;
-import twilightforest.entity.EntityTFCubeOfAnnihilation;
-import twilightforest.entity.EntityTFTwilightWandBolt;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -22,6 +18,8 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import twilightforest.TwilightForestMod;
+import twilightforest.entity.EntityTFChainBlock;
 
 public class ItemTFChainBlock extends ItemTool {
 	

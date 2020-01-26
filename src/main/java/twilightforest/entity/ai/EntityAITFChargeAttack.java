@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
-import twilightforest.entity.EntityTFMinotaur;
 import twilightforest.entity.ITFCharger;
 
 public class EntityAITFChargeAttack extends EntityAIBase {

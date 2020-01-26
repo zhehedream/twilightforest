@@ -2,16 +2,14 @@ package twilightforest.client.renderer.blocks;
 
 import org.lwjgl.opengl.GL11;
 
-import twilightforest.block.BlockTFCastleMagic;
-import twilightforest.block.BlockTFFireflyJar;
-import twilightforest.block.TFBlocks;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import twilightforest.block.BlockTFCastleMagic;
+import twilightforest.block.TFBlocks;
 
 public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
 

@@ -3,11 +3,15 @@ package twilightforest;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
@@ -20,12 +24,6 @@ import twilightforest.block.BlockTFPortal;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.WorldProviderTwilightForest;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 /**
  * This class listens for ticks in the world.  If the player is near a diamond in the water, this class attempts to open a portal.

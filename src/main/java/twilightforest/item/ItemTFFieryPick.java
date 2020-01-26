@@ -3,6 +3,8 @@ package twilightforest.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,8 +18,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFFieryPick extends ItemPickaxe {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.init.Blocks;
@@ -29,7 +30,6 @@ import twilightforest.structures.StructureTFDecorator;
 import twilightforest.structures.TFMaze;
 import twilightforest.world.TFGenSmallRainboak;
 import twilightforest.world.TFGenSmallTwilightOak;
-import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFDarkTowerMain extends ComponentTFDarkTowerWing 
 {
