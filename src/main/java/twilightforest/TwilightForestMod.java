@@ -762,7 +762,9 @@ public class TwilightForestMod {
 		config.get("biome", "biome.id.FireSwamp", -1).set(idBiomeFireSwamp);
 		config.get("biome", "biome.id.Thornlands", -1).set(idBiomeThornlands);
 
-		config.save();
+		if (config.hasChanged()) {
+		    config.save();
+		}
 	}
 
 	/**
