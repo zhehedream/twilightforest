@@ -265,7 +265,7 @@ implements IMob, IBossDisplayData, IEntityMultiPart {
 //		
 //        if (!this.worldObj.isRemote)
 //        {
-//            this.dataWatcher.updateObject(DATA_BOSSHEALTH, Integer.valueOf((int)this.getHealth()));
+//            this.dataWatcher.updateObject(DATA_BOSSHEALTH, (int)this.getHealth());
 //        }
 //        else
 //        {

@@ -135,7 +135,7 @@ public class EntityTFCharmEffect extends Entity
 
     protected void entityInit()
     {
-        this.dataWatcher.addObject(DATA_ITEMID, Integer.valueOf(0));
+        this.dataWatcher.addObject(DATA_ITEMID, 0);
         this.dataWatcher.addObject(DATA_OWNER, "");
     }
 

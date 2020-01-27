@@ -55,7 +55,7 @@ public class MapGenTFHollowTree extends MapGenBase {
                         return MapGenTFHollowTree.this.canSpawnStructureAtCoords(chunkX, chunkZ) ? "True" : "False";
                     }
                 });
-                crashreportcategory.addCrashSection("Chunk location", String.format("%d,%d", new Object[] {Integer.valueOf(chunkX), Integer.valueOf(chunkZ)}));
+                crashreportcategory.addCrashSection("Chunk location", String.format("%d,%d", new Object[] {chunkX, chunkZ}));
                 crashreportcategory.addCrashSectionCallable("Chunk pos hash", new Callable() {
                     private static final String __OBFID = "CL_00000507";
                     public String call() {

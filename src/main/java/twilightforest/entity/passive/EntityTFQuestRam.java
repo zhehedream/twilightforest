@@ -72,7 +72,7 @@ public class EntityTFQuestRam extends EntityAnimal {
 	protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Integer.valueOf(0));
+        this.dataWatcher.addObject(16, 0);
         this.dataWatcher.addObject(17, (byte)0);
     }
 
@@ -259,7 +259,7 @@ public class EntityTFQuestRam extends EntityAnimal {
      */
     public void setColorFlags(int par1)
     {
-    	this.dataWatcher.updateObject(16, Integer.valueOf(par1));
+    	this.dataWatcher.updateObject(16, par1);
     }
 
     /**

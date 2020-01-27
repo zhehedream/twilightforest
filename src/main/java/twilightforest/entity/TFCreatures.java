@@ -28,7 +28,7 @@ public class TFCreatures {
 			EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
 		}
 		EntityRegistry.registerModEntity(entityClass, entityName, id, TwilightForestMod.instance, trackingRange, updateFrequency, sendsVelocityUpdates);
-		entityEggs.put(Integer.valueOf(id), new TFEntityEggInfo(id, backgroundEggColour, foregroundEggColour));
+		entityEggs.put(id, new TFEntityEggInfo(id, backgroundEggColour, foregroundEggColour));
 	}
 
 	public static void registerTFCreature(Class <? extends Entity > entityClass, String entityName, int id) {
@@ -50,7 +50,7 @@ public class TFCreatures {
 
 		try
 		{
-			//Class clazz = (Class)IDtoClassMapping.get(Integer.valueOf(entityID));
+			//Class clazz = (Class)IDtoClassMapping.get(entityID);
 			ModContainer mc = FMLCommonHandler.instance().findContainerFor(TwilightForestMod.instance);
 			EntityRegistration er = EntityRegistry.instance().lookupModSpawn(mc, entityID);
 			Class<?> clazz = er.getEntityClass();
