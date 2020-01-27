@@ -34,11 +34,7 @@ import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.TFWorldChunkManager;
 import twilightforest.world.WorldProviderTwilightForest;
 
-
-
-
 public class EntityTFLich extends EntityMob implements IBossDisplayData {
-	
 
 	private static final int DATA_ISCLONE = 21;
 	private static final int DATA_SHIELDSTRENGTH = 17;
@@ -152,13 +148,14 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
 	private void dropScepter() {
 		int scepterType = rand.nextInt(3);
-		if (scepterType == 0) {
+		switch (scepterType) {
+		case 0:
 			this.entityDropItem(new ItemStack(TFItems.scepterZombie), 0);
-		}
-		else if (scepterType == 1) {
+			break;
+		case 1:
 			this.entityDropItem(new ItemStack(TFItems.scepterLifeDrain), 0);
-		}
-		else {
+			break;
+		default:
 			this.entityDropItem(new ItemStack(TFItems.scepterTwilight), 0);
 		}
 	}
@@ -166,19 +163,20 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 	private void dropGoldThing() {
 		ItemStack goldThing;
 		int thingType = rand.nextInt(5);
-		if (thingType == 0) {
+		switch (thingType) {
+		case 0:
 			goldThing = new ItemStack(Items.golden_sword);
-		}
-		else if (thingType == 1) {
+			break;
+		case 1:
 			goldThing = new ItemStack(Items.golden_helmet);
-		}
-		else if (thingType == 2) {
+			break;
+		case 2:
 			goldThing = new ItemStack(Items.golden_chestplate);
-		}
-		else if (thingType == 3) {
+			break;
+		case 3:
 			goldThing = new ItemStack(Items.golden_leggings);
-		}
-		else {
+			break;
+		default:
 			goldThing = new ItemStack(Items.golden_boots);
 		}
 		// enchant!
@@ -262,8 +260,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     	int particles = factor > 0 ? rand.nextInt(factor) : 1;
     	
     	
-        for (int j1 = 0; j1 < particles; j1++)
-        {
+        for (int j1 = 0; j1 < particles; j1++) {
         	float sparkle = 1.0F - (attackTime + 1.0F) / 60.0F;
         	sparkle *= sparkle;
         	
@@ -272,8 +269,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
             float blu = 0.89F * sparkle;
             
             // change color for fireball
-        	if (this.getNextAttackType() != 0)
-        	{
+        	if (this.getNextAttackType() != 0) {
                 red = 0.99F * sparkle;
                 grn = 0.47F * sparkle;
                 blu = 0.00F * sparkle;
@@ -288,8 +284,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 		}
 		
 		// update health
-        if (!this.worldObj.isRemote)
-        {
+        if (!this.worldObj.isRemote) {
             this.dataWatcher.updateObject(DATA_BOSSHEALTH, Integer.valueOf((int)this.getHealth()));
         }
 		
@@ -305,9 +300,9 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      * TODO maybe we could compare masters to make teams or something.
      */
     @Override
-	public boolean attackEntityFrom(DamageSource par1DamageSource, float damage) {
+	public boolean attackEntityFrom(DamageSource damageSource, float damage) {
     	// if we're in a wall, teleport for gosh sakes
-    	if (par1DamageSource.getDamageType() == "inWall" && entityToAttack != null) {
+    	if (damageSource.getDamageType() == "inWall" && entityToAttack != null) {
     		teleportToSightOfEntity(entityToAttack);
     	}
     	
@@ -323,28 +318,23 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 //		System.out.println("Damage source source is " + par1DamageSource.getSourceOfDamage());
 
 		// ignore all bolts that are not reflected
-		if (par1DamageSource.getEntity() instanceof EntityTFLich) {
+		if (damageSource.getEntity() instanceof EntityTFLich) {
 			return false;
 		}
 		
 		// if our shield is up, ignore any damage that can be blocked.
-		if (getShieldStrength() > 0)
-		{
-			if (par1DamageSource.isUnblockable() && damage > 2) 
-			{
+		if (getShieldStrength() > 0) {
+			if (damageSource.isUnblockable() && damage > 2) {
 				// reduce shield for magic damage greater than 1 heart
 				if (getShieldStrength() > 0) {
 					setShieldStrength(getShieldStrength() - 1);
 					this.worldObj.playSoundAtEntity(this, "random.break", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				}
-			}
-			else
-			{
+			} else {
 				this.worldObj.playSoundAtEntity(this, "random.break", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				// HACK for creative mode: but get annoyed at what's causing it.
-				if (par1DamageSource.getEntity() instanceof EntityPlayer) 
-				{
-					this.entityToAttack = par1DamageSource.getEntity();
+				if (damageSource.getEntity() instanceof EntityPlayer) {
+					this.entityToAttack = damageSource.getEntity();
 				}
 			}
 			
@@ -353,7 +343,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
 		// never attack another lich?
 		//TODO: this could better check who is actually attacking against the masterLich variable thing
-		if (super.attackEntityFrom(par1DamageSource, damage)) 
+		if (super.attackEntityFrom(damageSource, damage)) 
 		{
 			if (entityToAttack instanceof EntityTFLich) {
 				this.entityToAttack = prevTarget;

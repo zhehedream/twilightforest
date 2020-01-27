@@ -338,18 +338,20 @@ public class BlockTFFireJet extends Block {
      * 
      * Return true from this function to specify this block has a tile entity.
      * 
-     * @param metadata Metadata of the current block
+     * @param meta Metadata of the current block
      * @return True if block has a tile entity, false otherwise
      */
     @Override
-    public boolean hasTileEntity(int metadata) {
-    	if (metadata == META_SMOKER || metadata == META_JET_POPPING || metadata == META_JET_FLAME
-    			|| metadata == META_ENCASED_SMOKER_ON || metadata == META_ENCASED_JET_POPPING || metadata == META_ENCASED_JET_FLAME)
-    	{
+    public boolean hasTileEntity(int meta) {
+    	switch (meta) {
+    	case META_SMOKER:
+    	case META_ENCASED_SMOKER_ON:
+    	case META_JET_POPPING:
+    	case META_JET_FLAME:
+    	case META_ENCASED_JET_POPPING:
+    	case META_ENCASED_JET_FLAME:
     		return true;
-    	}
-    	else
-    	{
+    	default:
     		return false;
     	}
     }
@@ -364,44 +366,33 @@ public class BlockTFFireJet extends Block {
      */
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-    	if (metadata == META_SMOKER || metadata == META_ENCASED_SMOKER_ON)
-    	{
+    	switch(metadata) {
+    	case META_SMOKER:
+    	case META_ENCASED_SMOKER_ON:
     		return new TileEntityTFSmoker();
-    	}
-    	else if (metadata == META_JET_POPPING)
-    	{
+    	case META_JET_POPPING:
     		return new TileEntityTFPoppingJet(META_JET_FLAME);
-    	}
-    	else if (metadata == META_JET_FLAME)
-    	{
+    	case META_JET_FLAME:
     		return new TileEntityTFFlameJet(META_JET_IDLE);
-    	}
-    	else if (metadata == META_ENCASED_JET_POPPING)
-    	{
+    	case META_ENCASED_JET_POPPING:
     		return new TileEntityTFPoppingJet(META_ENCASED_JET_FLAME);
-    	}
-    	else if (metadata == META_ENCASED_JET_FLAME)
-    	{
+    	case META_ENCASED_JET_FLAME:
     		return new TileEntityTFFlameJet(META_ENCASED_JET_IDLE);
-    	}
-    	else
-    	{
+    	default:
     		return null;
     	}
     }
-
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @Override
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+	public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList)
     {
-        par3List.add(new ItemStack(par1, 1, META_SMOKER));
-        par3List.add(new ItemStack(par1, 1, META_JET_IDLE));
-        par3List.add(new ItemStack(par1, 1, META_ENCASED_SMOKER_OFF));
-        par3List.add(new ItemStack(par1, 1, META_ENCASED_JET_IDLE));
+    	itemList.add(new ItemStack(item, 1, META_SMOKER));
+    	itemList.add(new ItemStack(item, 1, META_JET_IDLE));
+    	itemList.add(new ItemStack(item, 1, META_ENCASED_SMOKER_OFF));
+    	itemList.add(new ItemStack(item, 1, META_ENCASED_JET_IDLE));
     }
-
 
 }

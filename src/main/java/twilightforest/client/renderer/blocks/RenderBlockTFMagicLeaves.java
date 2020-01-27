@@ -51,17 +51,16 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
 
 	private void setRenderRotate(RenderBlocks renderer, int meta, int x, int y, int z) {
         int type = meta & 3;
-
-        if (type == 0)
-        {
+        
+        switch(type) {
+        case 0:
         	renderer.uvRotateEast = 3;
         	renderer.uvRotateBottom = 0;
 
         	renderer.uvRotateNorth = 2;
         	renderer.uvRotateSouth = 2;
-        }
-        else if (type == 1)
-        {
+        	break;
+        case 1:
         	// bottom and top are semi-random
         	renderer.uvRotateBottom = (x + y + z) & 3;
         	renderer.uvRotateTop = (x + y + z) & 3;
@@ -72,9 +71,8 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
 
         	renderer.uvRotateNorth = 2;
         	renderer.uvRotateSouth = 1;
-        }
-        else if (type == 2)
-        {
+        	break;
+        case 2:
         	// bottom and top are semi-random
         	renderer.uvRotateBottom = (x + y + z) & 3;
         	renderer.uvRotateTop = (x + y + z) & 3;
@@ -85,9 +83,8 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
 
         	renderer.uvRotateNorth = 1;
         	renderer.uvRotateSouth = 2;
-        }
-        else if (type == 3)
-        {
+        	break;
+        case 3:
         	// all semi-random
         	renderer.uvRotateBottom = (x + y + z) & 3;
         	renderer.uvRotateTop = (x + y + z) & 3;
@@ -98,8 +95,6 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
         	renderer.uvRotateNorth = (x + y + z) & 3;;
         	renderer.uvRotateSouth = (x + y + z) & 3;;
         }
-
-
 	}
 
 	@Override
@@ -116,8 +111,7 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
 	public static void renderInvNormalBlock(RenderBlocks renderblocks, Block par1Block, int meta) {
 		Tessellator tessellator =  Tessellator.instance;
 		
-        if (renderblocks.useInventoryTint)
-        {
+        if (renderblocks.useInventoryTint) {
             int colorInt = par1Block.getRenderColor(meta);
 
             float red = (float)(colorInt >> 16 & 255) / 255.0F;

@@ -206,8 +206,6 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
 			
 			return new ChunkCoordinates(rx, ry, rz);
 		}
-		
-		
 		return null;
 	}
 	
@@ -221,19 +219,18 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
 		int dy = getYWithOffset(y);
 		int dz = getZWithOffset(x, z);
 		
-		if (direction == 0) {
+		switch(direction) {
+		case 0:
 			return new ChunkCoordinates(dx - 1, dy - 1, dz - towerSize / 2);
-		} else if (direction == 1) {
+		case 1:
 			return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz - 1);
-		} else if (direction == 2) {
+		case 2:
 			return new ChunkCoordinates(dx + 1, dy - 1, dz + towerSize / 2);
-		} else if (direction == 3) {
+		case 3:
 			return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz + 1);
-		}
-		
-		
-		// ugh?
-		return new ChunkCoordinates(x, y, z);
+		default:
+			return new ChunkCoordinates(x, y, z);
+		}		
 	}
 	
 
@@ -250,7 +247,6 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         		}
         	}        
         }
-
         return false;
 	}
 

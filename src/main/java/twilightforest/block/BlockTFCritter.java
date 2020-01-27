@@ -45,52 +45,43 @@ public abstract class BlockTFCritter extends Block {
     {
     	int facing = world.getBlockMetadata(x, y, z) & 7;
     	float wide = 0.15F;
-    	if (facing == 1)
-    	{
+    	switch(facing) {
+    	case 1:
     		setBlockBounds(0.0F, 0.2F, 0.5F - wide, wide * 2.0F, 0.8F, 0.5F + wide);
-    	} 
-    	else if(facing == 2)
-    	{
+    		break;
+    	case 2:
     		setBlockBounds(1.0F - wide * 2.0F, 0.2F, 0.5F - wide, 1.0F, 0.8F, 0.5F + wide);
-    	} 
-    	else if(facing == 3)
-    	{
+    		break;
+    	case 3:
     		setBlockBounds(0.5F - wide, 0.2F, 0.0F, 0.5F + wide, 0.8F, wide * 2.0F);
-    	} 
-    	else if(facing == 4)
-    	{
+    		break;
+    	case 4:
     		setBlockBounds(0.5F - wide, 0.2F, 1.0F - wide * 2.0F, 0.5F + wide, 0.8F, 1.0F);
-    	} 
-    	else if(facing == 5)
-    	{
+    		break;
+    	case 5:
     		setBlockBounds(0.5F - wide, 0.0F, 0.2F, 0.5F + wide, wide * 2.0F, 0.8F);
-    	} 
-    	else if(facing == 6)
-    	{
+    		break;
+    	case 6:
     		setBlockBounds(0.5F - wide, 1.0F - wide * 2.0F, 0.2F, 0.5F + wide, 1.0F, 0.8F);
-    	} 
-    	else
-    	{
+    		break;
+    	default:
     		float f1 = 0.1F;
     		setBlockBounds(0.5F - f1, 0.0F, 0.5F - f1, 0.5F + f1, 0.6F, 0.5F + f1);
-    	}   
+    	}  
     }
     
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k)
-    {
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return null;
     }
 
 	@Override
-	public boolean isOpaqueCube()
-	{
+	public boolean isOpaqueCube() {
 		return false;
 	}
 
 	@Override
-	public boolean renderAsNormalBlock()
-	{
+	public boolean renderAsNormalBlock() {
 		return false;
 	}
 	
@@ -98,8 +89,7 @@ public abstract class BlockTFCritter extends Block {
      * The type of render function that is called for this block
      */
 	@Override
-	public int getRenderType()
-	{
+	public int getRenderType() {
 		return TwilightForestMod.proxy.getCritterBlockRenderID();
 	}
 	

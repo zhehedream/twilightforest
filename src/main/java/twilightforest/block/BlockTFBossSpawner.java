@@ -22,8 +22,6 @@ import twilightforest.tileentity.TileEntityTFNagaSpawner;
 import twilightforest.tileentity.TileEntityTFSnowQueenSpawner;
 import twilightforest.tileentity.TileEntityTFTowerBossSpawner;
 
-
-
 public class BlockTFBossSpawner extends BlockContainer {
 
 	protected BlockTFBossSpawner()
@@ -46,8 +44,7 @@ public class BlockTFBossSpawner extends BlockContainer {
      * @return True if block has a tile entity, false otherwise
      */
 	@Override
-	public boolean hasTileEntity(int metadata) 
-	{
+	public boolean hasTileEntity(int metadata)  {
 		return true;
 	}
 
@@ -56,34 +53,22 @@ public class BlockTFBossSpawner extends BlockContainer {
 	 * This is where we actually give out our tile entity
 	 */
 	@Override
-	public TileEntity createTileEntity(World world, int metadata) 
+	public TileEntity createTileEntity(World world, int meta) 
     {
-		if (metadata == 0) 
-		{
+		switch(meta) {
+		case 0:
 			return new TileEntityTFNagaSpawner();
-		}
-		else if (metadata == 1)
-		{
+		case 1:
 			return new TileEntityTFLichSpawner();
-		}
-		else if (metadata == 2) 
-		{
+		case 2:
 			return new TileEntityTFHydraSpawner();
-		}
-		else if (metadata == 3) 
-		{
+		case 3:
 			return new TileEntityTFTowerBossSpawner();
-		}
-		else if (metadata == 4) 
-		{
+		case 4:
 			return new TileEntityTFKnightPhantomsSpawner();
-		}
-		else if (metadata == 5) 
-		{
+		case 5:
 			return new TileEntityTFSnowQueenSpawner();
-		}
-		else 
-		{
+		default:
 			return null;
 		}
     }

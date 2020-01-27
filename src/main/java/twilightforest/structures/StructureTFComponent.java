@@ -237,27 +237,23 @@ public abstract class StructureTFComponent extends StructureComponent {
 	 * Provides coordinates to make a tower such that it will open into the parent tower at the provided coordinates.
 	 */
 	protected int[] offsetTowerCoords(int x, int y, int z, int towerSize, int direction) {
-		
+
 		int dx = getXWithOffset(x, z);
 		int dy = getYWithOffset(y);
 		int dz = getZWithOffset(x, z);
-		
-		if (direction == 0) {
+
+		switch(direction) {
+		case 0:
 			return new int[] {dx + 1, dy - 1, dz - towerSize / 2};
-		}
-		else if (direction == 1) {
+		case 1:
 			return new int[] {dx + towerSize / 2, dy - 1, dz + 1};
-		}
-		else if (direction == 2) {
+		case 2:
 			return new int[] {dx - 1, dy - 1, dz + towerSize / 2};
-		}
-		else if (direction == 3) {
+		case 3:
 			return new int[] {dx - towerSize / 2, dy - 1, dz - 1};
+		default:
+			return new int[] {x, y, z};
 		}
-		
-		
-		// ugh?
-		return new int[] {x, y, z};
 	}
 
 	/**
@@ -269,19 +265,18 @@ public abstract class StructureTFComponent extends StructureComponent {
 		int dy = getYWithOffset(y);
 		int dz = getZWithOffset(x, z);
 		
-		if (direction == 0) {
+		switch(direction) {
+		case 0:
 			return new ChunkCoordinates(dx + 1, dy - 1, dz - towerSize / 2);
-		} else if (direction == 1) {
+		case 1:
 			return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz + 1);
-		} else if (direction == 2) {
+		case 2:
 			return new ChunkCoordinates(dx - 1, dy - 1, dz + towerSize / 2);
-		} else if (direction == 3) {
+		case 3:
 			return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz - 1);
+		default:
+			return new ChunkCoordinates(x, y, z);
 		}
-		
-		
-		// ugh?
-		return new ChunkCoordinates(x, y, z);
 	}
 
 
