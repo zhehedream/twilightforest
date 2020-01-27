@@ -73,7 +73,7 @@ public class EntityTFQuestRam extends EntityAnimal {
     {
         super.entityInit();
         this.dataWatcher.addObject(16, Integer.valueOf(0));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(17, (byte)0);
     }
 
 
@@ -295,7 +295,7 @@ public class EntityTFQuestRam extends EntityAnimal {
      */
     public void setRewarded(boolean par1)
     {
-    	this.dataWatcher.updateObject(17, par1 ? Byte.valueOf((byte)1) : Byte.valueOf((byte)0));
+    	this.dataWatcher.updateObject(17, par1 ? (byte)1 : (byte)0);
     }
 
 

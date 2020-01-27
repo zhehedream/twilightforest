@@ -85,8 +85,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(RAMPAGE_FLAG, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(TIRED_FLAG, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(RAMPAGE_FLAG, (byte)0);
+        this.dataWatcher.addObject(TIRED_FLAG, (byte)0);
     }
     
 	/**
@@ -466,7 +466,7 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob
      */
     public void setRampaging(boolean par1)
     {
-        this.getDataWatcher().updateObject(RAMPAGE_FLAG, Byte.valueOf((byte)(par1 ? 1 : 0)));
+        this.getDataWatcher().updateObject(RAMPAGE_FLAG, (byte)(par1 ? 1 : 0));
     }
 
     /**
@@ -482,7 +482,7 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob
      */
     public void setTired(boolean par1)
     {
-        this.getDataWatcher().updateObject(TIRED_FLAG, Byte.valueOf((byte)(par1 ? 1 : 0)));
+        this.getDataWatcher().updateObject(TIRED_FLAG, (byte)(par1 ? 1 : 0));
         this.canRampage = false;
     }
 

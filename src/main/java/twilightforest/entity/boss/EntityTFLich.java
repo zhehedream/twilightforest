@@ -91,11 +91,11 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(DATA_ISCLONE, Byte.valueOf((byte)0));
-		this.dataWatcher.addObject(DATA_SHIELDSTRENGTH, Byte.valueOf((byte)0));
-		this.dataWatcher.addObject(DATA_MINIONSLEFT, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(DATA_ISCLONE, (byte)0);
+		this.dataWatcher.addObject(DATA_SHIELDSTRENGTH, (byte)0);
+		this.dataWatcher.addObject(DATA_MINIONSLEFT, (byte)0);
         this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(EntityTFLich.MAX_HEALTH));
-		this.dataWatcher.addObject(DATA_ATTACKTYPE, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(DATA_ATTACKTYPE, (byte)0);
 	}
 
 
@@ -950,11 +950,11 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
         if (par1)
         {
-            this.dataWatcher.updateObject(DATA_ISCLONE, Byte.valueOf((byte)(var2 | 2)));
+            this.dataWatcher.updateObject(DATA_ISCLONE, (byte)(var2 | 2));
         }
         else
         {
-            this.dataWatcher.updateObject(DATA_ISCLONE, Byte.valueOf((byte)(var2 & -3)));
+            this.dataWatcher.updateObject(DATA_ISCLONE, (byte)(var2 & -3));
         }
     }
     
@@ -963,7 +963,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 	}
 
 	public void setShieldStrength(int shieldStrength) {
-		this.dataWatcher.updateObject(DATA_SHIELDSTRENGTH, Byte.valueOf((byte) shieldStrength));
+		this.dataWatcher.updateObject(DATA_SHIELDSTRENGTH, (byte) shieldStrength);
 	}
 
 	public byte getMinionsToSummon() {
@@ -971,7 +971,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 	}
 
 	public void setMinionsToSummon(int minionsToSummon) {
-		this.dataWatcher.updateObject(DATA_MINIONSLEFT, Byte.valueOf((byte) minionsToSummon));
+		this.dataWatcher.updateObject(DATA_MINIONSLEFT, (byte) minionsToSummon);
 	}
 
 	public byte getNextAttackType() {
@@ -979,7 +979,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 	}
 
 	public void setNextAttackType(int attackType) {
-		this.dataWatcher.updateObject(DATA_ATTACKTYPE, Byte.valueOf((byte) attackType));
+		this.dataWatcher.updateObject(DATA_ATTACKTYPE, (byte) attackType);
 	}
 
 	/**

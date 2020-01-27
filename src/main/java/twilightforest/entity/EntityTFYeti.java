@@ -69,7 +69,7 @@ public class EntityTFYeti extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(ANGER_FLAG, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(ANGER_FLAG, (byte)0);
     }
 
     /**
@@ -180,9 +180,9 @@ public class EntityTFYeti extends EntityMob
 
         if (anger) {
             this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
-            this.dataWatcher.updateObject(ANGER_FLAG, Byte.valueOf((byte)(b0 | 2)));
+            this.dataWatcher.updateObject(ANGER_FLAG, (byte)(b0 | 2));
         } else {
-            this.dataWatcher.updateObject(ANGER_FLAG, Byte.valueOf((byte)(b0 & -3)));
+            this.dataWatcher.updateObject(ANGER_FLAG, (byte)(b0 & -3));
         }
     }
     

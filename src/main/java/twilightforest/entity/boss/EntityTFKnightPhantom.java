@@ -73,7 +73,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.addObject(FLAG_CHARGING, Byte.valueOf((byte)0));
+        dataWatcher.addObject(FLAG_CHARGING, (byte)0);
     }
 
 	/**
@@ -670,11 +670,11 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob
     {
     	if (flag)
     	{
-    		dataWatcher.updateObject(FLAG_CHARGING, Byte.valueOf((byte)127));
+    		dataWatcher.updateObject(FLAG_CHARGING, (byte)127);
     	}
     	else
     	{
-    		dataWatcher.updateObject(FLAG_CHARGING, Byte.valueOf((byte)0));
+    		dataWatcher.updateObject(FLAG_CHARGING, (byte)0);
     	}
     }
     

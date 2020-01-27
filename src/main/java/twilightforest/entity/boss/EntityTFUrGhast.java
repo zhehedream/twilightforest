@@ -104,7 +104,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     {
         super.entityInit();
 //        this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(this.getMaxHealth()));
-        this.dataWatcher.addObject(DATA_TANTRUM, Byte.valueOf((byte) 0));
+        this.dataWatcher.addObject(DATA_TANTRUM, (byte) 0);
     }
 
     /**
@@ -796,7 +796,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
      */
     public void setInTantrum(boolean par1)
     {
-    	this.dataWatcher.updateObject(DATA_TANTRUM, par1 ? Byte.valueOf((byte)-1) : Byte.valueOf((byte)0));
+    	this.dataWatcher.updateObject(DATA_TANTRUM, par1 ? (byte)-1 : (byte)0);
     	
     	// can we just reset this each time it is called?
     	this.damageUntilNextPhase = 48;

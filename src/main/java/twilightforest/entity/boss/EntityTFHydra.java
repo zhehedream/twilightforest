@@ -326,7 +326,7 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.addObject(DATA_SPAWNHEADS, Byte.valueOf((byte)0));
+        dataWatcher.addObject(DATA_SPAWNHEADS, (byte)0);
         this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(MAX_HEALTH));
     }
     
@@ -340,11 +340,11 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
     {
         if (flag)
         {
-            dataWatcher.updateObject(DATA_SPAWNHEADS, Byte.valueOf((byte)127));
+            dataWatcher.updateObject(DATA_SPAWNHEADS, (byte)127);
         }
         else
         {
-            dataWatcher.updateObject(DATA_SPAWNHEADS, Byte.valueOf((byte)0));
+            dataWatcher.updateObject(DATA_SPAWNHEADS, (byte)0);
         }
     }
     

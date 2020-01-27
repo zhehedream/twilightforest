@@ -105,8 +105,8 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(BEAM_FLAG, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(PHASE_FLAG, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(BEAM_FLAG, (byte)0);
+        this.dataWatcher.addObject(PHASE_FLAG, (byte)0);
     }
 
     /**
@@ -518,7 +518,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 	}
 
 	public void setBreathing(boolean flag) {
-        this.getDataWatcher().updateObject(BEAM_FLAG, Byte.valueOf((byte)(flag ? 1 : 0)));
+        this.getDataWatcher().updateObject(BEAM_FLAG, (byte)(flag ? 1 : 0));
 	}
 
 
@@ -528,7 +528,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 
 
 	public void setCurrentPhase(Phase currentPhase) {
-		this.getDataWatcher().updateObject(PHASE_FLAG, Byte.valueOf((byte) currentPhase.ordinal()));
+		this.getDataWatcher().updateObject(PHASE_FLAG, (byte) currentPhase.ordinal());
 		
 		// set variables for current phase
 		if (currentPhase == Phase.SUMMON) {

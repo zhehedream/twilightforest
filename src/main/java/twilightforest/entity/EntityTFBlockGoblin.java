@@ -76,8 +76,8 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(DATA_CHAINLENGTH, Byte.valueOf((byte) 0));
-        this.dataWatcher.addObject(DATA_CHAINPOS, Byte.valueOf((byte) 0));
+        this.dataWatcher.addObject(DATA_CHAINLENGTH, (byte) 0);
+        this.dataWatcher.addObject(DATA_CHAINPOS, (byte) 0);
     }
     
     /**
@@ -210,8 +210,8 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
 
         if (!this.worldObj.isRemote)
         {
-            this.dataWatcher.updateObject(DATA_CHAINLENGTH, Byte.valueOf((byte) Math.floor(getChainLength() * 127F)));
-            this.dataWatcher.updateObject(DATA_CHAINPOS, Byte.valueOf((byte) Math.floor(getChainAngle() / 360F * 255F)));
+            this.dataWatcher.updateObject(DATA_CHAINLENGTH, (byte) Math.floor(getChainLength() * 127F));
+            this.dataWatcher.updateObject(DATA_CHAINPOS, (byte) Math.floor(getChainAngle() / 360F * 255F));
         }
         else
         {
