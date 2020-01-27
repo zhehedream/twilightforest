@@ -11,28 +11,20 @@ import twilightforest.structures.StructureTFComponent;
 
 public class TFStrongholdPieces {
 
-	private static final TFStrongholdPieceWeight[] pieceWeightArray = new TFStrongholdPieceWeight[] {
-		new TFStrongholdPieceWeight(ComponentTFStrongholdSmallHallway.class, 40, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdLeftTurn.class, 20, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdCrossing.class, 10, 4), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdRightTurn.class, 20, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdDeadEnd.class, 5, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdBalconyRoom.class, 10, 3, 2), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdTrainingRoom.class, 10, 2), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdSmallStairs.class, 10, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdTreasureCorridor.class, 5, 0), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdAtrium.class, 5, 2, 3), 
-		new TFStrongholdPieceWeight(ComponentTFStrongholdFoundry.class, 5, 1, 4),
-		new TFStrongholdPieceWeight(ComponentTFStrongholdTreasureRoom.class, 5, 1, 4),
-		new TFStrongholdPieceWeight(ComponentTFStrongholdBossRoom.class, 10, 1, 4)};
+    private static final TFStrongholdPieceWeight[] pieceWeightArray = new TFStrongholdPieceWeight[] { new TFStrongholdPieceWeight(ComponentTFStrongholdSmallHallway.class, 40, 0),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdLeftTurn.class, 20, 0), new TFStrongholdPieceWeight(ComponentTFStrongholdCrossing.class, 10, 4),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdRightTurn.class, 20, 0), new TFStrongholdPieceWeight(ComponentTFStrongholdDeadEnd.class, 5, 0),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdBalconyRoom.class, 10, 3, 2), new TFStrongholdPieceWeight(ComponentTFStrongholdTrainingRoom.class, 10, 2),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdSmallStairs.class, 10, 0), new TFStrongholdPieceWeight(ComponentTFStrongholdTreasureCorridor.class, 5, 0),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdAtrium.class, 5, 2, 3), new TFStrongholdPieceWeight(ComponentTFStrongholdFoundry.class, 5, 1, 4),
+            new TFStrongholdPieceWeight(ComponentTFStrongholdTreasureRoom.class, 5, 1, 4), new TFStrongholdPieceWeight(ComponentTFStrongholdBossRoom.class, 10, 1, 4) };
 
-	private List<TFStrongholdPieceWeight> pieceList;
-	static int totalWeight = 0;
+    private List<TFStrongholdPieceWeight> pieceList;
+    static int totalWeight = 0;
 
     private static Class<? extends StructureTFComponent> lastPieceMade;
-    
-    public static void registerPieces()
-    {
+
+    public static void registerPieces() {
         MapGenStructureIO.func_143031_a(ComponentTFStrongholdSmallHallway.class, "TFSSH");
         MapGenStructureIO.func_143031_a(ComponentTFStrongholdLeftTurn.class, "TFSLT");
         MapGenStructureIO.func_143031_a(ComponentTFStrongholdCrossing.class, "TFSCr");
@@ -59,130 +51,110 @@ public class TFStrongholdPieces {
     /**
      * sets up Arrays with the Structure pieces and their weights
      */
-    public void prepareStructurePieces()
-    {
+    public void prepareStructurePieces() {
         pieceList = new ArrayList<TFStrongholdPieceWeight>();
 
-        for (TFStrongholdPieceWeight piece : pieceWeightArray)
-        {
-        	piece.instancesSpawned = 0;
+        for (TFStrongholdPieceWeight piece : pieceWeightArray) {
+            piece.instancesSpawned = 0;
             pieceList.add(piece);
         }
     }
-    
-    public void markBossRoomUsed()
-    {
-    	// let's assume the boss room is the last one on the list
-    	//System.out.println("Removing " + pieceList.get(pieceList.size() - 1).pieceClass);
-    	
-    	pieceList.remove(pieceList.size() - 1);
+
+    public void markBossRoomUsed() {
+        // let's assume the boss room is the last one on the list
+        // System.out.println("Removing " + pieceList.get(pieceList.size() - 1).pieceClass);
+
+        pieceList.remove(pieceList.size() - 1);
     }
 
-    
-    private boolean hasMoreLimitedPieces()
-    {
+    private boolean hasMoreLimitedPieces() {
         boolean flag = false;
         totalWeight = 0;
 
-        for (TFStrongholdPieceWeight piece : pieceList)
-        {
-        	totalWeight += piece.pieceWeight;
-        	
-        	if (piece.instancesLimit > 0 && piece.instancesSpawned < piece.instancesLimit)
-        	{
-        		flag = true;
-        	}
+        for (TFStrongholdPieceWeight piece : pieceList) {
+            totalWeight += piece.pieceWeight;
+
+            if (piece.instancesLimit > 0 && piece.instancesSpawned < piece.instancesLimit) {
+                flag = true;
+            }
         }
 
         return flag;
     }
-    
+
     @SuppressWarnings("rawtypes")
-	public StructureTFStrongholdComponent getNextComponent(StructureComponent parent, List list, Random random, int index, int facing, int x, int y, int z)
-    {
-        if (!hasMoreLimitedPieces())
-        {
+    public StructureTFStrongholdComponent getNextComponent(StructureComponent parent, List list, Random random, int index, int facing, int x, int y, int z) {
+        if (!hasMoreLimitedPieces()) {
             return null;
-        }
-        else
-        {
-        	// repeat up to 5 times if we're not getting the right thing
-        	for (int i = 0; i < 5; i++)
-        	{
-        		int counter = random.nextInt(totalWeight);
+        } else {
+            // repeat up to 5 times if we're not getting the right thing
+            for (int i = 0; i < 5; i++) {
+                int counter = random.nextInt(totalWeight);
 
-        		for (TFStrongholdPieceWeight piece : pieceList)
-        		{
-        			counter -= piece.pieceWeight;
+                for (TFStrongholdPieceWeight piece : pieceList) {
+                    counter -= piece.pieceWeight;
 
-        			if (counter < 0)
-        			{
-        				
-                        if (!piece.isDeepEnough(index) || piece.pieceClass == lastPieceMade)
-                        {
+                    if (counter < 0) {
+
+                        if (!piece.isDeepEnough(index) || piece.pieceClass == lastPieceMade) {
                             break;
                         }
-        				
-        				// we're here!
+
+                        // we're here!
                         StructureTFStrongholdComponent component = instantiateComponent(piece.pieceClass, index, facing, x, y, z);
 
-                        if (StructureComponent.findIntersecting(list, component.getBoundingBox()) == null)
-                        {
-                        	++piece.instancesSpawned;
+                        if (StructureComponent.findIntersecting(list, component.getBoundingBox()) == null) {
+                            ++piece.instancesSpawned;
 
-                        	if (!piece.canSpawnMoreStructures())
-                        	{
-                        		pieceList.remove(piece);
-                        	}
-                        	
-                        	lastPieceMade = piece.pieceClass;
+                            if (!piece.canSpawnMoreStructures()) {
+                                pieceList.remove(piece);
+                            }
 
-                        	return component;
+                            lastPieceMade = piece.pieceClass;
+
+                            return component;
                         }
-        			}
-        		}
-        	}
+                    }
+                }
+            }
         }
-        
+
         // dead end?
         StructureTFStrongholdComponent deadEnd = new ComponentTFStrongholdDeadEnd(index, facing, x, y, z);
-        
-        if (StructureComponent.findIntersecting(list, deadEnd.getBoundingBox()) == null)
-        {
-        	return deadEnd;
-        }
-        else
-        {
-        	return null;
+
+        if (StructureComponent.findIntersecting(list, deadEnd.getBoundingBox()) == null) {
+            return deadEnd;
+        } else {
+            return null;
         }
     }
 
-	private static StructureTFStrongholdComponent instantiateComponent(Class<? extends StructureTFComponent> pieceClass, int index, int facing, int x, int y, int z) {
-		try {
-			return (StructureTFStrongholdComponent) pieceClass.getConstructor(int.class, int.class, int.class, int.class, int.class).newInstance(index, facing, x, y, z);
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		////			attempted = new ComponentTFStrongholdRoom(index, nFacing, nx, ny, nz);
+    private static StructureTFStrongholdComponent instantiateComponent(Class<? extends StructureTFComponent> pieceClass, int index, int facing, int x, int y, int z) {
+        try {
+            return (StructureTFStrongholdComponent) pieceClass.getConstructor(int.class, int.class, int.class, int.class, int.class).newInstance(index, facing, x, y, z);
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-		return null;
-	}
+        //// attempted = new ComponentTFStrongholdRoom(index, nFacing, nx, ny, nz);
+
+        return null;
+    }
 
 }

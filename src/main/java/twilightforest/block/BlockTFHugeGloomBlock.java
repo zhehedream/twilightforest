@@ -20,9 +20,8 @@ public class BlockTFHugeGloomBlock extends Block {
     private IIcon stemTex;
     @SideOnly(Side.CLIENT)
     private IIcon insideTex;
-    
-    public BlockTFHugeGloomBlock()
-    {
+
+    public BlockTFHugeGloomBlock() {
         super(Material.wood);
         this.setHardness(0.2F);
         this.setStepSound(soundTypeWood);
@@ -35,18 +34,21 @@ public class BlockTFHugeGloomBlock extends Block {
      */
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return meta == 10 && side > 1 ? this.stemTex : (meta >= 1 && meta <= 9 && side == 1 ? this.capTex : (meta >= 1 && meta <= 3 && side == 2 ? this.capTex : (meta >= 7 && meta <= 9 && side == 3 ? this.capTex : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? this.capTex : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? this.capTex : (meta == 14 ? this.capTex : (meta == 15 ? this.stemTex : this.insideTex)))))));
+        return meta == 10 && side > 1 ? this.stemTex
+                : (meta >= 1 && meta <= 9 && side == 1 ? this.capTex
+                        : (meta >= 1 && meta <= 3 && side == 2 ? this.capTex
+                                : (meta >= 7 && meta <= 9 && side == 3 ? this.capTex
+                                        : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? this.capTex
+                                                : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? this.capTex : (meta == 14 ? this.capTex : (meta == 15 ? this.stemTex : this.insideTex)))))));
     }
 
     /**
      * Returns the quantity of items to drop on block destruction.
      */
-    public int quantityDropped(Random rand)
-    {
+    public int quantityDropped(Random rand) {
         int i = rand.nextInt(10) - 7;
 
-        if (i < 0)
-        {
+        if (i < 0) {
             i = 0;
         }
 

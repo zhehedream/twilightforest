@@ -1,20 +1,18 @@
 package twilightforest.client.model;
 
-
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.entity.EntityLivingBase;
 
 public class ModelTFLoyalZombie extends ModelZombie {
-	
+
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
-     * and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are
+     * the same second and third as in the setRotationAngles method.
      */
-    public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float time)
-    {
-    	// GREEEEN
+    public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float time) {
+        // GREEEEN
         GL11.glColor3f(0.25F, 2.0F, 0.25F);
     }
 

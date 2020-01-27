@@ -20,71 +20,68 @@ import net.minecraftforge.client.IItemRenderer;
 public class TFFieryItemRenderer implements IItemRenderer {
 
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-	private TextureManager texturemanager;
+    private TextureManager texturemanager;
 
-	public TFFieryItemRenderer(GameSettings gameSettings, TextureManager textureManager) {
-		this.texturemanager = textureManager;
-	}
+    public TFFieryItemRenderer(GameSettings gameSettings, TextureManager textureManager) {
+        this.texturemanager = textureManager;
+    }
 
-    /** 
+    /**
      * Checks if this renderer should handle a specific item's render type
+     * 
      * @param item The item we are trying to render
      * @param type A render type to check if this renderer handles
-     * @return true if this renderer should handle the given render type,
-     * otherwise false
+     * @return true if this renderer should handle the given render type, otherwise false
      */
-	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
-	}
-	
+    @Override
+    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
+    }
+
     /**
-     * Checks if certain helper functionality should be executed for this renderer.
-     * See ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See
+     * ItemRendererHelper for more info
      * 
-     * @param type The render type
-     * @param item The ItemStack being rendered
+     * @param type   The render type
+     * @param item   The ItemStack being rendered
      * @param helper The type of helper functionality to be ran
      * @return True to run the helper functionality, false to not.
      */
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		return type == ItemRenderType.ENTITY && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
-	}
+    @Override
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
+        return type == ItemRenderType.ENTITY && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
+    }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific 
-     * types are run, and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
+     * and what extra data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered
      * @param data Extra Type specific data
      */
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+    @Override
+    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 
+        if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
+            // render item
+            IIcon iicon = ((EntityLivingBase) data[1]).getItemIcon(item, 0);
+            renderFieryItemEquipped(iicon, item);
+        } else if (type == ItemRenderType.EQUIPPED) {
+            // render item
+            IIcon iicon = ((EntityLivingBase) data[1]).getItemIcon(item, 0);
+            renderFieryItemEquipped(iicon, item);
+        } else if (type == ItemRenderType.ENTITY) {
+            EntityItem entityItem = (EntityItem) data[1];
 
+            this.renderDroppedItem(entityItem, item);
+        }
+    }
 
-		if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
-			// render item
-			IIcon iicon = ((EntityLivingBase)data[1]).getItemIcon(item, 0);
-			renderFieryItemEquipped(iicon, item);
-		} else if (type == ItemRenderType.EQUIPPED) {
-			// render item
-			IIcon iicon = ((EntityLivingBase)data[1]).getItemIcon(item, 0);
-			renderFieryItemEquipped(iicon, item);
-		} else if (type == ItemRenderType.ENTITY) {
-			EntityItem entityItem = (EntityItem)data[1];
-		
-			this.renderDroppedItem(entityItem, item);
-		}
-	}
+    private void renderFieryItemEquipped(IIcon iicon, ItemStack par2ItemStack) {
+        int par3 = 0;
 
-	private void renderFieryItemEquipped(IIcon iicon, ItemStack par2ItemStack) {
-		int par3 = 0;
-
-        if (iicon == null)
-        {
+        if (iicon == null) {
             GL11.glPopMatrix();
             return;
         }
@@ -102,32 +99,29 @@ public class TFFieryItemRenderer implements IItemRenderer {
 
         ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
 
-        
-		if (true)
-        {
-        	GL11.glDepthFunc(GL11.GL_EQUAL);
-        	GL11.glDisable(GL11.GL_LIGHTING);
-        	GL11.glEnable(GL11.GL_BLEND);
-        	GL11.glDisable(GL11.GL_TEXTURE_2D);
+        if (true) {
+            GL11.glDepthFunc(GL11.GL_EQUAL);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
 
-        	// pulse yellow
-            float f9 = (float) Math.sin((float)(Minecraft.getSystemTime() % 6000L) / 6000.0F * 2 * 3.14159F) * 0.2F + 0.2F;
-            
+            // pulse yellow
+            float f9 = (float) Math.sin((float) (Minecraft.getSystemTime() % 6000L) / 6000.0F * 2 * 3.14159F) * 0.2F + 0.2F;
+
             float yellooo = 0.4F;
-        	GL11.glColor4f(yellooo, yellooo, 0.0F, f9);
+            GL11.glColor4f(yellooo, yellooo, 0.0F, f9);
 
-        	ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
+            ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
 
-        	GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-        	GL11.glDisable(GL11.GL_BLEND);
-        	GL11.glEnable(GL11.GL_LIGHTING);
-        	GL11.glDepthFunc(GL11.GL_LEQUAL);
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glDepthFunc(GL11.GL_LEQUAL);
         }
-        
-        if (par2ItemStack.hasEffect(par3))
-        {
+
+        if (par2ItemStack.hasEffect(par3)) {
             GL11.glDepthFunc(GL11.GL_EQUAL);
             GL11.glDisable(GL11.GL_LIGHTING);
             texturemanager.bindTexture(RES_ITEM_GLINT);
@@ -139,14 +133,14 @@ public class TFFieryItemRenderer implements IItemRenderer {
             GL11.glPushMatrix();
             float f8 = 0.125F;
             GL11.glScalef(f8, f8, f8);
-            float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 8.0F;
+            float f9 = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F * 8.0F;
             GL11.glTranslatef(f9, 0.0F, 0.0F);
             GL11.glRotatef(-50.0F, 0.0F, 0.0F, 1.0F);
             ItemRenderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
             GL11.glPopMatrix();
             GL11.glPushMatrix();
             GL11.glScalef(f8, f8, f8);
-            f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 8.0F;
+            f9 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F * 8.0F;
             GL11.glTranslatef(-f9, 0.0F, 0.0F);
             GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
             ItemRenderer.renderItemIn2D(tessellator, 0.0F, 0.0F, 1.0F, 1.0F, 256, 256, 0.0625F);
@@ -159,40 +153,38 @@ public class TFFieryItemRenderer implements IItemRenderer {
 
         texturemanager.bindTexture(texturemanager.getResourceLocation(par2ItemStack.getItemSpriteNumber()));
         TextureUtil.func_147945_b();
-        
-        Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
-	}
 
-	private void renderDroppedItem(EntityItem entityItem, ItemStack item) {
-		Tessellator tessellator = Tessellator.instance;
-	
-		float f9 = 0.5F;
-		float f10 = 0.25F;
-	
-		GL11.glPushMatrix();
-	
-		float f12 = 0.0625F;
-		float f11 = 0.021875F;
-	
-	
-		GL11.glTranslatef(-f9, -f10, -(f12 + f11));
-	
-		GL11.glTranslatef(0f, 0f, f12 + f11);
-	
-		this.texturemanager.bindTexture(TextureMap.locationItemsTexture);
-		
-	    IIcon par2Icon = item.getIconIndex();
-	
+        Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
+    }
+
+    private void renderDroppedItem(EntityItem entityItem, ItemStack item) {
+        Tessellator tessellator = Tessellator.instance;
+
+        float f9 = 0.5F;
+        float f10 = 0.25F;
+
+        GL11.glPushMatrix();
+
+        float f12 = 0.0625F;
+        float f11 = 0.021875F;
+
+        GL11.glTranslatef(-f9, -f10, -(f12 + f11));
+
+        GL11.glTranslatef(0f, 0f, f12 + f11);
+
+        this.texturemanager.bindTexture(TextureMap.locationItemsTexture);
+
+        IIcon par2Icon = item.getIconIndex();
+
         // FULL BRIGHT
         Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
 
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		ItemRenderer.renderItemIn2D(tessellator, par2Icon.getMaxU(), par2Icon.getMinV(), par2Icon.getMinU(), par2Icon.getMaxV(), par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
+        // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        ItemRenderer.renderItemIn2D(tessellator, par2Icon.getMaxU(), par2Icon.getMinV(), par2Icon.getMinU(), par2Icon.getMaxV(), par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
 
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
+        Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
 
-	
-		GL11.glPopMatrix();
-	}
+        GL11.glPopMatrix();
+    }
 
 }

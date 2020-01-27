@@ -9,30 +9,27 @@ import twilightforest.block.TFBlocks;
 
 public class ItemBlockNagastone extends ItemBlock {
 
-	public ItemBlockNagastone(Block block) {
-		super(block);
+    public ItemBlockNagastone(Block block) {
+        super(block);
         setHasSubtypes(true);
         setMaxDamage(0);
-	}
-	
+    }
+
     @Override
-    public IIcon getIconFromDamage(int i)
-    {
+    public IIcon getIconFromDamage(int i) {
         int j = MathHelper.clamp_int(i, 0, 15);
         return TFBlocks.nagastone.getIcon(2, j);
 
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
-    {
-    	int meta = itemstack.getItemDamage();
-    	return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
+    public String getUnlocalizedName(ItemStack itemstack) {
+        int meta = itemstack.getItemDamage();
+        return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
     }
 
     @Override
-    public int getMetadata(int i)
-    {
+    public int getMetadata(int i) {
         return i;
     }
 }

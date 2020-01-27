@@ -16,42 +16,40 @@ public class RenderTFSnowQueen extends RenderBiped {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "snowqueen.png");
 
-	public RenderTFSnowQueen() {
-		super(new ModelTFSnowQueen(), 0.625F);
-	}
-
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
-    	return textureLoc;
+    public RenderTFSnowQueen() {
+        super(new ModelTFSnowQueen(), 0.625F);
     }
-    
+
     /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
+     * Return our specific texture
      */
-    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-    {
-    	float scale = 1.2F;
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
+        return textureLoc;
+    }
+
+    /**
+     * Allows the render to do any OpenGL state modifications necessary before the model is rendered.
+     * Args: entityLiving, partialTickTime
+     */
+    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
+        float scale = 1.2F;
         GL11.glScalef(scale, scale, scale);
     }
-    
-	/**
-	 * Render the queen and shield
-	 */
-	@Override
-	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1) {
 
-		EntityTFSnowQueen queen = (EntityTFSnowQueen)entity;
-		
+    /**
+     * Render the queen and shield
+     */
+    @Override
+    public void doRender(Entity entity, double d, double d1, double d2, float f, float f1) {
+
+        EntityTFSnowQueen queen = (EntityTFSnowQueen) entity;
+
         BossStatus.setBossStatus(queen, false);
 
-		super.doRender(entity, d, d1, d2, f, f1);
-		
-		for (int i = 0; i < queen.iceArray.length; i++) {
-			RenderManager.instance.renderEntitySimple(queen.iceArray[i], f1);
-		}
-	}
+        super.doRender(entity, d, d1, d2, f, f1);
+
+        for (int i = 0; i < queen.iceArray.length; i++) {
+            RenderManager.instance.renderEntitySimple(queen.iceArray[i], f1);
+        }
+    }
 }

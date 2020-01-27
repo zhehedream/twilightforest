@@ -1,19 +1,14 @@
 package twilightforest.world;
 
+public class TFGenSmallRainboak extends TFGenSmallTwilightOak {
 
-public class TFGenSmallRainboak extends TFGenSmallTwilightOak 
-{
+    public TFGenSmallRainboak() {
+        this(false);
+    }
 
-	public TFGenSmallRainboak() 
-	{
-		this(false);
-	}
-
-
-	public TFGenSmallRainboak(boolean notify) 
-	{
-		super(notify);
-		this.leafMeta = 3;
-	}
+    public TFGenSmallRainboak(boolean notify) {
+        super(notify);
+        this.leafMeta = 3;
+    }
 
 }

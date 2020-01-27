@@ -25,13 +25,12 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-
 public class EntityTFLoyalZombie extends EntityTameable {
 
-	public EntityTFLoyalZombie(World par1World) {
+    public EntityTFLoyalZombie(World par1World) {
         super(par1World);
-        //this.texture = "/mob/zombie.png";
-        //this.moveSpeed = 0.3F;
+        // this.texture = "/mob/zombie.png";
+        // this.moveSpeed = 0.3F;
         this.setSize(0.6F, 1.8F);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -46,67 +45,58 @@ public class EntityTFLoyalZombie extends EntityTameable {
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
 
-	}
+    }
 
-	@Override
-	public EntityAnimal createChild(EntityAgeable entityanimal)
-	{
-		return null;
-	}
+    @Override
+    public EntityAnimal createChild(EntityAgeable entityanimal) {
+        return null;
+    }
 
-
-	/**
-	 * Set monster attributes
-	 */
-	@Override
-    protected void applyEntityAttributes()
-    {
+    /**
+     * Set monster attributes
+     */
+    @Override
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D); // movement speed
     }
-	
-	/**
-	 * Rawr!
-	 */
-    public boolean attackEntityAsMob(Entity par1Entity)
-    {
+
+    /**
+     * Rawr!
+     */
+    public boolean attackEntityAsMob(Entity par1Entity) {
         int attackpower = 7;
         boolean success = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackpower);
-        
+
         // throw some enemies around!
-        if (success)
-        {
+        if (success) {
             par1Entity.motionY += 0.2000000059604645D;
         }
-        
+
         return success;
     }
-    
+
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies
+     * and skeletons use this to react to sunlight and start to burn.
      */
     @Override
-	public void onLivingUpdate()
-    {
-    	// once our damage boost effect wears out, start to burn
-    	// the effect here is that we die shortly after our 60 second lifespan
-        if (!this.worldObj.isRemote && this.getActivePotionEffect(Potion.damageBoost) == null)
-        {
+    public void onLivingUpdate() {
+        // once our damage boost effect wears out, start to burn
+        // the effect here is that we die shortly after our 60 second lifespan
+        if (!this.worldObj.isRemote && this.getActivePotionEffect(Potion.damageBoost) == null) {
             this.setFire(100);
         }
 
         super.onLivingUpdate();
     }
 
-
     /**
      * Determines if an entity can be despawned, used on idle far away entities
      */
     @Override
-	protected boolean canDespawn()
-    {
+    protected boolean canDespawn() {
         return !this.isTamed();
     }
 
@@ -114,8 +104,7 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     @Override
-	public int getTotalArmorValue()
-    {
+    public int getTotalArmorValue() {
         return 3;
     }
 
@@ -123,17 +112,15 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Returns true if the newer Entity AI code should be run
      */
     @Override
-	protected boolean isAIEnabled()
-    {
+    protected boolean isAIEnabled() {
         return true;
     }
-    
+
     /**
      * Returns the sound this mob makes while it's alive.
      */
     @Override
-	protected String getLivingSound()
-    {
+    protected String getLivingSound() {
         return "mob.zombie.say";
     }
 
@@ -141,8 +128,7 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Returns the sound this mob makes when it is hurt.
      */
     @Override
-	protected String getHurtSound()
-    {
+    protected String getHurtSound() {
         return "mob.zombie.hurt";
     }
 
@@ -150,8 +136,7 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Returns the sound this mob makes on death.
      */
     @Override
-	protected String getDeathSound()
-    {
+    protected String getDeathSound() {
         return "mob.zombie.death";
     }
 
@@ -159,18 +144,15 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Plays step sound at given x, y, z for the entity
      */
     @Override
-	protected void func_145780_a(int par1, int par2, int par3, Block par4)
-    {
+    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
         this.worldObj.playSoundAtEntity(this, "mob.zombie.step", 0.15F, 1.0F);
     }
-
 
     /**
      * Returns the item ID for the item the mob drops on death.
      */
     @Override
-	protected Item getDropItem()
-    {
+    protected Item getDropItem() {
         return Item.getItemById(0);
     }
 
@@ -178,8 +160,7 @@ public class EntityTFLoyalZombie extends EntityTameable {
      * Get this Entity's EnumCreatureAttribute
      */
     @Override
-	public EnumCreatureAttribute getCreatureAttribute()
-    {
+    public EnumCreatureAttribute getCreatureAttribute() {
         return EnumCreatureAttribute.UNDEAD;
     }
 }

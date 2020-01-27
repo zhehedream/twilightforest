@@ -3,12 +3,9 @@ package twilightforest.client.model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelSheep2;
 
+public class ModelTFBighornFur extends ModelSheep2 {
 
-public class ModelTFBighornFur extends ModelSheep2
-{
-
-    public ModelTFBighornFur()
-    {
+    public ModelTFBighornFur() {
         super();
         head = new ModelRenderer(this, 0, 0);
         head.addBox(-3F, -4F, -4F, 6, 6, 6, 0.6F);

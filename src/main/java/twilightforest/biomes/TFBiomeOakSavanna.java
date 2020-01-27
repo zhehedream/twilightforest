@@ -16,88 +16,69 @@ import twilightforest.world.TFGenNoTree;
 
 public class TFBiomeOakSavanna extends TFBiomeTwilightForest {
 
-	public TFBiomeOakSavanna(int i) {
-		super(i);
-		
-		getTFBiomeDecorator().canopyTreeGen = new TFGenCanopyOak();
-		
+    public TFBiomeOakSavanna(int i) {
+        super(i);
+
+        getTFBiomeDecorator().canopyTreeGen = new TFGenCanopyOak();
+
         getTFBiomeDecorator().alternateCanopyChance = 0.8F;
         getTFBiomeDecorator().alternateCanopyGen = new TFGenNoTree();
-		
-		this.temperature = 0.9F;
+
+        this.temperature = 0.9F;
         this.rainfall = 0.0F;
 
-        
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 20;
-	}
+    }
 
-	
     /**
      * Oak trees all over
      */
-    public WorldGenAbstractTree func_150567_a(Random random)
-    {
-        if(random.nextInt(10) == 0)
-        {
+    public WorldGenAbstractTree func_150567_a(Random random) {
+        if (random.nextInt(10) == 0) {
             return new WorldGenBigTree(false);
-        } else
-        {
+        } else {
             return worldGeneratorTrees;
         }
     }
-    
+
     /**
      * Oak savanna fern mix
      */
-    public WorldGenerator getRandomWorldGenForGrass(Random par1Random)
-    {
-        if (par1Random.nextInt(10) == 0)
-        {
+    public WorldGenerator getRandomWorldGenForGrass(Random par1Random) {
+        if (par1Random.nextInt(10) == 0) {
             return new WorldGenTallGrass(Blocks.tallgrass, 2);
-        }
-        else if (par1Random.nextInt(10) == 0)
-        {
+        } else if (par1Random.nextInt(10) == 0) {
             return new WorldGenTallGrass(TFBlocks.plant, BlockTFPlant.META_MAYAPPLE);
-        }
-        else
-        {
+        } else {
             return new WorldGenTallGrass(Blocks.tallgrass, 1);
         }
     }
-    
+
     /**
      * Multi-color flowers!
      */
-    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
-    {
-        double d0 = plantNoise.func_151601_a((double)p_150572_2_ / 200.0D, (double)p_150572_4_ / 200.0D);
+    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_) {
+        double d0 = plantNoise.func_151601_a((double) p_150572_2_ / 200.0D, (double) p_150572_4_ / 200.0D);
         int l;
 
-        if (d0 < -0.8D)
-        {
+        if (d0 < -0.8D) {
             l = p_150572_1_.nextInt(4);
             return BlockFlower.field_149859_a[4 + l];
-        }
-        else if (p_150572_1_.nextInt(3) > 0)
-        {
+        } else if (p_150572_1_.nextInt(3) > 0) {
             l = p_150572_1_.nextInt(3);
             return l == 0 ? BlockFlower.field_149859_a[0] : (l == 1 ? BlockFlower.field_149859_a[3] : BlockFlower.field_149859_a[8]);
-        }
-        else
-        {
+        } else {
             return BlockFlower.field_149858_b[0];
         }
     }
 
-    public void decorate(World par1World, Random par2Random, int par3, int par4)
-    {
-    	// 2-tall grass!
+    public void decorate(World par1World, Random par2Random, int par3, int par4) {
+        // 2-tall grass!
         genTallFlowers.func_150548_a(2);
 
-        for (int k = 0; k < 7; ++k)
-        {
+        for (int k = 0; k < 7; ++k) {
             int l = par3 + par2Random.nextInt(16) + 8;
             int i1 = par4 + par2Random.nextInt(16) + 8;
             int j1 = par2Random.nextInt(par1World.getHeightValue(l, i1) + 32);

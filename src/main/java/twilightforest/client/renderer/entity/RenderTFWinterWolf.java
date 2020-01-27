@@ -13,20 +13,18 @@ public class RenderTFWinterWolf extends RenderWolf {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "winterwolf.png");
 
-	public RenderTFWinterWolf(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3) {
-		super(par1ModelBase, par2ModelBase, par3);
-	}
+    public RenderTFWinterWolf(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3) {
+        super(par1ModelBase, par2ModelBase, par3);
+    }
 
-	
     /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
+     * Allows the render to do any OpenGL state modifications necessary before the model is rendered.
+     * Args: entityLiving, partialTickTime
      */
-    protected void preRenderCallback(EntityLivingBase par1EntityLiving, float par2)
-    {
-    	float wolfScale = 1.9F;
+    protected void preRenderCallback(EntityLivingBase par1EntityLiving, float par2) {
+        float wolfScale = 1.9F;
         GL11.glScalef(wolfScale, wolfScale, wolfScale);
-        
+
 //        GL11.glEnable(3042 /*GL_BLEND*/);
 //        GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
 //        //GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
@@ -43,26 +41,22 @@ public class RenderTFWinterWolf extends RenderWolf {
 //        GL11.glColor4f(misty, misty, misty, smoky);
 
     }
-    
+
     /**
      * Queries whether should render the specified pass or not.
      */
-    protected int shouldRenderPass(EntityLivingBase par1EntityLiving, int par2, float par3)
-    {
+    protected int shouldRenderPass(EntityLivingBase par1EntityLiving, int par2, float par3) {
 //        GL11.glFogf(GL11.GL_FOG_START, 1.0f);	
 //        GL11.glFogf(GL11.GL_FOG_END, 5.0f);
-        
 
-    	
         return -1;
     }
-    
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
+
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return textureLoc;
     }
-    
+
 }

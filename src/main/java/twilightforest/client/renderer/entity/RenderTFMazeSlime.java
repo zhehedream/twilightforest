@@ -8,19 +8,16 @@ import twilightforest.TwilightForestMod;
 
 public class RenderTFMazeSlime extends RenderSlime {
 
-	
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "mazeslime.png");
 
-	public RenderTFMazeSlime(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3) {
-		super(par1ModelBase, par2ModelBase, par3);
-	}
+    public RenderTFMazeSlime(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3) {
+        super(par1ModelBase, par2ModelBase, par3);
+    }
 
-	
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return textureLoc;
     }
 }

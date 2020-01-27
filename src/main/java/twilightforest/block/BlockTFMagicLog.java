@@ -18,11 +18,11 @@ import twilightforest.item.TFItems;
 
 public class BlockTFMagicLog extends BlockLog {
 
-	public static final int META_TIME = 0;
-	public static final int META_TRANS = 1;
-	public static final int META_MINE = 2;
-	public static final int META_SORT = 3;
-    
+    public static final int META_TIME = 0;
+    public static final int META_TRANS = 1;
+    public static final int META_MINE = 2;
+    public static final int META_SORT = 3;
+
     public static IIcon SPR_TIMESIDE;
     public static IIcon SPR_TIMETOP;
     public static IIcon SPR_TIMECLOCK;
@@ -40,42 +40,42 @@ public class BlockTFMagicLog extends BlockLog {
     public static IIcon SPR_SORTEYE;
     public static IIcon SPR_SORTEYEOFF;
 
-    
-	protected BlockTFMagicLog() {
-		super();
-		this.setHardness(2.0F);
-		this.setStepSound(Block.soundTypeWood);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
-	
+    protected BlockTFMagicLog() {
+        super();
+        this.setHardness(2.0F);
+        this.setStepSound(Block.soundTypeWood);
+        this.setCreativeTab(TFItems.creativeTab);
+    }
+
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     @Override
-	public IIcon getIcon(int side, int meta)
-    {
+    public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
         int woodType = meta & 3;
-        
-        switch (woodType)
-        {
+
+        switch (woodType) {
         default:
-        case META_TIME :
-        	return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMESIDE)); 
-        case META_TRANS :
-        	return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSSIDE)); 
-        case META_MINE :
-        	return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINESIDE)); 
-        case META_SORT :
-        	return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTSIDE)); 
+        case META_TIME:
+            return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP
+                    : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMESIDE));
+        case META_TRANS:
+            return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP
+                    : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSSIDE));
+        case META_MINE:
+            return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP
+                    : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINESIDE));
+        case META_SORT:
+            return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP
+                    : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTSIDE));
         }
-        
+
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister par1IconRegister) {
         BlockTFMagicLog.SPR_TIMESIDE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_side");
         BlockTFMagicLog.SPR_TIMETOP = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_section");
         BlockTFMagicLog.SPR_TIMECLOCK = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_clock");
@@ -98,34 +98,30 @@ public class BlockTFMagicLog extends BlockLog {
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-	public Item getItemDropped(int par1, Random par2Random, int par3)
-    {
+    public Item getItemDropped(int par1, Random par2Random, int par3) {
         return Item.getItemFromBlock(this); // hey that's my block ID!
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
-    public void randomDisplayTick(World world, int x, int y, int z, Random rand) 
-    {
-    	
+    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+
     }
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-    	par3List.add(new ItemStack(par1, 1, 0));
-    	par3List.add(new ItemStack(par1, 1, 1));
-    	par3List.add(new ItemStack(par1, 1, 2));
-    	par3List.add(new ItemStack(par1, 1, 3));
+    @Override
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
 
     }
-    
 
 }

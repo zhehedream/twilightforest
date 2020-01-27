@@ -19,114 +19,92 @@ import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
 
-public class ItemTFTrophy extends ItemTF 
-{
-    private static final String[] trophyTypes = new String[] {"hydra", "naga", "lich", "ur-ghast", "snowQueen"};
-    public static final String[] trophyTextures = new String[] {"hydraTrophy", "nagaTrophy", "lichTrophy", "urGhastTrophy", "snowQueenTrophy"};
-	public IIcon[] trophyIcons;
+public class ItemTFTrophy extends ItemTF {
+    private static final String[] trophyTypes = new String[] { "hydra", "naga", "lich", "ur-ghast", "snowQueen" };
+    public static final String[] trophyTextures = new String[] { "hydraTrophy", "nagaTrophy", "lichTrophy", "urGhastTrophy", "snowQueenTrophy" };
+    public IIcon[] trophyIcons;
 
-	
-	public ItemTFTrophy() 
-	{
-		super();
+    public ItemTFTrophy() {
+        super();
         this.setCreativeTab(TFItems.creativeTab);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
-	}
-	
+    }
+
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int j = 0; j < trophyTypes.length; ++j) {
             par3List.add(new ItemStack(par1, 1, j));
         }
     }
 
-	
     /**
      * Return an item rarity from EnumRarity
      * 
      * This is automatically uncommon
-     */    
+     */
     @Override
     @SideOnly(Side.CLIENT)
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-    	return EnumRarity.rare;
-	}
-	
+    public EnumRarity getRarity(ItemStack par1ItemStack) {
+        return EnumRarity.rare;
+    }
+
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one
+     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int direction, float par8, float par9, float par10)
-    {
-        if (direction == 0)
-        {
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int direction, float par8, float par9, float par10) {
+        if (direction == 0) {
             return false;
-        }
-        else if (!world.getBlock(x, y, z).getMaterial().isSolid())
-        {
+        } else if (!world.getBlock(x, y, z).getMaterial().isSolid()) {
             return false;
-        }
-        else
-        {
-            if (direction == 1)
-            {
+        } else {
+            if (direction == 1) {
                 ++y;
             }
 
-            if (direction == 2)
-            {
+            if (direction == 2) {
                 --z;
             }
 
-            if (direction == 3)
-            {
+            if (direction == 3) {
                 ++z;
             }
 
-            if (direction == 4)
-            {
+            if (direction == 4) {
                 --x;
             }
 
-            if (direction == 5)
-            {
+            if (direction == 5) {
                 ++x;
             }
 
-            if (!player.canPlayerEdit(x, y, z, direction, itemStack))
-            {
+            if (!player.canPlayerEdit(x, y, z, direction, itemStack)) {
                 return false;
-            }
-            else if (!TFBlocks.trophy.canPlaceBlockAt(world, x, y, z))
-            {
+            } else if (!TFBlocks.trophy.canPlaceBlockAt(world, x, y, z)) {
                 return false;
-            }
-            else
-            {
+            } else {
                 world.setBlock(x, y, z, TFBlocks.trophy, direction, 3);
                 int skullRotate = 0;
 
-                if (direction == 1)
-                {
-                    skullRotate = MathHelper.floor_double((double)(player.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
+                if (direction == 1) {
+                    skullRotate = MathHelper.floor_double((double) (player.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
                 }
 
                 TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-                if (tileEntity != null && tileEntity instanceof TileEntitySkull)
-                {
-                	TileEntitySkull skull = ((TileEntitySkull)tileEntity);
-                	
-                	// use NBT method to set skulltype in order to have 1.7.10 compatibility
-        		    NBTTagCompound tags = new NBTTagCompound();
-        		    skull.writeToNBT(tags);
-        		    tags.setByte("SkullType", (byte)(itemStack.getItemDamage() & 255));
-        		    skull.readFromNBT(tags);
-        		    
+                if (tileEntity != null && tileEntity instanceof TileEntitySkull) {
+                    TileEntitySkull skull = ((TileEntitySkull) tileEntity);
+
+                    // use NBT method to set skulltype in order to have 1.7.10 compatibility
+                    NBTTagCompound tags = new NBTTagCompound();
+                    skull.writeToNBT(tags);
+                    tags.setByte("SkullType", (byte) (itemStack.getItemDamage() & 255));
+                    skull.readFromNBT(tags);
+
 //                	try {
 //                		String skullName = "";
 //                		((TileEntitySkull)tileEntity).func_145905_a(itemStack.getItemDamage(), skullName);
@@ -135,7 +113,7 @@ public class ItemTFTrophy extends ItemTF
 //                		FMLLog.warning("[TwilightForest] Could not determine op status for adminOnlyPortals option, ignoring option.");
 //                		TwilightForestMod.adminOnlyPortals = false;
 //                	}
-        		    skull.func_145903_a(skullRotate);
+                    skull.func_145903_a(skullRotate);
                 }
 
                 --itemStack.stackSize;
@@ -143,47 +121,40 @@ public class ItemTFTrophy extends ItemTF
             }
         }
     }
-    
+
     /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
-     * different names based on their damage or NBT.
+     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks
+     * can have different names based on their damage or NBT.
      */
-    public String getUnlocalizedName(ItemStack par1ItemStack)
-    {
+    public String getUnlocalizedName(ItemStack par1ItemStack) {
         int i = par1ItemStack.getItemDamage();
 
-        if (i < 0 || i >= trophyTypes.length)
-        {
+        if (i < 0 || i >= trophyTypes.length) {
             i = 0;
         }
 
         return super.getUnlocalizedName() + "." + trophyTypes[i];
     }
-	
-	/**
-	 * Properly register icon source
-	 */
+
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.trophyIcons = new IIcon[trophyTextures.length];
 
-        for (int i = 0; i < trophyTextures.length; ++i)
-        {
+        for (int i = 0; i < trophyTextures.length; ++i) {
             this.trophyIcons[i] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + trophyTextures[i]);
         }
     }
-    
 
     /**
      * Gets an icon index based on an item's damage value
      */
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int par1)
-    {
-        if (par1 < 0 || par1 >= trophyTypes.length)
-        {
+    public IIcon getIconFromDamage(int par1) {
+        if (par1 < 0 || par1 >= trophyTypes.length) {
             par1 = 0;
         }
 

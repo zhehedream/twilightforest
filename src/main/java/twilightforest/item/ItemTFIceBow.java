@@ -10,28 +10,26 @@ import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityIceArrow;
 
 public class ItemTFIceBow extends ItemTFBowBase {
-	
-	
+
     public ItemTFIceBow() {
-    	this.setTextureName(TwilightForestMod.ID + ":icebow");
-		this.setCreativeTab(TFItems.creativeTab);
+        this.setTextureName(TwilightForestMod.ID + ":icebow");
+        this.setCreativeTab(TFItems.creativeTab);
     }
 
-	/**
-	 * Get the arrow for this specific bow
-	 */
+    /**
+     * Get the arrow for this specific bow
+     */
     @Override
-	protected EntityArrow getArrow(World world, EntityPlayer entityPlayer, float velocity) {
-		return new EntityIceArrow(world, entityPlayer, velocity);
-	}
+    protected EntityArrow getArrow(World world, EntityPlayer entityPlayer, float velocity) {
+        return new EntityIceArrow(world, entityPlayer, velocity);
+    }
 
     /**
      * Return whether this item is repairable in an anvil.
      */
     @Override
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-    	// repair with ice blocks
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        // repair with ice blocks
         return par2ItemStack.getItem() == Item.getItemFromBlock(Blocks.ice) ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 }

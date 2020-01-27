@@ -17,59 +17,54 @@ import twilightforest.TwilightForestMod;
 
 public class ItemTFKnightlySword extends ItemSword {
 
-	private static final int BONUS_DAMAGE = 2;
-	private Entity bonusDamageEntity;
-	private EntityPlayer bonusDamagePlayer;
+    private static final int BONUS_DAMAGE = 2;
+    private Entity bonusDamageEntity;
+    private EntityPlayer bonusDamagePlayer;
 
-	public ItemTFKnightlySword(Item.ToolMaterial par2EnumToolMaterial) {
-		super(par2EnumToolMaterial);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
-    
+    public ItemTFKnightlySword(Item.ToolMaterial par2EnumToolMaterial) {
+        super(par2EnumToolMaterial);
+        this.setCreativeTab(TFItems.creativeTab);
+    }
+
     /**
      * Return an item rarity from EnumRarity
      * 
      * This is automatically rare
-     */    
+     */
     @Override
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-    	return EnumRarity.rare;
-	}
+    public EnumRarity getRarity(ItemStack par1ItemStack) {
+        return EnumRarity.rare;
+    }
 
-    
     /**
      * Return whether this item is repairable in an anvil.
      */
     @Override
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-    	// repair with knightmetal ingots
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        // repair with knightmetal ingots
         return par2ItemStack.getItem() == TFItems.knightMetal ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-    
+
     /**
-     * Called when the player Left Clicks (attacks) an entity.
-     * Processed before damage is done, if return value is true further processing is canceled
-     * and the entity is not attacked.
+     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if
+     * return value is true further processing is canceled and the entity is not attacked.
      * 
-     * @param stack The Item being used
+     * @param stack  The Item being used
      * @param player The player that is attacking
      * @param entity The entity being attacked
      * @return True to cancel the rest of the interaction.
      */
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) 
-    {
-    	// extra damage to armored targets
-    	if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).getTotalArmorValue() > 0)
-    	{
-    		this.bonusDamageEntity = entity;
-    		this.bonusDamagePlayer = player;
-    	}
-    	
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+        // extra damage to armored targets
+        if (entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTotalArmorValue() > 0) {
+            this.bonusDamageEntity = entity;
+            this.bonusDamagePlayer = player;
+        }
+
         return false;
     }
-    
+
 //    /**
 //     * Returns the damage against a given entity.
 //     */
@@ -90,24 +85,22 @@ public class ItemTFKnightlySword extends ItemSword {
 //       	}
 //    }
 
-	
-	/**
-	 * Properly register icon source
-	 */
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
-    
+
     /**
      * allows items to add custom lines of information to the mouseover description
      */
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		par3List.add(StatCollector.translateToLocal(getUnlocalizedName() + ".tooltip"));
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+        par3List.add(StatCollector.translateToLocal(getUnlocalizedName() + ".tooltip"));
+    }
 }

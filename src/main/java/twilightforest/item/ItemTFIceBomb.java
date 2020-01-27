@@ -12,44 +12,42 @@ import twilightforest.entity.boss.EntityTFIceBomb;
 
 public class ItemTFIceBomb extends ItemTF {
 
+    private IIcon[] snowIcon = new IIcon[4];
 
-	private IIcon[] snowIcon = new IIcon[4];
+    public ItemTFIceBomb() {
+        super();
+        this.setMaxStackSize(16);
+    }
 
-	
-	public ItemTFIceBomb() {
-		super();
-		this.setMaxStackSize(16);
-	}
-	
-	/**
-	 * Properly register icon source
-	 */
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
         for (int i = 0; i < 4; i++) {
-        	this.snowIcon[i] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":snow_" + i);
+            this.snowIcon[i] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":snow_" + i);
         }
     }
-    
+
     public IIcon getSnowIcon(int i) {
-    	return snowIcon[i];
+        return snowIcon[i];
     }
-    
+
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack,
+     * world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
         if (!par3EntityPlayer.capabilities.isCreativeMode) {
-        	--par1ItemStack.stackSize;
+            --par1ItemStack.stackSize;
         }
 
         par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!par2World.isRemote) {
-        	par2World.spawnEntityInWorld(new EntityTFIceBomb(par2World, par3EntityPlayer));
+            par2World.spawnEntityInWorld(new EntityTFIceBomb(par2World, par3EntityPlayer));
         }
 
         return par1ItemStack;

@@ -28,26 +28,26 @@ import twilightforest.world.TFGenSortingTree;
 import twilightforest.world.TFGenTreeOfTime;
 import twilightforest.world.TFGenTreeOfTransformation;
 
-public class BlockTFSapling extends BlockSapling
-{
+public class BlockTFSapling extends BlockSapling {
 
-	private IIcon[] icons;
-	private String[] iconNames = new String[] {"sapling_oak", "sapling_canopy", "sapling_mangrove", "sapling_darkwood", "sapling_hollow_oak", "sapling_time", "sapling_transformation", "sapling_mining", "sapling_sorting", "sapling_rainboak"};
+    private IIcon[] icons;
+    private String[] iconNames = new String[] { "sapling_oak", "sapling_canopy", "sapling_mangrove", "sapling_darkwood", "sapling_hollow_oak", "sapling_time", "sapling_transformation",
+            "sapling_mining", "sapling_sorting", "sapling_rainboak" };
 
-	protected BlockTFSapling() {
-		super();
+    protected BlockTFSapling() {
+        super();
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
-	
+        this.setCreativeTab(TFItems.creativeTab);
+    }
+
     /**
      * Ticks the block if it's been scheduled
      */
     @Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
+    public void updateTick(World world, int x, int y, int z, Random rand) {
         if (!world.isRemote) {
-            //this.checkFlowerChange(par1World, x, y, z);
+            // this.checkFlowerChange(par1World, x, y, z);
 
             if (world.getBlockLightValue(x, y + 1, z) >= 9 && rand.nextInt(7) == 0) {
                 this.func_149878_d(world, x, y, z, rand);
@@ -55,85 +55,84 @@ public class BlockTFSapling extends BlockSapling
         }
     }
 
-
     /**
      * Attempts to grow a sapling into a tree
      */
     @Override
-	public void func_149878_d(World world, int x, int y, int z, Random rand) {
-    	int meta = world.getBlockMetadata(x, y, z);
-    	WorldGenerator treeGenerator = null;
-    	int var8 = 0;
-    	int var9 = 0;
-    	boolean largeTree = false;
+    public void func_149878_d(World world, int x, int y, int z, Random rand) {
+        int meta = world.getBlockMetadata(x, y, z);
+        WorldGenerator treeGenerator = null;
+        int var8 = 0;
+        int var9 = 0;
+        boolean largeTree = false;
 
-    	switch(meta) {
-    	case 1:
-    		treeGenerator = new TFGenCanopyTree(true);
-    		break;
-    	case 2:
-    		treeGenerator = new TFGenMangroveTree(true);
-    		break;
-    	case 3:
-    		treeGenerator = new TFGenDarkCanopyTree(true);
-    		break;
-    	case 4:
-    		treeGenerator = new TFGenHollowTree(true);
-    		break;
-    	case 5:
-    		treeGenerator = new TFGenTreeOfTime(true);
-    		break;
-    	case 6:
-    		treeGenerator = new TFGenTreeOfTransformation(true);
-    		break;
-    	case 7:
-    		treeGenerator = new TFGenMinersTree(true);
-    		break;
-    	case 8:
-    		treeGenerator = new TFGenSortingTree(true);
-    		break;
-    	case 9:
-    		treeGenerator = rand.nextInt(7) == 0 ? new TFGenLargeRainboak(true) : new TFGenSmallRainboak(true);
-    		break;
-    	default:
-    		treeGenerator = new TFGenSmallTwilightOak(true);
-    	}
+        switch (meta) {
+        case 1:
+            treeGenerator = new TFGenCanopyTree(true);
+            break;
+        case 2:
+            treeGenerator = new TFGenMangroveTree(true);
+            break;
+        case 3:
+            treeGenerator = new TFGenDarkCanopyTree(true);
+            break;
+        case 4:
+            treeGenerator = new TFGenHollowTree(true);
+            break;
+        case 5:
+            treeGenerator = new TFGenTreeOfTime(true);
+            break;
+        case 6:
+            treeGenerator = new TFGenTreeOfTransformation(true);
+            break;
+        case 7:
+            treeGenerator = new TFGenMinersTree(true);
+            break;
+        case 8:
+            treeGenerator = new TFGenSortingTree(true);
+            break;
+        case 9:
+            treeGenerator = rand.nextInt(7) == 0 ? new TFGenLargeRainboak(true) : new TFGenSmallRainboak(true);
+            break;
+        default:
+            treeGenerator = new TFGenSmallTwilightOak(true);
+        }
 
-    	if (largeTree) {
-    		world.setBlock(x + var8, y, z + var9, Blocks.air, 0, 4);
-    		world.setBlock(x + var8 + 1, y, z + var9, Blocks.air, 0, 4);
-    		world.setBlock(x + var8, y, z + var9 + 1, Blocks.air, 0, 4);
-    		world.setBlock(x + var8 + 1, y, z + var9 + 1, Blocks.air, 0, 4);
-    	} else {
-    		world.setBlock(x, y, z, Blocks.air, 0, 4);
-    	}
+        if (largeTree) {
+            world.setBlock(x + var8, y, z + var9, Blocks.air, 0, 4);
+            world.setBlock(x + var8 + 1, y, z + var9, Blocks.air, 0, 4);
+            world.setBlock(x + var8, y, z + var9 + 1, Blocks.air, 0, 4);
+            world.setBlock(x + var8 + 1, y, z + var9 + 1, Blocks.air, 0, 4);
+        } else {
+            world.setBlock(x, y, z, Blocks.air, 0, 4);
+        }
 
-    	if (!treeGenerator.generate(world, rand, x + var8, y, z + var9)) {
-    		if (largeTree) {
-    			world.setBlock(x + var8, y, z + var9, this, meta, 4);
-    			world.setBlock(x + var8 + 1, y, z + var9, this, meta, 4);
-    			world.setBlock(x + var8, y, z + var9 + 1, this, meta, 4);
-    			world.setBlock(x + var8 + 1, y, z + var9 + 1, this, meta, 4);
-    		} else {
-    			world.setBlock(x, y, z, this, meta, 4);
-    		}
-    	}
+        if (!treeGenerator.generate(world, rand, x + var8, y, z + var9)) {
+            if (largeTree) {
+                world.setBlock(x + var8, y, z + var9, this, meta, 4);
+                world.setBlock(x + var8 + 1, y, z + var9, this, meta, 4);
+                world.setBlock(x + var8, y, z + var9 + 1, this, meta, 4);
+                world.setBlock(x + var8 + 1, y, z + var9 + 1, this, meta, 4);
+            } else {
+                world.setBlock(x, y, z, this, meta, 4);
+            }
+        }
     }
-    
+
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     @Override
-	public IIcon getIcon(int side, int metadata) {
-    	if (metadata < this.icons.length) {
-    		return this.icons[metadata];
-    	} else {
-    		return null;
-    	}
+    public IIcon getIcon(int side, int metadata) {
+        if (metadata < this.icons.length) {
+            return this.icons[metadata];
+        } else {
+            return null;
+        }
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         this.icons = new IIcon[iconNames.length];
 
@@ -142,23 +141,23 @@ public class BlockTFSapling extends BlockSapling
         }
     }
 
-	/**
-	 * Determines the damage on the item the block drops. Used in cloth and wood.
-	 */
-	@Override
-	public int damageDropped(int par1) {
+    /**
+     * Determines the damage on the item the block drops. Used in cloth and wood.
+     */
+    @Override
+    public int damageDropped(int par1) {
         return par1;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	@SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
-    	itemList.add(new ItemStack(item, 1, 0));
+        itemList.add(new ItemStack(item, 1, 0));
         itemList.add(new ItemStack(item, 1, 1));
         itemList.add(new ItemStack(item, 1, 2));
         itemList.add(new ItemStack(item, 1, 3));

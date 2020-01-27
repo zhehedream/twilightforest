@@ -17,88 +17,84 @@ import twilightforest.TwilightForestMod;
 
 public class ItemTFArcticArmor extends ItemArmor {
 
-	public ItemTFArcticArmor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int renderIndex, int armorType) {
-		super(par2EnumArmorMaterial, renderIndex, armorType);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
+    public ItemTFArcticArmor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int renderIndex, int armorType) {
+        super(par2EnumArmorMaterial, renderIndex, armorType);
+        this.setCreativeTab(TFItems.creativeTab);
+    }
 
-	/**
-	 * Return an item rarity from EnumRarity
-	 */    
-	@Override
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		return EnumRarity.uncommon;
-	}
-	
     /**
-     * Called by RenderBiped and RenderPlayer to determine the armor texture that 
-     * should be use for the currently equiped item.
-     * This will only be called on instances of ItemArmor. 
+     * Return an item rarity from EnumRarity
+     */
+    @Override
+    public EnumRarity getRarity(ItemStack par1ItemStack) {
+        return EnumRarity.uncommon;
+    }
+
+    /**
+     * Called by RenderBiped and RenderPlayer to determine the armor texture that should be use for the
+     * currently equiped item. This will only be called on instances of ItemArmor.
      * 
      * Returning null from this function will use the default value.
      * 
-     * @param stack ItemStack for the equpt armor
+     * @param stack  ItemStack for the equpt armor
      * @param entity The entity wearing the armor
-     * @param slot The slot the armor is in
-     * @param layer The render layer, either 1 or 2, 2 is only used for CLOTH armor by default
+     * @param slot   The slot the armor is in
+     * @param layer  The render layer, either 1 or 2, 2 is only used for CLOTH armor by default
      * @return Path of texture to bind, or null to use default
      */
-	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
-		switch (slot) {
-		case 0 : 
-		case 1 : 
-		case 3 :
-		default :
-			return TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
-		case 2 :
-			return TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
+    public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
+        switch (slot) {
+        case 0:
+        case 1:
+        case 3:
+        default:
+            return TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
+        case 2:
+            return TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
 
-		}
-	}
-	
+        }
+    }
+
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-    	ItemStack istack = new ItemStack(par1, 1, 0);
-    	//istack.addEnchantment(TFEnchantment.reactFire, 2);
+    @Override
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+        ItemStack istack = new ItemStack(par1, 1, 0);
+        // istack.addEnchantment(TFEnchantment.reactFire, 2);
         par3List.add(istack);
     }
-    
+
     /**
      * Return whether this item is repairable in an anvil.
      */
     @Override
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-    	// repair with ?????
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        // repair with ?????
         return par2ItemStack.getItem() == TFItems.arcticFur ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-	
-	/**
-	 * Properly register icon source
-	 */
+
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
-    
+
     /**
      * Override this method to have an item handle its own armor rendering.
      * 
-     * @param  entityLiving  The entity wearing the armor 
-     * @param  itemStack  The itemStack to render the model of 
-     * @param  armorSlot  0=head, 1=torso, 2=legs, 3=feet
+     * @param entityLiving The entity wearing the armor
+     * @param itemStack    The itemStack to render the model of
+     * @param armorSlot    0=head, 1=torso, 2=legs, 3=feet
      * 
-     * @return  A ModelBiped to render instead of the default
+     * @return A ModelBiped to render instead of the default
      */
     @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot)
-    {
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
         return TwilightForestMod.proxy.getArcticArmorModel(armorSlot);
     }
 }

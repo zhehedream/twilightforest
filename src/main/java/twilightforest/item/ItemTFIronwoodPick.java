@@ -14,39 +14,36 @@ import twilightforest.TwilightForestMod;
 
 public class ItemTFIronwoodPick extends ItemPickaxe {
 
-	protected ItemTFIronwoodPick(Item.ToolMaterial par2EnumToolMaterial) {
-		super(par2EnumToolMaterial);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
+    protected ItemTFIronwoodPick(Item.ToolMaterial par2EnumToolMaterial) {
+        super(par2EnumToolMaterial);
+        this.setCreativeTab(TFItems.creativeTab);
+    }
 
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     @Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-    	ItemStack istack = new ItemStack(par1, 1, 0);
-    	istack.addEnchantment(Enchantment.efficiency, 1);
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+        ItemStack istack = new ItemStack(par1, 1, 0);
+        istack.addEnchantment(Enchantment.efficiency, 1);
         par3List.add(istack);
     }
-    
+
     /**
      * Return whether this item is repairable in an anvil.
      */
     @Override
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-    	// repair with ironwood ingots
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        // repair with ironwood ingots
         return par2ItemStack.getItem() == TFItems.ironwoodIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-    
-	/**
-	 * Properly register icon source
-	 */
+
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

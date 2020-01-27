@@ -10,20 +10,15 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
 
+public class EntityTFBighorn extends EntitySheep {
 
-
-public class EntityTFBighorn extends EntitySheep
-{
-
-    public EntityTFBighorn(World world)
-    {
+    public EntityTFBighorn(World world) {
         super(world);
-        //texture = TwilightForestMod.MODEL_DIR + "bighorn.png";
+        // texture = TwilightForestMod.MODEL_DIR + "bighorn.png";
         setSize(0.9F, 1.3F);
     }
-    
-    public EntityTFBighorn(World world, double x, double y, double z)
-    {
+
+    public EntityTFBighorn(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y, z);
     }
@@ -34,43 +29,34 @@ public class EntityTFBighorn extends EntitySheep
      * @param random
      * @return
      */
-    public static int getRandomFleeceColor(Random random)
-    {
-    	if (random.nextInt(2) == 0)
-    	{
-    		return 12;
-    	}
-    	else
-    	{
-        	return random.nextInt(15);
-    	}
+    public static int getRandomFleeceColor(Random random) {
+        if (random.nextInt(2) == 0) {
+            return 12;
+        } else {
+            return random.nextInt(15);
+        }
     }
-    
 
     /**
      * Entity init, set our fleece color
      */
     @Override
-    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
-    {
+    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
         par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
         this.setFleeceColor(getRandomFleeceColor(this.worldObj.rand));
         return par1EntityLivingData;
     }
-    
+
     /**
      * What is our baby?!
      */
     @Override
-	public EntitySheep createChild(EntityAgeable entityanimal)
-    {
-    	EntityTFBighorn otherParent = (EntityTFBighorn)entityanimal;
-    	EntityTFBighorn babySheep = new EntityTFBighorn(worldObj);
-        if(rand.nextBoolean())
-        {
+    public EntitySheep createChild(EntityAgeable entityanimal) {
+        EntityTFBighorn otherParent = (EntityTFBighorn) entityanimal;
+        EntityTFBighorn babySheep = new EntityTFBighorn(worldObj);
+        if (rand.nextBoolean()) {
             babySheep.setFleeceColor(getFleeceColor());
-        } else
-        {
+        } else {
             babySheep.setFleeceColor(otherParent.getFleeceColor());
         }
         return babySheep;
@@ -79,12 +65,12 @@ public class EntityTFBighorn extends EntitySheep
     /**
      * Trigger achievement when killed
      */
-	@Override
-	public void onDeath(DamageSource par1DamageSource) {
-		super.onDeath(par1DamageSource);
-		if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-			((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-		}
-	}
+    @Override
+    public void onDeath(DamageSource par1DamageSource) {
+        super.onDeath(par1DamageSource);
+        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+        }
+    }
 
 }

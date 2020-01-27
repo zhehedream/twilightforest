@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
 import twilightforest.item.TFItems;
 
-
 /**
  * Deer are like quiet, non-milkable cows!
  * 
@@ -20,15 +19,13 @@ import twilightforest.item.TFItems;
  * @author Ben
  *
  */
-public class EntityTFDeer extends EntityCow
-{
+public class EntityTFDeer extends EntityCow {
 
-    public EntityTFDeer(World world)
-    {
+    public EntityTFDeer(World world) {
         super(world);
-        //texture = TwilightForestMod.MODEL_DIR + "wilddeer.png";
+        // texture = TwilightForestMod.MODEL_DIR + "wilddeer.png";
         setSize(0.7F, 2.3F);
-        
+
 //        this.tasks.taskEntries.clear();
 //        
 //        this.tasks.addTask(0, new EntityAISwimming(this));
@@ -40,98 +37,82 @@ public class EntityTFDeer extends EntityCow
 //        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 //        this.tasks.addTask(7, new EntityAILookIdle(this));
     }
-    
-    public EntityTFDeer(World world, double x, double y, double z)
-    {
+
+    public EntityTFDeer(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y, z);
     }
-
 
     /**
      * No sounds when idle
      */
     @Override
-    protected String getLivingSound()
-    {
-    	return null;
+    protected String getLivingSound() {
+        return null;
     }
 
     /**
      * Plays step sound at given x, y, z for the entity
      */
     @Override
-	protected void func_145780_a(int par1, int par2, int par3, Block par4)
-    {
-        //this.worldObj.playSoundAtEntity(this, "mob.cow.step", 0.15F, 1.0F);
+    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
+        // this.worldObj.playSoundAtEntity(this, "mob.cow.step", 0.15F, 1.0F);
     }
-    
+
     /**
      * Not milkable
      */
     @Override
-    public boolean interact(EntityPlayer entityplayer)
-    {
+    public boolean interact(EntityPlayer entityplayer) {
         ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-        if(itemstack != null && itemstack.getItem() == Items.bucket)
-        {
-        	// specifically do not respond to this
+        if (itemstack != null && itemstack.getItem() == Items.bucket) {
+            // specifically do not respond to this
             return false;
-        } else
-        {
+        } else {
             return super.interact(entityplayer);
         }
     }
-    
 
     /**
      * Drop 0-2 items of this living's type
      */
     @Override
-    protected void dropFewItems(boolean par1, int par2)
-    {
+    protected void dropFewItems(boolean par1, int par2) {
         int var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
         int var4;
 
-        for (var4 = 0; var4 < var3; ++var4)
-        {
+        for (var4 = 0; var4 < var3; ++var4) {
             this.dropItem(Items.leather, 1);
         }
 
         var3 = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
 
-        for (var4 = 0; var4 < var3; ++var4)
-        {
-            if (this.isBurning())
-            {
+        for (var4 = 0; var4 < var3; ++var4) {
+            if (this.isBurning()) {
                 this.dropItem(TFItems.venisonCooked, 1);
-            }
-            else
-            {
+            } else {
                 this.dropItem(TFItems.venisonRaw, 1);
             }
         }
     }
 
-    
     /**
-     * What is our baby going to be?  Another deer?!
+     * What is our baby going to be? Another deer?!
      */
     @Override
-	public EntityCow createChild(EntityAgeable entityanimal)
-    {
+    public EntityCow createChild(EntityAgeable entityanimal) {
         return new EntityTFDeer(worldObj);
     }
-    
+
     /**
      * Trigger achievement when killed
      */
-	@Override
-	public void onDeath(DamageSource par1DamageSource) {
-		super.onDeath(par1DamageSource);
-		if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-			((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-		}
-	}
+    @Override
+    public void onDeath(DamageSource par1DamageSource) {
+        super.onDeath(par1DamageSource);
+        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+        }
+    }
 
 }

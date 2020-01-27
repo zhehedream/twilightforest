@@ -9,16 +9,16 @@ import net.minecraft.world.World;
  */
 public class TFGenNoTree extends TFTreeGenerator {
 
-	public TFGenNoTree() {
-	}
+    public TFGenNoTree() {
+    }
 
-	public TFGenNoTree(boolean par1) {
-		super(par1);
-	}
+    public TFGenNoTree(boolean par1) {
+        super(par1);
+    }
 
-	@Override
-	public boolean generate(World world, Random random, int i, int j, int k) {
-		return false;
-	}
+    @Override
+    public boolean generate(World world, Random random, int i, int j, int k) {
+        return false;
+    }
 
 }

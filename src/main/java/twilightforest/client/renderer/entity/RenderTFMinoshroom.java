@@ -15,12 +15,11 @@ public class RenderTFMinoshroom extends RenderBiped {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "minoshroomtaur.png");
 
-	public RenderTFMinoshroom(ModelBiped par1ModelBase, float par2) {
-		super(par1ModelBase, par2);
-	}
-	
-    protected void renderMooshroomEquippedItems(EntityLivingBase par1EntityLiving, float par2)
-    {
+    public RenderTFMinoshroom(ModelBiped par1ModelBase, float par2) {
+        super(par1ModelBase, par2);
+    }
+
+    protected void renderMooshroomEquippedItems(EntityLivingBase par1EntityLiving, float par2) {
         super.renderEquippedItems(par1EntityLiving, par2);
 
         this.bindTexture(TextureMap.locationBlocksTexture);
@@ -35,7 +34,7 @@ public class RenderTFMinoshroom extends RenderBiped {
         this.field_147909_c.renderBlockAsItem(Blocks.red_mushroom, 0, 1.0F);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
-        ((ModelBiped)this.mainModel).bipedHead.postRender(0.0625F);
+        ((ModelBiped) this.mainModel).bipedHead.postRender(0.0625F);
         GL11.glScalef(1.0F, -1.0F, 1.0F);
         GL11.glTranslatef(0.0F, 1.0F, 0F);
         GL11.glRotatef(12.0F, 0.0F, 1.0F, 0.0F);
@@ -43,18 +42,16 @@ public class RenderTFMinoshroom extends RenderBiped {
         GL11.glPopMatrix();
         GL11.glDisable(GL11.GL_CULL_FACE);
     }
-    
+
     @Override
-    protected void renderEquippedItems(EntityLivingBase par1EntityLiving, float par2)
-    {
+    protected void renderEquippedItems(EntityLivingBase par1EntityLiving, float par2) {
         this.renderMooshroomEquippedItems(par1EntityLiving, par2);
     }
 
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return textureLoc;
     }
 

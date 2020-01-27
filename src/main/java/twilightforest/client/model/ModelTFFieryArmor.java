@@ -7,13 +7,10 @@ import net.minecraft.entity.EntityLivingBase;
 
 public class ModelTFFieryArmor extends ModelBiped {
 
-    public ModelTFFieryArmor(int part, float expand)
-    {
-    	super(expand);
+    public ModelTFFieryArmor(int part, float expand) {
+        super(expand);
 
-        
-        switch (part)
-        {
+        switch (part) {
         case 0: // helmet
             this.bipedHead.showModel = true;
             this.bipedHeadwear.showModel = false;
@@ -50,34 +47,30 @@ public class ModelTFFieryArmor extends ModelBiped {
             this.bipedRightLeg.showModel = true;
             this.bipedLeftLeg.showModel = true;
             break;
-        	
+
         }
     }
-
 
     /**
      * Sets the models various rotation angles then renders the model.
      */
-	@Override
-	public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7) {
-		
-		if (par1Entity != null) {
-			this.isSneak = par1Entity.isSneaking();
-		}
-		
-		if (par1Entity != null && par1Entity instanceof EntityLivingBase) {
-			this.heldItemRight = ((EntityLivingBase)par1Entity).getHeldItem() != null ? 1 : 0;
-		}
-		
+    @Override
+    public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7) {
+
+        if (par1Entity != null) {
+            this.isSneak = par1Entity.isSneaking();
+        }
+
+        if (par1Entity != null && par1Entity instanceof EntityLivingBase) {
+            this.heldItemRight = ((EntityLivingBase) par1Entity).getHeldItem() != null ? 1 : 0;
+        }
+
         // FULL BRIGHT
         Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
 
-		
-		super.render(par1Entity, par2, par3, par4, par5, par6, par7);
-		
+        super.render(par1Entity, par2, par3, par4, par5, par6, par7);
 
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
-	}
+        Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
+    }
 
-    
 }

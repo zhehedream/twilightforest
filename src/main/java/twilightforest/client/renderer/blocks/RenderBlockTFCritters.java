@@ -7,32 +7,32 @@ import net.minecraft.world.IBlockAccess;
 
 public class RenderBlockTFCritters implements ISimpleBlockRenderingHandler {
 
-	final int renderID;
+    final int renderID;
 
-	public RenderBlockTFCritters(int blockComplexRenderID) {
-		this.renderID = blockComplexRenderID;
-	}
+    public RenderBlockTFCritters(int blockComplexRenderID) {
+        this.renderID = blockComplexRenderID;
+    }
 
-	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-		// TODO Auto-generated method stub
+    @Override
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	@Override
-	public boolean shouldRender3DInInventory(int modelId) {
-		return false;
-	}
+    @Override
+    public boolean shouldRender3DInInventory(int modelId) {
+        return false;
+    }
 
-	@Override
-	public int getRenderId() {
-		return renderID;
-	}
+    @Override
+    public int getRenderId() {
+        return renderID;
+    }
 
 }

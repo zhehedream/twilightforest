@@ -14,24 +14,22 @@ public class RenderTFKnightPhantom extends RenderBiped {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "phantomskeleton.png");
 
-	
-	public RenderTFKnightPhantom(ModelTFKnightPhantom2 modelTFKnightPhantom2, float f) {
-		super(modelTFKnightPhantom2, f);
-	}
+    public RenderTFKnightPhantom(ModelTFKnightPhantom2 modelTFKnightPhantom2, float f) {
+        super(modelTFKnightPhantom2, f);
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return textureLoc;
-	}
-	
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return textureLoc;
+    }
+
     /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
+     * Allows the render to do any OpenGL state modifications necessary before the model is rendered.
+     * Args: entityLiving, partialTickTime
      */
-    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-    {
-        float scale = ((EntityTFKnightPhantom)par1EntityLivingBase).isChargingAtPlayer() ? 1.8F : 1.2F;
-		GL11.glScalef(scale, scale, scale);
+    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
+        float scale = ((EntityTFKnightPhantom) par1EntityLivingBase).isChargingAtPlayer() ? 1.8F : 1.2F;
+        GL11.glScalef(scale, scale, scale);
     }
 
 }

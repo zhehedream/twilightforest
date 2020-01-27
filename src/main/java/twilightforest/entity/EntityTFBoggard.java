@@ -21,22 +21,19 @@ import twilightforest.TwilightForestMod;
 import twilightforest.entity.ai.EntityAITFChargeAttack;
 import twilightforest.item.TFItems;
 
-
 public class EntityTFBoggard extends EntityMob {
-	
 
-	private boolean shy;
+    private boolean shy;
 
-    public EntityTFBoggard(World world)
-    {
+    public EntityTFBoggard(World world) {
         super(world);
-        //texture = "/mob/pigzombie.png";
-        //moveSpeed = 0.28F;
+        // texture = "/mob/pigzombie.png";
+        // moveSpeed = 0.28F;
         setSize(0.8F, 1.1F);
-        //attackStrength = 3;
+        // attackStrength = 3;
 
         shy = true;
-        
+
         this.tasks.addTask(0, new EntityAISwimming(this));
 //        this.tasks.addTask(1, new EntityAITFRedcapShy(this, this.moveSpeed));
         this.tasks.addTask(2, new EntityAITFChargeAttack(this, 2.0F));
@@ -48,9 +45,8 @@ public class EntityTFBoggard extends EntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, false));
 
     }
-    
-    public EntityTFBoggard(World world, double x, double y, double z)
-    {
+
+    public EntityTFBoggard(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y, z);
     }
@@ -59,18 +55,15 @@ public class EntityTFBoggard extends EntityMob {
      * Returns true if the newer Entity AI code should be run
      */
     @Override
-	protected boolean isAIEnabled()
-    {
+    protected boolean isAIEnabled() {
         return true;
     }
 
-
-	/**
-	 * Set monster attributes
-	 */
-	@Override
-    protected void applyEntityAttributes()
-    {
+    /**
+     * Set monster attributes
+     */
+    @Override
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(14.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
@@ -78,102 +71,81 @@ public class EntityTFBoggard extends EntityMob {
     }
 
     @Override
-	protected String getLivingSound()
-    {
+    protected String getLivingSound() {
         return TwilightForestMod.ID + ":mob.redcap.redcap";
     }
 
     @Override
-	protected String getHurtSound()
-    {
+    protected String getHurtSound() {
         return TwilightForestMod.ID + ":mob.redcap.redcaphurt";
     }
 
     @Override
-	protected String getDeathSound()
-    {
+    protected String getDeathSound() {
         return TwilightForestMod.ID + ":mob.redcap.redcapdie";
     }
 
     @Override
-	protected Item getDropItem()
-    {
+    protected Item getDropItem() {
         return Items.iron_boots;
     }
-    
+
     @Override
-    protected void dropFewItems(boolean flag, int i)
-    {
-        if (rand.nextInt(5) == 0)
-        {
+    protected void dropFewItems(boolean flag, int i) {
+        if (rand.nextInt(5) == 0) {
             this.dropItem(TFItems.mazeMapFocus, 1 + i);
         }
-        if (rand.nextInt(6) == 0)
-        {
+        if (rand.nextInt(6) == 0) {
             this.dropItem(Items.iron_boots, 1 + i);
         }
-        if (rand.nextInt(9) == 0)
-        {
-        	this.dropItem(Items.iron_pickaxe, 1 + i);
+        if (rand.nextInt(9) == 0) {
+            this.dropItem(Items.iron_pickaxe, 1 + i);
         }
     }
-    
+
     /**
-     * The redcap is hesitant, and when he is getting close to the player, he may suddenly veer off to the side
+     * The redcap is hesitant, and when he is getting close to the player, he may suddenly veer off to
+     * the side
      * 
      * This is our old AI, no longer used
      *
-    protected void updateEntityActionState()
-    {
-    	super.updateEntityActionState();
-    	
-    	if (entityToAttack != null) {
-    		float enemyDist = entityToAttack.getDistanceToEntity(this);
-    		
-    		// speed up when very close to enemy or feeling bold
-    		if (enemyDist < 4 || !shy) {
-    			moveSpeed = 0.8F;
-    		} else {
-    			moveSpeed = 0.5F;
-    		}
-    		
-    		// avoid frontal assault
-    		if (enemyDist > 4 && enemyDist < 6 && shy) {
- 
-    			if (isTargetLookingAtMe()) {
-    				// strafe to the side
-    				moveStrafing = lefty ? moveForward : -moveForward;
-    				moveForward = 0;
-    			}
-    		}
-    	}
+     * protected void updateEntityActionState() { super.updateEntityActionState();
+     * 
+     * if (entityToAttack != null) { float enemyDist = entityToAttack.getDistanceToEntity(this);
+     * 
+     * // speed up when very close to enemy or feeling bold if (enemyDist < 4 || !shy) { moveSpeed =
+     * 0.8F; } else { moveSpeed = 0.5F; }
+     * 
+     * // avoid frontal assault if (enemyDist > 4 && enemyDist < 6 && shy) {
+     * 
+     * if (isTargetLookingAtMe()) { // strafe to the side moveStrafing = lefty ? moveForward :
+     * -moveForward; moveForward = 0; } } }
+     * 
+     * }
+     */
 
-    }
-    */
-    
     public boolean isShy() {
-    	return shy && this.recentlyHit <= 0;
+        return shy && this.recentlyHit <= 0;
     }
-    
+
     /**
-     * Fairly straightforward.  Returns true in a 120 degree arc in front of the player's view.
+     * Fairly straightforward. Returns true in a 120 degree arc in front of the player's view.
+     * 
      * @return
      */
     public boolean isTargetLookingAtMe() {
-    	// find angle of approach
-    	double dx = posX - entityToAttack.posX;
-    	double dz = posZ - entityToAttack.posZ;
-    	float angle = (float)((Math.atan2(dz, dx) * 180D) / 3.1415927410125732D) - 90F;
+        // find angle of approach
+        double dx = posX - entityToAttack.posX;
+        double dz = posZ - entityToAttack.posZ;
+        float angle = (float) ((Math.atan2(dz, dx) * 180D) / 3.1415927410125732D) - 90F;
 
-    	float difference = MathHelper.abs((entityToAttack.rotationYaw - angle) % 360);
-    	
+        float difference = MathHelper.abs((entityToAttack.rotationYaw - angle) % 360);
+
 //    	System.out.println("Difference in angle of approach is " + difference);
 
-    	return difference < 60 || difference > 300;
+        return difference < 60 || difference > 300;
     }
-    
-  
-    
+
 //    @Override
 //	public boolean attackEntityFrom(Entity entity, int i) {
 //    	
@@ -188,33 +160,29 @@ public class EntityTFBoggard extends EntityMob {
     /**
      * Trigger achievement when killed
      */
-	@Override
-	public void onDeath(DamageSource par1DamageSource) {
-		super.onDeath(par1DamageSource);
-		if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-			((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-			// are we in a level 1 hill?
-			int chunkX = MathHelper.floor_double(posX) >> 4;
-			int chunkZ = MathHelper.floor_double(posZ) >> 4;
-			if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hill1) {
-				// award level 1 hill cheevo
-				((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill1);
-			}
+    @Override
+    public void onDeath(DamageSource par1DamageSource) {
+        super.onDeath(par1DamageSource);
+        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+            // are we in a level 1 hill?
+            int chunkX = MathHelper.floor_double(posX) >> 4;
+            int chunkZ = MathHelper.floor_double(posZ) >> 4;
+            if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hill1) {
+                // award level 1 hill cheevo
+                ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill1);
+            }
 
-		}
-	}
+        }
+    }
 
-	@Override
-	public void moveEntityWithHeading(float par1, float par2) {
-		super.moveEntityWithHeading(par1, par2);
-		
+    @Override
+    public void moveEntityWithHeading(float par1, float par2) {
+        super.moveEntityWithHeading(par1, par2);
+
 //		System.out.println("prevLegYaw = " + this.prevLimbYaw);
 //		System.out.println("legYaw = " + this.limbYaw);
 
-	}
-
-
-	
-
+    }
 
 }

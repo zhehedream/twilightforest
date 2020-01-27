@@ -5,48 +5,45 @@ import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileEntityTFCritter extends TileEntity {
 
-	public TileEntityTFCritter() {
-		super();
-	}
-
+    public TileEntityTFCritter() {
+        super();
+    }
 
     /**
      * Reads a tile entity from NBT.
      */
-	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-		super.readFromNBT(par1NBTTagCompound);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
+        super.readFromNBT(par1NBTTagCompound);
+    }
 
     /**
      * Writes a tile entity to NBT.
      */
-	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-		super.writeToNBT(par1NBTTagCompound);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
+        super.writeToNBT(par1NBTTagCompound);
+    }
 
     /**
      * Determines if this TileEntity requires update calls.
+     * 
      * @return True if you want updateEntity() to be called, false if not
      */
     @Override
-	public boolean canUpdate()
-    {
+    public boolean canUpdate() {
         return true;
     }
-	
+
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
-     * ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
+     * this to count ticks and creates a new spawn inside its implementation.
      */
     @Override
-	public void updateEntity()
-    {
+    public void updateEntity() {
 
     }
-    
-    
+
 //	/**
 //	 * Fix imported tileentities from version 1.9
 //	 */
@@ -89,9 +86,7 @@ public abstract class TileEntityTFCritter extends TileEntity {
 //	public void onDataPacket(NetworkManager net, Packet132TileEntityData pkt) {
 ////		setFacing(pkt.customParam1);
 //	}
-	
 
-	
 //    /**
 //     * Overriden in a sign to provide the text
 //     */
@@ -100,6 +95,5 @@ public abstract class TileEntityTFCritter extends TileEntity {
 //        int var1 = getFacing();
 //        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, var1);
 //    }
-	
 
 }

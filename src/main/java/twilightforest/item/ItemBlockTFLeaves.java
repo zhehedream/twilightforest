@@ -8,31 +8,28 @@ import twilightforest.block.TFBlocks;
 
 public class ItemBlockTFLeaves extends ItemBlock {
 
-	public ItemBlockTFLeaves(Block par1) {
-		super(par1);
+    public ItemBlockTFLeaves(Block par1) {
+        super(par1);
         setHasSubtypes(true);
         setMaxDamage(0);
-	}
-	
+    }
+
     /**
      * Gets an icon index based on an item's damage value
      */
     @Override
-    public IIcon getIconFromDamage(int par1)
-    {
+    public IIcon getIconFromDamage(int par1) {
         return TFBlocks.leaves.getIcon(2, par1);
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
-    {
-    	int meta = itemstack.getItemDamage();
-    	return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
+    public String getUnlocalizedName(ItemStack itemstack) {
+        int meta = itemstack.getItemDamage();
+        return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
     }
 
     @Override
-    public int getMetadata(int i)
-    {
+    public int getMetadata(int i) {
         return i;
     }
 }

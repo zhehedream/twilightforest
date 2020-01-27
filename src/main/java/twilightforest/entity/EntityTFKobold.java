@@ -20,21 +20,18 @@ import twilightforest.TwilightForestMod;
 import twilightforest.entity.ai.EntityAITFFlockToSameKind;
 import twilightforest.entity.ai.EntityAITFPanicOnFlockDeath;
 
-
 public class EntityTFKobold extends EntityMob {
-	
 
-	private boolean shy;
+    private boolean shy;
 
-    public EntityTFKobold(World world)
-    {
+    public EntityTFKobold(World world) {
         super(world);
-        //texture = TwilightForestMod.MODEL_DIR + "kobold.png";
-        //moveSpeed = 0.28F;
+        // texture = TwilightForestMod.MODEL_DIR + "kobold.png";
+        // moveSpeed = 0.28F;
         setSize(0.8F, 1.1F);
 
         shy = true;
-        
+
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAITFPanicOnFlockDeath(this, 2.0F));
         this.tasks.addTask(2, new EntityAILeapAtTarget(this, 0.3F));
@@ -47,141 +44,117 @@ public class EntityTFKobold extends EntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
     }
-    
-    public EntityTFKobold(World world, double x, double y, double z)
-    {
+
+    public EntityTFKobold(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y, z);
     }
-	
-	@Override
-    protected void entityInit()
-    {
+
+    @Override
+    protected void entityInit() {
         super.entityInit();
-        dataWatcher.addObject(17, (byte)0);
+        dataWatcher.addObject(17, (byte) 0);
     }
-	
+
     /**
      * Returns true if the newer Entity AI code should be run
      */
     @Override
-	protected boolean isAIEnabled()
-    {
+    protected boolean isAIEnabled() {
         return true;
     }
 
-	/**
-	 * Set monster attributes
-	 */
-	@Override
-    protected void applyEntityAttributes()
-    {
+    /**
+     * Set monster attributes
+     */
+    @Override
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(13.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D); // attack damage
     }
-    
-
 
     @Override
-	protected String getLivingSound()
-    {
+    protected String getLivingSound() {
         return TwilightForestMod.ID + ":mob.kobold.kobold";
     }
 
     @Override
-	protected String getHurtSound()
-    {
+    protected String getHurtSound() {
         return TwilightForestMod.ID + ":mob.kobold.hurt";
     }
 
     @Override
-	protected String getDeathSound()
-    {
+    protected String getDeathSound() {
         return TwilightForestMod.ID + ":mob.kobold.die";
     }
 
     @Override
-	protected Item getDropItem()
-    {
+    protected Item getDropItem() {
         return Items.wheat;
     }
-    
+
     @Override
-    protected void dropFewItems(boolean flag, int i)
-    {
-    	super.dropFewItems(flag, i);
-    	
-        if (rand.nextInt(2) == 0)
-        {
+    protected void dropFewItems(boolean flag, int i) {
+        super.dropFewItems(flag, i);
+
+        if (rand.nextInt(2) == 0) {
             this.dropItem(Items.gold_nugget, 1 + i);
         }
     }
- 
+
     public boolean isShy() {
-    	return shy && this.recentlyHit <= 0;
+        return shy && this.recentlyHit <= 0;
     }
-    
-    public boolean isPanicked()
-    {
+
+    public boolean isPanicked() {
         return dataWatcher.getWatchableObjectByte(17) != 0;
     }
 
-    public void setPanicked(boolean flag)
-    {
-        if (flag)
-        {
-            dataWatcher.updateObject(17, (byte)127);
-        }
-        else
-        {
-            dataWatcher.updateObject(17, (byte)0);
+    public void setPanicked(boolean flag) {
+        if (flag) {
+            dataWatcher.updateObject(17, (byte) 127);
+        } else {
+            dataWatcher.updateObject(17, (byte) 0);
         }
     }
 
-    
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies
+     * and skeletons use this to react to sunlight and start to burn.
      */
     @Override
-	public void onLivingUpdate()
-    {
-    	super.onLivingUpdate();
-    	
-    	//when panicked, spawn tears/sweat
-    	if (isPanicked())
-    	{
-    		for (int i = 0; i < 2; i++)
-    		{
-    			this.worldObj.spawnParticle("splash", this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, this.posY + this.getEyeHeight(), this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, 0, 0, 0);
-    		}
-    	}
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        // when panicked, spawn tears/sweat
+        if (isPanicked()) {
+            for (int i = 0; i < 2; i++) {
+                this.worldObj.spawnParticle("splash", this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, this.posY + this.getEyeHeight(),
+                        this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, 0, 0, 0);
+            }
+        }
 
     }
-    
 
     /**
      * Trigger achievement when killed
      */
     @Override
     public void onDeath(DamageSource par1DamageSource) {
-    	super.onDeath(par1DamageSource);
-    	if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-    		((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-    	}
+        super.onDeath(par1DamageSource);
+        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+        }
     }
-
 
     /**
      * Will return how many at most can spawn in a chunk at once.
      */
     @Override
-	public int getMaxSpawnedInChunk()
-    {
+    public int getMaxSpawnedInChunk() {
         return 8;
     }
-    
 
 }

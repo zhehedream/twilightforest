@@ -8,26 +8,22 @@ import twilightforest.TwilightForestMod;
 
 public class RenderTFBiped extends RenderBiped {
 
-	private final ResourceLocation textureLoc;
+    private final ResourceLocation textureLoc;
 
-	public RenderTFBiped(ModelBiped modelBiped, float scale, String textureName) {
-		super(modelBiped, scale);
-		
-		if (textureName.startsWith("textures"))
-		{
-			textureLoc = new ResourceLocation(textureName);
-		}
-		else
-		{
-			textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + textureName);
-		}
-	}
+    public RenderTFBiped(ModelBiped modelBiped, float scale, String textureName) {
+        super(modelBiped, scale);
 
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
+        if (textureName.startsWith("textures")) {
+            textureLoc = new ResourceLocation(textureName);
+        } else {
+            textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + textureName);
+        }
+    }
+
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return textureLoc;
     }
 }

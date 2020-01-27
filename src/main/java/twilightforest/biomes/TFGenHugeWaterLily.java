@@ -7,36 +7,31 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import twilightforest.block.TFBlocks;
 
-
 /**
  * Generate huge lily pads
  * 
  * @author Ben
  *
  */
-public class TFGenHugeWaterLily extends WorldGenerator
-{
+public class TFGenHugeWaterLily extends WorldGenerator {
 
-	private Random rand = new Random();
+    private Random rand = new Random();
 
+    public boolean generate(World world, Random random, int x, int y, int z) {
+        for (int i = 0; i < 4; i++) {
+            int dx = x + random.nextInt(8) - random.nextInt(8);
+            int dy = y + random.nextInt(4) - random.nextInt(4);
+            int dz = z + random.nextInt(8) - random.nextInt(8);
 
-    public boolean generate(World world, Random random, int x, int y, int z)
-    {
-    	for (int i = 0; i < 4; i++) {
-    		int dx = x + random.nextInt(8) - random.nextInt(8);
-    		int dy = y + random.nextInt(4) - random.nextInt(4);
-    		int dz = z + random.nextInt(8) - random.nextInt(8);
-
-    		if (shouldPlacePadAt(world, dx, dy, dz)) {
-    			world.setBlock(dx, dy, dz, TFBlocks.hugeWaterLily);
-    		}
-    	}
+            if (shouldPlacePadAt(world, dx, dy, dz)) {
+                world.setBlock(dx, dy, dz, TFBlocks.hugeWaterLily);
+            }
+        }
 
         return true;
     }
 
-
-	private boolean shouldPlacePadAt(World world, int dx, int dy, int dz) {
-		return world.isAirBlock(dx, dy, dz) && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.water;
-	}
+    private boolean shouldPlacePadAt(World world, int dx, int dy, int dz) {
+        return world.isAirBlock(dx, dy, dz) && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.water;
+    }
 }

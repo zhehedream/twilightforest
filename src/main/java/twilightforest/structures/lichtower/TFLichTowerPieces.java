@@ -4,8 +4,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 public class TFLichTowerPieces {
 
-    public static void registerPieces()
-    {
+    public static void registerPieces() {
         MapGenStructureIO.func_143031_a(ComponentTFTowerBeard.class, "TFLTBea");
         MapGenStructureIO.func_143031_a(ComponentTFTowerBeardAttached.class, "TFLTBA");
         MapGenStructureIO.func_143031_a(ComponentTFTowerBridge.class, "TFLTBri");
@@ -22,6 +21,6 @@ public class TFLichTowerPieces {
         MapGenStructureIO.func_143031_a(ComponentTFTowerRoofStairs.class, "TFLTRSt");
         MapGenStructureIO.func_143031_a(ComponentTFTowerRoofStairsOverhang.class, "TFLTRStO");
         MapGenStructureIO.func_143031_a(ComponentTFTowerWing.class, "TFLTWin");
-        
+
     }
 }

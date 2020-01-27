@@ -27,9 +27,8 @@ public class TFSkyRenderer extends IRenderHandler {
     /** OpenGL sky list 2 */
     private int glSkyList2;
 
-	@SideOnly(Side.CLIENT)
-    public TFSkyRenderer() 
-	{
+    @SideOnly(Side.CLIENT)
+    public TFSkyRenderer() {
         this.starGLCallList = GLAllocation.generateDisplayLists(3);
         GL11.glPushMatrix();
         GL11.glNewList(this.starGLCallList, GL11.GL_COMPILE);
@@ -45,15 +44,13 @@ public class TFSkyRenderer extends IRenderHandler {
         int var9;
         int var10;
 
-        for (var9 = -var7 * var8; var9 <= var7 * var8; var9 += var7)
-        {
-            for (var10 = -var7 * var8; var10 <= var7 * var8; var10 += var7)
-            {
+        for (var9 = -var7 * var8; var9 <= var7 * var8; var9 += var7) {
+            for (var10 = -var7 * var8; var10 <= var7 * var8; var10 += var7) {
                 var5.startDrawingQuads();
-                var5.addVertex((double)(var9 + 0), (double)var6, (double)(var10 + 0));
-                var5.addVertex((double)(var9 + var7), (double)var6, (double)(var10 + 0));
-                var5.addVertex((double)(var9 + var7), (double)var6, (double)(var10 + var7));
-                var5.addVertex((double)(var9 + 0), (double)var6, (double)(var10 + var7));
+                var5.addVertex((double) (var9 + 0), (double) var6, (double) (var10 + 0));
+                var5.addVertex((double) (var9 + var7), (double) var6, (double) (var10 + 0));
+                var5.addVertex((double) (var9 + var7), (double) var6, (double) (var10 + var7));
+                var5.addVertex((double) (var9 + 0), (double) var6, (double) (var10 + var7));
                 var5.draw();
             }
         }
@@ -64,34 +61,30 @@ public class TFSkyRenderer extends IRenderHandler {
         var6 = -16.0F;
         var5.startDrawingQuads();
 
-        for (var9 = -var7 * var8; var9 <= var7 * var8; var9 += var7)
-        {
-            for (var10 = -var7 * var8; var10 <= var7 * var8; var10 += var7)
-            {
-                var5.addVertex((double)(var9 + var7), (double)var6, (double)(var10 + 0));
-                var5.addVertex((double)(var9 + 0), (double)var6, (double)(var10 + 0));
-                var5.addVertex((double)(var9 + 0), (double)var6, (double)(var10 + var7));
-                var5.addVertex((double)(var9 + var7), (double)var6, (double)(var10 + var7));
+        for (var9 = -var7 * var8; var9 <= var7 * var8; var9 += var7) {
+            for (var10 = -var7 * var8; var10 <= var7 * var8; var10 += var7) {
+                var5.addVertex((double) (var9 + var7), (double) var6, (double) (var10 + 0));
+                var5.addVertex((double) (var9 + 0), (double) var6, (double) (var10 + 0));
+                var5.addVertex((double) (var9 + 0), (double) var6, (double) (var10 + var7));
+                var5.addVertex((double) (var9 + var7), (double) var6, (double) (var10 + var7));
             }
         }
 
         var5.draw();
         GL11.glEndList();
     }
-    
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void render(float partialTicks, WorldClient world, Minecraft mc) {
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void render(float partialTicks, WorldClient world, Minecraft mc) {
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-        Vec3 var2 = getTwilightSkyColor(world);//Vec3 var2 = world.getSkyColor(mc.renderViewEntity, partialTicks);
-        float var3 = (float)var2.xCoord;
-        float var4 = (float)var2.yCoord;
-        float var5 = (float)var2.zCoord;
+        Vec3 var2 = getTwilightSkyColor(world);// Vec3 var2 = world.getSkyColor(mc.renderViewEntity, partialTicks);
+        float var3 = (float) var2.xCoord;
+        float var4 = (float) var2.yCoord;
+        float var5 = (float) var2.zCoord;
         float var8;
 
-        if (mc.gameSettings.anaglyph)
-        {
+        if (mc.gameSettings.anaglyph) {
             float var6 = (var3 * 30.0F + var4 * 59.0F + var5 * 11.0F) / 100.0F;
             float var7 = (var3 * 30.0F + var4 * 70.0F) / 100.0F;
             var8 = (var3 * 30.0F + var5 * 70.0F) / 100.0F;
@@ -169,7 +162,7 @@ public class TFSkyRenderer extends IRenderHandler {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, var8);
         GL11.glTranslatef(var9, var10, var11);
         GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(getRealCelestialAngle(world, partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);//GL11.glRotatef(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
+        GL11.glRotatef(getRealCelestialAngle(world, partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);// GL11.glRotatef(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
         var12 = 30.0F;
 //        GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/terrain/sun.png"));
 //        var23.startDrawingQuads();
@@ -194,10 +187,9 @@ public class TFSkyRenderer extends IRenderHandler {
 //        var23.addVertexWithUV((double)(-var12), -100.0D, (double)(-var12), (double)var18, (double)var17);
 //        var23.draw();
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-        float var20 = 1.0f;//world.getStarBrightness(partialTicks) * var8;
+        float var20 = 1.0f;// world.getStarBrightness(partialTicks) * var8;
 
-        if (var20 > 0.0F)
-        {
+        if (var20 > 0.0F) {
             GL11.glColor4f(var20, var20, var20, var20);
             GL11.glCallList(this.starGLCallList);
         }
@@ -211,137 +203,127 @@ public class TFSkyRenderer extends IRenderHandler {
         GL11.glColor3f(0.0F, 0.0F, 0.0F);
         double var25 = mc.thePlayer.getPosition(partialTicks).yCoord - TFWorld.SEALEVEL;
 
-        if (var25 < 0.0D)
-        {
+        if (var25 < 0.0D) {
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 12.0F, 0.0F);
             GL11.glCallList(this.glSkyList2);
             GL11.glPopMatrix();
             var10 = 1.0F;
-            var11 = -((float)(var25 + 65.0D));
+            var11 = -((float) (var25 + 65.0D));
             var12 = -var10;
             var23.startDrawingQuads();
             var23.setColorRGBA_I(0, 255);
-            var23.addVertex((double)(-var10), (double)var11, (double)var10);
-            var23.addVertex((double)var10, (double)var11, (double)var10);
-            var23.addVertex((double)var10, (double)var12, (double)var10);
-            var23.addVertex((double)(-var10), (double)var12, (double)var10);
-            var23.addVertex((double)(-var10), (double)var12, (double)(-var10));
-            var23.addVertex((double)var10, (double)var12, (double)(-var10));
-            var23.addVertex((double)var10, (double)var11, (double)(-var10));
-            var23.addVertex((double)(-var10), (double)var11, (double)(-var10));
-            var23.addVertex((double)var10, (double)var12, (double)(-var10));
-            var23.addVertex((double)var10, (double)var12, (double)var10);
-            var23.addVertex((double)var10, (double)var11, (double)var10);
-            var23.addVertex((double)var10, (double)var11, (double)(-var10));
-            var23.addVertex((double)(-var10), (double)var11, (double)(-var10));
-            var23.addVertex((double)(-var10), (double)var11, (double)var10);
-            var23.addVertex((double)(-var10), (double)var12, (double)var10);
-            var23.addVertex((double)(-var10), (double)var12, (double)(-var10));
-            var23.addVertex((double)(-var10), (double)var12, (double)(-var10));
-            var23.addVertex((double)(-var10), (double)var12, (double)var10);
-            var23.addVertex((double)var10, (double)var12, (double)var10);
-            var23.addVertex((double)var10, (double)var12, (double)(-var10));
+            var23.addVertex((double) (-var10), (double) var11, (double) var10);
+            var23.addVertex((double) var10, (double) var11, (double) var10);
+            var23.addVertex((double) var10, (double) var12, (double) var10);
+            var23.addVertex((double) (-var10), (double) var12, (double) var10);
+            var23.addVertex((double) (-var10), (double) var12, (double) (-var10));
+            var23.addVertex((double) var10, (double) var12, (double) (-var10));
+            var23.addVertex((double) var10, (double) var11, (double) (-var10));
+            var23.addVertex((double) (-var10), (double) var11, (double) (-var10));
+            var23.addVertex((double) var10, (double) var12, (double) (-var10));
+            var23.addVertex((double) var10, (double) var12, (double) var10);
+            var23.addVertex((double) var10, (double) var11, (double) var10);
+            var23.addVertex((double) var10, (double) var11, (double) (-var10));
+            var23.addVertex((double) (-var10), (double) var11, (double) (-var10));
+            var23.addVertex((double) (-var10), (double) var11, (double) var10);
+            var23.addVertex((double) (-var10), (double) var12, (double) var10);
+            var23.addVertex((double) (-var10), (double) var12, (double) (-var10));
+            var23.addVertex((double) (-var10), (double) var12, (double) (-var10));
+            var23.addVertex((double) (-var10), (double) var12, (double) var10);
+            var23.addVertex((double) var10, (double) var12, (double) var10);
+            var23.addVertex((double) var10, (double) var12, (double) (-var10));
             var23.draw();
         }
 
-        if (world.provider.isSkyColored())
-        {
+        if (world.provider.isSkyColored()) {
             GL11.glColor3f(var3 * 0.2F + 0.04F, var4 * 0.2F + 0.04F, var5 * 0.6F + 0.1F);
-        }
-        else
-        {
+        } else {
             GL11.glColor3f(var3, var4, var5);
         }
 
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.0F, -((float)(var25 - 16.0D)), 0.0F);
+        GL11.glTranslatef(0.0F, -((float) (var25 - 16.0D)), 0.0F);
         GL11.glCallList(this.glSkyList2);
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDepthMask(true);
-	}
-	
-	private float getRealCelestialAngle(World world, float partialTicks) {
-        int var4 = (int)(world.getWorldTime() % 24000L);
-        float var5 = ((float)var4 + partialTicks) / 24000.0F - 0.25F;
+    }
 
-        if (var5 < 0.0F)
-        {
+    private float getRealCelestialAngle(World world, float partialTicks) {
+        int var4 = (int) (world.getWorldTime() % 24000L);
+        float var5 = ((float) var4 + partialTicks) / 24000.0F - 0.25F;
+
+        if (var5 < 0.0F) {
             ++var5;
         }
 
-        if (var5 > 1.0F)
-        {
+        if (var5 > 1.0F) {
             --var5;
         }
 
         float var6 = var5;
-        var5 = 1.0F - (float)((Math.cos((double)var5 * Math.PI) + 1.0D) / 2.0D);
+        var5 = 1.0F - (float) ((Math.cos((double) var5 * Math.PI) + 1.0D) / 2.0D);
         var5 = var6 + (var5 - var6) / 3.0F;
         return var5;
-	}
+    }
 
-	/**
-	 * Maybe in the future we can get the return of sky color by biome?
-	 * @return
-	 */
-	private Vec3 getTwilightSkyColor(World world) {
-		return Vec3.createVectorHelper(32 / 256.0, 34 / 256.0, 74 / 256.0);
+    /**
+     * Maybe in the future we can get the return of sky color by biome?
+     * 
+     * @return
+     */
+    private Vec3 getTwilightSkyColor(World world) {
+        return Vec3.createVectorHelper(32 / 256.0, 34 / 256.0, 74 / 256.0);
 //		return Vec3.createVectorHelper(43 / 256.0, 46 / 256.0, 99 / 256.0);
- 	}
+    }
 
-	
-	 private void renderStars()
-	    {
-	        Random var1 = new Random(10842L);
-	        Tessellator var2 = Tessellator.instance;
-	        var2.startDrawingQuads();
+    private void renderStars() {
+        Random var1 = new Random(10842L);
+        Tessellator var2 = Tessellator.instance;
+        var2.startDrawingQuads();
 
-	        for (int var3 = 0; var3 < 3000; ++var3)
-	        {
-	            double var4 = (double)(var1.nextFloat() * 2.0F - 1.0F);
-	            double var6 = (double)(var1.nextFloat() * 2.0F - 1.0F);
-	            double var8 = (double)(var1.nextFloat() * 2.0F - 1.0F);
-	            double size = (double)(0.10F + var1.nextFloat() * 0.25F);
-	            double var12 = var4 * var4 + var6 * var6 + var8 * var8;
+        for (int var3 = 0; var3 < 3000; ++var3) {
+            double var4 = (double) (var1.nextFloat() * 2.0F - 1.0F);
+            double var6 = (double) (var1.nextFloat() * 2.0F - 1.0F);
+            double var8 = (double) (var1.nextFloat() * 2.0F - 1.0F);
+            double size = (double) (0.10F + var1.nextFloat() * 0.25F);
+            double var12 = var4 * var4 + var6 * var6 + var8 * var8;
 
-	            if (var12 < 1.0D && var12 > 0.01D)
-	            {
-	                var12 = 1.0D / Math.sqrt(var12);
-	                var4 *= var12;
-	                var6 *= var12;
-	                var8 *= var12;
-	                double var14 = var4 * 100.0D;
-	                double var16 = var6 * 100.0D;
-	                double var18 = var8 * 100.0D;
-	                double var20 = Math.atan2(var4, var8);
-	                double var22 = Math.sin(var20);
-	                double var24 = Math.cos(var20);
-	                double var26 = Math.atan2(Math.sqrt(var4 * var4 + var8 * var8), var6);
-	                double var28 = Math.sin(var26);
-	                double var30 = Math.cos(var26);
-	                double var32 = var1.nextDouble() * Math.PI * 2.0D;
-	                double var34 = Math.sin(var32);
-	                double var36 = Math.cos(var32);
+            if (var12 < 1.0D && var12 > 0.01D) {
+                var12 = 1.0D / Math.sqrt(var12);
+                var4 *= var12;
+                var6 *= var12;
+                var8 *= var12;
+                double var14 = var4 * 100.0D;
+                double var16 = var6 * 100.0D;
+                double var18 = var8 * 100.0D;
+                double var20 = Math.atan2(var4, var8);
+                double var22 = Math.sin(var20);
+                double var24 = Math.cos(var20);
+                double var26 = Math.atan2(Math.sqrt(var4 * var4 + var8 * var8), var6);
+                double var28 = Math.sin(var26);
+                double var30 = Math.cos(var26);
+                double var32 = var1.nextDouble() * Math.PI * 2.0D;
+                double var34 = Math.sin(var32);
+                double var36 = Math.cos(var32);
 
-	                for (int var38 = 0; var38 < 4; ++var38)
-	                {
-	                    double var39 = 0.0D;
-	                    double var41 = (double)((var38 & 2) - 1) * size;
-	                    double var43 = (double)((var38 + 1 & 2) - 1) * size;
-	                    double var47 = var41 * var36 - var43 * var34;
-	                    double var49 = var43 * var36 + var41 * var34;
-	                    double var53 = var47 * var28 + var39 * var30;
-	                    double var55 = var39 * var28 - var47 * var30;
-	                    double var57 = var55 * var22 - var49 * var24;
-	                    double var61 = var49 * var22 + var55 * var24;
-	                    var2.addVertex(var14 + var57, var16 + var53, var18 + var61);
-	                }
-	            }
-	        }
+                for (int var38 = 0; var38 < 4; ++var38) {
+                    double var39 = 0.0D;
+                    double var41 = (double) ((var38 & 2) - 1) * size;
+                    double var43 = (double) ((var38 + 1 & 2) - 1) * size;
+                    double var47 = var41 * var36 - var43 * var34;
+                    double var49 = var43 * var36 + var41 * var34;
+                    double var53 = var47 * var28 + var39 * var30;
+                    double var55 = var39 * var28 - var47 * var30;
+                    double var57 = var55 * var22 - var49 * var24;
+                    double var61 = var49 * var22 + var55 * var24;
+                    var2.addVertex(var14 + var57, var16 + var53, var18 + var61);
+                }
+            }
+        }
 
-	        var2.draw();
-	    }
+        var2.draw();
+    }
 
 }

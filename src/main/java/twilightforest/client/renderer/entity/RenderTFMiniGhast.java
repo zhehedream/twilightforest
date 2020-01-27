@@ -8,42 +8,39 @@ import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFTowerGhast;
 
 public class RenderTFMiniGhast extends RenderLiving {
-	
-	final ResourceLocation textureLocClosed;
-	final ResourceLocation textureLocOpen;
-	final ResourceLocation textureLocAttack;
-	
-	public RenderTFMiniGhast(ModelBase par1ModelBase, float par2) {
-		super(par1ModelBase, par2);
-		
-		textureLocClosed = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast.png");
-		textureLocOpen = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png");
-		textureLocAttack = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast_fire.png");
-	}
 
-	/**
-	 * Return our specific texture
-	 */
-	protected ResourceLocation getEntityTexture(Entity par1Entity)
-	{
-		if (par1Entity instanceof EntityTFTowerGhast)
-		{
-			switch (((EntityTFTowerGhast)par1Entity).getAttackStatus())
-			{
-			default: 
-			case 0:
-				return textureLocClosed;
+    final ResourceLocation textureLocClosed;
+    final ResourceLocation textureLocOpen;
+    final ResourceLocation textureLocAttack;
 
-			case 1:
-				return textureLocOpen;
+    public RenderTFMiniGhast(ModelBase par1ModelBase, float par2) {
+        super(par1ModelBase, par2);
 
-			case 2:
-				return textureLocAttack;
-			}
-		}
+        textureLocClosed = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast.png");
+        textureLocOpen = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png");
+        textureLocAttack = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerghast_fire.png");
+    }
 
-		// fallback
-		return textureLocClosed;
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
+        if (par1Entity instanceof EntityTFTowerGhast) {
+            switch (((EntityTFTowerGhast) par1Entity).getAttackStatus()) {
+            default:
+            case 0:
+                return textureLocClosed;
+
+            case 1:
+                return textureLocOpen;
+
+            case 2:
+                return textureLocAttack;
+            }
+        }
+
+        // fallback
+        return textureLocClosed;
     }
 
 }

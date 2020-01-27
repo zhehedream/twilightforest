@@ -161,426 +161,400 @@ import twilightforest.tileentity.TileEntityTFTrophy;
 
 public class TFClientProxy extends TFCommonProxy {
 
-	int critterRenderID;
-	int plantRenderID;
-	int blockComplexRenderID;
-	int nagastoneRenderID;
-	int magicLeavesRenderID;
-	int pedestalRenderID;
-	int thornsRenderID;
-	int knightmetalBlockRenderID;
-	int hugeLilyPadBlockRenderID;
-	int castleMagicBlockRenderID;
+    int critterRenderID;
+    int plantRenderID;
+    int blockComplexRenderID;
+    int nagastoneRenderID;
+    int magicLeavesRenderID;
+    int pedestalRenderID;
+    int thornsRenderID;
+    int knightmetalBlockRenderID;
+    int hugeLilyPadBlockRenderID;
+    int castleMagicBlockRenderID;
 
-	ModelBiped[] knightlyArmorModel;
-	ModelBiped[] phantomArmorModel;
-	ModelBiped[] yetiArmorModel;
-	ModelBiped[] arcticArmorModel;
-	ModelBiped[] fieryArmorModel;
-	
-	TFClientTicker clientTicker;
-	TFClientEvents clientEvents;
-	
-	boolean isDangerOverlayShown;
-	/**
-	 * Called during mod pre-load.  We need to register our sound thing here so that it can catch the SoundLoadEvent during loading.
-	 */
-	@Override
-	public void doPreLoadRegistration() {
-		// sounds
-		//MinecraftForge.EVENT_BUS.register(new TFSounds());
+    ModelBiped[] knightlyArmorModel;
+    ModelBiped[] phantomArmorModel;
+    ModelBiped[] yetiArmorModel;
+    ModelBiped[] arcticArmorModel;
+    ModelBiped[] fieryArmorModel;
 
-	}
+    TFClientTicker clientTicker;
+    TFClientEvents clientEvents;
 
-	/**
-	 * Called during mod loading.  Registers renderers and stuff
-	 */
-	@Override
-	public void doOnLoadRegistration() {
-		Minecraft mc = FMLClientHandler.instance().getClient();
-		
-		// client tick listener
-		clientTicker = new TFClientTicker();
-		FMLCommonHandler.instance().bus().register(clientTicker);
-		
-		// client events
-		clientEvents = new TFClientEvents();
-		MinecraftForge.EVENT_BUS.register(clientEvents);
-		
-		// packet listener
-		TFGenericPacketHandler genericPacketHandler = new TFGenericPacketHandler();
-		TwilightForestMod.genericChannel.register(genericPacketHandler);
-		
-		// entity renderers
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBoar.class, new RenderTFBoar(new ModelTFBoar(), new ModelPig(0.5F), 0.7F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBighorn.class, new RenderTFBighorn(new ModelTFBighorn(), new ModelTFBighornFur(), 0.7F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFDeer.class, new RenderTFDeer(new ModelTFDeer(), 0.7F));
+    boolean isDangerOverlayShown;
 
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRedcap.class, new RenderTFBiped(new ModelTFRedcap(), 0.625F, "redcap.png"));
+    /**
+     * Called during mod pre-load. We need to register our sound thing here so that it can catch the
+     * SoundLoadEvent during loading.
+     */
+    @Override
+    public void doPreLoadRegistration() {
+        // sounds
+        // MinecraftForge.EVENT_BUS.register(new TFSounds());
+
+    }
+
+    /**
+     * Called during mod loading. Registers renderers and stuff
+     */
+    @Override
+    public void doOnLoadRegistration() {
+        Minecraft mc = FMLClientHandler.instance().getClient();
+
+        // client tick listener
+        clientTicker = new TFClientTicker();
+        FMLCommonHandler.instance().bus().register(clientTicker);
+
+        // client events
+        clientEvents = new TFClientEvents();
+        MinecraftForge.EVENT_BUS.register(clientEvents);
+
+        // packet listener
+        TFGenericPacketHandler genericPacketHandler = new TFGenericPacketHandler();
+        TwilightForestMod.genericChannel.register(genericPacketHandler);
+
+        // entity renderers
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBoar.class, new RenderTFBoar(new ModelTFBoar(), new ModelPig(0.5F), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBighorn.class, new RenderTFBighorn(new ModelTFBighorn(), new ModelTFBighornFur(), 0.7F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFDeer.class, new RenderTFDeer(new ModelTFDeer(), 0.7F));
+
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRedcap.class, new RenderTFBiped(new ModelTFRedcap(), 0.625F, "redcap.png"));
 //		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
 //		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaSegmentOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFTinyFirefly.class, new RenderTFTinyFirefly());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSkeletonDruid.class, new RenderTFBiped(new ModelTFSkeletonDruid(), 0.5F, "skeletondruid.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFWraith.class, new RenderTFWraith(new ModelTFWraith(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydra.class, new RenderTFHydra(new ModelTFHydra(), 1.0F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLich.class, new RenderTFLich(new ModelTFLich(), 1.0F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFPenguin.class, new RenderTFBird(new ModelTFPenguin(), 1.0F, "penguin.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichMinion.class, new RenderTFBiped(new ModelTFLichMinion(), 1.0F, "textures/entity/zombie/zombie.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFLoyalZombie.class, new RenderTFBiped(new ModelTFLoyalZombie(), 1.0F, "textures/entity/zombie/zombie.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFTinyBird.class, new RenderTFTinyBird(new ModelTFTinyBird(), 1.0F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFSquirrel.class, new RenderTFGenericLiving(new ModelTFSquirrel(), 1.0F, "squirrel2.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBunny.class, new RenderTFBunny(new ModelTFBunny(), 1.0F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFRaven.class, new RenderTFBird(new ModelTFRaven(), 1.0F, "raven.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFQuestRam.class, new RenderTFQuestRam());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFKobold.class, new RenderTFKobold(new ModelTFKobold(), 0.625F, "kobold.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFBoggard.class, new RenderTFBiped(new ModelTFLoyalZombie(), 0.625F, "kobold.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMosquitoSwarm.class, new RenderTFGenericLiving(new ModelTFMosquitoSwarm(), 0.625F, "mosquitoswarm.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFDeathTome.class, new RenderTFGenericLiving(new ModelTFDeathTome(), 0.625F, "textures/entity/enchanting_table_book.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMinotaur.class, new RenderTFBiped(new ModelTFMinotaur(), 0.625F, "minotaur.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFMinoshroom.class, new RenderTFMinoshroom(new ModelTFMinoshroom(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFFireBeetle.class, new RenderTFGenericLiving(new ModelTFFireBeetle(), 0.625F, "firebeetle.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlimeBeetle.class, new RenderTFSlimeBeetle(new ModelTFSlimeBeetle(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFPinchBeetle.class, new RenderTFGenericLiving(new ModelTFPinchBeetle(), 0.625F, "pinchbeetle.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMistWolf.class, new RenderTFMistWolf(new ModelWolf(), new ModelWolf(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFMobileFirefly.class, new RenderTFTinyFirefly());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMiniGhast.class, new RenderTFMiniGhast(new ModelTFGhast(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerGolem.class, new RenderTFTowerGolem(new ModelTFTowerGolem(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerTermite.class, new RenderTFGenericLiving(new ModelSilverfish(), 0.3F, "towertermite.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerGhast.class, new RenderTFTowerGhast(new ModelTFGhast(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFUrGhast.class, new RenderTFUrGhast(new ModelTFTowerBoss(), 0.625F, 24F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFBlockGoblin.class, new RenderTFBlockGoblin(new ModelTFBlockGoblin(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinChain.class, new RenderTFSpikeBlock(new ModelTFGoblinChain(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSpikeBlock.class, new RenderTFSpikeBlock(new ModelTFSpikeBlock(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinKnightUpper.class, new RenderTFGoblinKnightUpper(new ModelTFGoblinKnightUpper(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinKnightLower.class, new RenderTFBiped(new ModelTFGoblinKnightLower(), 0.625F, "doublegoblin.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHelmetCrab.class, new RenderTFGenericLiving(new ModelTFHelmetCrab(), 0.625F, "helmetcrab.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFKnightPhantom.class, new RenderTFKnightPhantom(new ModelTFKnightPhantom2(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFNaga.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFNagaSegment.class, new RenderTFNagaSegment(new ModelTFNaga(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSwarmSpider.class, new RenderTFSwarmSpider());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFKingSpider.class, new RenderTFKingSpider());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerBroodling.class, new RenderTFTowerBroodling());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHedgeSpider.class, new RenderTFHedgeSpider());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRedcapSapper.class, new RenderTFBiped(new ModelTFRedcap(), 0.625F, "redcapsapper.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMazeSlime.class, new RenderTFMazeSlime(new ModelSlime(16), new ModelSlime(0), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFYeti.class, new RenderTFYeti(new ModelTFYeti(), 0.625F, "yeti2.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFProtectionBox.class, new RenderTFProtectionBox());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFYetiAlpha.class, new RenderTFYeti(new ModelTFYetiAlpha(), 0.625F, "yetialpha.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFWinterWolf.class, new RenderTFWinterWolf(new ModelWolf(), new ModelWolf(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSnowGuardian.class, new RenderTFSnowGuardian());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceShooter.class, new RenderTFIceShooter());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceExploder.class, new RenderTFIceExploder());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFSnowQueen.class, new RenderTFSnowQueen());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFSnowQueenIceShield.class, new RenderTFSnowQueenIceShield());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTroll.class, new RenderTFBiped(new ModelTFTroll(), 0.625F, "troll.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGiantMiner.class, new RenderTFGiant());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFIceCrystal.class, new RenderTFIceCrystal());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFChainBlock.class, new RenderTFChainBlock(new ModelTFSpikeBlock(), 0.625F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFCubeOfAnnihilation.class, new RenderTFCubeOfAnnihilation());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHarbingerCube.class, new RenderTFHarbingerCube());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFAdherent.class, new RenderTFAdherent(new ModelTFAdherent(), 0.625F, "adherent.png"));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRovingCube.class, new RenderTFRovingCube());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFTinyFirefly.class, new RenderTFTinyFirefly());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSkeletonDruid.class, new RenderTFBiped(new ModelTFSkeletonDruid(), 0.5F, "skeletondruid.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFWraith.class, new RenderTFWraith(new ModelTFWraith(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydra.class, new RenderTFHydra(new ModelTFHydra(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLich.class, new RenderTFLich(new ModelTFLich(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFPenguin.class, new RenderTFBird(new ModelTFPenguin(), 1.0F, "penguin.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichMinion.class, new RenderTFBiped(new ModelTFLichMinion(), 1.0F, "textures/entity/zombie/zombie.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFLoyalZombie.class, new RenderTFBiped(new ModelTFLoyalZombie(), 1.0F, "textures/entity/zombie/zombie.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFTinyBird.class, new RenderTFTinyBird(new ModelTFTinyBird(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFSquirrel.class, new RenderTFGenericLiving(new ModelTFSquirrel(), 1.0F, "squirrel2.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFBunny.class, new RenderTFBunny(new ModelTFBunny(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFRaven.class, new RenderTFBird(new ModelTFRaven(), 1.0F, "raven.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFQuestRam.class, new RenderTFQuestRam());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFKobold.class, new RenderTFKobold(new ModelTFKobold(), 0.625F, "kobold.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFBoggard.class, new RenderTFBiped(new ModelTFLoyalZombie(), 0.625F, "kobold.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMosquitoSwarm.class, new RenderTFGenericLiving(new ModelTFMosquitoSwarm(), 0.625F, "mosquitoswarm.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFDeathTome.class,
+                new RenderTFGenericLiving(new ModelTFDeathTome(), 0.625F, "textures/entity/enchanting_table_book.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMinotaur.class, new RenderTFBiped(new ModelTFMinotaur(), 0.625F, "minotaur.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFMinoshroom.class, new RenderTFMinoshroom(new ModelTFMinoshroom(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFFireBeetle.class, new RenderTFGenericLiving(new ModelTFFireBeetle(), 0.625F, "firebeetle.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlimeBeetle.class, new RenderTFSlimeBeetle(new ModelTFSlimeBeetle(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFPinchBeetle.class, new RenderTFGenericLiving(new ModelTFPinchBeetle(), 0.625F, "pinchbeetle.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMistWolf.class, new RenderTFMistWolf(new ModelWolf(), new ModelWolf(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFMobileFirefly.class, new RenderTFTinyFirefly());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMiniGhast.class, new RenderTFMiniGhast(new ModelTFGhast(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerGolem.class, new RenderTFTowerGolem(new ModelTFTowerGolem(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerTermite.class, new RenderTFGenericLiving(new ModelSilverfish(), 0.3F, "towertermite.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerGhast.class, new RenderTFTowerGhast(new ModelTFGhast(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFUrGhast.class, new RenderTFUrGhast(new ModelTFTowerBoss(), 0.625F, 24F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFBlockGoblin.class, new RenderTFBlockGoblin(new ModelTFBlockGoblin(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinChain.class, new RenderTFSpikeBlock(new ModelTFGoblinChain(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSpikeBlock.class, new RenderTFSpikeBlock(new ModelTFSpikeBlock(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinKnightUpper.class, new RenderTFGoblinKnightUpper(new ModelTFGoblinKnightUpper(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGoblinKnightLower.class, new RenderTFBiped(new ModelTFGoblinKnightLower(), 0.625F, "doublegoblin.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHelmetCrab.class, new RenderTFGenericLiving(new ModelTFHelmetCrab(), 0.625F, "helmetcrab.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFKnightPhantom.class, new RenderTFKnightPhantom(new ModelTFKnightPhantom2(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFNaga.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFNagaSegment.class, new RenderTFNagaSegment(new ModelTFNaga(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSwarmSpider.class, new RenderTFSwarmSpider());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFKingSpider.class, new RenderTFKingSpider());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTowerBroodling.class, new RenderTFTowerBroodling());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHedgeSpider.class, new RenderTFHedgeSpider());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRedcapSapper.class, new RenderTFBiped(new ModelTFRedcap(), 0.625F, "redcapsapper.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMazeSlime.class, new RenderTFMazeSlime(new ModelSlime(16), new ModelSlime(0), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFYeti.class, new RenderTFYeti(new ModelTFYeti(), 0.625F, "yeti2.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFProtectionBox.class, new RenderTFProtectionBox());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFYetiAlpha.class, new RenderTFYeti(new ModelTFYetiAlpha(), 0.625F, "yetialpha.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFWinterWolf.class, new RenderTFWinterWolf(new ModelWolf(), new ModelWolf(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSnowGuardian.class, new RenderTFSnowGuardian());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceShooter.class, new RenderTFIceShooter());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceExploder.class, new RenderTFIceExploder());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFSnowQueen.class, new RenderTFSnowQueen());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFSnowQueenIceShield.class, new RenderTFSnowQueenIceShield());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTroll.class, new RenderTFBiped(new ModelTFTroll(), 0.625F, "troll.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFGiantMiner.class, new RenderTFGiant());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFIceCrystal.class, new RenderTFIceCrystal());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFChainBlock.class, new RenderTFChainBlock(new ModelTFSpikeBlock(), 0.625F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFCubeOfAnnihilation.class, new RenderTFCubeOfAnnihilation());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFHarbingerCube.class, new RenderTFHarbingerCube());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFAdherent.class, new RenderTFAdherent(new ModelTFAdherent(), 0.625F, "adherent.png"));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRovingCube.class, new RenderTFRovingCube());
 
-		// projectiles
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNatureBolt.class, new RenderSnowball(Items.wheat_seeds));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichBolt.class, new RenderSnowball(Items.ender_pearl));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTwilightWandBolt.class, new RenderSnowball(Items.ender_pearl));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTomeBolt.class, new RenderSnowball(Items.paper));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraMortar.class, new RenderTFHydraMortar());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlimeProjectile.class, new RenderSnowball(Items.slime_ball));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMoonwormShot.class, new RenderTFMoonwormShot());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFCharmEffect.class, new RenderTFCharm(TFItems.charmOfLife1.getIconFromDamage(0)));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichBomb.class, new RenderSnowball(Items.magma_cream));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFThrownAxe.class, new RenderTFThrownAxe(TFItems.knightlyAxe));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFThrownPick.class, new RenderTFThrownAxe(TFItems.knightlyPick));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFFallingIce.class, new RenderTFFallingIce());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFIceBomb.class, new RenderTFThrownIce());
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceSnowball.class, new RenderSnowball(Items.snowball));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlideBlock.class, new RenderTFSlideBlock());
-		
-		// I guess the hydra gets its own section
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraHead.class, new RenderTFHydraHead(new ModelTFHydraHead(), 1.0F));
-		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraNeck.class, new RenderTFGenericLiving(new ModelTFHydraNeck(), 1.0F, "hydra4.png"));
-		
-		// animated textures
+        // projectiles
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNatureBolt.class, new RenderSnowball(Items.wheat_seeds));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichBolt.class, new RenderSnowball(Items.ender_pearl));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTwilightWandBolt.class, new RenderSnowball(Items.ender_pearl));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFTomeBolt.class, new RenderSnowball(Items.paper));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraMortar.class, new RenderTFHydraMortar());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlimeProjectile.class, new RenderSnowball(Items.slime_ball));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFMoonwormShot.class, new RenderTFMoonwormShot());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFCharmEffect.class, new RenderTFCharm(TFItems.charmOfLife1.getIconFromDamage(0)));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFLichBomb.class, new RenderSnowball(Items.magma_cream));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFThrownAxe.class, new RenderTFThrownAxe(TFItems.knightlyAxe));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFThrownPick.class, new RenderTFThrownAxe(TFItems.knightlyPick));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFFallingIce.class, new RenderTFFallingIce());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFIceBomb.class, new RenderTFThrownIce());
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFIceSnowball.class, new RenderSnowball(Items.snowball));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSlideBlock.class, new RenderTFSlideBlock());
+
+        // I guess the hydra gets its own section
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraHead.class, new RenderTFHydraHead(new ModelTFHydraHead(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraNeck.class, new RenderTFGenericLiving(new ModelTFHydraNeck(), 1.0F, "hydra4.png"));
+
+        // animated textures
 //		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TIMELEAVES, BlockTFMagicLeaves.SPR_TIMEFX));
 //		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TRANSLEAVES, BlockTFMagicLeaves.SPR_TRANSFX));
 //		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_SORTLEAVES, BlockTFMagicLeaves.SPR_SORTFX));
-		
-		// tile entities
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFFirefly.class, new TileEntityTFFireflyRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFCicada.class, new TileEntityTFCicadaRenderer());
+
+        // tile entities
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFFirefly.class, new TileEntityTFFireflyRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFCicada.class, new TileEntityTFCicadaRenderer());
 //		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFNagaSpawner.class, new TileEntityMobSpawnerRenderer());
 //		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFLichSpawner.class, new TileEntityMobSpawnerRenderer());
 //		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFHydraSpawner.class, new TileEntityMobSpawnerRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFMoonworm.class, new TileEntityTFMoonwormRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFTrophy.class, new TileEntityTFTrophyRenderer());
-		
-		// map item renderer
-		MinecraftForgeClient.registerItemRenderer(TFItems.magicMap, new TFMagicMapRenderer(mc.gameSettings, mc.getTextureManager()));
-		TFMazeMapRenderer mazeRenderer = new TFMazeMapRenderer(mc.gameSettings, mc.getTextureManager());
-		MinecraftForgeClient.registerItemRenderer(TFItems.mazeMap, mazeRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.oreMap, mazeRenderer);
-		
-		// giant item renderers
-		TFGiantItemRenderer giantRenderer = new TFGiantItemRenderer(mc.gameSettings, mc.getTextureManager());
-		MinecraftForgeClient.registerItemRenderer(TFItems.giantPick, giantRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.giantSword, giantRenderer);
-		
-		TFGiantBlockRenderer giantBlockRenderer = new TFGiantBlockRenderer(mc.gameSettings, mc.getTextureManager());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantLeaves), giantBlockRenderer);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantCobble), giantBlockRenderer);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantLog), giantBlockRenderer);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantObsidian), giantBlockRenderer);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFMoonworm.class, new TileEntityTFMoonwormRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFTrophy.class, new TileEntityTFTrophyRenderer());
 
-		// fiery item render
-		TFFieryItemRenderer fieryRenderer = new TFFieryItemRenderer(mc.gameSettings, mc.getTextureManager());
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryPick, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fierySword, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryIngot, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryHelm, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryPlate, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryLegs, fieryRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.fieryBoots, fieryRenderer);
+        // map item renderer
+        MinecraftForgeClient.registerItemRenderer(TFItems.magicMap, new TFMagicMapRenderer(mc.gameSettings, mc.getTextureManager()));
+        TFMazeMapRenderer mazeRenderer = new TFMazeMapRenderer(mc.gameSettings, mc.getTextureManager());
+        MinecraftForgeClient.registerItemRenderer(TFItems.mazeMap, mazeRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.oreMap, mazeRenderer);
 
-		// ice item renderers
-		TFIceItemRenderer iceRenderer = new TFIceItemRenderer(mc.gameSettings, mc.getTextureManager());
-		MinecraftForgeClient.registerItemRenderer(TFItems.iceSword, iceRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.glassSword, iceRenderer);
-		MinecraftForgeClient.registerItemRenderer(TFItems.iceBow, iceRenderer);
+        // giant item renderers
+        TFGiantItemRenderer giantRenderer = new TFGiantItemRenderer(mc.gameSettings, mc.getTextureManager());
+        MinecraftForgeClient.registerItemRenderer(TFItems.giantPick, giantRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.giantSword, giantRenderer);
 
-		
-		// block render ids
-		blockComplexRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFFireflyJar(blockComplexRenderID));
-				
-		plantRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFPlants(plantRenderID));
-				
-		critterRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFCritters(critterRenderID));
-		
-		nagastoneRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFNagastone(nagastoneRenderID));
+        TFGiantBlockRenderer giantBlockRenderer = new TFGiantBlockRenderer(mc.gameSettings, mc.getTextureManager());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantLeaves), giantBlockRenderer);
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantCobble), giantBlockRenderer);
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantLog), giantBlockRenderer);
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TFBlocks.giantObsidian), giantBlockRenderer);
 
-		magicLeavesRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFMagicLeaves(magicLeavesRenderID));
-		
-		pedestalRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFPedestal(pedestalRenderID));
-		
-		thornsRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFThorns(thornsRenderID));
-		
-		knightmetalBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFKnightMetal(knightmetalBlockRenderID));
-		
-		hugeLilyPadBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFHugeLilyPad(hugeLilyPadBlockRenderID));
-		
-		castleMagicBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderBlockTFCastleMagic(castleMagicBlockRenderID));
-		
-		// armor model
-		knightlyArmorModel = new ModelBiped[4];
-		knightlyArmorModel[0] = new ModelTFKnightlyArmor(0, 0.5F);
-		knightlyArmorModel[1] = new ModelTFKnightlyArmor(1, 1.0F);
-		knightlyArmorModel[2] = new ModelTFKnightlyArmor(2, 0.5F);
-		knightlyArmorModel[3] = new ModelTFKnightlyArmor(3, 0.5F);
+        // fiery item render
+        TFFieryItemRenderer fieryRenderer = new TFFieryItemRenderer(mc.gameSettings, mc.getTextureManager());
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryPick, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fierySword, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryIngot, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryHelm, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryPlate, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryLegs, fieryRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.fieryBoots, fieryRenderer);
 
-		phantomArmorModel = new ModelBiped[2];
-		phantomArmorModel[0] = new ModelTFPhantomArmor(0, 0.5F);
-		phantomArmorModel[1] = new ModelTFPhantomArmor(1, 1.0F);
-		
-		yetiArmorModel = new ModelBiped[4];
-		yetiArmorModel[0] = new ModelTFYetiArmor(0, 0.6F);
-		yetiArmorModel[1] = new ModelTFYetiArmor(1, 1.0F);
-		yetiArmorModel[2] = new ModelTFYetiArmor(2, 0.4F);
-		yetiArmorModel[3] = new ModelTFYetiArmor(3, 0.55F);
+        // ice item renderers
+        TFIceItemRenderer iceRenderer = new TFIceItemRenderer(mc.gameSettings, mc.getTextureManager());
+        MinecraftForgeClient.registerItemRenderer(TFItems.iceSword, iceRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.glassSword, iceRenderer);
+        MinecraftForgeClient.registerItemRenderer(TFItems.iceBow, iceRenderer);
 
-		arcticArmorModel = new ModelBiped[4];
-		arcticArmorModel[0] = new ModelTFArcticArmor(0, 0.6F);
-		arcticArmorModel[1] = new ModelTFArcticArmor(1, 1.0F);
-		arcticArmorModel[2] = new ModelTFArcticArmor(2, 0.4F);
-		arcticArmorModel[3] = new ModelTFArcticArmor(3, 0.55F);
+        // block render ids
+        blockComplexRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFFireflyJar(blockComplexRenderID));
 
-		fieryArmorModel = new ModelBiped[4];
-		fieryArmorModel[0] = new ModelTFFieryArmor(0, 0.5F);
-		fieryArmorModel[1] = new ModelTFFieryArmor(1, 1.0F);
-		fieryArmorModel[2] = new ModelTFFieryArmor(2, 0.5F);
-		fieryArmorModel[3] = new ModelTFFieryArmor(3, 0.5F);
+        plantRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFPlants(plantRenderID));
 
+        critterRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFCritters(critterRenderID));
 
+        nagastoneRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFNagastone(nagastoneRenderID));
 
-	}
-	
-	public int getCritterBlockRenderID() {
-		return critterRenderID;
-	}
+        magicLeavesRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFMagicLeaves(magicLeavesRenderID));
 
-	public int getPlantBlockRenderID() {
-		return plantRenderID;
-	}
+        pedestalRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFPedestal(pedestalRenderID));
 
-	public int getComplexBlockRenderID() {
-		return blockComplexRenderID;
-	}
-	
-	public int getNagastoneBlockRenderID() {
-		return nagastoneRenderID;
-	}
-	
-	public int getMagicLeavesBlockRenderID() {
-		return magicLeavesRenderID;
-	}
-	
-	public int getPedestalBlockRenderID() {
-		return pedestalRenderID;
-	}
-	
-	public int getThornsBlockRenderID() {
-		return thornsRenderID;
-	}
-	
-	public int getKnightmetalBlockRenderID() {
-		return knightmetalBlockRenderID;
-	}
-	
-	public int getHugeLilyPadBlockRenderID() {
-		return hugeLilyPadBlockRenderID;
-	}
-	
-	public int getCastleMagicBlockRenderID() {
-		return castleMagicBlockRenderID;
-	}
-	
-	/**
-	 * The prefix is not actually used, but we do need a render ID
-	 */
-	public int registerArmorRenderID(String prefix) {
-		return RenderingRegistry.addNewArmourRendererPrefix(prefix);
-	}
+        thornsRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFThorns(thornsRenderID));
 
-	@Override
-	public World getClientWorld() {
-		return FMLClientHandler.instance().getClient().theWorld;
-	}
-	
+        knightmetalBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFKnightMetal(knightmetalBlockRenderID));
 
-	/**
-	 * Spawns a particle.  This is my copy of RenderGlobal.spawnParticle where I implement custom particles.
-	 */
-	public void spawnParticle(World world, String particleType, double x, double y, double z, double velX, double velY, double velZ)
-	{
-		Minecraft mc = FMLClientHandler.instance().getClient();
-		if (mc != null && mc.renderViewEntity != null && mc.effectRenderer != null && mc.theWorld == world)
-		{
-			// TODO: check render settings?
-			double distX = mc.renderViewEntity.posX - x;
-			double distY = mc.renderViewEntity.posY - y;
-			double distZ = mc.renderViewEntity.posZ - z;
+        hugeLilyPadBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFHugeLilyPad(hugeLilyPadBlockRenderID));
 
-			EntityFX particle = null;
+        castleMagicBlockRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderBlockTFCastleMagic(castleMagicBlockRenderID));
 
-			double maxDist = 64.0D; // normally 16.0D
+        // armor model
+        knightlyArmorModel = new ModelBiped[4];
+        knightlyArmorModel[0] = new ModelTFKnightlyArmor(0, 0.5F);
+        knightlyArmorModel[1] = new ModelTFKnightlyArmor(1, 1.0F);
+        knightlyArmorModel[2] = new ModelTFKnightlyArmor(2, 0.5F);
+        knightlyArmorModel[3] = new ModelTFKnightlyArmor(3, 0.5F);
 
-			// check for particle max distance
-			if (distX * distX + distY * distY + distZ * distZ < maxDist * maxDist)
-			{
+        phantomArmorModel = new ModelBiped[2];
+        phantomArmorModel[0] = new ModelTFPhantomArmor(0, 0.5F);
+        phantomArmorModel[1] = new ModelTFPhantomArmor(1, 1.0F);
 
-				if (particleType.equals("largeflame"))
-				{
-					particle = new EntityTFLargeFlameFX(world, x, y, z, velX, velY, velZ);
-				}
-				else if (particleType.equals("hugesmoke"))
-				{
-					particle = new EntitySmokeFX(world, x, y, z, velX, velY, velZ, 8.0f);
-				}
-				else if (particleType.equals("leafrune"))
-				{
-					particle = new EntityTFLeafRuneFX(world, x, y, z, velX, velY, velZ);
-				}
-				else if (particleType.equals("bosstear"))
-				{
-					particle = new EntityTFBossTearFX(world, x, y, z, velX, velY, velZ, Items.ghast_tear);
-				}
-				else if (particleType.equals("ghasttrap"))
-				{
-					particle = new EntityTFGhastTrapFX(world, x, y, z, velX, velY, velZ);
-				}
-				else if (particleType.equals("protection"))
-				{
-					particle = new EntityTFProtectionFX(world, x, y, z, velX, velY, velZ);
-				}
-				else if (particleType.equals("snowstuff"))
-				{
-					particle = new EntityTFSnowFX(world, x, y, z, velX, velY, velZ);
-				}
-				else if (particleType.equals("snowwarning"))
-				{
-					particle = new EntityTFSnowWarningFX(world, x, y, z, velX, velY, velZ, 1F);
-				}
-				else if (particleType.equals("snowguardian"))
-				{
-					particle = new EntityTFSnowGuardianFX(world, x, y, z, velX, velY, velZ, 0.75F);
-				}
-				else if (particleType.equals("icebeam"))
-				{
-					particle = new EntityTFIceBeamFX(world, x, y, z, velX, velY, velZ, 0.75F);
-				}
-				else if (particleType.equals("annihilate"))
-				{
-					particle = new EntityTFAnnihilateFX(world, x, y, z, velX, velY, velZ, 0.75F);
-				}
+        yetiArmorModel = new ModelBiped[4];
+        yetiArmorModel[0] = new ModelTFYetiArmor(0, 0.6F);
+        yetiArmorModel[1] = new ModelTFYetiArmor(1, 1.0F);
+        yetiArmorModel[2] = new ModelTFYetiArmor(2, 0.4F);
+        yetiArmorModel[3] = new ModelTFYetiArmor(3, 0.55F);
 
-				// if we made a partcle, go ahead and add it
-				if (particle != null)
-				{
-					particle.prevPosX = particle.posX;
-					particle.prevPosY = particle.posY;
-					particle.prevPosZ = particle.posZ;
-					
-					// we keep having a non-threadsafe crash adding particles directly here, so let's pass them to a buffer
-					//clientTicker.addParticle(particle); 
-					mc.effectRenderer.addEffect(particle); // maybe it's fixed?
-				}
-			}
-		}
-	}
-	
+        arcticArmorModel = new ModelBiped[4];
+        arcticArmorModel[0] = new ModelTFArcticArmor(0, 0.6F);
+        arcticArmorModel[1] = new ModelTFArcticArmor(1, 1.0F);
+        arcticArmorModel[2] = new ModelTFArcticArmor(2, 0.4F);
+        arcticArmorModel[3] = new ModelTFArcticArmor(3, 0.55F);
 
-	public ModelBiped getKnightlyArmorModel(int armorSlot) {
-		return knightlyArmorModel[armorSlot];
-	}
-	
-	public ModelBiped getPhantomArmorModel(int armorSlot) {
-		return phantomArmorModel[armorSlot];
-	}
-	
-	public ModelBiped getYetiArmorModel(int armorSlot) {
-		return yetiArmorModel[armorSlot];
-	}
+        fieryArmorModel = new ModelBiped[4];
+        fieryArmorModel[0] = new ModelTFFieryArmor(0, 0.5F);
+        fieryArmorModel[1] = new ModelTFFieryArmor(1, 1.0F);
+        fieryArmorModel[2] = new ModelTFFieryArmor(2, 0.5F);
+        fieryArmorModel[3] = new ModelTFFieryArmor(3, 0.5F);
 
-	public ModelBiped getArcticArmorModel(int armorSlot) {
-		return arcticArmorModel[armorSlot];
-	}
-	
-	
-	public ModelBiped getFieryArmorModel(int armorSlot) {
-		return this.fieryArmorModel[armorSlot];
-	}
+    }
 
-	public boolean isDangerOverlayShown() {
-		return isDangerOverlayShown;
-	}
+    public int getCritterBlockRenderID() {
+        return critterRenderID;
+    }
 
-	public void setDangerOverlayShown(boolean isDangerOverlayShown) {
-		this.isDangerOverlayShown = isDangerOverlayShown;
-		
-	}
-	
-	public void doBlockAnnihilateEffect(World worldObj, int blockX, int blockY, int blockZ) {
-		// particles from the block?
+    public int getPlantBlockRenderID() {
+        return plantRenderID;
+    }
+
+    public int getComplexBlockRenderID() {
+        return blockComplexRenderID;
+    }
+
+    public int getNagastoneBlockRenderID() {
+        return nagastoneRenderID;
+    }
+
+    public int getMagicLeavesBlockRenderID() {
+        return magicLeavesRenderID;
+    }
+
+    public int getPedestalBlockRenderID() {
+        return pedestalRenderID;
+    }
+
+    public int getThornsBlockRenderID() {
+        return thornsRenderID;
+    }
+
+    public int getKnightmetalBlockRenderID() {
+        return knightmetalBlockRenderID;
+    }
+
+    public int getHugeLilyPadBlockRenderID() {
+        return hugeLilyPadBlockRenderID;
+    }
+
+    public int getCastleMagicBlockRenderID() {
+        return castleMagicBlockRenderID;
+    }
+
+    /**
+     * The prefix is not actually used, but we do need a render ID
+     */
+    public int registerArmorRenderID(String prefix) {
+        return RenderingRegistry.addNewArmourRendererPrefix(prefix);
+    }
+
+    @Override
+    public World getClientWorld() {
+        return FMLClientHandler.instance().getClient().theWorld;
+    }
+
+    /**
+     * Spawns a particle. This is my copy of RenderGlobal.spawnParticle where I implement custom
+     * particles.
+     */
+    public void spawnParticle(World world, String particleType, double x, double y, double z, double velX, double velY, double velZ) {
+        Minecraft mc = FMLClientHandler.instance().getClient();
+        if (mc != null && mc.renderViewEntity != null && mc.effectRenderer != null && mc.theWorld == world) {
+            // TODO: check render settings?
+            double distX = mc.renderViewEntity.posX - x;
+            double distY = mc.renderViewEntity.posY - y;
+            double distZ = mc.renderViewEntity.posZ - z;
+
+            EntityFX particle = null;
+
+            double maxDist = 64.0D; // normally 16.0D
+
+            // check for particle max distance
+            if (distX * distX + distY * distY + distZ * distZ < maxDist * maxDist) {
+
+                if (particleType.equals("largeflame")) {
+                    particle = new EntityTFLargeFlameFX(world, x, y, z, velX, velY, velZ);
+                } else if (particleType.equals("hugesmoke")) {
+                    particle = new EntitySmokeFX(world, x, y, z, velX, velY, velZ, 8.0f);
+                } else if (particleType.equals("leafrune")) {
+                    particle = new EntityTFLeafRuneFX(world, x, y, z, velX, velY, velZ);
+                } else if (particleType.equals("bosstear")) {
+                    particle = new EntityTFBossTearFX(world, x, y, z, velX, velY, velZ, Items.ghast_tear);
+                } else if (particleType.equals("ghasttrap")) {
+                    particle = new EntityTFGhastTrapFX(world, x, y, z, velX, velY, velZ);
+                } else if (particleType.equals("protection")) {
+                    particle = new EntityTFProtectionFX(world, x, y, z, velX, velY, velZ);
+                } else if (particleType.equals("snowstuff")) {
+                    particle = new EntityTFSnowFX(world, x, y, z, velX, velY, velZ);
+                } else if (particleType.equals("snowwarning")) {
+                    particle = new EntityTFSnowWarningFX(world, x, y, z, velX, velY, velZ, 1F);
+                } else if (particleType.equals("snowguardian")) {
+                    particle = new EntityTFSnowGuardianFX(world, x, y, z, velX, velY, velZ, 0.75F);
+                } else if (particleType.equals("icebeam")) {
+                    particle = new EntityTFIceBeamFX(world, x, y, z, velX, velY, velZ, 0.75F);
+                } else if (particleType.equals("annihilate")) {
+                    particle = new EntityTFAnnihilateFX(world, x, y, z, velX, velY, velZ, 0.75F);
+                }
+
+                // if we made a partcle, go ahead and add it
+                if (particle != null) {
+                    particle.prevPosX = particle.posX;
+                    particle.prevPosY = particle.posY;
+                    particle.prevPosZ = particle.posZ;
+
+                    // we keep having a non-threadsafe crash adding particles directly here, so let's pass them to a
+                    // buffer
+                    // clientTicker.addParticle(particle);
+                    mc.effectRenderer.addEffect(particle); // maybe it's fixed?
+                }
+            }
+        }
+    }
+
+    public ModelBiped getKnightlyArmorModel(int armorSlot) {
+        return knightlyArmorModel[armorSlot];
+    }
+
+    public ModelBiped getPhantomArmorModel(int armorSlot) {
+        return phantomArmorModel[armorSlot];
+    }
+
+    public ModelBiped getYetiArmorModel(int armorSlot) {
+        return yetiArmorModel[armorSlot];
+    }
+
+    public ModelBiped getArcticArmorModel(int armorSlot) {
+        return arcticArmorModel[armorSlot];
+    }
+
+    public ModelBiped getFieryArmorModel(int armorSlot) {
+        return this.fieryArmorModel[armorSlot];
+    }
+
+    public boolean isDangerOverlayShown() {
+        return isDangerOverlayShown;
+    }
+
+    public void setDangerOverlayShown(boolean isDangerOverlayShown) {
+        this.isDangerOverlayShown = isDangerOverlayShown;
+
+    }
+
+    public void doBlockAnnihilateEffect(World worldObj, int blockX, int blockY, int blockZ) {
+        // particles from the block?
 //		for (int i = 0; i < 10; i++) {
 //	        
 //	        double d0 = worldObj.rand.nextGaussian() * 0.02D;
@@ -594,31 +568,28 @@ public class TFClientProxy extends TFCommonProxy {
 //			TwilightForestMod.proxy.spawnParticle(worldObj, "annihilate", dx, dy, dz, d0, d1, d2);
 //
 //		}
-		
-		
+
         byte four = 4;
 
-        for (int dx = 0; dx < four; ++dx)
-        {
-            for (int dy = 0; dy < four; ++dy)
-            {
-                for (int dz = 0; dz < four; ++dz)
-                {
-                    double d0 = (double)blockX + ((double)dx + 0.5D) / (double)four;
-                    double d1 = (double)blockY + ((double)dy + 0.5D) / (double)four;
-                    double d2 = (double)blockZ + ((double)dz + 0.5D) / (double)four;
-                    
-        	        double gx = worldObj.rand.nextGaussian() * 0.2D;
-        	        double gy = worldObj.rand.nextGaussian() * 0.2D;
-        	        double gz = worldObj.rand.nextGaussian() * 0.2D;
-                    
-        			TwilightForestMod.proxy.spawnParticle(worldObj, "annihilate", d0, d1, d2, gx, gy, gz);
+        for (int dx = 0; dx < four; ++dx) {
+            for (int dy = 0; dy < four; ++dy) {
+                for (int dz = 0; dz < four; ++dz) {
+                    double d0 = (double) blockX + ((double) dx + 0.5D) / (double) four;
+                    double d1 = (double) blockY + ((double) dy + 0.5D) / (double) four;
+                    double d2 = (double) blockZ + ((double) dz + 0.5D) / (double) four;
 
-                    
-                    //this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, d0 - (double)p_147215_1_ - 0.5D, d1 - (double)p_147215_2_ - 0.5D, d2 - (double)p_147215_3_ - 0.5D, p_147215_4_, p_147215_5_)).applyColourMultiplier(p_147215_1_, p_147215_2_, p_147215_3_));
+                    double gx = worldObj.rand.nextGaussian() * 0.2D;
+                    double gy = worldObj.rand.nextGaussian() * 0.2D;
+                    double gz = worldObj.rand.nextGaussian() * 0.2D;
+
+                    TwilightForestMod.proxy.spawnParticle(worldObj, "annihilate", d0, d1, d2, gx, gy, gz);
+
+                    // this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, d0 - (double)p_147215_1_ - 0.5D,
+                    // d1 - (double)p_147215_2_ - 0.5D, d2 - (double)p_147215_3_ - 0.5D, p_147215_4_,
+                    // p_147215_5_)).applyColourMultiplier(p_147215_1_, p_147215_2_, p_147215_3_));
                 }
             }
         }
-	}
+    }
 
 }

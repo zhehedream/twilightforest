@@ -1,6 +1,5 @@
 package twilightforest;
 
-
 import java.io.IOException;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -19,72 +18,65 @@ import twilightforest.item.ItemTFMagicMap;
 import twilightforest.item.ItemTFMazeMap;
 
 @Sharable
-public class TFMapPacketHandler
-{
-	
-	
-	/**
-	 * Extract a Packet131MapData packet from a Packet250CustomPayload.  This is a little silly, huh?
-	 */
-	public S34PacketMaps readMapPacket(ByteBuf byteBuf) {
-		
-		S34PacketMaps mapPacket = new S34PacketMaps();
-		try {
-			mapPacket.readPacketData(new PacketBuffer(byteBuf));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return mapPacket;
-	}
-	
-	/**
-	 * Make a Packet250CustomPayload that wraps around a MapData packet, and sends on a specific channel
-	 */
-	public static Packet makeMagicMapPacket(String mapChannel, short mapID, byte[] datas) {
-		
-		S34PacketMaps mapPacket = new S34PacketMaps(mapID, datas);
+public class TFMapPacketHandler {
+
+    /**
+     * Extract a Packet131MapData packet from a Packet250CustomPayload. This is a little silly, huh?
+     */
+    public S34PacketMaps readMapPacket(ByteBuf byteBuf) {
+
+        S34PacketMaps mapPacket = new S34PacketMaps();
+        try {
+            mapPacket.readPacketData(new PacketBuffer(byteBuf));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return mapPacket;
+    }
+
+    /**
+     * Make a Packet250CustomPayload that wraps around a MapData packet, and sends on a specific channel
+     */
+    public static Packet makeMagicMapPacket(String mapChannel, short mapID, byte[] datas) {
+
+        S34PacketMaps mapPacket = new S34PacketMaps(mapID, datas);
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         try {
-			mapPacket.writePacketData(payload);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+            mapPacket.writePacketData(payload);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 //        Packet pkt = new S3FPacketCustomPayload(mapChannel, payload);
-        
-		FMLProxyPacket pkt = new FMLProxyPacket(payload, mapChannel);
 
-		return pkt;
-	}
-	
+        FMLProxyPacket pkt = new FMLProxyPacket(payload, mapChannel);
 
-	/**
-	 * Packet!
-	 */
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void incomingPacket(ClientCustomPacketEvent event)
-	{
+        return pkt;
+    }
+
+    /**
+     * Packet!
+     */
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void incomingPacket(ClientCustomPacketEvent event) {
 //		System.out.println("Incoming packet detected!");
-		
-		if (event.packet.channel().equals(ItemTFMagicMap.STR_ID))
-		{
-			//System.out.println("Incoming magic map packet detected!");
-			S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
-			ItemTFMagicMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld()).updateMPMapData(mapPacket.func_149187_d());
-		}
-		else if (event.packet.channel().equals(ItemTFMazeMap.STR_ID))
-		{
-			//System.out.println("Incoming maze map packet detected!");
 
-			S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
-			TFMazeMapData data = ItemTFMazeMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld());
-			data.updateMPMapData(mapPacket.func_149187_d());
-	        Minecraft.getMinecraft().entityRenderer.getMapItemRenderer().func_148246_a(data);
-		}
-	}
+        if (event.packet.channel().equals(ItemTFMagicMap.STR_ID)) {
+            // System.out.println("Incoming magic map packet detected!");
+            S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
+            ItemTFMagicMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld()).updateMPMapData(mapPacket.func_149187_d());
+        } else if (event.packet.channel().equals(ItemTFMazeMap.STR_ID)) {
+            // System.out.println("Incoming maze map packet detected!");
+
+            S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
+            TFMazeMapData data = ItemTFMazeMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld());
+            data.updateMPMapData(mapPacket.func_149187_d());
+            Minecraft.getMinecraft().entityRenderer.getMapItemRenderer().func_148246_a(data);
+        }
+    }
 
 //	@Override
 //	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
@@ -146,7 +138,6 @@ public class TFMapPacketHandler
 //		// packets are fun!
 //		// what other packets do we need?! :D
 //	}
-
 
 //    /**
 //     * Called when a player logs into the server

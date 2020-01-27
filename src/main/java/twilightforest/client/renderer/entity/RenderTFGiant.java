@@ -11,33 +11,31 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTFGiant extends RenderBiped {
 
-	private ResourceLocation textureLoc;
+    private ResourceLocation textureLoc;
 
-	public RenderTFGiant() {
-		super(new ModelBiped(), 0.625F);
-		
-		this.textureLoc = new ResourceLocation("textures/entity/steve.png");
-	}
+    public RenderTFGiant() {
+        super(new ModelBiped(), 0.625F);
 
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
-    	if (Minecraft.getMinecraft().thePlayer.getLocationSkin() != null) {
-    		return Minecraft.getMinecraft().thePlayer.getLocationSkin();
-    	} else {
-    		return textureLoc;
-    	}
+        this.textureLoc = new ResourceLocation("textures/entity/steve.png");
     }
-    
+
     /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
+     * Return our specific texture
      */
-    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
-    {
-    	float scale = 4.0F;
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
+        if (Minecraft.getMinecraft().thePlayer.getLocationSkin() != null) {
+            return Minecraft.getMinecraft().thePlayer.getLocationSkin();
+        } else {
+            return textureLoc;
+        }
+    }
+
+    /**
+     * Allows the render to do any OpenGL state modifications necessary before the model is rendered.
+     * Args: entityLiving, partialTickTime
+     */
+    protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
+        float scale = 4.0F;
         GL11.glScalef(scale, scale, scale);
     }
 }

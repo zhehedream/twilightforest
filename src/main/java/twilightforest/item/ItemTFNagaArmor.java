@@ -10,43 +10,38 @@ import twilightforest.TwilightForestMod;
 
 public class ItemTFNagaArmor extends ItemArmor {
 
-	public ItemTFNagaArmor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
-		super(par2EnumArmorMaterial, par3, par4);
-		this.setCreativeTab(TFItems.creativeTab);
-	}
+    public ItemTFNagaArmor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+        super(par2EnumArmorMaterial, par3, par4);
+        this.setCreativeTab(TFItems.creativeTab);
+    }
 
-	@Override
-	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
-		
-		
-        if(itemstack.getItem() == TFItems.plateNaga)
-        {
-                return TwilightForestMod.ARMOR_DIR + "naga_scale_1.png";
+    @Override
+    public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
+
+        if (itemstack.getItem() == TFItems.plateNaga) {
+            return TwilightForestMod.ARMOR_DIR + "naga_scale_1.png";
         }
-        if(itemstack.getItem() == TFItems.legsNaga)
-        {
-                return TwilightForestMod.ARMOR_DIR + "naga_scale_2.png";
+        if (itemstack.getItem() == TFItems.legsNaga) {
+            return TwilightForestMod.ARMOR_DIR + "naga_scale_2.png";
         }
         return TwilightForestMod.ARMOR_DIR + "naga_scale_1.png";
-	}
+    }
 
     /**
      * Return whether this item is repairable in an anvil.
      */
     @Override
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
-    {
-    	// repair with naga scale
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        // repair with naga scale
         return par2ItemStack.getItem() == TFItems.nagaScale ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-    
-	/**
-	 * Properly register icon source
-	 */
+
+    /**
+     * Properly register icon source
+     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

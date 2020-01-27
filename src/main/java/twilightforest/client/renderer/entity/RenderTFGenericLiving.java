@@ -7,27 +7,23 @@ import net.minecraft.util.ResourceLocation;
 import twilightforest.TwilightForestMod;
 
 public class RenderTFGenericLiving extends RenderLiving {
-	
-	final ResourceLocation textureLoc;
 
-	public RenderTFGenericLiving(ModelBase par1ModelBase, float par2, String textureName) {
-		super(par1ModelBase, par2);
-		
-		if (textureName.startsWith("textures"))
-		{
-			textureLoc = new ResourceLocation(textureName);
-		}
-		else
-		{
-			textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + textureName);
-		}
-	}
+    final ResourceLocation textureLoc;
 
-	/**
-	 * Return our specific texture
-	 */
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
-    {
+    public RenderTFGenericLiving(ModelBase par1ModelBase, float par2, String textureName) {
+        super(par1ModelBase, par2);
+
+        if (textureName.startsWith("textures")) {
+            textureLoc = new ResourceLocation(textureName);
+        } else {
+            textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + textureName);
+        }
+    }
+
+    /**
+     * Return our specific texture
+     */
+    protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return textureLoc;
     }
 

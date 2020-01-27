@@ -31,7 +31,7 @@ public class TFBlocks {
     public static Block moonworm;
     public static Block towerWood;
     public static Block towerDevice;
-    //public static Block towerAntenna;
+    // public static Block towerAntenna;
     public static Block towerTranslucent;
     public static Block trophy;
     public static Block shield;
@@ -74,8 +74,8 @@ public class TFBlocks {
     public static Block castleDoorVanished;
     public static Block castleUnlock;
 
-	public static void registerBlocks() {
-		
+    public static void registerBlocks() {
+
         log = (new BlockTFLog()).setBlockName("TFLog");
         leaves = (new BlockTFLeaves()).setBlockName("TFLeaves").setBlockTextureName("leaves_oak");
         firefly = (new BlockTFFirefly()).setBlockName("TFFirefly");
@@ -107,9 +107,9 @@ public class TFBlocks {
         burntThorns = (new BlockTFBurntThorns()).setBlockName("TFBurntThorns");
         thornRose = (new BlockTFThornRose()).setBlockName("TFThornRose").setBlockTextureName(TwilightForestMod.ID + ":thornRose");
         leaves3 = (new BlockTFLeaves3()).setBlockName("TFLeaves3").setBlockTextureName("leaves_oak");
-        deadrock = (new BlockTFDeadrock()).setBlockName("TFDeadrock"); 
-        darkleaves = (new BlockTFDarkLeaves()).setBlockName("DarkLeaves"); 
-        auroraPillar = (new BlockTFAuroraPillar()).setBlockName("AuroraPillar"); 
+        deadrock = (new BlockTFDeadrock()).setBlockName("TFDeadrock");
+        darkleaves = (new BlockTFDarkLeaves()).setBlockName("DarkLeaves");
+        auroraPillar = (new BlockTFAuroraPillar()).setBlockName("AuroraPillar");
         auroraSlab = (BlockSlab) (new BlockTFAuroraSlab(false)).setBlockName("AuroraSlab");
         auroraDoubleSlab = (BlockSlab) (new BlockTFAuroraSlab(true)).setBlockName("AuroraDoubleSlab");
         trollSteinn = (new BlockTFTrollSteinn()).setBlockName("TrollSteinn");
@@ -139,92 +139,90 @@ public class TFBlocks {
         castleDoorVanished = (new BlockTFCastleDoor(true)).setBlockName("CastleDoorVanished");
         castleUnlock = (new BlockTFCastleUnlock()).setBlockName("CastleUnlock");
 
-		// register blocks with their pickup values
-		registerMyBlock(log);
-		registerMyBlock(root);
-		registerMyBlock(leaves);
-		registerMyBlock(firefly, ItemBlock.class);
-		registerMyBlock(cicada, ItemBlock.class);
-		registerMyBlock(portal, ItemBlock.class);
-		registerMyBlock(mazestone);
-		registerMyBlock(hedge);
-		registerMyBlock(bossSpawner);
-		registerMyBlock(fireflyJar, ItemBlock.class);
-		registerMyBlock(plant, twilightforest.item.ItemBlockTFPlant.class);
-		registerMyBlock(uncraftingTable, ItemBlock.class);
-		registerMyBlock(fireJet);
-		registerMyBlock(nagastone);
-		registerMyBlock(sapling);
-		registerMyBlock(moonworm, ItemBlock.class);
-		registerMyBlock(magicLog);
-		registerMyBlock(magicLeaves);
-		registerMyBlock(magicLogSpecial);
-		registerMyBlock(towerWood);
-		registerMyBlock(towerDevice);
-		registerMyBlock(towerTranslucent);
-		registerMyBlock(trophy);
-		registerMyBlock(shield);
-		registerMyBlock(trophyPedestal);
-		registerMyBlock(auroraBlock, ItemBlock.class);
-		registerMyBlock(underBrick);
-		registerMyBlock(thorns, twilightforest.item.ItemBlockTFThorns.class, thorns, ((BlockTFThorns) thorns).getNames());
-		registerMyBlock(burntThorns, ItemBlock.class);
-		registerMyBlock(thornRose, ItemBlock.class);
-		registerMyBlock(leaves3);
-		registerMyBlock(deadrock, twilightforest.item.ItemBlockTFDeadrock.class, deadrock, BlockTFDeadrock.names);
-		registerMyBlock(darkleaves, ItemBlock.class);
-		registerMyBlock(auroraPillar, ItemBlock.class);
-		registerMyBlock(auroraSlab,  twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), false);
-		registerMyBlock(auroraDoubleSlab, twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), true);
-		registerMyBlock(trollSteinn, ItemBlock.class);
-		registerMyBlock(wispyCloud, ItemBlock.class);
-		registerMyBlock(fluffyCloud, ItemBlock.class);
-		registerMyBlock(giantCobble, ItemBlock.class);
-		registerMyBlock(giantLog, ItemBlock.class);
-		registerMyBlock(giantLeaves, ItemBlock.class);
-		registerMyBlock(giantObsidian, ItemBlock.class);
-		registerMyBlock(uberousSoil, ItemBlock.class);
-		registerMyBlock(hugeStalk, ItemBlock.class);
-		registerMyBlock(hugeGloomBlock, ItemBlock.class);
-		registerMyBlock(trollVidr, ItemBlock.class);
-		registerMyBlock(unripeTrollBer, ItemBlock.class);
-		registerMyBlock(trollBer, ItemBlock.class);
-		registerMyBlock(knightmetalStorage, ItemBlock.class);
-		registerMyBlock(hugeLilyPad, twilightforest.item.ItemBlockTFHugeLilyPad.class);
-		registerMyBlock(hugeWaterLily, twilightforest.item.ItemBlockTFHugeWaterLily.class);
-		registerMyBlock(slider);
-		registerMyBlock(castleBlock);
-		registerMyBlock(castleMagic);
-		registerMyBlock(forceField);
-		registerMyBlock(cinderFurnace, ItemBlock.class);
-		registerMyBlock(cinderFurnaceLit, ItemBlock.class);
-		registerMyBlock(cinderLog);
-		registerMyBlock(castleDoor);
-		registerMyBlock(castleDoorVanished);
+        // register blocks with their pickup values
+        registerMyBlock(log);
+        registerMyBlock(root);
+        registerMyBlock(leaves);
+        registerMyBlock(firefly, ItemBlock.class);
+        registerMyBlock(cicada, ItemBlock.class);
+        registerMyBlock(portal, ItemBlock.class);
+        registerMyBlock(mazestone);
+        registerMyBlock(hedge);
+        registerMyBlock(bossSpawner);
+        registerMyBlock(fireflyJar, ItemBlock.class);
+        registerMyBlock(plant, twilightforest.item.ItemBlockTFPlant.class);
+        registerMyBlock(uncraftingTable, ItemBlock.class);
+        registerMyBlock(fireJet);
+        registerMyBlock(nagastone);
+        registerMyBlock(sapling);
+        registerMyBlock(moonworm, ItemBlock.class);
+        registerMyBlock(magicLog);
+        registerMyBlock(magicLeaves);
+        registerMyBlock(magicLogSpecial);
+        registerMyBlock(towerWood);
+        registerMyBlock(towerDevice);
+        registerMyBlock(towerTranslucent);
+        registerMyBlock(trophy);
+        registerMyBlock(shield);
+        registerMyBlock(trophyPedestal);
+        registerMyBlock(auroraBlock, ItemBlock.class);
+        registerMyBlock(underBrick);
+        registerMyBlock(thorns, twilightforest.item.ItemBlockTFThorns.class, thorns, ((BlockTFThorns) thorns).getNames());
+        registerMyBlock(burntThorns, ItemBlock.class);
+        registerMyBlock(thornRose, ItemBlock.class);
+        registerMyBlock(leaves3);
+        registerMyBlock(deadrock, twilightforest.item.ItemBlockTFDeadrock.class, deadrock, BlockTFDeadrock.names);
+        registerMyBlock(darkleaves, ItemBlock.class);
+        registerMyBlock(auroraPillar, ItemBlock.class);
+        registerMyBlock(auroraSlab, twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), false);
+        registerMyBlock(auroraDoubleSlab, twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), true);
+        registerMyBlock(trollSteinn, ItemBlock.class);
+        registerMyBlock(wispyCloud, ItemBlock.class);
+        registerMyBlock(fluffyCloud, ItemBlock.class);
+        registerMyBlock(giantCobble, ItemBlock.class);
+        registerMyBlock(giantLog, ItemBlock.class);
+        registerMyBlock(giantLeaves, ItemBlock.class);
+        registerMyBlock(giantObsidian, ItemBlock.class);
+        registerMyBlock(uberousSoil, ItemBlock.class);
+        registerMyBlock(hugeStalk, ItemBlock.class);
+        registerMyBlock(hugeGloomBlock, ItemBlock.class);
+        registerMyBlock(trollVidr, ItemBlock.class);
+        registerMyBlock(unripeTrollBer, ItemBlock.class);
+        registerMyBlock(trollBer, ItemBlock.class);
+        registerMyBlock(knightmetalStorage, ItemBlock.class);
+        registerMyBlock(hugeLilyPad, twilightforest.item.ItemBlockTFHugeLilyPad.class);
+        registerMyBlock(hugeWaterLily, twilightforest.item.ItemBlockTFHugeWaterLily.class);
+        registerMyBlock(slider);
+        registerMyBlock(castleBlock);
+        registerMyBlock(castleMagic);
+        registerMyBlock(forceField);
+        registerMyBlock(cinderFurnace, ItemBlock.class);
+        registerMyBlock(cinderFurnaceLit, ItemBlock.class);
+        registerMyBlock(cinderLog);
+        registerMyBlock(castleDoor);
+        registerMyBlock(castleDoorVanished);
 
-		// fire info
+        // fire info
         Blocks.fire.setFireInfo(log, 5, 5);
         Blocks.fire.setFireInfo(leaves, 30, 60);
         Blocks.fire.setFireInfo(leaves3, 30, 60);
-	}
+    }
 
-	private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, BlockSlab singleSlab, BlockSlab doubleSlab, boolean isDouble) {
-		GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), singleSlab, doubleSlab, isDouble);
+    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, BlockSlab singleSlab, BlockSlab doubleSlab, boolean isDouble) {
+        GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), singleSlab, doubleSlab, isDouble);
 
-	}
+    }
 
-	private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, Block blockAgain, String[] names) {
-		GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), blockAgain, names);
-	}
+    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, Block blockAgain, String[] names) {
+        GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), blockAgain, names);
+    }
 
-	private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup) 
-	{
-		GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName());
-	}
-	
-	private static void registerMyBlock(Block block) 
-	{
-		GameRegistry.registerBlock(block, ItemBlockTFMeta.class, block.getUnlocalizedName());
-	}
+    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup) {
+        GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName());
+    }
+
+    private static void registerMyBlock(Block block) {
+        GameRegistry.registerBlock(block, ItemBlockTFMeta.class, block.getUnlocalizedName());
+    }
 
 }

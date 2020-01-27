@@ -2,11 +2,9 @@ package twilightforest.structures.darktower;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 
-
 public class TFDarkTowerPieces {
 
-    public static void registerPieces()
-    {
+    public static void registerPieces() {
         MapGenStructureIO.func_143031_a(ComponentTFDarkTowerBalcony.class, "TFDTBal");
         MapGenStructureIO.func_143031_a(ComponentTFDarkTowerBeard.class, "TFDTBea");
         MapGenStructureIO.func_143031_a(ComponentTFDarkTowerBossBridge.class, "TFDTBB");
@@ -24,5 +22,5 @@ public class TFDarkTowerPieces {
         MapGenStructureIO.func_143031_a(ComponentTFDarkTowerWing.class, "TFDTWin");
 
     }
-	
+
 }

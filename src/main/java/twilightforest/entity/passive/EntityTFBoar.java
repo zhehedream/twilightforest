@@ -7,18 +7,15 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
 
-
 public class EntityTFBoar extends EntityPig {
-	
-    public EntityTFBoar(World world)
-    {
+
+    public EntityTFBoar(World world) {
         super(world);
-        //texture = TwilightForestMod.MODEL_DIR + "wildboar.png";
+        // texture = TwilightForestMod.MODEL_DIR + "wildboar.png";
         setSize(0.9F, 0.9F);
     }
-    
-    public EntityTFBoar(World world, double x, double y, double z)
-    {
+
+    public EntityTFBoar(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y, z);
     }
@@ -27,20 +24,19 @@ public class EntityTFBoar extends EntityPig {
      * What is our baby?!
      */
     @Override
-	public EntityPig createChild(EntityAgeable entityanimal)
-    {
+    public EntityPig createChild(EntityAgeable entityanimal) {
         return new EntityTFBoar(worldObj);
     }
 
     /**
      * Trigger achievement when killed
      */
-	@Override
-	public void onDeath(DamageSource par1DamageSource) {
-		super.onDeath(par1DamageSource);
-		if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-			((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-		}
-	}
+    @Override
+    public void onDeath(DamageSource par1DamageSource) {
+        super.onDeath(par1DamageSource);
+        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+        }
+    }
 
 }

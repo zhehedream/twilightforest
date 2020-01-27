@@ -9,9 +9,9 @@ public class RenderTFHedgeSpider extends RenderSpider {
 
     private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "hedgespider.png");
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return textureLoc;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return textureLoc;
+    }
 
 }

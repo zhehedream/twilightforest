@@ -7,37 +7,33 @@ import net.minecraft.world.gen.structure.StructureComponent;
 
 public class ComponentTFMushroomTowerMainBridge extends ComponentTFMushroomTowerBridge {
 
-	public ComponentTFMushroomTowerMainBridge() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public ComponentTFMushroomTowerMainBridge() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	protected ComponentTFMushroomTowerMainBridge(int i, int x, int y, int z, int pSize, int pHeight, int direction) {
-		// bridge only 11 long
-		super(i, x, y, z, 11, pHeight, direction);
-	}
+    protected ComponentTFMushroomTowerMainBridge(int i, int x, int y, int z, int pSize, int pHeight, int direction) {
+        // bridge only 11 long
+        super(i, x, y, z, 11, pHeight, direction);
+    }
 
-	@Override
-	public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    @Override
+    public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
 
-		// make a new size 15 main tower
-		int direction = (getCoordBaseMode() + rotation) % 4;
-		int[] dx = offsetTowerCoords(x, y, z, 15, direction);
-		
-		// adjust coordinates to fit an existing tower
-		dx = adjustCoordinates(dx[0], dx[1], dx[2], 15, direction, list);
+        // make a new size 15 main tower
+        int direction = (getCoordBaseMode() + rotation) % 4;
+        int[] dx = offsetTowerCoords(x, y, z, 15, direction);
 
-		ComponentTFMushroomTowerMain wing = new ComponentTFMushroomTowerMain(index, dx[0], dx[1], dx[2], 15, wingHeight, direction);
+        // adjust coordinates to fit an existing tower
+        dx = adjustCoordinates(dx[0], dx[1], dx[2], 15, direction, list);
 
-		list.add(wing);
-		wing.buildComponent((StructureComponent) list.get(0), list, rand);
-		addOpening(x, y, z, rotation);
+        ComponentTFMushroomTowerMain wing = new ComponentTFMushroomTowerMain(index, dx[0], dx[1], dx[2], 15, wingHeight, direction);
 
-		return true;
-	}
+        list.add(wing);
+        wing.buildComponent((StructureComponent) list.get(0), list, rand);
+        addOpening(x, y, z, rotation);
 
-
-	
-	
+        return true;
+    }
 
 }
