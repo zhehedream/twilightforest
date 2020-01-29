@@ -19,7 +19,6 @@ import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
 public class BlockTFMagicLeaves extends BlockLeaves {
-
     int oakColor = 0x48B518;
     int canopyColor = 0x609860;
     int mangroveColor = 0x80A755;
@@ -30,10 +29,13 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     public static final int META_SORT = 3;
 
     public static IIcon SPR_TIMELEAVES;
+    public static IIcon SPR_TIMELEAVES_OPAQUE;
     public static IIcon SPR_TIMEFX;
     public static IIcon SPR_TRANSLEAVES;
+    public static IIcon SPR_TRANSLEAVES_OPAQUE;
     public static IIcon SPR_TRANSFX;
     public static IIcon SPR_SORTLEAVES;
+    public static IIcon SPR_SORTLEAVES_OPAQUE;
     public static IIcon SPR_SORTFX;
 
     protected BlockTFMagicLeaves() {
@@ -118,6 +120,7 @@ public class BlockTFMagicLeaves extends BlockLeaves {
             red = (int) (spring * 252 + fall * 237);
             green = (int) (spring * 241 + fall * 172);
             blue = (int) (spring * 68 + fall * 9);
+            break;
         case META_SORT:
             fade = x * 63 + y * 63 + z * 63;
             if ((fade & 256) != 0) {
@@ -153,18 +156,29 @@ public class BlockTFMagicLeaves extends BlockLeaves {
 
     @Override
     public boolean isOpaqueCube() {
-        return false;
+        return Blocks.leaves.isOpaqueCube();
     }
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        switch (meta & 0x03) {
-        default:
-            return SPR_TIMELEAVES;
-        case 1:
-            return SPR_TRANSLEAVES;
-        case 3:
-            return SPR_SORTLEAVES;
+        if(Blocks.leaves.isOpaqueCube()) {
+            switch (meta & 0x03) {
+            default:
+                return SPR_TIMELEAVES_OPAQUE;
+            case 1:
+                return SPR_TRANSLEAVES_OPAQUE;
+            case 3:
+                return SPR_SORTLEAVES_OPAQUE;
+            }
+        } else {
+            switch (meta & 0x03) {
+            default:
+                return SPR_TIMELEAVES;
+            case 1:
+                return SPR_TRANSLEAVES;
+            case 3:
+                return SPR_SORTLEAVES;
+            }
         }
     }
 
@@ -172,8 +186,11 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         BlockTFMagicLeaves.SPR_TIMELEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_leaves");
+        BlockTFMagicLeaves.SPR_TIMELEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_leaves_opaque");
         BlockTFMagicLeaves.SPR_TRANSLEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_leaves");
+        BlockTFMagicLeaves.SPR_TRANSLEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_leaves_opaque");
         BlockTFMagicLeaves.SPR_SORTLEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_leaves");
+        BlockTFMagicLeaves.SPR_SORTLEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_leaves_opaque");
     }
 
     /**
