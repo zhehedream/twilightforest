@@ -35,33 +35,21 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    /**
-     * How many world ticks before ticking
-     */
     @Override
-    public int tickRate(World par1World) {
+    public int tickRate(World world) {
         return 20;
     }
 
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
     @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
+    public void onBlockAdded(World world, int x, int y, int z) {
+        world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
     @Override
-    public Item getItemDropped(int par1, Random par2Random, int par3) {
+    public Item getItemDropped(int par1, Random rand, int par3) {
         return Item.getItemFromBlock(TFBlocks.magicLog); // change into normal magic log
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
     @Override
     public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
@@ -99,9 +87,6 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
         }
     }
 
-    /**
-     * Ticks the block if it's been scheduled
-     */
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         int meta = world.getBlockMetadata(x, y, z);
@@ -110,32 +95,31 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
             // block is off, do not tick
             return;
         }
-
-        if ((meta & 3) == 0 && !world.isRemote) {
-            // tree of time effect
-            world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.click", 0.1F, 0.5F);
-
-            doTreeOfTimeEffect(world, x, y, z, rand);
-        } else if ((meta & 3) == 1 && !world.isRemote) {
-            // tree of transformation effect
-            doTreeOfTransformationEffect(world, x, y, z, rand);
-        } else if ((meta & 3) == 2 && !world.isRemote) {
-            // miner's tree effect
-            doMinersTreeEffect(world, x, y, z, rand);
-        } else if ((meta & 3) == 3 && !world.isRemote) {
-            // sorting tree effect
-            doSortingTreeEffect(world, x, y, z, rand);
+        if(!world.isRemote) {
+            switch(meta & 3) {
+            case 0:
+                // tree of time effect
+                world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.click", 0.1F, 0.5F);
+                doTreeOfTimeEffect(world, x, y, z, rand);
+                break;
+            case 1:
+                // tree of transformation effect
+                doTreeOfTransformationEffect(world, x, y, z, rand);
+                break;
+            case 2:
+                // miner's tree effect
+                doMinersTreeEffect(world, x, y, z, rand);
+                break;
+            case 3:
+                // sorting tree effect
+                doSortingTreeEffect(world, x, y, z, rand);
+            }
         }
-
         world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
-
     }
 
-    /**
-     * Called upon block activation (right click on the block.)
-     */
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         int meta = world.getBlockMetadata(x, y, z);
 
         int orient = meta & 12;
@@ -145,14 +129,12 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
             // turn off
             world.setBlockMetadataWithNotify(x, y, z, woodType | 12, 3);
             return true;
-        }
-        if (orient == 12) {
+        } else if (orient == 12) {
             // turn on
             world.setBlockMetadataWithNotify(x, y, z, woodType | 0, 3);
             world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
             return true;
         }
-
         return false;
     }
 
@@ -174,6 +156,7 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
             Block thereID = world.getBlock(x + dx, y + dy, z + dz);
 
             if (thereID != Blocks.air && thereID.getTickRandomly()) {
+                world.scheduleBlockUpdate(x + dx, y + dy, z + dz, thereID, 20);
                 thereID.updateTick(world, x + dx, y + dy, z + dz, rand);
 
                 // System.out.println("tree of time ticked a block at " + (x + dx) + ", " + (y + dy) + ", " + (z +
@@ -387,7 +370,6 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
                     }
                 }
             }
-
         }
     }
 
@@ -431,7 +413,6 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
                 return i;
             }
         }
-
         return -1;
     }
 
@@ -444,15 +425,6 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
 
     }
 
-    /**
-     * Get a light value for this block, normal ranges are between 0 and 15
-     * 
-     * @param world The current world
-     * @param x     X Position
-     * @param y     Y position
-     * @param z     Z position
-     * @return The light value
-     */
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         return 15;
@@ -463,11 +435,11 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        itemList.add(new ItemStack(item, 1, 0));
+        itemList.add(new ItemStack(item, 1, 1));
+        itemList.add(new ItemStack(item, 1, 2));
+        itemList.add(new ItemStack(item, 1, 3));
 
     }
 
