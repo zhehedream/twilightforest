@@ -95,8 +95,6 @@ public class TFTickHandler {
         if (player instanceof EntityPlayerMP) {
             TwilightForestMod.genericChannel.sendTo(message, (EntityPlayerMP) player);
             // System.out.println("Sent structure protection");
-        } else {
-            // System.err.println("Can't sent packet to player, not an EntityPlayerMP");
         }
     }
 
@@ -104,9 +102,6 @@ public class TFTickHandler {
         FMLProxyPacket message = TFGenericPacketHandler.makeStructureProtectionClearPacket();
         if (player instanceof EntityPlayerMP) {
             TwilightForestMod.genericChannel.sendTo(message, (EntityPlayerMP) player);
-            // System.out.println("Sent structure all clear");
-        } else {
-            // System.err.println("Can't sent packet to player, not an EntityPlayerMP");
         }
     }
 
@@ -155,8 +150,6 @@ public class TFTickHandler {
             // check to see if someone's thrown the portal item into the water
             for (EntityItem entityItem : itemList) {
                 if (entityItem.getEntityItem().getItem() == portalItem && world.isMaterialInBB(entityItem.boundingBox, Material.water)) {
-                    // System.out.println("There is a diamond in the water");
-
                     // make sparkles in the area
                     Random rand = new Random();
                     for (int k = 0; k < 2; k++) {
@@ -196,5 +189,4 @@ public class TFTickHandler {
             }
         }
     }
-
 }

@@ -96,7 +96,6 @@ public class CommandTFProgress extends CommandBase {
             player.triggerAchievement(TFAchievementPage.twilightProgressCastle);
             break;
         }
-
     }
 
     private int getBossIndex(String string) {
@@ -112,7 +111,7 @@ public class CommandTFProgress extends CommandBase {
     /**
      * Adds the strings available in this command to the given list of tab completion options.
      */
-    public List addTabCompletionOptions(ICommandSender p_71516_1_, String[] args) {
+    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getListOfPlayers()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, bosses) : null);
     }
 

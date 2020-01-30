@@ -28,7 +28,6 @@ public class TFTeleporter extends Teleporter {
         if (this.rand == null) {
             this.rand = new Random();
         }
-
     }
 
     /**
@@ -65,9 +64,7 @@ public class TFTeleporter extends Teleporter {
                         }
                     }
                 }
-
             }
-
             this.makePortal(par1Entity);
             this.placeInExistingPortal(par1Entity, x, y, z, facing);
         }

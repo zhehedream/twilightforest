@@ -198,8 +198,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
      * the given coordinates. Args: blockAccess, x, y, z, side
      */
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int x, int y, int z, int side) {
-        return Blocks.leaves.shouldSideBeRendered(iblockaccess, x, y, z, side);
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+        return Blocks.leaves.shouldSideBeRendered(world, x, y, z, side);
     }
 
     /**

@@ -46,7 +46,6 @@ public class TFCreatures {
         Entity entity = null;
 
         try {
-            // Class clazz = (Class)IDtoClassMapping.get(entityID);
             ModContainer mc = FMLCommonHandler.instance().findContainerFor(TwilightForestMod.instance);
             EntityRegistration er = EntityRegistry.instance().lookupModSpawn(mc, entityID);
             Class<?> clazz = er.getEntityClass();
@@ -61,7 +60,6 @@ public class TFCreatures {
         if (entity == null) {
             System.out.println("Skipping Entity with id " + entityID);
         }
-
         return entity;
     }
 
@@ -75,7 +73,6 @@ public class TFCreatures {
         if (er != null) {
             return er.getEntityName();
         }
-
         return null;
     }
 
@@ -90,5 +87,4 @@ public class TFCreatures {
             return "TwilightForest." + baseName;
         }
     }
-
 }

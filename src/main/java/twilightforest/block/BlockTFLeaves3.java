@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import twilightforest.item.TFItems;
 
 public class BlockTFLeaves3 extends BlockLeaves {
-
     public static final String[] names = new String[] { "thorn", "beanstalk" };
 
     protected BlockTFLeaves3() {
@@ -49,9 +48,6 @@ public class BlockTFLeaves3 extends BlockLeaves {
         return (meta & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((meta & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : super.colorMultiplier(world, x, y, z));
     }
 
-    /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
-     */
     public int damageDropped(int p_149692_1_) {
         return super.damageDropped(p_149692_1_) + 4;
     }
@@ -61,34 +57,21 @@ public class BlockTFLeaves3 extends BlockLeaves {
         return Blocks.leaves.isOpaqueCube();
     }
 
-    /**
-     * Get the block's damage value (for use with pick block).
-     */
     public int getDamageValue(World world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z) & 3;
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
     public int quantityDropped(Random rand) {
         return 0;
     }
 
-    /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
-     */
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int side) {
-        return Blocks.leaves.shouldSideBeRendered(iblockaccess, i, j, k, side);
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+        return Blocks.leaves.shouldSideBeRendered(world, x, y, z, side);
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
     @Override
-    public Item getItemDropped(int par1, Random par2Random, int par3) {
+    public Item getItemDropped(int par1, Random rand, int par3) {
         return TFItems.magicBeans;
     }
 
@@ -97,14 +80,11 @@ public class BlockTFLeaves3 extends BlockLeaves {
         return Blocks.leaves.getIcon(i, 0 & 3);
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        for (int i = 0; i < names.length; i++) {
-            par3List.add(new ItemStack(par1, 1, i));
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        for (int meta = 0; meta < names.length; meta++) {
+            itemList.add(new ItemStack(item, 1, meta));
         }
     }
 

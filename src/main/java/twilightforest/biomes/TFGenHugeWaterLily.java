@@ -14,7 +14,6 @@ import twilightforest.block.TFBlocks;
  *
  */
 public class TFGenHugeWaterLily extends WorldGenerator {
-
     private Random rand = new Random();
 
     public boolean generate(World world, Random random, int x, int y, int z) {
@@ -27,7 +26,6 @@ public class TFGenHugeWaterLily extends WorldGenerator {
                 world.setBlock(dx, dy, dz, TFBlocks.hugeWaterLily);
             }
         }
-
         return true;
     }
 

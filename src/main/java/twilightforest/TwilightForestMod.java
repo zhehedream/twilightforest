@@ -340,8 +340,6 @@ public class TwilightForestMod {
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFRedcap.class, "Redcap", idMobRedcap, 0x3b3a6c, 0xab1e14);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFSwarmSpider.class, "Swarm Spider", idMobSwarmSpider, 0x32022e, 0x17251e);
         TFCreatures.registerTFCreature(twilightforest.entity.boss.EntityTFNaga.class, "Naga", idMobNaga, 0xa4d316, 0x1b380b);
-        // TFCreatures.registerTFCreature(twilightforest.entity.EntityTFNagaSegmentOld.class, "Naga
-        // Segment", idMobNagaSegment); // no longer needed, regenerated instantly as required
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFSkeletonDruid.class, "Skeleton Druid", idMobSkeletonDruid, 0xa3a3a3, 0x2a3b17);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFHostileWolf.class, "Hostile Wolf", idMobHostileWolf, 0xd7d3d3, 0xab1e14);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFWraith.class, "Twilight Wraith", idMobTwilightWraith, 0x505050, 0x838383);
@@ -357,8 +355,7 @@ public class TwilightForestMod {
         TFCreatures.registerTFCreature(twilightforest.entity.passive.EntityTFRaven.class, "Forest Raven", idMobRaven, 0x000011, 0x222233);
         TFCreatures.registerTFCreature(twilightforest.entity.passive.EntityTFQuestRam.class, "Questing Ram", idMobQuestRam);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFKobold.class, "Twilight Kobold", idMobKobold, 0x372096, 0x895d1b);
-        // TFCreatures.registerTFCreature(twilightforest.entity.EntityTFBoggard.class, "Boggard",
-        // idMobBoggard);
+        // TFCreatures.registerTFCreature(twilightforest.entity.EntityTFBoggard.class, "Boggard", idMobBoggard);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFMosquitoSwarm.class, "Mosquito Swarm", idMobMosquitoSwarm, 0x080904, 0x2d2f21);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFDeathTome.class, "Death Tome", idMobDeathTome, 0x774e22, 0xdbcdbe);
         TFCreatures.registerTFCreature(twilightforest.entity.EntityTFMinotaur.class, "Minotaur", idMobMinotaur, 0x3f3024, 0xaa7d66);
@@ -417,7 +414,6 @@ public class TwilightForestMod {
         EntityRegistry.registerModEntity(twilightforest.entity.EntityTFChainBlock.class, "tfchainBlock", idVehicleSpawnChainBlock, this, 80, 1, true);
         EntityRegistry.registerModEntity(twilightforest.entity.EntityTFCubeOfAnnihilation.class, "tfcubeannihilation", this.idVehicleSpawnCubeOfAnnihilation, this, 80, 1, true);
         EntityRegistry.registerModEntity(twilightforest.entity.EntityTFSlideBlock.class, "tfslideblock", this.idVehicleSpawnSlideBlock, this, 80, 1, true);
-
     }
 
     private void registerTileEntities() {
@@ -447,7 +443,6 @@ public class TwilightForestMod {
      */
     private void registerThaumcraftIntegration() {
         try {
-
             // items
             registerTCObjectTag(TFItems.nagaScale, -1, (new AspectList()).add(Aspect.MOTION, 2).add(Aspect.ARMOR, 3));
             registerTCObjectTag(TFItems.scepterTwilight, -1, (new AspectList()).add(Aspect.MAGIC, 8).add(Aspect.ELDRITCH, 8).add(Aspect.WEAPON, 8));
@@ -567,12 +562,10 @@ public class TwilightForestMod {
             registerTCObjectTag(TFBlocks.forceField, -1, (new AspectList()).add(Aspect.MAGIC, 3).add(Aspect.ARMOR, 4));
 
             FMLLog.info("[TwilightForest] Loaded ThaumcraftApi integration.");
-
         } catch (Exception e) {
             FMLLog.warning("[TwilightForest] Had an %s error while trying to register with ThaumcraftApi.", e.getLocalizedMessage());
             // whatever.
         }
-
     }
 
     /**

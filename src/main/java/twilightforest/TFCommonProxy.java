@@ -15,7 +15,6 @@ public class TFCommonProxy implements IGuiHandler {
      * will be just registered in the mod file
      */
     public void doPreLoadRegistration() {
-        ;
     }
 
     /**
@@ -23,7 +22,6 @@ public class TFCommonProxy implements IGuiHandler {
      * will be just registered in the mod file
      */
     public void doOnLoadRegistration() {
-        ;
     }
 
     public int getCritterBlockRenderID() {
@@ -79,7 +77,6 @@ public class TFCommonProxy implements IGuiHandler {
      * particles. Null op except on the client.
      */
     public void spawnParticle(World world, String particleType, double x, double y, double z, double velX, double velY, double velZ) {
-        ;
     }
 
     @Override

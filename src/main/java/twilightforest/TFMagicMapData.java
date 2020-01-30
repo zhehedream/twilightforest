@@ -101,8 +101,6 @@ public class TFMagicMapData extends MapData {
                         toRemove = new ArrayList<MapCoord>();
                     }
                     toRemove.add(coord);
-
-                    // System.out.println("Removing bad mapcoord " + coord + " from " + worldX + ", " + worldZ);
                 }
             }
         }
@@ -146,8 +144,6 @@ public class TFMagicMapData extends MapData {
             storage[i * 3 + 2] = featureCoord.centerX;
             storage[i * 3 + 3] = featureCoord.centerZ;
         }
-
         return storage;
     }
-
 }

@@ -146,7 +146,6 @@ public class TFTreasureTable {
     }
 
     public ItemStack getRandomItem(Random rand) {
-
         int value = rand.nextInt(total());
 
         for (TFTreasureItem item : list) {
@@ -156,7 +155,6 @@ public class TFTreasureTable {
                 value -= item.getRarity();
             }
         }
-
         // we should not actually get here
         return null;
     }

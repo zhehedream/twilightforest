@@ -97,7 +97,6 @@ public class TFGenericPacketHandler {
 
     @SideOnly(Side.CLIENT)
     private void processAreaProtectionData(ByteBuf buf) {
-
         int minX = buf.readInt();
         int minY = buf.readInt();
         int minZ = buf.readInt();
@@ -117,7 +116,6 @@ public class TFGenericPacketHandler {
 
         // particles from the block?
         for (int i = 0; i < 20; i++) {
-
             double d0 = worldObj.rand.nextGaussian() * 0.02D;
             double d1 = worldObj.rand.nextGaussian() * 0.02D;
             double d2 = worldObj.rand.nextGaussian() * 0.02D;
@@ -128,7 +126,6 @@ public class TFGenericPacketHandler {
 
             // worldObj.spawnParticle("mobSpell", blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, red, grn, blu);
             TwilightForestMod.proxy.spawnParticle(worldObj, "protection", dx, dy, dz, d0, d1, d2);
-
         }
     }
 
@@ -137,7 +134,6 @@ public class TFGenericPacketHandler {
      */
     @SideOnly(Side.CLIENT)
     private void processStructureProtectionData(ByteBuf buf) {
-
         int minX = buf.readInt();
         int minY = buf.readInt();
         int minZ = buf.readInt();
@@ -157,7 +153,6 @@ public class TFGenericPacketHandler {
 
             weatherRenderer.setProtectedBox(sbb);
         }
-
     }
 
     /**
@@ -165,10 +160,7 @@ public class TFGenericPacketHandler {
      */
     @SideOnly(Side.CLIENT)
     private void processStructureProtectionClearData(ByteBuf buf) {
-
         World worldObj = Minecraft.getMinecraft().theWorld;
-
-        // System.out.println("Getting structure all clear");
 
         // add weather box if needed
         if (worldObj.provider instanceof WorldProviderTwilightForest) {
@@ -176,12 +168,10 @@ public class TFGenericPacketHandler {
 
             weatherRenderer.setProtectedBox(null);
         }
-
     }
 
     @SideOnly(Side.CLIENT)
     private void processEnforcedProgressionStatusData(ByteBuf buf) {
-
         World worldObj = Minecraft.getMinecraft().theWorld;
 
         boolean isEnforced = buf.readBoolean();
@@ -198,14 +188,12 @@ public class TFGenericPacketHandler {
         World worldObj = Minecraft.getMinecraft().theWorld;
 
         TwilightForestMod.proxy.doBlockAnnihilateEffect(worldObj, blockX, blockY, blockZ);
-
     }
 
     /**
      * Make a FMLProxyPacket that contains the data we need to change a biome in the world.
      */
     public static FMLProxyPacket makeBiomeChangePacket(int x, int z, byte biomeID) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(TRANSFORM_BIOME); // discriminator byte
@@ -222,7 +210,6 @@ public class TFGenericPacketHandler {
      * Make a FMLProxyPacket that contains the data we need to add a velocity to the player
      */
     public static FMLProxyPacket makeThrowPlayerPacket(float motionX, float motionY, float motionZ) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(THROW_PLAYER); // discriminator byte
@@ -239,7 +226,6 @@ public class TFGenericPacketHandler {
      * Make a FMLProxyPacket that contains the data we need to display area protection data
      */
     public static FMLProxyPacket makeAreaProtectionPacket(StructureBoundingBox sbb, int blockX, int blockY, int blockZ) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(AREA_PROTECTION); // discriminator byte
@@ -264,7 +250,6 @@ public class TFGenericPacketHandler {
      * Make a FMLProxyPacket that contains the data we need to display structure protection data
      */
     public static FMLProxyPacket makeStructureProtectionPacket(StructureBoundingBox sbb) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(STRUCTURE_PROTECTION); // discriminator byte
@@ -299,7 +284,6 @@ public class TFGenericPacketHandler {
      * Make a FMLProxyPacket that sets progression enforcement on the client
      */
     public static FMLProxyPacket makeEnforcedProgressionStatusPacket(boolean isEnforced) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(ENFORCED_PROGRESSION_STATUS); // discriminator byte
@@ -315,7 +299,6 @@ public class TFGenericPacketHandler {
      * Make a FMLProxyPacket that contains a block to display annihilation effects for
      */
     public static FMLProxyPacket makeAnnihilateBlockPacket(int blockX, int blockY, int blockZ) {
-
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(ANNIHILATE_BLOCK); // discriminator byte

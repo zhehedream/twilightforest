@@ -29,7 +29,5 @@ public class TFMazeMapData extends MapData {
         super.writeToNBT(par1NBTTagCompound);
 
         par1NBTTagCompound.setInteger("yCenter", this.yCenter);
-
     }
-
 }

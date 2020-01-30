@@ -668,11 +668,6 @@ public class TFEventListener {
         return entity.isRiding() && (entity.ridingEntity instanceof EntityTFPinchBeetle || entity.ridingEntity instanceof EntityTFYeti);
     }
 
-    /**
-     * Check if the player is trying to break a block in a structure that's considered unbreakable for
-     * progression reasons Also check for breaking blocks with the giant's pickaxe and maybe break
-     * nearby blocks
-     */
     @SubscribeEvent
     public void breakBlock(BreakEvent event) {
         if (!event.getPlayer().capabilities.isCreativeMode && isAreaProtected(event.world, event.getPlayer(), event.x, event.y, event.z)
@@ -728,9 +723,7 @@ public class TFEventListener {
                     }
                 }
             }
-
             this.isBreakingWithGiantPick = false;
-
         }
     }
 
@@ -786,7 +779,6 @@ public class TFEventListener {
         if (block.getUnlocalizedName().equals("tile.openblocks.grave")) {
             return false;
         }
-
         return true;
     }
 
