@@ -50,7 +50,6 @@ public class TFGenMyceliumBlob extends WorldGenerator {
                 }
             }
         }
-
         return true;
     }
 }

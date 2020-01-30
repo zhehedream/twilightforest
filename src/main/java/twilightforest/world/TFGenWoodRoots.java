@@ -77,7 +77,6 @@ public class TFGenWoodRoots extends TFGenerator {
                 float nextAngle = (angle + 0.25F + (rand.nextFloat() * 0.5F)) % 1.0F;
                 float nextTilt = 0.6F + rand.nextFloat() * 0.3F;
                 drawRoot(world, rand, ox, oy, oz, nextSrc[0], nextSrc[1], nextSrc[2], length / 2.0F, nextAngle, nextTilt);
-
             }
         }
 
@@ -97,7 +96,6 @@ public class TFGenWoodRoots extends TFGenerator {
                 this.placeRootBlock(world, ballDest[0], ballDest[1], ballDest[2], oreBlock, oreMeta);
             }
         }
-
         return true;
     }
 
@@ -109,5 +107,4 @@ public class TFGenWoodRoots extends TFGenerator {
             this.setBlockAndMetadata(world, x, y, z, rootBlock2, meta);
         }
     }
-
 }

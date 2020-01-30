@@ -25,5 +25,4 @@ public class StructureTFDecoratorCastle extends StructureTFDecorator {
 
         this.randomBlocks = new StructureTFCastleBlocks();
     }
-
 }

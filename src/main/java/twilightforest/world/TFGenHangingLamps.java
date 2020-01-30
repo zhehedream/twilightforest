@@ -10,36 +10,35 @@ import twilightforest.block.TFBlocks;
 public class TFGenHangingLamps extends TFGenerator {
     private static final int MAX_HANG = 8;
 
-    public boolean generate(World par1World, Random par2Random, int x, int y, int z) {
+    public boolean generate(World world, Random rand, int x, int y, int z) {
         // this must be an air block, surrounded by air
-        if (par1World.isAirBlock(x, y, z) && TFGenerator.surroundedByAir(par1World, x, y, z)) {
+        if (world.isAirBlock(x, y, z) && TFGenerator.surroundedByAir(world, x, y, z)) {
             // there should be leaves or wood within 12 blocks above
-            if (areLeavesAbove(par1World, x, y, z)) {
+            if (areLeavesAbove(world, x, y, z)) {
                 // we need to be at least 4 above ground
-                if (isClearBelow(par1World, x, y, z)) {
+                if (isClearBelow(world, x, y, z)) {
                     // generate lamp
-                    par1World.setBlock(x, y, z, TFBlocks.fireflyJar);
+                    world.setBlock(x, y, z, TFBlocks.fireflyJar);
 
                     for (int cy = 1; cy < MAX_HANG; cy++) {
-                        Material above = par1World.getBlock(x, y + cy, z).getMaterial();
+                        Material above = world.getBlock(x, y + cy, z).getMaterial();
                         if (above.isSolid() || above == Material.leaves) {
                             break;
                         } else {
-                            par1World.setBlock(x, y + cy, z, Blocks.fence);
+                            world.setBlock(x, y + cy, z, Blocks.fence);
                         }
                     }
                 }
             }
-
         }
 
         return false;
     }
 
-    private boolean areLeavesAbove(World par1World, int x, int y, int z) {
+    private boolean areLeavesAbove(World world, int x, int y, int z) {
         boolean areLeavesAbove = false;
         for (int cy = 1; cy < MAX_HANG; cy++) {
-            Material above = par1World.getBlock(x, y + cy, z).getMaterial();
+            Material above = world.getBlock(x, y + cy, z).getMaterial();
             if (above.isSolid() || above == Material.leaves) {
                 areLeavesAbove = true;
             }
@@ -47,10 +46,10 @@ public class TFGenHangingLamps extends TFGenerator {
         return areLeavesAbove;
     }
 
-    private boolean isClearBelow(World par1World, int x, int y, int z) {
+    private boolean isClearBelow(World world, int x, int y, int z) {
         boolean isClearBelow = true;
         for (int cy = 1; cy < 4; cy++) {
-            if (World.doesBlockHaveSolidTopSurface(par1World, x, y - cy, z)) {
+            if (World.doesBlockHaveSolidTopSurface(world, x, y - cy, z)) {
                 isClearBelow = false;
             }
         }

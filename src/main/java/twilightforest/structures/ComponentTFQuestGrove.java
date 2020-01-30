@@ -79,7 +79,6 @@ public class ComponentTFQuestGrove extends StructureTFComponent {
                 for (int i = 0; i < 4; i++) {
                     ted.setInventorySlotContents(i, new ItemStack(Blocks.wool, 1, rand.nextInt(16)));
                 }
-
             }
         }
 
@@ -99,7 +98,6 @@ public class ComponentTFQuestGrove extends StructureTFComponent {
                 world.spawnEntityInWorld(ram);
             }
         }
-
         return true;
     }
 
@@ -168,5 +166,4 @@ public class ComponentTFQuestGrove extends StructureTFComponent {
             }
         }
     }
-
 }

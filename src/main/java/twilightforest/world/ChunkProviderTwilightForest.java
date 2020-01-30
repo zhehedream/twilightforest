@@ -202,11 +202,9 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
                                     blockStorage[j3 += short1] = null;
                                 }
                             }
-
                             d10 += d12;
                             d11 += d13;
                         }
-
                         d1 += d5;
                         d2 += d6;
                         d3 += d7;
@@ -1057,7 +1055,6 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
 
     public StructureBoundingBox getFullSBBNear(int mapX, int mapZ, int range) {
         return this.majorFeatureGenerator.getFullSBBNear(mapX, mapZ, range);
-
     }
 
     @Override
@@ -1081,8 +1078,7 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
     }
 
     @Override
-    public ChunkPosition func_147416_a(World var1, String var2, int var3, int var4, int var5) {
+    public ChunkPosition func_147416_a(World world, String var2, int var3, int var4, int var5) {
         return null;
     }
-
 }

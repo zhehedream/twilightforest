@@ -87,8 +87,6 @@ public class ComponentTFYetiCave extends ComponentTFHollowHill {
                 world.spawnEntityInWorld(yeti);
             }
         }
-
         return true;
     }
-
 }

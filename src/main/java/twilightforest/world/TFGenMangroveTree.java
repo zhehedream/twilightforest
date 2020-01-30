@@ -129,7 +129,6 @@ public class TFGenMangroveTree extends TFTreeGenerator {
                 stillAboveGround = false;
             }
         }
-
     }
 
     /**

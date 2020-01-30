@@ -53,16 +53,12 @@ public abstract class StructureTFComponent extends StructureComponent {
         switch (dir) {
         default:
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
-
         case 0: // '\0'
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
-
         case 1: // '\001'
             return new StructureBoundingBox(x - maxZ + minZ, y + minY, z + minX, x + minZ, y + maxY + minY, z + maxX + minX);
-
         case 2: // '\002'
             return new StructureBoundingBox(x - maxX - minX, y + minY, z - maxZ - minZ, x - minX, y + maxY + minY, z - minZ);
-
         case 3: // '\003'
             return new StructureBoundingBox(x + minZ, y + minY, z - maxX, x + maxZ + minZ, y + maxY + minY, z + minX);
         }
@@ -75,16 +71,12 @@ public abstract class StructureTFComponent extends StructureComponent {
         switch (dir) {
         default:
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
-
         case 0: // '\0'
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
-
         case 1: // '\001'
             return new StructureBoundingBox(x - maxZ - minZ, y + minY, z + minX, x - minZ, y + maxY + minY, z + maxX + minX);
-
         case 2: // '\002'
             return new StructureBoundingBox(x - maxX - minX, y + minY, z - maxZ - minZ, x - minX, y + maxY + minY, z - minZ);
-
         case 3: // '\003'
             return new StructureBoundingBox(x + minZ, y + minY, z - maxX, x + maxZ + minZ, y + maxY + minY, z - minX);
         }
@@ -108,7 +100,6 @@ public abstract class StructureTFComponent extends StructureComponent {
                 tileEntitySpawner.func_145881_a().setEntityName(monsterID);
             }
         }
-
         return tileEntitySpawner;
     }
 
@@ -130,7 +121,6 @@ public abstract class StructureTFComponent extends StructureComponent {
                 tileEntitySpawner.func_145881_a().setEntityName(monsterID);
             }
         }
-
         return tileEntitySpawner;
     }
 
@@ -351,15 +341,15 @@ public abstract class StructureTFComponent extends StructureComponent {
         this.coordBaseMode = coordBaseMode;
     }
 
-    protected Block getBlockAtCurrentPosition(World par1World, int par2, int par3, int par4, StructureBoundingBox par5StructureBoundingBox) {
-        return super.getBlockAtCurrentPosition(par1World, par2, par3, par4, par5StructureBoundingBox);
+    protected Block getBlockAtCurrentPosition(World world, int x, int y, int z, StructureBoundingBox sbb) {
+        return super.getBlockAtCurrentPosition(world, x, y, z, sbb);
     }
 
     /**
      * current Position depends on currently set Coordinates mode, is computed here
      */
-    protected void placeBlockAtCurrentPosition(World par1World, Block par2, int par3, int par4, int par5, int par6, StructureBoundingBox par7StructureBoundingBox) {
-        super.placeBlockAtCurrentPosition(par1World, par2, par3, par4, par5, par6, par7StructureBoundingBox);
+    protected void placeBlockAtCurrentPosition(World world, Block block, int par3, int par4, int par5, int par6, StructureBoundingBox sbb) {
+        super.placeBlockAtCurrentPosition(world, block, par3, par4, par5, par6, sbb);
     }
 
     /**

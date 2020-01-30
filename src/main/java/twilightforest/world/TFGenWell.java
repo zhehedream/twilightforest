@@ -88,7 +88,6 @@ public class TFGenWell extends TFGenerator {
                 madeTreasure = true;
             }
         }
-
         return true;
     }
 
@@ -160,16 +159,11 @@ public class TFGenWell extends TFGenerator {
                     if (!world.getBlock(x + dx, y + dy - 1, z + dz).getMaterial().isSolid()) {
                         break;
                     }
-
                     // okay, we're good to dig.
                     setBlock(world, x + dx, y + dy, z + dz, Blocks.water);
                 }
-
             }
-
         }
-
         return true;
     }
-
 }

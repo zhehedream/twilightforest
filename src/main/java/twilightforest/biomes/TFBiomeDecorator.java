@@ -298,5 +298,4 @@ public class TFBiomeDecorator extends BiomeDecorator {
     public void setGrassPerChunk(int grassPerChunk) {
         this.grassPerChunk = grassPerChunk;
     }
-
 }

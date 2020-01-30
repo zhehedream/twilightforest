@@ -178,8 +178,6 @@ public class TFGenWitchHut extends TFGenerator {
         if (spawnerLogic != null) {
             spawnerLogic.setEntityName(TFCreatures.getSpawnerNameFor("Skeleton Druid"));
         }
-
         return true;
     }
-
 }

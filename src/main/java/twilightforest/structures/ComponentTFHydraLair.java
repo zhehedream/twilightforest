@@ -13,7 +13,6 @@ public class ComponentTFHydraLair extends ComponentTFHollowHill {
 
     public ComponentTFHydraLair() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public ComponentTFHydraLair(World world, Random rand, int i, int x, int y, int z) {
@@ -25,8 +24,7 @@ public class ComponentTFHydraLair extends ComponentTFHollowHill {
      */
     @SuppressWarnings("rawtypes")
     @Override
-    public void buildComponent(StructureComponent structurecomponent, List list, Random random) {
-        ;
+    public void buildComponent(StructureComponent structurecomponent, List list, Random rand) {
     }
 
     /**
@@ -59,5 +57,4 @@ public class ComponentTFHydraLair extends ComponentTFHollowHill {
 
         return true;
     }
-
 }

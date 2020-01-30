@@ -26,8 +26,6 @@ public class TFGenStoneCircle extends TFGenerator {
             setBlock(world, x - 2, y + cy, z + 2, Blocks.mossy_cobblestone);
             setBlock(world, x + 2, y + cy, z + 2, Blocks.mossy_cobblestone);
         }
-
         return true;
     }
-
 }

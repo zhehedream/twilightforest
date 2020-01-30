@@ -8,13 +8,13 @@ import net.minecraft.world.gen.structure.StructureComponent;
 public class StructureTFStrongholdStones extends StructureComponent.BlockSelector {
 
     @Override
-    public void selectBlocks(Random par1Random, int par2, int par3, int par4, boolean par5) {
+    public void selectBlocks(Random rand, int par2, int par3, int par4, boolean par5) {
         if (!par5) {
             this.field_151562_a = Blocks.air;
             this.selectedBlockMetaData = 0;
         } else {
             this.field_151562_a = Blocks.stonebrick;
-            float var6 = par1Random.nextFloat();
+            float var6 = rand.nextFloat();
 
             if (var6 < 0.2F) {
                 this.selectedBlockMetaData = 2;
@@ -28,5 +28,4 @@ public class StructureTFStrongholdStones extends StructureComponent.BlockSelecto
             }
         }
     }
-
 }

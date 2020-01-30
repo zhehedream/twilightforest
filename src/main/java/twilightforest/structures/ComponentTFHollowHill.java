@@ -54,7 +54,6 @@ public class ComponentTFHollowHill extends StructureTFComponent {
         super.func_143011_b(par1NBTTagCompound);
         this.hillSize = par1NBTTagCompound.getInteger("hillSize");
         this.radius = ((hillSize * 2 + 1) * 8) - 6;
-
     }
 
     /**
@@ -124,7 +123,6 @@ public class ComponentTFHollowHill extends StructureTFComponent {
 //			dest = getEmptyCoordsInHill(hy + 10, 20);
 //			placeWraithSpawner(dest[0], hy + 10, dest[1]);
         }
-
         return true;
     }
 
@@ -141,7 +139,6 @@ public class ComponentTFHollowHill extends StructureTFComponent {
 
         // make something for it to stand on, if necessary
         func_151554_b(world, Blocks.cobblestone, 0, x, y - 1, z, sbb);
-
     }
 
     /**
@@ -244,18 +241,17 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      * @return
      */
     protected String getMobID(Random rand, int level) {
-        if (level == 1) {
+        switch(level) {
+        case 1:
             return getLevel1Mob(rand);
-        }
-        if (level == 2) {
+        case 2:
             return getLevel2Mob(rand);
-        }
-        if (level == 3) {
+        case 3:
             return getLevel3Mob(rand);
+        default:
+            // aaah, default: spider!
+            return "Spider";
         }
-
-        /// aaah, default: spider!
-        return "Spider";
     }
 
     /**
@@ -335,5 +331,4 @@ public class ComponentTFHollowHill extends StructureTFComponent {
             return TFCreatures.getSpawnerNameFor("Twilight Wraith");
         }
     }
-
 }

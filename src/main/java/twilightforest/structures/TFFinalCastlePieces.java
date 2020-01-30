@@ -182,7 +182,6 @@ public class TFFinalCastlePieces {
                 list.addAll(before);
                 this.buildTowerMaze(list, rand, x, y, z, howFar, direction, type, dest);
             }
-
         }
 
         private boolean isMazeComplete(List list, int type) {
@@ -196,7 +195,6 @@ public class TFFinalCastlePieces {
 
                 structurecomponent = (StructureComponent) iterator.next();
             } while (!((structurecomponent instanceof EntranceTower && type == 0) || (structurecomponent instanceof BellTower21 && type == 1)));
-
             return true;
         }
 
@@ -356,7 +354,6 @@ public class TFFinalCastlePieces {
             this.fillWithMetadataBlocks(world, sbb, x + 3, y, z - 1, x + 3, y, z + 2, deco.stairID, getStairMeta(2) | metaBit, Blocks.air, 0, false);
             this.fillWithMetadataBlocks(world, sbb, x - 1, y, z + 0, x - 1, y, z + 3, deco.stairID, getStairMeta(0) | metaBit, Blocks.air, 0, false);
         }
-
     }
 
     public static class Roof48Crenellated extends StructureTFComponent {
@@ -371,7 +368,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(keep.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(keep.getBoundingBox().minX - 2, keep.getBoundingBox().maxY - 1, keep.getBoundingBox().minZ - 2, keep.getBoundingBox().maxX + 2,
                     keep.getBoundingBox().maxY + height - 1, keep.getBoundingBox().maxZ + 2);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -396,10 +392,8 @@ public class TFFinalCastlePieces {
                     this.placeBlockRotated(world, deco.blockID, deco.blockMeta, i + 1, 0, 1, rotation, sbb);
                 }
             }
-
             return true;
         }
-
     }
 
     public static class BossGazebo extends StructureTFComponent {
@@ -414,7 +408,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(keep.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(keep.getBoundingBox().minX + 14, keep.getBoundingBox().maxY + 2, keep.getBoundingBox().minZ + 14, keep.getBoundingBox().maxX - 14,
                     keep.getBoundingBox().maxY + 13, keep.getBoundingBox().maxZ - 14);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -442,7 +435,6 @@ public class TFFinalCastlePieces {
 
             return true;
         }
-
     }
 
     public static class Foundation48 extends StructureTFComponent {
@@ -457,7 +449,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX, sideTower.getBoundingBox().minY, sideTower.getBoundingBox().minZ, sideTower.getBoundingBox().maxX,
                     sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().maxZ);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -475,7 +466,6 @@ public class TFFinalCastlePieces {
                 for (int z = 4; z < 45; z++) {
                     this.func_151554_b(world, deco.blockID, deco.blockMeta, x, -1, z, sbb);
                 }
-
             }
 
             int mid = 16;
@@ -492,10 +482,8 @@ public class TFFinalCastlePieces {
                 for (int i = 9; i < 45; i += 6) {
                     makePiling(world, sbb, mid, rotation, i);
                 }
-
                 makePiling(world, sbb, mid, rotation, 4);
                 makePiling(world, sbb, mid, rotation, 44);
-
             }
 
             // add supports for entrance bridge
@@ -517,7 +505,6 @@ public class TFFinalCastlePieces {
             this.placeBlockRotated(world, deco.blockID, deco.blockMeta, i, -3, 1, rotation, sbb);
             this.placeBlockRotated(world, deco.blockID, deco.blockMeta, i, -5, 2, rotation, sbb);
         }
-
     }
 
     public static class DungeonSteps extends StructureTFComponent {
@@ -625,7 +612,6 @@ public class TFFinalCastlePieces {
 
             return true;
         }
-
     }
 
     public static class DungeonEntrance extends DungeonRoom31 {
@@ -809,7 +795,6 @@ public class TFFinalCastlePieces {
         private void setExitBuiltForLevel(StructureComponent parent, boolean exit) {
             if (parent instanceof DungeonEntrance) {
                 ((DungeonEntrance) parent).hasExit = exit;
-            } else {
             }
         }
 
@@ -898,7 +883,6 @@ public class TFFinalCastlePieces {
                     this.fillBlocksRotated(world, sbb, cs, y, z + 1, cs, y, z + 3, TFBlocks.castleMagic, runeMeta, rotation);
                 }
             }
-
             return true;
         }
 
@@ -915,7 +899,6 @@ public class TFFinalCastlePieces {
                     }
                 }
             }
-
             return false;
         }
 
@@ -949,7 +932,6 @@ public class TFFinalCastlePieces {
 
             return true;
         }
-
     }
 
     public static class StairTower extends ComponentTFTowerWing {
@@ -962,7 +944,6 @@ public class TFFinalCastlePieces {
             this.size = 9;
             this.height = 51;
             this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -4, 0, -4, 8, 50, 8, 0);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -1057,7 +1038,6 @@ public class TFFinalCastlePieces {
         public int getGlyphMeta() {
             return 1;
         }
-
     }
 
     public static class LargeTower extends ComponentTFTowerWing {
@@ -1070,7 +1050,6 @@ public class TFFinalCastlePieces {
             this.size = 13;
             this.height = 61;
             this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -6, 0, -6, 12, 60, 12, 0);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -1114,7 +1093,6 @@ public class TFFinalCastlePieces {
         public int getGlyphMeta() {
             return 0;
         }
-
     }
 
     public static class Mural extends StructureTFComponent {
@@ -1176,7 +1154,6 @@ public class TFFinalCastlePieces {
                     }
                 }
             }
-
             return true;
         }
 
@@ -1340,7 +1317,6 @@ public class TFFinalCastlePieces {
                 }
             }
         }
-
     }
 
     public static class MazeTower13 extends ComponentTFTowerWing {
@@ -1436,7 +1412,6 @@ public class TFFinalCastlePieces {
                         }
                     }
                 } else {
-
                     int howFar = 14 + rand.nextInt(24);
                     int direction = this.findBestDirectionTowards(dest);
 
@@ -1459,7 +1434,6 @@ public class TFFinalCastlePieces {
             // finally, now that the critical path is built, let's add some other towers for atmosphere and
             // complication
             this.buildNonCriticalTowers(parent, list, rand);
-
         }
 
         protected void buildNonCriticalTowers(StructureComponent parent, List list, Random rand) {
@@ -1476,7 +1450,6 @@ public class TFFinalCastlePieces {
                     }
                 }
             }
-
         }
 
         private int findBestDirectionTowards(ChunkCoordinates dest) {
@@ -1728,7 +1701,6 @@ public class TFFinalCastlePieces {
                 // System.out.println("end tower blocked");
                 return false;
             }
-
         }
 
         private boolean isWithinRange(int centerX, int centerZ, int posX, int posZ, int range) {
@@ -1737,7 +1709,6 @@ public class TFFinalCastlePieces {
             if (!inRange) {
 //				System.out.println("Tested range, center is at " + centerX + ", " + centerZ + " and tower is " + posX + ", " + posZ + " so distance is " + Math.max(Math.abs(centerX - posX),  Math.abs(centerZ - posZ)));
             }
-
             return inRange;
         }
 
@@ -1765,7 +1736,6 @@ public class TFFinalCastlePieces {
 
                 return new ChunkCoordinates(rx, ry, rz);
             }
-
             return new ChunkCoordinates(0, 0, 0);
         }
 
@@ -1774,7 +1744,6 @@ public class TFFinalCastlePieces {
          * coordinates.
          */
         protected ChunkCoordinates offsetTowerCCoords(int x, int y, int z, int howFar, int direction) {
-
             int dx = getXWithOffset(x, z);
             int dy = getYWithOffset(y);
             int dz = getZWithOffset(x, z);
@@ -1793,7 +1762,6 @@ public class TFFinalCastlePieces {
                 dz -= howFar;
                 break;
             }
-
             // ugh?
             return new ChunkCoordinates(dx, dy, dz);
         }
@@ -1810,7 +1778,6 @@ public class TFFinalCastlePieces {
                 for (int z = 0; z < this.size; z++) {
                     this.func_151554_b(world, deco.blockID, deco.blockMeta, x, -1, z, sbb);
                 }
-
             }
 
             // add branching runes
@@ -1847,7 +1814,6 @@ public class TFFinalCastlePieces {
                 // add stairs to roof
                 addStairsDown(world, sbb, (floors + 2) % 4, this.height - 1);
             }
-
         }
 
         protected boolean hasAccessibleRoof() {
@@ -1882,7 +1848,6 @@ public class TFFinalCastlePieces {
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, sx - 1, sy - 1, sz, rotation, sbb);
                 this.fillAirRotated(world, sbb, sx, sy + 1, sz, sx - 1, sy + 3, sz, rotation);
             }
-
         }
 
         /**
@@ -2012,7 +1977,6 @@ public class TFFinalCastlePieces {
                 System.out.println("side entrance tower blocked");
                 return false;
             }
-
         }
 
         /**
@@ -2040,7 +2004,6 @@ public class TFFinalCastlePieces {
 
             return new ChunkCoordinates(0, 0, 0);
         }
-
     }
 
     public static class EntranceSideTower extends MazeTower13 {
@@ -2070,7 +2033,6 @@ public class TFFinalCastlePieces {
             list.add(roof);
             roof.buildComponent(this, list, rand);
         }
-
     }
 
     public static class EntranceBottomTower extends MazeTower13 {
@@ -2098,7 +2060,6 @@ public class TFFinalCastlePieces {
             addStairs(list, rand, this.getComponentType() + 1, 0, 1, size / 2, 2);
             addStairs(list, rand, this.getComponentType() + 1, this.size / 2, 1, 0, 3);
             addStairs(list, rand, this.getComponentType() + 1, this.size / 2, 1, this.size - 1, 1);
-
         }
 
         /**
@@ -2121,7 +2082,6 @@ public class TFFinalCastlePieces {
         protected boolean hasAccessibleRoof() {
             return false;
         }
-
     }
 
     /**
@@ -2167,7 +2127,6 @@ public class TFFinalCastlePieces {
                     }
                 }
             }
-
             this.func_151554_b(world, deco.blockID, deco.blockMeta, 0, 0, 5, sbb);
 
             return true;
@@ -2180,7 +2139,6 @@ public class TFFinalCastlePieces {
                 this.func_151554_b(world, deco.blockID, deco.blockMeta, x, y - 1, z, sbb);
             }
         }
-
     }
 
     public static class BellTower21 extends MazeTower13 {
@@ -2339,7 +2297,6 @@ public class TFFinalCastlePieces {
                 if (removeArea != null) {
                     areas.remove(removeArea);
                     areas.add(DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, y, areas));
-
                 }
             }
         }
@@ -2360,7 +2317,6 @@ public class TFFinalCastlePieces {
                 }
             }
         }
-
     }
 
     /**
@@ -2468,7 +2424,6 @@ public class TFFinalCastlePieces {
             if (!isInside) {
                 world.setBlockToAir(x, y, z);
             }
-
         }
 
         protected ArrayList<DestroyArea> makeInitialDestroyList(Random rand) {
@@ -2480,7 +2435,6 @@ public class TFFinalCastlePieces {
             areas.add(DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
             return areas;
         }
-
     }
 
     public static class Bridge extends StructureTFComponent {
@@ -2490,7 +2444,6 @@ public class TFFinalCastlePieces {
         public Bridge(int i, int x, int y, int z, int length, int direction) {
             this.setCoordBaseMode(direction);
             this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox2(x, y, z, 0, -1, -3, length - 1, 5, 6, direction);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -2534,7 +2487,6 @@ public class TFFinalCastlePieces {
 
             return true;
         }
-
     }
 
     public static class Roof9Crenellated extends StructureTFComponent {
@@ -2550,7 +2502,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -2582,10 +2533,8 @@ public class TFFinalCastlePieces {
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, 9, 0, 1, rotation, sbb);
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, 9, 1, 1, rotation, sbb);
             }
-
             return true;
         }
-
     }
 
     /**
@@ -2608,7 +2557,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         /**
@@ -2663,12 +2611,10 @@ public class TFFinalCastlePieces {
                     }
                     this.fillBlocksRotated(world, sbb, i + 1, ((i - 1) * slope) + base, i, 15 - i, (i * slope) + base - 1, i, deco.roofID, deco.roofMeta, rotation);
                 }
-
                 // point!
                 this.fillBlocksRotated(world, sbb, 8, (slope * 6) + 2, 8, 8, (slope * 7) + 2, 8, deco.roofID, deco.roofMeta, rotation);
 
             }
-
             return true;
         }
     }
@@ -2686,7 +2632,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -2719,7 +2664,6 @@ public class TFFinalCastlePieces {
                     this.placeBlockRotated(world, deco.blockID, deco.blockMeta, x + 1, -2, 1, rotation, sbb);
                 }
             }
-
             return true;
         }
     }
@@ -2737,7 +2681,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -2811,10 +2754,8 @@ public class TFFinalCastlePieces {
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, 1, -2, 1, rotation, sbb);
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, 2, -2, 1, rotation, sbb);
             }
-
             return true;
         }
-
     }
 
     public static class Foundation13 extends StructureTFComponent {
@@ -2829,7 +2770,6 @@ public class TFFinalCastlePieces {
             this.setCoordBaseMode(sideTower.getCoordBaseMode());
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().minY, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -2849,7 +2789,6 @@ public class TFFinalCastlePieces {
                 if (this.groundLevel < 0) {
                     return true;
                 }
-
                 // System.out.println("Adjusting root bounding box to " + this.boundingBox.minY);
             }
 
@@ -2872,9 +2811,7 @@ public class TFFinalCastlePieces {
                     this.fillToGroundRotated(world, deco.blockID, deco.blockMeta, x, -1, 1, rotation, sbb);
                     this.fillToGroundRotated(world, deco.blockID, deco.blockMeta, x, -mid, 0, rotation, sbb);
                 }
-
             }
-
             return true;
         }
 
@@ -2884,8 +2821,8 @@ public class TFFinalCastlePieces {
         protected int getDeadrockLevel(World world, StructureBoundingBox sbb) {
             int groundLevel = 256;
 
-            for (int y = 150; y > 0; y--) // is 150 a good place to start? :)
-            {
+            // is 150 a good place to start? :)
+            for (int y = 150; y > 0; y--) {
                 int cx = sbb.getCenterX();
                 int cz = sbb.getCenterZ();
 
@@ -2895,7 +2832,6 @@ public class TFFinalCastlePieces {
                     break;
                 }
             }
-
             return groundLevel;
         }
     }
@@ -2916,7 +2852,6 @@ public class TFFinalCastlePieces {
 
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 5, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 5,
                     sideTower.getBoundingBox().maxX + 5, sideTower.getBoundingBox().maxY, sideTower.getBoundingBox().maxZ + 5);
-
         }
 
         @Override
@@ -2927,7 +2862,6 @@ public class TFFinalCastlePieces {
             for (int i = 0; i < 4; i++) {
                 this.makeThornVine(world, decoRNG, i, sbb);
             }
-
             return true;
         }
 
@@ -2964,7 +2898,6 @@ public class TFFinalCastlePieces {
                     this.placeBlockRotated(world, TFBlocks.thorns, 0, x - 1, y, z, rotation, sbb);
                     this.placeBlockRotated(world, TFBlocks.thorns, 0, x, y, z + 1, rotation, sbb);
                     this.placeBlockRotated(world, TFBlocks.thorns, 0, x - 1, y, z + 1, rotation, sbb);
-                    break;
                 }
 
                 if (Math.abs(y % twistMod) == 1) {
@@ -2977,7 +2910,6 @@ public class TFFinalCastlePieces {
                     twist++;
                     twist = twist % 4;
                 }
-
                 y--;
             }
         }
@@ -3004,7 +2936,6 @@ public class TFFinalCastlePieces {
                 break;
             case 3:
                 dz = -1;
-                break;
             }
 
             // how far do we branch?
@@ -3027,13 +2958,9 @@ public class TFFinalCastlePieces {
                     if (i > (dist / 2)) {
                         this.placeBlockRotated(world, TFBlocks.thorns, branchMeta, x + (dx * i), y + dist - 1, z + (dz * i), rotation, sbb);
                     }
-
                 }
-
             }
-
         }
-
     }
 
     /**
@@ -3052,7 +2979,6 @@ public class TFFinalCastlePieces {
 
             this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
                     sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY, sideTower.getBoundingBox().maxZ + 2);
-
         }
 
         @Override
@@ -3087,12 +3013,8 @@ public class TFFinalCastlePieces {
                     this.fillToGroundRotated(world, deco.blockID, deco.blockMeta, x, -1, 1, rotation, sbb);
                     this.fillToGroundRotated(world, deco.blockID, deco.blockMeta, x, -mid, 0, rotation, sbb);
                 }
-
             }
-
             return true;
         }
-
     }
-
 }

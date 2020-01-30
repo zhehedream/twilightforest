@@ -18,7 +18,6 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
     static int FLOOR_LEVEL = 3;
 
     public ComponentTFHedgeMaze() {
-        ;
     }
 
     public ComponentTFHedgeMaze(World world, Random rand, int i, int x, int y, int z) {
@@ -28,7 +27,6 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
 
         // the maze is 50 x 50 for now
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -RADIUS, -3, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
-
     }
 
     @Override
@@ -189,7 +187,6 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
         default:
             mobID = TFCreatures.getSpawnerNameFor("Hedge Spider");
         }
-
         placeSpawnerAtCurrentPosition(world, rand, rx, FLOOR_LEVEL, rz, mobID, sbb);
     }
 
@@ -212,5 +209,4 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
 
         placeBlockAtCurrentPosition(world, Blocks.lit_pumpkin, rand.nextInt(4), rx, FLOOR_LEVEL, rz, sbb);
     }
-
 }

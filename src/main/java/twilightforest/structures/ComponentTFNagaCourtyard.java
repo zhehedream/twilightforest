@@ -8,22 +8,17 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFNagaCourtyard extends StructureTFComponent {
-
     static int RADIUS = 46;
     static int DIAMETER = 2 * RADIUS + 1;
 
     public ComponentTFNagaCourtyard() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public ComponentTFNagaCourtyard(World world, Random rand, int i, int x, int y, int z) {
         super(i);
-
         this.setCoordBaseMode(0);
-
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -RADIUS, -1, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
-
     }
 
     /**
@@ -346,9 +341,7 @@ public class ComponentTFNagaCourtyard extends StructureTFComponent {
             placeBlockAtCurrentPosition(world, Blocks.stone_slab, 0, x - 1, y + 8, z + 1, sbb);
             placeBlockAtCurrentPosition(world, Blocks.stone_slab, 0, x + 0, y + 8, z + 1, sbb);
             placeBlockAtCurrentPosition(world, Blocks.stone_slab, 0, x + 1, y + 8, z + 1, sbb);
-
         }
-
         return true;
     }
 

@@ -7,7 +7,6 @@ import twilightforest.block.BlockTFMagicLogSpecial;
 import twilightforest.block.TFBlocks;
 
 public class TFGenTreeOfTransformation extends TFGenCanopyTree {
-
     public TFGenTreeOfTransformation() {
         this(false);
     }
@@ -36,5 +35,4 @@ public class TFGenTreeOfTransformation extends TFGenCanopyTree {
             return false;
         }
     }
-
 }

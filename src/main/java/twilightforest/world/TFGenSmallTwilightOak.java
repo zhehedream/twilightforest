@@ -29,8 +29,8 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
         rootMeta = BlockTFRoots.ROOT_META;
     }
 
-    public boolean generate(World par1World, Random par2Random, int x, int y, int z) {
-        int height = par2Random.nextInt(3) + this.minTreeHeight;
+    public boolean generate(World world, Random rand, int x, int y, int z) {
+        int height = rand.nextInt(3) + this.minTreeHeight;
         boolean allClear = true;
 
         if (y >= 1 && y + height + 1 <= 256) {
@@ -53,11 +53,11 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
                 for (int cx = x - width; cx <= x + width && allClear; ++cx) {
                     for (cz = z - width; cz <= z + width && allClear; ++cz) {
                         if (cy >= 0 && cy < 256) {
-                            blockID = par1World.getBlock(cx, cy, cz);
+                            blockID = world.getBlock(cx, cy, cz);
 
                             Block block = blockID;
 
-                            if (blockID != Blocks.air && !block.isLeaves(par1World, cx, cy, cz) && blockID != Blocks.grass && blockID != Blocks.dirt && !block.isWood(par1World, cx, cy, cz)) {
+                            if (blockID != Blocks.air && !block.isLeaves(world, cx, cy, cz) && blockID != Blocks.grass && blockID != Blocks.dirt && !block.isWood(world, cx, cy, cz)) {
                                 allClear = false;
                             }
                         } else {
@@ -70,10 +70,10 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
             if (!allClear) {
                 return false;
             } else {
-                Block blockUsing = par1World.getBlock(x, y - 1, z);
+                Block blockUsing = world.getBlock(x, y - 1, z);
 
                 if ((blockUsing == Blocks.grass || blockUsing == Blocks.dirt) && y < 256 - height - 1) {
-                    this.setBlock(par1World, x, y - 1, z, Blocks.dirt);
+                    this.setBlock(world, x, y - 1, z, Blocks.dirt);
                     width = 3;
                     byte var18 = 0;
                     int treeWidth;
@@ -90,26 +90,25 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
                             for (int tz = z - treeWidth; tz <= z + treeWidth; ++tz) {
                                 int var17 = tz - z;
 
-                                Block block = par1World.getBlock(tx, cz, tz);
+                                Block block = world.getBlock(tx, cz, tz);
 
-                                if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || par2Random.nextInt(2) != 0 && number != 0)
-                                        && (block == null || block.canBeReplacedByLeaves(par1World, tx, cz, tz))) {
-                                    this.setBlockAndMetadata(par1World, tx, cz, tz, this.leafBlock, this.leafMeta);
+                                if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0)
+                                        && (block == null || block.canBeReplacedByLeaves(world, tx, cz, tz))) {
+                                    this.setBlockAndMetadata(world, tx, cz, tz, this.leafBlock, this.leafMeta);
                                 }
                             }
                         }
                     }
 
                     for (cz = 0; cz < height; ++cz) {
-                        blockID = par1World.getBlock(x, y + cz, z);
+                        blockID = world.getBlock(x, y + cz, z);
 
                         Block block = blockID;
 
-                        if (blockID == Blocks.air || block == null || block.isLeaves(par1World, x, y + cz, z)) {
-                            this.setBlockAndMetadata(par1World, x, y + cz, z, this.treeBlock, this.treeMeta);
+                        if (blockID == Blocks.air || block == null || block.isLeaves(world, x, y + cz, z)) {
+                            this.setBlockAndMetadata(world, x, y + cz, z, this.treeBlock, this.treeMeta);
                         }
                     }
-
                     return true;
                 } else {
                     return false;

@@ -1,7 +1,6 @@
 package twilightforest.world;
 
 public class TFGenSmallRainboak extends TFGenSmallTwilightOak {
-
     public TFGenSmallRainboak() {
         this(false);
     }
@@ -10,5 +9,4 @@ public class TFGenSmallRainboak extends TFGenSmallTwilightOak {
         super(notify);
         this.leafMeta = 3;
     }
-
 }

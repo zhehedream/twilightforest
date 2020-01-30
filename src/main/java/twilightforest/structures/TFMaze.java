@@ -128,33 +128,26 @@ public class TFMaze {
     public int getWall(int sx, int sz, int dx, int dz) {
         if (dx == sx + 1 && dz == sz) {
             return getRaw(sx * 2 + 2, sz * 2 + 1);
-        }
-        if (dx == sx - 1 && dz == sz) {
+        } else if (dx == sx - 1 && dz == sz) {
             return getRaw(sx * 2 + 0, sz * 2 + 1);
-        }
-        if (dx == sx && dz == sz + 1) {
+        } else if (dx == sx && dz == sz + 1) {
             return getRaw(sx * 2 + 1, sz * 2 + 2);
-        }
-        if (dx == sx && dz == sz - 1) {
+        } else if (dx == sx && dz == sz - 1) {
             return getRaw(sx * 2 + 1, sz * 2 + 0);
+        } else {
+            System.out.println("Wall check out of bounds; s = " + sx + ", " + sz + "; d = " + dx + ", " + dz);
+            return OUT_OF_BOUNDS;
         }
-
-        System.out.println("Wall check out of bounds; s = " + sx + ", " + sz + "; d = " + dx + ", " + dz);
-
-        return OUT_OF_BOUNDS;
     }
 
     public void putWall(int sx, int sz, int dx, int dz, int value) {
         if (dx == sx + 1 && dz == sz) {
             putRaw(sx * 2 + 2, sz * 2 + 1, value);
-        }
-        if (dx == sx - 1 && dz == sz) {
+        } else if (dx == sx - 1 && dz == sz) {
             putRaw(sx * 2 + 0, sz * 2 + 1, value);
-        }
-        if (dx == sx && dz == sz + 1) {
+        } else if (dx == sx && dz == sz + 1) {
             putRaw(sx * 2 + 1, sz * 2 + 2, value);
-        }
-        if (dx == sx && dz == sz - 1) {
+        } else if (dx == sx && dz == sz - 1) {
             putRaw(sx * 2 + 1, sz * 2 + 0, value);
         }
     }
@@ -259,7 +252,6 @@ public class TFMaze {
                 }
             }
         }
-
         placeTorches(world);
     }
 
@@ -310,7 +302,6 @@ public class TFMaze {
                 }
             }
         }
-
         placeTorches(world);
     }
 
@@ -433,7 +424,6 @@ public class TFMaze {
                 }
             }
         }
-
     }
 
     protected void makeWallThing(World world, int dy, StructureTFComponent component, StructureBoundingBox sbb, int mdx, int mdz, int even, int odd) {
@@ -616,12 +606,11 @@ public class TFMaze {
     public boolean shouldTree(int rx, int rz) {
         if ((rx == 0 || rx == rawWidth - 1) && (getRaw(rx, rz + 1) != 0 || getRaw(rx, rz - 1) != 0)) {
             return true;
-        }
-        if ((rz == 0 || rz == rawDepth - 1) && (getRaw(rx + 1, rz) != 0 || getRaw(rx - 1, rz) != 0)) {
+        } else if ((rz == 0 || rz == rawDepth - 1) && (getRaw(rx + 1, rz) != 0 || getRaw(rx - 1, rz) != 0)) {
             return true;
+        } else {
+            return rand.nextInt(50) == 0; 
         }
-
-        return rand.nextInt(50) == 0;
     }
 
     /**

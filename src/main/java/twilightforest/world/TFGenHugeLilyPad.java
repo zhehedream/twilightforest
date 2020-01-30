@@ -38,7 +38,6 @@ public class TFGenHugeLilyPad extends WorldGenerator {
                 world.setBlock(dx, dy, dz + 1, TFBlocks.hugeLilyPad, 3 | orient, 2);
             }
         }
-
         return true;
     }
 

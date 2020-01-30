@@ -35,5 +35,4 @@ public class TFGenLampposts extends TFGenerator {
             return false;
         }
     }
-
 }

@@ -69,7 +69,6 @@ public class TFGenMinersTree extends TFTreeGenerator {
         for (int b = 0; b < numRoots; b++) {
             buildRoot(world, x, y, z, offset, b);
         }
-
         return true;
     }
 
@@ -87,5 +86,4 @@ public class TFGenMinersTree extends TFTreeGenerator {
             }
         }
     }
-
 }

@@ -99,7 +99,6 @@ public class TFGenThorns extends TFGenerator {
                 this.setBlockAndMetadata(world, nextX, nextY, nextZ, TFBlocks.leaves3, 0);
             }
         }
-
     }
 
     private boolean canPlaceThorns(World world, int dx, int dy, int dz) {
@@ -121,5 +120,4 @@ public class TFGenThorns extends TFGenerator {
             return 8;
         }
     }
-
 }

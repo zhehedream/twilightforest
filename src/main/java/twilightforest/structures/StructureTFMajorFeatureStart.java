@@ -123,7 +123,6 @@ public class StructureTFMajorFeatureStart extends StructureStart {
      * @return The first component we should add to our structure
      */
     public StructureComponent makeFirstComponent(World world, Random rand, TFFeature feature, int x, int y, int z) {
-
         if (feature == TFFeature.nagaCourtyard) {
             return new ComponentTFNagaCourtyard(world, rand, 0, x, y, z);
         }
@@ -172,7 +171,6 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         if (feature == TFFeature.finalCastle) {
             return new TFFinalCastlePieces.Main(world, rand, 0, x, y, z);
         }
-
         return null;
     }
 
@@ -250,7 +248,6 @@ public class StructureTFMajorFeatureStart extends StructureStart {
 
         // don't bother checking Y
         return (compBB.maxX + 1) >= chunkBB.minX && (compBB.minX - 1) <= chunkBB.maxX && (compBB.maxZ + 1) >= chunkBB.minZ && (compBB.minZ - 1) <= chunkBB.maxZ;
-
     }
 
     @SuppressWarnings("unused")
@@ -299,7 +296,6 @@ public class StructureTFMajorFeatureStart extends StructureStart {
                             if (notIntersecting) {
                                 world.setBlock(x, y, z, TFBlocks.shield, calculateShieldMeta(shieldBox, x, y, z), 2);
                             }
-
                         }
                     }
                 }
@@ -350,20 +346,16 @@ public class StructureTFMajorFeatureStart extends StructureStart {
 
     public boolean isLocked(int lockIndex) {
         if (lockIndex < this.lockBytes.length) {
-
             System.out.println("Checking locks for lockIndex " + lockIndex);
 
             for (int i = 0; i < this.lockBytes.length; i++) {
                 System.out.println("Lock " + i + " = " + this.lockBytes[i]);
             }
-
             return this.lockBytes[lockIndex] != 0;
         } else {
-
             System.out.println("Current lock index, " + lockIndex + " is beyond array bounds " + this.lockBytes.length);
 
             return false;
         }
     }
-
 }

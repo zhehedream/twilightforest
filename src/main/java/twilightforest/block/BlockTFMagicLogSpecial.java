@@ -440,7 +440,5 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
         itemList.add(new ItemStack(item, 1, 1));
         itemList.add(new ItemStack(item, 1, 2));
         itemList.add(new ItemStack(item, 1, 3));
-
     }
-
 }

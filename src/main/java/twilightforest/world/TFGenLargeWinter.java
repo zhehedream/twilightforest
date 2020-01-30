@@ -23,7 +23,6 @@ public class TFGenLargeWinter extends TFTreeGenerator {
         leafMeta = 1;
         rootBlock = TFBlocks.root;
         rootMeta = BlockTFRoots.ROOT_META;
-
     }
 
     @Override
@@ -56,7 +55,6 @@ public class TFGenLargeWinter extends TFTreeGenerator {
         for (int b = 0; b < numRoots; b++) {
             buildRoot(world, x, y, z, offset, b);
         }
-
         return true;
     }
 
@@ -117,5 +115,4 @@ public class TFGenLargeWinter extends TFTreeGenerator {
             this.setBlockAndMetadata(world, x + 1, y + dy, z + 1, treeBlock, treeMeta);
         }
     }
-
 }

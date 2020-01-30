@@ -8,7 +8,6 @@ import net.minecraft.world.World;
  * Used to generate no particular tree
  */
 public class TFGenNoTree extends TFTreeGenerator {
-
     public TFGenNoTree() {
     }
 
@@ -20,5 +19,4 @@ public class TFGenNoTree extends TFTreeGenerator {
     public boolean generate(World world, Random random, int i, int j, int k) {
         return false;
     }
-
 }

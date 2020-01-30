@@ -9,10 +9,8 @@ import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFHillMaze extends StructureTFComponent {
-
     public ComponentTFHillMaze() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private static final int FLOOR_LEVEL = 1;
@@ -25,7 +23,6 @@ public class ComponentTFHillMaze extends StructureTFComponent {
         this.setCoordBaseMode(0);
 
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -getRadius(), 0, -getRadius(), getRadius() * 2, 5, getRadius() * 2, 0);
-
     }
 
     @Override
@@ -72,7 +69,6 @@ public class ComponentTFHillMaze extends StructureTFComponent {
         decorate3x3Rooms(world, rcoords, sbb);
 
         return true;
-
     }
 
     public int getMazeSize() {

@@ -146,7 +146,6 @@ public class TFGenHollowTree extends TFGenerator {
 
         // this glass sphere approximates where we want our crown
         // drawBlob(x, y + height, z, (byte)crownRadius, (byte)Blocks.glass, false);
-
     }
 
     /**
@@ -179,7 +178,6 @@ public class TFGenHollowTree extends TFGenerator {
             int minBranches, int maxBranches, int size, boolean leafy) {
         // let's do this!
         int numBranches = random.nextInt(maxBranches - minBranches) + minBranches;
-        ;
         double branchRotation = 1.0 / (numBranches + 1);
         double branchOffset = random.nextDouble();
 
@@ -191,13 +189,16 @@ public class TFGenHollowTree extends TFGenerator {
                 dHeight = branchHeight;
             }
 
-            if (size == 2) {
-                makeLargeBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
-            } else if (size == 1) {
+            switch(size) {
+            case 1:
                 makeMedBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
-            } else if (size == 3) {
+                break;
+            case 2:
+                makeLargeBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
+                break;
+            case 3:
                 makeRoot(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt);
-            } else {
+            default:
                 makeSmallBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
             }
         }
@@ -226,7 +227,6 @@ public class TFGenHollowTree extends TFGenerator {
                             this.setBlockAndMetadata(world, dx + x, dy + y, dz + z, rootBlock, rootMeta);
                         }
                     }
-
                 }
             }
         }
@@ -259,7 +259,6 @@ public class TFGenHollowTree extends TFGenerator {
                 }
             }
         }
-
     }
 
     /**

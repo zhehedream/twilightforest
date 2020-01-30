@@ -18,27 +18,25 @@ public class TFGenTallGrass extends WorldGenerator {
         this.tallGrassMetadata = meta;
     }
 
-    public boolean generate(World par1World, Random par2Random, int x, int y, int z) {
+    public boolean generate(World world, Random rand, int x, int y, int z) {
         Block block = null;
         do {
-            block = par1World.getBlock(x, y, z);
-            if (block != null && !block.isLeaves(par1World, x, y, z)) {
+            block = world.getBlock(x, y, z);
+            if (block != null && !block.isLeaves(world, x, y, z)) {
                 break;
             }
             y--;
         } while (y > 0);
 
         for (int i = 0; i < amount; ++i) {
-            int dx = x + par2Random.nextInt(8) - par2Random.nextInt(8);
-            int dy = y + par2Random.nextInt(4) - par2Random.nextInt(4);
-            int dz = z + par2Random.nextInt(8) - par2Random.nextInt(8);
+            int dx = x + rand.nextInt(8) - rand.nextInt(8);
+            int dy = y + rand.nextInt(4) - rand.nextInt(4);
+            int dz = z + rand.nextInt(8) - rand.nextInt(8);
 
-            if (par1World.isAirBlock(dx, dy, dz) && this.tallGrassID.canBlockStay(par1World, dx, dy, dz)) {
-                par1World.setBlock(dx, dy, dz, this.tallGrassID, this.tallGrassMetadata, 2);
+            if (world.isAirBlock(dx, dy, dz) && this.tallGrassID.canBlockStay(world, dx, dy, dz)) {
+                world.setBlock(dx, dy, dz, this.tallGrassID, this.tallGrassMetadata, 2);
             }
         }
-
         return true;
     }
-
 }

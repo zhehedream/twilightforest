@@ -76,5 +76,4 @@ public class TFGenTreeOfTime extends TFGenHollowTree {
         // 3-6 medium branches going straight up
         buildBranchRing(world, random, x, y, z, diameter, height, 0, (crownRadius / 2), 0, 0.05D, 0, bvar, bvar + 2, 0, true);
     }
-
 }

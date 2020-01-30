@@ -13,21 +13,21 @@ import net.minecraft.world.World;
 public class TFGenHollowStump extends TFGenHollowTree {
 
     @Override
-    public boolean generate(World world, Random rand, int x, int y, int z) {
+    public boolean generate(World world, Random random, int x, int y, int z) {
 
-        int radius = rand.nextInt(2) + 2;
+        int radius = random.nextInt(2) + 2;
 
-        if (!isAreaSuitable(world, rand, x - radius, y, z - radius, 2 * radius, 6, 2 * radius)) {
+        if (!isAreaSuitable(world, random, x - radius, y, z - radius, 2 * radius, 6, 2 * radius)) {
             return false;
         }
 
-        buildTrunk(world, rand, x, y, z, radius, 6);
+        buildTrunk(world, random, x, y, z, radius, 6);
 
         // 3-5 roots at the bottom
-        buildBranchRing(world, rand, x, y, z, radius, 3, 2, 6, 0, 0.75D, 0, 3, 5, 3, false);
+        buildBranchRing(world, random, x, y, z, radius, 3, 2, 6, 0, 0.75D, 0, 3, 5, 3, false);
 
         // several more taproots
-        buildBranchRing(world, rand, x, y, z, radius, 1, 2, 8, 0, 0.9D, 0, 3, 5, 3, false);
+        buildBranchRing(world, random, x, y, z, radius, 1, 2, 8, 0, 0.9D, 0, 3, 5, 3, false);
 
         return true;
     }
@@ -77,7 +77,5 @@ public class TFGenHollowStump extends TFGenHollowTree {
                 }
             }
         }
-
     }
-
 }
