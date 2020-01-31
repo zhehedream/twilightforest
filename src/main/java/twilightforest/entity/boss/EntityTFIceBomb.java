@@ -16,18 +16,19 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFYeti;
+import twilightforest.entity.TFDamageSources;
 
 public class EntityTFIceBomb extends EntityThrowable {
 
     private int zoneTimer = 80;
     private boolean hasHit;
 
-    public EntityTFIceBomb(World par1World) {
-        super(par1World);
+    public EntityTFIceBomb(World world) {
+        super(world);
     }
 
-    public EntityTFIceBomb(World par1World, EntityLivingBase thrower) {
-        super(par1World, thrower);
+    public EntityTFIceBomb(World world, EntityLivingBase thrower) {
+        super(world, thrower);
     }
 
     /**
@@ -141,7 +142,6 @@ public class EntityTFIceBomb extends EntityThrowable {
             // damage
             if (this.zoneTimer % 10 == 0) {
                 hitNearbyEntities();
-
             }
         }
     }
@@ -164,11 +164,10 @@ public class EntityTFIceBomb extends EntityThrowable {
                     worldObj.setBlock(ix, iy + 1, iz, Blocks.ice);
 
                 } else {
-                    entity.attackEntityFrom(DamageSource.magic, 1);
+                    entity.attackEntityFrom(TFDamageSources.iceBomb, 1);
                     int chillLevel = 2;
                     ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20 * 5, chillLevel, true));
                 }
-
             }
         }
     }

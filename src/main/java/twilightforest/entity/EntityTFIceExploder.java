@@ -26,8 +26,8 @@ public class EntityTFIceExploder extends EntityMob {
 
     private static final float EXPLOSION_RADIUS = 1;
 
-    public EntityTFIceExploder(World par1World) {
-        super(par1World);
+    public EntityTFIceExploder(World world) {
+        super(world);
 
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
@@ -73,7 +73,6 @@ public class EntityTFIceExploder extends EntityMob {
 
             TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowguardian", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
         }
-
     }
 
     @Override
@@ -103,10 +102,10 @@ public class EntityTFIceExploder extends EntityMob {
      * Trigger achievement when killed
      */
     @Override
-    public void onDeath(DamageSource par1DamageSource) {
-        super.onDeath(par1DamageSource);
-        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (damageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
         }
     }
 
@@ -237,7 +236,6 @@ public class EntityTFIceExploder extends EntityMob {
                 bestDifference = difference;
             }
         }
-
         return bestColor;
     }
 

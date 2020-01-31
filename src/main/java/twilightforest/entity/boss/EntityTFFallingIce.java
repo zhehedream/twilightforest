@@ -111,10 +111,8 @@ public class EntityTFFallingIce extends Entity {
                     }
                 }
             }
-
             destroyIceInAABB(this.boundingBox.expand(0.5, 0, 0.5));
         }
-
         makeTrail();
     }
 
@@ -188,13 +186,11 @@ public class EntityTFFallingIce extends Entity {
     @Override
     protected void readEntityFromNBT(NBTTagCompound var1) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound var1) {
         // TODO Auto-generated method stub
-
     }
 
     /**

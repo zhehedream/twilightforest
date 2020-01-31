@@ -10,12 +10,12 @@ public class EntityTFIceSnowball extends EntityThrowable {
 
     private static final int DAMAGE = 8;
 
-    public EntityTFIceSnowball(World par1World) {
-        super(par1World);
+    public EntityTFIceSnowball(World world) {
+        super(world);
     }
 
-    public EntityTFIceSnowball(World par1World, EntityLivingBase par2EntityLiving) {
-        super(par1World, par2EntityLiving);
+    public EntityTFIceSnowball(World world, EntityLivingBase entity) {
+        super(world, entity);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EntityTFIceSnowball extends EntityThrowable {
      * Reflect!
      */
     @Override
-    public boolean attackEntityFrom(DamageSource damagesource, float i) {
+    public boolean attackEntityFrom(DamageSource damageSource, float i) {
 
         setBeenAttacked();
 
@@ -70,9 +70,7 @@ public class EntityTFIceSnowball extends EntityThrowable {
                 // TODO:
             }
         }
-
         pop();
-
     }
 
     /**
@@ -91,5 +89,4 @@ public class EntityTFIceSnowball extends EntityThrowable {
             this.setDead();
         }
     }
-
 }

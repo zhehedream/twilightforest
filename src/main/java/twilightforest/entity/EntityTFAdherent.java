@@ -90,7 +90,6 @@ public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITF
         float heightOffset = MathHelper.sqrt_double(tx * tx + tz * tz) * 0.2F;
         natureBolt.setThrowableHeading(tx, ty + heightOffset, tz, 0.6F, 6.0F); // 0.6 speed, 6.0 inaccuracy
         this.worldObj.spawnEntityInWorld(natureBolt);
-
     }
 
     /**
@@ -109,5 +108,4 @@ public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITF
             dataWatcher.updateObject(CHARGE_FLAG, (byte) 0);
         }
     }
-
 }

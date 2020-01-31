@@ -22,8 +22,8 @@ import twilightforest.TwilightForestMod;
 
 public class EntityTFIceShooter extends EntityMob implements IRangedAttackMob {
 
-    public EntityTFIceShooter(World par1World) {
-        super(par1World);
+    public EntityTFIceShooter(World world) {
+        super(world);
 
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.25D, 20, 10.0F));
@@ -73,7 +73,6 @@ public class EntityTFIceShooter extends EntityMob implements IRangedAttackMob {
 
             TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowguardian", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
         }
-
     }
 
     @Override

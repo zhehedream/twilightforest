@@ -133,19 +133,15 @@ public class EntitySeekerArrow extends EntityArrow {
                     this.homingTarget = null;
                 }
             }
-
             this.motionY += 0.045F;
-
         }
 
         // this is a slower arrow, adjust for gravity slightly
 
         super.onUpdate();
-
     }
 
     private boolean isThisArrowFlying() {
         return MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) > 1.0;
     }
-
 }
