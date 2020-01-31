@@ -56,8 +56,8 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
 
         // add bottom tower
         int brDirection = (direction + this.coordBaseMode) % 4;
-        ComponentTFFinalCastleEntranceBottomTower eTower = new ComponentTFFinalCastleEntranceBottomTower(rand, this.getComponentType() + 1, this.boundingBox.minX + 6, this.boundingBox.minY - (middleFloors) * 8, this.boundingBox.minZ + 6,
-                bottomFloors + 1, bottomFloors, (brDirection + 2) % 4);
+        ComponentTFFinalCastleEntranceBottomTower eTower = new ComponentTFFinalCastleEntranceBottomTower(rand, this.getComponentType() + 1, this.boundingBox.minX + 6,
+                this.boundingBox.minY - (middleFloors) * 8, this.boundingBox.minZ + 6, bottomFloors + 1, bottomFloors, (brDirection + 2) % 4);
         list.add(eTower);
         eTower.buildComponent(this, list, rand);
 
@@ -84,7 +84,8 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
         // direction + ", so our door is going to be at " + opening + " and the new tower will appear at " +
         // tc);
 
-        ComponentTFFinalCastleEntranceSideTower eTower = new ComponentTFFinalCastleEntranceSideTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, middleFloors, middleFloors - 1, direction);
+        ComponentTFFinalCastleEntranceSideTower eTower = new ComponentTFFinalCastleEntranceSideTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, middleFloors, middleFloors - 1,
+                direction);
 
         StructureBoundingBox largerBB = new StructureBoundingBox(eTower.getBoundingBox());
 

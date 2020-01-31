@@ -42,7 +42,7 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
             this.deco = new StructureTFDecoratorCastle();
         }
     }
-    
+
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
@@ -111,7 +111,7 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         list.add(ComponentTFFinalCastleMural1);
         ComponentTFFinalCastleMural1.buildComponent(this, list, rand);
     }
-    
+
     /**
      * Build a side tower, then tell it to start building towards the destination
      */
@@ -144,7 +144,7 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
             this.buildTowerMaze(list, rand, x, y, z, howFar, direction, type, dest);
         }
     }
-    
+
     private boolean isMazeComplete(List list, int type) {
         Iterator iterator = list.iterator();
         StructureComponent structurecomponent;
@@ -158,9 +158,10 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         } while (!((structurecomponent instanceof ComponentTFFinalCastleEntranceTower && type == 0) || (structurecomponent instanceof ComponentTFFinalCastleBellTower21 && type == 1)));
         return true;
     }
-    
+
     /**
-     * Provides coordinates to make a tower such that it will open into the parent tower at the provided coordinates.
+     * Provides coordinates to make a tower such that it will open into the parent tower at the provided
+     * coordinates.
      */
     protected ChunkCoordinates offsetTowerCCoords(int x, int y, int z, int howFar, int direction) {
 
@@ -186,7 +187,7 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         // ugh?
         return new ChunkCoordinates(dx, dy, dz);
     }
-    
+
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // walls

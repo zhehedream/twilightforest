@@ -18,8 +18,8 @@ public class ComponentTFFinalCastleRoof9Crenellated extends StructureTFComponent
         int height = 5;
 
         this.setCoordBaseMode(sideTower.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
-                sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2, sideTower.getBoundingBox().maxX + 2,
+                sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

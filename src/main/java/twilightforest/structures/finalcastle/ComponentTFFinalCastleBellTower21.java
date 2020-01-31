@@ -9,7 +9,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
-import twilightforest.structures.TFFinalCastlePieces.BellFoundation21;
 
 public class ComponentTFFinalCastleBellTower21 extends ComponentTFFinalCastleMazeTower13 {
     private static final int FLOORS = 8;
@@ -35,7 +34,7 @@ public class ComponentTFFinalCastleBellTower21 extends ComponentTFFinalCastleMaz
         }
 
         // add foundation
-        BellFoundation21 foundation = new BellFoundation21(rand, 4, this);
+        ComponentTFFinalCastleBellFoundation21 foundation = new ComponentTFFinalCastleBellFoundation21(rand, 4, this);
         list.add(foundation);
         foundation.buildComponent(this, list, rand);
 

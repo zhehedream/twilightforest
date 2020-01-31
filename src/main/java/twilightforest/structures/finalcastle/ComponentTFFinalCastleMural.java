@@ -7,7 +7,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
-public class ComponentTFFinalCastleMural extends StructureTFComponent{
+public class ComponentTFFinalCastleMural extends StructureTFComponent {
     private int height;
     private int width;
 

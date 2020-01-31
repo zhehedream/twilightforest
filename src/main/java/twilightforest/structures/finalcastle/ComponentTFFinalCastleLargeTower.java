@@ -9,7 +9,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
-import twilightforest.structures.TFFinalCastlePieces.Roof9Crenellated;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFFinalCastleLargeTower extends ComponentTFTowerWing {
@@ -30,7 +29,7 @@ public class ComponentTFFinalCastleLargeTower extends ComponentTFTowerWing {
             this.deco = ((StructureTFComponent) parent).deco;
         }
         // add crown
-        Roof9Crenellated roof = new Roof9Crenellated(rand, 4, this);
+        ComponentTFFinalCastleRoof9Crenellated roof = new ComponentTFFinalCastleRoof9Crenellated(rand, 4, this);
         list.add(roof);
         roof.buildComponent(this, list, rand);
     }

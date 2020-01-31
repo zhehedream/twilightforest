@@ -14,8 +14,8 @@ public class ComponentTFFinalCastleBellFoundation21 extends ComponentTFFinalCast
     public ComponentTFFinalCastleBellFoundation21(Random rand, int i, StructureTFComponent sideTower) {
         super(rand, i, sideTower);
 
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
-                sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY, sideTower.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2, sideTower.getBoundingBox().maxX + 2,
+                sideTower.getBoundingBox().maxY, sideTower.getBoundingBox().maxZ + 2);
     }
 
     @Override

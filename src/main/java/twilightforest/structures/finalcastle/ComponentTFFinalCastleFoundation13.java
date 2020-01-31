@@ -20,8 +20,8 @@ public class ComponentTFFinalCastleFoundation13 extends StructureTFComponent {
         super(i);
 
         this.setCoordBaseMode(sideTower.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().minZ - 2,
-                sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().minY, sideTower.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().minZ - 2, sideTower.getBoundingBox().maxX + 2,
+                sideTower.getBoundingBox().minY, sideTower.getBoundingBox().maxZ + 2);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

@@ -24,8 +24,8 @@ public class ComponentTFFinalCastleRoof13Conical extends StructureTFComponent {
         int height = slope * 4;
 
         this.setCoordBaseMode(sideTower.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
-                sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2, sideTower.getBoundingBox().maxX + 2,
+                sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
     }
 
     /**

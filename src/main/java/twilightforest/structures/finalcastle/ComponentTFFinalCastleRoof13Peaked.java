@@ -18,8 +18,8 @@ public class ComponentTFFinalCastleRoof13Peaked extends StructureTFComponent {
         int height = 18;
 
         this.setCoordBaseMode(sideTower.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2,
-                sideTower.getBoundingBox().maxX + 2, sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX - 2, sideTower.getBoundingBox().maxY - 1, sideTower.getBoundingBox().minZ - 2, sideTower.getBoundingBox().maxX + 2,
+                sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

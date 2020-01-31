@@ -10,8 +10,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
-import twilightforest.structures.TFFinalCastlePieces.DestroyArea;
-import twilightforest.structures.TFFinalCastlePieces.WreckedTower;
 
 public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMazeTower13 {
     public ComponentTFFinalCastleDamagedTower() {
@@ -48,7 +46,7 @@ public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMa
     }
 
     protected ComponentTFFinalCastleMazeTower13 makeNewDamagedTower(Random rand, int direction, ChunkCoordinates tc) {
-        return new WreckedTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
+        return new ComponentTFFinalCastleWreckedTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
     }
 
     @Override
