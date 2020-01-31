@@ -19,9 +19,6 @@ public class ItemTFIceBomb extends ItemTF {
         this.setMaxStackSize(16);
     }
 
-    /**
-     * Properly register icon source
-     */
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
@@ -35,21 +32,16 @@ public class ItemTFIceBomb extends ItemTF {
         return snowIcon[i];
     }
 
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack,
-     * world, entityPlayer
-     */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        if (!par3EntityPlayer.capabilities.isCreativeMode) {
-            --par1ItemStack.stackSize;
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if (!player.capabilities.isCreativeMode) {
+            --itemStack.stackSize;
         }
 
-        par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-        if (!par2World.isRemote) {
-            par2World.spawnEntityInWorld(new EntityTFIceBomb(par2World, par3EntityPlayer));
+        if (!world.isRemote) {
+            world.spawnEntityInWorld(new EntityTFIceBomb(world, player));
         }
-
-        return par1ItemStack;
+        return itemStack;
     }
 }
