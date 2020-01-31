@@ -30,3 +30,4 @@
 
 # Mac OS X
 .DS_Store
+*.bat
