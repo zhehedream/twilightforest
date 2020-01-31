@@ -97,19 +97,20 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * Load from NBT
      */
     @Override
-    protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
-        super.func_143011_b(par1NBTTagCompound);
-        this.size = par1NBTTagCompound.getInteger("towerSize");
-        this.height = par1NBTTagCompound.getInteger("towerHeight");
+    protected void func_143011_b(NBTTagCompound tagCompound) {
+        super.func_143011_b(tagCompound);
 
-        this.readOpeningsFromArray(par1NBTTagCompound.getIntArray("doorInts"));
+        this.size = tagCompound.getInteger("towerSize");
+        this.height = tagCompound.getInteger("towerHeight");
 
-        this.highestOpening = par1NBTTagCompound.getInteger("highestOpening");
+        this.readOpeningsFromArray(tagCompound.getIntArray("doorInts"));
+
+        this.highestOpening = tagCompound.getInteger("highestOpening");
         // too lazy to do this as a loop
-        this.openingTowards[0] = par1NBTTagCompound.getBoolean("openingTowards0");
-        this.openingTowards[1] = par1NBTTagCompound.getBoolean("openingTowards1");
-        this.openingTowards[2] = par1NBTTagCompound.getBoolean("openingTowards2");
-        this.openingTowards[3] = par1NBTTagCompound.getBoolean("openingTowards3");
+        this.openingTowards[0] = tagCompound.getBoolean("openingTowards0");
+        this.openingTowards[1] = tagCompound.getBoolean("openingTowards1");
+        this.openingTowards[2] = tagCompound.getBoolean("openingTowards2");
+        this.openingTowards[3] = tagCompound.getBoolean("openingTowards3");
     }
 
     /**
@@ -2174,7 +2175,10 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         int rotation = rand.nextInt(4);
 
         // start somewhere in the lower part
-        int startHeight = rand.nextInt((int) (this.height * 0.66F));
+        int startHeight = (int) (this.height * 0.66F);
+        if(startHeight > 0) { 
+            startHeight = rand.nextInt((int) (this.height * 0.66F));
+        }
 
         // near the middle
         int startZ = 3 + rand.nextInt(this.size - 6);
@@ -2185,12 +2189,8 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         if (sbb.isVecInside(dx, this.boundingBox.minY + 1, dz)) {
             for (int dy = this.getYWithOffset(startHeight); dy > 0; dy--) {
                 if (world.getBlock(dx, dy, dz) == TFBlocks.castleBlock) {
-                    // System.out.println("placing glyph brick over " + world.getBlock(dx, dy, dz));
                     world.setBlock(dx, dy, dz, TFBlocks.castleMagic, meta, 2);
                 } else {
-                    // System.out.println("Stopping glyphs because block is " + world.getBlock(dx, dy, dz));
-                    // System.out.println("dy = " + dy + " because startHeight = " + startHeight + " and startZ = " +
-                    // startZ);
                     break;
                 }
             }
@@ -2206,7 +2206,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
             for (int y = startHeight; y < (startHeight + leftHeight); y++) {
                 this.placeBlockRotated(world, TFBlocks.castleMagic, meta, 0, y, leftOffset, rotation, sbb);
             }
-
         }
 
         // go right a little
@@ -2219,7 +2218,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
             for (int y = startHeight; y < (startHeight + rightHeight); y++) {
                 this.placeBlockRotated(world, TFBlocks.castleMagic, meta, 0, y, rightOffset, rotation, sbb);
             }
-
         }
     }
 
