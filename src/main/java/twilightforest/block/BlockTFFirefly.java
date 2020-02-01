@@ -18,9 +18,7 @@ public class BlockTFFirefly extends BlockTFCritter {
         this.setLightLevel(0.9375F);
     }
 
-    /**
-     * How often do we check for incorrect lighting on fireflies, etc.
-     */
+    // How often do we check for incorrect lighting on fireflies, etc.
     public int tickRate() {
         return 50 + rand.nextInt(50);
     }
@@ -44,9 +42,7 @@ public class BlockTFFirefly extends BlockTFCritter {
         return new TileEntityTFFirefly();
     }
 
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
+    // Called whenever the block is added into the world. Args: world, x, y, z
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
@@ -56,10 +52,7 @@ public class BlockTFFirefly extends BlockTFCritter {
 //		}
     }
 
-    /**
-     * Ticks the block if it's been scheduled Check the lighting and make the world relight it if it's
-     * incorrect.
-     */
+    // Ticks the block if it's been scheduled Check the lighting and make the world relight it if it's incorrect.
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         if (!world.isRemote && world.getBlockLightValue(x, y, z) < 12) {

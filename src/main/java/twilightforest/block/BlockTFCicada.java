@@ -16,4 +16,5 @@ public class BlockTFCicada extends BlockTFCritter {
     public TileEntity createTileEntity(World world, int metadata) {
         return new TileEntityTFCicada();
     }
+
 }
