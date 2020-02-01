@@ -40,21 +40,27 @@ public class TFGenFallenSmallLog extends TFGenerator {
         default:
             logID = TFBlocks.log;
             logMeta = 0;
+            break;
         case 1:
             logID = TFBlocks.log;
             logMeta = 1;
+            break;
         case 2:
             logID = TFBlocks.log;
             logMeta = 2;
+            break;
         case 3:
             logID = Blocks.log;
             logMeta = 0;
+            break;
         case 4:
             logID = Blocks.log;
             logMeta = 1;
+            break;
         case 5:
             logID = Blocks.log;
             logMeta = 2;
+            break;
         case 6:
             logID = Blocks.log;
             logMeta = 3;
