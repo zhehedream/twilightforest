@@ -374,7 +374,7 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
     }
 
     private boolean isSortingMatch(ItemStack beingSorted, ItemStack currentItem) {
-        return getCreativeTab(currentItem.getItem()) == getCreativeTab(beingSorted.getItem());
+        return getCreativeTab(currentItem.getItem()).equals(getCreativeTab(beingSorted.getItem()));
     }
 
     private Object getCreativeTab(Item item) {
@@ -393,7 +393,7 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
      */
     private boolean checkIfChestsContains(ArrayList<IInventory> chests, IInventory testChest) {
         for (IInventory chest : chests) {
-            if (chest == testChest) {
+            if (chest.equals(testChest)) {
                 return true;
             }
 
