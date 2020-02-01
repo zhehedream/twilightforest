@@ -44,9 +44,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         this.isInPosition = false;
     }
 
-    /**
-     * Returns whether the EntityAIBase should begin execution.
-     */
+    //  Returns whether the EntityAIBase should begin execution.
     @Override
     public boolean shouldExecute() {
         EntityLivingBase target = this.attacker.getAttackTarget();
@@ -67,9 +65,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
 
     }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
+    // Returns whether an in-progress EntityAIBase should continue executing
     @Override
     public boolean continueExecuting() {
         EntityLivingBase target = this.attacker.getAttackTarget();
@@ -87,9 +83,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         }
     }
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
+    // Execute a one shot task or start executing a continuous task
     @Override
     public void startExecuting() {
         EntityLivingBase target = this.attacker.getAttackTarget();
@@ -100,9 +94,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         }
     }
 
-    /**
-     * Resets the task
-     */
+    // Resets the task
     @Override
     public void resetTask() {
         this.seekTimer = 0;
@@ -113,9 +105,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         this.attacker.setBreathing(false);
     }
 
-    /**
-     * Updates the task
-     */
+    // Updates the task
     @Override
     public void updateTask() {
 
@@ -187,9 +177,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         // System.out.println("Hovering!");
     }
 
-    /**
-     * What, if anything, is the head currently looking at?
-     */
+    //  What, if anything, is the head currently looking at?
     @SuppressWarnings("unchecked")
     private Entity getHeadLookTarget() {
         Entity pointedEntity = null;
@@ -226,9 +214,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         return pointedEntity;
     }
 
-    /**
-     * Make a new spot to hover at!
-     */
+    // Make a new spot to hover at!
     private void makeNewHoverSpot(EntityLivingBase target) {
         double hx = 0, hy = 0, hz = 0;
 
@@ -244,9 +230,9 @@ public class EntityAITFHoverBeam extends EntityAIBase {
             }
         }
 
-        if (tries == 99) {
+        /*if (tries == 99) {
             // System.out.println("Found no spots, giving up");
-        }
+        }*/
 
         this.hoverPosX = hx;
         this.hoverPosY = hy;
@@ -267,11 +253,9 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         return isOccupied;
     }
 
-    /**
-     * Can the specified entity see the specified location?
-     */
+    // Can the specified entity see the specified location?
     protected boolean canEntitySee(Entity entity, double dx, double dy, double dz) {
         return entity.worldObj.rayTraceBlocks(Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ), Vec3.createVectorHelper(dx, dy, dz)) == null;
-
     }
+
 }

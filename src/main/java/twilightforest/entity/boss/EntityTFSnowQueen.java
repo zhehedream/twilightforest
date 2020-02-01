@@ -225,9 +225,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 
     }
 
-    /**
-     * Keep ice shield position updated
-     */
+    // Keep ice shield position updated
     @Override
     public void onUpdate() {
 
@@ -299,9 +297,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         }
     }
 
-    /**
-     * Trigger achievement when killed
-     */
+    // Trigger achievement when killed
     @Override
     public void onDeath(DamageSource par1DamageSource) {
         super.onDeath(par1DamageSource);
@@ -340,9 +336,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         }
     }
 
-    /**
-     * Do the effect where the shield hits something
-     */
+    // Do the effect where the shield hits something
     protected void applyShieldCollision(Entity collider, Entity collided) {
         if (collided != this) {
             collided.applyEntityCollision(collider);
@@ -357,9 +351,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
                     this.playSound("mob.irongolem.throw", 1.0F, 1.0F);
 
                     // System.out.println("Spike ball attack success");
-
                 }
-
             }
         }
     }
@@ -379,9 +371,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         }
     }
 
-    /**
-     * Called when we get attacked.
-     */
+    // Called when we get attacked.
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float damage) {
         boolean result = super.attackEntityFrom(par1DamageSource, damage);
@@ -406,9 +396,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 
     }
 
-    /**
-     * Get the ice shield position
-     */
+    // Get the ice shield position
     public Vec3 getIceShieldPosition(float angle, float distance) {
         double var1 = Math.cos((angle) * Math.PI / 180.0D) * distance;
         double var3 = Math.sin((angle) * Math.PI / 180.0D) * distance;
@@ -416,19 +404,15 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         return Vec3.createVectorHelper(this.posX + var1, this.posY + this.getShieldYOffset(), this.posZ + var3);
     }
 
-    /**
-     * How high is the shield
-     */
+    // How high is the shield
     public double getShieldYOffset() {
         return 0.1F;
     }
 
-    /**
-     * Called when the mob is falling. Calculates and applies fall damage.
-     */
+    // Called when the mob is falling. Calculates and applies fall damage.
     @Override
     protected void fall(float par1) {
-        ; // no falling
+        // no falling
     }
 
     @Override
@@ -441,17 +425,13 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         return false;
     }
 
-    /**
-     * We need to do this for the bounding boxes on the parts to become active
-     */
+    // We need to do this for the bounding boxes on the parts to become active
     @Override
     public Entity[] getParts() {
         return iceArray;
     }
 
-    /**
-     * Destroys all ice related blocks in the AABB
-     */
+    // Destroys all ice related blocks in the AABB
     public boolean destroyBlocksInAABB(AxisAlignedBB par1AxisAlignedBB) {
         // System.out.println("Destroying blocks in " + par1AxisAlignedBB);
 
@@ -482,7 +462,6 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
                 }
             }
         }
-
         return wasBlocked;
     }
 
@@ -599,7 +578,6 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 //        		System.out.println("teleport find failed because of liquid at destination");
                 continue;
             }
-
             // if we made it this far, we win!
             break;
         }
@@ -614,9 +592,7 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
         return Vec3.createVectorHelper(tx, ty, tz);
     }
 
-    /**
-     * Can the specified entity see the specified location?
-     */
+    // Can the specified entity see the specified location?
     protected boolean canEntitySee(Entity entity, double dx, double dy, double dz) {
         return worldObj.rayTraceBlocks(Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ), Vec3.createVectorHelper(dx, dy, dz)) == null;
 
@@ -637,9 +613,9 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 
     @Override
     public void doBreathAttack(Entity target) {
-        if (target.attackEntityFrom(DamageSource.causeMobDamage(this), BREATH_DAMAGE)) {
+        //if (target.attackEntityFrom(DamageSource.causeMobDamage(this), BREATH_DAMAGE)) {
             // slow target?
-        }
+        //}
     }
 
 }

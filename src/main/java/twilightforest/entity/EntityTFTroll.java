@@ -37,8 +37,8 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
     private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
     private EntityAITFCollideAttackFixed aiAttackOnCollide = new EntityAITFCollideAttackFixed(this, EntityPlayer.class, 1.2D, false);
 
-    public EntityTFTroll(World par1World) {
-        super(par1World);
+    public EntityTFTroll(World world) {
+        super(world);
         this.setSize(1.4F, 2.4F);
 
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -50,22 +50,18 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
-        if (par1World != null && !par1World.isRemote) {
+        if (world != null && !world.isRemote) {
             this.setCombatTask();
         }
     }
 
-    /**
-     * Returns true if the newer Entity AI code should be run
-     */
+    // Returns true if the newer Entity AI code should be run
     @Override
     protected boolean isAIEnabled() {
         return true;
     }
 
-    /**
-     * Set monster attributes
-     */
+    // Set monster attributes
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -88,16 +84,12 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         super.onLivingUpdate();
     }
 
-    /**
-     * Determines whether this troll has a rock or not.
-     */
+    // Determines whether this troll has a rock or not.
     public boolean hasRock() {
         return (this.dataWatcher.getWatchableObjectByte(ROCK_FLAG) & 2) != 0;
     }
 
-    /**
-     * Sets whether this troll has a rock or not.
-     */
+    // Sets whether this troll has a rock or not.
     public void setHasRock(boolean rock) {
         byte b0 = this.dataWatcher.getWatchableObjectByte(ROCK_FLAG);
 
@@ -111,9 +103,7 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         this.setCombatTask();
     }
 
-    /**
-     * Swing!
-     */
+    // Swing!
     @Override
     public boolean attackEntityAsMob(Entity par1Entity) {
 
@@ -122,25 +112,19 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         return super.attackEntityAsMob(par1Entity);
     }
 
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
+    // (abstract) Protected helper method to write subclass entity data to NBT.
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeEntityToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setBoolean("HasRock", this.hasRock());
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+    // (abstract) Protected helper method to read subclass entity data from NBT.
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readEntityFromNBT(par1NBTTagCompound);
         this.setHasRock(par1NBTTagCompound.getBoolean("HasRock"));
     }
 
-    /**
-     * sets this entity's combat AI.
-     */
+    // sets this entity's combat AI.
     public void setCombatTask() {
         this.tasks.removeTask(this.aiAttackOnCollide);
         this.tasks.removeTask(this.aiArrowAttack);
@@ -152,9 +136,7 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         }
     }
 
-    /**
-     * handles entity death timer, experience orb and particle creation
-     */
+    // handles entity death timer, experience orb and particle creation
     protected void onDeathUpdate() {
         super.onDeathUpdate();
 
@@ -162,9 +144,9 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
             this.ripenTrollBerNearby(this.deathTime / 5);
         }
 
-        if (this.deathTime == 1) {
+        //if (this.deathTime == 1) {
             // this.makeTrollStoneInAABB(this.boundingBox);
-        }
+        //}
     }
 
     private void ripenTrollBerNearby(int offset) {
@@ -176,13 +158,11 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         for (int dx = -range; dx < range; dx++) {
             for (int dy = -range; dy < range; dy++) {
                 for (int dz = -range; dz < range; dz++) {
-                    if (true) {
-                        int cx = sx + dx;
-                        int cy = sy + dy;
-                        int cz = sz + dz;
+                    int cx = sx + dx;
+                    int cy = sy + dy;
+                    int cz = sz + dz;
 
-                        ripenBer(offset, cx, cy, cz);
-                    }
+                    ripenBer(offset, cx, cy, cz);
                 }
             }
         }
@@ -192,25 +172,20 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         if (this.worldObj.getBlock(cx, cy, cz) == TFBlocks.unripeTrollBer && this.rand.nextBoolean() && (Math.abs(cx + cy + cz) % 5 == offset)) {
             this.worldObj.setBlock(cx, cy, cz, TFBlocks.trollBer);
             worldObj.playAuxSFX(2004, cx, cy, cz, 0);
-
         }
     }
 
-    /**
-     * Trigger achievement when killed
-     */
+    // Trigger achievement when killed
     @Override
-    public void onDeath(DamageSource par1DamageSource) {
-        super.onDeath(par1DamageSource);
-        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (damageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
         }
 
     }
 
-    /**
-     * Turns blocks to trollstone inside the given bounding box.
-     */
+    // Turns blocks to trollstone inside the given bounding box.
     private void makeTrollStoneInAABB(AxisAlignedBB par1AxisAlignedBB) {
         // System.out.println("Destroying blocks in " + par1AxisAlignedBB);
 
@@ -244,9 +219,7 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         this.dropItem(TFItems.magicBeans, 1);
     }
 
-    /**
-     * Attack the specified entity using a ranged attack.
-     */
+    // Attack the specified entity using a ranged attack.
     public void attackEntityWithRangedAttack(EntityLivingBase target, float par2) {
         if (this.hasRock()) {
 
@@ -263,9 +236,7 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         }
     }
 
-    /**
-     * Swings the item the player is holding.
-     */
+    // Swings the item the player is holding.
     public void swingItem() {
         if (!this.isSwingInProgress || this.swingProgressInt >= this.getArmSwingAnimationEnd() / 2 || this.swingProgressInt < 0) {
             this.swingProgressInt = -1;
@@ -277,9 +248,7 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
         }
     }
 
-    /**
-     * Updates the arm swing progress counters and animation progress
-     */
+    // Updates the arm swing progress counters and animation progress
     protected void updateArmSwingProgress() {
         int maxSwing = this.getArmSwingAnimationEnd();
 
@@ -305,4 +274,5 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
     private int getArmSwingAnimationEnd() {
         return 6;
     }
+
 }

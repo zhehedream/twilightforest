@@ -24,44 +24,44 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
         renderInvBlock(renderer, block, metadata);
     }
 
-    public static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta) {
+    public static void renderInvBlock(RenderBlocks renderblocks, Block block, int meta) {
         Tessellator tessellator = Tessellator.instance;
 
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        renderInvBlock(renderblocks, par1Block, meta, tessellator);
+        renderInvBlock(renderblocks, block, meta, tessellator);
 
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 
-        par1Block.setBlockBoundsForItemRender();
+        block.setBlockBoundsForItemRender();
     }
 
-    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta, Tessellator tessellator) {
+    protected static void renderInvBlock(RenderBlocks renderblocks, Block block, int meta, Tessellator tessellator) {
 
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
-        renderblocks.renderFaceYNeg(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(0, meta));
+        renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, meta));
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, 1.0F, 0.0F);
-        renderblocks.renderFaceYPos(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(1, meta));
+        renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, meta));
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, 0.0F, -1.0F);
-        renderblocks.renderFaceXPos(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(2, meta));
+        renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, meta));
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, 0.0F, 1.0F);
-        renderblocks.renderFaceXNeg(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(3, meta));
+        renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, meta));
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-        renderblocks.renderFaceZNeg(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(4, meta));
+        renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, meta));
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
-        renderblocks.renderFaceZPos(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(5, meta));
+        renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, meta));
         tessellator.draw();
 
         float pixel = 1F / 16F;
@@ -81,32 +81,32 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceYNeg(par1Block, 0.0D, -pixel, 0.0D, icon);
+        renderblocks.renderFaceYNeg(block, 0.0D, -pixel, 0.0D, icon);
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceYPos(par1Block, 0.0D, +pixel, 0.0D, icon);
+        renderblocks.renderFaceYPos(block, 0.0D, +pixel, 0.0D, icon);
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceXPos(par1Block, +pixel, 0.0D, 0.0D, icon);
+        renderblocks.renderFaceXPos(block, +pixel, 0.0D, 0.0D, icon);
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceXNeg(par1Block, -pixel, 0.0D, 0.0D, icon);
+        renderblocks.renderFaceXNeg(block, -pixel, 0.0D, 0.0D, icon);
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceZNeg(par1Block, 0.0D, 0.0D, -pixel, icon);
+        renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, -pixel, icon);
         tessellator.draw();
         tessellator.startDrawingQuads();
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
         tessellator.setColorOpaque_F(red, grn, blu);
-        renderblocks.renderFaceZPos(par1Block, 0.0D, 0.0D, +pixel, icon);
+        renderblocks.renderFaceZPos(block, 0.0D, 0.0D, +pixel, icon);
         tessellator.draw();
 
         GL11.glEnable(GL11.GL_LIGHTING);
@@ -128,9 +128,9 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
         float blu = (float) (color & 255) / 255.0F;
 
         // if the block is a door or other clickable block(?), pulse the glyph a little
-        if (block == TFBlocks.castleDoor) {
-
-        }
+        //if (block == TFBlocks.castleDoor) {
+        //TODO: Add code to do this
+        //}
 
         Tessellator tessellator = Tessellator.instance;
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
@@ -160,7 +160,6 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
 
         renderer.clearOverrideBlockTexture();
         return true;
-
     }
 
     @Override

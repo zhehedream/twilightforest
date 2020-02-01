@@ -16,22 +16,19 @@ public class EntitySeekerArrow extends EntityArrow {
     private EntityLivingBase homingTarget;
     double seekDistance = 5.0;
 
-    public EntitySeekerArrow(World par1World) {
-        super(par1World);
+    public EntitySeekerArrow(World world) {
+        super(world);
     }
 
     public EntitySeekerArrow(World world, EntityPlayer player, float velocity) {
         super(world, player, velocity);
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
+    // Called to update the entity's position/logic.
     @SuppressWarnings("rawtypes")
     public void onUpdate() {
         // seek!
         if (isThisArrowFlying()) {
-
             if (this.homingTarget == null) {
                 // find new target
 
@@ -85,10 +82,10 @@ public class EntitySeekerArrow extends EntityArrow {
                         }
                     }
                 }
-                if (targets.size() > 0) {
+                //if (targets.size() > 0) {
                     // System.out.println("--- End of list");
                     // System.out.println("We have chosen " + this.homingTarget + " as the target");
-                }
+                //}
             } else {
                 // find ideal heading
                 Vec3 targetVec = Vec3.createVectorHelper(this.posX - this.homingTarget.posX, this.posY - (this.homingTarget.posY + this.homingTarget.getEyeHeight()),
@@ -144,4 +141,5 @@ public class EntitySeekerArrow extends EntityArrow {
     private boolean isThisArrowFlying() {
         return MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) > 1.0;
     }
+
 }

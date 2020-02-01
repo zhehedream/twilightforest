@@ -21,9 +21,7 @@ public class ItemTFIronwoodArmor extends ItemArmor {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    /**
-     * Return an item rarity from EnumRarity
-     */
+    // Return an item rarity from EnumRarity
     @Override
     public EnumRarity getRarity(ItemStack par1ItemStack) {
         return EnumRarity.uncommon;
@@ -46,15 +44,13 @@ public class ItemTFIronwoodArmor extends ItemArmor {
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        ItemStack istack = new ItemStack(par1, 1, 0);
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        ItemStack istack = new ItemStack(item, 1, 0);
         switch (this.armorType) {
         case 0:
             istack.addEnchantment(Enchantment.aquaAffinity, 1);
             break;
         case 1:
-            istack.addEnchantment(Enchantment.protection, 1);
-            break;
         case 2:
             istack.addEnchantment(Enchantment.protection, 1);
             break;
@@ -62,12 +58,10 @@ public class ItemTFIronwoodArmor extends ItemArmor {
             istack.addEnchantment(Enchantment.featherFalling, 1);
             break;
         }
-        par3List.add(istack);
+        itemList.add(istack);
     }
 
-    /**
-     * Return whether this item is repairable in an anvil.
-     */
+    // Return whether this item is repairable in an anvil.
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with ironwood ingots

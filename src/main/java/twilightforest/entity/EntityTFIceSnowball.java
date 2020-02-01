@@ -25,17 +25,13 @@ public class EntityTFIceSnowball extends EntityThrowable {
         makeTrail();
     }
 
-    /**
-     * How much this entity falls each tick
-     */
+    // How much this entity falls each tick
     @Override
     protected float getGravityVelocity() {
         return 0.006F;
     }
 
-    /**
-     * Make slimy trail
-     */
+    // Make slimy trail
     public void makeTrail() {
         for (int i = 0; i < 2; i++) {
             double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble());
@@ -45,12 +41,9 @@ public class EntityTFIceSnowball extends EntityThrowable {
         }
     }
 
-    /**
-     * Reflect!
-     */
+    // Reflect!
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float i) {
-
         setBeenAttacked();
 
         pop();
@@ -64,12 +57,12 @@ public class EntityTFIceSnowball extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
+        /*if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
             if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), DAMAGE)) {
                 // damage armor?
                 // TODO:
             }
-        }
+        }*/
         pop();
     }
 
@@ -89,4 +82,5 @@ public class EntityTFIceSnowball extends EntityThrowable {
             this.setDead();
         }
     }
+
 }

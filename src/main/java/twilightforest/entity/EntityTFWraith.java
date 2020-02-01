@@ -44,18 +44,16 @@ public class EntityTFWraith extends EntityFlying implements IMob {
 
     @Override
     public void onLivingUpdate() {
-        if (worldObj.isDaytime()) {
+        /*if (worldObj.isDaytime()) {
             float f = getBrightness(1.0F);
             if (f > 0.5F && worldObj.canBlockSeeTheSky(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ)) && rand.nextFloat() * 30F < (f - 0.4F) * 2.0F) {
 //                fire = 300;
             }
-        }
+        }*/
         super.onLivingUpdate();
     }
 
-    /**
-     * Supress walking sounds
-     */
+    // Supress walking sounds
     @Override
     public boolean canTriggerWalking() {
         return false;
@@ -163,7 +161,6 @@ public class EntityTFWraith extends EntityFlying implements IMob {
      * 
      * @return
      */
-
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
         if (super.attackEntityFrom(damagesource, i)) {
@@ -205,7 +202,6 @@ public class EntityTFWraith extends EntityFlying implements IMob {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -238,27 +234,23 @@ public class EntityTFWraith extends EntityFlying implements IMob {
     public int prevAttackCounter;
     public int attackCounter;
 
-    /**
-     * Trigger achievement when killed
-     */
+    // Trigger achievement when killed
     @Override
-    public void onDeath(DamageSource par1DamageSource) {
-        super.onDeath(par1DamageSource);
-        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (damageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
             // are we in a level 3 hill?
             int chunkX = MathHelper.floor_double(posX) >> 4;
             int chunkZ = MathHelper.floor_double(posZ) >> 4;
             if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hill3) {
                 // award level 3 hill cheevo
-                ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill3);
+                ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill3);
             }
         }
     }
 
-    /**
-     * Checks to make sure the light is not too bright where the mob is spawning
-     */
+    // Checks to make sure the light is not too bright where the mob is spawning
     protected boolean isValidLightLevel() {
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.boundingBox.minY);
@@ -275,15 +267,13 @@ public class EntityTFWraith extends EntityFlying implements IMob {
                 l = this.worldObj.getBlockLightValue(i, j, k);
                 this.worldObj.skylightSubtracted = i1;
             }
-
             return l <= this.rand.nextInt(8);
         }
     }
 
-    /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
-     */
+    // Checks if the entity's current position is a valid location to spawn this entity.
     public boolean getCanSpawnHere() {
         return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
     }
+
 }

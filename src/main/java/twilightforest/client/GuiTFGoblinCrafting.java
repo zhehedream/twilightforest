@@ -23,18 +23,14 @@ public class GuiTFGoblinCrafting extends GuiContainer {
         super(new ContainerTFUncrafting(inventory, world, x, y, z));
     }
 
-    /**
-     * Draw the foreground layer for the GuiContainer (everythin in front of the items)
-     */
+    // Draw the foreground layer for the GuiContainer (everythin in front of the items)
     @Override
     protected void drawGuiContainerForegroundLayer(int var1, int var2) {
         this.fontRendererObj.drawString("Uncrafting Table", 8, 6, 4210752);
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    /**
-     * Draw the background layer for the GuiContainer (everything behind the items)
-     */
+    // Draw the background layer for the GuiContainer (everything behind the items)
     @Override
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -66,35 +62,30 @@ public class GuiTFGoblinCrafting extends GuiContainer {
 
         int costVal = tfContainer.getUncraftingCost();
         if (costVal > 0) {
+        	String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
-                String cost = "" + costVal;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 48 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
             } else {
                 int color = 0x80FF20;
-                String cost = "" + costVal;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 48 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
             }
         }
 
         costVal = tfContainer.getRecraftingCost();
         if (costVal > 0) {
+        	String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
-                String cost = "" + costVal;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 130 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
             } else {
                 int color = 0x80FF20;
-                String cost = "" + costVal;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 130 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
             }
         }
-
     }
 
-    /**
-     * Draws an inventory slot
-     */
+    // Draws an inventory slot
     private void drawSlotAsBackground(Slot backgroundSlot, Slot appearSlot) {
         int screenX = appearSlot.xDisplayPosition;
         int screenY = appearSlot.yDisplayPosition;
@@ -121,4 +112,5 @@ public class GuiTFGoblinCrafting extends GuiContainer {
         itemRender.zLevel = 0.0F;
         this.zLevel = 0.0F;
     }
+
 }

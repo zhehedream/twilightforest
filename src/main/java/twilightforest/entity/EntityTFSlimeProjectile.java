@@ -24,17 +24,13 @@ public class EntityTFSlimeProjectile extends EntityThrowable {
         makeTrail();
     }
 
-    /**
-     * How much this entity falls each tick
-     */
+    // How much this entity falls each tick
     @Override
     protected float getGravityVelocity() {
         return 0.006F;
     }
 
-    /**
-     * Make slimy trail
-     */
+    // Make slimy trail
     public void makeTrail() {
         for (int i = 0; i < 2; i++) {
             double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble());
@@ -49,7 +45,6 @@ public class EntityTFSlimeProjectile extends EntityThrowable {
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
-
         setBeenAttacked();
 
         pop();
@@ -63,20 +58,16 @@ public class EntityTFSlimeProjectile extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
+        /*if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
             if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8)) {
                 // damage armor?
                 // TODO:
             }
-        }
-
+        }*/
         pop();
-
     }
 
-    /**
-     * Yeah, do that
-     */
+    // Yeah, do that
     protected void pop() {
         for (int i = 0; i < 8; ++i) {
             this.worldObj.spawnParticle("slime", this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D, rand.nextGaussian() * 0.05D);
