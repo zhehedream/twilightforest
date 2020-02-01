@@ -102,7 +102,7 @@ public class TFGenRavine extends MapGenBase {
                         if (j3 < 0 || j3 >= TFWorld.CHUNKHEIGHT) {
                             continue;
                         }
-                        if (blockStorage[k3] == Blocks.water || blockStorage[k3] == Blocks.water) {
+                        if (blockStorage[k3] == Blocks.water || blockStorage[k3] == Blocks.flowing_water) {
                             flag1 = true;
                         }
                         if (j3 != d9 - 1 && k2 != d8 && k2 != l1 - 1 && i3 != d10 && i3 != j2 - 1) {
