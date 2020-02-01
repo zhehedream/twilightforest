@@ -78,63 +78,64 @@ public class TFEventListener {
      */
     @SubscribeEvent
     public void pickupItem(EntityItemPickupEvent event) {
-        Item item = event.item.getEntityItem().getItem();
-        if (item == TFItems.scepterTwilight || item == TFItems.scepterLifeDrain || item == TFItems.scepterZombie) {
-            // the player has picked up a scepter. Check if they have them all in their inventory, and if so,
-            // achievement
-            // System.out.println("Player picked up a scepter");
-            checkPlayerForScepterMastery(event.entityPlayer);
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLich);
-        }
-
-        // naga scale gives naga progress achievement
-        if (item == TFItems.nagaScale) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressNaga);
-        }
-        // trophy gives kill achievement
-        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 0) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
-        }
-        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 1) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
-        }
-        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 2) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
-        }
-        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 3) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-        }
-        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 4) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
-        }
-        // mazebreaker
-        if (item == TFItems.mazebreakerPick) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightMazebreaker);
-        }
-        // meef stroganoff (or axe)
-        if (item == TFItems.meefStroganoff || item == TFItems.minotaurAxe) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLabyrinth);
-        }
-        // fiery blood
-        if (item == TFItems.fieryBlood) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressHydra);
-        }
-        // phantom helm/plate
-        if (item == TFItems.phantomHelm || item == TFItems.phantomPlate) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressKnights);
-        }
-        // fiery tears
-        if (item == TFItems.fieryTears) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-        }
-        // yeti items
-        if (item == TFItems.alphaFur || item == TFItems.yetiBoots || item == TFItems.yetiHelm || item == TFItems.yetiPlate || item == TFItems.yetiLegs) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressYeti);
-        }
-        // lamp of cinders
-        if (item == TFItems.lampOfCinders) {
-            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressTroll);
-        }
+    	if (event.entityPlayer.worldObj.provider.dimensionId == TwilightForestMod.dimensionID) {
+	        Item item = event.item.getEntityItem().getItem();
+	        if (item == TFItems.scepterTwilight || item == TFItems.scepterLifeDrain || item == TFItems.scepterZombie) {
+	            // the player has picked up a scepter. Check if they have them all in their inventory, and if so,
+	            // achievement
+	            // System.out.println("Player picked up a scepter");
+	            checkPlayerForScepterMastery(event.entityPlayer);
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLich);
+	        }
+	        // naga scale gives naga progress achievement
+	        if (item == TFItems.nagaScale) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressNaga);
+	        }
+	        // trophy gives kill achievement
+	        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 0) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
+	        }
+	        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 1) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
+	        }
+	        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 2) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
+	        }
+	        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 3) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+	        }
+	        if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 4) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
+	        }
+	        // mazebreaker
+	        if (item == TFItems.mazebreakerPick) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightMazebreaker);
+	        }
+	        // meef stroganoff (or axe)
+	        if (item == TFItems.meefStroganoff || item == TFItems.minotaurAxe) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLabyrinth);
+	        }
+	        // fiery blood
+	        if (item == TFItems.fieryBlood) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressHydra);
+	        }
+	        // phantom helm/plate
+	        if (item == TFItems.phantomHelm || item == TFItems.phantomPlate) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressKnights);
+	        }
+	        // fiery tears
+	        if (item == TFItems.fieryTears) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+	        }
+	        // yeti items
+	        if (item == TFItems.alphaFur || item == TFItems.yetiBoots || item == TFItems.yetiHelm || item == TFItems.yetiPlate || item == TFItems.yetiLegs) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressYeti);
+	        }
+	        // lamp of cinders
+	        if (item == TFItems.lampOfCinders) {
+	            event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressTroll);
+	        }
+    	}
     }
 
     /**
@@ -327,8 +328,14 @@ public class TFEventListener {
      */
     @SubscribeEvent
     public void entityHurts(LivingHurtEvent event) {
+    	boolean entityIsPlayer = event.entityLiving instanceof EntityPlayer;
+    	boolean damageSourceIsMob = event.source.damageType.equals("mob");
+    	boolean damageSourceIsArrow = event.source.damageType.equals("arrow");
+    	boolean damageSourceIsPlayer = event.source.getEntity() instanceof EntityPlayer;
+    	boolean damageSourceIsNotNull = (event.source.getEntity() != null);
+    	
         // fire aura
-        if (event.entityLiving instanceof EntityPlayer && event.source.damageType.equals("mob") && event.source.getEntity() != null) {
+        if (entityIsPlayer && damageSourceIsMob && damageSourceIsNotNull) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
             int fireLevel = TFEnchantment.getFieryAuraLevel(player.inventory, event.source);
 
@@ -341,7 +348,7 @@ public class TFEventListener {
         }
 
         // chill aura
-        if (event.entityLiving instanceof EntityPlayer && event.source.damageType.equals("mob") && event.source.getEntity() != null && event.source.getEntity() instanceof EntityLivingBase) {
+        if (entityIsPlayer && damageSourceIsMob && damageSourceIsNotNull && event.source.getEntity() instanceof EntityLivingBase) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
             int chillLevel = TFEnchantment.getChillAuraLevel(player.inventory, event.source);
 
@@ -355,7 +362,7 @@ public class TFEventListener {
         }
 
         // triple bow strips hurtResistantTime
-        if (event.source.damageType.equals("arrow") && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
+        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
             if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.tripleBow) {
@@ -365,7 +372,7 @@ public class TFEventListener {
         }
 
         // ice bow freezes
-        if (event.source.damageType.equals("arrow") && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
+        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
             if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.iceBow) {
@@ -376,7 +383,7 @@ public class TFEventListener {
         }
 
         // enderbow teleports
-        if (event.source.damageType.equals("arrow") && event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
+        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
             EntityPlayer player = (EntityPlayer) event.source.getEntity();
 
             if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.enderBow) {
@@ -402,7 +409,7 @@ public class TFEventListener {
         }
 
         // charm of life?
-        if (event.entityLiving instanceof EntityPlayer && willEntityDie(event)) {
+        if (entityIsPlayer && willEntityDie(event)) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             boolean charm1 = false;
@@ -644,7 +651,6 @@ public class TFEventListener {
             if (isRidingUnfriendly(Minecraft.getMinecraft().thePlayer)) {
                 event.setCanceled(true);
                 return false;
-
             }
         }
         return true;
@@ -843,7 +849,6 @@ public class TFEventListener {
      */
     @SubscribeEvent
     public void livingAttack(LivingAttackEvent event) {
-
         // area protection check
         if (event.entityLiving instanceof IMob && event.source.getEntity() instanceof EntityPlayer && !((EntityPlayer) event.source.getEntity()).capabilities.isCreativeMode
                 && event.entityLiving.worldObj.provider instanceof WorldProviderTwilightForest
@@ -867,7 +872,6 @@ public class TFEventListener {
                     for (int i = 0; i < 20; i++) {
                         // worldObj.spawnParticle("mobSpell", blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, red, grn, blu);
                         TwilightForestMod.proxy.spawnParticle(event.entityLiving.worldObj, "protection", event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, 0, 0, 0);
-
                     }
                 }
             }
