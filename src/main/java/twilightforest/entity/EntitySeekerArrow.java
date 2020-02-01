@@ -63,8 +63,8 @@ public class EntitySeekerArrow extends EntityArrow {
                     if (thing instanceof EntityLivingBase && !(thing instanceof EntityPlayer)) {
                         EntityLivingBase living = (EntityLivingBase) thing;
 
-                        System.out.println("Possible target : " + living);
-                        // System.out.println("Selection box = " + targetBB);
+                        // cpw.mods.fml.common.FMLLog.info("Possible target : " + living);
+                        // cpw.mods.fml.common.FMLLog.info("Selection box = " + targetBB);
 
                         courseVec = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ);
                         courseVec = courseVec.normalize();
@@ -74,7 +74,7 @@ public class EntitySeekerArrow extends EntityArrow {
                         targetVec = targetVec.normalize();
                         double dot = courseVec.dotProduct(targetVec);
 
-                        // System.out.println("dot product : " + dot);
+                        // cpw.mods.fml.common.FMLLog.info("dot product : " + dot);
 
                         if (dot < closestDot) {
                             this.homingTarget = living;
@@ -83,8 +83,8 @@ public class EntitySeekerArrow extends EntityArrow {
                     }
                 }
                 //if (targets.size() > 0) {
-                    // System.out.println("--- End of list");
-                    // System.out.println("We have chosen " + this.homingTarget + " as the target");
+                    // cpw.mods.fml.common.FMLLog.info("--- End of list");
+                    // cpw.mods.fml.common.FMLLog.info("We have chosen " + this.homingTarget + " as the target");
                 //}
             } else {
                 // find ideal heading
@@ -96,7 +96,7 @@ public class EntitySeekerArrow extends EntityArrow {
                 courseVec = courseVec.normalize();
 
                 double dotProduct = courseVec.dotProduct(targetVec);
-                // System.out.println("target vec compared to course vec= " + dotProduct);
+                // cpw.mods.fml.common.FMLLog.info("target vec compared to course vec= " + dotProduct);
 
                 if (dotProduct < 0) {
 
@@ -114,18 +114,18 @@ public class EntitySeekerArrow extends EntityArrow {
                     double dy = MathHelper.clamp_double(targetVec.yCoord, -1.0, 1.0);
                     double dz = MathHelper.clamp_double(targetVec.zCoord, -2.0, 2.0);
 
-                    // System.out.println("Current heading is " + this.motionX + ", " + this.motionY + ", " +
+                    // cpw.mods.fml.common.FMLLog.info("Current heading is " + this.motionX + ", " + this.motionY + ", " +
                     // this.motionZ);
-                    // System.out.println("Ideal heading is " + targetVec.xCoord + ", " + targetVec.yCoord + ", " +
+                    // cpw.mods.fml.common.FMLLog.info("Ideal heading is " + targetVec.xCoord + ", " + targetVec.yCoord + ", " +
                     // targetVec.zCoord);
-                    // System.out.println("Adjustment is " + dx + ", " + dy + ", " + dz);
+                    // cpw.mods.fml.common.FMLLog.info("Adjustment is " + dx + ", " + dy + ", " + dz);
 
                     this.motionX -= dx;
                     this.motionY -= dy;
                     this.motionZ -= dz;
                 } else {
                     // abandon target, they're behind us!
-                    // System.out.println("abandoning target!");
+                    // cpw.mods.fml.common.FMLLog.info("abandoning target!");
 
                     this.homingTarget = null;
                 }
