@@ -148,7 +148,7 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         int meta = par1IBlockAccess.getBlockMetadata(x, y, z);
 
         if (meta == META_MOSSPATCH) {
-            long seed = x * 3129871 ^ y * 116129781L ^ z;
+            long seed = x * 3129871L ^ y * 116129781L ^ z;
             seed = seed * seed * 42317861L + seed * 11L;
 
             int xOff0 = (int) (seed >> 12 & 3L);
@@ -162,9 +162,8 @@ public class BlockTFPlant extends BlockBush implements IShearable {
             boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_MOSSPATCH;
 
             this.setBlockBounds(xConnect1 ? 0F : (1F + xOff1) / 16F, 0.0F, zConnect1 ? 0F : (1F + zOff1) / 16F, xConnect0 ? 1F : (15F - xOff0) / 16F, 1F / 16F, zConnect0 ? 1F : (15F - zOff0) / 16F);
-
         } else if (meta == META_CLOVERPATCH) {
-            long seed = x * 3129871 ^ y * 116129781L ^ z;
+            long seed = x * 3129871L ^ y * 116129781L ^ z;
             seed = seed * seed * 42317861L + seed * 11L;
 
             int xOff0 = (int) (seed >> 12 & 3L);
@@ -180,8 +179,7 @@ public class BlockTFPlant extends BlockBush implements IShearable {
             boolean zConnect0 = par1IBlockAccess.getBlock(x, y, z + 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z + 1) == META_CLOVERPATCH;
             boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_CLOVERPATCH;
 
-            this.setBlockBounds(xConnect1 ? 0F : (1F + xOff1) / 16F, 0.0F, zConnect1 ? 0F : (1F + zOff1) / 16F, xConnect0 ? 1F : (15F - xOff0) / 16F, (1F + yOff0 + yOff1) / 16F,
-                    zConnect0 ? 1F : (15F - zOff0) / 16F);
+            this.setBlockBounds(xConnect1 ? 0F : (1F + xOff1) / 16F, 0.0F, zConnect1 ? 0F : (1F + zOff1) / 16F, xConnect0 ? 1F : (15F - xOff0) / 16F, (1F + yOff0 + yOff1) / 16F, zConnect0 ? 1F : (15F - zOff0) / 16F);
 
             // this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2F / 16F, 1.0F);
         } else if (meta == META_MAYAPPLE) {
@@ -204,9 +202,9 @@ public class BlockTFPlant extends BlockBush implements IShearable {
      * only called when first determining what to render.
      */
     @Override
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {
-        int meta = par1IBlockAccess.getBlockMetadata(x, y, z);
-        return isGrassColor[meta] ? par1IBlockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor(x, y, z) : 0xFFFFFF;
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return isGrassColor[meta] ? world.getBiomeGenForCoords(x, z).getBiomeGrassColor(x, y, z) : 0xFFFFFF;
     }
 
     /**
@@ -251,9 +249,9 @@ public class BlockTFPlant extends BlockBush implements IShearable {
      * Ticks the block if it's been scheduled
      */
     @Override
-    public void updateTick(World par1World, int x, int y, int z, Random par5Random) {
-        int meta = par1World.getBlockMetadata(x, y, z);
-        if (par1World.getBlockLightValue(x, y, z) < lightValue[meta]) {
+    public void updateTick(World world, int x, int y, int z, Random par5Random) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (world.getBlockLightValue(x, y, z) < lightValue[meta]) {
             // par1World.updateLightByType(EnumSkyBlock.Block, x, y, z);
             // par1World.markBlockForUpdate(x, y, z); // do we need this now?
         }
@@ -414,27 +412,22 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         }
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
+    // returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(this, 1, META_MOSSPATCH));
-        par3List.add(new ItemStack(this, 1, META_MAYAPPLE));
-        // par3List.add(new ItemStack(this, 1, META_CLOVERPATCH));
-        par3List.add(new ItemStack(this, 1, 8));
-        par3List.add(new ItemStack(this, 1, 9));
-        par3List.add(new ItemStack(this, 1, META_FORESTGRASS));
-        par3List.add(new ItemStack(this, 1, META_DEADBUSH));
-        par3List.add(new ItemStack(this, 1, 13));
-        par3List.add(new ItemStack(this, 1, 14));
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+    	itemList.add(new ItemStack(this, 1, META_MOSSPATCH));
+    	itemList.add(new ItemStack(this, 1, META_MAYAPPLE));
+        // itemList.add(new ItemStack(this, 1, META_CLOVERPATCH));
+    	itemList.add(new ItemStack(this, 1, 8));
+    	itemList.add(new ItemStack(this, 1, 9));
+        itemList.add(new ItemStack(this, 1, META_FORESTGRASS));
+        itemList.add(new ItemStack(this, 1, META_DEADBUSH));
+        itemList.add(new ItemStack(this, 1, 13));
+        itemList.add(new ItemStack(this, 1, 14));
 
     }
 
-    /**
-     * 
-     */
     @Override
     public void setBlockBoundsForItemRender() {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -463,19 +456,17 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         return world.getBlockMetadata(x, y, z);
     }
 
-    /**
-     * A randomly called display update to be able to add particles or other items for display
-     */
+    // A randomly called display update to be able to add particles or other items for display
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World par1World, int x, int y, int z, Random par5Random) {
-        super.randomDisplayTick(par1World, x, y, z, par5Random);
+    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+        super.randomDisplayTick(world, x, y, z, random);
 
-        int meta = par1World.getBlockMetadata(x, y, z);
+        int meta = world.getBlockMetadata(x, y, z);
 
-        if (meta == META_MOSSPATCH && par5Random.nextInt(10) == 0) {
-            par1World.spawnParticle("townaura", x + par5Random.nextFloat(), y + 0.1F, z + par5Random.nextFloat(), 0.0D, 0.0D, 0.0D);
+        if (meta == META_MOSSPATCH && random.nextInt(10) == 0) {
+        	world.spawnParticle("townaura", x + random.nextFloat(), y + 0.1F, z + random.nextFloat(), 0.0D, 0.0D, 0.0D);
         }
-
     }
+
 }

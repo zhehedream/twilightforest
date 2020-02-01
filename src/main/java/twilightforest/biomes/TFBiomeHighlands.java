@@ -58,9 +58,7 @@ public class TFBiomeHighlands extends TFBiomeBase {
         undergroundMonsterList.add(new SpawnListEntry(EntityTFTroll.class, 10, 4, 4));
     }
 
-    /**
-     * Birches and large trees only
-     */
+    // Birches and large trees only
     public WorldGenAbstractTree func_150567_a(Random random) {
         if (random.nextInt(4) == 0) {
             return taigaGen1;
@@ -75,73 +73,67 @@ public class TFBiomeHighlands extends TFBiomeBase {
         }
     }
 
-    /**
-     * Gets a WorldGen appropriate for this biome.
-     */
-    public WorldGenerator getRandomWorldGenForGrass(Random par1Random) {
-        return par1Random.nextInt(5) > 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass, 1);
+    // Gets a WorldGen appropriate for this biome.
+    public WorldGenerator getRandomWorldGenForGrass(Random random) {
+        return random.nextInt(5) > 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass, 1);
     }
 
     public void genTerrainBlocks(World world, Random rand, Block[] blockStorage, byte[] metaStorage, int x, int z, double noiseVal) {
-        if (true) {
-            this.topBlock = Blocks.grass;
-            this.field_150604_aj = 0;
-            this.fillerBlock = Blocks.dirt;
-
-            if (noiseVal > 1.75D) {
-                this.topBlock = Blocks.dirt;
-                this.field_150604_aj = 1;
-            } else if (noiseVal > -0.95D) {
-                this.topBlock = Blocks.dirt;
-                this.field_150604_aj = 2;
-            }
+        this.topBlock = Blocks.grass;
+        this.field_150604_aj = 0;
+        this.fillerBlock = Blocks.dirt;
+        if (noiseVal > 1.75D) {
+            this.topBlock = Blocks.dirt;
+            this.field_150604_aj = 1;
+        } else if (noiseVal > -0.95D) {
+            this.topBlock = Blocks.dirt;
+            this.field_150604_aj = 2;
         }
-
         this.genTwilightBiomeTerrain(world, rand, blockStorage, metaStorage, x, z, noiseVal);
     }
 
     /**
      * Add extra decorations
      */
-    public void decorate(World par1World, Random par2Random, int mapX, int mapZ) {
+    public void decorate(World world, Random random, int mapX, int mapZ) {
         int dx, dy, dz;
 
         // boulders
-        int maxBoulders = par2Random.nextInt(2);
+        int maxBoulders = random.nextInt(2);
         for (int i = 0; i < maxBoulders; ++i) {
-            dx = mapX + par2Random.nextInt(16) + 8;
-            dz = mapZ + par2Random.nextInt(16) + 8;
-            dy = par1World.getHeightValue(dx, dz);
-            genBoulder.generate(par1World, par2Random, dx, dy, dz);
+            dx = mapX + random.nextInt(16) + 8;
+            dz = mapZ + random.nextInt(16) + 8;
+            dy = world.getHeightValue(dx, dz);
+            genBoulder.generate(world, random, dx, dy, dz);
         }
 
         // giant ferns
         genTallFlowers.func_150548_a(3);
         for (int i = 0; i < 7; ++i) {
-            dx = mapX + par2Random.nextInt(16) + 8;
-            dz = mapZ + par2Random.nextInt(16) + 8;
-            dy = par2Random.nextInt(par1World.getHeightValue(dx, dz) + 32);
-            genTallFlowers.generate(par1World, par2Random, dx, dy, dz);
+            dx = mapX + random.nextInt(16) + 8;
+            dz = mapZ + random.nextInt(16) + 8;
+            dy = random.nextInt(world.getHeightValue(dx, dz) + 32);
+            genTallFlowers.generate(world, random, dx, dy, dz);
         }
 
         // mushglooms
         for (int i = 0; i < 1; ++i) {
-            int rx = mapX + par2Random.nextInt(16) + 8;
-            int rz = mapZ + par2Random.nextInt(16) + 8;
-            int ry = par2Random.nextInt(64);
+            int rx = mapX + random.nextInt(16) + 8;
+            int rz = mapZ + random.nextInt(16) + 8;
+            int ry = random.nextInt(64);
             // mushglooms
-            worldGenMushgloom.generate(par1World, par2Random, rx, ry, rz);
+            worldGenMushgloom.generate(world, random, rx, ry, rz);
         }
 
         // generate roots
         for (int i = 0; i < 24; ++i) {
-            int rx = mapX + par2Random.nextInt(16) + 8;
+            int rx = mapX + random.nextInt(16) + 8;
             byte ry = 64;
-            int rz = mapZ + par2Random.nextInt(16) + 8;
-            genTrollRoots.generate(par1World, par2Random, rx, ry, rz);
+            int rz = mapZ + random.nextInt(16) + 8;
+            genTrollRoots.generate(world, random, rx, ry, rz);
         }
 
-        super.decorate(par1World, par2Random, mapX, mapZ);
+        super.decorate(world, random, mapX, mapZ);
     }
 
     /**

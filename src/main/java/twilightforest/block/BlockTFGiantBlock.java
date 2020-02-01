@@ -32,7 +32,6 @@ public abstract class BlockTFGiantBlock extends Block {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         this.giantIcon = new GiantBlockIcon[4][4][6];
-
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
                 for (int side = 0; side < 6; side++) {
@@ -46,9 +45,8 @@ public abstract class BlockTFGiantBlock extends Block {
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         // return an icon from the icon matrix!
         switch (side) {
-        case 0:
         default:
-            return this.giantIcon[x & 3][z & 3][side];
+        case 0:
         case 1:
             return this.giantIcon[x & 3][z & 3][side];
         case 2:
@@ -60,20 +58,15 @@ public abstract class BlockTFGiantBlock extends Block {
         case 5:
             return this.giantIcon[3 - (z & 3)][3 - (y & 3)][side];
         }
-
     }
 
-    /**
-     * Gets the block's texture. Args: side, meta
-     */
+    // Gets the block's texture. Args: side, meta
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return this.giantIcon[0][0][side];
     }
 
-    /**
-     * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
-     */
+    // Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 
         int bx = (x >> 2) << 2;
@@ -106,9 +99,7 @@ public abstract class BlockTFGiantBlock extends Block {
                 (double) bz + this.maxZ * 4F);
     }
 
-    /**
-     * Called when the block is placed in the world.
-     */
+    // Called when the block is placed in the world.
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemStack) {
         if (!world.isRemote) {
             int bx = (x >> 2) << 2;
@@ -162,7 +153,6 @@ public abstract class BlockTFGiantBlock extends Block {
                 }
             }
         }
-
         return true;
     }
 
@@ -220,7 +210,6 @@ public abstract class BlockTFGiantBlock extends Block {
                 }
             }
         }
-
         this.isSelfDestructing = false;
     }
 
@@ -242,7 +231,6 @@ public abstract class BlockTFGiantBlock extends Block {
                 }
             }
         }
-
         return allThisBlock;
     }
 
@@ -253,4 +241,5 @@ public abstract class BlockTFGiantBlock extends Block {
     public int getMobilityFlag() {
         return 2;
     }
+
 }

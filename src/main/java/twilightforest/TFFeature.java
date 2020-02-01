@@ -221,25 +221,19 @@ public class TFFeature {
         ambientCreatureList.add(new SpawnListEntry(EntityBat.class, 10, 8, 8));
     }
 
-    /**
-     * Turns on biome-specific decorations like grass and trees near this feature.
-     */
+    // Turns on biome-specific decorations like grass and trees near this feature.
     public TFFeature enableDecorations() {
         this.areChunkDecorationsEnabled = true;
         return this;
     }
 
-    /**
-     * Tell the chunkgenerator that we don't have an associated structure.
-     */
+    // Tell the chunkgenerator that we don't have an associated structure.
     public TFFeature disableStructure() {
         this.isStructureEnabled = false;
         return this;
     }
 
-    /**
-     * Tell the chunkgenerator that we want the terrain changed nearby.
-     */
+    // Tell the chunkgenerator that we want the terrain changed nearby.
     public TFFeature enableTerrainAlterations() {
         this.isTerrainAltered = true;
         return this;
@@ -250,17 +244,14 @@ public class TFFeature {
         return this;
     }
 
-    /**
-     * Add a monster to spawn list 0
-     */
+
+    // Add a monster to spawn list 0
     public TFFeature addMonster(Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup, int maxGroup) {
         this.addMonster(0, monsterClass, weight, minGroup, maxGroup);
         return this;
     }
 
-    /**
-     * Add a monster to a specific spawn list
-     */
+    // Add a monster to a specific spawn list
     public TFFeature addMonster(int listIndex, Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup, int maxGroup) {
         List<SpawnListEntry> monsterList;
         if (this.spawnableMonsterLists.size() > listIndex) {
@@ -274,17 +265,13 @@ public class TFFeature {
         return this;
     }
 
-    /**
-     * Add a water creature
-     */
+    // Add a water creature
     public TFFeature addWaterCreature(Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup, int maxGroup) {
         this.waterCreatureList.add(new SpawnListEntry(monsterClass, weight, minGroup, maxGroup));
         return this;
     }
 
-    /**
-     * @return The type of feature directly at the specified Chunk coordinates
-     */
+    // @return The type of feature directly at the specified Chunk coordinates
     public static TFFeature getFeatureDirectlyAt(int chunkX, int chunkZ, World world) {
 
         if (world != null && world.getWorldChunkManager() instanceof TFWorldChunkManager) {
@@ -311,7 +298,7 @@ public class TFFeature {
         BiomeGenBase biomeAt = world.getBiomeGenForCoords((chunkX << 4) + 8, (chunkZ << 4) + 8);
 
         // get random value
-        Random hillRNG = new Random(world.getSeed() + chunkX * 25117 + chunkZ * 151121);
+        Random hillRNG = new Random(world.getSeed() + chunkX * 25117L + chunkZ * 151121L);
         int randnum = hillRNG.nextInt(16);
 
         // glaciers have ice towers
@@ -407,7 +394,7 @@ public class TFFeature {
         BiomeGenBase biomeAt = world.getBiomeGenForCoords((chunkX << 4) + 8, (chunkZ << 4) + 8);
 
         // get random value
-        Random hillRNG = new Random(world.getSeed() + chunkX * 25117 + chunkZ * 151121);
+        Random hillRNG = new Random(world.getSeed() + chunkX * 25117L + chunkZ * 151121L);
         int randnum = hillRNG.nextInt(16);
 
         // glaciers have ice towers
@@ -551,9 +538,8 @@ public class TFFeature {
         }
     }
 
-    /**
-     * @return The feature nearest to the specified chunk coordinates
-     */
+
+    // @return The feature nearest to the specified chunk coordinates
     public static TFFeature getNearestFeature(int cx, int cz, World world) {
         for (int rad = 1; rad <= 3; rad++) {
             for (int x = -rad; x <= rad; x++) {
@@ -568,9 +554,7 @@ public class TFFeature {
         return nothing;
     }
 
-    /**
-     * @return The feature in the chunk "region"
-     */
+    // @return The feature in the chunk "region"
     public static TFFeature getFeatureForRegion(int chunkX, int chunkZ, World world) {
         // just round to the nearest multiple of 16 chunks?
         int featureX = Math.round(chunkX / 16F) * 16;
@@ -611,7 +595,6 @@ public class TFFeature {
      * 
      * Maybe in the future we'll have to actually search for a feature chunk nearby, but for now this
      * will work.
-     * 
      */
     public static ChunkCoordinates getNearestCenterXYZ(int cx, int cz, World world) {
         // legacy support
@@ -626,7 +609,7 @@ public class TFFeature {
         int regionX = (chunkX + 8) >> 4;
         int regionZ = (chunkZ + 8) >> 4;
 
-        long seed = (long) (regionX * 3129871) ^ (long) regionZ * 116129781L;
+        long seed = (regionX * 3129871L) ^ (long) regionZ * 116129781L;
         seed = seed * seed * 42317861L + seed * 7L;
 
         int num0 = (int) (seed >> 12 & 3L);
@@ -663,33 +646,30 @@ public class TFFeature {
         return new ChunkCoordinates(fx, TFWorld.SEALEVEL, fz);
     }
 
-    /**
-     * Returns a list of hostile monsters. Are we ever going to need passive or water creatures?
-     */
-    public List<SpawnListEntry> getSpawnableList(EnumCreatureType par1EnumCreatureType) {
-        if (par1EnumCreatureType == EnumCreatureType.monster) {
-            return this.getSpawnableList(EnumCreatureType.monster, 0);
-        } else if (par1EnumCreatureType == EnumCreatureType.ambient) {
-            return this.ambientCreatureList;
-        } else if (par1EnumCreatureType == EnumCreatureType.waterCreature) {
-            return this.waterCreatureList;
-        } else {
-            return emptyList;
-        }
+    // Returns a list of hostile monsters. Are we ever going to need passive or water creatures?
+    public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
+    	switch (creatureType) {
+    	case monster:
+    		return this.getSpawnableList(EnumCreatureType.monster, 0);
+    	case ambient:
+    		return this.ambientCreatureList;
+    	case waterCreature:
+    		return this.waterCreatureList;
+    	default:
+    		return emptyList;
+    	}
     }
 
-    /**
-     * Returns a list of hostile monsters in the specified indexed category
-     */
-    public List<SpawnListEntry> getSpawnableList(EnumCreatureType par1EnumCreatureType, int index) {
-        if (par1EnumCreatureType == EnumCreatureType.monster) {
+    // Returns a list of hostile monsters in the specified indexed category
+    public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType, int index) {
+        if (creatureType == EnumCreatureType.monster) {
             if (index >= 0 && index < this.spawnableMonsterLists.size()) {
                 return this.spawnableMonsterLists.get(index);
             } else {
                 return emptyList;
             }
         } else {
-            return getSpawnableList(par1EnumCreatureType);
+            return getSpawnableList(creatureType);
         }
     }
 
@@ -714,16 +694,12 @@ public class TFFeature {
         }
     }
 
-    /**
-     * Try to spawn a hint monster near the specified player
-     */
+    // Try to spawn a hint monster near the specified player
     public void trySpawnHintMonster(World world, EntityPlayer player) {
         this.trySpawnHintMonster(world, player, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ));
     }
 
-    /**
-     * Try several times to spawn a hint monster
-     */
+    // Try several times to spawn a hint monster
     public void trySpawnHintMonster(World world, EntityPlayer player, int x, int y, int z) {
         // check if the timer is valid
         long currentTime = world.getTotalWorldTime();
@@ -792,7 +768,6 @@ public class TFFeature {
         NBTTagList bookPages = new NBTTagList();
 
         if (this == TFFeature.lichTower) {
-
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, gnawed on by monsters]]\u00A70\n\nI have begun examining the strange aura surrounding this tower. The bricks of the tower are protected by a curse, stronger than any I've seen before. The magic from the curse"));
             bookPages.appendTag(new NBTTagString("is boiling off into the surrounding area.\n\nIn my homeland I would have many options for dealing with this magic, but here my supplies are limited. I shall have to research..."));
             bookPages.appendTag(new NBTTagString("\u00A78[[Many entries later]]\u00A70\n\nA breakthrough!  In my journeys I sighted a huge snake-like monster in a decorated courtyard. Nearby, I picked up a worn down, discarded green scale.\n\nThe magic in the scale seems to have the"));
@@ -811,7 +786,6 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on a Swampy Labyrinth"));
-
         } else if (this == TFFeature.hydraLair) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, written on fireproof paper]]\u00A70\n\nFire is a trivial obstacle for a master explorer such as myself. I have traversed seas of fire, and swam through oceans of lava. The burning air here is an interesting variation,"));
             bookPages.appendTag(new NBTTagString("but ultimately no hinderance.\n\nWhat does stop me though is that I have encountered another protection spell, this time surrounding a mighty creature that must be king of this fire swamp. This is not the first protection spell I have"));
@@ -821,19 +795,16 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on the Fire Swamp"));
-
         } else if (this == TFFeature.tfStronghold) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, written on faintly glowing paper]]\u00A70\n\nThe tendrils of darkness surrounding this area are just a manifestation of a protective spell over the entire dark forest. The spell causes blindness, which is quite vexing. I have"));
             bookPages.appendTag(new NBTTagString("seen several interesting things in the area and would like to keep exploring.\n\n\u00A78[[Next entry]]\u00A70\n\nI have found ruins in the dark forest.  They belong to a stronghold, of a type usually inhabited by knights. Rather than"));
             bookPages.appendTag(new NBTTagString("knights though, this stronghold is full of goblins. They wear knightly armor, but their behavior is most un-knightly.\n\n\u00A78[[Next entry]]\u00A70\n\nDeep in the ruins, I have found a pedestal. The pedestal seems to be of a type that"));
             bookPages.appendTag(new NBTTagString("knights would place trophies on to prove their strength.\n\nKilling a powerful creature would seem to weaken the curse on the dark forest, and placing a trophy associated with the creature on the pedestal would likely grant access into the"));
-            bookPages.appendTag(
-                    new NBTTagString("main part of the stronghold.\n\nThe only creature I have seen so far seen so far of sufficient power is the many-headed beast in the fire swamp. How vexing..."));
+            bookPages.appendTag(new NBTTagString("main part of the stronghold.\n\nThe only creature I have seen so far seen so far of sufficient power is the many-headed beast in the fire swamp. How vexing..."));
 
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on a Stronghold"));
-
         } else if (this == TFFeature.darkTower) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook that seems to have survived an explosion]]\u00A70\n\nThis tower clearly has mechanisms that are not responding to me. Their magic almost yearns to acknowledge my touch, but it cannot. It is if the devices of the tower are being"));
             bookPages.appendTag(new NBTTagString("suppressed by a powerful group of beings nearby.\n\n\u00A78[[Next entry]]\u00A70\n\nThe magic seems to emanate from deep within the strongholds nearby. It can't come from the goblins, as their magic is charming, but unfocused. There"));
@@ -842,7 +813,6 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on a Wooden Tower"));
-
         } else if (this == TFFeature.yetiCave) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, covered in frost]]\u00A70\n\nThe blizzard surrounding these snowy lands is unceasing. This is no ordinary snowfall--this is a magical phenomenon. I will have to conduct experiments to find"));
             bookPages.appendTag(new NBTTagString("what is capable of causing such an effect.\n\n\u00A78[[Next entry]]\u00A70\n\nAt the center of the dark forest, where the leaves turn red and the grass dies, there is a wooden tower. The tops of the tower are affixed with"));
@@ -852,7 +822,6 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on an Icy Cave"));
-
         } else if (this == TFFeature.iceTower) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, caked in ice]]\u00A70\n\nI overcame one blizzard, only to run into this terrible ice storm atop the glacier. My explorations have shown me the splendor of an ice palace, shining with the colors of the polar aurora. It"));
             bookPages.appendTag(new NBTTagString("all seems protected by some sort of curse.\n\n\u00A78[[Next entry]]\u00A70\n\nI am no novice.  This curse is fed by the power of a creature nearby.  The cause of the curse surrounding the fire swamp was built off the power of the leader of the "));
@@ -861,7 +830,6 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on an Auroral Fortification"));
-
         } else if (this == TFFeature.trollCave) {
             bookPages.appendTag(new NBTTagString("\u00A78[[An explorer's notebook, damaged by acid]]\u00A70\n\nThere seems to be no way to protect myself from the toxic rainstorm surrounding this area. In my brief excursions, I have also encountered another protection spell, similar to the"));
             bookPages.appendTag(new NBTTagString("others I have witnessed. The spell must be connected to the toxic storm in some way. Further research to follow...\n\n\u00A78[[Next entry]]\u00A70\n\nSuch supreme weather magic must be the result of an unequaled weather"));
@@ -870,7 +838,6 @@ public class TFFeature {
             book.setTagInfo("pages", bookPages);
             book.setTagInfo("author", new NBTTagString("A Forgotten Explorer"));
             book.setTagInfo("title", new NBTTagString("Notes on an the Highlands"));
-
         } else {
             bookPages.appendTag(new NBTTagString( "\u00A78[[This book shows signs of having been copied many times]]\u00A70\n\nI cannot explain the field surrounding this structure, but the magic is powerful.  If this curse is like the others, than the answer to unlocking it lies elsewhere.  Perhaps there is "));
             bookPages.appendTag(new NBTTagString("something I have left undone, or some monster I have yet to defeat. I will have to turn back. I will return to this place later, to see if anything has changed."));
@@ -881,4 +848,5 @@ public class TFFeature {
         }
         return book;
     }
+
 }

@@ -17,8 +17,8 @@ import twilightforest.TwilightForestMod;
 
 public class ItemTFFierySword extends ItemSword {
 
-    public ItemTFFierySword(Item.ToolMaterial par2EnumToolMaterial) {
-        super(par2EnumToolMaterial);
+    public ItemTFFierySword(Item.ToolMaterial toolMaterial) {
+        super(toolMaterial);
         this.setCreativeTab(TFItems.creativeTab);
     }
 
@@ -27,10 +27,10 @@ public class ItemTFFierySword extends ItemSword {
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        ItemStack istack = new ItemStack(par1, 1, 0);
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        ItemStack istack = new ItemStack(item, 1, 0);
         // istack.addEnchantment(Enchantment.fireAspect, 1);
-        par3List.add(istack);
+        itemList.add(istack);
     }
 
     /**
@@ -39,7 +39,7 @@ public class ItemTFFierySword extends ItemSword {
      * This is automatically rare
      */
     @Override
-    public EnumRarity getRarity(ItemStack par1ItemStack) {
+    public EnumRarity getRarity(ItemStack itemStack) {
         return EnumRarity.rare;
     }
 
@@ -66,23 +66,23 @@ public class ItemTFFierySword extends ItemSword {
      * They just raise the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving) {
-        boolean result = super.hitEntity(par1ItemStack, par2EntityLiving, par3EntityLiving);
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase target, EntityLivingBase par3EntityLiving) {
+        boolean result = super.hitEntity(par1ItemStack, target, par3EntityLiving);
 
-        if (result && !par2EntityLiving.isImmuneToFire()) {
-            if (par2EntityLiving.worldObj.isRemote) {
+        if (result && !target.isImmuneToFire()) {
+            if (target.worldObj.isRemote) {
                 // fire animation!
                 for (int var1 = 0; var1 < 20; ++var1) {
                     double var2 = itemRand.nextGaussian() * 0.02D;
                     double var4 = itemRand.nextGaussian() * 0.02D;
                     double var6 = itemRand.nextGaussian() * 0.02D;
                     double var8 = 10.0D;
-                    par2EntityLiving.worldObj.spawnParticle("flame", par2EntityLiving.posX + itemRand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width - var2 * var8,
-                            par2EntityLiving.posY + itemRand.nextFloat() * par2EntityLiving.height - var4 * var8,
-                            par2EntityLiving.posZ + itemRand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width - var6 * var8, var2, var4, var6);
+                    target.worldObj.spawnParticle("flame", target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
+                    		target.posY + itemRand.nextFloat() * target.height - var4 * var8,
+                    		target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8, var2, var4, var6);
                 }
             } else {
-                par2EntityLiving.setFire(15);
+            	target.setFire(15);
             }
         }
 

@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
@@ -24,9 +25,7 @@ public class BlockTFCinderLog extends BlockLog {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
+    // From the specified side and block metadata retrieves the blocks texture. Args: side, metadata 
     @Override
     public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
@@ -44,11 +43,9 @@ public class BlockTFCinderLog extends BlockLog {
         this.cornerIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":cinder_corner");
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
+    // Returns the ID of the items to drop on destruction.
     @Override
-    public Item getItemDropped(int par1, Random par2Random, int par3) {
+    public Item getItemDropped(int par1, Random random, int par3) {
         return Item.getItemFromBlock(TFBlocks.cinderLog); // hey that's my block ID!
     }
 
