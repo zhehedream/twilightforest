@@ -42,38 +42,38 @@ public class ItemTFMagicMap extends ItemMap {
     }
 
     @Override
-    public TFMagicMapData getMapData(ItemStack par1ItemStack, World par2World) {
-        String mapName = STR_ID + "_" + par1ItemStack.getItemDamage();
-        TFMagicMapData mapData = (TFMagicMapData) par2World.loadItemData(TFMagicMapData.class, mapName);
+    public TFMagicMapData getMapData(ItemStack itemStack, World world) {
+        String mapName = STR_ID + "_" + itemStack.getItemDamage();
+        TFMagicMapData mapData = (TFMagicMapData) world.loadItemData(TFMagicMapData.class, mapName);
 
-        if (mapData == null && !par2World.isRemote) {
-            par1ItemStack.setItemDamage(par2World.getUniqueDataId(STR_ID));
-            mapName = STR_ID + "_" + par1ItemStack.getItemDamage();
+        if (mapData == null && !world.isRemote) {
+        	itemStack.setItemDamage(world.getUniqueDataId(STR_ID));
+            mapName = STR_ID + "_" + itemStack.getItemDamage();
             mapData = new TFMagicMapData(mapName);
-            mapData.xCenter = par2World.getWorldInfo().getSpawnX();
-            mapData.zCenter = par2World.getWorldInfo().getSpawnZ();
+            mapData.xCenter = world.getWorldInfo().getSpawnX();
+            mapData.zCenter = world.getWorldInfo().getSpawnZ();
             mapData.scale = 4;
-            mapData.dimension = par2World.provider.dimensionId;
+            mapData.dimension = world.provider.dimensionId;
             mapData.markDirty();
-            par2World.setItemData(mapName, mapData);
+            world.setItemData(mapName, mapData);
         }
 
         return mapData;
     }
 
-    public void updateMapData(World par1World, Entity par2Entity, TFMagicMapData par3MapData) {
-        if (par1World.provider.dimensionId == par3MapData.dimension && par2Entity instanceof EntityPlayer) {
+    public void updateMapData(World world, Entity entity, TFMagicMapData mapData) {
+        if (world.provider.dimensionId == mapData.dimension && entity instanceof EntityPlayer) {
             short xSize = 128;
             short zSize = 128;
-            int scaleFactor = 1 << par3MapData.scale;
-            int xCenter = par3MapData.xCenter;
-            int zCenter = par3MapData.zCenter;
-            int xDraw = MathHelper.floor_double(par2Entity.posX - (double) xCenter) / scaleFactor + xSize / 2;
-            int zDraw = MathHelper.floor_double(par2Entity.posZ - (double) zCenter) / scaleFactor + zSize / 2;
+            int scaleFactor = 1 << mapData.scale;
+            int xCenter = mapData.xCenter;
+            int zCenter = mapData.zCenter;
+            int xDraw = MathHelper.floor_double(entity.posX - (double) xCenter) / scaleFactor + xSize / 2;
+            int zDraw = MathHelper.floor_double(entity.posZ - (double) zCenter) / scaleFactor + zSize / 2;
             int drawSize = 512 / scaleFactor;
 //            int drawSize = 1024 / scaleFactor;
 
-            MapInfo mapInfo = par3MapData.func_82568_a((EntityPlayer) par2Entity);
+            MapInfo mapInfo = mapData.func_82568_a((EntityPlayer) entity);
             ++mapInfo.field_82569_d;
 
             for (int xStep = xDraw - drawSize + 1; xStep < xDraw + drawSize; ++xStep) {
@@ -96,7 +96,7 @@ public class ItemTFMagicMap extends ItemMap {
 
                             for (xStep2 = 0; xStep2 < scaleFactor; ++xStep2) {
                                 for (zStep2 = 0; zStep2 < scaleFactor; ++zStep2) {
-                                    biomeID = par1World.getBiomeGenForCoords(xDraw2 + xStep2, zDraw2 + zStep2).biomeID;
+                                    biomeID = world.getBiomeGenForCoords(xDraw2 + xStep2, zDraw2 + zStep2).biomeID;
 
                                     biomeFrequencies[biomeID]++;
 
@@ -105,11 +105,11 @@ public class ItemTFMagicMap extends ItemMap {
                                         biomeFrequencies[biomeID] += 2;
                                     }
                                     // add in TF features
-                                    if (par1World.getWorldChunkManager() instanceof TFWorldChunkManager) {
-                                        TFWorldChunkManager tfManager = (TFWorldChunkManager) par1World.getWorldChunkManager();
+                                    if (world.getWorldChunkManager() instanceof TFWorldChunkManager) {
+                                        TFWorldChunkManager tfManager = (TFWorldChunkManager) world.getWorldChunkManager();
 
-                                        if (tfManager.isInFeatureChunk(par1World, xDraw2 + xStep2, zDraw2 + zStep2) && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
-                                            par3MapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, par1World), xDraw2, zDraw2);
+                                        if (tfManager.isInFeatureChunk(world, xDraw2 + xStep2, zDraw2 + zStep2) && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
+                                        	mapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, world), xDraw2, zDraw2);
                                         }
                                     }
 
@@ -141,7 +141,7 @@ public class ItemTFMagicMap extends ItemMap {
                             biomeIDToShow++;
 
                             if (zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize && (!var20 || (xStep + zStep & 1) != 0)) {
-                                byte existingColor = par3MapData.colors[xStep + zStep * xSize];
+                                byte existingColor = mapData.colors[xStep + zStep * xSize];
 
                                 if (existingColor != biomeIDToShow) {
                                     if (highNumber > zStep) {
@@ -152,14 +152,13 @@ public class ItemTFMagicMap extends ItemMap {
                                         lowNumber = zStep;
                                     }
 
-                                    par3MapData.colors[xStep + zStep * xSize] = biomeIDToShow;
+                                    mapData.colors[xStep + zStep * xSize] = biomeIDToShow;
                                 }
                             }
                         }
                     }
-
                     if (highNumber <= lowNumber) {
-                        par3MapData.setColumnDirty(xStep, highNumber, lowNumber);
+                    	mapData.setColumnDirty(xStep, highNumber, lowNumber);
                     }
                 }
             }
@@ -170,17 +169,17 @@ public class ItemTFMagicMap extends ItemMap {
      * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a
      * player hand and update it's contents.
      */
-    public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) {
-        if (!par2World.isRemote) {
-            TFMagicMapData mapData = this.getMapData(par1ItemStack, par2World);
+    public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5) {
+        if (!world.isRemote) {
+            TFMagicMapData mapData = this.getMapData(itemStack, world);
 
-            if (par3Entity instanceof EntityPlayer) {
-                EntityPlayer var7 = (EntityPlayer) par3Entity;
-                mapData.updateVisiblePlayers(var7, par1ItemStack);
+            if (entity instanceof EntityPlayer) {
+                EntityPlayer var7 = (EntityPlayer) entity;
+                mapData.updateVisiblePlayers(var7, itemStack);
             }
 
             if (par5) {
-                this.updateMapData(par2World, par3Entity, mapData);
+                this.updateMapData(world, entity, mapData);
             }
         }
     }
@@ -189,7 +188,7 @@ public class ItemTFMagicMap extends ItemMap {
      * Called when item is crafted/smelted. Used only by maps so far.
      */
     @Override
-    public void onCreated(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+    public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
         // we don't need to do anything here, I think
     }
 
@@ -197,7 +196,7 @@ public class ItemTFMagicMap extends ItemMap {
      * Return an item rarity from EnumRarity
      */
     @Override
-    public EnumRarity getRarity(ItemStack par1ItemStack) {
+    public EnumRarity getRarity(ItemStack itemStack) {
         return EnumRarity.uncommon;
     }
 
@@ -205,7 +204,7 @@ public class ItemTFMagicMap extends ItemMap {
      * Do the enchanted shimmer thing
      */
     @Override
-    public boolean hasEffect(ItemStack par1ItemStack) {
+    public boolean hasEffect(ItemStack itemStack) {
         return false;
     }
 
@@ -218,40 +217,37 @@ public class ItemTFMagicMap extends ItemMap {
      * Also every 4 player update packets we send is actually a feature icon update packet.
      */
     @Override
-    public Packet func_150911_c(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+    public Packet func_150911_c(ItemStack itemStack, World world, EntityPlayer player) {
 //		System.out.println("Getting magic map packet");
 
-        byte[] mapBytes = this.getMapData(par1ItemStack, par2World).getUpdatePacketData(par1ItemStack, par2World, par3EntityPlayer);
+        byte[] mapBytes = this.getMapData(itemStack, world).getUpdatePacketData(itemStack, world, player);
 
         if (mapBytes == null) {
             return null;
         } else {
             // hijack random player data packets for our feature data packets?
-            if (mapBytes[0] == 1 && par2World.rand.nextInt(4) == 0) {
-                this.getMapData(par1ItemStack, par2World).checkExistingFeatures(par2World);
-                mapBytes = this.getMapData(par1ItemStack, par2World).makeFeatureStorageArray();
+            if (mapBytes[0] == 1 && world.rand.nextInt(4) == 0) {
+                this.getMapData(itemStack, world).checkExistingFeatures(world);
+                mapBytes = this.getMapData(itemStack, world).makeFeatureStorageArray();
             }
 
             // short mapItemID = (short) TFItems.magicMap;
-            short uniqueID = (short) par1ItemStack.getItemDamage();
+            short uniqueID = (short) itemStack.getItemDamage();
 
             return TFMapPacketHandler.makeMagicMapPacket(ItemTFMagicMap.STR_ID, uniqueID, mapBytes);
         }
     }
 
-    /**
-     * Add the map number to the tooltip
-     */
-    public String getItemStackDisplayName(ItemStack par1ItemStack) {
-        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(par1ItemStack) + ".name") + " #" + par1ItemStack.getItemDamage()).trim();
+    // Add the map number to the tooltip
+    public String getItemStackDisplayName(ItemStack itemStack) {
+        return (String.valueOf(StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #" + itemStack.getItemDamage())).trim();
     }
 
-    /**
-     * Properly register icon source
-     */
+    // Properly register icon source
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
+
 }

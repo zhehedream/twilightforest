@@ -244,7 +244,7 @@ public class ItemTFMazeMap extends ItemMap {
      * Do the enchanted shimmer thing
      */
     @Override
-    public boolean hasEffect(ItemStack par1ItemStack) {
+    public boolean hasEffect(ItemStack itemStack) {
         return false;
     }
 
@@ -255,16 +255,16 @@ public class ItemTFMazeMap extends ItemMap {
      * is only for the actual map map.
      */
     @Override
-    public Packet func_150911_c(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+    public Packet func_150911_c(ItemStack itemStack, World world, EntityPlayer player) {
         // System.out.println("Making maze map packet");
-        // System.out.println("yCenter = " + this.getMapData(par1ItemStack, par2World).yCenter);
+        // System.out.println("yCenter = " + this.getMapData(itemStack, world).yCenter);
 
-        byte[] mapBytes = this.getMapData(par1ItemStack, par2World).getUpdatePacketData(par1ItemStack, par2World, par3EntityPlayer);
+        byte[] mapBytes = this.getMapData(itemStack, world).getUpdatePacketData(itemStack, world, player);
 
         if (mapBytes == null) {
             return null;
         } else {
-            short uniqueID = (short) par1ItemStack.getItemDamage();
+            short uniqueID = (short) itemStack.getItemDamage();
 
             return TFMapPacketHandler.makeMagicMapPacket(ItemTFMazeMap.STR_ID, uniqueID, mapBytes);
         }
@@ -273,8 +273,8 @@ public class ItemTFMazeMap extends ItemMap {
     /**
      * Add the map number to the tooltip
      */
-    public String getItemStackDisplayName(ItemStack par1ItemStack) {
-        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(par1ItemStack) + ".name") + " #" + par1ItemStack.getItemDamage()).trim();
+    public String getItemStackDisplayName(ItemStack itemStack) {
+        return (String.valueOf(StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #" + itemStack.getItemDamage())).trim();
     }
 
     /**
@@ -285,4 +285,5 @@ public class ItemTFMazeMap extends ItemMap {
     public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
+
 }

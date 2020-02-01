@@ -63,15 +63,11 @@ public class ItemTFYetiArmor extends ItemArmor {
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        ItemStack istack = new ItemStack(par1, 1, 0);
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        ItemStack istack = new ItemStack(item, 1, 0);
         switch (this.armorType) {
         case 0:
-            istack.addEnchantment(Enchantment.protection, 2);
-            break;
         case 1:
-            istack.addEnchantment(Enchantment.protection, 2);
-            break;
         case 2:
             istack.addEnchantment(Enchantment.protection, 2);
             break;
@@ -80,7 +76,7 @@ public class ItemTFYetiArmor extends ItemArmor {
             istack.addEnchantment(Enchantment.featherFalling, 4);
             break;
         }
-        par3List.add(istack);
+        itemList.add(istack);
     }
 
     /**

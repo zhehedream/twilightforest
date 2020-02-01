@@ -172,9 +172,9 @@ public class ComponentTFStrongholdAtrium extends StructureTFStrongholdComponent 
                     break;
                 }
 
-                if (i == 99) {
+                //if (i == 99) {
                     // System.out.println("Never generated " + treeGen);
-                }
+                //}
             }
         }
     }

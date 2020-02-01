@@ -52,7 +52,6 @@ public abstract class StructureTFComponent extends StructureComponent {
     public static StructureBoundingBox getComponentToAddBoundingBox(int x, int y, int z, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, int dir) {
         switch (dir) {
         default:
-            return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
         case 0: // '\0'
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
         case 1: // '\001'
@@ -70,7 +69,6 @@ public abstract class StructureTFComponent extends StructureComponent {
     public static StructureBoundingBox getComponentToAddBoundingBox2(int x, int y, int z, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, int dir) {
         switch (dir) {
         default:
-            return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
         case 0: // '\0'
             return new StructureBoundingBox(x + minX, y + minY, z + minZ, x + maxX + minX, y + maxY + minY, z + maxZ + minZ);
         case 1: // '\001'
