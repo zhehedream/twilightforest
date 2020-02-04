@@ -249,13 +249,12 @@ public class BlockTFPlant extends BlockBush implements IShearable {
      * Ticks the block if it's been scheduled
      */
     @Override
-    public void updateTick(World world, int x, int y, int z, Random par5Random) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (world.getBlockLightValue(x, y, z) < lightValue[meta]) {
+    public void updateTick(World world, int x, int y, int z, Random random) {
+        //int meta = world.getBlockMetadata(x, y, z);
+        //if (world.getBlockLightValue(x, y, z) < lightValue[meta]) {
             // par1World.updateLightByType(EnumSkyBlock.Block, x, y, z);
             // par1World.markBlockForUpdate(x, y, z); // do we need this now?
-        }
-
+        //}
     }
 
     /**
@@ -372,7 +371,6 @@ public class BlockTFPlant extends BlockBush implements IShearable {
      */
     @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
-        // TODO Auto-generated method stub
         return true;
     }
 
