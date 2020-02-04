@@ -9,9 +9,9 @@ import twilightforest.tileentity.TileEntityTFFirefly;
 
 public class BlockTFFirefly extends BlockTFCritter {
 
-    public static int sprFirefly = 4;
+    //public static int sprFirefly = 4;
 
-    public static Random rand = new Random();
+    //public static Random rand = new Random();
 
     protected BlockTFFirefly() {
         super();
@@ -19,9 +19,9 @@ public class BlockTFFirefly extends BlockTFCritter {
     }
 
     // How often do we check for incorrect lighting on fireflies, etc.
-    public int tickRate() {
-        return 50 + rand.nextInt(50);
-    }
+    //public int tickRate() {
+    //    return 50 + rand.nextInt(50);
+    //}
 
     /**
      * Get a light value for this block, normal ranges are between 0 and 15
@@ -53,7 +53,7 @@ public class BlockTFFirefly extends BlockTFCritter {
     }
 
     // Ticks the block if it's been scheduled Check the lighting and make the world relight it if it's incorrect.
-    @Override
+    /*@Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         if (!world.isRemote && world.getBlockLightValue(x, y, z) < 12) {
             // world.updateLightByType(EnumSkyBlock.Block, x, y, z);
@@ -62,5 +62,5 @@ public class BlockTFFirefly extends BlockTFCritter {
             // do another update to check that we got it right
             world.scheduleBlockUpdate(x, y, z, this, tickRate());
         }
-    }
+    }*/
 }
