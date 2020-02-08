@@ -108,7 +108,7 @@ public class ItemBlockTFPlant extends ItemBlock {
 
                 if (world.setBlock(x, y, z, plantBlock, itemStack.getItem().getMetadata(itemStack.getItemDamage()), 3)) {
                     if (world.getBlock(x, y, z) == plantBlock) {
-//                    	plantBlock.onBlockPlaced(world, x, y, z, direction);
+//                        plantBlock.onBlockPlaced(world, x, y, z, direction);
                         plantBlock.onBlockPlacedBy(world, x, y, z, player, itemStack);
                     }
 

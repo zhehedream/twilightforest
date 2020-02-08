@@ -48,9 +48,9 @@ public class ItemBlockTFLog extends ItemBlock {
 //    /**
 //     * Display meta in tooltip
 //     */
-//	@Override
-//	public void addInformation(ItemStack par1ItemStack, List par2List) {
-//		par2List.add("Meta = " + par1ItemStack.getItemDamage());
-//	}
+//    @Override
+//    public void addInformation(ItemStack par1ItemStack, List par2List) {
+//        par2List.add("Meta = " + par1ItemStack.getItemDamage());
+//    }
 
 }

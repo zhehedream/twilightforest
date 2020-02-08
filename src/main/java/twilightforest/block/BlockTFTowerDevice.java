@@ -645,14 +645,14 @@ public class BlockTFTowerDevice extends Block {
         }
     }
 
-//	@Override
-//	public void breakBlock(World par1World, int x, int y, int z, int par5, int meta) {
-//		super.breakBlock(par1World, x, y, z, par5, meta);
-//		
-//		//System.out.println("broke block, meta = " + meta);
-//		
+//    @Override
+//    public void breakBlock(World par1World, int x, int y, int z, int par5, int meta) {
+//        super.breakBlock(par1World, x, y, z, par5, meta);
+//        
+//        //System.out.println("broke block, meta = " + meta);
+//        
 //        if (meta == META_BUILDER_ACTIVE)
-//		{
+//        {
 //            // activate all adjacent inactive vanish blocks
 //            checkAndActivateVanishBlock(par1World, x - 1, y, z);
 //            checkAndActivateVanishBlock(par1World, x + 1, y, z);
@@ -660,7 +660,7 @@ public class BlockTFTowerDevice extends Block {
 //            checkAndActivateVanishBlock(par1World, x, y - 1, z);
 //            checkAndActivateVanishBlock(par1World, x, y, z + 1);
 //            checkAndActivateVanishBlock(par1World, x, y, z - 1);
-//		}
-//	}
+//        }
+//    }
 
 }

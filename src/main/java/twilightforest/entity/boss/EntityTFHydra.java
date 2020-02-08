@@ -138,10 +138,10 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
         if (!this.worldObj.isRemote) {
             this.dataWatcher.updateObject(DATA_BOSSHEALTH, (int) this.getHealth());
         } else {
-//        	if (this.getBossHealth() != this.getHealth())
-//        	{
-//        		this.setEntityHealth(this.getBossHealth());
-//        	}
+//            if (this.getBossHealth() != this.getHealth())
+//            {
+//                this.setEntityHealth(this.getBossHealth());
+//            }
             if (this.getHealth() > 0) {
                 // this seems to get set off during creation at some point
                 this.deathTime = 0;
@@ -321,8 +321,8 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
 
     @Override
     protected void updateEntityActionState() {
-//		System.out.println("Calling updateEntityActionState");
-//		System.out.println("Current target = " + currentTarget);
+//        System.out.println("Calling updateEntityActionState");
+//        System.out.println("Current target = " + currentTarget);
 
         entityAge++;
         despawnEntity();
@@ -1042,9 +1042,9 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
         return this.worldObj;
     }
 
-//	@Override
-//	public int getBossHealth() {
+//    @Override
+//    public int getBossHealth() {
 //        return this.dataWatcher.getWatchableObjectInt(EntityTFHydra.DATA_BOSSHEALTH);
-//	}
+//    }
 
 }

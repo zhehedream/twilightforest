@@ -123,8 +123,8 @@ public class ModelTFTowerBoss extends ModelTFGhast {
         for (int i = 0; i < this.subTentacles.length; ++i) {
 //            for (int j = 0; j < this.subTentacles[i].length; ++j)
 //            {
-//            	this.subTentacles[i][j].rotateAngleX = 0.8F * MathHelper.sin(i * 2.3F) + 0.3F * MathHelper.sin(j) + 0.2F;
-//            	
+//                this.subTentacles[i][j].rotateAngleX = 0.8F * MathHelper.sin(i * 2.3F) + 0.3F * MathHelper.sin(j) + 0.2F;
+//                
 //            }
 
             float wiggle = Math.min(par2, 0.6F);

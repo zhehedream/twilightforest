@@ -29,7 +29,7 @@ public class ModelTFFirefly extends ModelBase {
         legs.render(f5);
         fatbody.render(f5);
         skinnybody.render(f5);
-//		glow.render(f5);
+//        glow.render(f5);
 
     }
 

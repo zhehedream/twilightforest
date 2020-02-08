@@ -21,11 +21,11 @@ public class EntityAIStayNearHome extends EntityAIBase {
     public boolean shouldExecute() {
         boolean isOutOfRange = !this.entity.isWithinHomeDistanceCurrentPosition();
 
-//		if (isOutOfRange) {
-//			System.out.println("This creature is outside home range, moving home!");
-//		} else {
-//			System.out.println("This creature is inside home range");
-//		}
+//        if (isOutOfRange) {
+//            System.out.println("This creature is outside home range, moving home!");
+//        } else {
+//            System.out.println("This creature is inside home range");
+//        }
 
         return isOutOfRange;
     }
@@ -37,13 +37,13 @@ public class EntityAIStayNearHome extends EntityAIBase {
         return !this.entity.getNavigator().noPath();
     }
 
-//	/**
-//	 * Execute a one shot task or start executing a continuous task
-//	 */
-//	public void startExecuting()
-//	{
-//		this.entity.getNavigator().tryMoveToXYZ(this.entity.getHomePosition().posX, this.entity.getHomePosition().posY, this.entity.getHomePosition().posZ, this.speed);
-//	}
+//    /**
+//     * Execute a one shot task or start executing a continuous task
+//     */
+//    public void startExecuting()
+//    {
+//        this.entity.getNavigator().tryMoveToXYZ(this.entity.getHomePosition().posX, this.entity.getHomePosition().posY, this.entity.getHomePosition().posZ, this.speed);
+//    }
 
     /**
      * Execute a one shot task or start executing a continuous task

@@ -176,9 +176,9 @@ public class EntityTFMinotaur extends EntityMob implements ITFCharger {
 //     * Initialize this creature.
 //     */
 //    @Override
-//	public void initCreature()
+//    public void initCreature()
 //    {
-//    	//this.func_82164_bB();
+//        //this.func_82164_bB();
 //        this.func_82162_bC();
 //    }
 

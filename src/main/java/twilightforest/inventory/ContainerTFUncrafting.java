@@ -155,19 +155,19 @@ public class ContainerTFUncrafting extends Container {
                 this.tinkerResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.assemblyMatrix, this.worldObj));
                 this.uncraftingMatrix.recraftingCost = 0;
             } else {
-//    			if (isMatrixEmpty(this.assemblyMatrix)) {
-//    				// we just emptied the assembly matrix and need to re-prepare for uncrafting
-//	    			this.tinkerResult.setInventorySlotContents(0, null);
-//        			this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
-//        			this.uncraftingMatrix.recraftingCost = 0;
-//    			}
-//    			else {
+//                if (isMatrixEmpty(this.assemblyMatrix)) {
+//                    // we just emptied the assembly matrix and need to re-prepare for uncrafting
+//                    this.tinkerResult.setInventorySlotContents(0, null);
+//                    this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
+//                    this.uncraftingMatrix.recraftingCost = 0;
+//                }
+//                else {
                 // we placed an item in the assembly matrix, the next step will re-initialize these with correct
                 // values
                 this.tinkerResult.setInventorySlotContents(0, null);
                 this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
                 this.uncraftingMatrix.recraftingCost = 0;
-//    			}
+//                }
             }
         }
 
@@ -665,14 +665,14 @@ public class ContainerTFUncrafting extends Container {
     public ItemStack[] getRecipeItemsShaped(ShapedRecipes shaped) {
         return shaped.recipeItems;
 
-//    	try {
-//			return (ItemStack[])(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 2));
-//		} catch (IllegalArgumentException e) {
-//			e.printStackTrace();
-//		} catch (SecurityException e) {
-//			e.printStackTrace();
-//		}
-//    	return null;
+//        try {
+//            return (ItemStack[])(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 2));
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
     }
 
     /**
@@ -728,14 +728,14 @@ public class ContainerTFUncrafting extends Container {
     public int getRecipeWidthShaped(ShapedRecipes shaped) {
         return shaped.recipeWidth;
 
-//    	try {
-//			return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 0))).intValue();
-//		} catch (IllegalArgumentException e) {
-//			e.printStackTrace();
-//		} catch (SecurityException e) {
-//			e.printStackTrace();
-//		}
-//    	return 0;
+//        try {
+//            return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 0))).intValue();
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        }
+//        return 0;
     }
 
     /**
@@ -776,14 +776,14 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeHeightShaped(ShapedRecipes shaped) {
         return shaped.recipeHeight;
-//    	try {
-//			return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 1))).intValue();
-//		} catch (IllegalArgumentException e) {
-//			e.printStackTrace();
-//		} catch (SecurityException e) {
-//			e.printStackTrace();
-//		}
-//    	return 0;
+//        try {
+//            return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 1))).intValue();
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        }
+//        return 0;
     }
 
     /**

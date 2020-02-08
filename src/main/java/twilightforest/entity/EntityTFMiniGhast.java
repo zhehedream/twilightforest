@@ -51,14 +51,14 @@ public class EntityTFMiniGhast extends EntityTFTowerGhast {
 //        {
 //        case 0:
 //        default:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
+//            break;
 //        case 1:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
+//            break;
 //        case 2:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
+//            break;
 //        }
     }
 

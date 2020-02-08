@@ -87,7 +87,7 @@ public class EntityTFSpikeBlock extends Entity {
 //    /**
 //     * Returns the texture's file path as a String.
 //     */
-//	@Override
+//    @Override
 //    public String getTexture()
 //    {
 //        return this.texture;

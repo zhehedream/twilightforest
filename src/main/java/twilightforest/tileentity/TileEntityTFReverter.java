@@ -46,7 +46,7 @@ public class TileEntityTFReverter extends TileEntity {
                 double var1 = (double) ((float) this.xCoord + this.worldObj.rand.nextFloat());
                 double var3 = (double) ((float) this.yCoord + this.worldObj.rand.nextFloat());
                 double var5 = (double) ((float) this.zCoord + this.worldObj.rand.nextFloat());
-//				this.worldObj.spawnParticle("smoke", var1, var3, var5, 0.0D, 0.0D, 0.0D);
+//                this.worldObj.spawnParticle("smoke", var1, var3, var5, 0.0D, 0.0D, 0.0D);
                 this.worldObj.spawnParticle("reddust", var1, var3, var5, 0.0D, 0.0D, 0.0D);
 
                 // occasionally make a little red dust line to outline our radius

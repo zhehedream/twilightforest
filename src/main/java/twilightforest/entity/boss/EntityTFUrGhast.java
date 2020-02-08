@@ -32,7 +32,7 @@ import twilightforest.world.WorldProviderTwilightForest;
 
 public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayData {
 
-//	private static final int DATA_BOSSHEALTH = 17;
+//    private static final int DATA_BOSSHEALTH = 17;
     private static final int DATA_TANTRUM = 18;
 
     // private static final int CRUISING_ALTITUDE = 235; // absolute cruising altitude
@@ -731,10 +731,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     /**
      * Needed for boss health bar on the client
      */
-//	@Override
-//	public int getBossHealth() {
+//    @Override
+//    public int getBossHealth() {
 //        return this.dataWatcher.getWatchableObjectInt(DATA_BOSSHEALTH);
-//	}
+//    }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {

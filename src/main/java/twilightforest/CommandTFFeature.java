@@ -54,11 +54,11 @@ public class CommandTFFeature extends CommandBase {
                         // are you in a room?
 
                         // what is the spawn list
-//						List<SpawnListEntry> spawnList = chunkProvider.getPossibleCreatures(EnumCreatureType.monster, dx, dy, dz);
-//						sender.addChatMessage(new ChatComponentTranslation("Spawn list for the area is:"));
-//						for (SpawnListEntry entry : spawnList) {
-//							sender.addChatMessage(new ChatComponentTranslation(entry.toString()));
-//						}
+//                        List<SpawnListEntry> spawnList = chunkProvider.getPossibleCreatures(EnumCreatureType.monster, dx, dy, dz);
+//                        sender.addChatMessage(new ChatComponentTranslation("Spawn list for the area is:"));
+//                        for (SpawnListEntry entry : spawnList) {
+//                            sender.addChatMessage(new ChatComponentTranslation(entry.toString()));
+//                        }
 
                     } else {
                         sender.addChatMessage(new ChatComponentTranslation("You are not in the structure for that feature."));

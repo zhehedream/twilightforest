@@ -49,12 +49,12 @@ public class ComponentTFYetiCave extends ComponentTFHollowHill {
 
         // fill in features
 
-//		// ore or glowing stalactites! (smaller, less plentiful)
-//		for (int i = 0; i < sn; i++)
-//		{
-//			int[] dest = getCoordsInHill2D(rand);
-//			generateOreStalactite(world, dest[0], 1, dest[1], sbb);
-//		}
+//        // ore or glowing stalactites! (smaller, less plentiful)
+//        for (int i = 0; i < sn; i++)
+//        {
+//            int[] dest = getCoordsInHill2D(rand);
+//            generateOreStalactite(world, dest[0], 1, dest[1], sbb);
+//        }
         // stone stalactites!
         for (int i = 0; i < sn; i++) {
             int[] dest = getCoordsInHill2D(rand);

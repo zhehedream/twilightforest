@@ -296,8 +296,8 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
 
         // clear the area
         fillWithAir(world, sbb, 1, 1, 1, getDiameter(), 4, getDiameter());
-//		fillWithBlocks(world, sbb, 0, 0, 0, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, Blocks.stone, false);
-//		fillWithBlocks(world, sbb, 0, 5, 0, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, Blocks.stone, true);
+//        fillWithBlocks(world, sbb, 0, 0, 0, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, Blocks.stone, false);
+//        fillWithBlocks(world, sbb, 0, 5, 0, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, Blocks.stone, true);
         fillWithMetadataBlocks(world, sbb, 1, 5, 1, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, 0, Blocks.stone, 0, this.level == 1);
         fillWithMetadataBlocks(world, sbb, 1, 0, 1, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, 6, Blocks.stone, 0, false);
 

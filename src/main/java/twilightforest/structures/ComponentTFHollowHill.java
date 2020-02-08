@@ -63,10 +63,10 @@ public class ComponentTFHollowHill extends StructureTFComponent {
     @Override
     public void buildComponent(StructureComponent structurecomponent, List list, Random random) {
 
-//		// add a maze
-//		ComponentTFHillMaze maze = new ComponentTFHillMaze(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), boundingBox.minY - 20, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2), hillSize);
-//		list.add(maze);
-//		maze.buildComponent(this, list, random);
+//        // add a maze
+//        ComponentTFHillMaze maze = new ComponentTFHillMaze(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), boundingBox.minY - 20, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2), hillSize);
+//        list.add(maze);
+//        maze.buildComponent(this, list, random);
 
     }
 
@@ -75,8 +75,8 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-//		int area = (int)(Math.PI * radius * radius);
-//		int sn = area / 16; // number of stalactites (there will actually be around twice this number)
+//        int area = (int)(Math.PI * radius * radius);
+//        int sn = area / 16; // number of stalactites (there will actually be around twice this number)
         int[] sna = { 0, 128, 256, 512 };
         int sn = sna[hillSize]; // number of stalactites mga = {0, 3, 9, 18}
         int[] mga = { 0, 1, 4, 9 };
@@ -92,7 +92,7 @@ public class ComponentTFHollowHill extends StructureTFComponent {
             String mobID = getMobID(rand);
 
             placeSpawnerAtCurrentPosition(world, rand, dest[0], rand.nextInt(4), dest[1], mobID, sbb);
-//			placeMobSpawner(dest[0], hy + rand.nextInt(4), dest[1]);
+//            placeMobSpawner(dest[0], hy + rand.nextInt(4), dest[1]);
         }
         // treasure chests!!
         for (int i = 0; i < tc; i++) {
@@ -118,10 +118,10 @@ public class ComponentTFHollowHill extends StructureTFComponent {
 
         // level 3 hills get 2 mid-air wraith spawners
 //      if (hillSize == 3) {
-//			int[] dest = getEmptyCoordsInHill(hy + 10, 20);
-//			placeWraithSpawner(dest[0], hy + 10, dest[1]);
-//			dest = getEmptyCoordsInHill(hy + 10, 20);
-//			placeWraithSpawner(dest[0], hy + 10, dest[1]);
+//            int[] dest = getEmptyCoordsInHill(hy + 10, 20);
+//            placeWraithSpawner(dest[0], hy + 10, dest[1]);
+//            dest = getEmptyCoordsInHill(hy + 10, 20);
+//            placeWraithSpawner(dest[0], hy + 10, dest[1]);
 //      }
         return true;
     }

@@ -105,14 +105,14 @@ public class ItemTFTrophy extends ItemTF {
                     tags.setByte("SkullType", (byte) (itemStack.getItemDamage() & 255));
                     skull.readFromNBT(tags);
 
-//                	try {
-//                		String skullName = "";
-//                		((TileEntitySkull)tileEntity).func_145905_a(itemStack.getItemDamage(), skullName);
-//                	} catch (NoSuchMethodError ex) {
-//                		// stop checking admin
-//                		FMLLog.warning("[TwilightForest] Could not determine op status for adminOnlyPortals option, ignoring option.");
-//                		TwilightForestMod.adminOnlyPortals = false;
-//                	}
+//                    try {
+//                        String skullName = "";
+//                        ((TileEntitySkull)tileEntity).func_145905_a(itemStack.getItemDamage(), skullName);
+//                    } catch (NoSuchMethodError ex) {
+//                        // stop checking admin
+//                        FMLLog.warning("[TwilightForest] Could not determine op status for adminOnlyPortals option, ignoring option.");
+//                        TwilightForestMod.adminOnlyPortals = false;
+//                    }
                     skull.func_145903_a(skullRotate);
                 }
 

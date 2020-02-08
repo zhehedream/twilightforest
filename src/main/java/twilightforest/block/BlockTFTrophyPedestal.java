@@ -76,22 +76,22 @@ public class BlockTFTrophyPedestal extends Block {
             }
 
         }
-//    	if (side == 2)
-//    	{
-//    		return meta > 7 ? sprNagaActive : sprNaga;
-//    	}
-//    	if (side == 3)
-//    	{
-//    		return meta > 7 ? sprLichActive : sprLich;
-//    	}
-//    	if (side == 4)
-//    	{
-//    		return meta > 7 ? sprHydraActive : sprHydra;
-//    	}
-//    	if (side == 5)
-//    	{
-//    		return meta > 7 ? sprUrghastActive : sprUrghast;
-//    	}
+//        if (side == 2)
+//        {
+//            return meta > 7 ? sprNagaActive : sprNaga;
+//        }
+//        if (side == 3)
+//        {
+//            return meta > 7 ? sprLichActive : sprLich;
+//        }
+//        if (side == 4)
+//        {
+//            return meta > 7 ? sprHydraActive : sprHydra;
+//        }
+//        if (side == 5)
+//        {
+//            return meta > 7 ? sprUrghastActive : sprUrghast;
+//        }
 
         return sprTop;
     }

@@ -56,11 +56,11 @@ public class EntityAITFYetiRampage extends EntityAIBase {
     public void updateTask() {
         this.currentDuration--;
 
-//    	int rx = MathHelper.floor_double(this.yeti.posX);
-//    	int ry = MathHelper.floor_double(this.yeti.posY - 1);
-//    	int rz = MathHelper.floor_double(this.yeti.posZ);
-//    	
-//		this.yeti.worldObj.playAuxSFX(2004, rx, ry, rz, 0);
+//        int rx = MathHelper.floor_double(this.yeti.posX);
+//        int ry = MathHelper.floor_double(this.yeti.posY - 1);
+//        int rz = MathHelper.floor_double(this.yeti.posZ);
+//        
+//        this.yeti.worldObj.playAuxSFX(2004, rx, ry, rz, 0);
 
         if (this.yeti.getAttackTarget() != null) {
             this.yeti.getLookHelper().setLookPositionWithEntity(this.yeti.getAttackTarget(), 10.0F, (float) this.yeti.getVerticalFaceSpeed());

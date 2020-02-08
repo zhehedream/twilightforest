@@ -78,17 +78,17 @@ public class ItemTFKnightlyAxe extends ItemAxe {
 //    @Override
 //    public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
 //    {
-//       	if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
-//       	{
-//       		this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
-//       		this.bonusDamagePlayer = null;
-//       		this.bonusDamageEntity = null;
-//       		return this.damageVsEntity + BONUS_DAMAGE;
-//       	}
-//       	else
-//       	{
-//       		return super.getDamageVsEntity(par1Entity, itemStack);
-//       	}
+//           if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
+//           {
+//               this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
+//               this.bonusDamagePlayer = null;
+//               this.bonusDamageEntity = null;
+//               return this.damageVsEntity + BONUS_DAMAGE;
+//           }
+//           else
+//           {
+//               return super.getDamageVsEntity(par1Entity, itemStack);
+//           }
 //    }
 
     /**

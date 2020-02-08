@@ -85,7 +85,7 @@ public class EntityTFCharmEffect extends Entity {
             Vec3 look = Vec3.createVectorHelper(DISTANCE, 0, 0);
             look.rotateAroundY(rotation);
             this.posX += look.xCoord;
-//        	this.posY += Math.sin(this.ticksExisted / 3.0F + offset);
+//            this.posY += Math.sin(this.ticksExisted / 3.0F + offset);
             this.posZ += look.zCoord;
 
             this.setPosition(this.posX, this.posY, this.posZ);

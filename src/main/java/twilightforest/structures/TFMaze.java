@@ -324,7 +324,7 @@ public class TFMaze {
                     if (isEven(x) && isEven(z)) {
                         if (type == 4 && shouldTree(x, z)) {
                             // occasionally make a tree
-//							(new TFGenCanopyTree()).generate(world, rand, mdx, dy, mdz);
+//                            (new TFGenCanopyTree()).generate(world, rand, mdx, dy, mdz);
                             putCanopyTree(world, mdx, dy, mdz, component, sbb);
                         } else {
                             // make a block!

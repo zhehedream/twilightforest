@@ -47,7 +47,7 @@ public class EntityTFTowerGhast extends EntityGhast {
 
         this.inTrapCounter = 0;
     }
-//	
+//    
 //    public int getMaxHealth()
 //    {
 //        return 30;
@@ -92,14 +92,14 @@ public class EntityTFTowerGhast extends EntityGhast {
 //        {
 //        case 0:
 //        default:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
+//            break;
 //        case 1:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
+//            break;
 //        case 2:
-//        	this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
-//        	break;
+//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
+//            break;
 //        }
     }
 
@@ -415,7 +415,7 @@ public class EntityTFTowerGhast extends EntityGhast {
                 this.setHomeArea(cc.posX, cc.posY + 128, cc.posZ, 64);
 
 //                System.out.println("Ghast is at  " + this.posX + ", " + this.posY + ", " + this.posZ);
-//    			System.out.println("Set home area to " + cc.posX + ", " + (cc.posY + 128) + ", " + cc.posZ);
+//                System.out.println("Set home area to " + cc.posX + ", " + (cc.posY + 128) + ", " + cc.posZ);
             }
         }
     }
@@ -429,8 +429,8 @@ public class EntityTFTowerGhast extends EntityGhast {
         } else {
             ChunkCoordinates home = this.getHomePosition();
 
-//    		System.out.println("Checking home for " + x + ", " + y + ", " + z + " and home is " + home.posX + ", " + home.posY + ", " + home.posZ);
-//    		System.out.println("home.getDistanceSquared(x, home.posY, z) =  "  + home.getDistanceSquared(x, home.posY, z) + " compared to " + (this.getMaximumHomeDistance() * this.getMaximumHomeDistance()));
+//            System.out.println("Checking home for " + x + ", " + y + ", " + z + " and home is " + home.posX + ", " + home.posY + ", " + home.posZ);
+//            System.out.println("home.getDistanceSquared(x, home.posY, z) =  "  + home.getDistanceSquared(x, home.posY, z) + " compared to " + (this.getMaximumHomeDistance() * this.getMaximumHomeDistance()));
 
             return y > 64 && y < 210 && home.getDistanceSquared(x, home.posY, z) < this.getMaximumHomeDistance() * this.getMaximumHomeDistance();
         }

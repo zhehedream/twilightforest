@@ -46,7 +46,7 @@ public class RenderTFMistWolf extends RenderWolf {
      * Queries whether should render the specified pass or not.
      */
     protected int shouldRenderPass(EntityLivingBase par1EntityLiving, int par2, float par3) {
-//        GL11.glFogf(GL11.GL_FOG_START, 1.0f);	
+//        GL11.glFogf(GL11.GL_FOG_START, 1.0f);    
 //        GL11.glFogf(GL11.GL_FOG_END, 5.0f);
 
         return -1;

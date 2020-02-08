@@ -72,7 +72,7 @@ public class EntityTFNatureBolt extends EntityThrowable {
                 if (poisonStrength > 0) {
                     ((EntityLivingBase) par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, poisonStrength * 20, 0));
 
-//					System.out.println("Poisoning entityHit " + par1MovingObjectPosition.entityHit);
+//                    System.out.println("Poisoning entityHit " + par1MovingObjectPosition.entityHit);
                 }
 
             }

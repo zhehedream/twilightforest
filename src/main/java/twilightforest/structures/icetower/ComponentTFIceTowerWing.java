@@ -73,10 +73,10 @@ public class ComponentTFIceTowerWing extends ComponentTFTowerWing {
 
                 int dir = (dirOffset + i) % 4;
 
-//				if (rand.nextInt(6) < this.getComponentType())
-//				{
-//					continue;
-//				}
+//                if (rand.nextInt(6) < this.getComponentType())
+//                {
+//                    continue;
+//                }
 
                 int[] dest = getValidOpening(rand, dir);
 
@@ -118,9 +118,9 @@ public class ComponentTFIceTowerWing extends ComponentTFTowerWing {
      */
     private boolean isOutOfRange(StructureComponent parent, int nx, int ny, int nz, int range) {
 
-//		System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
-//		System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
-//		System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
+//        System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
+//        System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
+//        System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
 
         return Math.abs(nx - parent.getBoundingBox().getCenterX()) > range || Math.abs(nz - parent.getBoundingBox().getCenterZ()) > range;
     }

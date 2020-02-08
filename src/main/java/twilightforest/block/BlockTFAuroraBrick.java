@@ -42,10 +42,10 @@ public class BlockTFAuroraBrick extends Block {
         BlockTFAuroraBrick.icons[6] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
         BlockTFAuroraBrick.icons[7] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick7");
 
-//		BlockTFAuroraBrick.icons[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick0");
-//		BlockTFAuroraBrick.icons[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick2");
-//		BlockTFAuroraBrick.icons[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick4");
-//		BlockTFAuroraBrick.icons[3] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
+//        BlockTFAuroraBrick.icons[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick0");
+//        BlockTFAuroraBrick.icons[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick2");
+//        BlockTFAuroraBrick.icons[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick4");
+//        BlockTFAuroraBrick.icons[3] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
 
     }
 
@@ -60,15 +60,15 @@ public class BlockTFAuroraBrick extends Block {
             return icons[15 - meta];
         }
 
-//		switch (meta % 8) {
-//		default:
-//			return icons[(meta % 8) * 2];
-//		case 4:
-//		case 5:
-//		case 6:
-//		case 7:
-//			return icons[(7 - (meta % 8)) * 2];
-//		}
+//        switch (meta % 8) {
+//        default:
+//            return icons[(meta % 8) * 2];
+//        case 4:
+//        case 5:
+//        case 6:
+//        case 7:
+//            return icons[(7 - (meta % 8)) * 2];
+//        }
 
     }
 

@@ -100,7 +100,7 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
     }
 
 //
-//	@Override
+//    @Override
 //    public float getCloudHeight()
 //    {
 //        return 64F;
@@ -110,7 +110,7 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
         return 30;
     }
 
-//	@Override
+//    @Override
 //    public boolean canCoordinateBeSpawn(int i, int j)
 //    {
 //        int k = worldObj.getFirstUncoveredBlock(i, j);
@@ -208,13 +208,13 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
 
 //        for (ChunkCoordIntPair coord : (HashSet<ChunkCoordIntPair>)this.worldObj.activeChunkSet)
 //        {
-//        	Chunk chunk = this.worldObj.getChunkFromChunkCoords(coord.chunkXPos, coord.chunkZPos);
-//        	
-//        	if (chunk.queuedLightChecks < 4096)
-//        	{
-//        		//System.out.println("Stopping light checks!");
-//        		chunk.queuedLightChecks = 4096;
-//        	}
+//            Chunk chunk = this.worldObj.getChunkFromChunkCoords(coord.chunkXPos, coord.chunkZPos);
+//            
+//            if (chunk.queuedLightChecks < 4096)
+//            {
+//                //System.out.println("Stopping light checks!");
+//                chunk.queuedLightChecks = 4096;
+//            }
 //        }
     }
 

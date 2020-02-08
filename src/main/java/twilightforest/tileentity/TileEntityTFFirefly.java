@@ -20,10 +20,10 @@ public class TileEntityTFFirefly extends TileEntityTFCritter {
     public void updateEntity() {
         super.updateEntity();
 
-//    	if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 0) {
-//    		//System.out.println("Firefly tile entity block has invalid metadata, fixing");
-//    		worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 0);
-//    	}
+//        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 0) {
+//            //System.out.println("Firefly tile entity block has invalid metadata, fixing");
+//            worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 0);
+//        }
 
         if (anyPlayerInRange() && worldObj.rand.nextInt(20) == 0) {
             doFireflyFX();
@@ -78,11 +78,11 @@ public class TileEntityTFFirefly extends TileEntityTFCritter {
 //     */
 //    @Override
 //    public int getBlockMetadata() {
-//    	if (super.getBlockMetadata() == 0)
+//        if (super.getBlockMetadata() == 0)
 //        {
-//    		this.blockMetadata = -1;
+//            this.blockMetadata = -1;
 //        }
-//    	return super.getBlockMetadata();
+//        return super.getBlockMetadata();
 //    }
 
     /**
@@ -92,8 +92,8 @@ public class TileEntityTFFirefly extends TileEntityTFCritter {
         double rx = xCoord + worldObj.rand.nextFloat();
         double ry = yCoord + worldObj.rand.nextFloat();
         double rz = zCoord + worldObj.rand.nextFloat();
-//    	EntityTFFireflyFX fireflyfx = new EntityTFFireflyFX(worldObj, rx, ry, rz, 0.0F, 0.0F, 0.0F);
-//    	ModLoader.getMinecraftInstance().effectRenderer.addEffect(fireflyfx);
+//        EntityTFFireflyFX fireflyfx = new EntityTFFireflyFX(worldObj, rx, ry, rz, 0.0F, 0.0F, 0.0F);
+//        ModLoader.getMinecraftInstance().effectRenderer.addEffect(fireflyfx);
         EntityTFTinyFirefly tinyfly = new EntityTFTinyFirefly(worldObj, rx, ry, rz);
         worldObj.addWeatherEffect(tinyfly);
     }

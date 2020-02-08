@@ -74,11 +74,11 @@ public class ItemTFFieryPick extends ItemPickaxe {
                     double var6 = itemRand.nextGaussian() * 0.02D;
                     double var8 = 10.0D;
                     target.worldObj.spawnParticle("flame", target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
-                    		target.posY + itemRand.nextFloat() * target.height - var4 * var8,
-                    		target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8, var2, var4, var6);
+                            target.posY + itemRand.nextFloat() * target.height - var4 * var8,
+                            target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8, var2, var4, var6);
                 }
             } else {
-            	target.setFire(15);
+                target.setFire(15);
             }
         }
         return result;

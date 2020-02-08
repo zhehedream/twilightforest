@@ -164,11 +164,11 @@ public class ModelTFHelmetCrab extends ModelBase {
         rightArm.render(par7);
         Leg5.render(par7);
         Leg3.render(par7);
-//		clawbase.render(par7);
-//		clawtop.render(par7);
-//		clawbottom.render(par7);
-//		righteye.render(par7);
-//		lefteye.render(par7);
+//        clawbase.render(par7);
+//        clawtop.render(par7);
+//        clawbottom.render(par7);
+//        righteye.render(par7);
+//        lefteye.render(par7);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {

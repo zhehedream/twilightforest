@@ -142,15 +142,15 @@ public class ComponentTFNagaCourtyard extends StructureTFComponent {
                 break;
             }
 
-//			if (fx % 2 == 0) {
-//				placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, fx, 4, DIAMETER, sbb);
-//				placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, fx, 4, 0, sbb);
-//			}
-//			else
-//			{
-//				placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, fx, 4, 0, sbb);
-//				placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, fx, 4, DIAMETER, sbb);
-//			}
+//            if (fx % 2 == 0) {
+//                placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, fx, 4, DIAMETER, sbb);
+//                placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, fx, 4, 0, sbb);
+//            }
+//            else
+//            {
+//                placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, fx, 4, 0, sbb);
+//                placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, fx, 4, DIAMETER, sbb);
+//            }
         }
 
         for (int fz = 0; fz <= DIAMETER; fz++) {
@@ -247,15 +247,15 @@ public class ComponentTFNagaCourtyard extends StructureTFComponent {
                 break;
             }
 
-//			if (fz % 2 == 0) {
-//				placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, DIAMETER, 4, fz, sbb);
-//				placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, 0, 4, fz, sbb);
-//			}
-//			else
-//			{
-//				placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, 0, 4, fz, sbb);
-//				placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, DIAMETER, 4, fz, sbb);
-//			}
+//            if (fz % 2 == 0) {
+//                placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, DIAMETER, 4, fz, sbb);
+//                placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, 0, 4, fz, sbb);
+//            }
+//            else
+//            {
+//                placeBlockAtCurrentPosition(world, Blocks.stone_slab, 5, 0, 4, fz, sbb);
+//                placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, DIAMETER, 4, fz, sbb);
+//            }
         }
 
         // make a new rand here because we keep getting different results and this actually matters... or

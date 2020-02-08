@@ -165,12 +165,12 @@ public abstract class TFTreeGenerator extends WorldGenAbstractTree {
         // trace out a quadrant
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dz = 0; dz <= rad; dz++) {
-//				int dist = Math.max(dx, dz) + (int)(Math.min(dx, dz) * 0.6F);
+//                int dist = Math.max(dx, dz) + (int)(Math.min(dx, dz) * 0.6F);
 //
-//				//hack!  I keep getting failing leaves at a certain position.
-//				if (useHack && dx == 3 && dz == 3) {
-//					dist = 6;
-//				}
+//                //hack!  I keep getting failing leaves at a certain position.
+//                if (useHack && dx == 3 && dz == 3) {
+//                    dist = 6;
+//                }
 
                 // if we're inside the blob, fill it
                 if (dx * dx + dz * dz <= rad * rad) {

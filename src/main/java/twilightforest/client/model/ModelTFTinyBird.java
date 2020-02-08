@@ -109,7 +109,7 @@ public class ModelTFTinyBird extends ModelBase {
             rightarm.render(par7);
             leftarm.render(par7);
             tail.render(par7);
-//			beak.render(par7);
+//            beak.render(par7);
         }
     }
 

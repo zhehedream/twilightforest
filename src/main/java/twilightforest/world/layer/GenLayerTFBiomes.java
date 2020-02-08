@@ -42,13 +42,13 @@ public class GenLayerTFBiomes extends GenLayer {
 
         }
 
-//		for (int i = 0; i < width * depth; i++)
-//		{
-//			if (dest[i] < 0 || dest[i] > TFBiomeBase.fireSwamp.biomeID)
-//			{
-//				System.err.printf("Made a bad ID, %d at %d, %d while generating\n", dest[i], x, z);
-//			}
-//		}
+//        for (int i = 0; i < width * depth; i++)
+//        {
+//            if (dest[i] < 0 || dest[i] > TFBiomeBase.fireSwamp.biomeID)
+//            {
+//                System.err.printf("Made a bad ID, %d at %d, %d while generating\n", dest[i], x, z);
+//            }
+//        }
 
         return dest;
     }

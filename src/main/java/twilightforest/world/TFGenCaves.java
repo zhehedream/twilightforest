@@ -36,8 +36,8 @@ public class TFGenCaves extends MapGenCaves {
         Random mossRNG = new Random(caveSeed);
 
 //        if (isHighlands) {
-//        	//System.out.println("Saying highlands and it's not");
-//        	isHighlands = false;
+//            //System.out.println("Saying highlands and it's not");
+//            isHighlands = false;
 //        }
 
         if (isHighlands && caveSize < 6F) {

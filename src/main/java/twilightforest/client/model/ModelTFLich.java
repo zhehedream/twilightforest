@@ -95,10 +95,10 @@ public class ModelTFLich extends ModelBiped {
         } else {
             // on the special render pass, render the shadow clone and the shield
             if (lich.isShadowClone()) {
-//    	        GL11.glDisable(GL11.GL_DEPTH_TEST);
+//                GL11.glDisable(GL11.GL_DEPTH_TEST);
 
                 super.render(entity, f, f1, f2, f3, f4, f5 * 1.125F);
-//               	GL11.glEnable(GL11.GL_DEPTH_TEST);
+//                   GL11.glEnable(GL11.GL_DEPTH_TEST);
 
             } else {
                 if (lich.getShieldStrength() > 0) {

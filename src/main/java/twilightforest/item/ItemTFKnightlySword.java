@@ -71,18 +71,18 @@ public class ItemTFKnightlySword extends ItemSword {
 //    @Override
 //    public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
 //    {
-//       	if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
-//       	{
-//       		//System.out.println("Minotaur Axe extra damage!");
-//       		this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
-//       		this.bonusDamagePlayer = null;
-//       		this.bonusDamageEntity = null;
-//       		return super.getDamageVsEntity(par1Entity, itemStack) + BONUS_DAMAGE;
-//       	}
-//       	else
-//       	{
-//       		return super.getDamageVsEntity(par1Entity, itemStack);
-//       	}
+//           if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
+//           {
+//               //System.out.println("Minotaur Axe extra damage!");
+//               this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
+//               this.bonusDamagePlayer = null;
+//               this.bonusDamageEntity = null;
+//               return super.getDamageVsEntity(par1Entity, itemStack) + BONUS_DAMAGE;
+//           }
+//           else
+//           {
+//               return super.getDamageVsEntity(par1Entity, itemStack);
+//           }
 //    }
 
     /**

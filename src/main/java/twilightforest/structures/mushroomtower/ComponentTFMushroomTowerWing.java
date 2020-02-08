@@ -108,9 +108,9 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
      */
     private boolean isOutOfRange(StructureComponent parent, int nx, int ny, int nz, int range) {
 
-//		System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
-//		System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
-//		System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
+//        System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
+//        System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
+//        System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
 
         return Math.abs(nx - parent.getBoundingBox().getCenterX()) > range || Math.abs(nz - parent.getBoundingBox().getCenterZ()) > range;
     }
@@ -166,8 +166,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
                 ComponentTFTowerWing otherWing = (ComponentTFTowerWing) obj;
 
                 if (wingSize == otherWing.size && otherWing.getBoundingBox().intersectsWith(x - 3, z - 3, x + 3, z + 3)) {
-//					System.out.println("I found an intersecting thing : " + otherWing + ", size = " + wingSize + " direction = " + direction);
-//					System.out.println("x = " + x + ", z = " + z + " other.minX = " + otherWing.getBoundingBox().minX + " other.maxX = " + otherWing.getBoundingBox().maxX + " other.minZ = " + otherWing.getBoundingBox().minZ + " other.maxZ = " + otherWing.getBoundingBox().maxZ);
+//                    System.out.println("I found an intersecting thing : " + otherWing + ", size = " + wingSize + " direction = " + direction);
+//                    System.out.println("x = " + x + ", z = " + z + " other.minX = " + otherWing.getBoundingBox().minX + " other.maxX = " + otherWing.getBoundingBox().maxX + " other.minZ = " + otherWing.getBoundingBox().minZ + " other.maxZ = " + otherWing.getBoundingBox().maxZ);
 
                     switch (direction) {
                     case 0:
@@ -327,8 +327,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
-//		// clear inside
-//		fillWithAir(world, sbb, 1, 1, 1, size - 2, height - 2, size - 2);
+//        // clear inside
+//        fillWithAir(world, sbb, 1, 1, 1, size - 2, height - 2, size - 2);
 
         makeTrunk(world, sbb);
 
@@ -400,7 +400,7 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             ladderDir++;
             ladderDir %= 4;
 
-//			decorateFloor(world, decoRNG, i, (i * floorHeight), (i * floorHeight) + floorHeight, ladderDir, downLadderDir, sbb);
+//            decorateFloor(world, decoRNG, i, (i * floorHeight), (i * floorHeight) + floorHeight, ladderDir, downLadderDir, sbb);
 
         }
 

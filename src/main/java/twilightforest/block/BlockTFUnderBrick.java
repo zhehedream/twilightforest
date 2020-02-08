@@ -18,7 +18,7 @@ import twilightforest.item.TFItems;
 public class BlockTFUnderBrick extends Block {
 
     private static IIcon[] iconSide = new IIcon[4];
-//	private static IIcon[] iconFloor = new IIcon[4];
+//    private static IIcon[] iconFloor = new IIcon[4];
 
     public BlockTFUnderBrick() {
         super(Material.rock);
@@ -33,18 +33,18 @@ public class BlockTFUnderBrick extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-//		for (int i = 0; i < this.iconSide.length; i++)
-//		{
-//			this.iconFloor[i] = Blocks.stonebrick.getIcon(0, i);
-//		}
+//        for (int i = 0; i < this.iconSide.length; i++)
+//        {
+//            this.iconFloor[i] = Blocks.stonebrick.getIcon(0, i);
+//        }
 
         BlockTFUnderBrick.iconSide[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick");
         BlockTFUnderBrick.iconSide[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_mossy");
         BlockTFUnderBrick.iconSide[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_cracked");
 
-//		this.iconFloor[0] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
-//		this.iconFloor[1] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
-//		this.iconFloor[2] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+//        this.iconFloor[0] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+//        this.iconFloor[1] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+//        this.iconFloor[2] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
     }
 
     /**

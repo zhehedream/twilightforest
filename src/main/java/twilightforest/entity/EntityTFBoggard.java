@@ -141,21 +141,21 @@ public class EntityTFBoggard extends EntityMob {
 
         float difference = MathHelper.abs((entityToAttack.rotationYaw - angle) % 360);
 
-//    	System.out.println("Difference in angle of approach is " + difference);
+//        System.out.println("Difference in angle of approach is " + difference);
 
         return difference < 60 || difference > 300;
     }
 
 //    @Override
-//	public boolean attackEntityFrom(Entity entity, int i) {
-//    	
-//    	if (entityToAttack != null && entityToAttack == entity) {
-//    		shy = false;
-//    		// possibly notify others?
-//    	}
-//    	
-//		return super.attackEntityFrom(entity, i);
-//	}
+//    public boolean attackEntityFrom(Entity entity, int i) {
+//        
+//        if (entityToAttack != null && entityToAttack == entity) {
+//            shy = false;
+//            // possibly notify others?
+//        }
+//        
+//        return super.attackEntityFrom(entity, i);
+//    }
 
     /**
      * Trigger achievement when killed
@@ -180,8 +180,8 @@ public class EntityTFBoggard extends EntityMob {
     public void moveEntityWithHeading(float par1, float par2) {
         super.moveEntityWithHeading(par1, par2);
 
-//		System.out.println("prevLegYaw = " + this.prevLimbYaw);
-//		System.out.println("legYaw = " + this.limbYaw);
+//        System.out.println("prevLegYaw = " + this.prevLimbYaw);
+//        System.out.println("legYaw = " + this.limbYaw);
 
     }
 

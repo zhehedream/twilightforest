@@ -20,8 +20,8 @@ public class TFBiomeTwilightForestVariant extends TFBiomeBase {
         this.temperature = 0.7F;
         this.rainfall = 0.8F;
 
-//		this.rootHeight = 0.15F;
-//		this.heightVariation = 0.4F;
+//        this.rootHeight = 0.15F;
+//        this.heightVariation = 0.4F;
 
         getTFBiomeDecorator().setTreesPerChunk(25);
         getTFBiomeDecorator().setGrassPerChunk(15);

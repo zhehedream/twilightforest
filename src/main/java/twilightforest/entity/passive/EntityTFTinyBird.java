@@ -76,7 +76,7 @@ public class EntityTFTinyBird extends EntityTFBird {
 //    /**
 //     * Returns the texture's file path as a String.
 //     */
-//	@Override
+//    @Override
 //    public String getTexture()
 //    {
 //        switch (this.getBirdType())

@@ -62,7 +62,7 @@ public class GuiTFGoblinCrafting extends GuiContainer {
 
         int costVal = tfContainer.getUncraftingCost();
         if (costVal > 0) {
-        	String cost = String.valueOf(costVal);
+            String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 48 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
@@ -74,7 +74,7 @@ public class GuiTFGoblinCrafting extends GuiContainer {
 
         costVal = tfContainer.getRecraftingCost();
         if (costVal > 0) {
-        	String cost = String.valueOf(costVal);
+            String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
                 fontRendererObj.drawStringWithShadow(cost, frameX + 130 - fontRendererObj.getStringWidth(cost), frameY + 38, color);

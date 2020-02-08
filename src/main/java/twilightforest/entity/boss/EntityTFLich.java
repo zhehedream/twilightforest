@@ -290,9 +290,9 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
         Entity prevTarget = this.entityToAttack;
 
-//		System.out.println("Damage source is " + par1DamageSource);
-//		System.out.println("Damage type is " + par1DamageSource.getDamageType());
-//		System.out.println("Damage source source is " + par1DamageSource.getSourceOfDamage());
+//        System.out.println("Damage source is " + par1DamageSource);
+//        System.out.println("Damage type is " + par1DamageSource.getDamageType());
+//        System.out.println("Damage source source is " + par1DamageSource.getSourceOfDamage());
 
         // ignore all bolts that are not reflected
         if (damageSource.getEntity() instanceof EntityTFLich) {
@@ -340,15 +340,15 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 //    /**
 //     * Another method to stop the shadow clones from being attacked
 //     */
-//	@Override
-//	public boolean canAttackWithItem() {
-//		if (isShadowClone()) {
-//			return false;
-//		}
-//		else {
-//			return super.canAttackWithItem();
-//		}
-//	}
+//    @Override
+//    public boolean canAttackWithItem() {
+//        if (isShadowClone()) {
+//            return false;
+//        }
+//        else {
+//            return super.canAttackWithItem();
+//        }
+//    }
 
     /**
      * Attack!
@@ -508,7 +508,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                     mob.spawnExplosionParticle();
 
                     // play death sound
-//					worldObj.playSoundAtEntity(mob, mob.getDeathSound(), mob.getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+//                    worldObj.playSoundAtEntity(mob, mob.getDeathSound(), mob.getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
                 }
 
                 // make trail so it's clear that we did it
@@ -568,7 +568,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     }
 
     protected void spawnShadowClone(Entity targetedEntity) {
-//		System.out.println("Lich is making a shadow clone!");
+//        System.out.println("Lich is making a shadow clone!");
 
         // find a good spot
         Vec3 cloneSpot = findVecInLOSOf(targetedEntity);
@@ -666,7 +666,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                 // double distance = (this.posX - masterLich.posX) * (this.posX - masterLich.posX) + (this.posY -
                 // masterLich.posY) * (this.posY - masterLich.posY) + (this.posZ - masterLich.posZ) * (this.posZ -
                 // masterLich.posZ);
-//				System.out.println("Clone says that distance from master is " + distance);
+//                System.out.println("Clone says that distance from master is " + distance);
             }
         }
     }
@@ -709,7 +709,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
             if (!this.canEntityBeSeen(entity)) {
                 // um teleport mishap, return to start
-//            	System.out.println("Teleport fail!!!");
+//                System.out.println("Teleport fail!!!");
                 teleportToNoChecks(srcX, srcY, srcZ);
 
             }
@@ -752,14 +752,14 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
             // did we not find anything at all to stand on?
             if (by == 0) {
-//        		System.out.println("teleport find failed to find a block to stand on");
+//                System.out.println("teleport find failed to find a block to stand on");
                 continue;
             }
 
             //
             if (!canEntitySee(targetEntity, tx, ty, tz)) {
-//        		System.out.println("teleport find failed because of lack of LOS");
-//        		System.out.println("ty = " + ty);
+//                System.out.println("teleport find failed because of lack of LOS");
+//                System.out.println("ty = " + ty);
                 continue;
             }
 
@@ -767,12 +767,12 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
             float halfWidth = this.width / 2.0F;
             AxisAlignedBB destBox = AxisAlignedBB.getBoundingBox(tx - halfWidth, ty - yOffset + ySize, tz - halfWidth, tx + halfWidth, ty - yOffset + ySize + height, tz + halfWidth);
             if (worldObj.getCollidingBoundingBoxes(this, destBox).size() > 0) {
-//        		System.out.println("teleport find failed because of collision");
+//                System.out.println("teleport find failed because of collision");
                 continue;
             }
 
             if (worldObj.isAnyLiquid(destBox)) {
-//        		System.out.println("teleport find failed because of liquid at destination");
+//                System.out.println("teleport find failed because of liquid at destination");
                 continue;
             }
 
@@ -987,10 +987,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
     }
 
-//	@Override
-//	public int getBossHealth() {
+//    @Override
+//    public int getBossHealth() {
 //        return this.dataWatcher.getWatchableObjectInt(EntityTFLich.DATA_BOSSHEALTH);
-//	}
+//    }
 
     /**
      * Get this Entity's EnumCreatureAttribute

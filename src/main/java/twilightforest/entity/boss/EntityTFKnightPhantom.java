@@ -225,8 +225,8 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
 
 //        if (this.getNumber() == 0)
 //        {
-//        	System.out.printf("Knight Phantom %d moving towards %f, %f, %f.  Is in formation %s, progress %d.\n", this.getNumber(), dest.xCoord, dest.yCoord, dest.zCoord, this.currentFormation, ticksProgress);
-//        	System.out.printf("Knight Phantom %d at position %f, %f, %f.\n", this.getNumber(), this.posX, this.posY, this.posZ);
+//            System.out.printf("Knight Phantom %d moving towards %f, %f, %f.  Is in formation %s, progress %d.\n", this.getNumber(), dest.xCoord, dest.yCoord, dest.zCoord, this.currentFormation, ticksProgress);
+//            System.out.printf("Knight Phantom %d at position %f, %f, %f.\n", this.getNumber(), this.posX, this.posY, this.posZ);
 //        }
 
         double moveX = dest.xCoord - this.posX;
@@ -295,7 +295,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
 
         if (flag) {
             if (i > 0) {
-            	entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D,
+                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D,
                         (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
@@ -304,7 +304,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
             int j = EnchantmentHelper.getFireAspectModifier(this);
 
             if (j > 0) {
-            	entity.setFire(j * 4);
+                entity.setFire(j * 4);
             }
 
             //if (entity instanceof EntityLivingBase) {
@@ -725,7 +725,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         double dDist = Math.sqrt(ox * ox + oz * oz);
 
         if (dDist > distance) {
-//			System.out.println("Phantom hovering beyond normal bounds");
+//            System.out.println("Phantom hovering beyond normal bounds");
 
             // normalize back to boundaries
 

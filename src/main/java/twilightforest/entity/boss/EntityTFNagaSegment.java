@@ -45,7 +45,7 @@ public class EntityTFNagaSegment extends Entity {
         // do not transfer (or take) fire, explosion, or lava damage.
         if (damagesource.isExplosion() || damagesource.isFireDamage()) {
             // hurtTime = 0;
-//    		System.out.println("Prevented damage from fire/explosion/lava.  DamageSource == " + damagesource.damageType);
+//            System.out.println("Prevented damage from fire/explosion/lava.  DamageSource == " + damagesource.damageType);
             return false;
         }
 
@@ -78,7 +78,7 @@ public class EntityTFNagaSegment extends Entity {
         lastTickPosY = posY;
         lastTickPosZ = posZ;
 
-//    	System.out.println("Updating " + this + " with angles " + rotationYaw + ", " + rotationPitch);
+//        System.out.println("Updating " + this + " with angles " + rotationYaw + ", " + rotationPitch);
 
         for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {
         }
@@ -105,17 +105,17 @@ public class EntityTFNagaSegment extends Entity {
 
 //        if (this.segment == 6)
 //        {
-//        	System.out.println("Updating segment 6");
-//        	
-////        	int dx = MathHelper.floor_double(this.posX);
-////        	int dy = MathHelper.floor_double(this.posY);
-////        	int dz = MathHelper.floor_double(this.posZ);
-////        	
-////        	if (worldObj.isAirBlock(dx, dy, dz))
-////        	{
-////        		worldObj.setBlock(dx, dy, dz, Blocks.torch);
-////        	}
-//        	
+//            System.out.println("Updating segment 6");
+//            
+////            int dx = MathHelper.floor_double(this.posX);
+////            int dy = MathHelper.floor_double(this.posY);
+////            int dz = MathHelper.floor_double(this.posZ);
+////            
+////            if (worldObj.isAirBlock(dx, dy, dz))
+////            {
+////                worldObj.setBlock(dx, dy, dz, Blocks.torch);
+////            }
+//            
 //        }
 
         if (deathCounter > 0) {

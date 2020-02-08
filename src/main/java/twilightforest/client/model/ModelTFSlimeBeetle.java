@@ -161,8 +161,8 @@ public class ModelTFSlimeBeetle extends ModelBase {
             Leg1.render(f5);
             connector1.render(f5);
             // tail1.render(f5);
-//			tail2.render(f5);
-//			slimeCenter.render(f5);
+//            tail2.render(f5);
+//            slimeCenter.render(f5);
         }
     }
 

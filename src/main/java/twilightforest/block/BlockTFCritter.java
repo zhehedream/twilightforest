@@ -104,37 +104,37 @@ public abstract class BlockTFCritter extends Block {
 
     @Override
     public int onBlockPlaced(World world, int x, int y, int z, int placementFacing, float par6, float par7, float par8, int meta) {
-    	switch(placementFacing) {
-    	case 0:
-    		if (this.canPlaceAt(world, x, y + 1, z)) {
+        switch(placementFacing) {
+        case 0:
+            if (this.canPlaceAt(world, x, y + 1, z)) {
                 meta = 6;
             }
-    		break;
-    	case 1:
-    		if (this.canPlaceAt(world, x, y - 1, z)) {
+            break;
+        case 1:
+            if (this.canPlaceAt(world, x, y - 1, z)) {
                 meta = 5;
             }
-    		break;
-    	case 2:
-    		if (world.isSideSolid(x, y, z + 1, NORTH, true)) {
+            break;
+        case 2:
+            if (world.isSideSolid(x, y, z + 1, NORTH, true)) {
                 meta = 4;
             }
-    		break;
-    	case 3:
-    		if (world.isSideSolid(x, y, z - 1, SOUTH, true)) {
+            break;
+        case 3:
+            if (world.isSideSolid(x, y, z - 1, SOUTH, true)) {
                 meta = 3;
             }
-    		break;
-    	case 4:
-    		if (world.isSideSolid(x + 1, y, z, WEST, true)) {
+            break;
+        case 4:
+            if (world.isSideSolid(x + 1, y, z, WEST, true)) {
                 meta = 2;
             }
-    		break;
-    	case 5:
-    		if (world.isSideSolid(x - 1, y, z, EAST, true)) {
+            break;
+        case 5:
+            if (world.isSideSolid(x - 1, y, z, EAST, true)) {
                 meta = 1;
             }
-    	}
+        }
         return meta;
     }
 
@@ -188,32 +188,32 @@ public abstract class BlockTFCritter extends Block {
             
             switch(facing) {
             case 1:
-            	if (!canPlaceAt(world, x - 1, y, z)) {
+                if (!canPlaceAt(world, x - 1, y, z)) {
                     flag = true;
                 }
-            	break;
+                break;
             case 2:
-            	if (!canPlaceAt(world, x + 1, y, z)) {
+                if (!canPlaceAt(world, x + 1, y, z)) {
                     flag = true;
                 }
-            	break;
+                break;
             case 3:
-            	if (!canPlaceAt(world, x, y, z - 1)) {
+                if (!canPlaceAt(world, x, y, z - 1)) {
                     flag = true;
                 }
-            	break;
+                break;
             case 4:
-            	if (!canPlaceAt(world, x, y, z + 1)) {
+                if (!canPlaceAt(world, x, y, z + 1)) {
                     flag = true;
                 }
-            	break;
+                break;
             case 5:
-            	if (!canPlaceAt(world, x, y - 1, z)) {
+                if (!canPlaceAt(world, x, y - 1, z)) {
                     flag = true;
                 }
-            	break;
+                break;
             case 6:
-            	if (!canPlaceAt(world, x, y + 1, z)) {
+                if (!canPlaceAt(world, x, y + 1, z)) {
                     flag = true;
                 }
             }
@@ -227,8 +227,8 @@ public abstract class BlockTFCritter extends Block {
 
     // We can place fireflies on any normal block or on leaves.
     public boolean canPlaceAt(World world, int x, int y, int z) {
-    	Block block = world.getBlock(x, y, z);
-    	Material blockMaterial = block.getMaterial();
+        Block block = world.getBlock(x, y, z);
+        Material blockMaterial = block.getMaterial();
         return block.isNormalCube(world, x, y, z) || blockMaterial == Material.leaves || blockMaterial == Material.cactus;
     }
 
@@ -264,7 +264,7 @@ public abstract class BlockTFCritter extends Block {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
-    	itemList.add(new ItemStack(item, 1, 0));
+        itemList.add(new ItemStack(item, 1, 0));
     }
 
     /**

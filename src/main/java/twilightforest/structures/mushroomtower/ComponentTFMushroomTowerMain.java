@@ -24,16 +24,16 @@ public class ComponentTFMushroomTowerMain extends ComponentTFMushroomTowerWing {
     public ComponentTFMushroomTowerMain(World world, Random rand, int index, int x, int y, int z, int rotation) {
         super(index, x, y, z, MAIN_SIZE, 8 + (rand.nextInt(3) * FLOOR_HEIGHT), rotation);
 
-//		// check to make sure we can build the whole tower
-//		if (this.boundingBox.maxY > 245)
-//		{
-//			int amtToLower = (((this.boundingBox.maxY - 245) / 5) * 5) + 5;
+//        // check to make sure we can build the whole tower
+//        if (this.boundingBox.maxY > 245)
+//        {
+//            int amtToLower = (((this.boundingBox.maxY - 245) / 5) * 5) + 5;
 //
-//			FMLLog.info("[TwilightForest] Lowering Dark Tower max height by %d to be within world bounds", amtToLower);
-//			
-//			this.height -= amtToLower;
-//			this.boundingBox.maxY -= amtToLower;
-//		}
+//            FMLLog.info("[TwilightForest] Lowering Dark Tower max height by %d to be within world bounds", amtToLower);
+//            
+//            this.height -= amtToLower;
+//            this.boundingBox.maxY -= amtToLower;
+//        }
 
         // decorator
         if (this.deco == null) {

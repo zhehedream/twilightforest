@@ -132,7 +132,7 @@ public class EntityAITFAvoidFrontalAttack extends EntityAIBase {
 
         float difference = MathHelper.abs((attackTarget.rotationYaw - angle) % 360);
 
-//    	System.out.println("Difference in angle of approach is " + difference);
+//        System.out.println("Difference in angle of approach is " + difference);
 
         return difference < 60 || difference > 300;
     }

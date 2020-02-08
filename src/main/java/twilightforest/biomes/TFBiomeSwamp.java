@@ -43,8 +43,8 @@ public class TFBiomeSwamp extends TFBiomeBase {
     public TFBiomeSwamp(int i) {
         super(i);
 
-//		this.rootHeight = -0.25F;
-//		this.heightVariation = 0.0F;
+//        this.rootHeight = -0.25F;
+//        this.heightVariation = 0.0F;
 
         this.temperature = 0.8F;
         this.rainfall = 0.9F;

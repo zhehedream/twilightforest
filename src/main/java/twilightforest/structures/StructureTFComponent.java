@@ -183,21 +183,21 @@ public abstract class StructureTFComponent extends StructureComponent {
         }
     }
 
-//	
-//	public boolean makeTowerWing2(List list, Random rand, int index, int x, int y, int z, int size, int height, int direction) {
-//		
-//		ComponentTFTowerWing wing = new ComponentTFTowerWing(index, x, y, z, size, height, direction);
-//		// check to see if it intersects something already there
-//		StructureComponent intersect = StructureComponent.getIntersectingStructureComponent(list, wing.boundingBox);
-//		if (intersect == null || intersect == this) {
-//			list.add(wing);
-//			wing.buildComponent(this, list, rand);
-//			return true;
-//		} else {
-//			System.out.println("Planned wing intersects with " + intersect);
-//			return false;
-//		}
-//	}
+//    
+//    public boolean makeTowerWing2(List list, Random rand, int index, int x, int y, int z, int size, int height, int direction) {
+//        
+//        ComponentTFTowerWing wing = new ComponentTFTowerWing(index, x, y, z, size, height, direction);
+//        // check to see if it intersects something already there
+//        StructureComponent intersect = StructureComponent.getIntersectingStructureComponent(list, wing.boundingBox);
+//        if (intersect == null || intersect == this) {
+//            list.add(wing);
+//            wing.buildComponent(this, list, rand);
+//            return true;
+//        } else {
+//            System.out.println("Planned wing intersects with " + intersect);
+//            return false;
+//        }
+//    }
 
     /**
      * Provides coordinates to make a tower such that it will open into the parent tower at the provided

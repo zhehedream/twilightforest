@@ -121,13 +121,13 @@ public class TFBiomeDecorator extends BiomeDecorator {
             decorateUnderground(world, rand, mapX, mapZ);
             decorateOnlyOres(world, rand, mapX, mapZ);
         } else {
-//    		// hollow trees!
-//	    	if (rand.nextInt(24) == 0) {
-//		        int rx = mapX + rand.nextInt(16) + 8;
-//		        int rz = mapZ + rand.nextInt(16) + 8;
-//		        int ry = world.getHeightValue(rx, rz);
-//	    		hollowTreeGen.generate(world, rand, rx, ry, rz);
-//	    	}
+//            // hollow trees!
+//            if (rand.nextInt(24) == 0) {
+//                int rx = mapX + rand.nextInt(16) + 8;
+//                int rz = mapZ + rand.nextInt(16) + 8;
+//                int ry = world.getHeightValue(rx, rz);
+//                hollowTreeGen.generate(world, rand, rx, ry, rz);
+//            }
 
             // regular decorations
             this.currentWorld = null; // suppress "Already decorating" error. I'm fairly sure that this mod does not cause this on its
@@ -150,7 +150,7 @@ public class TFBiomeDecorator extends BiomeDecorator {
             int ry = currentWorld.getHeightValue(rx, rz);
             TFGenerator rf = randomFeature(randomGenerator);
             if (rf.generate(currentWorld, randomGenerator, rx, ry, rz)) {
-//            	System.out.println(rf + " success at " + rx + ", " + ry + ", " + rz);
+//                System.out.println(rf + " success at " + rx + ", " + ry + ", " + rz);
             }
         }
 

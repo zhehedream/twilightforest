@@ -248,9 +248,9 @@ public class EntityTFQuestRam extends EntityAnimal {
     public void setColorPresent(int color) {
         int flags = this.getColorFlags();
 
-//    	System.out.println("Setting color flag for color " + color);
-//    	System.out.println("Color int is " + flags);
-//    	System.out.println("ORing that with " + Math.pow(2, color) + " which is " + Integer.toBinaryString((int) Math.pow(2, color)));
+//        System.out.println("Setting color flag for color " + color);
+//        System.out.println("Color int is " + flags);
+//        System.out.println("ORing that with " + Math.pow(2, color) + " which is " + Integer.toBinaryString((int) Math.pow(2, color)));
 
         setColorFlags(flags | (int) Math.pow(2, color));
     }

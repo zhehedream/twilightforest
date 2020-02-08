@@ -24,14 +24,14 @@ public class ComponentTFHollowTreeSmallBranch extends ComponentTFHollowTreeMedBr
      */
     @Override
     public void buildComponent(StructureComponent structurecomponent, List list, Random rand) {
-//		int index = getComponentType();
-//		
-//		if (leafy) {
-//			int leafRad = rand.nextInt(2) + 1;
-//			ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, dest.posX, dest.posY, dest.posZ, leafRad);
-//	        list.add(leafBlob);
-//	        leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
-//		}
+//        int index = getComponentType();
+//        
+//        if (leafy) {
+//            int leafRad = rand.nextInt(2) + 1;
+//            ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, dest.posX, dest.posY, dest.posZ, leafRad);
+//            list.add(leafBlob);
+//            leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
+//        }
 
     }
 

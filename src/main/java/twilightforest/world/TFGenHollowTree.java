@@ -40,27 +40,27 @@ public class TFGenHollowTree extends TFGenerator {
 
         // do we have enough height?
         if (y < 1 || y + height + diameter > TFWorld.MAXHEIGHT) {
-//			System.out.println("Failed with hollow tree of height " + height);
+//            System.out.println("Failed with hollow tree of height " + height);
             return false;
         }
-//		System.out.println("Succeeded with hollow tree of height " + height);
+//        System.out.println("Succeeded with hollow tree of height " + height);
 
-//		// are we going to hit something?
-//		for (int dx = -diameter; dx <= diameter; dx++)
-//		{
-//			for (int dz = -diameter; dz <= diameter; dz++)
-//			{
-//				for (int dy = 1; dy <= height; dy++)
-//				{
-//					int whatsThere = world.getBlock(dx + x, dy + y, dz + z);
-//					if(whatsThere != 0 && whatsThere != Blocks.leaves)
-//					{
-//						System.out.println("Failed tree due to things at the base at height " + dy);
-//						return false;
-//					}
-//				}
-//			}
-//		}
+//        // are we going to hit something?
+//        for (int dx = -diameter; dx <= diameter; dx++)
+//        {
+//            for (int dz = -diameter; dz <= diameter; dz++)
+//            {
+//                for (int dy = 1; dy <= height; dy++)
+//                {
+//                    int whatsThere = world.getBlock(dx + x, dy + y, dz + z);
+//                    if(whatsThere != 0 && whatsThere != Blocks.leaves)
+//                    {
+//                        System.out.println("Failed tree due to things at the base at height " + dy);
+//                        return false;
+//                    }
+//                }
+//            }
+//        }
         // check the top too
         int crownRadius = diameter * 4 + 8;
         for (int dx = -crownRadius; dx <= crownRadius; dx++) {
@@ -68,7 +68,7 @@ public class TFGenHollowTree extends TFGenerator {
                 for (int dy = height - crownRadius; dy <= height + crownRadius; dy++) {
                     Block whatsThere = world.getBlock(dx + x, dy + y, dz + z);
                     if (whatsThere != Blocks.air && whatsThere != Blocks.leaves) {
-//						System.out.println("Failed tree due to things at the top");
+//                        System.out.println("Failed tree due to things at the top");
                         return false;
                     }
                 }
@@ -253,7 +253,7 @@ public class TFGenHollowTree extends TFGenerator {
 
                     // how about a ladder? is that okay?
                     if (dist == hollow && dx == hollow) {
-//						putBlockAndMetadata(dx + x, dy + y, dz + z, Blocks.ladder,  4, true);
+//                        putBlockAndMetadata(dx + x, dy + y, dz + z, Blocks.ladder,  4, true);
                         setBlockAndMetadata(world, dx + x, dy + y, dz + z, Blocks.vine, 8);
                     }
                 }

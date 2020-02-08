@@ -97,43 +97,43 @@ public class ComponentTFHollowTreeMedBranch extends StructureTFComponent {
     public void buildComponent(StructureComponent structurecomponent, List list, Random rand) {
         int index = getComponentType();
 
-//		// with leaves!
-//		if (leafy) {
-//			int numLeafBalls = Math.min(rand.nextInt(3) + 1, (int)(length / 5));
-//			for(int i = 0; i < numLeafBalls; i++) {
+//        // with leaves!
+//        if (leafy) {
+//            int numLeafBalls = Math.min(rand.nextInt(3) + 1, (int)(length / 5));
+//            for(int i = 0; i < numLeafBalls; i++) {
 //
-//				double slength = (rand.nextDouble() * 0.6 + 0.2) * length;
-//				int[] bdst = TFGenerator.translate(src.posX, src.posY, src.posZ, slength, angle, tilt);
+//                double slength = (rand.nextDouble() * 0.6 + 0.2) * length;
+//                int[] bdst = TFGenerator.translate(src.posX, src.posY, src.posZ, slength, angle, tilt);
 //
-//				//drawBlob(bdst[0], bdst[1], bdst[2], 2, leafBlock, false);		
-//				ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, bdst[0], bdst[1], bdst[2], 2);
-//		        list.add(leafBlob);
-//		        leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
-//			}
+//                //drawBlob(bdst[0], bdst[1], bdst[2], 2, leafBlock, false);        
+//                ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, bdst[0], bdst[1], bdst[2], 2);
+//                list.add(leafBlob);
+//                leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
+//            }
 //
-//			
-//			ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, dest.posX, dest.posY, dest.posZ, 2);
-//	        list.add(leafBlob);
-//	        leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
-//		}
+//            
+//            ComponentTFLeafSphere leafBlob = new ComponentTFLeafSphere(index + 1, dest.posX, dest.posY, dest.posZ, 2);
+//            list.add(leafBlob);
+//            leafBlob.buildComponent(this, list, rand); // doesn't really need to be here for leaves.
+//        }
 //
-//		// and several small branches
-//		int numShoots = Math.min(rand.nextInt(3) + 1, (int)(length / 5));
-//		double angleInc, angleVar, outVar, tiltVar;
+//        // and several small branches
+//        int numShoots = Math.min(rand.nextInt(3) + 1, (int)(length / 5));
+//        double angleInc, angleVar, outVar, tiltVar;
 //
-//		angleInc = 0.8 / numShoots;
+//        angleInc = 0.8 / numShoots;
 //
-//		for(int i = 0; i < numShoots; i++) {
+//        for(int i = 0; i < numShoots; i++) {
 //
-//			angleVar = (angleInc * i) - 0.4;
-//			outVar = (rand.nextDouble() * 0.8) + 0.2;
-//			tiltVar = (rand.nextDouble() * 0.75) + 0.15;
+//            angleVar = (angleInc * i) - 0.4;
+//            outVar = (rand.nextDouble() * 0.8) + 0.2;
+//            tiltVar = (rand.nextDouble() * 0.75) + 0.15;
 //
-//			ChunkCoordinates bSrc = TFGenerator.translateCoords(src.posX, src.posY, src.posZ, length * outVar, angle, tilt);
-//			double slength = length * 0.4;
+//            ChunkCoordinates bSrc = TFGenerator.translateCoords(src.posX, src.posY, src.posZ, length * outVar, angle, tilt);
+//            double slength = length * 0.4;
 //
-//			makeSmallBranch(list, rand, index + 1, bSrc.posX, bSrc.posY, bSrc.posZ, slength, angle + angleVar, tilt * tiltVar, leafy);
-//		}
+//            makeSmallBranch(list, rand, index + 1, bSrc.posX, bSrc.posY, bSrc.posZ, slength, angle + angleVar, tilt * tiltVar, leafy);
+//        }
     }
 
     public void makeSmallBranch(List list, Random rand, int index, int x, int y, int z, double branchLength, double branchRotation, double branchAngle, boolean leafy) {
@@ -148,10 +148,10 @@ public class ComponentTFHollowTreeMedBranch extends StructureTFComponent {
         ChunkCoordinates rSrc = new ChunkCoordinates(src.posX - boundingBox.minX, src.posY - boundingBox.minY, src.posZ - boundingBox.minZ);
         ChunkCoordinates rDest = new ChunkCoordinates(dest.posX - boundingBox.minX, dest.posY - boundingBox.minY, dest.posZ - boundingBox.minZ);
 
-//		placeVoid(world, sbb, boundingBox.minX, boundingBox.minY, boundingBox.minZ, boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ, TFBlocks.wood, 0, false);
-//		System.out.println("Drawing a medium branch from " + rsrc.posX + ", " + rsrc.posY + ", " + rsrc.posZ + " to " + rdest.posX + ", " + rdest.posY + ", " + rdest.posZ);
-//		System.out.println("My bounding box is  " + boundingBox.minX + ", " + boundingBox.minY + ", " + boundingBox.minZ + " to "  + boundingBox.maxX + ", " + boundingBox.maxY + ", " + boundingBox.maxZ);
-//		System.out.println("Draw bounding box is  " + sbb.minX + ", " + sbb.minY + ", " + sbb.minZ + " to "  + sbb.maxX + ", " + sbb.maxY + ", " + sbb.maxZ);
+//        placeVoid(world, sbb, boundingBox.minX, boundingBox.minY, boundingBox.minZ, boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ, TFBlocks.wood, 0, false);
+//        System.out.println("Drawing a medium branch from " + rsrc.posX + ", " + rsrc.posY + ", " + rsrc.posZ + " to " + rdest.posX + ", " + rdest.posY + ", " + rdest.posZ);
+//        System.out.println("My bounding box is  " + boundingBox.minX + ", " + boundingBox.minY + ", " + boundingBox.minZ + " to "  + boundingBox.maxX + ", " + boundingBox.maxY + ", " + boundingBox.maxZ);
+//        System.out.println("Draw bounding box is  " + sbb.minX + ", " + sbb.minY + ", " + sbb.minZ + " to "  + sbb.maxX + ", " + sbb.maxY + ", " + sbb.maxZ);
 
         drawBresehnam(world, sbb, rSrc.posX, rSrc.posY, rSrc.posZ, rDest.posX, rDest.posY, rDest.posZ, TFBlocks.log, 12);
         drawBresehnam(world, sbb, rSrc.posX, rSrc.posY + 1, rSrc.posZ, rDest.posX, rDest.posY, rDest.posZ, TFBlocks.log, 12);

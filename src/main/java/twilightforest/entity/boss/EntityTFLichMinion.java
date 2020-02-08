@@ -108,7 +108,7 @@ public class EntityTFLichMinion extends EntityZombie {
 //     * Initialize this creature.
 //     */
 //    @Override
-//	public void initCreature()
+//    public void initCreature()
 //    {
 //        this.addRandomArmor();
 //        this.func_82162_bC();

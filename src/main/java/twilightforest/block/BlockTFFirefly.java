@@ -46,10 +46,10 @@ public class BlockTFFirefly extends BlockTFCritter {
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
-//		if (!world.isRemote)
-//		{
-//			world.scheduleBlockUpdate(x, y, z, blockID, tickRate());
-//		}
+//        if (!world.isRemote)
+//        {
+//            world.scheduleBlockUpdate(x, y, z, blockID, tickRate());
+//        }
     }
 
     // Ticks the block if it's been scheduled Check the lighting and make the world relight it if it's incorrect.

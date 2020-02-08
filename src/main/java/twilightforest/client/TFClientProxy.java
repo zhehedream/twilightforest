@@ -219,8 +219,8 @@ public class TFClientProxy extends TFCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFDeer.class, new RenderTFDeer(new ModelTFDeer(), 0.7F));
 
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFRedcap.class, new RenderTFBiped(new ModelTFRedcap(), 0.625F, "redcap.png"));
-//		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
-//		RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaSegmentOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
+//        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
+//        RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFNagaSegmentOld.class, new RenderTFNaga(new ModelTFNaga(), 0.625F));
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.passive.EntityTFTinyFirefly.class, new RenderTFTinyFirefly());
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFSkeletonDruid.class, new RenderTFBiped(new ModelTFSkeletonDruid(), 0.5F, "skeletondruid.png"));
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.EntityTFWraith.class, new RenderTFWraith(new ModelTFWraith(), 0.5F));
@@ -306,16 +306,16 @@ public class TFClientProxy extends TFCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(twilightforest.entity.boss.EntityTFHydraNeck.class, new RenderTFGenericLiving(new ModelTFHydraNeck(), 1.0F, "hydra4.png"));
 
         // animated textures
-//		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TIMELEAVES, BlockTFMagicLeaves.SPR_TIMEFX));
-//		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TRANSLEAVES, BlockTFMagicLeaves.SPR_TRANSFX));
-//		TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_SORTLEAVES, BlockTFMagicLeaves.SPR_SORTFX));
+//        TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TIMELEAVES, BlockTFMagicLeaves.SPR_TIMEFX));
+//        TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_TRANSLEAVES, BlockTFMagicLeaves.SPR_TRANSFX));
+//        TextureFXManager.instance().addAnimation(new TextureTFMagicLeavesFX(mc, BlockTFMagicLeaves.SPR_SORTLEAVES, BlockTFMagicLeaves.SPR_SORTFX));
 
         // tile entities
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFFirefly.class, new TileEntityTFFireflyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFCicada.class, new TileEntityTFCicadaRenderer());
-//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFNagaSpawner.class, new TileEntityMobSpawnerRenderer());
-//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFLichSpawner.class, new TileEntityMobSpawnerRenderer());
-//		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFHydraSpawner.class, new TileEntityMobSpawnerRenderer());
+//        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFNagaSpawner.class, new TileEntityMobSpawnerRenderer());
+//        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFLichSpawner.class, new TileEntityMobSpawnerRenderer());
+//        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFHydraSpawner.class, new TileEntityMobSpawnerRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFMoonworm.class, new TileEntityTFMoonwormRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTFTrophy.class, new TileEntityTFTrophyRenderer());
 
@@ -555,19 +555,19 @@ public class TFClientProxy extends TFCommonProxy {
 
     public void doBlockAnnihilateEffect(World worldObj, int blockX, int blockY, int blockZ) {
         // particles from the block?
-//		for (int i = 0; i < 10; i++) {
-//	        
-//	        double d0 = worldObj.rand.nextGaussian() * 0.02D;
-//	        double d1 = worldObj.rand.nextGaussian() * 0.02D;
-//	        double d2 = worldObj.rand.nextGaussian() * 0.02D;
+//        for (int i = 0; i < 10; i++) {
+//            
+//            double d0 = worldObj.rand.nextGaussian() * 0.02D;
+//            double d1 = worldObj.rand.nextGaussian() * 0.02D;
+//            double d2 = worldObj.rand.nextGaussian() * 0.02D;
 //
-//	        float dx = blockX + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
-//	        float dy = blockY + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
-//	        float dz = blockZ + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
+//            float dx = blockX + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
+//            float dy = blockY + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
+//            float dz = blockZ + 0.5F + (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.4F;
 //
-//			TwilightForestMod.proxy.spawnParticle(worldObj, "annihilate", dx, dy, dz, d0, d1, d2);
+//            TwilightForestMod.proxy.spawnParticle(worldObj, "annihilate", dx, dy, dz, d0, d1, d2);
 //
-//		}
+//        }
 
         byte four = 4;
 

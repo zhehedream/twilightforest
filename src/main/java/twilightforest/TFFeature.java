@@ -648,16 +648,16 @@ public class TFFeature {
 
     // Returns a list of hostile monsters. Are we ever going to need passive or water creatures?
     public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
-    	switch (creatureType) {
-    	case monster:
-    		return this.getSpawnableList(EnumCreatureType.monster, 0);
-    	case ambient:
-    		return this.ambientCreatureList;
-    	case waterCreature:
-    		return this.waterCreatureList;
-    	default:
-    		return emptyList;
-    	}
+        switch (creatureType) {
+        case monster:
+            return this.getSpawnableList(EnumCreatureType.monster, 0);
+        case ambient:
+            return this.ambientCreatureList;
+        case waterCreature:
+            return this.waterCreatureList;
+        default:
+            return emptyList;
+        }
     }
 
     // Returns a list of hostile monsters in the specified indexed category

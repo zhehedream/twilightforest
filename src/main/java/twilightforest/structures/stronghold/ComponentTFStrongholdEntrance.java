@@ -87,13 +87,13 @@ public class ComponentTFStrongholdEntrance extends StructureTFStrongholdComponen
             }
         }
 
-//		System.out.printf("MEGASHIELD computed!  %d, %d, %d to %d, %d, %d.\n", shieldBox.minX, shieldBox.minY, shieldBox.minZ, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
-//		System.out.printf("Stronghold at this point contains %d elements.\n", pieceList.size());
-//		
-//		System.out.printf("Room count! TStairs = %d, TCorr = %d, Dead End = %d, TRoom = %d, Boss = %d \n", tStairs, tCorridors, deadEnd, tRooms, bossRooms);
+//        System.out.printf("MEGASHIELD computed!  %d, %d, %d to %d, %d, %d.\n", shieldBox.minX, shieldBox.minY, shieldBox.minZ, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
+//        System.out.printf("Stronghold at this point contains %d elements.\n", pieceList.size());
+//        
+//        System.out.printf("Room count! TStairs = %d, TCorr = %d, Dead End = %d, TRoom = %d, Boss = %d \n", tStairs, tCorridors, deadEnd, tRooms, bossRooms);
 
-//		StructureTFStrongholdShield shield = new StructureTFStrongholdShield(shieldBox.minX - 1, shieldBox.minY, shieldBox.minZ - 1, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
-//		list.add(shield);
+//        StructureTFStrongholdShield shield = new StructureTFStrongholdShield(shieldBox.minX - 1, shieldBox.minY, shieldBox.minZ - 1, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
+//        list.add(shield);
 
         // add the upper stronghold
         StructureTFStrongholdComponent accessChamber = new ComponentTFStrongholdAccessChamber(2, this.getCoordBaseMode(), boundingBox.minX + 8, boundingBox.minY + 7, boundingBox.minZ + 4);

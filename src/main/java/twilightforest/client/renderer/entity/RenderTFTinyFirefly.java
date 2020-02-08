@@ -68,7 +68,7 @@ public class RenderTFTinyFirefly extends Render {
 
         GL11.glDisable(GL11.GL_LIGHTING);
 
-//		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+//        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, brightness);
         fireflyModel.glow1.render(0.0625f * size);
         GL11.glDisable(GL11.GL_BLEND);

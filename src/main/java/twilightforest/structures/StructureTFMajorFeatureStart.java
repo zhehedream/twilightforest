@@ -217,26 +217,26 @@ public class StructureTFMajorFeatureStart extends StructureStart {
 //    {
 //        if (this.getComponents().getFirst() instanceof ComponentTFStrongholdEntrance)
 //        {
-//        	//System.out.println("We're generating a stronghold!");
-//        	
-//			for (StructureComponent component : (LinkedList<StructureComponent>) getComponents())
-//			{
-//				
-//				// TODO: we need to test the shield bounding box here, otherwise we lose shield facings across chunk boundires
-//				
-//	            if (isShieldable(component) ? isIntersectingLarger(par3StructureBoundingBox, component) : isIntersectingLarger(par3StructureBoundingBox, component))
-//	            {
-//	            	if (isShieldable(component))
-//	            	{
-//	            		addShieldFor(par1World, component, (LinkedList<StructureComponent>) getComponents(), par3StructureBoundingBox);
-//	            	}
-//	            	component.addComponentParts(par1World, par2Random, par3StructureBoundingBox);
-//	            }
-//			}
+//            //System.out.println("We're generating a stronghold!");
+//            
+//            for (StructureComponent component : (LinkedList<StructureComponent>) getComponents())
+//            {
+//                
+//                // TODO: we need to test the shield bounding box here, otherwise we lose shield facings across chunk boundires
+//                
+//                if (isShieldable(component) ? isIntersectingLarger(par3StructureBoundingBox, component) : isIntersectingLarger(par3StructureBoundingBox, component))
+//                {
+//                    if (isShieldable(component))
+//                    {
+//                        addShieldFor(par1World, component, (LinkedList<StructureComponent>) getComponents(), par3StructureBoundingBox);
+//                    }
+//                    component.addComponentParts(par1World, par2Random, par3StructureBoundingBox);
+//                }
+//            }
 //        }
 //        else
 //        {
-//        	super.generateStructure(par1World, par2Random, par3StructureBoundingBox);
+//            super.generateStructure(par1World, par2Random, par3StructureBoundingBox);
 //        }
 //    }
 

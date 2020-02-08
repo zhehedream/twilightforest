@@ -213,25 +213,25 @@ public class BlockTFHedge extends BlockLeavesBase {
         return worldObj.rayTraceBlocks(position, dest);
     }
 
-//	/**
-//	 * Is the player swinging, server version.  Ugggh.  Okay, this sucks and we don't really need it
-//	 */
-//	private boolean isPlayerSwinging(EntityPlayer player) {
-//		if (player instanceof EntityPlayerMP) {
-//			ItemInWorldManager iiwm = ((EntityPlayerMP)player).itemInWorldManager;
-//			// curblockDamage > initialDamage
-//			return ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 9)).intValue() > ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 5)).intValue();
-//			
-////			for (int i = 0; i < ItemInWorldManager.class.getDeclaredFields().length; i++) {
-////				// if we find a boolean in here, just assume that's it for the time being
-////				if (ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i) instanceof Boolean) {
-////					return ((Boolean)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i)).booleanValue();
-////				}
-////			}
-//		}
-//		// we didn't find it
-//		return false;
-//	}
+//    /**
+//     * Is the player swinging, server version.  Ugggh.  Okay, this sucks and we don't really need it
+//     */
+//    private boolean isPlayerSwinging(EntityPlayer player) {
+//        if (player instanceof EntityPlayerMP) {
+//            ItemInWorldManager iiwm = ((EntityPlayerMP)player).itemInWorldManager;
+//            // curblockDamage > initialDamage
+//            return ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 9)).intValue() > ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 5)).intValue();
+//            
+////            for (int i = 0; i < ItemInWorldManager.class.getDeclaredFields().length; i++) {
+////                // if we find a boolean in here, just assume that's it for the time being
+////                if (ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i) instanceof Boolean) {
+////                    return ((Boolean)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i)).booleanValue();
+////                }
+////            }
+//        }
+//        // we didn't find it
+//        return false;
+//    }
 
     private boolean shouldDamage(Entity entity) {
         return !(entity instanceof EntitySpider) && !(entity instanceof EntityItem) && !entity.doesEntityNotTriggerPressurePlate();

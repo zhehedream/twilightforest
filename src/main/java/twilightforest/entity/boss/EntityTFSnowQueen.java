@@ -213,15 +213,15 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
             // playBreathSound();
         }
 
-//    	// am I in a block?!?
-//    	int fx = MathHelper.floor_double(this.posX);
-//    	int fy = MathHelper.floor_double(this.posY);
-//    	int fz = MathHelper.floor_double(this.posZ);
-//    	
-//    	if (this.worldObj.getBlock(fx, fy, fz) != Blocks.air) {
-//    		System.out.println("I am in a block!  World =" + this.worldObj);
-//    		this.posY += 1D;
-//    	}
+//        // am I in a block?!?
+//        int fx = MathHelper.floor_double(this.posX);
+//        int fy = MathHelper.floor_double(this.posY);
+//        int fz = MathHelper.floor_double(this.posZ);
+//        
+//        if (this.worldObj.getBlock(fx, fy, fz) != Blocks.air) {
+//            System.out.println("I am in a block!  World =" + this.worldObj);
+//            this.posY += 1D;
+//        }
 
     }
 
@@ -555,14 +555,14 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
 
             // did we not find anything at all to stand on?
             if (by == 0) {
-//        		System.out.println("teleport find failed to find a block to stand on");
+//                System.out.println("teleport find failed to find a block to stand on");
                 continue;
             }
 
             //
             if (!canEntitySee(targetEntity, tx, ty, tz)) {
-//        		System.out.println("teleport find failed because of lack of LOS");
-//        		System.out.println("ty = " + ty);
+//                System.out.println("teleport find failed because of lack of LOS");
+//                System.out.println("ty = " + ty);
                 continue;
             }
 
@@ -570,12 +570,12 @@ public class EntityTFSnowQueen extends EntityMob implements IBossDisplayData, IE
             float halfWidth = this.width / 2.0F;
             AxisAlignedBB destBox = AxisAlignedBB.getBoundingBox(tx - halfWidth, ty - yOffset + ySize, tz - halfWidth, tx + halfWidth, ty - yOffset + ySize + height, tz + halfWidth);
             if (worldObj.getCollidingBoundingBoxes(this, destBox).size() > 0) {
-//        		System.out.println("teleport find failed because of collision");
+//                System.out.println("teleport find failed because of collision");
                 continue;
             }
 
             if (worldObj.isAnyLiquid(destBox)) {
-//        		System.out.println("teleport find failed because of liquid at destination");
+//                System.out.println("teleport find failed because of liquid at destination");
                 continue;
             }
             // if we made it this far, we win!

@@ -52,8 +52,8 @@ public class GenLayerTF7x7Preset extends GenLayer {
         switch (c) {
         default:
             return BiomeGenBase.ocean;
-//		case 'P' :
-//			return BiomeGenBase.plains;
+//        case 'P' :
+//            return BiomeGenBase.plains;
         case 'F':
             return TFBiomeBase.twilightForest;
         case 'f':

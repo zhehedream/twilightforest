@@ -489,30 +489,30 @@ public class ComponentTFDarkTowerMain extends ComponentTFDarkTowerWing {
 
     }
 
-//	protected void makeLargeStairsDown(World world, StructureBoundingBox sbb, int rotation, int y) {
-//		// stairs!
-//		this.fillAirRotated(world, sbb, size / 2, y, 1, size / 2, y + 1, 2, rotation);
-//		
-//		for (int i = 0; i < 5; i++)
-//		{
-//			placeBlockRotated(world, deco.stairID, getStairMeta(0 + rotation), size / 2 - i, y - i, 1, rotation, sbb);
-//			placeBlockRotated(world, deco.stairID, getStairMeta(0 + rotation), size / 2 - i, y - i, 2, rotation, sbb);
-//			placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 1, rotation, sbb);
-//			placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 2, rotation, sbb);
-//			placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 3, rotation, sbb);
-//			
-//			if (i > 0 && i < 4)
-//			{
-//				placeBlockRotated(world, deco.accentID, deco.accentMeta, size / 2 - i, y - i, 3, rotation, sbb);
-//				placeBlockRotated(world, deco.fenceID, deco.fenceMeta, size / 2 - i, y - i + 1, 3, rotation, sbb);
-//				placeBlockRotated(world, deco.fenceID, deco.fenceMeta, size / 2 - i, y - i + 2, 3, rotation, sbb);
-//			}
-//			else if (i == 4)
-//			{
-//				placeBlockRotated(world, deco.stairID, getStairMeta(3 + rotation), size / 2 - i, y - i, 3, rotation, sbb);
-//			}
-//		}
-//	}
+//    protected void makeLargeStairsDown(World world, StructureBoundingBox sbb, int rotation, int y) {
+//        // stairs!
+//        this.fillAirRotated(world, sbb, size / 2, y, 1, size / 2, y + 1, 2, rotation);
+//        
+//        for (int i = 0; i < 5; i++)
+//        {
+//            placeBlockRotated(world, deco.stairID, getStairMeta(0 + rotation), size / 2 - i, y - i, 1, rotation, sbb);
+//            placeBlockRotated(world, deco.stairID, getStairMeta(0 + rotation), size / 2 - i, y - i, 2, rotation, sbb);
+//            placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 1, rotation, sbb);
+//            placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 2, rotation, sbb);
+//            placeBlockRotated(world, deco.blockID, deco.blockMeta, size / 2 - i + 1, y - i, 3, rotation, sbb);
+//            
+//            if (i > 0 && i < 4)
+//            {
+//                placeBlockRotated(world, deco.accentID, deco.accentMeta, size / 2 - i, y - i, 3, rotation, sbb);
+//                placeBlockRotated(world, deco.fenceID, deco.fenceMeta, size / 2 - i, y - i + 1, 3, rotation, sbb);
+//                placeBlockRotated(world, deco.fenceID, deco.fenceMeta, size / 2 - i, y - i + 2, 3, rotation, sbb);
+//            }
+//            else if (i == 4)
+//            {
+//                placeBlockRotated(world, deco.stairID, getStairMeta(3 + rotation), size / 2 - i, y - i, 3, rotation, sbb);
+//            }
+//        }
+//    }
 
     protected void makeLargeStairsUp(World world, StructureBoundingBox sbb, int rotation, int y) {
         // stairs!
@@ -944,10 +944,10 @@ public class ComponentTFDarkTowerMain extends ComponentTFDarkTowerWing {
     }
 
     private void decorateForge(World world, Random decoRNG, StructureBoundingBox sbb, int rotation, int y) {
-//		StructureTFDecorator forgeDeco = new StructureTFDecorator();
-//		forgeDeco = Blocks.cobblestone;
-//		forgeDeco.pillarID = Blocks.stonebrick;
-//		forgeDeco.stairID = Blocks.stairCompactCobblestone;
+//        StructureTFDecorator forgeDeco = new StructureTFDecorator();
+//        forgeDeco = Blocks.cobblestone;
+//        forgeDeco.pillarID = Blocks.stonebrick;
+//        forgeDeco.stairID = Blocks.stairCompactCobblestone;
         StructureTFDecorator forgeDeco = this.deco;
 
         // stone walls in corner
@@ -1062,17 +1062,17 @@ public class ComponentTFDarkTowerMain extends ComponentTFDarkTowerWing {
     }
 
     private void decorateNetherwart(World world, Random decoRNG, StructureBoundingBox sbb, int rotation, int y, boolean isTop) {
-//		StructureTFDecorator netherDeco = new StructureTFDecorator();
-//		netherDeco = Blocks.netherBrick;
-//		netherDeco.pillarID = Blocks.netherBrick;
-//		netherDeco.stairID = Blocks.stairsNetherBrick;
-//		netherDeco.fenceID = Blocks.netherFence;
+//        StructureTFDecorator netherDeco = new StructureTFDecorator();
+//        netherDeco = Blocks.netherBrick;
+//        netherDeco.pillarID = Blocks.netherBrick;
+//        netherDeco.stairID = Blocks.stairsNetherBrick;
+//        netherDeco.fenceID = Blocks.netherFence;
         StructureTFDecorator netherDeco = this.deco;
 
-//		// lava container
-//		makePillarFrame(world, sbb, netherDeco, rotation, 12, y, 3, 4, 4, 4, true);
-//		this.fillBlocksRotated(world, sbb, 13, y + 1, 4, 14, y + 1, 5, Blocks.lavaMoving, 0, rotation);
-//		this.fillBlocksRotated(world, sbb, 12, y + 3, 3, 15, y + 4, 6, 0, 0, rotation);
+//        // lava container
+//        makePillarFrame(world, sbb, netherDeco, rotation, 12, y, 3, 4, 4, 4, true);
+//        this.fillBlocksRotated(world, sbb, 13, y + 1, 4, 14, y + 1, 5, Blocks.lavaMoving, 0, rotation);
+//        this.fillBlocksRotated(world, sbb, 12, y + 3, 3, 15, y + 4, 6, 0, 0, rotation);
 
         // makeNetherburst(world, decoRNG, 8, 100, 20, 12, y + 3, 3, rotation, sbb);
 
@@ -1184,10 +1184,10 @@ public class ComponentTFDarkTowerMain extends ComponentTFDarkTowerWing {
                     break;
                 }
 
-//    			if (i == 99)
-//    			{
-//    				System.out.println("Never generated " + treeGen);
-//    			}
+//                if (i == 99)
+//                {
+//                    System.out.println("Never generated " + treeGen);
+//                }
             }
         }
 

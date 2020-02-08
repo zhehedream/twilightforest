@@ -28,10 +28,10 @@ public class RenderTFNaga extends RenderLiving {
     public void doRender(Entity entity, double d, double d1, double d2, float f, float f1) {
         super.doRender(entity, d, d1, d2, f, f1);
         // we also render segments here, and don't need to do this for them
-//		if (entity instanceof EntityTFNagaOld)
-//		{
-//	        BossStatus.setBossStatus((EntityTFNagaOld)entity, false);
-//		}
+//        if (entity instanceof EntityTFNagaOld)
+//        {
+//            BossStatus.setBossStatus((EntityTFNagaOld)entity, false);
+//        }
 
         if (entity instanceof EntityTFNaga && ((EntityTFNaga) entity).getParts() != null) {
             EntityTFNaga naga = (EntityTFNaga) entity;

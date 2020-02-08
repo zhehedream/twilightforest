@@ -91,11 +91,11 @@ public class EntityTFFallingIce extends Entity {
 
                 this.setDead();
             }
-//    		else if (this.fallTime > 100 && !this.worldObj.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
-//    		{
-//    			// something's wrong
-//    			this.setDead();
-//    		}
+//            else if (this.fallTime > 100 && !this.worldObj.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
+//            {
+//                // something's wrong
+//                this.setDead();
+//            }
         }
 
         // kill other nearby blocks if they are not as old as this one

@@ -58,11 +58,11 @@ public abstract class EntityTFBird extends EntityAnimal {
 
         this.flapLength += this.flapSpeed * 2.0F;
 
-//	    // rise up when we go fast?
+//        // rise up when we go fast?
 //        if (this.getMoveHelper().getSpeed() > 0.39F && this.moveForward > 0.1F)
 //        {
-//        	this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
-//        	this.moveForward *= 2F;
+//            this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
+//            this.moveForward *= 2F;
 //        }
     }
 

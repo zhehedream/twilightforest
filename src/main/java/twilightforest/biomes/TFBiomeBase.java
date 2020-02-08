@@ -325,7 +325,7 @@ public abstract class TFBiomeBase extends BiomeGenBase {
 //    @Override
 //    public int getBiomeGrassColor(int x, int y, int z)
 //    {
-//    	// I hate to be grumpy, but using events for this is a waste of memory and GC resources
+//        // I hate to be grumpy, but using events for this is a waste of memory and GC resources
 //        double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
 //        double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
 //        return ColorizerGrass.getGrassColor(d0, d1);
@@ -338,7 +338,7 @@ public abstract class TFBiomeBase extends BiomeGenBase {
 //    @Override
 //    public int getBiomeFoliageColor(int x, int y, int z)
 //    {
-//    	// I hate to be grumpy, but using events for this is a waste of memory and GC resources
+//        // I hate to be grumpy, but using events for this is a waste of memory and GC resources
 //        double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
 //        double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
 //        return ColorizerFoliage.getFoliageColor(d0, d1);
@@ -347,7 +347,7 @@ public abstract class TFBiomeBase extends BiomeGenBase {
 //    @SideOnly(Side.CLIENT)
 //    public int getWaterColorMultiplier()
 //    {
-//    	// I hate to be grumpy, but using events for this is a waste of memory and GC resources
+//        // I hate to be grumpy, but using events for this is a waste of memory and GC resources
 //        return this.waterColorMultiplier;
 //    }
 

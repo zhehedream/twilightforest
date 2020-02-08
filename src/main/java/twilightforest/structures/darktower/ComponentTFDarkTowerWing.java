@@ -142,14 +142,14 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
     protected int validateChildHeight(int childHeight, int childSize) {
         return (childHeight / 4) * 4 + 1;
 
-//		if (childSize > 9)
-//		{
-//			return (childHeight / 4) * 4 + 1;
-//		}
-//		else
-//		{
-//			return (childHeight / 3) * 3; 
-//		}
+//        if (childSize > 9)
+//        {
+//            return (childHeight / 4) * 4 + 1;
+//        }
+//        else
+//        {
+//            return (childHeight / 3) * 3; 
+//        }
     }
 
     /**
@@ -254,7 +254,7 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
             addOpening(x, y, z, rotation);
             return true;
         } else {
-//			System.out.println("Planned wing intersects with " + intersect);
+//            System.out.println("Planned wing intersects with " + intersect);
             return false;
         }
     }
@@ -272,7 +272,7 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
             addOpening(x, y, z, rotation, EnumDarkTowerDoor.REAPPEARING);
             return true;
         } else {
-//			System.out.println("Planned wing intersects with " + intersect);
+//            System.out.println("Planned wing intersects with " + intersect);
             return false;
         }
 
@@ -914,47 +914,47 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
             }
         }
 
-//		// do we need a beam going up?
-//		if (top)
-//		{
-//			int ladderX = !checkPost(world, 4, y + 5, 9) ? 4 : 14;
-//			int ladderZ = !checkPost(world, ladderX, y + 5, 10) ? 10 : 8;
-//			int ladderMeta = (ladderZ == 10) ? 3 : 5;
-//			for (int by = 1; by < 5; by++)
-//			{
-//				placeBlockAtCurrentPosition(world, beamID, beamMetaBase + beamMetaUD, ladderX, y + by, 9, sbb);
-//				placeBlockAtCurrentPosition(world, Blocks.ladder, getLadderMeta(ladderMeta), ladderX, y + by, ladderZ, sbb);
-//			}
+//        // do we need a beam going up?
+//        if (top)
+//        {
+//            int ladderX = !checkPost(world, 4, y + 5, 9) ? 4 : 14;
+//            int ladderZ = !checkPost(world, ladderX, y + 5, 10) ? 10 : 8;
+//            int ladderMeta = (ladderZ == 10) ? 3 : 5;
+//            for (int by = 1; by < 5; by++)
+//            {
+//                placeBlockAtCurrentPosition(world, beamID, beamMetaBase + beamMetaUD, ladderX, y + by, 9, sbb);
+//                placeBlockAtCurrentPosition(world, Blocks.ladder, getLadderMeta(ladderMeta), ladderX, y + by, ladderZ, sbb);
+//            }
 //
-//			// fence thing
-//			placeBlockAtCurrentPosition(world, Blocks.air, 0, ladderX, y + 6, 9, sbb);
-//			placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX + 1, y + 5, ladderZ, sbb);
-//			placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX - 1, y + 5, ladderZ, sbb);
-//			placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX + 1, y + 6, ladderZ, sbb);
-//			placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX - 1, y + 6, ladderZ, sbb);
-//		}
-//		
-//		if (!bottom && !top)
-//		{
-//			// spawners
-//			int sx = pickFrom(rand, 6, 7, 11);
-//			int sz = pickFrom(rand, 6, 11, 12);
+//            // fence thing
+//            placeBlockAtCurrentPosition(world, Blocks.air, 0, ladderX, y + 6, 9, sbb);
+//            placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX + 1, y + 5, ladderZ, sbb);
+//            placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX - 1, y + 5, ladderZ, sbb);
+//            placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX + 1, y + 6, ladderZ, sbb);
+//            placeBlockAtCurrentPosition(world, deco.fenceID, deco.fenceMeta, ladderX - 1, y + 6, ladderZ, sbb);
+//        }
+//        
+//        if (!bottom && !top)
+//        {
+//            // spawners
+//            int sx = pickFrom(rand, 6, 7, 11);
+//            int sz = pickFrom(rand, 6, 11, 12);
 //
-//			TileEntityMobSpawner spawner = placeSpawnerAtCurrentPosition(world, rand, sx, y + 2, sz, TFCreatures.getSpawnerNameFor("Mini Ghast"), sbb);
-//			
-//			if (spawner != null)
-//			{
-//				;
-//			}
-//			
-//		}
+//            TileEntityMobSpawner spawner = placeSpawnerAtCurrentPosition(world, rand, sx, y + 2, sz, TFCreatures.getSpawnerNameFor("Mini Ghast"), sbb);
+//            
+//            if (spawner != null)
+//            {
+//                ;
+//            }
+//            
+//        }
 //
-//		// lamps
-//		int lx = pickFrom(rand, 2, 12, 16);
-//		int lz = 2 + rand.nextInt(15);
+//        // lamps
+//        int lx = pickFrom(rand, 2, 12, 16);
+//        int lz = 2 + rand.nextInt(15);
 //
-//		placeBlockAtCurrentPosition(world, Blocks.redstone_lamp, 0, lx, y + 2, lz, sbb);
-//		placeBlockAtCurrentPosition(world, Blocks.lever, 7, lx, y + 1, lz, sbb);
+//        placeBlockAtCurrentPosition(world, Blocks.redstone_lamp, 0, lx, y + 2, lz, sbb);
+//        placeBlockAtCurrentPosition(world, Blocks.lever, 7, lx, y + 1, lz, sbb);
     }
 
     /**
@@ -1017,10 +1017,10 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
                                 || ((z == minZ || z == maxZ) && ((x == minY || x == maxX) || (y == minY || y == maxY)))) {
                             this.placeBlockAtCurrentPosition(world, deco.accentID, deco.accentMeta, x, y, z, sbb);
                         }
-//						else if (this.isKeyTower())
-//						{
-//	                        this.placeBlockAtCurrentPosition(world, Blocks.diamond_block, 0,  x, y, z, sbb);
-//						}
+//                        else if (this.isKeyTower())
+//                        {
+//                            this.placeBlockAtCurrentPosition(world, Blocks.diamond_block, 0,  x, y, z, sbb);
+//                        }
                         else {
                             StructureComponent.BlockSelector blocker = deco.randomBlocks;
 

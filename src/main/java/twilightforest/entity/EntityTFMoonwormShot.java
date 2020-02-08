@@ -59,17 +59,17 @@ public class EntityTFMoonwormShot extends EntityThrowable {
     }
 
     public void makeTrail() {
-//		for (int i = 0; i < 5; i++) {
-//			double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//			double dy = posY + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//			double dz = posZ + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//			
-//			double s1 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.17F;
-//			double s2 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.80F;
-//			double s3 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.69F;
+//        for (int i = 0; i < 5; i++) {
+//            double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
+//            double dy = posY + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
+//            double dz = posZ + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
+//            
+//            double s1 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.17F;
+//            double s2 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.80F;
+//            double s3 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.69F;
 //
-//			worldObj.spawnParticle("mobSpell", dx, dy, dz, s1, s2, s3);
-//		}
+//            worldObj.spawnParticle("mobSpell", dx, dy, dz, s1, s2, s3);
+//        }
     }
 
     /**

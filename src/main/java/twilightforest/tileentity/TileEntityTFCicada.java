@@ -20,10 +20,10 @@ public class TileEntityTFCicada extends TileEntityTFCritter {
     public void updateEntity() {
         super.updateEntity();
 
-//    	if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 1) {
-//    		//System.out.println("Cicada tile entity block has invalid metadata, fixing");
-//    		worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 1);
-//    	}
+//        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 1) {
+//            //System.out.println("Cicada tile entity block has invalid metadata, fixing");
+//            worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 1);
+//        }
 
         if (yawDelay > 0) {
             yawDelay--;
@@ -72,11 +72,11 @@ public class TileEntityTFCicada extends TileEntityTFCritter {
 //     */
 //    @Override
 //    public int getBlockMetadata() {
-//    	if (super.getBlockMetadata() == 0)
+//        if (super.getBlockMetadata() == 0)
 //        {
-//    		this.blockMetadata = -1;
+//            this.blockMetadata = -1;
 //        }
-//    	return super.getBlockMetadata();
+//        return super.getBlockMetadata();
 //    }
 
     public void doSingAnimation() {

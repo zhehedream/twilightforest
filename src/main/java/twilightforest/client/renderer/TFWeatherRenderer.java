@@ -539,32 +539,32 @@ public class TFWeatherRenderer extends IRenderHandler {
                         if (rainMin != rainMax) {
                             this.random.setSeed((long) (dx * dx * 3121 + dx * 45238971 ^ dz * dz * 418711 + dz * 13761));
 
-							if (drawFlag != 0) {
-								if (drawFlag >= 0) {
-									tessellator.draw();
-								}
+                            if (drawFlag != 0) {
+                                if (drawFlag >= 0) {
+                                    tessellator.draw();
+                                }
 
-								drawFlag = 0;
-								mc.getTextureManager().bindTexture(locationSparklesPng);
-								tessellator.startDrawingQuads();
-							}
+                                drawFlag = 0;
+                                mc.getTextureManager().bindTexture(locationSparklesPng);
+                                tessellator.startDrawingQuads();
+                            }
 
-							float countFactor = ((float) (this.rendererUpdateCount & 511) + partialTicks) / 512.0F;
-							float uFactor = this.random.nextFloat() + preciseCount * 0.01F * (float) this.random.nextGaussian();
-							float vFactor = this.random.nextFloat() + preciseCount * 0.01F * (float) this.random.nextGaussian();
-							double xRange = (double) ((float) dx + 0.5F) - entitylivingbase.posX;
-							double zRange = (double) ((float) dz + 0.5F) - entitylivingbase.posZ;
-							float distanceFromPlayer = MathHelper.sqrt_double(xRange * xRange + zRange * zRange) / (float) range;
-							tessellator.setBrightness(983055);
-							float bright = 1.0F;
-							float alpha = random.nextFloat();
-							tessellator.setColorRGBA_F(bright, bright, bright, ((1.0F - distanceFromPlayer * distanceFromPlayer) * 0.3F + 0.5F) * alpha);
-							tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
-							tessellator.addVertexWithUV((double) ((float) dx - rainX) + 0.5D, (double) rainMin, (double) ((float) dz - rainZ) + 0.5D, (double) (0.0F * one + uFactor), (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
-							tessellator.addVertexWithUV((double) ((float) dx + rainX) + 0.5D, (double) rainMin, (double) ((float) dz + rainZ) + 0.5D, (double) (1.0F * one + uFactor), (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
-							tessellator.addVertexWithUV((double) ((float) dx + rainX) + 0.5D, (double) rainMax, (double) ((float) dz + rainZ) + 0.5D, (double) (1.0F * one + uFactor), (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
-							tessellator.addVertexWithUV((double) ((float) dx - rainX) + 0.5D, (double) rainMax, (double) ((float) dz - rainZ) + 0.5D, (double) (0.0F * one + uFactor), (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
-							tessellator.setTranslation(0.0D, 0.0D, 0.0D);
+                            float countFactor = ((float) (this.rendererUpdateCount & 511) + partialTicks) / 512.0F;
+                            float uFactor = this.random.nextFloat() + preciseCount * 0.01F * (float) this.random.nextGaussian();
+                            float vFactor = this.random.nextFloat() + preciseCount * 0.01F * (float) this.random.nextGaussian();
+                            double xRange = (double) ((float) dx + 0.5F) - entitylivingbase.posX;
+                            double zRange = (double) ((float) dz + 0.5F) - entitylivingbase.posZ;
+                            float distanceFromPlayer = MathHelper.sqrt_double(xRange * xRange + zRange * zRange) / (float) range;
+                            tessellator.setBrightness(983055);
+                            float bright = 1.0F;
+                            float alpha = random.nextFloat();
+                            tessellator.setColorRGBA_F(bright, bright, bright, ((1.0F - distanceFromPlayer * distanceFromPlayer) * 0.3F + 0.5F) * alpha);
+                            tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
+                            tessellator.addVertexWithUV((double) ((float) dx - rainX) + 0.5D, (double) rainMin, (double) ((float) dz - rainZ) + 0.5D, (double) (0.0F * one + uFactor), (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                            tessellator.addVertexWithUV((double) ((float) dx + rainX) + 0.5D, (double) rainMin, (double) ((float) dz + rainZ) + 0.5D, (double) (1.0F * one + uFactor), (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                            tessellator.addVertexWithUV((double) ((float) dx + rainX) + 0.5D, (double) rainMax, (double) ((float) dz + rainZ) + 0.5D, (double) (1.0F * one + uFactor), (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                            tessellator.addVertexWithUV((double) ((float) dx - rainX) + 0.5D, (double) rainMax, (double) ((float) dz - rainZ) + 0.5D, (double) (0.0F * one + uFactor), (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                            tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                         }
                     }
                 }

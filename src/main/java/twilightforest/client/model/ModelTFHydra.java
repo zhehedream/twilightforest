@@ -227,21 +227,21 @@ public class ModelTFHydra extends ModelBase {
         tail2.render(f5);
         tail3.render(f5);
         tail4.render(f5);
-//		neck1a.render(f5);
-//		neck1b.render(f5);
-//		neck1c.render(f5);
-//		neck1d.render(f5);
-//		head1.render(f5);
-//		neck2a.render(f5);
-//		neck2b.render(f5);
-//		neck2c.render(f5);
-//		neck2d.render(f5);
-//		head2.render(f5);
-//		neck3a.render(f5);
-//		neck3b.render(f5);
-//		neck3c.render(f5);
-//		neck3d.render(f5);
-//		head3.render(f5);
+//        neck1a.render(f5);
+//        neck1b.render(f5);
+//        neck1c.render(f5);
+//        neck1d.render(f5);
+//        head1.render(f5);
+//        neck2a.render(f5);
+//        neck2b.render(f5);
+//        neck2c.render(f5);
+//        neck2d.render(f5);
+//        head2.render(f5);
+//        neck3a.render(f5);
+//        neck3b.render(f5);
+//        neck3c.render(f5);
+//        neck3d.render(f5);
+//        head3.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -261,41 +261,41 @@ public class ModelTFHydra extends ModelBase {
 
     }
 
-//	@Override
-//	public void setLivingAnimations(EntityLiving entityliving, float f, float f1, float time) {
-//		EntityTFHydra hydra = (EntityTFHydra)entityliving;
-//		
-//		// position the heads
-//		Vec3 vec;
-//		
+//    @Override
+//    public void setLivingAnimations(EntityLiving entityliving, float f, float f1, float time) {
+//        EntityTFHydra hydra = (EntityTFHydra)entityliving;
+//        
+//        // position the heads
+//        Vec3 vec;
+//        
 //        vec = Vec3.getVec3Pool().getVecFromPool(0, 0, 7*-16);
 //        vec.rotateAroundX((60 * 3.141593F) / 180F);
 //        vec.rotateAroundY((0 * 3.141593F) / 180F);
 //        head1.setRotationPoint((float)vec.xCoord, (float)vec.yCoord - 48, (float)vec.zCoord);
-//		
+//        
 //        vec = Vec3.getVec3Pool().getVecFromPool(0, 0, 9*-16);
 //        vec.rotateAroundX((45 * 3.141593F) / 180F);
 //        vec.rotateAroundY((-60 * 3.141593F) / 180F);
 //        head2.setRotationPoint((float)vec.xCoord, (float)vec.yCoord - 48, (float)vec.zCoord);
-//		
+//        
 //        vec = Vec3.getVec3Pool().getVecFromPool(0, 0, 9*-16);
 //        vec.rotateAroundX((-10 * 3.141593F) / 180F);
 //        vec.rotateAroundY((60 * 3.141593F) / 180F);
 //        head3.setRotationPoint((float)vec.xCoord, (float)vec.yCoord - 48, (float)vec.zCoord);
-//		
+//        
 //        // rotate the heads
 //        if (hydra.head1 != null)
 //        {
-//			head1.rotateAngleY = getRotationY(hydra, hydra.head1, time);
-//			head1.rotateAngleX = getRotationX(hydra, hydra.head1, time);
-//	
-//			head2.rotateAngleY = getRotationY(hydra, hydra.head3, time);
-//			head2.rotateAngleX = getRotationX(hydra, hydra.head3, time);
-//	
-//			head3.rotateAngleY = getRotationY(hydra, hydra.head2, time);
-//			head3.rotateAngleX = getRotationX(hydra, hydra.head2, time) - 0.015F;
+//            head1.rotateAngleY = getRotationY(hydra, hydra.head1, time);
+//            head1.rotateAngleX = getRotationX(hydra, hydra.head1, time);
+//    
+//            head2.rotateAngleY = getRotationY(hydra, hydra.head3, time);
+//            head2.rotateAngleX = getRotationX(hydra, hydra.head3, time);
+//    
+//            head3.rotateAngleY = getRotationY(hydra, hydra.head2, time);
+//            head3.rotateAngleX = getRotationX(hydra, hydra.head2, time) - 0.015F;
 //        }
-//	}
+//    }
 
     public float getRotationY(EntityTFHydra hydra, EntityTFHydraPart whichHead, float time) {
 

@@ -140,7 +140,7 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
             addOpening(x, y, z, rotation);
             return true;
         } else {
-//			System.out.println("Planned outbuilding intersects with " + intersect);
+//            System.out.println("Planned outbuilding intersects with " + intersect);
             return false;
         }
     }

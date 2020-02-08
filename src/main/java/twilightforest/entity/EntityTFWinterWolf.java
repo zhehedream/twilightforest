@@ -135,10 +135,10 @@ public class EntityTFWinterWolf extends EntityTFHostileWolf implements IBreathAt
 
     @Override
     public void doBreathAttack(Entity target) {
-//		if (!target.isImmuneToFire() && target.attackEntityFrom(DamageSource.inFire, BREATH_DAMAGE))
-//    	{
-//    		target.setFire(BREATH_DURATION);
-//    	}
+//        if (!target.isImmuneToFire() && target.attackEntityFrom(DamageSource.inFire, BREATH_DAMAGE))
+//        {
+//            target.setFire(BREATH_DURATION);
+//        }
     }
 
     /**

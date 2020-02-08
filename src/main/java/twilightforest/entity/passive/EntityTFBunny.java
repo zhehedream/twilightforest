@@ -72,7 +72,7 @@ public class EntityTFBunny extends EntityCreature implements IAnimals {
 //    /**
 //     * Returns the texture's file path as a String.
 //     */
-//	@Override
+//    @Override
 //    public String getTexture()
 //    {
 //        switch (this.getBunnyType())

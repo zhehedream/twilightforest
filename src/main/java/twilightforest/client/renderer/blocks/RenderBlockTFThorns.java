@@ -372,7 +372,7 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-//		// top
+//        // top
 //        renderblocks.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.1875F, 0.9375F);
 //        renderInvBlock(renderblocks, par1Block, meta, tessellator);
 //        

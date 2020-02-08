@@ -141,7 +141,7 @@ public class ModelTFKnightPhantom extends ModelBiped {
 //        // during swing move arm forward
 //        if (upperKnight.heavySpearTimer > 0)
 //        {
-//        	bipedRightArm.rotateAngleX -= this.getArmRotationDuringSwing(60 - upperKnight.heavySpearTimer + par6) / (180F / (float)Math.PI);
+//            bipedRightArm.rotateAngleX -= this.getArmRotationDuringSwing(60 - upperKnight.heavySpearTimer + par6) / (180F / (float)Math.PI);
 //        }
 
 //        this.bipedRightArm.rotateAngleY = 0.0F;

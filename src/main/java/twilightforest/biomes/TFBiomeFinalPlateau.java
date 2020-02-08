@@ -15,8 +15,8 @@ public class TFBiomeFinalPlateau extends TFBiomeBase {
         this.fillerBlock = TFBlocks.deadrock;
         this.field_76754_C = 1;
 
-//		this.rootHeight = 7F;
-//		this.heightVariation = 0.4F;
+//        this.rootHeight = 7F;
+//        this.heightVariation = 0.4F;
 
         this.temperature = 0.3F;
         this.rainfall = 0.2F;

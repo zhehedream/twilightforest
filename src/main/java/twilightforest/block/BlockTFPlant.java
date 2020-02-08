@@ -414,11 +414,11 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
-    	itemList.add(new ItemStack(this, 1, META_MOSSPATCH));
-    	itemList.add(new ItemStack(this, 1, META_MAYAPPLE));
+        itemList.add(new ItemStack(this, 1, META_MOSSPATCH));
+        itemList.add(new ItemStack(this, 1, META_MAYAPPLE));
         // itemList.add(new ItemStack(this, 1, META_CLOVERPATCH));
-    	itemList.add(new ItemStack(this, 1, 8));
-    	itemList.add(new ItemStack(this, 1, 9));
+        itemList.add(new ItemStack(this, 1, 8));
+        itemList.add(new ItemStack(this, 1, 9));
         itemList.add(new ItemStack(this, 1, META_FORESTGRASS));
         itemList.add(new ItemStack(this, 1, META_DEADBUSH));
         itemList.add(new ItemStack(this, 1, 13));
@@ -463,7 +463,7 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         int meta = world.getBlockMetadata(x, y, z);
 
         if (meta == META_MOSSPATCH && random.nextInt(10) == 0) {
-        	world.spawnParticle("townaura", x + random.nextFloat(), y + 0.1F, z + random.nextFloat(), 0.0D, 0.0D, 0.0D);
+            world.spawnParticle("townaura", x + random.nextFloat(), y + 0.1F, z + random.nextFloat(), 0.0D, 0.0D, 0.0D);
         }
     }
 

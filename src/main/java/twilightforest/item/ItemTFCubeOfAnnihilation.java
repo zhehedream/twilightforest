@@ -143,11 +143,11 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
      */
     @Override
     public void onUsingTick(ItemStack stack, EntityPlayer player, int count) {
-//		if (stack.getItemDamage() >= this.getMaxDamage()) {
-//			// do not use
-//			player.stopUsingItem();
-//			return;
-//		}
+//        if (stack.getItemDamage() >= this.getMaxDamage()) {
+//            // do not use
+//            player.stopUsingItem();
+//            return;
+//        }
 
     }
 

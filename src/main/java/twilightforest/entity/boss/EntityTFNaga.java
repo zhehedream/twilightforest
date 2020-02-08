@@ -185,10 +185,10 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 //        jumpMovementFactor = landMovementFactor / 2F;
 
 //        for (int i = 0; i < currentSegments; i++) {
-//        	if (body != null && body.length > i && body[i] != null) {
-//        		body[i].landMovementFactor = this.landMovementFactor * 1.25F;
-//        		body[i].jumpMovementFactor = this.jumpMovementFactor * 1.25F;
-//        	}
+//            if (body != null && body.length > i && body[i] != null) {
+//                body[i].landMovementFactor = this.landMovementFactor * 1.25F;
+//                body[i].jumpMovementFactor = this.jumpMovementFactor * 1.25F;
+//            }
 //        }
     }
 
@@ -233,22 +233,22 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
             this.heal(1);
         }
 //
-//		
+//        
 //        if (!this.worldObj.isRemote)
 //        {
 //            this.dataWatcher.updateObject(DATA_BOSSHEALTH, (int)this.getHealth());
 //        }
 //        else
 //        {
-////        	if (this.getBossHealth() != this.getHealth())
-////        	{
-////        		this.setEntityHealth(this.getBossHealth());
-////        	}
-//        	if (this.getHealth() > 0)
-//        	{
-//        		// this seems to get set off during creation at some point
-//        		this.deathTime = 0;
-//        	}
+////            if (this.getBossHealth() != this.getHealth())
+////            {
+////                this.setEntityHealth(this.getBossHealth());
+////            }
+//            if (this.getHealth() > 0)
+//            {
+//                // this seems to get set off during creation at some point
+//                this.deathTime = 0;
+//            }
 //        }
 
         setSegmentsPerHealth();
@@ -257,10 +257,10 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
 //        if (!this.worldObj.isRemote)
 //        {
-//        	for (int i = 0; i < this.body.length; i++)
-//        	{
-//        		body[i].onUpdate();
-//        	}
+//            for (int i = 0; i < this.body.length; i++)
+//            {
+//                body[i].onUpdate();
+//            }
 //        }
 
         // move bodies
@@ -281,7 +281,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
     @Override
     protected void updateAITasks() {
         super.updateAITasks();
-//    	super.updateEntityActionState();
+//        super.updateEntityActionState();
 
         /*
          * // Resist fire if (fire >= 20) { fire -= 10; }
@@ -559,7 +559,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
                 dy = targetY;
             }
 
-//			System.out.println("Crumbling block at " + dx + ", " + dy + ", " + dz);
+//            System.out.println("Crumbling block at " + dx + ", " + dy + ", " + dz);
             if (worldObj.getBlock(dx, dy, dz) != Blocks.air) {
                 breakBlock(dx, dy, dz);
 
@@ -596,7 +596,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
      * Begin the circle cycle
      */
     protected void doCircle() {
-//		System.out.println("Resuming circle mode");
+//        System.out.println("Resuming circle mode");
         circleCount += 10 + rand.nextInt(10);
         goNormal();
     }
@@ -606,7 +606,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
      * it is happening.
      */
     protected void doCrumblePlayer() {
-//		System.out.println("Crumbling blocks around the player");
+//        System.out.println("Crumbling blocks around the player");
         crumblePlayerTimer = 20 + rand.nextInt(20);
         goSlow();
     }
@@ -616,7 +616,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
      */
     protected void doCharge() {
         // charrrrrge!
-//		System.out.println("Starting to charge!");
+//        System.out.println("Starting to charge!");
         chargeCount = 4;
         goFast();
     }
@@ -625,7 +625,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
      * Intimidate the player. This mostly involves pausing and staring.
      */
     protected void doIntimidate() {
-//		System.out.println("Intimidating!");
+//        System.out.println("Intimidating!");
         // start the timer
         intimidateTimer += 15 + rand.nextInt(10);
         goSlow();
@@ -637,7 +637,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
      */
     protected void goSlow() {
         // move slowly
-//		moveForward = 0f;
+//        moveForward = 0f;
         moveStrafing = 0;
         setMoveSpeed(0.1f);
         pathToEntity = null;
@@ -738,7 +738,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
             return true;
         } else {
-//    		System.out.println("Naga rejected damage");
+//            System.out.println("Naga rejected damage");
 
             return false;
         }
@@ -777,7 +777,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
             // if we are thinking about out of bounds, head back home instead
             if (!this.isWithinHomeDistance(dx, dy, dz)) {
-//            	System.err.println("Naga wants to go out of bounds");
+//                System.err.println("Naga wants to go out of bounds");
 
                 dx = this.getHomePosition().posX + rand.nextInt(21) - rand.nextInt(21);
                 dy = this.getHomePosition().posY + rand.nextInt(7) - rand.nextInt(7);
@@ -943,10 +943,10 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
             diff = diff.addVector(idealX, 0, idealZ);
             diff = diff.normalize();
 
-//			if (worldObj.isRemote)
-//			{
-//				System.out.println("Difference for segment " + i + " is " + diff.xCoord + ", " + diff.yCoord + ", " + diff.zCoord);
-//			}
+//            if (worldObj.isRemote)
+//            {
+//                System.out.println("Difference for segment " + i + " is " + diff.xCoord + ", " + diff.yCoord + ", " + diff.zCoord);
+//            }
 
             double f = 2.0D;
 
@@ -956,7 +956,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
 //            if (body[i].onGround && diff.yCoord > 0)
 //            {
-//            	destY = body[i].posY;
+//                destY = body[i].posY;
 //            }
 
             body[i].setPosition(destX, destY, destZ);
@@ -973,14 +973,14 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
             body[i].setRotation((float) (Math.atan2(diff.zCoord, diff.xCoord) * 180.0D / Math.PI) + 90.0F, -(float) (Math.atan2(diff.yCoord, distance) * 180.0D / Math.PI));
 
-//			if (worldObj.isRemote)
-//			{
-//				System.out.println("Client body segment " + i + " to " + body[i].posX + ", " + body[i].posY + ", " + body[i].posZ);
-//			}
-//			else
-//			{
-//				System.out.println("Server body segment " + i + " to " + body[i].posX + ", " + body[i].posY + ", " + body[i].posZ);
-//			}
+//            if (worldObj.isRemote)
+//            {
+//                System.out.println("Client body segment " + i + " to " + body[i].posX + ", " + body[i].posY + ", " + body[i].posZ);
+//            }
+//            else
+//            {
+//                System.out.println("Server body segment " + i + " to " + body[i].posX + ", " + body[i].posY + ", " + body[i].posZ);
+//            }
 
         }
 
@@ -1039,17 +1039,17 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
 
     }
 
-//	public float getMoveSpeed() {
-//		return this.moveSpeed;
-//	}
+//    public float getMoveSpeed() {
+//        return this.moveSpeed;
+//    }
 
-//	/**
-//	 * Needed for boss health bar on the client
-//	 */
-//	@Override
-//	public int getBossHealth() {
+//    /**
+//     * Needed for boss health bar on the client
+//     */
+//    @Override
+//    public int getBossHealth() {
 //        return this.dataWatcher.getWatchableObjectInt(EntityTFNaga.DATA_BOSSHEALTH);
-//	}
+//    }
 
     @Override
     public World func_82194_d() {

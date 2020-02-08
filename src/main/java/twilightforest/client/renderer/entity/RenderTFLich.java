@@ -27,7 +27,7 @@ public class RenderTFLich extends RenderBiped {
         EntityTFLich lich = (EntityTFLich) entity;
         if (i == 2) {
             GL11.glEnable(3042 /* GL_BLEND */);
-//	        GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
+//            GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             if (lich.isShadowClone()) {
                 // clone alpha

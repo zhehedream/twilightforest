@@ -50,11 +50,11 @@ public class ComponentTFStrongholdLeftTurn extends StructureTFStrongholdComponen
         // clear inside
         fillWithAir(world, sbb, 1, 1, 1, 7, 5, 7);
 
-//		// entrance doorway
-//		placeDoorwayAt(world, rand, 2, 4, 1, 0, sbb);
-//		
-//		// left turn doorway
-//		placeDoorwayAt(world, rand, 1, 8, 1, 4, sbb);
+//        // entrance doorway
+//        placeDoorwayAt(world, rand, 2, 4, 1, 0, sbb);
+//        
+//        // left turn doorway
+//        placeDoorwayAt(world, rand, 1, 8, 1, 4, sbb);
 
         // statue
         placeCornerStatue(world, 2, 1, 6, 1, sbb);

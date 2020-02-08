@@ -28,9 +28,9 @@ public class TFMagicMapData extends MapData {
         if (featureStorage.length > 0) {
             this.updateMPMapData(featureStorage);
         }
-//		else {
-//			System.out.println("Can't find feature storage for " + this.mapName);
-//		}
+//        else {
+//            System.out.println("Can't find feature storage for " + this.mapName);
+//        }
     }
 
     /**

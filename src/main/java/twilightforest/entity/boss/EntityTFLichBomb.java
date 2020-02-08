@@ -77,7 +77,7 @@ public class EntityTFLichBomb extends EntityThrowable {
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
-//		System.out.println("Lich bolt being attacked!");
+//        System.out.println("Lich bolt being attacked!");
 
         setBeenAttacked();
         if (damagesource.getEntity() != null) {

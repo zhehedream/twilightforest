@@ -81,9 +81,9 @@ public class ModelTFIceCrystal extends ModelBase {
             // this.spikes[i].rotateAngleY += i * (Math.PI / 8F);
             // this.spikes[i].rotateAngleZ += i * (Math.PI / 8F);
 
-//        	this.spikes[i].rotationPointX = MathHelper.cos((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
-//        	this.spikes[i].rotationPointY = 5F + MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
-//        	this.spikes[i].rotationPointZ = MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
+//            this.spikes[i].rotationPointX = MathHelper.cos((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
+//            this.spikes[i].rotationPointY = 5F + MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
+//            this.spikes[i].rotationPointZ = MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float)i) * 3F;
 
             // ((ModelRenderer)this.spikes[i].childModels.get(0)).rotationPointY = 10 + MathHelper.sin((i +
             // par1EntityLiving.ticksExisted + time) / i) * 3F;

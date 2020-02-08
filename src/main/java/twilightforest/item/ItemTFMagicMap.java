@@ -29,13 +29,13 @@ public class ItemTFMagicMap extends ItemMap {
     }
 
     @SideOnly(Side.CLIENT)
-    public static TFMagicMapData getMPMapData(int par0, World par1World) {
+    public static TFMagicMapData getMPMapData(int par0, World world) {
         String mapName = STR_ID + "_" + par0;
-        TFMagicMapData mapData = (TFMagicMapData) par1World.loadItemData(TFMagicMapData.class, mapName);
+        TFMagicMapData mapData = (TFMagicMapData) world.loadItemData(TFMagicMapData.class, mapName);
 
         if (mapData == null) {
             mapData = new TFMagicMapData(mapName);
-            par1World.setItemData(mapName, mapData);
+            world.setItemData(mapName, mapData);
         }
 
         return mapData;
@@ -47,7 +47,7 @@ public class ItemTFMagicMap extends ItemMap {
         TFMagicMapData mapData = (TFMagicMapData) world.loadItemData(TFMagicMapData.class, mapName);
 
         if (mapData == null && !world.isRemote) {
-        	itemStack.setItemDamage(world.getUniqueDataId(STR_ID));
+            itemStack.setItemDamage(world.getUniqueDataId(STR_ID));
             mapName = STR_ID + "_" + itemStack.getItemDamage();
             mapData = new TFMagicMapData(mapName);
             mapData.xCenter = world.getWorldInfo().getSpawnX();
@@ -109,19 +109,19 @@ public class ItemTFMagicMap extends ItemMap {
                                         TFWorldChunkManager tfManager = (TFWorldChunkManager) world.getWorldChunkManager();
 
                                         if (tfManager.isInFeatureChunk(world, xDraw2 + xStep2, zDraw2 + zStep2) && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
-                                        	mapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, world), xDraw2, zDraw2);
+                                            mapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, world), xDraw2, zDraw2);
                                         }
                                     }
 
 //                                  // mark features we find into the mapdata, provided they are within our draw area
 //                                  if (biomeID == TFBiomeBase.majorFeature.biomeID && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
-//                                  	par3MapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, par1World), xDraw2, zDraw2);
-////                                  	biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
+//                                      par3MapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, par1World), xDraw2, zDraw2);
+////                                      biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
 //                                  }
 
 //                                    // mark features we find into the mapdata, provided they are within our draw area
 //                                    if (biomeID == TFBiomeBase.minorFeature.biomeID) {
-//                                    	biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
+//                                        biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
 //                                    }
                                 }
                             }
@@ -158,7 +158,7 @@ public class ItemTFMagicMap extends ItemMap {
                         }
                     }
                     if (highNumber <= lowNumber) {
-                    	mapData.setColumnDirty(xStep, highNumber, lowNumber);
+                        mapData.setColumnDirty(xStep, highNumber, lowNumber);
                     }
                 }
             }
@@ -218,7 +218,7 @@ public class ItemTFMagicMap extends ItemMap {
      */
     @Override
     public Packet func_150911_c(ItemStack itemStack, World world, EntityPlayer player) {
-//		System.out.println("Getting magic map packet");
+//        System.out.println("Getting magic map packet");
 
         byte[] mapBytes = this.getMapData(itemStack, world).getUpdatePacketData(itemStack, world, player);
 

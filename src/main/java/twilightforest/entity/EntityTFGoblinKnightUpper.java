@@ -213,10 +213,10 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
      * Handles updating while being ridden by an entity
      */
     public void updateRidden() {
-//		if (this.ridingEntity != null)
-//		{
-//			this.renderYawOffset = ((EntityLiving)this.ridingEntity).renderYawOffset;
-//		}
+//        if (this.ridingEntity != null)
+//        {
+//            this.renderYawOffset = ((EntityLiving)this.ridingEntity).renderYawOffset;
+//        }
         super.updateRidden();
         if (this.ridingEntity != null) {
             this.renderYawOffset = ((EntityLiving) this.ridingEntity).renderYawOffset;

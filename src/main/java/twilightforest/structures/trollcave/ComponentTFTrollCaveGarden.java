@@ -36,9 +36,9 @@ public class ComponentTFTrollCaveGarden extends ComponentTFTrollCaveMain {
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         // add a cloud
-//		ComponentTFTrollCloud cloud = new ComponentTFTrollCloud(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), rand.nextInt(64) + 160, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2));
-//		list.add(cloud);
-//		cloud.buildComponent(this, list, rand);
+//        ComponentTFTrollCloud cloud = new ComponentTFTrollCloud(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), rand.nextInt(64) + 160, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2));
+//        list.add(cloud);
+//        cloud.buildComponent(this, list, rand);
     }
 
     @Override

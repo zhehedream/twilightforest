@@ -102,15 +102,15 @@ public class EntityTFSlimeBeetle extends EntityMob {
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-//    	// dribble slime particles out of mouth
-//    	Vec3 look = this.getLookVec();
+//        // dribble slime particles out of mouth
+//        Vec3 look = this.getLookVec();
 //
-//    	double dist = 0.9;
-//    	double px = this.posX + look.xCoord * dist;
-//    	double py = this.posY + 0.25 + look.yCoord * dist;
-//    	double pz = this.posZ + look.zCoord * dist;
+//        double dist = 0.9;
+//        double px = this.posX + look.xCoord * dist;
+//        double py = this.posY + 0.25 + look.yCoord * dist;
+//        double pz = this.posZ + look.zCoord * dist;
 //
-//		worldObj.spawnParticle("slime", px, py, pz, 0, 0, 0);
+//        worldObj.spawnParticle("slime", px, py, pz, 0, 0, 0);
 
     }
 
