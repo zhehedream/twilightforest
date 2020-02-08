@@ -35,9 +35,6 @@ public class BlockTFLog extends BlockLog {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
     @Override
     public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
@@ -72,23 +69,17 @@ public class BlockTFLog extends BlockLog {
         BlockTFLog.sprDarkwoodTop = par1IconRegister.registerIcon(TwilightForestMod.ID + ":darkwood_top");
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
     @Override
     public Item getItemDropped(int par1, Random par2Random, int par3) {
         return Item.getItemFromBlock(TFBlocks.log); // hey that's my block ID!
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        itemList.add(new ItemStack(item, 1, 0));
+        itemList.add(new ItemStack(item, 1, 1));
+        itemList.add(new ItemStack(item, 1, 2));
+        itemList.add(new ItemStack(item, 1, 3));
     }
 
 }

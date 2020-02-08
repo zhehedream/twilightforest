@@ -47,9 +47,6 @@ public class BlockTFMagicLog extends BlockLog {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
     @Override
     public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
@@ -75,52 +72,37 @@ public class BlockTFMagicLog extends BlockLog {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
-        BlockTFMagicLog.SPR_TIMESIDE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_side");
-        BlockTFMagicLog.SPR_TIMETOP = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_section");
-        BlockTFMagicLog.SPR_TIMECLOCK = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_clock");
-        BlockTFMagicLog.SPR_TIMECLOCKOFF = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_clock_off");
-        BlockTFMagicLog.SPR_TRANSSIDE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_side");
-        BlockTFMagicLog.SPR_TRANSTOP = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_section");
-        BlockTFMagicLog.SPR_TRANSHEART = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_heart");
-        BlockTFMagicLog.SPR_TRANSHEARTOFF = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_heart_off");
-        BlockTFMagicLog.SPR_MINESIDE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":mine_side");
-        BlockTFMagicLog.SPR_MINETOP = par1IconRegister.registerIcon(TwilightForestMod.ID + ":mine_section");
-        BlockTFMagicLog.SPR_MINEGEM = par1IconRegister.registerIcon(TwilightForestMod.ID + ":mine_gem");
-        BlockTFMagicLog.SPR_MINEGEMOFF = par1IconRegister.registerIcon(TwilightForestMod.ID + ":mine_gem_off");
-        BlockTFMagicLog.SPR_SORTSIDE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_side");
-        BlockTFMagicLog.SPR_SORTTOP = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_section");
-        BlockTFMagicLog.SPR_SORTEYE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_eye");
-        BlockTFMagicLog.SPR_SORTEYEOFF = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_eye_off");
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        BlockTFMagicLog.SPR_TIMESIDE = iconRegister.registerIcon(TwilightForestMod.ID + ":time_side");
+        BlockTFMagicLog.SPR_TIMETOP = iconRegister.registerIcon(TwilightForestMod.ID + ":time_section");
+        BlockTFMagicLog.SPR_TIMECLOCK = iconRegister.registerIcon(TwilightForestMod.ID + ":time_clock");
+        BlockTFMagicLog.SPR_TIMECLOCKOFF = iconRegister.registerIcon(TwilightForestMod.ID + ":time_clock_off");
+        BlockTFMagicLog.SPR_TRANSSIDE = iconRegister.registerIcon(TwilightForestMod.ID + ":trans_side");
+        BlockTFMagicLog.SPR_TRANSTOP = iconRegister.registerIcon(TwilightForestMod.ID + ":trans_section");
+        BlockTFMagicLog.SPR_TRANSHEART = iconRegister.registerIcon(TwilightForestMod.ID + ":trans_heart");
+        BlockTFMagicLog.SPR_TRANSHEARTOFF = iconRegister.registerIcon(TwilightForestMod.ID + ":trans_heart_off");
+        BlockTFMagicLog.SPR_MINESIDE = iconRegister.registerIcon(TwilightForestMod.ID + ":mine_side");
+        BlockTFMagicLog.SPR_MINETOP = iconRegister.registerIcon(TwilightForestMod.ID + ":mine_section");
+        BlockTFMagicLog.SPR_MINEGEM = iconRegister.registerIcon(TwilightForestMod.ID + ":mine_gem");
+        BlockTFMagicLog.SPR_MINEGEMOFF = iconRegister.registerIcon(TwilightForestMod.ID + ":mine_gem_off");
+        BlockTFMagicLog.SPR_SORTSIDE = iconRegister.registerIcon(TwilightForestMod.ID + ":sort_side");
+        BlockTFMagicLog.SPR_SORTTOP = iconRegister.registerIcon(TwilightForestMod.ID + ":sort_section");
+        BlockTFMagicLog.SPR_SORTEYE = iconRegister.registerIcon(TwilightForestMod.ID + ":sort_eye");
+        BlockTFMagicLog.SPR_SORTEYEOFF = iconRegister.registerIcon(TwilightForestMod.ID + ":sort_eye_off");
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
     @Override
-    public Item getItemDropped(int par1, Random par2Random, int par3) {
+    public Item getItemDropped(int par1, Random random, int par3) {
         return Item.getItemFromBlock(this); // hey that's my block ID!
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    /**
-     * A randomly called display update to be able to add particles or other items for display
-     */
-    public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
-
-    }
-
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+        itemList.add(new ItemStack(item, 1, 0));
+        itemList.add(new ItemStack(item, 1, 1));
+        itemList.add(new ItemStack(item, 1, 2));
+        itemList.add(new ItemStack(item, 1, 3));
 
     }
 
