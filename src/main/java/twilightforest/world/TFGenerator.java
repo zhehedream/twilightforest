@@ -350,52 +350,52 @@ public abstract class TFGenerator extends WorldGenerator {
 
     // Does the block have only air blocks adjacent
     protected static boolean surroundedByAir(IBlockAccess world, int bx, int by, int bz) {
-        boolean airAround = true;
         if (!world.isAirBlock(bx + 1, by, bz)) {
-            airAround = false;
+            return false;
         } else if (!world.isAirBlock(bx - 1, by, bz)) {
-            airAround = false;
+            return false;
         } else if (!world.isAirBlock(bx, by, bz + 1)) {
-            airAround = false;
+            return false;
         } else if (!world.isAirBlock(bx, by, bz - 1)) {
-            airAround = false;
+            return false;
         } else if (!world.isAirBlock(bx, by + 1, bz)) {
-            airAround = false;
+            return false;
         } else if (!world.isAirBlock(bx, by - 1, bz)) {
-            airAround = false;
+            return false;
+        } else {
+            return true;
         }
-        return airAround;
     }
 
     // Does the block have at least 1 air block adjacent
     protected static boolean hasAirAround(World world, int bx, int by, int bz) {
-        boolean airAround = false;
-        if (world.blockExists(bx + 1, by, bz) && world.getBlock(bx + 1, by, bz) == Blocks.air) {
-            airAround = true;
-        } else if (world.blockExists(bx - 1, by, bz) && world.getBlock(bx - 1, by, bz) == Blocks.air) {
-            airAround = true;
-        } else if (world.blockExists(bx, by, bz + 1) && world.getBlock(bx, by, bz + 1) == Blocks.air) {
-            airAround = true;
-        } else if (world.blockExists(bx, by, bz - 1) && world.getBlock(bx, by, bz - 1) == Blocks.air) {
-            airAround = true;
-        } else if (world.getBlock(bx, by + 1, bz) == Blocks.air) {
-            airAround = true;
+        if (world.isAirBlock(bx + 1, by, bz)) {
+            return true;
+        } else if (world.isAirBlock(bx - 1, by, bz)) {
+            return true;
+        } else if (world.isAirBlock(bx, by, bz + 1)) {
+            return true;
+        } else if (world.isAirBlock(bx, by, bz - 1)) {
+            return true;
+        } else if (world.isAirBlock(bx, by + 1, bz)) {
+            return true;
+        } else {
+            return false;
         }
-        return airAround;
     }
 
     protected static boolean isNearSolid(World world, int bx, int by, int bz) {
-        boolean nearSolid = false;
         if (world.blockExists(bx + 1, by, bz) && world.getBlock(bx + 1, by, bz).getMaterial().isSolid()) {
-            nearSolid = true;
+            return true;
         } else if (world.blockExists(bx - 1, by, bz) && world.getBlock(bx - 1, by, bz).getMaterial().isSolid()) {
-            nearSolid = true;
+            return true;
         } else if (world.blockExists(bx, by, bz + 1) && world.getBlock(bx, by, bz + 1).getMaterial().isSolid()) {
-            nearSolid = true;
+            return true;
         } else if (world.blockExists(bx, by, bz - 1) && world.getBlock(bx, by, bz - 1).getMaterial().isSolid()) {
-            nearSolid = true;
+            return true;
+        } else {
+            return false;
         }
-        return nearSolid;
     }
 
     /**
