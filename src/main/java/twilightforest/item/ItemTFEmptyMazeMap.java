@@ -29,45 +29,48 @@ public class ItemTFEmptyMazeMap extends ItemMapBase {
      * world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        ItemStack mapItem = new ItemStack(mapOres ? TFItems.oreMap : TFItems.mazeMap, 1, par2World.getUniqueDataId(ItemTFMazeMap.STR_ID));
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if(world.provider.dimensionId != TwilightForestMod.dimensionID) {
+            return itemStack;
+        }
+        ItemStack mapItem = new ItemStack(mapOres ? TFItems.oreMap : TFItems.mazeMap, 1, world.getUniqueDataId(ItemTFMazeMap.STR_ID));
         String var5 = "mazemap_" + mapItem.getItemDamage();
         TFMazeMapData mapData = new TFMazeMapData(var5);
-        par2World.setItemData(var5, mapData);
+        world.setItemData(var5, mapData);
         mapData.scale = 0;
         int step = 128 * (1 << mapData.scale);
         // need to fix center for feature offset
-        if (par2World.provider instanceof WorldProviderTwilightForest
-                && TFFeature.getFeatureForRegion(MathHelper.floor_double(par3EntityPlayer.posX) >> 4, MathHelper.floor_double(par3EntityPlayer.posZ) >> 4, par2World) == TFFeature.labyrinth) {
-            ChunkCoordinates mc = TFFeature.getNearestCenterXYZ(MathHelper.floor_double(par3EntityPlayer.posX) >> 4, MathHelper.floor_double(par3EntityPlayer.posZ) >> 4, par2World);
+        if (world.provider instanceof WorldProviderTwilightForest
+                && TFFeature.getFeatureForRegion(MathHelper.floor_double(player.posX) >> 4, MathHelper.floor_double(player.posZ) >> 4, world) == TFFeature.labyrinth) {
+            ChunkCoordinates mc = TFFeature.getNearestCenterXYZ(MathHelper.floor_double(player.posX) >> 4, MathHelper.floor_double(player.posZ) >> 4, world);
             mapData.xCenter = mc.posX;
             mapData.zCenter = mc.posZ;
-            mapData.yCenter = MathHelper.floor_double(par3EntityPlayer.posY);
+            mapData.yCenter = MathHelper.floor_double(player.posY);
         } else {
-            mapData.xCenter = (int) (Math.round(par3EntityPlayer.posX / step) * step) + 10; // mazes are offset slightly
-            mapData.zCenter = (int) (Math.round(par3EntityPlayer.posZ / step) * step) + 10; // mazes are offset slightly
-            mapData.yCenter = MathHelper.floor_double(par3EntityPlayer.posY);
+            mapData.xCenter = (int) (Math.round(player.posX / step) * step) + 10; // mazes are offset slightly
+            mapData.zCenter = (int) (Math.round(player.posZ / step) * step) + 10; // mazes are offset slightly
+            mapData.yCenter = MathHelper.floor_double(player.posY);
         }
-        mapData.dimension = par2World.provider.dimensionId;
+        mapData.dimension = world.provider.dimensionId;
         mapData.markDirty();
-        --par1ItemStack.stackSize;
+        --itemStack.stackSize;
 
         // cheevos
         if (mapItem.getItem() == TFItems.mazeMap) {
-            par3EntityPlayer.triggerAchievement(TFAchievementPage.twilightMazeMap);
+            player.triggerAchievement(TFAchievementPage.twilightMazeMap);
         }
         if (mapItem.getItem() == TFItems.oreMap) {
-            par3EntityPlayer.triggerAchievement(TFAchievementPage.twilightOreMap);
+            player.triggerAchievement(TFAchievementPage.twilightOreMap);
         }
 
-        if (par1ItemStack.stackSize <= 0) {
+        if (itemStack.stackSize <= 0) {
             return mapItem;
         } else {
-            if (!par3EntityPlayer.inventory.addItemStackToInventory(mapItem.copy())) {
-                par3EntityPlayer.dropPlayerItemWithRandomChoice(mapItem, false);
+            if (!player.inventory.addItemStackToInventory(mapItem.copy())) {
+                player.dropPlayerItemWithRandomChoice(mapItem, false);
             }
 
-            return par1ItemStack;
+            return itemStack;
         }
     }
 

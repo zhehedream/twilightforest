@@ -23,32 +23,35 @@ public class ItemTFEmptyMagicMap extends ItemMapBase {
      * world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        ItemStack mapItem = new ItemStack(TFItems.magicMap, 1, par2World.getUniqueDataId(ItemTFMagicMap.STR_ID));
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if(world.provider.dimensionId != TwilightForestMod.dimensionID) {
+            return itemStack;
+        }
+        ItemStack mapItem = new ItemStack(TFItems.magicMap, 1, world.getUniqueDataId(ItemTFMagicMap.STR_ID));
         String mapName = ItemTFMagicMap.STR_ID + "_" + mapItem.getItemDamage();
         MapData mapData = new TFMagicMapData(mapName);
-        par2World.setItemData(mapName, mapData);
+        world.setItemData(mapName, mapData);
         mapData.scale = 4;
         int step = 128 * (1 << mapData.scale);
-        mapData.xCenter = (int) (Math.round(par3EntityPlayer.posX / step) * step);
-        mapData.zCenter = (int) (Math.round(par3EntityPlayer.posZ / step) * step);
-        mapData.dimension = (byte) par2World.provider.dimensionId;
+        mapData.xCenter = (int) (Math.round(player.posX / step) * step);
+        mapData.zCenter = (int) (Math.round(player.posZ / step) * step);
+        mapData.dimension = (byte) world.provider.dimensionId;
         mapData.markDirty();
-        --par1ItemStack.stackSize;
+        --itemStack.stackSize;
 
         // cheevo
         if (mapItem.getItem() == TFItems.magicMap) {
-            par3EntityPlayer.triggerAchievement(TFAchievementPage.twilightMagicMap);
+            player.triggerAchievement(TFAchievementPage.twilightMagicMap);
         }
 
-        if (par1ItemStack.stackSize <= 0) {
+        if (itemStack.stackSize <= 0) {
             return mapItem;
         } else {
-            if (!par3EntityPlayer.inventory.addItemStackToInventory(mapItem.copy())) {
-                par3EntityPlayer.dropPlayerItemWithRandomChoice(mapItem, false);
+            if (!player.inventory.addItemStackToInventory(mapItem.copy())) {
+                player.dropPlayerItemWithRandomChoice(mapItem, false);
             }
 
-            return par1ItemStack;
+            return itemStack;
         }
     }
 
