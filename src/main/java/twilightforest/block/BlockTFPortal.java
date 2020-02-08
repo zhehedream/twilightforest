@@ -251,7 +251,8 @@ public class BlockTFPortal extends BlockBreakable {
     }
 
     protected boolean isGrassOrDirt(World world, int dx, int dy, int dz) {
-        return world.getBlock(dx, dy, dz).getMaterial() == Material.grass || world.getBlock(dx, dy, dz).getMaterial() == Material.ground;
+        Material mat = world.getBlock(dx, dy, dz).getMaterial();
+        return mat == Material.grass || mat == Material.ground;
         // grass = grass
         // ground = dirt
     }
@@ -280,13 +281,13 @@ public class BlockTFPortal extends BlockBreakable {
                     // send to twilight
                     if (playerMP.dimension != TwilightForestMod.dimensionID) {
                         playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
-                        playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
+                        //playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
                         FMLLog.info("[TwilightForest] Player touched the portal block.  Sending the player to dimension " + TwilightForestMod.dimensionID);
 
                         playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, TwilightForestMod.dimensionID,
                                 new TFTeleporter(playerMP.mcServer.worldServerForDimension(TwilightForestMod.dimensionID)));
-                        playerMP.addExperienceLevel(0);
-                        playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
+                        //playerMP.addExperienceLevel(0);
+                        //playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
                         playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
 
                         // set respawn point for TF dimension to near the arrival portal
@@ -299,7 +300,7 @@ public class BlockTFPortal extends BlockBreakable {
                         // System.out.println("Player touched the portal block. Sending the player to dimension 0");
                         // playerMP.travelToDimension(0);
                         playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TFTeleporter(playerMP.mcServer.worldServerForDimension(0)));
-                        playerMP.addExperienceLevel(0);
+                       //playerMP.addExperienceLevel(0);
                     }
                 }
             } else {
@@ -316,15 +317,15 @@ public class BlockTFPortal extends BlockBreakable {
     /**
      * This copy of the entity.travelToDimension method exists so that we can use our own teleporter
      */
-    public void sendEntityToDimension(Entity entity, int par1) {
+    public void sendEntityToDimension(Entity entity, int dimensionID) {
         // transfer a random entity?
         if (!entity.worldObj.isRemote && !entity.isDead) {
             entity.worldObj.theProfiler.startSection("changeDimension");
             MinecraftServer minecraftserver = MinecraftServer.getServer();
             int dim = entity.dimension;
             WorldServer worldserver = minecraftserver.worldServerForDimension(dim);
-            WorldServer worldserver1 = minecraftserver.worldServerForDimension(par1);
-            entity.dimension = par1;
+            WorldServer worldserver1 = minecraftserver.worldServerForDimension(dimensionID);
+            entity.dimension = dimensionID;
             entity.worldObj.removeEntity(entity);
             entity.isDead = false;
             entity.worldObj.theProfiler.startSection("reposition");

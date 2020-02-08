@@ -33,28 +33,28 @@ public class TFTeleporter extends Teleporter {
     /**
      * Place an entity in a nearby portal, creating one if necessary.
      */
-    public void placeInPortal(Entity par1Entity, double x, double y, double z, float facing) {
-        if (!this.placeInExistingPortal(par1Entity, x, y, z, facing)) {
+    public void placeInPortal(Entity entity, double x, double y, double z, float facing) {
+        if (!this.placeInExistingPortal(entity, x, y, z, facing)) {
             // if we're in enforced progression mode, check the biomes for safety
-            if (par1Entity.worldObj.getGameRules().getGameRuleBooleanValue(TwilightForestMod.ENFORCED_PROGRESSION_RULE)) {
-                int px = MathHelper.floor_double(par1Entity.posX);
-                int pz = MathHelper.floor_double(par1Entity.posZ);
-                if (!isSafeBiomeAt(px, pz, par1Entity)) {
+            if (entity.worldObj.getGameRules().getGameRuleBooleanValue(TwilightForestMod.ENFORCED_PROGRESSION_RULE)) {
+                int px = MathHelper.floor_double(entity.posX);
+                int pz = MathHelper.floor_double(entity.posZ);
+                if (!isSafeBiomeAt(px, pz, entity)) {
                     System.out.println("[TwilightForest] Portal destination looks unsafe, rerouting!");
 
-                    ChunkCoordinates safeCoords = findSafeCoords(200, px, pz, par1Entity);
+                    ChunkCoordinates safeCoords = findSafeCoords(200, px, pz, entity);
 
                     if (safeCoords != null) {
-                        par1Entity.setLocationAndAngles(safeCoords.posX, par1Entity.posY, safeCoords.posZ, 90.0F, 0.0F);
+                        entity.setLocationAndAngles(safeCoords.posX, entity.posY, safeCoords.posZ, 90.0F, 0.0F);
                         x = safeCoords.posX;
                         z = safeCoords.posZ;
 
                         System.out.println("[TwilightForest] Safely rerouted!");
                     } else {
                         System.out.println("[TwilightForest] Did not find a safe spot at first try, trying again with longer range.");
-                        safeCoords = findSafeCoords(400, px, pz, par1Entity);
+                        safeCoords = findSafeCoords(400, px, pz, entity);
                         if (safeCoords != null) {
-                            par1Entity.setLocationAndAngles(safeCoords.posX, par1Entity.posY, safeCoords.posZ, 90.0F, 0.0F);
+                            entity.setLocationAndAngles(safeCoords.posX, entity.posY, safeCoords.posZ, 90.0F, 0.0F);
                             x = safeCoords.posX;
                             z = safeCoords.posZ;
 
@@ -65,8 +65,8 @@ public class TFTeleporter extends Teleporter {
                     }
                 }
             }
-            this.makePortal(par1Entity);
-            this.placeInExistingPortal(par1Entity, x, y, z, facing);
+            this.makePortal(entity);
+            this.placeInExistingPortal(entity, x, y, z, facing);
         }
     }
 
@@ -75,11 +75,11 @@ public class TFTeleporter extends Teleporter {
      * 
      * This could sure be a more methodic algorithm
      */
-    private ChunkCoordinates findSafeCoords(int range, int x, int z, Entity par1Entity) {
+    private ChunkCoordinates findSafeCoords(int range, int x, int z, Entity entity) {
         for (int i = 0; i < 25; i++) {
             int dx = x + (rand.nextInt(range) - rand.nextInt(range));
             int dz = z + (rand.nextInt(range) - rand.nextInt(range));
-            if (isSafeBiomeAt(dx, dz, par1Entity)) {
+            if (isSafeBiomeAt(dx, dz, entity)) {
                 return new ChunkCoordinates(dx, 100, dz);
             }
         }
@@ -89,12 +89,12 @@ public class TFTeleporter extends Teleporter {
     /**
      * Check if the destination is safe
      */
-    boolean isSafeBiomeAt(int x, int z, Entity par1Entity) {
+    boolean isSafeBiomeAt(int x, int z, Entity entity) {
         BiomeGenBase biomeAt = myWorld.getBiomeGenForCoords(x, z);
 
-        if (biomeAt instanceof TFBiomeBase && par1Entity instanceof EntityPlayerMP) {
+        if (biomeAt instanceof TFBiomeBase && entity instanceof EntityPlayerMP) {
             TFBiomeBase tfBiome = (TFBiomeBase) biomeAt;
-            EntityPlayerMP player = (EntityPlayerMP) par1Entity;
+            EntityPlayerMP player = (EntityPlayerMP) entity;
 
             return tfBiome.doesPlayerHaveRequiredAchievement(player);
 
