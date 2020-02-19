@@ -506,6 +506,7 @@ public class TFEventListener {
         if (event.entityLiving instanceof EntityPlayer && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
+            //TODO: Add support for keeping Bauble slot items on all tiers
             if (player.inventory.consumeInventoryItem(TFItems.charmOfKeeping3)) {
                 FMLLog.info("[TwilightForest] Player died with charm of keeping III!  Keep it all!");
                 InventoryPlayer keepInventory = new InventoryPlayer(null);
@@ -516,6 +517,7 @@ public class TFEventListener {
                     keepInventory.mainInventory[i] = ItemStack.copyItemStack(player.inventory.mainInventory[i]);
                     player.inventory.mainInventory[i] = null;
                 }
+                //TODO: Add support for keeping held M&B Battlegear slot items.
                 keepInventory.setItemStack(new ItemStack(TFItems.charmOfKeeping3));
 
                 playerKeepsMap.put(player.getCommandSenderName(), keepInventory);
@@ -528,6 +530,7 @@ public class TFEventListener {
                     keepInventory.mainInventory[i] = ItemStack.copyItemStack(player.inventory.mainInventory[i]);
                     player.inventory.mainInventory[i] = null;
                 }
+                //TODO: Add support for keeping all M&B Battlegear slot items.
                 keepInventory.setItemStack(new ItemStack(TFItems.charmOfKeeping2));
 
                 playerKeepsMap.put(player.getCommandSenderName(), keepInventory);
@@ -537,8 +540,13 @@ public class TFEventListener {
 
                 keepAllArmor(player, keepInventory);
                 if (player.inventory.getCurrentItem() != null) {
-                    keepInventory.mainInventory[player.inventory.currentItem] = ItemStack.copyItemStack(player.inventory.mainInventory[player.inventory.currentItem]);
-                    player.inventory.mainInventory[player.inventory.currentItem] = null;
+                    int currentItem = player.inventory.currentItem;
+                    //Fix crash when holding a M&B Battlegear item.
+                    if(currentItem <= 8 & currentItem >= 0) {
+                        keepInventory.mainInventory[currentItem] = ItemStack.copyItemStack(player.inventory.mainInventory[currentItem]);
+                        player.inventory.mainInventory[currentItem] = null;
+                    }
+                    //TODO: Add support for keeping held M&B Battlegear slot items.
                 }
                 keepInventory.setItemStack(new ItemStack(TFItems.charmOfKeeping1));
 
