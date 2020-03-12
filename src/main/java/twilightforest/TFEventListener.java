@@ -81,58 +81,52 @@ public class TFEventListener {
         if (event.entityPlayer.worldObj.provider.dimensionId == TwilightForestMod.dimensionID) {
             Item item = event.item.getEntityItem().getItem();
             if (item == TFItems.scepterTwilight || item == TFItems.scepterLifeDrain || item == TFItems.scepterZombie) {
-                // the player has picked up a scepter. Check if they have them all in their inventory, and if so,
-                // achievement
+                // the player has picked up a scepter. Check if they have them all in their inventory, and if so, achievement
                 // System.out.println("Player picked up a scepter");
                 checkPlayerForScepterMastery(event.entityPlayer);
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLich);
-            }
             // naga scale gives naga progress achievement
-            if (item == TFItems.nagaScale) {
+            } else if (item == TFItems.nagaScale) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressNaga);
-            }
             // trophy gives kill achievement
-            if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 0) {
-                event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
-            }
-            if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 1) {
-                event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
-            }
-            if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 2) {
-                event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
-            }
-            if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 3) {
-                event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-            }
-            if (item == TFItems.trophy && event.item.getEntityItem().getItemDamage() == 4) {
-                event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
-            }
+            } else if (item == TFItems.trophy) {
+                switch (event.item.getEntityItem().getItemDamage()) {
+                case 0:
+                    event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
+                    break;
+                case 1:
+                    event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
+                    break;
+                case 2:
+                    event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
+                    break;
+                case 3:
+                    event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+                    break;
+                case 4:
+                    event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
+                    break;
+                } 
             // mazebreaker
-            if (item == TFItems.mazebreakerPick) {
+            } else if (item == TFItems.mazebreakerPick) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightMazebreaker);
-            }
             // meef stroganoff (or axe)
-            if (item == TFItems.meefStroganoff || item == TFItems.minotaurAxe) {
+            } else if (item == TFItems.meefStroganoff || item == TFItems.minotaurAxe) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressLabyrinth);
-            }
             // fiery blood
-            if (item == TFItems.fieryBlood) {
+            } else if (item == TFItems.fieryBlood) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressHydra);
-            }
             // phantom helm/plate
-            if (item == TFItems.phantomHelm || item == TFItems.phantomPlate) {
+            } else if (item == TFItems.phantomHelm || item == TFItems.phantomPlate) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressKnights);
-            }
             // fiery tears
-            if (item == TFItems.fieryTears) {
+            } else if (item == TFItems.fieryTears) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-            }
             // yeti items
-            if (item == TFItems.alphaFur || item == TFItems.yetiBoots || item == TFItems.yetiHelm || item == TFItems.yetiPlate || item == TFItems.yetiLegs) {
+            } else if (item == TFItems.alphaFur || item == TFItems.yetiBoots || item == TFItems.yetiHelm || item == TFItems.yetiPlate || item == TFItems.yetiLegs) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressYeti);
-            }
             // lamp of cinders
-            if (item == TFItems.lampOfCinders) {
+            } else if (item == TFItems.lampOfCinders) {
                 event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressTroll);
             }
         }
@@ -152,19 +146,19 @@ public class TFEventListener {
 
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             ItemStack stack = inv.getStackInSlot(i);
-
-            if (stack != null && stack.getItem() == TFItems.scepterTwilight) {
-                scepterTwilight = true;
-            }
-            if (stack != null && stack.getItem() == TFItems.scepterLifeDrain) {
-                scepterLifeDrain = true;
-            }
-            if (stack != null && stack.getItem() == TFItems.scepterZombie) {
-                scepterZombie = true;
+            if(stack != null) {
+                Item item = stack.getItem();
+                if (item == TFItems.scepterTwilight) {
+                    scepterTwilight = true;
+                } else if (item == TFItems.scepterLifeDrain) {
+                    scepterLifeDrain = true;
+                } else if (item == TFItems.scepterZombie) {
+                    scepterZombie = true;
+                }
             }
         }
 
-        if (scepterTwilight && scepterLifeDrain && scepterZombie) {
+        if (scepterTwilight & scepterLifeDrain & scepterZombie) {
             player.triggerAchievement(TFAchievementPage.twilightLichScepters);
         }
     }
@@ -176,7 +170,6 @@ public class TFEventListener {
     public void onCrafting(ItemCraftedEvent event) {
 
         // System.out.println("Getting item crafted event");
-
         ItemStack itemStack = event.crafting;
         EntityPlayer player = event.player;
         Item item = itemStack.getItem();
@@ -185,25 +178,18 @@ public class TFEventListener {
         if ((item == TFItems.plateNaga || item == TFItems.legsNaga)) {
             // check if the player has made both armors
             checkPlayerForNagaArmorer(player);
-        }
-
         // trigger achievements
-        if (item == TFItems.magicMapFocus) {
+        } else if (item == TFItems.magicMapFocus) {
             player.triggerAchievement(TFAchievementPage.twilightMagicMapFocus);
-        }
-        if (item == TFItems.emptyMagicMap) {
+        } else if (item == TFItems.emptyMagicMap) {
             player.triggerAchievement(TFAchievementPage.twilightMagicMap);
-        }
-        if (item == TFItems.emptyMazeMap) {
+        } else if (item == TFItems.emptyMazeMap) {
             player.triggerAchievement(TFAchievementPage.twilightMazeMap);
-        }
-        if (item == TFItems.emptyOreMap) {
+        } else if (item == TFItems.emptyOreMap) {
             player.triggerAchievement(TFAchievementPage.twilightOreMap);
-        }
-
         // if we've crafted 64 planks from a giant log, sneak 192 more planks into the player's inventory or
         // drop them nearby
-        if (item == Item.getItemFromBlock(Blocks.planks) && itemStack.stackSize == 64 && this.doesCraftMatrixHaveGiantLog(event.craftMatrix)) {
+        } else if (item == Item.getItemFromBlock(Blocks.planks) && itemStack.stackSize == 64 && this.doesCraftMatrixHaveGiantLog(event.craftMatrix)) {
             addToPlayerInventoryOrDrop(player, new ItemStack(Blocks.planks, 64));
             addToPlayerInventoryOrDrop(player, new ItemStack(Blocks.planks, 64));
             addToPlayerInventoryOrDrop(player, new ItemStack(Blocks.planks, 64));
@@ -211,9 +197,9 @@ public class TFEventListener {
         }
     }
 
-    private void addToPlayerInventoryOrDrop(EntityPlayer player, ItemStack planks) {
-        if (!player.inventory.addItemStackToInventory(planks)) {
-            player.dropPlayerItemWithRandomChoice(planks, false);
+    private void addToPlayerInventoryOrDrop(EntityPlayer player, ItemStack itemStack) {
+        if (!player.inventory.addItemStackToInventory(itemStack)) {
+            player.dropPlayerItemWithRandomChoice(itemStack, false);
         }
     }
 
@@ -241,15 +227,17 @@ public class TFEventListener {
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             ItemStack stack = inv.getStackInSlot(i);
 
-            if (stack != null && stack.getItem() == TFItems.nagaScale) {
-                nagaScale = true;
-            }
-            if (stack != null && stack.getItem() == TFItems.legsNaga) {
-                legsNaga = true;
+            if (stack != null) {
+                Item item = stack.getItem();
+                if (item == TFItems.nagaScale) {
+                    nagaScale = true;
+                } else if (item == TFItems.legsNaga) {
+                    legsNaga = true;
+                }
             }
         }
 
-        if (nagaScale && legsNaga) {
+        if (nagaScale & legsNaga) {
             player.triggerAchievement(TFAchievementPage.twilightNagaArmors);
         }
     }
@@ -334,80 +322,63 @@ public class TFEventListener {
         boolean damageSourceIsPlayer = event.source.getEntity() instanceof EntityPlayer;
         boolean damageSourceIsNotNull = (event.source.getEntity() != null);
         
-        // fire aura
-        if (entityIsPlayer && damageSourceIsMob && damageSourceIsNotNull) {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
-            int fireLevel = TFEnchantment.getFieryAuraLevel(player.inventory, event.source);
+        if(damageSourceIsNotNull) {
+            if (entityIsPlayer && damageSourceIsMob) {
+                EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-            // System.out.println("Detecting a fire reaction event. Reaction level is " + fireLevel);
-
-            if (fireLevel > 0 && player.getRNG().nextInt(25) < fireLevel) {
-                // System.out.println("Executing fire reaction.");
-                event.source.getEntity().setFire(fireLevel / 2);
+                // fire aura
+                int fireLevel = TFEnchantment.getFieryAuraLevel(player.inventory, event.source);
+                if (fireLevel > 0 && player.getRNG().nextInt(25) < fireLevel) {
+                    // System.out.println("Executing fire reaction.");
+                    event.source.getEntity().setFire(fireLevel / 2);
+                }
+                
+                // chill aura
+                if (event.source.getEntity() instanceof EntityLivingBase) {
+                    int chillLevel = TFEnchantment.getChillAuraLevel(player.inventory, event.source);
+                    // System.out.println("Detecting a chill aura event. Reaction level is " + chillLevel);
+                    if (chillLevel > 0) {
+                        // System.out.println("Executing chill reaction.");
+                        ((EntityLivingBase) event.source.getEntity()).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, chillLevel * 5 + 5, chillLevel));
+                    }
+                }
             }
-        }
 
-        // chill aura
-        if (entityIsPlayer && damageSourceIsMob && damageSourceIsNotNull && event.source.getEntity() instanceof EntityLivingBase) {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
-            int chillLevel = TFEnchantment.getChillAuraLevel(player.inventory, event.source);
+            //Arrow Effects
+            if (damageSourceIsArrow && damageSourceIsPlayer) {
+                EntityPlayer player = (EntityPlayer) event.source.getEntity();
+                Item playerHeldItem = player.getCurrentEquippedItem().getItem();
+                if(player.getCurrentEquippedItem() != null) {
+                    // triple bow strips hurtResistantTime
+                    if (playerHeldItem == TFItems.tripleBow) {
+                        event.entityLiving.hurtResistantTime = 0;
+                    // ice bow freezes
+                    } else if (playerHeldItem == TFItems.iceBow) {
+                        event.entityLiving.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20 * 10, 2, true));
+                    // enderbow teleports
+                    } else if (playerHeldItem == TFItems.enderBow) {
+                        double sourceX = player.posX;
+                        double sourceY = player.posY;
+                        double sourceZ = player.posZ;
+                        float sourceYaw = player.rotationYaw;
+                        float sourcePitch = player.rotationPitch;
 
-            // System.out.println("Detecting a chill aura event. Reaction level is " + chillLevel);
+                        // this is the only method that will move the player properly
+                        player.rotationYaw = event.entityLiving.rotationYaw;
+                        player.rotationPitch = event.entityLiving.rotationPitch;
+                        player.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
+                        player.playSound("mob.endermen.portal", 1.0F, 1.0F);
 
-            if (chillLevel > 0) {
-                // System.out.println("Executing chill reaction.");
-                ((EntityLivingBase) event.source.getEntity()).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, chillLevel * 5 + 5, chillLevel));
-
+                        // monsters are easy to move
+                        event.entityLiving.setPositionAndRotation(sourceX, sourceY, sourceZ, sourceYaw, sourcePitch);
+                        event.entityLiving.playSound("mob.endermen.portal", 1.0F, 1.0F);
+                    }
+                }
             }
+
         }
-
-        // triple bow strips hurtResistantTime
-        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
-            EntityPlayer player = (EntityPlayer) event.source.getEntity();
-
-            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.tripleBow) {
-                // System.out.println("Triplebow Arrows!");
-                event.entityLiving.hurtResistantTime = 0;
-            }
-        }
-
-        // ice bow freezes
-        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
-            EntityPlayer player = (EntityPlayer) event.source.getEntity();
-
-            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.iceBow) {
-
-                int chillLevel = 2;
-                event.entityLiving.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20 * 10, chillLevel, true));
-            }
-        }
-
-        // enderbow teleports
-        if (damageSourceIsArrow && damageSourceIsNotNull && damageSourceIsPlayer) {
-            EntityPlayer player = (EntityPlayer) event.source.getEntity();
-
-            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.enderBow) {
-
-                double sourceX = player.posX;
-                double sourceY = player.posY;
-                double sourceZ = player.posZ;
-                float sourceYaw = player.rotationYaw;
-                float sourcePitch = player.rotationPitch;
-
-                // this is the only method that will move the player properly
-                player.rotationYaw = event.entityLiving.rotationYaw;
-                player.rotationPitch = event.entityLiving.rotationPitch;
-                player.setPositionAndUpdate(event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ);
-                player.playSound("mob.endermen.portal", 1.0F, 1.0F);
-
-                // monsters are easy to move
-                event.entityLiving.setPositionAndRotation(sourceX, sourceY, sourceZ, sourceYaw, sourcePitch);
-                event.entityLiving.playSound("mob.endermen.portal", 1.0F, 1.0F);
-
-                // System.out.println("Enderbow Arrow!");
-            }
-        }
-
+        
+ 
         // charm of life?
         if (entityIsPlayer && willEntityDie(event)) {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
@@ -430,9 +401,7 @@ public class TFEventListener {
                 if (charm1) {
                     player.setHealth(8);
                     player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 0));
-                }
-
-                if (charm2) {
+                } else if (charm2) {
                     player.setHealth((float) player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 
                     player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 3));
@@ -541,7 +510,7 @@ public class TFEventListener {
                 keepAllArmor(player, keepInventory);
                 if (player.inventory.getCurrentItem() != null) {
                     int currentItem = player.inventory.currentItem;
-                    //Fix crash when holding a M&B Battlegear item.
+                    //Fixed crash when holding a M&B Battlegear item.
                     if(currentItem <= 8 & currentItem >= 0) {
                         keepInventory.mainInventory[currentItem] = ItemStack.copyItemStack(player.inventory.mainInventory[currentItem]);
                         player.inventory.mainInventory[currentItem] = null;
