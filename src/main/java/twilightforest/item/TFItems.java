@@ -137,6 +137,8 @@ public class TFItems {
     public static Item chainBlock;
     public static Item cubeTalisman;
     public static Item cubeOfAnnihilation;
+    
+    public static Item metaItem;
 
     public static CreativeTabTwilightForest creativeTab = new CreativeTabTwilightForest("twilightForest");
 
@@ -262,6 +264,8 @@ public class TFItems {
         chainBlock = new ItemTFChainBlock().setUnlocalizedName("chainBlock").setMaxStackSize(1);
         cubeTalisman = new ItemTF().setUnlocalizedName("cubeTalisman");
         cubeOfAnnihilation = new ItemTFCubeOfAnnihilation().setUnlocalizedName("cubeOfAnnihilation").setMaxStackSize(1);
+        
+        metaItem = new ItemTFMeta();
 
         registerTFItem(nagaScale, "Naga Scale");
         registerTFItem(plateNaga, "Naga Scale Tunic");
@@ -373,6 +377,8 @@ public class TFItems {
         registerTFItem(chainBlock);
         registerTFItem(cubeTalisman);
         registerTFItem(cubeOfAnnihilation);
+
+        registerTFItem(metaItem);
 
         registerTFItem(spawnEgg, "Spawn");
     }

@@ -9,7 +9,11 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import twilightforest.TFAchievementPage;
+import twilightforest.item.TFItems;
 
 public class EntityTFHarbingerCube extends EntityMob {
 
@@ -25,13 +29,23 @@ public class EntityTFHarbingerCube extends EntityMob {
         this.tasks.addTask(2, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-
     }
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D);
+    }
+    
+    /**
+     * Trigger achievement when killed
+     */
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (damageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+        }
     }
 
     /**
@@ -41,4 +55,17 @@ public class EntityTFHarbingerCube extends EntityMob {
     protected boolean isAIEnabled() {
         return true;
     }
+    
+    @Override
+    protected void dropFewItems(boolean hitByPlayer, int looting) {
+        if(hitByPlayer) {
+            ItemStack item = new ItemStack(TFItems.metaItem, 1 + looting, 1);
+            int dropCount = this.rand.nextInt(3);
+
+            for (int i = 0; i < dropCount; ++i) {
+                this.entityDropItem(item, 1f);
+            }
+        }
+    }
+    
 }

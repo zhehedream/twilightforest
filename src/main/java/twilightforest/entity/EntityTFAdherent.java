@@ -14,10 +14,13 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
+import twilightforest.item.TFItems;
 
 public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITFCharger {
 
@@ -63,14 +66,26 @@ public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITF
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D); // movement speed
     }
 
+    @Override
+    protected void dropFewItems(boolean hitByPlayer, int looting) {
+        if(hitByPlayer) {
+            ItemStack item = new ItemStack(TFItems.metaItem, 1 + looting, 0);
+            int dropCount = this.rand.nextInt(3);
+
+            for (int i = 0; i < dropCount; ++i) {
+                this.entityDropItem(item, 1f);
+            }
+        }
+    }
+    
     /**
      * Trigger achievement when killed
      */
     @Override
-    public void onDeath(DamageSource par1DamageSource) {
-        super.onDeath(par1DamageSource);
-        if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        if (damageSource.getSourceOfDamage() instanceof EntityPlayer) {
+            ((EntityPlayer) damageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
         }
     }
 

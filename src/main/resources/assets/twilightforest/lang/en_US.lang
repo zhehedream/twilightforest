@@ -209,6 +209,7 @@ tile.CinderLog.0.name=Cinder Log [NYI]
 tile.CinderLog.4.name=Cinder Log [NYI]
 tile.CinderLog.8.name=Cinder Log [NYI]
 
+item.adherentFragment.name=Cloth Of The Adherent
 item.nagaScale.name=Naga Scale
 item.plateNaga.name=Naga Scale Tunic
 item.legsNaga.name=Naga Scale Leggings
@@ -266,6 +267,7 @@ item.mazeWafer.name=Maze Wafer
 item.emptyMagicMap.name=Blank Magic Map
 item.emptyMazeMap.name=Blank Maze Map
 item.emptyOreMap.name=Blank Maze/Ore Map
+item.harbingerFragment.name=Fragment Of The Harbinger
 item.oreMagnet.name=Ore Magnet
 item.crumbleHorn.name=Crumble Horn
 item.peacockFan.name=Peacock Feather Fan
@@ -472,5 +474,5 @@ achievement.twilightProgressThorns.desc=Make it past the thornlands, and unlock 
 achievement.twilightProgressCastle=So Castle Very Wow
 achievement.twilightProgressCastle.desc=What could even be in that castle?!?
 
-
-
+tooltip.tf.adherent=An Adherent, but to whom?
+tooltip.tf.harbinger=A Harbinger, but of what?
