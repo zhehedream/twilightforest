@@ -27,6 +27,7 @@ public class TFRecipes {
         OreDictionary.registerOre("treeLeaves", new ItemStack(TFBlocks.leaves, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("treeLeaves", new ItemStack(TFBlocks.magicLeaves, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("plankWood", new ItemStack(TFBlocks.towerWood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("plankWood", new ItemStack(TFBlocks.plank, 1, OreDictionary.WILDCARD_VALUE));
 
         // register my ores, just for fun
         OreDictionary.registerOre("ingotFiery", new ItemStack(TFItems.fieryIngot));
@@ -44,10 +45,14 @@ public class TFRecipes {
         GameRegistry.addSmelting(TFBlocks.magicLog, new ItemStack(Items.coal, 1, 1), 0.1F);
 
         // recipes
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 4, 0), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 0) });
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 4, 1), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 1) });
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 4, 2), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 2) });
-        GameRegistry.addRecipe(new ItemStack(Blocks.planks, 4, 1), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 3) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 0), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 0) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 1), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 1) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 2), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 2) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 3), new Object[] { "w", 'w', new ItemStack(TFBlocks.log, 1, 3) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 4), new Object[] { "w", 'w', new ItemStack(TFBlocks.magicLog, 1, 0) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 5), new Object[] { "w", 'w', new ItemStack(TFBlocks.magicLog, 1, 1) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 6), new Object[] { "w", 'w', new ItemStack(TFBlocks.magicLog, 1, 2) });
+        GameRegistry.addRecipe(new ItemStack(TFBlocks.plank, 4, 7), new Object[] { "w", 'w', new ItemStack(TFBlocks.magicLog, 1, 3) });
 
         addEnchantedRecipe(TFItems.plateNaga, Enchantment.fireProtection, 3, new Object[] { "# #", "###", "###", '#', TFItems.nagaScale });
         addEnchantedRecipe(TFItems.legsNaga, Enchantment.protection, 3, new Object[] { "###", "# #", "# #", '#', TFItems.nagaScale });

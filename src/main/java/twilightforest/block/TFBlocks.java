@@ -73,6 +73,7 @@ public class TFBlocks {
     public static Block castleDoor;
     public static Block castleDoorVanished;
     public static Block castleUnlock;
+    public static Block plank;
 
     public static void registerBlocks() {
 
@@ -138,6 +139,7 @@ public class TFBlocks {
         castleDoor = (new BlockTFCastleDoor(false)).setBlockName("CastleDoor");
         castleDoorVanished = (new BlockTFCastleDoor(true)).setBlockName("CastleDoorVanished");
         castleUnlock = (new BlockTFCastleUnlock()).setBlockName("CastleUnlock");
+        plank = (new BlockTFPlanks().setBlockName("TFPlank"));
 
         // register blocks with their pickup values
         registerMyBlock(log);
@@ -201,6 +203,7 @@ public class TFBlocks {
         registerMyBlock(cinderLog);
         registerMyBlock(castleDoor);
         registerMyBlock(castleDoorVanished);
+        registerMyBlock(plank);
 
         // fire info
         Blocks.fire.setFireInfo(log, 5, 5);
