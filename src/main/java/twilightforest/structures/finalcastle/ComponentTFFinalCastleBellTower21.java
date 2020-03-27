@@ -13,8 +13,8 @@ import twilightforest.structures.StructureTFComponent;
 public class ComponentTFFinalCastleBellTower21 extends ComponentTFFinalCastleMazeTower13 {
     private static final int FLOORS = 8;
 
-    public ComponentTFFinalCastleBellTower21() {
-    }
+    //public ComponentTFFinalCastleBellTower21() {
+    //}
 
     public ComponentTFFinalCastleBellTower21(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, FLOORS, 1, 1, direction);

@@ -18,8 +18,8 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
     public int type;
 
-    public ComponentTFFinalCastleMazeTower13() {
-    }
+    //public ComponentTFFinalCastleMazeTower13() {
+    //}
 
     public ComponentTFFinalCastleMazeTower13(Random rand, int i, int x, int y, int z, int type, int direction) {
         super(i);
