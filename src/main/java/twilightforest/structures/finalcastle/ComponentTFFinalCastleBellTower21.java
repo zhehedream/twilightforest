@@ -26,7 +26,6 @@ public class ComponentTFFinalCastleBellTower21 extends ComponentTFFinalCastleMaz
         addOpening(0, 9, size / 2, 2);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

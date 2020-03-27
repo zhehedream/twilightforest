@@ -22,7 +22,6 @@ public class ComponentTFFinalCastleRoof13Peaked extends StructureTFComponent {
                 sideTower.getBoundingBox().maxY + height - 1, sideTower.getBoundingBox().maxZ + 2);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

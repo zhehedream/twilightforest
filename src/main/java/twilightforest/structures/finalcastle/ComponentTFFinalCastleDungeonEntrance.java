@@ -20,7 +20,6 @@ public class ComponentTFFinalCastleDungeonEntrance extends ComponentTFFinalCastl
         super(rand, i, x, y, z, direction, level);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         this.deco = new StructureTFDecoratorCastle();

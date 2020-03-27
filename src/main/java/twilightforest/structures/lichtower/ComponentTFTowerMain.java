@@ -17,7 +17,6 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
 
     public ComponentTFTowerMain() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public ComponentTFTowerMain(World world, Random rand, int index, int x, int y, int z) {
@@ -25,7 +24,6 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         super(index, x, y, z, 15, 55 + rand.nextInt(32), 0);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         // add a roof?
@@ -140,7 +138,6 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
             addOpening(x, y, z, rotation);
             return true;
         } else {
-//            System.out.println("Planned outbuilding intersects with " + intersect);
             return false;
         }
     }
@@ -173,7 +170,7 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         makeStairs(world, rand, sbb);
 
         // throw a bunch of opening markers in there
-//      makeOpeningMarkers(world, rand, 100, sbb);
+        //makeOpeningMarkers(world, rand, 100, sbb);
 
         // openings
         makeOpenings(world, sbb);
@@ -296,7 +293,6 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         generatePaintingsOnWall(world, rand, howMany, 0, 0, 48, sbb);
         generatePaintingsOnWall(world, rand, howMany, 0, 0, 32, sbb);
         generatePaintingsOnWall(world, rand, howMany, 0, 0, 0, sbb);
-
         // do wall 1.
         generatePaintingsOnWall(world, rand, howMany, 0, 1, 48, sbb);
         generatePaintingsOnWall(world, rand, howMany, 0, 1, 32, sbb);
@@ -421,7 +417,6 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         generatePaintingsOnWall(world, rand, howMany, floorLevel, 0, 48, sbb);
         generatePaintingsOnWall(world, rand, howMany, floorLevel, 0, 32, sbb);
         generatePaintingsOnWall(world, rand, howMany, floorLevel, 0, 0, sbb);
-
         // do wall 1.
         generatePaintingsOnWall(world, rand, howMany, floorLevel, 1, 48, sbb);
         generatePaintingsOnWall(world, rand, howMany, floorLevel, 1, 32, sbb);
@@ -448,32 +443,34 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
     }
 
     /**
-     * Place up to 10 torches (with fence holders) on the wall, checking that they don't overlap any
-     * paintings or other torches
+     * Place up to 5 torches (with fence holders) on the wall, checking that they don't overlap any paintings or other torches
      */
     protected void generateTorchesOnWall(World world, Random rand, int floorLevel, int direction, StructureBoundingBox sbb) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             // get some random coordinates on the wall in the chunk
             ChunkCoordinates wCoords = getRandomWallSpot(rand, floorLevel, direction, sbb);
 
             // offset to see where the fence should be
             ChunkCoordinates tCoords = new ChunkCoordinates(wCoords);
-            if (direction == 0) {
+            switch (direction) {
+            case 0:
                 tCoords.posZ++;
-            }
-            if (direction == 1) {
+                break;
+            case 1:
                 tCoords.posX--;
-            }
-            if (direction == 2) {
+                break;
+            case 2:
                 tCoords.posZ--;
-            }
-            if (direction == 3) {
+                break;
+            case 3:
                 tCoords.posX++;
+                break;
             }
 
             // is there a painting or another torch there?
             AxisAlignedBB torchBox = AxisAlignedBB.getBoundingBox(tCoords.posX, tCoords.posY, tCoords.posZ, tCoords.posX + 1.0, tCoords.posY + 2.0, tCoords.posZ + 1.0);
-            if (world.getBlock(tCoords.posX, tCoords.posY, tCoords.posZ) == Blocks.air && world.getBlock(tCoords.posX, tCoords.posY + 1, tCoords.posZ) == Blocks.air
+            if (world.getBlock(tCoords.posX, tCoords.posY, tCoords.posZ) == Blocks.air
+                    && world.getBlock(tCoords.posX, tCoords.posY + 1, tCoords.posZ) == Blocks.air
                     && world.getEntitiesWithinAABBExcludingEntity(null, torchBox).size() == 0) {
                 // if not, place a torch
                 world.setBlock(tCoords.posX, tCoords.posY, tCoords.posZ, Blocks.fence, 0, 2);

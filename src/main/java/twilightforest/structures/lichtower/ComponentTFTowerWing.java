@@ -30,7 +30,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
 
     public ComponentTFTowerWing() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public int size;
@@ -62,19 +61,19 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * Save to NBT
      */
     @Override
-    protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
-        super.func_143012_a(par1NBTTagCompound);
+    protected void func_143012_a(NBTTagCompound tagCompound) {
+        super.func_143012_a(tagCompound);
 
-        par1NBTTagCompound.setInteger("towerSize", this.size);
-        par1NBTTagCompound.setInteger("towerHeight", this.height);
+        tagCompound.setInteger("towerSize", this.size);
+        tagCompound.setInteger("towerHeight", this.height);
 
-        par1NBTTagCompound.setIntArray("doorInts", this.getDoorsAsIntArray());
+        tagCompound.setIntArray("doorInts", this.getDoorsAsIntArray());
 
-        par1NBTTagCompound.setInteger("highestOpening", this.highestOpening);
-        par1NBTTagCompound.setBoolean("openingTowards0", this.openingTowards[0]);
-        par1NBTTagCompound.setBoolean("openingTowards1", this.openingTowards[1]);
-        par1NBTTagCompound.setBoolean("openingTowards2", this.openingTowards[2]);
-        par1NBTTagCompound.setBoolean("openingTowards3", this.openingTowards[3]);
+        tagCompound.setInteger("highestOpening", this.highestOpening);
+        tagCompound.setBoolean("openingTowards0", this.openingTowards[0]);
+        tagCompound.setBoolean("openingTowards1", this.openingTowards[1]);
+        tagCompound.setBoolean("openingTowards2", this.openingTowards[2]);
+        tagCompound.setBoolean("openingTowards3", this.openingTowards[3]);
 
     }
 
@@ -124,7 +123,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         // we should have a door where we started
@@ -178,7 +176,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
             addOpening(x, y, z, rotation);
             return true;
         } else {
-//            System.out.println("Planned wing intersects with " + intersect);
             if (rand.nextInt(3) > 0) {
                 return makeBridge(list, rand, index, x, y, z, wingSize, wingHeight, rotation);
             } else {

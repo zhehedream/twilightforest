@@ -35,16 +35,13 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // entrance should be on a random floor
         int entranceFloor = rand.nextInt(floors);
 
-        // rationalize entrance floor if the tower is going to be too low, put the entrance floor at bottom.
-        // Too high, put it at top
+        // rationalize entrance floor if the tower is going to be too low, put the entrance floor at bottom. Too high, put it at top
         if ((y - (entranceFloor * 8)) < LOWEST_DOOR) {
-            // System.out.println("Tower at " + x + ", " + z + " is getting too low, setting entrance to bottom
-            // floor.");
+            // System.out.println("Tower at " + x + ", " + z + " is getting too low, setting entrance to bottom floor.");
             entranceFloor = 0;
         }
         if ((y + ((floors - entranceFloor) * 8)) > HIGHEST_DOOR) {
-            // System.out.println("Tower at " + x + ", " + z + " is getting too high, setting entrance to floor
-            // " + (floors - 1) + ".");
+            // System.out.println("Tower at " + x + ", " + z + " is getting too high, setting entrance to floor " + (floors - 1) + ".");
             entranceFloor = floors - 1;
         }
 
@@ -65,7 +62,6 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         addOpening(0, entranceFloor * 8 + 1, size / 2, 2);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {
@@ -90,7 +86,7 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // regular building first, adds roof/foundation
         this.buildComponent(parent, list, rand);
 
-        if (this.getComponentType() < 15) {
+        if (this.getComponentType() < 20) {
 
             // are we there?
             if (this.isWithinRange(dest.posX, dest.posZ, this.boundingBox.minX + 6, this.boundingBox.minZ + 6, 30)) {
@@ -123,8 +119,7 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
             }
         }
 
-        // finally, now that the critical path is built, let's add some other towers for atmosphere and
-        // complication
+        // finally, now that the critical path is built, let's add some other towers for atmosphere and complication
         this.buildNonCriticalTowers(parent, list, rand);
     }
 
@@ -163,11 +158,8 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
         int relativeDir = (absoluteDir + 4 - this.coordBaseMode) % 4;
 
-        // System.out.println("Determining best direction! center is at " + cx + ", " + cz + " and dest is
-        // at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " +
-        // absoluteDir + " and relative dir is " + relativeDir);
+        // System.out.println("Determining best direction! center is at " + cx + ", " + cz + " and dest is at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir is " + relativeDir);
 
-        // return relative dir
         return relativeDir;
     }
 
@@ -189,11 +181,8 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         }
         int relativeDir = (absoluteDir + 4 - this.coordBaseMode) % 4;
 
-        // System.out.println("Determining second direction! center is at " + cx + ", " + cz + " and dest is
-        // at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " +
-        // absoluteDir + " and relative dir is " + relativeDir);
+        // System.out.println("Determining second direction! center is at " + cx + ", " + cz + " and dest is at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir is " + relativeDir);
 
-        // return offset dir
         return relativeDir;
     }
 
@@ -227,9 +216,7 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // build towards
         ChunkCoordinates tc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, howFar, direction);
 
-        // System.out.println("Our coord mode is " + this.getCoordBaseMode() + ", and direction is " +
-        // direction + ", so our door is going to be at " + opening + " and the new tower will appear at " +
-        // tc);
+        // System.out.println("Our coord mode is " + this.getCoordBaseMode() + ", and direction is " + direction + ", so our door is going to be at " + opening + " and the new tower will appear at " + tc);
 
         // find start
         StructureComponent start = (StructureComponent) list.get(0);

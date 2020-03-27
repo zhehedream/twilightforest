@@ -20,7 +20,6 @@ public class ComponentTFFinalCastleBridge extends StructureTFComponent {
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox2(x, y, z, 0, -1, -3, length - 1, 5, 6, direction);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

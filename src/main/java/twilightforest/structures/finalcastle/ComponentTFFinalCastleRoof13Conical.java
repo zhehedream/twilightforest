@@ -47,7 +47,6 @@ public class ComponentTFFinalCastleRoof13Conical extends StructureTFComponent {
         this.slope = par1NBTTagCompound.getInteger("slope");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

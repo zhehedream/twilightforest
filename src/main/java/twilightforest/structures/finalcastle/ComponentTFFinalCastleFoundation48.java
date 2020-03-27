@@ -22,7 +22,6 @@ public class ComponentTFFinalCastleFoundation48 extends StructureTFComponent {
                 sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().maxZ);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

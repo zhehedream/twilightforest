@@ -18,7 +18,6 @@ public class ComponentTFFinalCastleDungeonExit extends ComponentTFFinalCastleDun
         super(rand, i, x, y, z, direction, level);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

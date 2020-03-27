@@ -23,7 +23,6 @@ public class ComponentTFFinalCastleRoof48Crenellated extends StructureTFComponen
                 keep.getBoundingBox().maxY + height - 1, keep.getBoundingBox().maxZ + 2);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

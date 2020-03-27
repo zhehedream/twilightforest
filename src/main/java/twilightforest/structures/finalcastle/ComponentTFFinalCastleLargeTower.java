@@ -17,14 +17,12 @@ public class ComponentTFFinalCastleLargeTower extends ComponentTFTowerWing {
 
     public ComponentTFFinalCastleLargeTower(Random rand, int i, int x, int y, int z, int rotation) {
         super(i);
-
         this.setCoordBaseMode(rotation);
         this.size = 13;
         this.height = 61;
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -6, 0, -6, 12, 60, 12, 0);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

@@ -19,7 +19,6 @@ public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMa
         super(rand, i, x, y, z, 2, direction); // TODO: change rune type
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {

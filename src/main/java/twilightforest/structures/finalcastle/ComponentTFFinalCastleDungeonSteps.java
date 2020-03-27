@@ -19,7 +19,6 @@ public class ComponentTFFinalCastleDungeonSteps extends StructureTFComponent {
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox2(x, y, z, -2, -15, -3, 5, 15, 20, rotation);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {
