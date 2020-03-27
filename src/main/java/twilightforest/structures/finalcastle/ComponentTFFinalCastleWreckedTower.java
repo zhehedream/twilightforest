@@ -9,8 +9,8 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleWreckedTower extends ComponentTFFinalCastleDamagedTower {
-    //public ComponentTFFinalCastleWreckedTower() {
-    //}
+    public ComponentTFFinalCastleWreckedTower() {
+    }
 
     public ComponentTFFinalCastleWreckedTower(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, direction);

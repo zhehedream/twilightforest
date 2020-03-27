@@ -12,8 +12,8 @@ import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFFinalCastleStairTower extends ComponentTFTowerWing {
-    //public ComponentTFFinalCastleStairTower() {
-    //}
+    public ComponentTFFinalCastleStairTower() {
+    }
 
     public ComponentTFFinalCastleStairTower(Random rand, int i, int x, int y, int z, int rotation) {
         super(i);

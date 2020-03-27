@@ -12,8 +12,8 @@ import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMazeTower13 {
-    //public ComponentTFFinalCastleDamagedTower() {
-    //}
+    public ComponentTFFinalCastleDamagedTower() {
+    }
 
     public ComponentTFFinalCastleDamagedTower(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, 2, direction); // TODO: change rune type

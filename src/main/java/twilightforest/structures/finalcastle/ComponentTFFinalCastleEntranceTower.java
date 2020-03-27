@@ -9,8 +9,8 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleMazeTower13 {
-    //public ComponentTFFinalCastleEntranceTower() {
-    //}
+    public ComponentTFFinalCastleEntranceTower() {
+    }
 
     public ComponentTFFinalCastleEntranceTower(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, 3, 2, 0, direction);
