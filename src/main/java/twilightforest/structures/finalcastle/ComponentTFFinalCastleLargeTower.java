@@ -16,6 +16,8 @@ public class ComponentTFFinalCastleLargeTower extends ComponentTFTowerWing {
     }
 
     public ComponentTFFinalCastleLargeTower(Random rand, int i, int x, int y, int z, int rotation) {
+        super(i);
+
         this.setCoordBaseMode(rotation);
         this.size = 13;
         this.height = 61;

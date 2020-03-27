@@ -2175,10 +2175,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         int rotation = rand.nextInt(4);
 
         // start somewhere in the lower part
-        int startHeight = (int) (this.height * 0.66F);
-        if(startHeight > 0) { 
-            startHeight = rand.nextInt(startHeight);
-        }
+        int startHeight = rand.nextInt((int) (this.height * 0.66F));
 
         // near the middle
         int startZ = 3 + rand.nextInt(this.size - 6);
