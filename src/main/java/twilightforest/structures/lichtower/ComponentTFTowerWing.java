@@ -2129,21 +2129,23 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         // constrain the paintings to one wall
         // these directions correspond to painting facing directions, not necessarily to the structure
         // orienting directions
-        if (direction == 0) {
+        switch(direction) {
+        case 0:
             minZ = this.boundingBox.minZ;
             maxZ = this.boundingBox.minZ;
-        }
-        if (direction == 1) {
+            break;
+        case 1:
             maxX = this.boundingBox.maxX;
             minX = this.boundingBox.maxX;
-        }
-        if (direction == 2) {
+            break;
+        case 2:
             maxZ = this.boundingBox.maxZ;
             minZ = this.boundingBox.maxZ;
-        }
-        if (direction == 3) {
+            break;
+        case 3:
             minX = this.boundingBox.minX;
             maxX = this.boundingBox.minX;
+            break;
         }
 
         // try 30 times to get a proper result
@@ -2168,6 +2170,10 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * abstract tower class and a concrete lich tower class one day
      */
     protected void makeGlyphBranches(World world, Random rand, int meta, StructureBoundingBox sbb) {
+        //Workaround for height and size not getting set
+        //TODO: Fix properly if cause can be found
+        if(this.height == 0 | this.size == 0) return;
+        
         // pick a random side of the tower
         int rotation = rand.nextInt(4);
 
