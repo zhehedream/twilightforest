@@ -347,8 +347,9 @@ public class TFEventListener {
             //Arrow Effects
             if (damageSourceIsArrow && damageSourceIsPlayer) {
                 EntityPlayer player = (EntityPlayer) event.source.getEntity();
-                Item playerHeldItem = player.getCurrentEquippedItem().getItem();
-                if(player.getCurrentEquippedItem() != null) {
+                ItemStack playerHeldItemStack = player.getCurrentEquippedItem();
+                if (playerHeldItemStack != null) {
+                    Item playerHeldItem = playerHeldItemStack.getItem();
                     // triple bow strips hurtResistantTime
                     if (playerHeldItem == TFItems.tripleBow) {
                         event.entityLiving.hurtResistantTime = 0;
