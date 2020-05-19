@@ -39,6 +39,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     public static IIcon SPR_SORTLEAVES_OPAQUE;
     public static IIcon SPR_SORTFX;
 
+    private static final int SAPLING_ITEM_META_OFFSET = 5;
+
     protected BlockTFMagicLeaves() {
         super();
         this.setHardness(0.2F);
@@ -260,20 +262,28 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         }
     }
 
+    /**
+     * Localisation Function,
+     * [leafblock-meta & 3] will be added to the unlocalised name
+     */
     @Override
     public String[] func_150125_e() {
         return new String[]{"time", "trans", "mine", "sort"};
     }
-
-
+    /**
+     * returns the items that will be dropped
+     */
     @Override
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
         return Item.getItemFromBlock(TFBlocks.sapling);
     }
 
+    /**
+     * returns the meta of the item that will be dropped
+     */
     @Override
     public int damageDropped(int metadata) {
-        return (metadata & 3) + 5;
+        return (metadata & 3) + SAPLING_ITEM_META_OFFSET;
     }
 
     /**
@@ -290,7 +300,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * Additional Drops
+     * Additional Drops can be spawned here
+     * chance is 200, in vanilla code, same logic as the previous function, used for apples in vanilla
      */
     @Override
     @SuppressWarnings("ALL")
