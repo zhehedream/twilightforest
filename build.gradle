@@ -17,16 +17,40 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
+plugins {
+    id 'idea'
+    id 'java'
+}
 
 apply plugin: 'forge'
+idea.module.downloadJavadoc = true
+idea.module.downloadSources = true
 
 version = "2.3.8.3-dev"
 group= "twilightforest" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "twilightforest-1.7.10"
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse"
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task devJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'dev'
+}
+artifacts {
+    archives devJar
+    archives sourceJar
 }
 
 dependencies {
