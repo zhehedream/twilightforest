@@ -1,6 +1,6 @@
 package twilightforest.item;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -165,10 +166,10 @@ public class ItemTFOreMagnet extends ItemTF {
         int destY = MathHelper.floor_double(destVec.yCoord);
         int destZ = MathHelper.floor_double(destVec.zCoord);
 
-        int blocksMoved = doMagnet(world, useX, useY, useZ, destX, destY, destZ);
-
-        return blocksMoved;
+        return doMagnet(world, useX, useY, useZ, destX, destY, destZ);
     }
+
+    private static final HashSet<Integer[]> FOUND_ORE_BLOCKS = new HashSet<>();
 
     /**
      * This function makes the magnet work
@@ -190,7 +191,6 @@ public class ItemTFOreMagnet extends ItemTF {
         int baseX = -1;
         int baseY = -1;
         int baseZ = -1;
-
         boolean isNetherrack = false;
 
         for (ChunkCoordinates coord : lineArray) {
@@ -221,7 +221,7 @@ public class ItemTFOreMagnet extends ItemTF {
                 foundX = coord.posX;
                 foundY = coord.posY;
                 foundZ = coord.posZ;
-
+                FOUND_ORE_BLOCKS.add(new Integer[]{Block.getIdFromBlock(foundID), foundMeta});
                 break;
             }
         }
@@ -230,7 +230,7 @@ public class ItemTFOreMagnet extends ItemTF {
 
         if (baseY != -1 && foundID != Blocks.air) {
             // find the whole vein
-            ArrayList<ChunkCoordinates> veinBlocks = new ArrayList<ChunkCoordinates>();
+            HashMap<ChunkCoordinates, Optional<TileEntity>> veinBlocks = new HashMap<>();
             findVein(world, foundX, foundY, foundZ, foundID, foundMeta, veinBlocks);
 
             // move it up into minable blocks or dirt
@@ -238,7 +238,8 @@ public class ItemTFOreMagnet extends ItemTF {
             int offY = baseY - foundY;
             int offZ = baseZ - foundZ;
 
-            for (ChunkCoordinates coord : veinBlocks) {
+            for (Map.Entry<ChunkCoordinates, Optional<TileEntity>> entry : veinBlocks.entrySet()) {
+                ChunkCoordinates coord = entry.getKey();
                 int replaceX = coord.posX + offX;
                 int replaceY = coord.posY + offY;
                 int replaceZ = coord.posZ + offZ;
@@ -253,10 +254,35 @@ public class ItemTFOreMagnet extends ItemTF {
 
                     // set close to ore material
                     world.setBlock(replaceX, replaceY, replaceZ, foundID, foundMeta, 2);
+
+                    //Tile Entity Handleing
+                    entry.getValue().ifPresent(tile -> {
+                        //Set XYZ on the Tile
+                        {
+                            tile.xCoord = replaceX;
+                            tile.yCoord = replaceY;
+                            tile.zCoord = replaceZ;
+                        }
+                        //Validate the tile and set the new position on the chunk-data
+                        {
+                            tile.validate();
+                            world.setTileEntity(replaceX, replaceY, replaceZ, tile);
+                        }
+                        //remove the old position from the chunk-data and re-Validate the tile
+                        {
+                            world.removeTileEntity(coord.posX, coord.posY, coord.posZ);
+                            tile.validate();
+                        }
+                        //mark the tile as dirty so it gets saved to disk
+                        tile.markDirty();
+                    });
                     blocksMoved++;
-                } else {
-                    // System.out.println("Not moving a block because we did not find a replaceable block to move to");
                 }
+                /*
+                 * else {
+                 *    System.out.println("Not moving a block because we did not find a replaceable block to move to");
+                 * }
+                 */
             }
 
 //            player.addChatMessage("Moved blocks!  " + blocksMoved);
@@ -277,6 +303,10 @@ public class ItemTFOreMagnet extends ItemTF {
     }
 
     private static boolean isReplaceable(World world, Block replaceID, int replaceMeta, int x, int y, int z) {
+        //Make found Ores NOT replaceable
+        if (FOUND_ORE_BLOCKS.contains(new Integer[]{Block.getIdFromBlock(replaceID), replaceMeta}))
+            return false;
+
         if (replaceID == Blocks.dirt) {
             return true;
         }
@@ -286,49 +316,46 @@ public class ItemTFOreMagnet extends ItemTF {
         if (replaceID == Blocks.gravel) {
             return true;
         }
-        if (replaceID != Blocks.air && replaceID.isReplaceableOreGen(world, x, y, z, Blocks.stone)) {
-            return true;
-        }
-
-        return false;
+        return replaceID != Blocks.air && replaceID.isReplaceableOreGen(world, x, y, z, Blocks.stone);
     }
 
     private static boolean isNetherReplaceable(World world, Block replaceID, int replaceMeta, int x, int y, int z) {
+        if (FOUND_ORE_BLOCKS.contains(new Integer[]{Block.getIdFromBlock(replaceID), replaceMeta}))
+            return false;
+
         if (replaceID == Blocks.netherrack) {
             return true;
         }
-        if (replaceID != Blocks.air && replaceID.isReplaceableOreGen(world, x, y, z, Blocks.netherrack)) {
-            return true;
-        }
-
-        return false;
+        return replaceID != Blocks.air && replaceID.isReplaceableOreGen(world, x, y, z, Blocks.netherrack);
     }
 
-    private static boolean findVein(World world, int x, int y, int z, Block oreID, int oreMeta, ArrayList<ChunkCoordinates> veinBlocks) {
+    private static final int MAX_FIND_VEIN_RECURSION_DEPTH = 24;
+
+    private static boolean findVein(World world, int x, int y, int z, Block oreID, int oreMeta, Map<ChunkCoordinates, Optional<TileEntity>> veinBlocks) {
         ChunkCoordinates here = new ChunkCoordinates(x, y, z);
 
         // is this already on the list?
-        if (veinBlocks.contains(here)) {
+        if (veinBlocks.containsKey(here)) {
             return false;
         }
 
         // let's limit it to 24 blocks at a time
-        if (veinBlocks.size() >= 24) {
+        if (veinBlocks.size() >= MAX_FIND_VEIN_RECURSION_DEPTH) {
             return false;
         }
 
         // otherwise, check if we're still in the vein
         if (world.getBlock(x, y, z) == oreID && world.getBlockMetadata(x, y, z) == oreMeta) {
-            veinBlocks.add(here);
-
+            veinBlocks.put(here, Optional.ofNullable(world.getTileEntity(x, y, z)));
             // recurse in 6 directions
-            findVein(world, x + 1, y, z, oreID, oreMeta, veinBlocks);
-            findVein(world, x - 1, y, z, oreID, oreMeta, veinBlocks);
-            findVein(world, x, y + 1, z, oreID, oreMeta, veinBlocks);
-            findVein(world, x, y - 1, z, oreID, oreMeta, veinBlocks);
-            findVein(world, x, y, z + 1, oreID, oreMeta, veinBlocks);
-            findVein(world, x, y, z - 1, oreID, oreMeta, veinBlocks);
-
+            {
+                findVein(world, x + 1, y, z, oreID, oreMeta, veinBlocks);
+                findVein(world, x - 1, y, z, oreID, oreMeta, veinBlocks);
+                findVein(world, x, y + 1, z, oreID, oreMeta, veinBlocks);
+                findVein(world, x, y - 1, z, oreID, oreMeta, veinBlocks);
+                findVein(world, x, y, z + 1, oreID, oreMeta, veinBlocks);
+                findVein(world, x, y, z - 1, oreID, oreMeta, veinBlocks);
+            }
             return true;
         } else {
             return false;
@@ -338,7 +365,7 @@ public class ItemTFOreMagnet extends ItemTF {
     public static boolean isOre(Block blockID, int meta) {
 
         if (blockID == Blocks.coal_ore) {
-            return false;
+            return true;
         }
         if (blockID == Blocks.iron_ore) {
             return true;
@@ -367,11 +394,7 @@ public class ItemTFOreMagnet extends ItemTF {
         if (blockID == TFBlocks.root && meta == BlockTFRoots.OREROOT_META) {
             return true;
         }
-        if (blockID.getUnlocalizedName().toLowerCase().contains("ore")) {
-            return true;
-        }
-
-        return false;
+        return blockID.getUnlocalizedName().toLowerCase().contains("ore");
     }
 
 }

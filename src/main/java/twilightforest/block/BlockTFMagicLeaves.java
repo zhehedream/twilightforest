@@ -1,8 +1,5 @@
 package twilightforest.block;
 
-import java.util.List;
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -10,6 +7,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -17,6 +15,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockTFMagicLeaves extends BlockLeaves {
     int oakColor = 0x48B518;
@@ -38,6 +39,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     public static IIcon SPR_SORTLEAVES_OPAQUE;
     public static IIcon SPR_SORTFX;
 
+    private static final int SAPLING_ITEM_META_OFFSET = 5;
+
     protected BlockTFMagicLeaves() {
         super();
         this.setHardness(0.2F);
@@ -52,16 +55,16 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     @Override
     public int getRenderColor(int par1) {
         switch (par1 & 3) {
-        case META_TIME:
-            return 106 << 16 | 156 << 8 | 23;
-        case META_TRANS:
-            return 108 << 16 | 204 << 8 | 234;
-        case META_MINE:
-            return 252 << 16 | 241 << 8 | 68;
-        case META_SORT:
-            return 54 << 16 | 76 << 8 | 3;
-        default:
-            return 16777215;
+            case META_TIME:
+                return 106 << 16 | 156 << 8 | 23;
+            case META_TRANS:
+                return 108 << 16 | 204 << 8 | 234;
+            case META_MINE:
+                return 252 << 16 | 241 << 8 | 68;
+            case META_SORT:
+                return 54 << 16 | 76 << 8 | 3;
+            default:
+                return 16777215;
         }
     }
 
@@ -77,63 +80,63 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         int green = 0;
         int blue = 0;
 
-        int fade = 0;
-        float spring = 0;
-        float fall = 0;
+        int fade;
+        float spring;
+        float fall;
 
         switch (leafType) {
-        case META_TIME:
-            fade = x * 16 + y * 16 + z * 16;
-            if ((fade & 256) != 0) {
-                fade = 255 - (fade & 255);
-            }
-            fade &= 255;
-            spring = (255 - fade) / 255F;
-            fall = fade / 255F;
+            case META_TIME:
+                fade = x * 16 + y * 16 + z * 16;
+                if ((fade & 256) != 0) {
+                    fade = 255 - (fade & 255);
+                }
+                fade &= 255;
+                spring = (255 - fade) / 255F;
+                fall = fade / 255F;
 
-            red = (int) (spring * 106 + fall * 251);
-            green = (int) (spring * 156 + fall * 108);
-            blue = (int) (spring * 23 + fall * 27);
-            break;
-        case META_TRANS:
-            fade = x * 27 + y * 63 + z * 39;
-            if ((fade & 256) != 0) {
-                fade = 255 - (fade & 255);
-            }
-            fade &= 255;
-            spring = (255 - fade) / 255F;
-            fall = fade / 255F;
+                red = (int) (spring * 106 + fall * 251);
+                green = (int) (spring * 156 + fall * 108);
+                blue = (int) (spring * 23 + fall * 27);
+                break;
+            case META_TRANS:
+                fade = x * 27 + y * 63 + z * 39;
+                if ((fade & 256) != 0) {
+                    fade = 255 - (fade & 255);
+                }
+                fade &= 255;
+                spring = (255 - fade) / 255F;
+                fall = fade / 255F;
 
-            red = (int) (spring * 108 + fall * 96);
-            green = (int) (spring * 204 + fall * 107);
-            blue = (int) (spring * 234 + fall * 121);
-            break;
-        case META_MINE:
-            fade = x * 31 + y * 33 + z * 32;
-            if ((fade & 256) != 0) {
-                fade = 255 - (fade & 255);
-            }
-            fade &= 255;
-            spring = (255 - fade) / 255F;
-            fall = fade / 255F;
+                red = (int) (spring * 108 + fall * 96);
+                green = (int) (spring * 204 + fall * 107);
+                blue = (int) (spring * 234 + fall * 121);
+                break;
+            case META_MINE:
+                fade = x * 31 + y * 33 + z * 32;
+                if ((fade & 256) != 0) {
+                    fade = 255 - (fade & 255);
+                }
+                fade &= 255;
+                spring = (255 - fade) / 255F;
+                fall = fade / 255F;
 
-            red = (int) (spring * 252 + fall * 237);
-            green = (int) (spring * 241 + fall * 172);
-            blue = (int) (spring * 68 + fall * 9);
-            break;
-        case META_SORT:
-            fade = x * 63 + y * 63 + z * 63;
-            if ((fade & 256) != 0) {
-                fade = 255 - (fade & 255);
-            }
-            fade &= 255;
+                red = (int) (spring * 252 + fall * 237);
+                green = (int) (spring * 241 + fall * 172);
+                blue = (int) (spring * 68 + fall * 9);
+                break;
+            case META_SORT:
+                fade = x * 63 + y * 63 + z * 63;
+                if ((fade & 256) != 0) {
+                    fade = 255 - (fade & 255);
+                }
+                fade &= 255;
 
-            spring = (255 - fade) / 255F;
-            fall = fade / 255F;
+                spring = (255 - fade) / 255F;
+                fall = fade / 255F;
 
-            red = (int) (spring * 54 + fall * 168);
-            green = (int) (spring * 76 + fall * 199);
-            blue = (int) (spring * 3 + fall * 43);
+                red = (int) (spring * 54 + fall * 168);
+                green = (int) (spring * 76 + fall * 199);
+                blue = (int) (spring * 3 + fall * 43);
         }
         return red << 16 | green << 8 | blue;
     }
@@ -161,23 +164,23 @@ public class BlockTFMagicLeaves extends BlockLeaves {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        if(Blocks.leaves.isOpaqueCube()) {
+        if (Blocks.leaves.isOpaqueCube()) {
             switch (meta & 0x03) {
-            default:
-                return SPR_TIMELEAVES_OPAQUE;
-            case 1:
-                return SPR_TRANSLEAVES_OPAQUE;
-            case 3:
-                return SPR_SORTLEAVES_OPAQUE;
+                default:
+                    return SPR_TIMELEAVES_OPAQUE;
+                case 1:
+                    return SPR_TRANSLEAVES_OPAQUE;
+                case 3:
+                    return SPR_SORTLEAVES_OPAQUE;
             }
         } else {
             switch (meta & 0x03) {
-            default:
-                return SPR_TIMELEAVES;
-            case 1:
-                return SPR_TRANSLEAVES;
-            case 3:
-                return SPR_SORTLEAVES;
+                default:
+                    return SPR_TIMELEAVES;
+                case 1:
+                    return SPR_TRANSLEAVES;
+                case 3:
+                    return SPR_SORTLEAVES;
             }
         }
     }
@@ -194,18 +197,9 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
-     */
-    @Override
-    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
-        return Blocks.leaves.shouldSideBeRendered(world, x, y, z, side);
-    }
-
-    /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked"})
     @Override
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
         itemList.add(new ItemStack(item, 1, 0));
@@ -244,7 +238,7 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         }
 
         if (side == 1 && world.isAirBlock(x, y - 1, z)) {
-            ry = y + 0 - offset;
+            ry = y - offset;
         }
 
         if (side == 2 && world.isAirBlock(x, y, z + 1)) {
@@ -252,7 +246,7 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         }
 
         if (side == 3 && world.isAirBlock(x, y, z - 1)) {
-            rz = z + 0 - offset;
+            rz = z - offset;
         }
 
         if (side == 4 && world.isAirBlock(x + 1, y, z)) {
@@ -260,7 +254,7 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         }
 
         if (side == 5 && world.isAirBlock(x - 1, y, z)) {
-            rx = x + 0 - offset;
+            rx = x - offset;
         }
 
         if (rx < x || rx > x + 1 || ry < y || ry > y + 1 || rz < z || rz > z + 1) {
@@ -268,10 +262,82 @@ public class BlockTFMagicLeaves extends BlockLeaves {
         }
     }
 
+    /**
+     * Localisation Function,
+     * [leafblock-meta & 3] will be added to the unlocalised name
+     */
     @Override
     public String[] func_150125_e() {
-        // TODO Auto-generated method stub
-        return null;
+        return new String[]{"time", "trans", "mine", "sort"};
+    }
+    /**
+     * returns the items that will be dropped
+     */
+    @Override
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Item.getItemFromBlock(TFBlocks.sapling);
     }
 
+    /**
+     * returns the meta of the item that will be dropped
+     */
+    @Override
+    public int damageDropped(int metadata) {
+        return (metadata & 3) + SAPLING_ITEM_META_OFFSET;
+    }
+
+    /**
+     * DROPCHANCE for Saplings, higher Values returned here will get LOWER chance overall!
+     * For comparison:
+     * Vanilla Trees: 40
+     * Vanilla Dark Oak: 80
+     * Thaumcraft Greatwood: ~200
+     * Thaumcraft Silverwood: ~250
+     */
+    @Override
+    protected int func_150123_b(int metadata) {
+        return 150;
+    }
+
+    /**
+     * Additional Drops can be spawned here
+     * chance is 200, in vanilla code, same logic as the previous function, used for apples in vanilla
+     */
+    @Override
+    @SuppressWarnings("ALL")
+    protected void func_150124_c(World world, int x, int y, int z, int metadata, int chance) {
+        if (world.rand.nextInt(chance) == 0)
+            initial:switch (metadata & 3) {
+                case META_TIME:
+                    this.dropBlockAsItem(world, x, y, z, new ItemStack(Items.clock, 1, 0));
+                    break initial;
+                case META_TRANS:
+                    this.dropBlockAsItem(world, x, y, z, new ItemStack(TFBlocks.firefly, 2, 0));
+                    break initial;
+                case META_MINE:
+                    switch (world.rand.nextInt(6)) {
+                        case 0:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.iron_ore, 1, 0));
+                            break initial;
+                        case 1:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.gold_ore, 1, 0));
+                            break initial;
+                        case 2:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.diamond_ore, 1, 0));
+                            break initial;
+                        case 3:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.emerald_ore, 1, 0));
+                            break initial;
+                        case 4:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.coal_ore, 1, 0));
+                            break initial;
+                        case 5:
+                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.redstone_ore, 1, 0));
+                            break initial;
+                    }
+                case META_SORT:
+                    this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.chest, 1, 0));
+                    break initial;
+            }
+    }
 }
