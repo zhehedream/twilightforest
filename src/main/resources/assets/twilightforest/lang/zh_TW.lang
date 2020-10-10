@@ -145,6 +145,11 @@ tile.TFAuroraBrick.0.name=極光方塊
 tile.TFUnderBrick.0.name=底磚
 tile.TFUnderBrick.1.name=破碎的底磚
 tile.TFUnderBrick.2.name=長苔的底磚
+tile.TFTrophy.0.name=[BOSS]九頭蛇獎盃
+tile.TFTrophy.1.name=[BOSS]納迦王獎盃
+tile.TFTrophy.2.name=[BOSS]巫妖王獎盃
+tile.TFTrophy.3.name=[BOSS]惡靈烏爾獎盃
+
 item.nagaScale.name=納迦的鱗片
 item.plateNaga.name=鱗片外衣
 item.legsNaga.name=鱗片護腿
