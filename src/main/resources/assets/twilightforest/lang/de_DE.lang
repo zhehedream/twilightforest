@@ -153,6 +153,11 @@ tile.HugeGloomBlock.name=riesiger Düsterpilz
 tile.TrollVidr.name=Trollvidr
 tile.UnripeTrollBer.name=unreife Trollbeere
 tile.TrollBer.name=Trollbeere
+tile.TFTrophy.0.name=Hydra Trophäe
+tile.TFTrophy.1.name=Naga Trophäe
+tile.TFTrophy.2.name=Lich Trophäe
+tile.TFTrophy.3.name=Ur-ghast Trophäe
+tile.TFTrophy.4.name=Schneekönigin Trophäe
 
 item.nagaScale.name=Naga Schuppen
 item.plateNaga.name=Naga Schuppen Tunika
