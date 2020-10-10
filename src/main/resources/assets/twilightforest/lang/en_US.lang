@@ -216,6 +216,11 @@ tile.CinderFurnaceLit.name=Cinder Furnace [NYI]
 tile.CinderLog.0.name=Cinder Log [NYI]
 tile.CinderLog.4.name=Cinder Log [NYI]
 tile.CinderLog.8.name=Cinder Log [NYI]
+tile.TFTrophy.0.name=Hydra Trophy
+tile.TFTrophy.1.name=Naga Trophy
+tile.TFTrophy.2.name=Lich Trophy
+tile.TFTrophy.3.name=Ur-ghast Trophy
+tile.TFTrophy.4.name=Snow Queen Trophy
 
 item.adherentFragment.name=Cloth Of The Adherent
 item.nagaScale.name=Naga Scale
