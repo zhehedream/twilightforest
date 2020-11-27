@@ -53,15 +53,19 @@ public class TFTreasureTable {
      * @param itemstack
      */
     public void add(ItemStack itemstack) {
-        list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        if (itemstack != null) {
+            list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        }
     }
 
     /**
      * Adds the item at the specified enchantment level
      */
     public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1) {
-        itemstack.addEnchantment(ench1, enchLevel1);
-        list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        if (itemstack != null) {
+            itemstack.addEnchantment(ench1, enchLevel1);
+            list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        }
     }
 
     /**
@@ -76,9 +80,11 @@ public class TFTreasureTable {
      * Adds the item at the specified enchantment level, 2 enchantments
      */
     public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1, Enchantment ench2, int enchLevel2) {
-        itemstack.addEnchantment(ench1, enchLevel1);
-        itemstack.addEnchantment(ench2, enchLevel2);
-        list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        if (itemstack != null) {
+            itemstack.addEnchantment(ench1, enchLevel1);
+            itemstack.addEnchantment(ench2, enchLevel2);
+            list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
+        }
     }
 
     /**
