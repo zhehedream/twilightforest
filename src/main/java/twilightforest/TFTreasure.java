@@ -18,13 +18,13 @@ public class TFTreasure {
 
     Random treasureRNG;
 
-    protected TFTreasureTable useless;
+    public TFTreasureTable useless;
     // one quarter of common treasures are one of these useless items.
 
-    protected TFTreasureTable common;
-    protected TFTreasureTable uncommon;
-    protected TFTreasureTable rare;
-    protected TFTreasureTable ultrarare;
+    public TFTreasureTable common;
+    public TFTreasureTable uncommon;
+    public TFTreasureTable rare;
+    public TFTreasureTable ultrarare;
     // one quarter of rare treasures are one of these ultrarare items.
     // The list must be at least as large as the large list for this to make sense.
 
