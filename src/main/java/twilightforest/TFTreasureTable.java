@@ -57,6 +57,12 @@ public class TFTreasureTable {
             list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
         }
     }
+    
+    public void add(ItemStack itemstack, int rarity) {
+        if (itemstack != null) {
+            list.add(new TFTreasureItem(itemstack, rarity));
+        }
+    }
 
     /**
      * Adds the item at the specified enchantment level
