@@ -220,7 +220,7 @@ public class TFTreasure {
             uncommon.add(Blocks.torch, 12);
 
             rare.add(TFItems.nagaScale, 1);
-            rare.add(TFBlocks.uncraftingTable, 1);
+            //rare.add(TFBlocks.uncraftingTable, 1);
             rare.add(TFItems.transformPowder, 12);
 
             ultrarare.add(TFItems.peacockFan, 1);
