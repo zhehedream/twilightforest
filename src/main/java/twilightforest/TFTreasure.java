@@ -221,9 +221,10 @@ public class TFTreasure {
             uncommon.add(Blocks.torch, 12);
 
             rare.add(TFItems.nagaScale, 1);
-            if (Loader.isModLoaded("dreamcraft") == false) {
-            rare.add(TFBlocks.uncraftingTable, 1);
-            }
+                
+            if (!Loader.isModLoaded("dreamcraft")) 
+                rare.add(TFBlocks.uncraftingTable, 1);
+                
             rare.add(TFItems.transformPowder, 12);
 
             ultrarare.add(TFItems.peacockFan, 1);
