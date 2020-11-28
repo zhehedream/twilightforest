@@ -2,6 +2,7 @@ package twilightforest;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
@@ -220,7 +221,9 @@ public class TFTreasure {
             uncommon.add(Blocks.torch, 12);
 
             rare.add(TFItems.nagaScale, 1);
+            if (Loader.isModLoaded("dreamcraft") = false) {
             rare.add(TFBlocks.uncraftingTable, 1);
+            }
             rare.add(TFItems.transformPowder, 12);
 
             ultrarare.add(TFItems.peacockFan, 1);
