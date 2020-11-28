@@ -221,7 +221,7 @@ public class TFTreasure {
             uncommon.add(Blocks.torch, 12);
 
             rare.add(TFItems.nagaScale, 1);
-            if (Loader.isModLoaded("dreamcraft") = false) {
+            if (Loader.isModLoaded("dreamcraft") == false) {
             rare.add(TFBlocks.uncraftingTable, 1);
             }
             rare.add(TFItems.transformPowder, 12);
