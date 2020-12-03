@@ -27,7 +27,7 @@ apply plugin: 'forge'
 idea.module.downloadJavadoc = true
 idea.module.downloadSources = true
 
-version = "2.3.8.5-dev"
+version = "2.3.8.6-dev"
 //noinspection GroovyUnusedAssignment
 group= "twilightforest" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //noinspection GroovyUnusedAssignment
