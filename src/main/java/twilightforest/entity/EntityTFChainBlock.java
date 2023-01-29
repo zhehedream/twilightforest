@@ -16,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.item.ItemTFChainBlock;
 
 public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiPart {
@@ -46,7 +47,8 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
 
         this.setSize(0.6F, 0.6F);
 
-        this.partsArray = (new Entity[] { chain1 = new EntityTFGoblinChain(this), chain2 = new EntityTFGoblinChain(this), chain3 = new EntityTFGoblinChain(this),
+        this.partsArray = (new Entity[] { chain1 = new EntityTFGoblinChain(this),
+                chain2 = new EntityTFGoblinChain(this), chain3 = new EntityTFGoblinChain(this),
                 chain4 = new EntityTFGoblinChain(this), chain5 = new EntityTFGoblinChain(this) });
     }
 
@@ -101,7 +103,8 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
             }
 
             if (!this.worldObj.isRemote && this.blocksSmashed < MAX_SMASH) {
-                if (this.worldObj.getBlock(mop.blockX, mop.blockY, mop.blockZ).getBlockHardness(worldObj, mop.blockX, mop.blockY, mop.blockZ) > 0.3F) {
+                if (this.worldObj.getBlock(mop.blockX, mop.blockY, mop.blockZ)
+                        .getBlockHardness(worldObj, mop.blockX, mop.blockY, mop.blockZ) > 0.3F) {
                     // riccochet
                     double bounce = 0.6;
                     this.velX *= bounce;
@@ -109,36 +112,36 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
                     this.velZ *= bounce;
 
                     switch (mop.sideHit) {
-                    case 0:
-                        if (this.velY > 0) {
-                            this.velY *= -bounce;
-                        }
-                        break;
-                    case 1:
-                        if (this.velY < 0) {
-                            this.velY *= -bounce;
-                        }
-                        break;
-                    case 2:
-                        if (this.velZ > 0) {
-                            this.velZ *= -bounce;
-                        }
-                        break;
-                    case 3:
-                        if (this.velZ < 0) {
-                            this.velZ *= -bounce;
-                        }
-                        break;
-                    case 4:
-                        if (this.velX > 0) {
-                            this.velX *= -bounce;
-                        }
-                        break;
-                    case 5:
-                        if (this.velX < 0) {
-                            this.velX *= -bounce;
-                        }
-                        break;
+                        case 0:
+                            if (this.velY > 0) {
+                                this.velY *= -bounce;
+                            }
+                            break;
+                        case 1:
+                            if (this.velY < 0) {
+                                this.velY *= -bounce;
+                            }
+                            break;
+                        case 2:
+                            if (this.velZ > 0) {
+                                this.velZ *= -bounce;
+                            }
+                            break;
+                        case 3:
+                            if (this.velZ < 0) {
+                                this.velZ *= -bounce;
+                            }
+                            break;
+                        case 4:
+                            if (this.velX > 0) {
+                                this.velX *= -bounce;
+                            }
+                            break;
+                        case 5:
+                            if (this.velX < 0) {
+                                this.velX *= -bounce;
+                            }
+                            break;
                     }
                 }
 
@@ -180,7 +183,8 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
                     Block block = this.worldObj.getBlock(dx, dy, dz);
                     int currentMeta = this.worldObj.getBlockMetadata(dx, dy, dz);
 
-                    if (block != Blocks.air && block.getExplosionResistance(this) < 7F && block.getBlockHardness(worldObj, dx, dy, dz) >= 0) {
+                    if (block != Blocks.air && block.getExplosionResistance(this) < 7F
+                            && block.getBlockHardness(worldObj, dx, dy, dz) >= 0) {
 
                         if (entity != null && entity instanceof EntityPlayer) {
                             EntityPlayer player = (EntityPlayer) entity;
@@ -248,7 +252,10 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
 
             EntityLivingBase returnTo = this.getThrower();
 
-            Vec3 back = Vec3.createVectorHelper(returnTo.posX - this.posX, returnTo.posY + (double) returnTo.getEyeHeight() - 1.200000023841858D - this.posY, returnTo.posZ - this.posZ).normalize();
+            Vec3 back = Vec3.createVectorHelper(
+                    returnTo.posX - this.posX,
+                    returnTo.posY + (double) returnTo.getEyeHeight() - 1.200000023841858D - this.posY,
+                    returnTo.posZ - this.posZ).normalize();
 
             float age = Math.min(this.ticksExisted * 0.03F, 1.0F);
 
@@ -261,7 +268,9 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
 
         // on the client, if we are not attached, assume we have just spawned, and attach to the player
         if (this.worldObj.isRemote && !this.isAttached) {
-            List nearbyEntities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(-this.motionX, -this.motionY, -this.motionZ).expand(2.0D, 2.0D, 2.0D));
+            List nearbyEntities = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+                    this,
+                    this.boundingBox.addCoord(-this.motionX, -this.motionY, -this.motionZ).expand(2.0D, 2.0D, 2.0D));
             for (int i = 0; i < nearbyEntities.size(); ++i) {
                 Entity nearby = (Entity) nearbyEntities.get(i);
 

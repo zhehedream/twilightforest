@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.world.TFGenBigMushgloom;
 import twilightforest.world.TFGenMyceliumBlob;
@@ -21,24 +22,26 @@ public class ComponentTFTrollCaveGarden extends ComponentTFTrollCaveMain {
     WorldGenBigMushroom bigMushroomGen = new WorldGenBigMushroom();
     TFGenBigMushgloom bigMushgloomGen = new TFGenBigMushgloom();
 
-    public ComponentTFTrollCaveGarden() {
-    }
+    public ComponentTFTrollCaveGarden() {}
 
     public ComponentTFTrollCaveGarden(int index, int x, int y, int z, int caveSize, int caveHeight, int direction) {
         super(index);
         this.size = caveSize;
         this.height = caveHeight;
         this.setCoordBaseMode(direction);
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, size - 1, height - 1, size - 1, direction);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, 0, 0, 0, size - 1, height - 1, size - 1, direction);
     }
 
     @SuppressWarnings({ "rawtypes" })
     @Override
     public void buildComponent(StructureComponent parent, List list, Random rand) {
         // add a cloud
-//        ComponentTFTrollCloud cloud = new ComponentTFTrollCloud(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), rand.nextInt(64) + 160, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2));
-//        list.add(cloud);
-//        cloud.buildComponent(this, list, rand);
+        // ComponentTFTrollCloud cloud = new ComponentTFTrollCloud(1, boundingBox.minX + ((boundingBox.maxX -
+        // boundingBox.minX) / 2), rand.nextInt(64) + 160, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) /
+        // 2));
+        // list.add(cloud);
+        // cloud.buildComponent(this, list, rand);
     }
 
     @Override
@@ -48,7 +51,8 @@ public class ComponentTFTrollCaveGarden extends ComponentTFTrollCaveMain {
         } else {
             // clear inside
             hollowCaveMiddle(world, sbb, rand, 0, 0, 0, this.size - 1, this.height - 1, this.size - 1);
-            Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+            Random decoRNG = new Random(
+                    world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
             // treasure!
             makeTreasureCrate(world, rand, sbb);
@@ -98,7 +102,8 @@ public class ComponentTFTrollCaveGarden extends ComponentTFTrollCaveMain {
     /**
      * Use the generator at the specified coords
      */
-    protected void generate(World world, WorldGenerator generator, Random rand, int x, int y, int z, StructureBoundingBox sbb) {
+    protected void generate(World world, WorldGenerator generator, Random rand, int x, int y, int z,
+            StructureBoundingBox sbb) {
         // are the coordinates in our bounding box?
         int dx = getXWithOffset(x, z);
         int dy = getYWithOffset(y);

@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
+
 import twilightforest.world.TFWorldChunkManager;
 
 public class TFMagicMapData extends MapData {
@@ -28,9 +29,9 @@ public class TFMagicMapData extends MapData {
         if (featureStorage.length > 0) {
             this.updateMPMapData(featureStorage);
         }
-//        else {
-//            System.out.println("Can't find feature storage for " + this.mapName);
-//        }
+        // else {
+        // System.out.println("Can't find feature storage for " + this.mapName);
+        // }
     }
 
     /**
@@ -79,8 +80,7 @@ public class TFMagicMapData extends MapData {
     }
 
     /**
-     * Checks existing features against the feature cache and removes/changes wrong ones. Does not add
-     * features.
+     * Checks existing features against the feature cache and removes/changes wrong ones. Does not add features.
      */
     public void checkExistingFeatures(World world) {
         ArrayList<MapCoord> toRemove = null;

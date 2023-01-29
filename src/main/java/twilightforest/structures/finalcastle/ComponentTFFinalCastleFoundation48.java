@@ -6,20 +6,26 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleFoundation48 extends StructureTFComponent {
+
     private int groundLevel = -1;
 
-    public ComponentTFFinalCastleFoundation48() {
-    }
+    public ComponentTFFinalCastleFoundation48() {}
 
     public ComponentTFFinalCastleFoundation48(Random rand, int i, StructureTFComponent sideTower) {
         super(i);
 
         this.setCoordBaseMode(sideTower.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(sideTower.getBoundingBox().minX, sideTower.getBoundingBox().minY, sideTower.getBoundingBox().minZ, sideTower.getBoundingBox().maxX,
-                sideTower.getBoundingBox().minY - 1, sideTower.getBoundingBox().maxZ);
+        this.boundingBox = new StructureBoundingBox(
+                sideTower.getBoundingBox().minX,
+                sideTower.getBoundingBox().minY,
+                sideTower.getBoundingBox().minZ,
+                sideTower.getBoundingBox().maxX,
+                sideTower.getBoundingBox().minY - 1,
+                sideTower.getBoundingBox().maxZ);
     }
 
     @Override

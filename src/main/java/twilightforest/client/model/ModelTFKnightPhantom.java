@@ -94,11 +94,12 @@ public class ModelTFKnightPhantom extends ModelBiped {
     }
 
     /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the
-     * movement of arms and legs, where par1 represents the time(so that arms and legs swing back and
-     * forth) and par2 represents how "far" arms and legs can swing at most.
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
      */
-    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6,
+            Entity par7Entity) {
         this.bipedHead.rotateAngleY = par4 / (180F / (float) Math.PI);
         this.bipedHead.rotateAngleX = par5 / (180F / (float) Math.PI);
         this.bipedHead.rotateAngleZ = 0;
@@ -111,41 +112,44 @@ public class ModelTFKnightPhantom extends ModelBiped {
         this.bipedRightArm.rotateAngleZ = 0.0F;
         this.bipedLeftArm.rotateAngleZ = 0.0F;
 
-//        this.bipedRightLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
-//        this.bipedLeftLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
-//        this.bipedRightLeg.rotateAngleY = 0.0F;
-//        this.bipedLeftLeg.rotateAngleY = 0.0F;
-//
-//        if (this.isRiding)
-//        {
-//            this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
-//            this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
-//            this.bipedRightLeg.rotateAngleX = 0;
-//            this.bipedLeftLeg.rotateAngleX = 0;
-////            this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-////            this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
-//        }
+        // this.bipedRightLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
+        // this.bipedLeftLeg.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
+        // this.bipedRightLeg.rotateAngleY = 0.0F;
+        // this.bipedLeftLeg.rotateAngleY = 0.0F;
+        //
+        // if (this.isRiding)
+        // {
+        // this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
+        // this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
+        // this.bipedRightLeg.rotateAngleX = 0;
+        // this.bipedLeftLeg.rotateAngleX = 0;
+        //// this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+        //// this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+        // }
 
         if (this.heldItemLeft != 0) {
-            this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - ((float) Math.PI / 10F) * (float) this.heldItemLeft;
+            this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F
+                    - ((float) Math.PI / 10F) * (float) this.heldItemLeft;
         }
 
         this.heldItemRight = 1;
 
         if (this.heldItemRight != 0) {
-            this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - ((float) Math.PI / 10F) * (float) this.heldItemRight;
+            this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F
+                    - ((float) Math.PI / 10F) * (float) this.heldItemRight;
         }
-//
-//        bipedRightArm.rotateAngleX -= (Math.PI * 0.66);
-//
-//        // during swing move arm forward
-//        if (upperKnight.heavySpearTimer > 0)
-//        {
-//            bipedRightArm.rotateAngleX -= this.getArmRotationDuringSwing(60 - upperKnight.heavySpearTimer + par6) / (180F / (float)Math.PI);
-//        }
+        //
+        // bipedRightArm.rotateAngleX -= (Math.PI * 0.66);
+        //
+        // // during swing move arm forward
+        // if (upperKnight.heavySpearTimer > 0)
+        // {
+        // bipedRightArm.rotateAngleX -= this.getArmRotationDuringSwing(60 - upperKnight.heavySpearTimer + par6) / (180F
+        // / (float)Math.PI);
+        // }
 
-//        this.bipedRightArm.rotateAngleY = 0.0F;
-//        this.bipedLeftArm.rotateAngleY = 0.0F;
+        // this.bipedRightArm.rotateAngleY = 0.0F;
+        // this.bipedLeftArm.rotateAngleY = 0.0F;
 
         this.bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
         this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;

@@ -2,10 +2,6 @@ package twilightforest.item;
 
 import java.util.HashMap;
 
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -18,8 +14,14 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFChainBlock;
+
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFChainBlock extends ItemTool {
 
@@ -81,8 +83,8 @@ public class ItemTFChainBlock extends ItemTool {
     }
 
     /**
-     * Method for the client to determine if the block has been thrown or not. Not as accurate as server
-     * method due to lag, etc.
+     * Method for the client to determine if the block has been thrown or not. Not as accurate as server method due to
+     * lag, etc.
      * 
      * @param stack
      */
@@ -100,7 +102,8 @@ public class ItemTFChainBlock extends ItemTool {
      * @param player
      */
     public static void setChainAsReturned(EntityPlayer player) {
-        if (player != null && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.chainBlock) {
+        if (player != null && player.getCurrentEquippedItem() != null
+                && player.getCurrentEquippedItem().getItem() == TFItems.chainBlock) {
             setChainAsReturned(player.getCurrentEquippedItem());
         }
     }
@@ -124,14 +127,15 @@ public class ItemTFChainBlock extends ItemTool {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      *
-     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the
-     *                     same if usingItem is not null)
+     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the same if
+     *                     usingItem is not null)
      * @param renderPass   The pass to get the icon for, 0 is default.
      * @param player       The player holding the item
      * @param usingItem    The item the player is actively using. Can be null if not using anything.
@@ -190,6 +194,7 @@ public class ItemTFChainBlock extends ItemTool {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with knightmetal ingots
-        return par2ItemStack.getItem() == TFItems.knightMetal ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.knightMetal ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 }

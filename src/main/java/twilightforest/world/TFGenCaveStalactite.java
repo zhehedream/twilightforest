@@ -90,8 +90,8 @@ public class TFGenCaveStalactite extends TFGenerator {
     }
 
     /**
-     * Generates a stalactite at the specified location. The coordinates should be inside a cave. This
-     * will return false if it can't find a valid ceiling and floor, or if there are other errors.
+     * Generates a stalactite at the specified location. The coordinates should be inside a cave. This will return false
+     * if it can't find a valid ceiling and floor, or if there are other errors.
      */
     public boolean generate(World world, Random random, int x, int y, int z) {
         int ceiling = Integer.MAX_VALUE;
@@ -126,7 +126,9 @@ public class TFGenCaveStalactite extends TFGenerator {
             }
             // if we get something that's not cave material, fail!
             // actually stalactites can hang above water or lava
-            if (m != Material.ground && m != Material.rock && (!hang && m != Material.water) && (!hang && m != Material.lava)) {
+            if (m != Material.ground && m != Material.rock
+                    && (!hang && m != Material.water)
+                    && (!hang && m != Material.lava)) {
                 return false;
             }
             // okay, we found a valid floor.

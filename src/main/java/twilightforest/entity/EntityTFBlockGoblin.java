@@ -22,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
@@ -59,8 +60,8 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
 
         this.recoilCounter = 0;
 
-        this.partsArray = (new Entity[] { block = new EntityTFSpikeBlock(this), chain1 = new EntityTFGoblinChain(this), chain2 = new EntityTFGoblinChain(this),
-                chain3 = new EntityTFGoblinChain(this) });
+        this.partsArray = (new Entity[] { block = new EntityTFSpikeBlock(this), chain1 = new EntityTFGoblinChain(this),
+                chain2 = new EntityTFGoblinChain(this), chain3 = new EntityTFGoblinChain(this) });
 
     }
 
@@ -224,7 +225,9 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
      */
     @SuppressWarnings("unchecked")
     protected void applyBlockCollisions(Entity collider) {
-        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(collider, collider.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+                collider,
+                collider.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
         if (list != null && !list.isEmpty()) {
             for (int i = 0; i < list.size(); ++i) {

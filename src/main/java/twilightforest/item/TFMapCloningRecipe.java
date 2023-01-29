@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
 public class TFMapCloningRecipe implements IRecipe {
+
     public Item fullMapID;
     public Item blankMapID;
 

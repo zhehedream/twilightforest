@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.entity.EntityTFWinterWolf;
@@ -91,7 +92,8 @@ public class TFBiomeSnow extends TFBiomeBase {
         } else {
             return par1EnumCreatureType == EnumCreatureType.creature ? this.spawnableCreatureList
                     : (par1EnumCreatureType == EnumCreatureType.waterCreature ? this.spawnableWaterCreatureList
-                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList : null));
+                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList
+                                    : null));
         }
     }
 

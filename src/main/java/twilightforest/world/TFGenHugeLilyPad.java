@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.block.TFBlocks;
 
 /**
@@ -42,8 +43,12 @@ public class TFGenHugeLilyPad extends WorldGenerator {
     }
 
     private boolean shouldPlacePadAt(World world, int dx, int dy, int dz) {
-        return world.isAirBlock(dx, dy, dz) && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.water && world.isAirBlock(dx + 1, dy, dz)
-                && world.getBlock(dx + 1, dy - 1, dz).getMaterial() == Material.water && world.isAirBlock(dx, dy, dz + 1) && world.getBlock(dx, dy - 1, dz + 1).getMaterial() == Material.water
-                && world.isAirBlock(dx + 1, dy, dz + 1) && world.getBlock(dx + 1, dy - 1, dz + 1).getMaterial() == Material.water;
+        return world.isAirBlock(dx, dy, dz) && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.water
+                && world.isAirBlock(dx + 1, dy, dz)
+                && world.getBlock(dx + 1, dy - 1, dz).getMaterial() == Material.water
+                && world.isAirBlock(dx, dy, dz + 1)
+                && world.getBlock(dx, dy - 1, dz + 1).getMaterial() == Material.water
+                && world.isAirBlock(dx + 1, dy, dz + 1)
+                && world.getBlock(dx + 1, dy - 1, dz + 1).getMaterial() == Material.water;
     }
 }

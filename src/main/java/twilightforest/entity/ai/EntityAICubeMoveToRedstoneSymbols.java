@@ -4,6 +4,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.EntityTFRovingCube;
 
 public class EntityAICubeMoveToRedstoneSymbols extends EntityAIBase {
@@ -93,10 +94,14 @@ public class EntityAICubeMoveToRedstoneSymbols extends EntityAIBase {
             return false;
         } else {
             // we found an air block, is it surrounded by redstone?
-            if (this.myCube.worldObj.getBlock(x + 1, y, z) == Blocks.redstone_wire && this.myCube.worldObj.getBlock(x - 1, y, z) == Blocks.redstone_wire
-                    && this.myCube.worldObj.getBlock(x, y, z + 1) == Blocks.redstone_wire && this.myCube.worldObj.getBlock(x, y, z - 1) == Blocks.redstone_wire
-                    && this.myCube.worldObj.getBlock(x + 1, y, z + 1) == Blocks.redstone_wire && this.myCube.worldObj.getBlock(x - 1, y, z + 1) == Blocks.redstone_wire
-                    && this.myCube.worldObj.getBlock(x + 1, y, z - 1) == Blocks.redstone_wire && this.myCube.worldObj.getBlock(x - 1, y, z - 1) == Blocks.redstone_wire) {
+            if (this.myCube.worldObj.getBlock(x + 1, y, z) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x - 1, y, z) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x, y, z + 1) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x, y, z - 1) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x + 1, y, z + 1) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x - 1, y, z + 1) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x + 1, y, z - 1) == Blocks.redstone_wire
+                    && this.myCube.worldObj.getBlock(x - 1, y, z - 1) == Blocks.redstone_wire) {
 
                 return true;
             } else {

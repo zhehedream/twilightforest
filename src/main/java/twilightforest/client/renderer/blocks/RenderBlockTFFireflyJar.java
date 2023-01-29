@@ -1,13 +1,14 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.block.BlockTFFireflyJar;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFFireflyJar implements ISimpleBlockRenderingHandler {
 
@@ -24,7 +25,8 @@ public class RenderBlockTFFireflyJar implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         return renderJar(renderer, world, x, y, z, block);
     }
 
@@ -116,12 +118,12 @@ public class RenderBlockTFFireflyJar implements ISimpleBlockRenderingHandler {
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
         renderblocks.renderFaceZPos(par1Block, 0.0D, 0.0D, 0.0D, BlockTFFireflyJar.jarCork);
         tessellator.draw();
-//        renderblocks.renderBottomFace(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
-//        renderblocks.renderFaceYPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
-//        renderblocks.renderFaceXPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
-//        renderblocks.renderFaceXNeg(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
-//        renderblocks.renderFaceZNeg(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
-//        renderblocks.renderFaceZPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderBottomFace(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderFaceYPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderFaceXPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderFaceXNeg(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderFaceZNeg(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
+        // renderblocks.renderFaceZPos(par1Block, 0.0D, 0.0D, 0.0D, sprLid);
 
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 

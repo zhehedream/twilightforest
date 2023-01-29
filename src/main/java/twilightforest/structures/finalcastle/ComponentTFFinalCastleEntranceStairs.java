@@ -6,12 +6,13 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 // Stair blocks heading to the entrance tower doors
 public class ComponentTFFinalCastleEntranceStairs extends StructureTFComponent {
-    public ComponentTFFinalCastleEntranceStairs() {
-    }
+
+    public ComponentTFFinalCastleEntranceStairs() {}
 
     public ComponentTFFinalCastleEntranceStairs(int index, int x, int y, int z, int direction) {
         this.setCoordBaseMode(direction);

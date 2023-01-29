@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenHangingLamps;
@@ -138,7 +139,10 @@ public class TFBiomeFireflyForest extends TFBiomeTwilightForest {
      * Every color flower!
      */
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_) {
-        double flowerVar = MathHelper.clamp_double((1.0D + plantNoise.func_151601_a((double) p_150572_2_ / 48.0D, (double) p_150572_4_ / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+        double flowerVar = MathHelper.clamp_double(
+                (1.0D + plantNoise.func_151601_a((double) p_150572_2_ / 48.0D, (double) p_150572_4_ / 48.0D)) / 2.0D,
+                0.0D,
+                0.9999D);
         int flowerIndex = (int) (flowerVar * (double) BlockFlower.field_149859_a.length);
 
         if (flowerIndex == 1) {

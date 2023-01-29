@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenThorns;
@@ -61,10 +62,14 @@ public class TFBiomeThornlands extends TFBiomeBase {
             // grass = return immediately
             if (blockID == Blocks.grass) {
                 return y + 1;
-            } else if (blockID == Blocks.dirt || blockID == Blocks.stone || blockID == Blocks.gravel || blockID == Blocks.sandstone || blockID == Blocks.sand || blockID == Blocks.clay
+            } else if (blockID == Blocks.dirt || blockID == Blocks.stone
+                    || blockID == Blocks.gravel
+                    || blockID == Blocks.sandstone
+                    || blockID == Blocks.sand
+                    || blockID == Blocks.clay
                     || blockID == TFBlocks.deadrock) {
-                lastDirt = y + 1;
-            }
+                        lastDirt = y + 1;
+                    }
         }
 
         return lastDirt;

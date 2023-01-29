@@ -1,7 +1,5 @@
 package twilightforest.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityDiggingFX;
@@ -14,6 +12,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class BlockTFGiantBlock extends Block {
 
@@ -45,18 +46,18 @@ public abstract class BlockTFGiantBlock extends Block {
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         // return an icon from the icon matrix!
         switch (side) {
-        default:
-        case 0:
-        case 1:
-            return this.giantIcon[x & 3][z & 3][side];
-        case 2:
-            return this.giantIcon[3 - (x & 3)][3 - (y & 3)][side];
-        case 3:
-            return this.giantIcon[x & 3][3 - (y & 3)][side];
-        case 4:
-            return this.giantIcon[z & 3][3 - (y & 3)][side];
-        case 5:
-            return this.giantIcon[3 - (z & 3)][3 - (y & 3)][side];
+            default:
+            case 0:
+            case 1:
+                return this.giantIcon[x & 3][z & 3][side];
+            case 2:
+                return this.giantIcon[3 - (x & 3)][3 - (y & 3)][side];
+            case 3:
+                return this.giantIcon[x & 3][3 - (y & 3)][side];
+            case 4:
+                return this.giantIcon[z & 3][3 - (y & 3)][side];
+            case 5:
+                return this.giantIcon[3 - (z & 3)][3 - (y & 3)][side];
         }
     }
 
@@ -78,7 +79,8 @@ public abstract class BlockTFGiantBlock extends Block {
         for (int dx = 0; dx < 4; dx++) {
             for (int dy = 0; dy < 4; dy++) {
                 for (int dz = 0; dz < 4; dz++) {
-                    allReplaceable &= world.getBlock(bx + dx, by + dy, bz + dz).isReplaceable(world, bx + dx, by + dy, bz + dz);
+                    allReplaceable &= world.getBlock(bx + dx, by + dy, bz + dz)
+                            .isReplaceable(world, bx + dx, by + dy, bz + dz);
                 }
             }
         }
@@ -87,15 +89,20 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         int bx = (x >> 2) << 2;
         int by = (y >> 2) << 2;
         int bz = (z >> 2) << 2;
 
-        return AxisAlignedBB.getBoundingBox((double) bx + this.minX, (double) by + this.minY, (double) bz + this.minZ, (double) bx + this.maxX * 4F, (double) by + this.maxY * 4F,
+        return AxisAlignedBB.getBoundingBox(
+                (double) bx + this.minX,
+                (double) by + this.minY,
+                (double) bz + this.minZ,
+                (double) bx + this.maxX * 4F,
+                (double) by + this.maxY * 4F,
                 (double) bz + this.maxZ * 4F);
     }
 
@@ -117,9 +124,9 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Spawn particles for when the block is destroyed. Due to the nature of how this is invoked, the
-     * x/y/z locations are not always guaranteed to host your block. So be sure to do proper sanity
-     * checks before assuming that the location is this block.
+     * Spawn particles for when the block is destroyed. Due to the nature of how this is invoked, the x/y/z locations
+     * are not always guaranteed to host your block. So be sure to do proper sanity checks before assuming that the
+     * location is this block.
      *
      * @param world          The current world
      * @param x              X position to spawn the particle
@@ -149,7 +156,16 @@ public abstract class BlockTFGiantBlock extends Block {
                     double d1 = (double) by + ((double) j1 + 0.5D) / 4F;
                     double d2 = (double) bz + ((double) k1 + 0.5D) / 4F;
                     effectRenderer.addEffect(
-                            (new EntityDiggingFX(world, d0, d1, d2, d0 - (double) x - 0.5D, d1 - (double) y - 0.5D, d2 - (double) z - 0.5D, blockThere, metaThere)).applyColourMultiplier(x, y, z));
+                            (new EntityDiggingFX(
+                                    world,
+                                    d0,
+                                    d1,
+                                    d2,
+                                    d0 - (double) x - 0.5D,
+                                    d1 - (double) y - 0.5D,
+                                    d2 - (double) z - 0.5D,
+                                    blockThere,
+                                    metaThere)).applyColourMultiplier(x, y, z));
                 }
             }
         }
@@ -164,8 +180,8 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Called when the block is destroyed by an explosion. Useful for allowing the block to take into
-     * account tile entities, metadata, etc. when exploded, before it is removed.
+     * Called when the block is destroyed by an explosion. Useful for allowing the block to take into account tile
+     * entities, metadata, etc. when exploded, before it is removed.
      *
      * @param world     The current world
      * @param x         X Position
@@ -179,8 +195,8 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Called on server worlds only when the block is about to be replaced by a different block or the
-     * same block with a different metadata value. Args: world, x, y, z, old metadata
+     * Called on server worlds only when the block is about to be replaced by a different block or the same block with a
+     * different metadata value. Args: world, x, y, z, old metadata
      */
     public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
         if (!this.isSelfDestructing && !canBlockStay(world, x, y, z)) {
@@ -214,8 +230,7 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with
-     * plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with plants.
      */
     public boolean canBlockStay(World world, int x, int y, int z) {
         boolean allThisBlock = true;
@@ -235,8 +250,8 @@ public abstract class BlockTFGiantBlock extends Block {
     }
 
     /**
-     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 =
-     * total immobility and stop pistons
+     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
+     * and stop pistons
      */
     public int getMobilityFlag() {
         return 2;

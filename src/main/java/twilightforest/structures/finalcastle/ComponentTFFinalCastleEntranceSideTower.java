@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.world.gen.structure.StructureComponent;
-import twilightforest.structures.StructureTFComponent;;
+
+import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleEntranceSideTower extends ComponentTFFinalCastleMazeTower13 {
-    public ComponentTFFinalCastleEntranceSideTower() {
-    }
 
-    public ComponentTFFinalCastleEntranceSideTower(Random rand, int i, int x, int y, int z, int floors, int entranceFloor, int direction) {
+    public ComponentTFFinalCastleEntranceSideTower() {}
+
+    public ComponentTFFinalCastleEntranceSideTower(Random rand, int i, int x, int y, int z, int floors,
+            int entranceFloor, int direction) {
         super(rand, i, x, y, z, floors, entranceFloor, 0, direction);
 
         addOpening(0, 1, size / 2, 2);

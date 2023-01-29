@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelTFRedcap extends ModelBiped {
+
     public ModelTFRedcap() {
         bipedHead = new ModelRenderer(this, 0, 0);
         bipedHead.addBox(-3.4F, 1F, -4F, 7, 7, 7, 0F);

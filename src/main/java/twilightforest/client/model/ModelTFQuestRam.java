@@ -6,17 +6,19 @@
 
 package twilightforest.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.entity.passive.EntityTFQuestRam;
 
 public class ModelTFQuestRam extends ModelBase {
+
     // fields
     ModelRenderer frontbody;
     ModelRenderer rearbody;
@@ -159,7 +161,10 @@ public class ModelTFQuestRam extends ModelBase {
         for (int i = 0; i < 16; i++) {
             if (segmentEnabled[i]) {
                 float var4 = 1.0F;
-                GL11.glColor3f(var4 * EntitySheep.fleeceColorTable[i][0], var4 * EntitySheep.fleeceColorTable[i][1], var4 * EntitySheep.fleeceColorTable[i][2]);
+                GL11.glColor3f(
+                        var4 * EntitySheep.fleeceColorTable[i][0],
+                        var4 * EntitySheep.fleeceColorTable[i][1],
+                        var4 * EntitySheep.fleeceColorTable[i][2]);
                 segments[i].render(f5);
 
             }
@@ -193,8 +198,8 @@ public class ModelTFQuestRam extends ModelBase {
     }
 
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are
-     * the same second and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
      */
     @Override
     public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float partialTick) {

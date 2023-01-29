@@ -1,9 +1,10 @@
 package twilightforest.client.renderer.blocks;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFHugeLilyPad implements ISimpleBlockRenderingHandler {
 
@@ -19,7 +20,8 @@ public class RenderBlockTFHugeLilyPad implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         // rotate the sides
         int meta = world.getBlockMetadata(x, y, z);
 

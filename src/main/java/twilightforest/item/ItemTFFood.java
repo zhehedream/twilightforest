@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -10,7 +8,10 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFFood extends ItemFood {
 
@@ -62,7 +63,8 @@ public class ItemTFFood extends ItemFood {
     public void registerIcons(IIconRegister par1IconRegister) {
         // only try to load if we don't have a lookalike
         if (this.looksLike == null) {
-            this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+            this.itemIcon = par1IconRegister
+                    .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
         }
     }
 

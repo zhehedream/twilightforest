@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
+
 import twilightforest.TFFeature;
 import twilightforest.TwilightForestMod;
 import twilightforest.world.TFGenCanopyMushroom;
@@ -75,6 +76,7 @@ public class TFBiomeDecorator extends BiomeDecorator {
      * WeightedRandomItem for making the minor features
      */
     static class RuinEntry extends WeightedRandom.Item {
+
         public final TFGenerator generator;
 
         public RuinEntry(TFGenerator generator, int weight) {
@@ -121,16 +123,17 @@ public class TFBiomeDecorator extends BiomeDecorator {
             decorateUnderground(world, rand, mapX, mapZ);
             decorateOnlyOres(world, rand, mapX, mapZ);
         } else {
-//            // hollow trees!
-//            if (rand.nextInt(24) == 0) {
-//                int rx = mapX + rand.nextInt(16) + 8;
-//                int rz = mapZ + rand.nextInt(16) + 8;
-//                int ry = world.getHeightValue(rx, rz);
-//                hollowTreeGen.generate(world, rand, rx, ry, rz);
-//            }
+            // // hollow trees!
+            // if (rand.nextInt(24) == 0) {
+            // int rx = mapX + rand.nextInt(16) + 8;
+            // int rz = mapZ + rand.nextInt(16) + 8;
+            // int ry = world.getHeightValue(rx, rz);
+            // hollowTreeGen.generate(world, rand, rx, ry, rz);
+            // }
 
             // regular decorations
-            this.currentWorld = null; // suppress "Already decorating" error. I'm fairly sure that this mod does not cause this on its
+            this.currentWorld = null; // suppress "Already decorating" error. I'm fairly sure that this mod does not
+                                      // cause this on its
                                       // own, but cross-mod interactions seem to.
             super.decorateChunk(world, rand, biome, mapX, mapZ);
 
@@ -148,14 +151,15 @@ public class TFBiomeDecorator extends BiomeDecorator {
             int rx = chunk_X + randomGenerator.nextInt(16) + 8;
             int rz = chunk_Z + randomGenerator.nextInt(16) + 8;
             int ry = currentWorld.getHeightValue(rx, rz);
-            if(ry < 75) {
+            if (ry < 75) {
                 TFGenerator rf = randomFeature(randomGenerator);
                 rf.generate(currentWorld, randomGenerator, rx, ry, rz);
             }
         }
 
         // add canopy trees
-        int nc = (int) canopyPerChunk + ((randomGenerator.nextFloat() < (canopyPerChunk - (int) canopyPerChunk)) ? 1 : 0);
+        int nc = (int) canopyPerChunk
+                + ((randomGenerator.nextFloat() < (canopyPerChunk - (int) canopyPerChunk)) ? 1 : 0);
         for (int i = 0; i < nc; i++) {
             int rx = chunk_X + randomGenerator.nextInt(16) + 8;
             int rz = chunk_Z + randomGenerator.nextInt(16) + 8;

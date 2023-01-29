@@ -106,9 +106,17 @@ public class ComponentTFStrongholdUpperAscender extends StructureTFStrongholdCom
      */
     private void makeStairsAt(World world, int y, int z, int facing, StructureBoundingBox sbb) {
         // check walls
-        if (this.getBlockAtCurrentPosition(world, 0, y, z, sbb) != Blocks.air || this.getBlockAtCurrentPosition(world, 4, y, z, sbb) != Blocks.air) {
+        if (this.getBlockAtCurrentPosition(world, 0, y, z, sbb) != Blocks.air
+                || this.getBlockAtCurrentPosition(world, 4, y, z, sbb) != Blocks.air) {
             for (int x = 1; x < 4; x++) {
-                this.placeBlockAtCurrentPosition(world, Blocks.stone_brick_stairs, this.getStairMeta(facing), x, y, z, sbb);
+                this.placeBlockAtCurrentPosition(
+                        world,
+                        Blocks.stone_brick_stairs,
+                        this.getStairMeta(facing),
+                        x,
+                        y,
+                        z,
+                        sbb);
             }
         }
     }
@@ -118,7 +126,8 @@ public class ComponentTFStrongholdUpperAscender extends StructureTFStrongholdCom
      */
     private void makePlatformAt(World world, int y, int z, StructureBoundingBox sbb) {
         // check walls
-        if (this.getBlockAtCurrentPosition(world, 0, y, z, sbb) != Blocks.air || this.getBlockAtCurrentPosition(world, 4, y, z, sbb) != Blocks.air) {
+        if (this.getBlockAtCurrentPosition(world, 0, y, z, sbb) != Blocks.air
+                || this.getBlockAtCurrentPosition(world, 4, y, z, sbb) != Blocks.air) {
             for (int x = 1; x < 4; x++) {
                 this.placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, x, y, z, sbb);
             }

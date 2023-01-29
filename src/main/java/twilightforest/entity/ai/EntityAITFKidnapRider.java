@@ -6,6 +6,7 @@ import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
 public class EntityAITFKidnapRider extends EntityAIBase {
+
     private EntityCreature theEntityCreature;
     private float speed;
     private double randPosX;

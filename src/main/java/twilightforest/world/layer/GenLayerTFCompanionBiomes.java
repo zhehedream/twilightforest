@@ -2,6 +2,7 @@ package twilightforest.world.layer;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.biomes.TFBiomeBase;
 
 public class GenLayerTFCompanionBiomes extends GenLayer {
@@ -12,8 +13,7 @@ public class GenLayerTFCompanionBiomes extends GenLayer {
     }
 
     /**
-     * If we are next to one of the 4 "key" biomes, we randomly turn into a companion biome for that
-     * center biome
+     * If we are next to one of the 4 "key" biomes, we randomly turn into a companion biome for that center biome
      */
     @Override
     public int[] getInts(int x, int z, int width, int depth) {

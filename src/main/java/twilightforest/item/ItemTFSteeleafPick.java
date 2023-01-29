@@ -2,15 +2,16 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFSteeleafPick extends ItemPickaxe {
 
@@ -36,7 +37,8 @@ public class ItemTFSteeleafPick extends ItemPickaxe {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with steeleaf ingots
-        return par2ItemStack.getItem() == TFItems.steeleafIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.steeleafIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -45,6 +47,7 @@ public class ItemTFSteeleafPick extends ItemPickaxe {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

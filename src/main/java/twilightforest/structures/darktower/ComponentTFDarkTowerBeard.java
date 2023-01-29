@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
@@ -27,8 +28,13 @@ public class ComponentTFDarkTowerBeard extends StructureTFComponent {
         this.height = size / 2;
 
         // just hang out at the very bottom of the tower
-        this.boundingBox = new StructureBoundingBox(wing.getBoundingBox().minX, wing.getBoundingBox().minY - this.height, wing.getBoundingBox().minZ, wing.getBoundingBox().maxX,
-                wing.getBoundingBox().minY, wing.getBoundingBox().maxZ);
+        this.boundingBox = new StructureBoundingBox(
+                wing.getBoundingBox().minX,
+                wing.getBoundingBox().minY - this.height,
+                wing.getBoundingBox().minZ,
+                wing.getBoundingBox().maxX,
+                wing.getBoundingBox().minY,
+                wing.getBoundingBox().maxZ);
 
     }
 
@@ -63,7 +69,8 @@ public class ComponentTFDarkTowerBeard extends StructureTFComponent {
         return true;
     }
 
-    protected void makeDarkBeard(World world, StructureBoundingBox sbb, int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
+    protected void makeDarkBeard(World world, StructureBoundingBox sbb, int minX, int minY, int minZ, int maxX,
+            int maxY, int maxZ) {
         Block frameID = TFBlocks.towerWood;
         int frameMeta = 1;
 

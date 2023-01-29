@@ -20,6 +20,7 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Facing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFTowerWood;
 import twilightforest.block.TFBlocks;
 import twilightforest.item.TFItems;
@@ -64,16 +65,16 @@ public class EntityTFTowerTermite extends EntityMob {
     }
 
     /**
-     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for
-     * spiders and wolves to prevent them from trampling crops
+     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for spiders and wolves to
+     * prevent them from trampling crops
      */
     protected boolean canTriggerWalking() {
         return false;
     }
 
     /**
-     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in
-     * attacking (Animals, Spiders at day, peaceful PigZombies).
+     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
+     * (Animals, Spiders at day, peaceful PigZombies).
      */
     protected Entity findPlayerToAttack() {
         double var1 = 8.0D;
@@ -108,7 +109,8 @@ public class EntityTFTowerTermite extends EntityMob {
         if (this.isEntityInvulnerable()) {
             return false;
         } else {
-            if (this.allySummonCooldown <= 0 && (par1DamageSource instanceof EntityDamageSource || par1DamageSource == DamageSource.magic)) {
+            if (this.allySummonCooldown <= 0
+                    && (par1DamageSource instanceof EntityDamageSource || par1DamageSource == DamageSource.magic)) {
                 this.allySummonCooldown = 20;
             }
 
@@ -151,9 +153,19 @@ public class EntityTFTowerTermite extends EntityMob {
                     int blockMeta = this.worldObj.getBlockMetadata(sx + dx, sy + dy, sz + dz);
 
                     if (blockID == TFBlocks.towerWood && blockMeta == BlockTFTowerWood.META_INFESTED) {
-                        this.worldObj.playAuxSFX(2001, sx + dx, sy + dy, sz + dz, Block.getIdFromBlock(blockID) + (blockMeta << 12));
+                        this.worldObj.playAuxSFX(
+                                2001,
+                                sx + dx,
+                                sy + dy,
+                                sz + dz,
+                                Block.getIdFromBlock(blockID) + (blockMeta << 12));
                         this.worldObj.setBlock(sx + dx, sy + dy, sz + dz, Blocks.air, 0, 3);
-                        TFBlocks.towerWood.onBlockDestroyedByPlayer(this.worldObj, sx + dx, sy + dy, sz + dz, BlockTFTowerWood.META_INFESTED);
+                        TFBlocks.towerWood.onBlockDestroyedByPlayer(
+                                this.worldObj,
+                                sx + dx,
+                                sy + dy,
+                                sz + dz,
+                                BlockTFTowerWood.META_INFESTED);
 
                         if (this.rand.nextBoolean()) {
                             stopSummoning = true;

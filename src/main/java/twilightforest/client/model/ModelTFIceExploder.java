@@ -1,12 +1,12 @@
 package twilightforest.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
 
 public class ModelTFIceExploder extends ModelBiped {
 
@@ -72,8 +72,8 @@ public class ModelTFIceExploder extends ModelBiped {
     }
 
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are
-     * the same second and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
      */
     public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float time) {
         for (int i = 0; i < spikes.length; i++) {
@@ -87,10 +87,12 @@ public class ModelTFIceExploder extends ModelBiped {
             this.spikes[i].rotateAngleZ += i * 3;
 
             this.spikes[i].rotationPointX = MathHelper.cos((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
-            this.spikes[i].rotationPointY = 5F + MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
+            this.spikes[i].rotationPointY = 5F
+                    + MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
             this.spikes[i].rotationPointZ = MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
 
-            ((ModelRenderer) this.spikes[i].childModels.get(0)).rotationPointY = 10 + MathHelper.sin((i + par1EntityLiving.ticksExisted + time) / i) * 3F;
+            ((ModelRenderer) this.spikes[i].childModels.get(0)).rotationPointY = 10
+                    + MathHelper.sin((i + par1EntityLiving.ticksExisted + time) / i) * 3F;
 
         }
     }

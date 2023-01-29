@@ -7,16 +7,17 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
+
     public int level; // this is not serialized, since it's only used during build, which should be all one step
 
-    public ComponentTFFinalCastleDungeonRoom31() {
-    }
+    public ComponentTFFinalCastleDungeonRoom31() {}
 
     public ComponentTFFinalCastleDungeonRoom31(Random rand, int i, int x, int y, int z, int direction, int level) {
         super(i);
@@ -25,7 +26,8 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
         this.size = 31;
         this.height = 7;
         this.level = level;
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -15, 0, -15, this.size - 1, this.height - 1, this.size - 1, 0);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, -15, 0, -15, this.size - 1, this.height - 1, this.size - 1, 0);
     }
 
     @Override
@@ -77,7 +79,14 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
 
         ChunkCoordinates rc = this.getNewRoomCoords(rand, rotation);
 
-        ComponentTFFinalCastleDungeonRoom31 dRoom = new ComponentTFFinalCastleDungeonRoom31(rand, this.componentType + 1, rc.posX, rc.posY, rc.posZ, rotation, level);
+        ComponentTFFinalCastleDungeonRoom31 dRoom = new ComponentTFFinalCastleDungeonRoom31(
+                rand,
+                this.componentType + 1,
+                rc.posX,
+                rc.posY,
+                rc.posZ,
+                rotation,
+                level);
 
         StructureBoundingBox largerBB = new StructureBoundingBox(dRoom.getBoundingBox());
 
@@ -103,8 +112,16 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
 
         rotation = (this.coordBaseMode + rotation) % 4;
         ChunkCoordinates rc = this.getNewRoomCoords(rand, rotation);
-        ComponentTFFinalCastleDungeonExit dRoom = new ComponentTFFinalCastleDungeonExit(rand, this.componentType + 1, rc.posX, rc.posY, rc.posZ, rotation, this.level);
-        StructureComponent intersect = StructureTFComponent.findIntersectingExcluding(list, dRoom.getBoundingBox(), this);
+        ComponentTFFinalCastleDungeonExit dRoom = new ComponentTFFinalCastleDungeonExit(
+                rand,
+                this.componentType + 1,
+                rc.posX,
+                rc.posY,
+                rc.posZ,
+                rotation,
+                this.level);
+        StructureComponent intersect = StructureTFComponent
+                .findIntersectingExcluding(list, dRoom.getBoundingBox(), this);
         if (intersect == null) {
             list.add(dRoom);
             dRoom.buildComponent(this, list, rand);
@@ -122,15 +139,27 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
         }
 
         switch (rotation) {
-        default:
-        case 0:
-            return new ChunkCoordinates(this.boundingBox.maxX + 9, this.boundingBox.minY, this.boundingBox.minZ + offset);
-        case 1:
-            return new ChunkCoordinates(this.boundingBox.minX + offset, this.boundingBox.minY, this.boundingBox.maxZ + 9);
-        case 2:
-            return new ChunkCoordinates(this.boundingBox.minX - 9, this.boundingBox.minY, this.boundingBox.minZ + offset);
-        case 3:
-            return new ChunkCoordinates(this.boundingBox.minX + offset, this.boundingBox.minY, this.boundingBox.minZ - 9);
+            default:
+            case 0:
+                return new ChunkCoordinates(
+                        this.boundingBox.maxX + 9,
+                        this.boundingBox.minY,
+                        this.boundingBox.minZ + offset);
+            case 1:
+                return new ChunkCoordinates(
+                        this.boundingBox.minX + offset,
+                        this.boundingBox.minY,
+                        this.boundingBox.maxZ + 9);
+            case 2:
+                return new ChunkCoordinates(
+                        this.boundingBox.minX - 9,
+                        this.boundingBox.minY,
+                        this.boundingBox.minZ + offset);
+            case 3:
+                return new ChunkCoordinates(
+                        this.boundingBox.minX + offset,
+                        this.boundingBox.minY,
+                        this.boundingBox.minZ - 9);
         }
     }
 
@@ -140,7 +169,8 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
             return false;
         }
 
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         this.fillWithAir(world, sbb, 0, 0, 0, this.size - 1, this.height - 1, this.size - 1);
         int forceFieldMeta = this.getForceFieldMeta(decoRNG);
@@ -148,13 +178,46 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
 
         for (int rotation = 0; rotation < 4; rotation++) {
             int cs = 7;
-            this.fillBlocksRotated(world, sbb, cs, 0, cs + 1, cs, this.height - 1, this.size - 2 - cs, TFBlocks.forceField, forceFieldMeta, rotation);
+            this.fillBlocksRotated(
+                    world,
+                    sbb,
+                    cs,
+                    0,
+                    cs + 1,
+                    cs,
+                    this.height - 1,
+                    this.size - 2 - cs,
+                    TFBlocks.forceField,
+                    forceFieldMeta,
+                    rotation);
             // verticals
             for (int z = cs; z < ((this.size - 1) - cs); z += 4) {
-                this.fillBlocksRotated(world, sbb, cs, 0, z, cs, this.height - 1, z, TFBlocks.castleMagic, runeMeta, rotation);
+                this.fillBlocksRotated(
+                        world,
+                        sbb,
+                        cs,
+                        0,
+                        z,
+                        cs,
+                        this.height - 1,
+                        z,
+                        TFBlocks.castleMagic,
+                        runeMeta,
+                        rotation);
                 // horizontals
                 int y = ((z - cs) % 8 == 0) ? decoRNG.nextInt(3) + 0 : decoRNG.nextInt(3) + 4;
-                this.fillBlocksRotated(world, sbb, cs, y, z + 1, cs, y, z + 3, TFBlocks.castleMagic, runeMeta, rotation);
+                this.fillBlocksRotated(
+                        world,
+                        sbb,
+                        cs,
+                        y,
+                        z + 1,
+                        cs,
+                        y,
+                        z + 3,
+                        TFBlocks.castleMagic,
+                        runeMeta,
+                        rotation);
             }
         }
         return true;
@@ -168,7 +231,8 @@ public class ComponentTFFinalCastleDungeonRoom31 extends ComponentTFTowerWing {
 
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
-                if (world.getBiomeGenForCoords(x, z) != TFBiomeBase.highlandsCenter && world.getBiomeGenForCoords(x, z) != TFBiomeBase.thornlands) {
+                if (world.getBiomeGenForCoords(x, z) != TFBiomeBase.highlandsCenter
+                        && world.getBiomeGenForCoords(x, z) != TFBiomeBase.thornlands) {
                     return true;
                 }
             }

@@ -1,6 +1,7 @@
 package twilightforest.world;
 
 public class TFGenSmallRainboak extends TFGenSmallTwilightOak {
+
     public TFGenSmallRainboak() {
         this(false);
     }

@@ -7,12 +7,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleDungeonExit extends ComponentTFFinalCastleDungeonRoom31 {
-    public ComponentTFFinalCastleDungeonExit() {
-    }
+
+    public ComponentTFFinalCastleDungeonExit() {}
 
     public ComponentTFFinalCastleDungeonExit(Random rand, int i, int x, int y, int z, int direction, int level) {
         super(rand, i, x, y, z, direction, level);
@@ -29,7 +30,13 @@ public class ComponentTFFinalCastleDungeonExit extends ComponentTFFinalCastleDun
         // add stairway down
         int bestDir = this.findStairDirectionTowards(parent.getBoundingBox().minX, parent.getBoundingBox().minZ);
 
-        ComponentTFFinalCastleDungeonSteps steps0 = new ComponentTFFinalCastleDungeonSteps(rand, 5, boundingBox.minX + 15, boundingBox.minY + 0, boundingBox.minZ + 15, bestDir);
+        ComponentTFFinalCastleDungeonSteps steps0 = new ComponentTFFinalCastleDungeonSteps(
+                rand,
+                5,
+                boundingBox.minX + 15,
+                boundingBox.minY + 0,
+                boundingBox.minZ + 15,
+                bestDir);
         list.add(steps0);
         steps0.buildComponent(this, list, rand);
 
@@ -47,7 +54,20 @@ public class ComponentTFFinalCastleDungeonExit extends ComponentTFFinalCastleDun
 
         // door
         this.fillWithMetadataBlocks(world, sbb, 7, 0, 16, 7, 3, 18, TFBlocks.castleDoor, 2, Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 7, 4, 16, 7, 4, 18, deco.blockID, deco.blockMeta, deco.blockID, deco.blockMeta, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                7,
+                4,
+                16,
+                7,
+                4,
+                18,
+                deco.blockID,
+                deco.blockMeta,
+                deco.blockID,
+                deco.blockMeta,
+                false);
 
         return true;
     }

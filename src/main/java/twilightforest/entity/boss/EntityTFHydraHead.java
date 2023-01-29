@@ -25,8 +25,8 @@ public class EntityTFHydraHead extends EntityTFHydraPart {
     }
 
     /**
-     * We have our own custom death here. In any case, we don't actually ever die, despawn and spew out
-     * XP orbs, so don't do that
+     * We have our own custom death here. In any case, we don't actually ever die, despawn and spew out XP orbs, so
+     * don't do that
      */
     @Override
     protected void onDeathUpdate() {

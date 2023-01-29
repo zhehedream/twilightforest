@@ -9,6 +9,7 @@ import net.minecraft.item.ItemLilyPad;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 public class ItemBlockTFHugeLilyPad extends ItemLilyPad {
@@ -20,8 +21,7 @@ public class ItemBlockTFHugeLilyPad extends ItemLilyPad {
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack,
-     * world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
@@ -39,8 +39,10 @@ public class ItemBlockTFHugeLilyPad extends ItemLilyPad {
                 int by = y;
                 int bz = (z >> 1) << 1;
 
-                if (this.canPlacePadOn(itemStack, world, player, bx, by, bz) && this.canPlacePadOn(itemStack, world, player, bx + 1, by, bz)
-                        && this.canPlacePadOn(itemStack, world, player, bx, by, bz + 1) && this.canPlacePadOn(itemStack, world, player, bx + 1, by, bz + 1)) {
+                if (this.canPlacePadOn(itemStack, world, player, bx, by, bz)
+                        && this.canPlacePadOn(itemStack, world, player, bx + 1, by, bz)
+                        && this.canPlacePadOn(itemStack, world, player, bx, by, bz + 1)
+                        && this.canPlacePadOn(itemStack, world, player, bx + 1, by, bz + 1)) {
 
                     // this seems like a difficult way to generate 2 pseudorandom bits
                     rand.setSeed(8890919293L);
@@ -72,7 +74,8 @@ public class ItemBlockTFHugeLilyPad extends ItemLilyPad {
             return false;
         }
 
-        return world.getBlock(x, y, z).getMaterial() == Material.water && world.getBlockMetadata(x, y, z) == 0 && world.isAirBlock(x, y + 1, z);
+        return world.getBlock(x, y, z).getMaterial() == Material.water && world.getBlockMetadata(x, y, z) == 0
+                && world.isAirBlock(x, y + 1, z);
 
     }
 

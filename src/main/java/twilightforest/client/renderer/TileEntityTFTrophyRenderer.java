@@ -1,11 +1,12 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFHydraHead;
 import twilightforest.client.model.ModelTFLich;
@@ -17,15 +18,20 @@ import twilightforest.tileentity.TileEntityTFTrophy;
 public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
 
     private ModelTFHydraHead hydraHeadModel;
-    private static final ResourceLocation textureLocHydra = new ResourceLocation(TwilightForestMod.MODEL_DIR + "hydra4.png");
+    private static final ResourceLocation textureLocHydra = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "hydra4.png");
     private ModelTFNaga nagaHeadModel;
-    private static final ResourceLocation textureLocNaga = new ResourceLocation(TwilightForestMod.MODEL_DIR + "nagahead.png");
+    private static final ResourceLocation textureLocNaga = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "nagahead.png");
     private ModelTFLich lichModel;
-    private static final ResourceLocation textureLocLich = new ResourceLocation(TwilightForestMod.MODEL_DIR + "twilightlich64.png");
+    private static final ResourceLocation textureLocLich = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "twilightlich64.png");
     private ModelTFTowerBoss urGhastModel;
-    private static final ResourceLocation textureLocUrGhast = new ResourceLocation(TwilightForestMod.MODEL_DIR + "towerboss.png");
+    private static final ResourceLocation textureLocUrGhast = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "towerboss.png");
     private ModelTFSnowQueen snowQueenModel;
-    private static final ResourceLocation textureLocSnowQueen = new ResourceLocation(TwilightForestMod.MODEL_DIR + "snowqueen.png");
+    private static final ResourceLocation textureLocSnowQueen = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "snowqueen.png");
 
     public TileEntityTFTrophyRenderer() {
         hydraHeadModel = new ModelTFHydraHead();
@@ -50,42 +56,42 @@ public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
         // wall mounted?
         if (meta != 1) {
             switch (meta) {
-            case 2:
-                onGround = false;
-                break;
-            case 3:
-                onGround = false;
-                rotation = 180.0F;
-                break;
-            case 4:
-                onGround = false;
-                rotation = 270.0F;
-                break;
-            case 5:
-            default:
-                onGround = false;
-                rotation = 90.0F;
+                case 2:
+                    onGround = false;
+                    break;
+                case 3:
+                    onGround = false;
+                    rotation = 180.0F;
+                    break;
+                case 4:
+                    onGround = false;
+                    rotation = 270.0F;
+                    break;
+                case 5:
+                default:
+                    onGround = false;
+                    rotation = 90.0F;
             }
         }
 
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
 
         switch (trophy.func_145904_a()) {
-        case 0:
-            renderHydraHead(rotation, onGround);
-            break;
-        case 1:
-            renderNagaHead(rotation, onGround);
-            break;
-        case 2:
-            renderLichHead(rotation, onGround);
-            break;
-        case 3:
-            renderUrGhastHead(trophy, rotation, onGround, partialTime);
-            break;
-        case 4:
-            renderSnowQueenHead(rotation, onGround);
-            break;
+            case 0:
+                renderHydraHead(rotation, onGround);
+                break;
+            case 1:
+                renderNagaHead(rotation, onGround);
+                break;
+            case 2:
+                renderLichHead(rotation, onGround);
+                break;
+            case 3:
+                renderUrGhastHead(trophy, rotation, onGround, partialTime);
+                break;
+            case 4:
+                renderSnowQueenHead(rotation, onGround);
+                break;
         }
 
         GL11.glPopMatrix();

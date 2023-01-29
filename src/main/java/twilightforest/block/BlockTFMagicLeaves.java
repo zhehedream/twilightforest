@@ -1,7 +1,8 @@
 package twilightforest.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,13 +14,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
-
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFMagicLeaves extends BlockLeaves {
+
     int oakColor = 0x48B518;
     int canopyColor = 0x609860;
     int mangroveColor = 0x80A755;
@@ -69,8 +71,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
@@ -189,17 +191,20 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
         BlockTFMagicLeaves.SPR_TIMELEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_leaves");
-        BlockTFMagicLeaves.SPR_TIMELEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":time_leaves_opaque");
+        BlockTFMagicLeaves.SPR_TIMELEAVES_OPAQUE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":time_leaves_opaque");
         BlockTFMagicLeaves.SPR_TRANSLEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_leaves");
-        BlockTFMagicLeaves.SPR_TRANSLEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":trans_leaves_opaque");
+        BlockTFMagicLeaves.SPR_TRANSLEAVES_OPAQUE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":trans_leaves_opaque");
         BlockTFMagicLeaves.SPR_SORTLEAVES = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_leaves");
-        BlockTFMagicLeaves.SPR_SORTLEAVES_OPAQUE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":sort_leaves_opaque");
+        BlockTFMagicLeaves.SPR_SORTLEAVES_OPAQUE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":sort_leaves_opaque");
     }
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({ "unchecked" })
     @Override
     public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
         itemList.add(new ItemStack(item, 1, 0));
@@ -263,13 +268,13 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * Localisation Function,
-     * [leafblock-meta & 3] will be added to the unlocalised name
+     * Localisation Function, [leafblock-meta & 3] will be added to the unlocalised name
      */
     @Override
     public String[] func_150125_e() {
-        return new String[]{"time", "trans", "mine", "sort"};
+        return new String[] { "time", "trans", "mine", "sort" };
     }
+
     /**
      * returns the items that will be dropped
      */
@@ -287,12 +292,8 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * DROPCHANCE for Saplings, higher Values returned here will get LOWER chance overall!
-     * For comparison:
-     * Vanilla Trees: 40
-     * Vanilla Dark Oak: 80
-     * Thaumcraft Greatwood: ~200
-     * Thaumcraft Silverwood: ~250
+     * DROPCHANCE for Saplings, higher Values returned here will get LOWER chance overall! For comparison: Vanilla
+     * Trees: 40 Vanilla Dark Oak: 80 Thaumcraft Greatwood: ~200 Thaumcraft Silverwood: ~250
      */
     @Override
     protected int func_150123_b(int metadata) {
@@ -300,44 +301,43 @@ public class BlockTFMagicLeaves extends BlockLeaves {
     }
 
     /**
-     * Additional Drops can be spawned here
-     * chance is 200, in vanilla code, same logic as the previous function, used for apples in vanilla
+     * Additional Drops can be spawned here chance is 200, in vanilla code, same logic as the previous function, used
+     * for apples in vanilla
      */
     @Override
     @SuppressWarnings("ALL")
     protected void func_150124_c(World world, int x, int y, int z, int metadata, int chance) {
-        if (world.rand.nextInt(chance) == 0)
-            initial:switch (metadata & 3) {
-                case META_TIME:
-                    this.dropBlockAsItem(world, x, y, z, new ItemStack(Items.clock, 1, 0));
-                    break initial;
-                case META_TRANS:
-                    this.dropBlockAsItem(world, x, y, z, new ItemStack(TFBlocks.firefly, 2, 0));
-                    break initial;
-                case META_MINE:
-                    switch (world.rand.nextInt(6)) {
-                        case 0:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.iron_ore, 1, 0));
-                            break initial;
-                        case 1:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.gold_ore, 1, 0));
-                            break initial;
-                        case 2:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.diamond_ore, 1, 0));
-                            break initial;
-                        case 3:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.emerald_ore, 1, 0));
-                            break initial;
-                        case 4:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.coal_ore, 1, 0));
-                            break initial;
-                        case 5:
-                            this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.redstone_ore, 1, 0));
-                            break initial;
-                    }
-                case META_SORT:
-                    this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.chest, 1, 0));
-                    break initial;
-            }
+        if (world.rand.nextInt(chance) == 0) initial: switch (metadata & 3) {
+            case META_TIME:
+                this.dropBlockAsItem(world, x, y, z, new ItemStack(Items.clock, 1, 0));
+                break initial;
+            case META_TRANS:
+                this.dropBlockAsItem(world, x, y, z, new ItemStack(TFBlocks.firefly, 2, 0));
+                break initial;
+            case META_MINE:
+                switch (world.rand.nextInt(6)) {
+                    case 0:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.iron_ore, 1, 0));
+                        break initial;
+                    case 1:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.gold_ore, 1, 0));
+                        break initial;
+                    case 2:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.diamond_ore, 1, 0));
+                        break initial;
+                    case 3:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.emerald_ore, 1, 0));
+                        break initial;
+                    case 4:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.coal_ore, 1, 0));
+                        break initial;
+                    case 5:
+                        this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.redstone_ore, 1, 0));
+                        break initial;
+                }
+            case META_SORT:
+                this.dropBlockAsItem(world, x, y, z, new ItemStack(Blocks.chest, 1, 0));
+                break initial;
+        }
     }
 }

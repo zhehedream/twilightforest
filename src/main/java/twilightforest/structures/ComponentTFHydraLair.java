@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFHydraLair extends ComponentTFHollowHill {
@@ -24,8 +25,7 @@ public class ComponentTFHydraLair extends ComponentTFHollowHill {
      */
     @SuppressWarnings("rawtypes")
     @Override
-    public void buildComponent(StructureComponent structurecomponent, List list, Random rand) {
-    }
+    public void buildComponent(StructureComponent structurecomponent, List list, Random rand) {}
 
     /**
      * Add in all the blocks we're adding.

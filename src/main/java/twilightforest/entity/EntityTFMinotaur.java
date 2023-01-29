@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFChargeAttack;
 import twilightforest.item.TFItems;
@@ -89,8 +90,8 @@ public class EntityTFMinotaur extends EntityMob implements ITFCharger {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -172,15 +173,15 @@ public class EntityTFMinotaur extends EntityMob implements ITFCharger {
         this.dropItem(TFItems.mazeMapFocus, 1);
     }
 
-//    /**
-//     * Initialize this creature.
-//     */
-//    @Override
-//    public void initCreature()
-//    {
-//        //this.func_82164_bB();
-//        this.func_82162_bC();
-//    }
+    // /**
+    // * Initialize this creature.
+    // */
+    // @Override
+    // public void initCreature()
+    // {
+    // //this.func_82164_bB();
+    // this.func_82162_bC();
+    // }
 
     /**
      * Trigger achievement when killed

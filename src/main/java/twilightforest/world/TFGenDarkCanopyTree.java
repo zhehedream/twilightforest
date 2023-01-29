@@ -2,12 +2,13 @@ package twilightforest.world;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.common.FMLLog;
 
 /**
  * Makes large trees with flat leaf ovals that provide a canopy for the forest
@@ -55,8 +56,10 @@ public class TFGenDarkCanopyTree extends TFTreeGenerator {
         }
 
         // do not grow next to another tree
-        if (world.getBlock(x + 1, y, z + 0).getMaterial() == Material.wood || world.getBlock(x - 1, y, z + 0).getMaterial() == Material.wood
-                || world.getBlock(x + 0, y, z + 1).getMaterial() == Material.wood || world.getBlock(x + 0, y, z - 1).getMaterial() == Material.wood) {
+        if (world.getBlock(x + 1, y, z + 0).getMaterial() == Material.wood
+                || world.getBlock(x - 1, y, z + 0).getMaterial() == Material.wood
+                || world.getBlock(x + 0, y, z + 1).getMaterial() == Material.wood
+                || world.getBlock(x + 0, y, z - 1).getMaterial() == Material.wood) {
             return false;
         }
 
@@ -71,7 +74,16 @@ public class TFGenDarkCanopyTree extends TFTreeGenerator {
         int numBranches = 4;
         double offset = random.nextFloat();
         for (int b = 0; b < numBranches; b++) {
-            buildBranch(world, x, y, z, treeHeight - 3 - numBranches + (b / 2), 10 + random.nextInt(4), 0.23 * b + offset, 0.23, random);
+            buildBranch(
+                    world,
+                    x,
+                    y,
+                    z,
+                    treeHeight - 3 - numBranches + (b / 2),
+                    10 + random.nextInt(4),
+                    0.23 * b + offset,
+                    0.23,
+                    random);
         }
 
         // root bulb
@@ -99,7 +111,8 @@ public class TFGenDarkCanopyTree extends TFTreeGenerator {
      * @param angle
      * @param tilt
      */
-    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt, Random random) {
+    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt,
+            Random random) {
         ChunkCoordinates src = new ChunkCoordinates(x, y + height, z);
         ChunkCoordinates dest = translateCoords(src.posX, src.posY, src.posZ, length, angle, tilt);
 
@@ -120,7 +133,10 @@ public class TFGenDarkCanopyTree extends TFTreeGenerator {
         drawBresehnam(world, src.posX, src.posY, src.posZ, dest.posX, dest.posY, dest.posZ, treeBlock, branchMeta);
 
         if (Math.abs(x - dest.posX) + 2 > 7 || Math.abs(z - dest.posZ) + 2 > 7) {
-            FMLLog.fine("[TwilightForest]  getting branch too far.  x = " + (x - dest.posX + 2) + ", z = " + (z - dest.posZ + 2));
+            FMLLog.fine(
+                    "[TwilightForest]  getting branch too far.  x = " + (x - dest.posX + 2)
+                            + ", z = "
+                            + (z - dest.posZ + 2));
         }
 
         leafAround(world, dest.posX, dest.posY, dest.posZ);

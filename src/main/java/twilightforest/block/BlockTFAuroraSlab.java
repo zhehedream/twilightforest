@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -13,8 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFAuroraSlab extends BlockSlab {
 
@@ -31,8 +32,8 @@ public class BlockTFAuroraSlab extends BlockSlab {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {
@@ -80,17 +81,16 @@ public class BlockTFAuroraSlab extends BlockSlab {
     }
 
     /**
-     * Returns an item stack containing a single instance of the current block type. 'i' is the block's
-     * subtype/damage and is ignored for blocks which do not support subtypes. Blocks which cannot be
-     * harvested should return null.
+     * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
+     * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
     protected ItemStack createStackedBlock(int meta) {
         return new ItemStack(Item.getItemFromBlock(TFBlocks.auroraSlab), 2, 0);
     }
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
@@ -104,9 +104,14 @@ public class BlockTFAuroraSlab extends BlockSlab {
             int k1 = z + Facing.offsetsZForSide[Facing.oppositeSide[side]];
             boolean flag = (world.getBlockMetadata(i1, j1, k1) & 8) != 0;
             return flag
-                    ? (side == 0 ? true : (side == 1 && super.shouldSideBeRendered(world, x, y, z, side) ? true : !isSingleSlab(world.getBlock(x, y, z)) || (world.getBlockMetadata(x, y, z) & 8) == 0))
+                    ? (side == 0 ? true
+                            : (side == 1 && super.shouldSideBeRendered(world, x, y, z, side) ? true
+                                    : !isSingleSlab(world.getBlock(x, y, z))
+                                            || (world.getBlockMetadata(x, y, z) & 8) == 0))
                     : (side == 1 ? true
-                            : (side == 0 && super.shouldSideBeRendered(world, x, y, z, side) ? true : !isSingleSlab(world.getBlock(x, y, z)) || (world.getBlockMetadata(x, y, z) & 8) != 0));
+                            : (side == 0 && super.shouldSideBeRendered(world, x, y, z, side) ? true
+                                    : !isSingleSlab(world.getBlock(x, y, z))
+                                            || (world.getBlockMetadata(x, y, z) & 8) != 0));
         }
     }
 

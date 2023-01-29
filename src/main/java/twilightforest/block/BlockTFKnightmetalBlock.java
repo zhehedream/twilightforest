@@ -1,7 +1,5 @@
 package twilightforest.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCompressed;
 import net.minecraft.block.material.MapColor;
@@ -10,8 +8,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFKnightmetalBlock extends BlockCompressed {
 
@@ -28,8 +29,8 @@ public class BlockTFKnightmetalBlock extends BlockCompressed {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
@@ -39,16 +40,14 @@ public class BlockTFKnightmetalBlock extends BlockCompressed {
     }
 
     /**
-     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y,
-     * z, entity
+     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         entity.attackEntityFrom(DamageSource.cactus, BLOCK_DAMAGE);
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -56,9 +55,8 @@ public class BlockTFKnightmetalBlock extends BlockCompressed {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -74,8 +72,8 @@ public class BlockTFKnightmetalBlock extends BlockCompressed {
     }
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @Override
     @SideOnly(Side.CLIENT)

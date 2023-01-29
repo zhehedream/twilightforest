@@ -13,17 +13,17 @@ public class TileEntityTFCicada extends TileEntityTFCritter {
     public int singDelay;
 
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
-     * this to count ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
+     * ticks and creates a new spawn inside its implementation.
      */
     @Override
     public void updateEntity() {
         super.updateEntity();
 
-//        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 1) {
-//            //System.out.println("Cicada tile entity block has invalid metadata, fixing");
-//            worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 1);
-//        }
+        // if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 1) {
+        // //System.out.println("Cicada tile entity block has invalid metadata, fixing");
+        // worldObj.setBlockMetadata(xCoord, yCoord, zCoord, 1);
+        // }
 
         if (yawDelay > 0) {
             yawDelay--;
@@ -66,18 +66,19 @@ public class TileEntityTFCicada extends TileEntityTFCritter {
         }
     }
 
-//    /**
-//     * There seems to be a bug in the chunk placing routines which sets the tileentity metadta to 0 even if the tile shifts metadatas when placed.
-//     * Thus, if the metadata is 0, re-check it
-//     */
-//    @Override
-//    public int getBlockMetadata() {
-//        if (super.getBlockMetadata() == 0)
-//        {
-//            this.blockMetadata = -1;
-//        }
-//        return super.getBlockMetadata();
-//    }
+    // /**
+    // * There seems to be a bug in the chunk placing routines which sets the tileentity metadta to 0 even if the tile
+    // shifts metadatas when placed.
+    // * Thus, if the metadata is 0, re-check it
+    // */
+    // @Override
+    // public int getBlockMetadata() {
+    // if (super.getBlockMetadata() == 0)
+    // {
+    // this.blockMetadata = -1;
+    // }
+    // return super.getBlockMetadata();
+    // }
 
     public void doSingAnimation() {
         if (worldObj.rand.nextInt(5) == 0) {
@@ -90,7 +91,13 @@ public class TileEntityTFCicada extends TileEntityTFCritter {
 
     public void playSong() {
         if (!TwilightForestMod.silentCicadas) {
-            worldObj.playSoundEffect(xCoord, yCoord, zCoord, TwilightForestMod.ID + ":mob.cicada", 1.0f, (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+            worldObj.playSoundEffect(
+                    xCoord,
+                    yCoord,
+                    zCoord,
+                    TwilightForestMod.ID + ":mob.cicada",
+                    1.0f,
+                    (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
         }
     }
 }

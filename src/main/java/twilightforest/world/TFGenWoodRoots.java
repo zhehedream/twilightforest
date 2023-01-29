@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
@@ -39,7 +40,8 @@ public class TFGenWoodRoots extends TFGenerator {
         return this.drawRoot(world, rand, x, y, z, x, y, z, length, angle, tilt);
     }
 
-    private boolean drawRoot(World world, Random rand, int ox, int oy, int oz, int x, int y, int z, float length, float angle, float tilt) {
+    private boolean drawRoot(World world, Random rand, int ox, int oy, int oz, int x, int y, int z, float length,
+            float angle, float tilt) {
         // generate a direction and a length
         int[] dest = translate(x, y, z, length, angle, tilt);
 
@@ -76,7 +78,18 @@ public class TFGenWoodRoots extends TFGenerator {
                 int[] nextSrc = translate(x, y, z, length / 2, angle, tilt);
                 float nextAngle = (angle + 0.25F + (rand.nextFloat() * 0.5F)) % 1.0F;
                 float nextTilt = 0.6F + rand.nextFloat() * 0.3F;
-                drawRoot(world, rand, ox, oy, oz, nextSrc[0], nextSrc[1], nextSrc[2], length / 2.0F, nextAngle, nextTilt);
+                drawRoot(
+                        world,
+                        rand,
+                        ox,
+                        oy,
+                        oz,
+                        nextSrc[0],
+                        nextSrc[1],
+                        nextSrc[2],
+                        length / 2.0F,
+                        nextAngle,
+                        nextTilt);
             }
         }
 

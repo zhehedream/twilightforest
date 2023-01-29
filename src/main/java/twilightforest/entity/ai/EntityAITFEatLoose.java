@@ -5,11 +5,11 @@ import java.util.List;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
+
 import twilightforest.entity.passive.EntityTFQuestRam;
 
 /**
- * This is an AI task for the quest ram. When one of the items it wants comes within a close
- * distance, i
+ * This is an AI task for the quest ram. When one of the items it wants comes within a close distance, i
  * 
  * @author Ben
  *
@@ -43,11 +43,14 @@ public class EntityAITFEatLoose extends EntityAIBase {
         } else {
             this.temptingItem = null;
 
-            List<EntityItem> nearbyItems = this.temptedQuestRam.worldObj.getEntitiesWithinAABB(EntityItem.class, this.temptedQuestRam.boundingBox.expand(2.0D, 2.0D, 2.0D));
+            List<EntityItem> nearbyItems = this.temptedQuestRam.worldObj
+                    .getEntitiesWithinAABB(EntityItem.class, this.temptedQuestRam.boundingBox.expand(2.0D, 2.0D, 2.0D));
 
             for (EntityItem itemNearby : nearbyItems) {
-                if (itemNearby.getEntityItem().getItem() == temptID && !temptedQuestRam.isColorPresent(itemNearby.getEntityItem().getItemDamage()) && itemNearby.isEntityAlive()) { // is a wool block
-                                                                                                                                                                                    // really "alive"?
+                if (itemNearby.getEntityItem().getItem() == temptID
+                        && !temptedQuestRam.isColorPresent(itemNearby.getEntityItem().getItemDamage())
+                        && itemNearby.isEntityAlive()) { // is a wool block
+                                                         // really "alive"?
                     this.temptingItem = itemNearby;
                     break;
                 }
@@ -92,15 +95,22 @@ public class EntityAITFEatLoose extends EntityAIBase {
      */
     @Override
     public void updateTask() {
-        this.temptedQuestRam.getLookHelper().setLookPositionWithEntity(this.temptingItem, 30.0F, this.temptedQuestRam.getVerticalFaceSpeed());
+        this.temptedQuestRam.getLookHelper()
+                .setLookPositionWithEntity(this.temptingItem, 30.0F, this.temptedQuestRam.getVerticalFaceSpeed());
 
         if (this.temptedQuestRam.getDistanceSqToEntity(this.temptingItem) < 6.25D) {
-            if (!temptedQuestRam.isColorPresent(temptingItem.getEntityItem().getItemDamage())) { // we did technically already check this, but why not check again
+            if (!temptedQuestRam.isColorPresent(temptingItem.getEntityItem().getItemDamage())) { // we did technically
+                                                                                                 // already check this,
+                                                                                                 // but why not check
+                                                                                                 // again
                 // EAT IT!
                 this.temptingItem.setDead();
                 this.temptedQuestRam.playLivingSound();
                 this.temptedQuestRam.setColorPresent(temptingItem.getEntityItem().getItemDamage());
-                this.temptedQuestRam.animateAddColor(temptingItem.getEntityItem().getItemDamage(), 50); // TODO: find a better place for this? refactor?
+                this.temptedQuestRam.animateAddColor(temptingItem.getEntityItem().getItemDamage(), 50); // TODO: find a
+                                                                                                        // better place
+                                                                                                        // for this?
+                                                                                                        // refactor?
                 // System.out.println("yum");
             }
         }

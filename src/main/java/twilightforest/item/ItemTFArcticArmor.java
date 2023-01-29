@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,7 +11,10 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFArcticArmor extends ItemArmor {
 
@@ -31,8 +32,8 @@ public class ItemTFArcticArmor extends ItemArmor {
     }
 
     /**
-     * Called by RenderBiped and RenderPlayer to determine the armor texture that should be use for the
-     * currently equiped item. This will only be called on instances of ItemArmor.
+     * Called by RenderBiped and RenderPlayer to determine the armor texture that should be use for the currently
+     * equiped item. This will only be called on instances of ItemArmor.
      * 
      * Returning null from this function will use the default value.
      * 
@@ -44,13 +45,13 @@ public class ItemTFArcticArmor extends ItemArmor {
      */
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
         switch (slot) {
-        case 0:
-        case 1:
-        case 3:
-        default:
-            return TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
-        case 2:
-            return TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
+            case 0:
+            case 1:
+            case 3:
+            default:
+                return TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
+            case 2:
+                return TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
 
         }
     }
@@ -72,7 +73,8 @@ public class ItemTFArcticArmor extends ItemArmor {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with ?????
-        return par2ItemStack.getItem() == TFItems.arcticFur ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.arcticFur ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -81,7 +83,8 @@ public class ItemTFArcticArmor extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**

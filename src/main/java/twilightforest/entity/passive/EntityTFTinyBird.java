@@ -17,6 +17,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.ai.EntityAITFBirdFly;
@@ -27,8 +28,8 @@ public class EntityTFTinyBird extends EntityTFBird {
     private static final int DATA_BIRDFLAGS = 17;
 
     /**
-     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which
-     * it will fly. upon getting close a new target will be selected
+     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which it will fly.
+     * upon getting close a new target will be selected
      */
     private ChunkCoordinates currentFlightTarget;
     private int currentFlightTime;
@@ -73,30 +74,30 @@ public class EntityTFTinyBird extends EntityTFBird {
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000001192092896D);
     }
 
-//    /**
-//     * Returns the texture's file path as a String.
-//     */
-//    @Override
-//    public String getTexture()
-//    {
-//        switch (this.getBirdType())
-//        {
-//            case 0:
-//                return TwilightForestMod.MODEL_DIR + "tinybirdbrown.png";
-//
-//            case 1:
-//                return TwilightForestMod.MODEL_DIR + "tinybirdblue.png";
-//
-//            case 2:
-//                return TwilightForestMod.MODEL_DIR + "tinybirdred.png";
-//
-//            case 3:
-//                return TwilightForestMod.MODEL_DIR + "tinybirdgold.png";
-//
-//            default:
-//                return super.getTexture();
-//        }
-//    }
+    // /**
+    // * Returns the texture's file path as a String.
+    // */
+    // @Override
+    // public String getTexture()
+    // {
+    // switch (this.getBirdType())
+    // {
+    // case 0:
+    // return TwilightForestMod.MODEL_DIR + "tinybirdbrown.png";
+    //
+    // case 1:
+    // return TwilightForestMod.MODEL_DIR + "tinybirdblue.png";
+    //
+    // case 2:
+    // return TwilightForestMod.MODEL_DIR + "tinybirdred.png";
+    //
+    // case 3:
+    // return TwilightForestMod.MODEL_DIR + "tinybirdgold.png";
+    //
+    // default:
+    // return super.getTexture();
+    // }
+    // }
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -165,8 +166,8 @@ public class EntityTFTinyBird extends EntityTFBird {
     }
 
     /**
-     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path
-     * to the block. Args: x, y, z
+     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
+     * Args: x, y, z
      */
     @Override
     public float getBlockPathWeight(int par1, int par2, int par3) {
@@ -215,31 +216,52 @@ public class EntityTFTinyBird extends EntityTFBird {
         if (this.isBirdLanded()) {
             this.currentFlightTime = 0;
 
-            if (this.rand.nextInt(200) == 0 && !isLandableBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 1), MathHelper.floor_double(this.posZ))) {
+            if (this.rand.nextInt(200) == 0 && !isLandableBlock(
+                    MathHelper.floor_double(this.posX),
+                    MathHelper.floor_double(this.posY - 1),
+                    MathHelper.floor_double(this.posZ))) {
                 this.setIsBirdLanded(false);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1015, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+                this.worldObj.playAuxSFXAtEntity(
+                        (EntityPlayer) null,
+                        1015,
+                        (int) this.posX,
+                        (int) this.posY,
+                        (int) this.posZ,
+                        0);
                 this.motionY = 0.4;
                 // FMLLog.info("bird taking off because it is no longer on land");
             } else {
                 if (isSpooked()) {
                     this.setIsBirdLanded(false);
                     this.motionY = 0.4;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1015, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(
+                            (EntityPlayer) null,
+                            1015,
+                            (int) this.posX,
+                            (int) this.posY,
+                            (int) this.posZ,
+                            0);
                     // FMLLog.info("bird taking off because it was spooked");
                 }
             }
         } else {
             this.currentFlightTime++;
 
-            if (this.currentFlightTarget != null
-                    && (!this.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1)) {
+            if (this.currentFlightTarget != null && (!this.worldObj.isAirBlock(
+                    this.currentFlightTarget.posX,
+                    this.currentFlightTarget.posY,
+                    this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1)) {
                 this.currentFlightTarget = null;
             }
 
-            if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0 || this.currentFlightTarget.getDistanceSquared((int) this.posX, (int) this.posY, (int) this.posZ) < 4.0F) {
+            if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0
+                    || this.currentFlightTarget.getDistanceSquared((int) this.posX, (int) this.posY, (int) this.posZ)
+                            < 4.0F) {
                 int yTarget = this.currentFlightTime < 100 ? 2 : 4;
 
-                this.currentFlightTarget = new ChunkCoordinates((int) this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int) this.posY + this.rand.nextInt(6) - yTarget,
+                this.currentFlightTarget = new ChunkCoordinates(
+                        (int) this.posX + this.rand.nextInt(7) - this.rand.nextInt(7),
+                        (int) this.posY + this.rand.nextInt(6) - yTarget,
                         (int) this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
             }
 
@@ -254,7 +276,10 @@ public class EntityTFTinyBird extends EntityTFBird {
             this.moveForward = 0.5F;
             this.rotationYaw += f1;
 
-            if (this.rand.nextInt(10) == 0 && isLandableBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 1), MathHelper.floor_double(this.posZ))) {
+            if (this.rand.nextInt(10) == 0 && isLandableBlock(
+                    MathHelper.floor_double(this.posX),
+                    MathHelper.floor_double(this.posY - 1),
+                    MathHelper.floor_double(this.posZ))) {
 
                 this.setIsBirdLanded(true);
 
@@ -272,7 +297,8 @@ public class EntityTFTinyBird extends EntityTFBird {
     public boolean isSpooked() {
         EntityPlayer closestPlayer = this.worldObj.getClosestPlayerToEntity(this, 4.0D);
 
-        return this.hurtTime > 0 || (closestPlayer != null && (closestPlayer.inventory.getCurrentItem() == null || closestPlayer.inventory.getCurrentItem().getItem() != Items.wheat_seeds));
+        return this.hurtTime > 0 || (closestPlayer != null && (closestPlayer.inventory.getCurrentItem() == null
+                || closestPlayer.inventory.getCurrentItem().getItem() != Items.wheat_seeds));
     }
 
     /**
@@ -309,9 +335,7 @@ public class EntityTFTinyBird extends EntityTFBird {
         return false;
     }
 
-    protected void collideWithEntity(Entity par1Entity) {
-    }
+    protected void collideWithEntity(Entity par1Entity) {}
 
-    protected void func_85033_bc() {
-    }
+    protected void func_85033_bc() {}
 }

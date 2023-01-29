@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
@@ -90,67 +91,67 @@ public class EntityTFSnowGuardian extends EntityMob {
 
     protected Item makeItemForSlot(int slot, int type) {
         switch (slot) {
-        case 0: // sword
-        default:
-            switch (type) {
-            case 0:
+            case 0: // sword
             default:
-                return TFItems.ironwoodSword;
-            case 1:
-                return TFItems.steeleafSword;
-            case 2:
-                return TFItems.knightlySword;
-            case 3:
-                return TFItems.knightlySword;
-            }
-        case 1: // boots
-            switch (type) {
-            case 0:
-            default:
-                return TFItems.ironwoodBoots;
-            case 1:
-                return TFItems.steeleafBoots;
-            case 2:
-                return TFItems.knightlyBoots;
-            case 3:
-                return TFItems.arcticBoots;
-            }
-        case 2: // legs
-            switch (type) {
-            case 0:
-            default:
-                return TFItems.ironwoodLegs;
-            case 1:
-                return TFItems.steeleafLegs;
-            case 2:
-                return TFItems.knightlyLegs;
-            case 3:
-                return TFItems.arcticLegs;
-            }
-        case 3: // chest
-            switch (type) {
-            case 0:
-            default:
-                return TFItems.ironwoodPlate;
-            case 1:
-                return TFItems.steeleafPlate;
-            case 2:
-                return TFItems.knightlyPlate;
-            case 3:
-                return TFItems.arcticPlate;
-            }
-        case 4: // helm
-            switch (type) {
-            case 0:
-            default:
-                return TFItems.ironwoodHelm;
-            case 1:
-                return TFItems.steeleafHelm;
-            case 2:
-                return TFItems.knightlyHelm;
-            case 3:
-                return TFItems.arcticHelm;
-            }
+                switch (type) {
+                    case 0:
+                    default:
+                        return TFItems.ironwoodSword;
+                    case 1:
+                        return TFItems.steeleafSword;
+                    case 2:
+                        return TFItems.knightlySword;
+                    case 3:
+                        return TFItems.knightlySword;
+                }
+            case 1: // boots
+                switch (type) {
+                    case 0:
+                    default:
+                        return TFItems.ironwoodBoots;
+                    case 1:
+                        return TFItems.steeleafBoots;
+                    case 2:
+                        return TFItems.knightlyBoots;
+                    case 3:
+                        return TFItems.arcticBoots;
+                }
+            case 2: // legs
+                switch (type) {
+                    case 0:
+                    default:
+                        return TFItems.ironwoodLegs;
+                    case 1:
+                        return TFItems.steeleafLegs;
+                    case 2:
+                        return TFItems.knightlyLegs;
+                    case 3:
+                        return TFItems.arcticLegs;
+                }
+            case 3: // chest
+                switch (type) {
+                    case 0:
+                    default:
+                        return TFItems.ironwoodPlate;
+                    case 1:
+                        return TFItems.steeleafPlate;
+                    case 2:
+                        return TFItems.knightlyPlate;
+                    case 3:
+                        return TFItems.arcticPlate;
+                }
+            case 4: // helm
+                switch (type) {
+                    case 0:
+                    default:
+                        return TFItems.ironwoodHelm;
+                    case 1:
+                        return TFItems.steeleafHelm;
+                    case 2:
+                        return TFItems.knightlyHelm;
+                    case 3:
+                        return TFItems.arcticHelm;
+                }
         }
     }
 
@@ -179,8 +180,8 @@ public class EntityTFSnowGuardian extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -190,7 +191,15 @@ public class EntityTFSnowGuardian extends EntityMob {
             float py = this.getEyeHeight() + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.5F;
             float pz = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.3F;
 
-            TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowguardian", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
+            TwilightForestMod.proxy.spawnParticle(
+                    this.worldObj,
+                    "snowguardian",
+                    this.lastTickPosX + px,
+                    this.lastTickPosY + py,
+                    this.lastTickPosZ + pz,
+                    0,
+                    0,
+                    0);
         }
 
     }

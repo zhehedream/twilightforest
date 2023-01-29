@@ -1,7 +1,5 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -19,9 +17,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
+import org.lwjgl.opengl.GL11;
+
 public class TFIceItemRenderer implements IItemRenderer {
 
-    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(
+            "textures/misc/enchanted_item_glint.png");
     private TextureManager texturemanager;
 
     public TFIceItemRenderer(GameSettings gameSettings, TextureManager textureManager) {
@@ -37,12 +38,13 @@ public class TFIceItemRenderer implements IItemRenderer {
      */
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON || type == ItemRenderType.INVENTORY;
+        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED
+                || type == ItemRenderType.EQUIPPED_FIRST_PERSON
+                || type == ItemRenderType.INVENTORY;
     }
 
     /**
-     * Checks if certain helper functionality should be executed for this renderer. See
-     * ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See ItemRendererHelper for more info
      * 
      * @param type   The render type
      * @param item   The ItemStack being rendered
@@ -51,12 +53,13 @@ public class TFIceItemRenderer implements IItemRenderer {
      */
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return type == ItemRenderType.ENTITY && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
+        return type == ItemRenderType.ENTITY
+                && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
     }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
-     * and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run, and what extra
+     * data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered
@@ -161,7 +164,15 @@ public class TFIceItemRenderer implements IItemRenderer {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        ItemRenderer.renderItemIn2D(tessellator, par2Icon.getMaxU(), par2Icon.getMinV(), par2Icon.getMinU(), par2Icon.getMaxV(), par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
+        ItemRenderer.renderItemIn2D(
+                tessellator,
+                par2Icon.getMaxU(),
+                par2Icon.getMinV(),
+                par2Icon.getMinU(),
+                par2Icon.getMaxV(),
+                par2Icon.getIconWidth(),
+                par2Icon.getIconHeight(),
+                f12);
 
         GL11.glDisable(GL11.GL_BLEND);
 
@@ -171,7 +182,8 @@ public class TFIceItemRenderer implements IItemRenderer {
     private void renderInventoryItem(ItemStack itemStack, RenderBlocks renderBlocks) {
         IIcon iicon = itemStack.getItem().getIcon(itemStack, -1);
 
-        GL11.glDisable(GL11.GL_LIGHTING); // Forge: Make sure that render states are reset, ad renderEffect can derp them up.
+        GL11.glDisable(GL11.GL_LIGHTING); // Forge: Make sure that render states are reset, ad renderEffect can derp
+                                          // them up.
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

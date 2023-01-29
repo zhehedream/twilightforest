@@ -1,6 +1,7 @@
 package twilightforest.structures.stronghold;
 
 import net.minecraft.init.Blocks;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFDecorator;
 

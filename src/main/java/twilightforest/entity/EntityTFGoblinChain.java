@@ -43,14 +43,10 @@ public class EntityTFGoblinChain extends Entity {
         // System.out.println("Updating " + this + " with angles " + rotationYawHead + ", " +
         // rotationPitch);
 
-        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {
-        }
-        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {
-        }
+        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {}
+        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {}
+        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {}
+        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {}
 
     }
 
@@ -73,15 +69,12 @@ public class EntityTFGoblinChain extends Entity {
     }
 
     @Override
-    protected void entityInit() {
-    }
+    protected void entityInit() {}
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-    }
+    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {}
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-    }
+    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {}
 
 }

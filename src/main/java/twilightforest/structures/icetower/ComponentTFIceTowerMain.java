@@ -10,6 +10,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
 public class ComponentTFIceTowerMain extends ComponentTFIceTowerWing {
+
     public boolean hasBossWing = false;
 
     public ComponentTFIceTowerMain() {
@@ -73,7 +74,15 @@ public class ComponentTFIceTowerMain extends ComponentTFIceTowerWing {
             // System.out.println("Offset for door -x = " + length);
             if (length >= 0) {
                 entranceDoor.posX -= length;
-                makeEntranceBridge(list, rand, this.getComponentType() + 1, myDoor.posX, myDoor.posY, myDoor.posZ, length, 2);
+                makeEntranceBridge(
+                        list,
+                        rand,
+                        this.getComponentType() + 1,
+                        myDoor.posX,
+                        myDoor.posY,
+                        myDoor.posZ,
+                        length,
+                        2);
             }
         }
         if (myDoor.posX == this.size - 1) {
@@ -86,24 +95,48 @@ public class ComponentTFIceTowerMain extends ComponentTFIceTowerWing {
             entranceDoor.posZ += towerBB.maxZ - this.getBoundingBox().maxZ;
         }
 
-        makeEntranceTower(list, rand, this.getComponentType() + 1, entranceDoor.posX, entranceDoor.posY, entranceDoor.posZ, SIZE, 11, this.getCoordBaseMode());
+        makeEntranceTower(
+                list,
+                rand,
+                this.getComponentType() + 1,
+                entranceDoor.posX,
+                entranceDoor.posY,
+                entranceDoor.posZ,
+                SIZE,
+                11,
+                this.getCoordBaseMode());
     }
 
-    private void makeEntranceBridge(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int length, int rotation) {
+    private void makeEntranceBridge(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int length, int rotation) {
         int direction = (getCoordBaseMode() + rotation) % 4;
         ChunkCoordinates dest = offsetTowerCCoords(x, y, z, 5, direction);
 
-        ComponentTFIceTowerBridge bridge = new ComponentTFIceTowerBridge(index, dest.posX, dest.posY, dest.posZ, length, direction);
+        ComponentTFIceTowerBridge bridge = new ComponentTFIceTowerBridge(
+                index,
+                dest.posX,
+                dest.posY,
+                dest.posZ,
+                length,
+                direction);
 
         list.add(bridge);
         bridge.buildComponent(list.get(0), list, rand);
     }
 
-    public boolean makeEntranceTower(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeEntranceTower(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, wingSize, direction);
 
-        ComponentTFIceTowerWing entrance = new ComponentTFIceTowerEntrance(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFIceTowerWing entrance = new ComponentTFIceTowerEntrance(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
 
         list.add(entrance);
         entrance.buildComponent(list.get(0), list, rand);

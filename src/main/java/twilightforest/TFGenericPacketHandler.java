@@ -1,5 +1,14 @@
 package twilightforest;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+
+import twilightforest.client.renderer.TFWeatherRenderer;
+import twilightforest.entity.EntityTFProtectionBox;
+import twilightforest.world.WorldProviderTwilightForest;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
@@ -7,14 +16,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-import twilightforest.client.renderer.TFWeatherRenderer;
-import twilightforest.entity.EntityTFProtectionBox;
-import twilightforest.world.WorldProviderTwilightForest;
 
 public class TFGenericPacketHandler {
 
@@ -176,7 +177,9 @@ public class TFGenericPacketHandler {
 
         boolean isEnforced = buf.readBoolean();
 
-        worldObj.getGameRules().setOrCreateGameRule(TwilightForestMod.ENFORCED_PROGRESSION_RULE, Boolean.valueOf(isEnforced).toString());
+        worldObj.getGameRules().setOrCreateGameRule(
+                TwilightForestMod.ENFORCED_PROGRESSION_RULE,
+                Boolean.valueOf(isEnforced).toString());
     }
 
     @SideOnly(Side.CLIENT)
@@ -225,7 +228,8 @@ public class TFGenericPacketHandler {
     /**
      * Make a FMLProxyPacket that contains the data we need to display area protection data
      */
-    public static FMLProxyPacket makeAreaProtectionPacket(StructureBoundingBox sbb, int blockX, int blockY, int blockZ) {
+    public static FMLProxyPacket makeAreaProtectionPacket(StructureBoundingBox sbb, int blockX, int blockY,
+            int blockZ) {
         PacketBuffer payload = new PacketBuffer(Unpooled.buffer());
 
         payload.writeByte(AREA_PROTECTION); // discriminator byte

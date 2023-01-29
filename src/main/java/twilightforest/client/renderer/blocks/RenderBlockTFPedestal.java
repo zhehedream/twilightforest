@@ -1,12 +1,13 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFPedestal implements ISimpleBlockRenderingHandler {
 
@@ -23,7 +24,8 @@ public class RenderBlockTFPedestal implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         return renderPedestal(renderer, world, x, y, z, block);
     }
 
@@ -40,7 +42,8 @@ public class RenderBlockTFPedestal implements ISimpleBlockRenderingHandler {
     /**
      * Look, this is no longer in the Block class! I'm an object oriented genius!
      */
-    public static boolean renderPedestal(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
+    public static boolean renderPedestal(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z,
+            Block block) {
         // top
         renderblocks.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.1875F, 0.9375F);
         renderblocks.renderStandardBlock(block, x, y, z);
@@ -80,7 +83,8 @@ public class RenderBlockTFPedestal implements ISimpleBlockRenderingHandler {
         par1Block.setBlockBoundsForItemRender();
     }
 
-    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta, Tessellator tessellator) {
+    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta,
+            Tessellator tessellator) {
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
         renderblocks.renderFaceYNeg(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(0, meta));

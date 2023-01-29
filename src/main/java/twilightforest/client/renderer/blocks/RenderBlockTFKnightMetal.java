@@ -1,12 +1,13 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
 
@@ -23,7 +24,8 @@ public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         return renderSpikeBlock(renderer, world, x, y, z, block);
     }
 
@@ -40,7 +42,8 @@ public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
     /**
      * Look, this is no longer in the Block class! I'm an object oriented genius!
      */
-    public static boolean renderSpikeBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
+    public static boolean renderSpikeBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z,
+            Block block) {
         float p = 1F / 16F;
         float a = 1F / 1024F;
         float p4 = 4F / 16F - a;
@@ -48,7 +51,13 @@ public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
         for (int rx = 0; rx < 3; rx++) {
             for (int ry = 0; ry < 3; ry++) {
                 for (int rz = 0; rz < 3; rz++) {
-                    renderblocks.setRenderBounds(rx * 6F * p + a, ry * 6F * p + a, rz * 6F * p + a, rx * 6F * p + p4, ry * 6F * p + p4, rz * 6F * p + p4);
+                    renderblocks.setRenderBounds(
+                            rx * 6F * p + a,
+                            ry * 6F * p + a,
+                            rz * 6F * p + a,
+                            rx * 6F * p + p4,
+                            ry * 6F * p + p4,
+                            rz * 6F * p + p4);
                     renderblocks.renderStandardBlock(block, x, y, z);
                 }
             }
@@ -76,7 +85,13 @@ public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
         for (int rx = 0; rx < 3; rx++) {
             for (int ry = 0; ry < 3; ry++) {
                 for (int rz = 0; rz < 3; rz++) {
-                    renderblocks.setRenderBounds(rx * 6F * p + a, ry * 6F * p + a, rz * 6F * p + a, rx * 6F * p + p4, ry * 6F * p + p4, rz * 6F * p + p4);
+                    renderblocks.setRenderBounds(
+                            rx * 6F * p + a,
+                            ry * 6F * p + a,
+                            rz * 6F * p + a,
+                            rx * 6F * p + p4,
+                            ry * 6F * p + p4,
+                            rz * 6F * p + p4);
                     renderInvBlock(renderblocks, par1Block, meta, tessellator);
 
                 }
@@ -92,7 +107,8 @@ public class RenderBlockTFKnightMetal implements ISimpleBlockRenderingHandler {
         par1Block.setBlockBoundsForItemRender();
     }
 
-    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta, Tessellator tessellator) {
+    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta,
+            Tessellator tessellator) {
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
         renderblocks.renderFaceYNeg(par1Block, 0.0D, 0.0D, 0.0D, par1Block.getIcon(0, meta));

@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.world.TFGenSmallRainboak;
 import twilightforest.world.TFGenSmallTwilightOak;
 
@@ -146,25 +147,25 @@ public class ComponentTFStrongholdAtrium extends StructureTFStrongholdComponent 
             int minHeight = 8;
 
             switch (treeNum) {
-            case 0:
-            default:
-                // oak tree
-                treeGen = new WorldGenTrees(true, minHeight, 0, 0, false);
-                break;
-            case 1:
-                // jungle tree
-                treeGen = new WorldGenTrees(true, minHeight, 3, 3, false);
-                break;
-            case 2:
-                // birch
-                treeGen = new WorldGenTrees(true, minHeight, 2, 2, false);
-                break;
-            case 3:
-                treeGen = new TFGenSmallTwilightOak(false, minHeight);
-                break;
-            case 4:
-                treeGen = new TFGenSmallRainboak(false);
-                break;
+                case 0:
+                default:
+                    // oak tree
+                    treeGen = new WorldGenTrees(true, minHeight, 0, 0, false);
+                    break;
+                case 1:
+                    // jungle tree
+                    treeGen = new WorldGenTrees(true, minHeight, 3, 3, false);
+                    break;
+                case 2:
+                    // birch
+                    treeGen = new WorldGenTrees(true, minHeight, 2, 2, false);
+                    break;
+                case 3:
+                    treeGen = new TFGenSmallTwilightOak(false, minHeight);
+                    break;
+                case 4:
+                    treeGen = new TFGenSmallRainboak(false);
+                    break;
             }
 
             for (int i = 0; i < 100; i++) {
@@ -172,9 +173,9 @@ public class ComponentTFStrongholdAtrium extends StructureTFStrongholdComponent 
                     break;
                 }
 
-                //if (i == 99) {
-                    // System.out.println("Never generated " + treeGen);
-                //}
+                // if (i == 99) {
+                // System.out.println("Never generated " + treeGen);
+                // }
             }
         }
     }

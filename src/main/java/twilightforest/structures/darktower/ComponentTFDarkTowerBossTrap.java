@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.BlockTFTowerDevice;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
@@ -59,7 +60,8 @@ public class ComponentTFDarkTowerBossTrap extends ComponentTFDarkTowerWing {
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         // make walls
         makeEncasedWalls(world, rand, sbb, 0, 0, 0, size - 1, height - 1, size - 1);
@@ -82,11 +84,31 @@ public class ComponentTFDarkTowerBossTrap extends ComponentTFDarkTowerWing {
         destroyTower(world, decoRNG, 5, 6, 5, 2, sbb);
 
         // redraw some of the floor in case we destroyed it
-        this.fillWithMetadataBlocks(world, sbb, 1, 0, 1, size / 2, 0, size - 2, deco.blockID, deco.blockMeta, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                1,
+                0,
+                1,
+                size / 2,
+                0,
+                size - 2,
+                deco.blockID,
+                deco.blockMeta,
+                Blocks.air,
+                0,
+                false);
         this.fillWithMetadataBlocks(world, sbb, 1, 1, 1, size / 2, 1, size - 2, Blocks.air, 0, Blocks.air, 0, false);
 
         // add boss trap
-        this.placeBlockAtCurrentPosition(world, TFBlocks.towerDevice, BlockTFTowerDevice.META_GHASTTRAP_INACTIVE, 5, 1, 5, sbb);
+        this.placeBlockAtCurrentPosition(
+                world,
+                TFBlocks.towerDevice,
+                BlockTFTowerDevice.META_GHASTTRAP_INACTIVE,
+                5,
+                1,
+                5,
+                sbb);
         this.placeBlockAtCurrentPosition(world, Blocks.redstone_wire, 0, 5, 1, 6, sbb);
         this.placeBlockAtCurrentPosition(world, Blocks.redstone_wire, 0, 5, 1, 7, sbb);
         this.placeBlockAtCurrentPosition(world, Blocks.redstone_wire, 0, 5, 1, 8, sbb);

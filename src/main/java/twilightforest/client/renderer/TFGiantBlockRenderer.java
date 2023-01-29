@@ -1,7 +1,5 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -12,10 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
+import org.lwjgl.opengl.GL11;
+
 public class TFGiantBlockRenderer implements IItemRenderer {
 
-    public TFGiantBlockRenderer(GameSettings gameSettings, TextureManager textureManager) {
-    }
+    public TFGiantBlockRenderer(GameSettings gameSettings, TextureManager textureManager) {}
 
     /**
      * Checks if this renderer should handle a specific item's render type
@@ -26,12 +25,12 @@ public class TFGiantBlockRenderer implements IItemRenderer {
      */
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
+        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED
+                || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
 
     /**
-     * Checks if certain helper functionality should be executed for this renderer. See
-     * ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See ItemRendererHelper for more info
      * 
      * @param type   The render type
      * @param item   The ItemStack being rendered
@@ -40,12 +39,14 @@ public class TFGiantBlockRenderer implements IItemRenderer {
      */
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return (type == ItemRenderType.ENTITY && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING)) || helper == ItemRendererHelper.BLOCK_3D;
+        return (type == ItemRenderType.ENTITY
+                && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING))
+                || helper == ItemRendererHelper.BLOCK_3D;
     }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
-     * and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run, and what extra
+     * data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered

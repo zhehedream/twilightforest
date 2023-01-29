@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 
 // Makes a Stalagmite suitable for outside appearances.
 public class TFGenOutsideStalagmite extends TFGenCaveStalactite {
+
     public TFGenOutsideStalagmite() {
         super(Blocks.stone, 1.0F, false);
     }

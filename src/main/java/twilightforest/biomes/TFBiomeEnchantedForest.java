@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenVines;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenLargeRainboak;
@@ -136,6 +137,7 @@ public class TFBiomeEnchantedForest extends TFBiomeBase {
      * Customize flower colors
      */
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_) {
-        return p_150572_1_.nextInt(3) > 0 ? BlockFlower.field_149859_a[1] : p_150572_1_.nextBoolean() ? BlockFlower.field_149859_a[2] : BlockFlower.field_149859_a[3];
+        return p_150572_1_.nextInt(3) > 0 ? BlockFlower.field_149859_a[1]
+                : p_150572_1_.nextBoolean() ? BlockFlower.field_149859_a[2] : BlockFlower.field_149859_a[3];
     }
 }

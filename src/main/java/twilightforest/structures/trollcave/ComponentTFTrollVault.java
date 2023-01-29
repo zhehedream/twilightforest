@@ -7,14 +7,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFTrollVault extends StructureTFComponent {
 
-    public ComponentTFTrollVault() {
-    }
+    public ComponentTFTrollVault() {}
 
     public ComponentTFTrollVault(int index, int x, int y, int z) {
         super(index);
@@ -40,7 +40,20 @@ public class ComponentTFTrollVault extends StructureTFComponent {
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // make walls
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, 0, 11, 11, 11, TFBlocks.giantObsidian, 0, TFBlocks.giantObsidian, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                11,
+                11,
+                11,
+                TFBlocks.giantObsidian,
+                0,
+                TFBlocks.giantObsidian,
+                0,
+                false);
 
         // clear inside
         this.fillWithAir(world, sbb, 4, 4, 4, 7, 7, 7);

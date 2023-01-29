@@ -1,7 +1,5 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -17,9 +15,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
+import org.lwjgl.opengl.GL11;
+
 public class TFFieryItemRenderer implements IItemRenderer {
 
-    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(
+            "textures/misc/enchanted_item_glint.png");
     private TextureManager texturemanager;
 
     public TFFieryItemRenderer(GameSettings gameSettings, TextureManager textureManager) {
@@ -35,12 +36,12 @@ public class TFFieryItemRenderer implements IItemRenderer {
      */
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
+        return type == ItemRenderType.ENTITY || type == ItemRenderType.EQUIPPED
+                || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
 
     /**
-     * Checks if certain helper functionality should be executed for this renderer. See
-     * ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See ItemRendererHelper for more info
      * 
      * @param type   The render type
      * @param item   The ItemStack being rendered
@@ -49,12 +50,13 @@ public class TFFieryItemRenderer implements IItemRenderer {
      */
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return type == ItemRenderType.ENTITY && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
+        return type == ItemRenderType.ENTITY
+                && (helper == ItemRendererHelper.ENTITY_ROTATION || helper == ItemRendererHelper.ENTITY_BOBBING);
     }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
-     * and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run, and what extra
+     * data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered
@@ -107,12 +109,14 @@ public class TFFieryItemRenderer implements IItemRenderer {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
 
             // pulse yellow
-            float f9 = (float) Math.sin((float) (Minecraft.getSystemTime() % 6000L) / 6000.0F * 2 * 3.14159F) * 0.2F + 0.2F;
+            float f9 = (float) Math.sin((float) (Minecraft.getSystemTime() % 6000L) / 6000.0F * 2 * 3.14159F) * 0.2F
+                    + 0.2F;
 
             float yellooo = 0.4F;
             GL11.glColor4f(yellooo, yellooo, 0.0F, f9);
 
-            ItemRenderer.renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
+            ItemRenderer
+                    .renderItemIn2D(tessellator, f1, f2, f, f3, iicon.getIconWidth(), iicon.getIconHeight(), 0.0625F);
 
             GL11.glEnable(GL11.GL_TEXTURE_2D);
 
@@ -180,7 +184,15 @@ public class TFFieryItemRenderer implements IItemRenderer {
         Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
 
         // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        ItemRenderer.renderItemIn2D(tessellator, par2Icon.getMaxU(), par2Icon.getMinV(), par2Icon.getMinU(), par2Icon.getMaxV(), par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
+        ItemRenderer.renderItemIn2D(
+                tessellator,
+                par2Icon.getMaxU(),
+                par2Icon.getMinV(),
+                par2Icon.getMinU(),
+                par2Icon.getMaxV(),
+                par2Icon.getIconWidth(),
+                par2Icon.getIconHeight(),
+                f12);
 
         Minecraft.getMinecraft().entityRenderer.enableLightmap(0);
 

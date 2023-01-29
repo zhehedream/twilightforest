@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 public class ModelTFSpikeBlock extends ModelBase {
+
     ModelRenderer block;
     ModelRenderer[] spikes = new ModelRenderer[27];
 

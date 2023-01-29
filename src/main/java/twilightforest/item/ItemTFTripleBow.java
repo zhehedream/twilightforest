@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+
 import twilightforest.TwilightForestMod;
 
 public class ItemTFTripleBow extends ItemTFBowBase {
@@ -19,10 +20,10 @@ public class ItemTFTripleBow extends ItemTFBowBase {
     }
 
     /**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer,
-     * itemInUseCount
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
-    public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4) {
+    public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer,
+            int par4) {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
         ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
@@ -32,7 +33,8 @@ public class ItemTFTripleBow extends ItemTFBowBase {
         }
         j = event.charge;
 
-        boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
+        boolean flag = par3EntityPlayer.capabilities.isCreativeMode
+                || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
         if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow)) {
             float f = (float) j / 20.0F;
@@ -84,7 +86,11 @@ public class ItemTFTripleBow extends ItemTFBowBase {
             }
 
             par1ItemStack.damageItem(1, par3EntityPlayer);
-            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+            par2World.playSoundAtEntity(
+                    par3EntityPlayer,
+                    "random.bow",
+                    1.0F,
+                    1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
             if (flag) {
                 entityarrow.canBePickedUp = 2;

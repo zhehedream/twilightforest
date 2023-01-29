@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,6 +12,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class ItemTFBowBase extends ItemBow {
 
@@ -40,8 +41,8 @@ public abstract class ItemTFBowBase extends ItemBow {
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      *
-     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the
-     *                     same if usingItem is not null)
+     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the same if
+     *                     usingItem is not null)
      * @param renderPass   The pass to get the icon for, 0 is default.
      * @param player       The player holding the item
      * @param usingItem    The item the player is actively using. Can be null if not using anything.
@@ -69,8 +70,7 @@ public abstract class ItemTFBowBase extends ItemBow {
     }
 
     /**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer,
-     * itemInUseCount
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
     public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer entityPlayer, int itemInUseCount) {
         int charge = this.getMaxItemUseDuration(itemstack) - itemInUseCount;
@@ -82,7 +82,8 @@ public abstract class ItemTFBowBase extends ItemBow {
         }
         charge = event.charge;
 
-        boolean isNoPickup = entityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, itemstack) > 0;
+        boolean isNoPickup = entityPlayer.capabilities.isCreativeMode
+                || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, itemstack) > 0;
 
         if (isNoPickup || entityPlayer.inventory.hasItem(Items.arrow)) {
             float velocity = (float) charge / 20.0F;
@@ -119,7 +120,11 @@ public abstract class ItemTFBowBase extends ItemBow {
             }
 
             itemstack.damageItem(1, entityPlayer);
-            world.playSoundAtEntity(entityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + velocity * 0.5F);
+            world.playSoundAtEntity(
+                    entityPlayer,
+                    "random.bow",
+                    1.0F,
+                    1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + velocity * 0.5F);
 
             if (isNoPickup) {
                 entityarrow.canBePickedUp = 2;

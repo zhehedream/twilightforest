@@ -74,13 +74,14 @@ public class EntityTFLichBolt extends EntityThrowable {
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
-//        System.out.println("Lich bolt being attacked!");
+        // System.out.println("Lich bolt being attacked!");
 
         setBeenAttacked();
         if (damagesource.getEntity() != null) {
             Vec3 vec3d = damagesource.getEntity().getLookVec();
             if (vec3d != null) {
-                this.setThrowableHeading(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, 1.5F, 0.1F); // reflect faster and more accurately
+                this.setThrowableHeading(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, 1.5F, 0.1F); // reflect faster and
+                                                                                                // more accurately
             }
             if (damagesource.getEntity() instanceof EntityLivingBase) {
                 playerReflects = (EntityLivingBase) damagesource.getEntity();
@@ -116,12 +117,15 @@ public class EntityTFLichBolt extends EntityThrowable {
         boolean passThrough = false;
 
         // pass through other lich bolts
-        if (par1MovingObjectPosition.entityHit != null && (par1MovingObjectPosition.entityHit instanceof EntityTFLichBolt || par1MovingObjectPosition.entityHit instanceof EntityTFLichBomb)) {
+        if (par1MovingObjectPosition.entityHit != null
+                && (par1MovingObjectPosition.entityHit instanceof EntityTFLichBolt
+                        || par1MovingObjectPosition.entityHit instanceof EntityTFLichBomb)) {
             passThrough = true;
         }
 
         // only damage living things
-        if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
+        if (par1MovingObjectPosition.entityHit != null
+                && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
             if (par1MovingObjectPosition.entityHit instanceof EntityTFLich) {
                 EntityTFLich lich = (EntityTFLich) par1MovingObjectPosition.entityHit;
                 if (lich.isShadowClone()) {
@@ -129,14 +133,21 @@ public class EntityTFLichBolt extends EntityThrowable {
                 }
             }
             // if we're not set to pass, damage what we hit
-            if (!passThrough && par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 6)) {
+            if (!passThrough && par1MovingObjectPosition.entityHit
+                    .attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 6)) {
                 ;
             }
         }
         // if we don't pass through, then stop and die
         if (!passThrough) {
             for (int i = 0; i < 8; ++i) {
-                this.worldObj.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.ender_pearl), this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D,
+                this.worldObj.spawnParticle(
+                        "iconcrack_" + Item.getIdFromItem(Items.ender_pearl),
+                        this.posX,
+                        this.posY,
+                        this.posZ,
+                        rand.nextGaussian() * 0.05D,
+                        rand.nextDouble() * 0.2D,
                         rand.nextGaussian() * 0.05D);
             }
 

@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.item.TFItems;
 
 public class EntityTFCharmEffect extends Entity {
@@ -43,7 +44,12 @@ public class EntityTFCharmEffect extends Entity {
 
         Vec3 look = Vec3.createVectorHelper(DISTANCE, 0, 0);
 
-        this.setLocationAndAngles(par2EntityLiving.posX, par2EntityLiving.posY + par2EntityLiving.getEyeHeight(), par2EntityLiving.posZ, par2EntityLiving.rotationYaw, par2EntityLiving.rotationPitch);
+        this.setLocationAndAngles(
+                par2EntityLiving.posX,
+                par2EntityLiving.posY + par2EntityLiving.getEyeHeight(),
+                par2EntityLiving.posZ,
+                par2EntityLiving.rotationYaw,
+                par2EntityLiving.rotationPitch);
         this.posX += look.xCoord * DISTANCE;
         // this.posY += look.yCoord * DISTANCE;
         this.posZ += look.zCoord * DISTANCE;
@@ -67,7 +73,8 @@ public class EntityTFCharmEffect extends Entity {
             double var5 = this.posZ + (this.newPosZ - this.posZ) / (double) this.newPosRotationIncrements;
             double var7 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double) this.rotationYaw);
             this.rotationYaw = (float) ((double) this.rotationYaw + var7 / this.newPosRotationIncrements);
-            this.rotationPitch = (float) ((double) this.rotationPitch + (this.newRotationPitch - (double) this.rotationPitch) / this.newPosRotationIncrements);
+            this.rotationPitch = (float) ((double) this.rotationPitch
+                    + (this.newRotationPitch - (double) this.rotationPitch) / this.newPosRotationIncrements);
             --this.newPosRotationIncrements;
             this.setPosition(var1, var3, var5);
             this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -80,12 +87,17 @@ public class EntityTFCharmEffect extends Entity {
         }
 
         if (this.orbiting != null && !worldObj.isRemote) {
-            this.setLocationAndAngles(orbiting.posX, orbiting.posY + orbiting.getEyeHeight(), orbiting.posZ, orbiting.rotationYaw, orbiting.rotationPitch);
+            this.setLocationAndAngles(
+                    orbiting.posX,
+                    orbiting.posY + orbiting.getEyeHeight(),
+                    orbiting.posZ,
+                    orbiting.rotationYaw,
+                    orbiting.rotationPitch);
 
             Vec3 look = Vec3.createVectorHelper(DISTANCE, 0, 0);
             look.rotateAroundY(rotation);
             this.posX += look.xCoord;
-//            this.posY += Math.sin(this.ticksExisted / 3.0F + offset);
+            // this.posY += Math.sin(this.ticksExisted / 3.0F + offset);
             this.posZ += look.zCoord;
 
             this.setPosition(this.posX, this.posY, this.posZ);
@@ -108,8 +120,8 @@ public class EntityTFCharmEffect extends Entity {
     }
 
     /**
-     * Sets the position and rotation. Only difference from the other one is no bounding on the
-     * rotation. Args: posX, posY, posZ, yaw, pitch
+     * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
+     * posY, posZ, yaw, pitch
      */
     public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) {
         this.yOffset = 0.0F;

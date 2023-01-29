@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFMazeRoomFountain extends ComponentTFMazeRoom {

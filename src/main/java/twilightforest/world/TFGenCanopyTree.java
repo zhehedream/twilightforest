@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
@@ -91,7 +92,8 @@ public class TFGenCanopyTree extends TFTreeGenerator {
      * @param angle
      * @param tilt
      */
-    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt, boolean trunk, Random treeRNG) {
+    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt,
+            boolean trunk, Random treeRNG) {
         ChunkCoordinates src = new ChunkCoordinates(x, y + height, z);
         ChunkCoordinates dest = translateCoords(src.posX, src.posY, src.posZ, length, angle, tilt);
 
@@ -109,7 +111,16 @@ public class TFGenCanopyTree extends TFTreeGenerator {
             dest.posZ = z + 4;
         }
 
-        drawBresehnam(world, src.posX, src.posY, src.posZ, dest.posX, dest.posY, dest.posZ, treeBlock, trunk ? treeMeta : branchMeta);
+        drawBresehnam(
+                world,
+                src.posX,
+                src.posY,
+                src.posZ,
+                dest.posX,
+                dest.posY,
+                dest.posZ,
+                treeBlock,
+                trunk ? treeMeta : branchMeta);
 
         // do this here until that bug with the lighting is fixed
         if (trunk) {
@@ -137,17 +148,17 @@ public class TFGenCanopyTree extends TFTreeGenerator {
     protected void addFirefly(World world, int x, int y, int z, int height, double angle) {
         int iAngle = (int) (angle * 4.0);
         switch (iAngle) {
-        case 0:
-            setBlockAndMetadata(world, x + 1, y + height, z, TFBlocks.firefly, 0);
-            break;
-        case 1:
-            setBlockAndMetadata(world, x - 1, y + height, z, TFBlocks.firefly, 0);
-            break;
-        case 2:
-            setBlockAndMetadata(world, x, y + height, z + 1, TFBlocks.firefly, 0);
-            break;
-        case 3:
-            setBlockAndMetadata(world, x, y + height, z - 1, TFBlocks.firefly, 0);
+            case 0:
+                setBlockAndMetadata(world, x + 1, y + height, z, TFBlocks.firefly, 0);
+                break;
+            case 1:
+                setBlockAndMetadata(world, x - 1, y + height, z, TFBlocks.firefly, 0);
+                break;
+            case 2:
+                setBlockAndMetadata(world, x, y + height, z + 1, TFBlocks.firefly, 0);
+                break;
+            case 3:
+                setBlockAndMetadata(world, x, y + height, z - 1, TFBlocks.firefly, 0);
         }
     }
 }

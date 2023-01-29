@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,12 +14,17 @@ import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFTrophy extends ItemTF {
+
     private static final String[] trophyTypes = new String[] { "hydra", "naga", "lich", "ur-ghast", "snowQueen" };
-    public static final String[] trophyTextures = new String[] { "hydraTrophy", "nagaTrophy", "lichTrophy", "urGhastTrophy", "snowQueenTrophy" };
+    public static final String[] trophyTextures = new String[] { "hydraTrophy", "nagaTrophy", "lichTrophy",
+            "urGhastTrophy", "snowQueenTrophy" };
     public IIcon[] trophyIcons;
 
     public ItemTFTrophy() {
@@ -53,10 +56,11 @@ public class ItemTFTrophy extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int direction, float par8, float par9, float par10) {
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int direction,
+            float par8, float par9, float par10) {
         if (direction == 0) {
             return false;
         } else if (!world.getBlock(x, y, z).getMaterial().isSolid()) {
@@ -105,14 +109,15 @@ public class ItemTFTrophy extends ItemTF {
                     tags.setByte("SkullType", (byte) (itemStack.getItemDamage() & 255));
                     skull.readFromNBT(tags);
 
-//                    try {
-//                        String skullName = "";
-//                        ((TileEntitySkull)tileEntity).func_145905_a(itemStack.getItemDamage(), skullName);
-//                    } catch (NoSuchMethodError ex) {
-//                        // stop checking admin
-//                        FMLLog.warning("[TwilightForest] Could not determine op status for adminOnlyPortals option, ignoring option.");
-//                        TwilightForestMod.adminOnlyPortals = false;
-//                    }
+                    // try {
+                    // String skullName = "";
+                    // ((TileEntitySkull)tileEntity).func_145905_a(itemStack.getItemDamage(), skullName);
+                    // } catch (NoSuchMethodError ex) {
+                    // // stop checking admin
+                    // FMLLog.warning("[TwilightForest] Could not determine op status for adminOnlyPortals option,
+                    // ignoring option.");
+                    // TwilightForestMod.adminOnlyPortals = false;
+                    // }
                     skull.func_145903_a(skullRotate);
                 }
 
@@ -123,8 +128,8 @@ public class ItemTFTrophy extends ItemTF {
     }
 
     /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks
-     * can have different names based on their damage or NBT.
+     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
+     * different names based on their damage or NBT.
      */
     public String getUnlocalizedName(ItemStack par1ItemStack) {
         int i = par1ItemStack.getItemDamage();

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.entity.ai.EntityAITFRedcapPlantTNT;
@@ -67,7 +68,8 @@ public class EntityTFRedcapSapper extends EntityTFRedcap {
             int chunkZ = MathHelper.floor_double(posZ) >> 4;
             if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hill2) {
                 // award level 2 hill cheevo
-                ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill2);
+                ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                        .triggerAchievement(TFAchievementPage.twilightHill2);
             }
 
         }

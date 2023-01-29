@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,11 +16,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.MapData.MapCoord;
 import net.minecraft.world.storage.MapData.MapInfo;
+
 import twilightforest.TFMapPacketHandler;
 import twilightforest.TFMazeMapData;
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFMazeMap extends ItemMap {
+
     public static final String STR_ID = "mazemap";
     private static final int YSEARCH = 3;
     protected boolean mapOres;
@@ -51,7 +53,8 @@ public class ItemTFMazeMap extends ItemMap {
 
     @Override
     public TFMazeMapData getMapData(ItemStack par1ItemStack, World par2World) {
-        TFMazeMapData mapData = (TFMazeMapData) par2World.loadItemData(TFMazeMapData.class, STR_ID + "_" + par1ItemStack.getItemDamage());
+        TFMazeMapData mapData = (TFMazeMapData) par2World
+                .loadItemData(TFMazeMapData.class, STR_ID + "_" + par1ItemStack.getItemDamage());
 
         if (mapData == null && !par2World.isRemote) {
             par1ItemStack.setItemDamage(par2World.getUniqueDataId(STR_ID));
@@ -153,13 +156,15 @@ public class ItemTFMazeMap extends ItemMap {
                                     colorIndex = MapColor.diamondColor.colorIndex;
                                 } else if (blockID == Blocks.emerald_ore) {
                                     colorIndex = MapColor.emeraldColor.colorIndex;
-                                } else if (blockID != Blocks.air && blockID.getUnlocalizedName().toLowerCase().contains("ore")) {
-                                    // any other ore, catchall
-                                    colorIndex = MapColor.pinkColor.colorIndex;
-                                }
+                                } else if (blockID != Blocks.air
+                                        && blockID.getUnlocalizedName().toLowerCase().contains("ore")) {
+                                            // any other ore, catchall
+                                            colorIndex = MapColor.pinkColor.colorIndex;
+                                        }
                             }
 
-                            if (zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize && (!var20 || (xStep + zStep & 1) != 0)) {
+                            if (zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize
+                                    && (!var20 || (xStep + zStep & 1) != 0)) {
                                 byte existingColor = par3MapData.colors[xStep + zStep * xSize];
                                 byte tintedColor = (byte) (colorIndex * 4 + tint);
 
@@ -187,8 +192,8 @@ public class ItemTFMazeMap extends ItemMap {
     }
 
     /**
-     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a
-     * player hand and update it's contents.
+     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
+     * update it's contents.
      */
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean isActiveItem) {
         if (!par2World.isRemote) {
@@ -251,8 +256,8 @@ public class ItemTFMazeMap extends ItemMap {
     /**
      * returns null if no update is to be sent
      * 
-     * We have re-written this to provide a Packet250CustomPayload to be sent, since the map data packet
-     * is only for the actual map map.
+     * We have re-written this to provide a Packet250CustomPayload to be sent, since the map data packet is only for the
+     * actual map map.
      */
     @Override
     public Packet func_150911_c(ItemStack itemStack, World world, EntityPlayer player) {
@@ -274,7 +279,9 @@ public class ItemTFMazeMap extends ItemMap {
      * Add the map number to the tooltip
      */
     public String getItemStackDisplayName(ItemStack itemStack) {
-        return (String.valueOf(StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #" + itemStack.getItemDamage())).trim();
+        return (String.valueOf(
+                StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
+                        + itemStack.getItemDamage())).trim();
     }
 
     /**
@@ -283,7 +290,8 @@ public class ItemTFMazeMap extends ItemMap {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
 }

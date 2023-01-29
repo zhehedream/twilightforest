@@ -4,13 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+
 import twilightforest.entity.EntityTFProtectionBox;
 
 public class ModelTFProtectionBox extends ModelBase {
 
     @Override
-    public void setLivingAnimations(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {
-    }
+    public void setLivingAnimations(EntityLivingBase par1EntityLivingBase, float par2, float par3, float par4) {}
 
     public ModelRenderer box;
     private int lastPixelsX;

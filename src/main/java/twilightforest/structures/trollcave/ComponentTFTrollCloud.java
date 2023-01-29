@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFTrollCloud extends StructureTFComponent {
@@ -13,8 +14,7 @@ public class ComponentTFTrollCloud extends StructureTFComponent {
     private int size;
     private int height;
 
-    public ComponentTFTrollCloud() {
-    }
+    public ComponentTFTrollCloud() {}
 
     public ComponentTFTrollCloud(int index, int x, int y, int z) {
         super(index);
@@ -24,7 +24,17 @@ public class ComponentTFTrollCloud extends StructureTFComponent {
         this.height = 20;
 
         int radius = this.size / 2;
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -radius, -this.height, -radius, this.size, this.height, this.size, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -radius,
+                -this.height,
+                -radius,
+                this.size,
+                this.height,
+                this.size,
+                0);
     }
 
     /**
@@ -55,9 +65,36 @@ public class ComponentTFTrollCloud extends StructureTFComponent {
         return true;
     }
 
-    protected void placeCloud(World world, StructureBoundingBox sbb, int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
-        this.fillWithMetadataBlocks(world, sbb, minX, minY, minZ, maxX, maxY, maxZ, Blocks.stained_glass, 0, Blocks.stained_glass, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, minX + 2, minY + 2, minZ + 2, maxX - 2, maxY - 1, maxZ - 2, Blocks.quartz_block, 0, Blocks.quartz_block, 0, false);
+    protected void placeCloud(World world, StructureBoundingBox sbb, int minX, int minY, int minZ, int maxX, int maxY,
+            int maxZ) {
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                minX,
+                minY,
+                minZ,
+                maxX,
+                maxY,
+                maxZ,
+                Blocks.stained_glass,
+                0,
+                Blocks.stained_glass,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                minX + 2,
+                minY + 2,
+                minZ + 2,
+                maxX - 2,
+                maxY - 1,
+                maxZ - 2,
+                Blocks.quartz_block,
+                0,
+                Blocks.quartz_block,
+                0,
+                false);
 
     }
 

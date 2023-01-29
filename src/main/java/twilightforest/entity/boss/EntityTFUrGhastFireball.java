@@ -19,10 +19,18 @@ public class EntityTFUrGhastFireball extends EntityLargeFireball {
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         if (!this.worldObj.isRemote && !(par1MovingObjectPosition.entityHit instanceof EntityFireball)) {
             if (par1MovingObjectPosition.entityHit != null) {
-                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), 16);
+                par1MovingObjectPosition.entityHit
+                        .attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), 16);
             }
 
-            this.worldObj.newExplosion((Entity) null, this.posX, this.posY, this.posZ, (float) this.field_92057_e, true, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
+            this.worldObj.newExplosion(
+                    (Entity) null,
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    (float) this.field_92057_e,
+                    true,
+                    this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
             this.setDead();
         }
     }

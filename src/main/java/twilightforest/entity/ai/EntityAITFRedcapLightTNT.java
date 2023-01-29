@@ -2,6 +2,7 @@ package twilightforest.entity.ai;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
+
 import twilightforest.entity.EntityTFRedcap;
 
 public class EntityAITFRedcapLightTNT extends EntityAITFRedcapBase {

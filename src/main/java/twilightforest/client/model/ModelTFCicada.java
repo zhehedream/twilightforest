@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelTFCicada extends ModelBase {
+
     public ModelTFCicada() {
         legs = new ModelRenderer(this, 0, 21);
         legs.addBox(-4F, 7.9F, -5F, 8, 1, 9, 0F);
@@ -31,8 +32,8 @@ public class ModelTFCicada extends ModelBase {
     }
 
     public void render(float f5) {
-//        super.render(f, f1, f2, f3, f4, f5);
-//        setRotationAngles(f, f1, f2, f3, f4, f5);
+        // super.render(f, f1, f2, f3, f4, f5);
+        // setRotationAngles(f, f1, f2, f3, f4, f5);
         legs.render(f5);
         fatbody.render(f5);
         skinnybody.render(f5);
@@ -43,7 +44,7 @@ public class ModelTFCicada extends ModelBase {
     }
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
-//        super.setRotationAngles(f, f1, f2, f3, f4, f5);
+        // super.setRotationAngles(f, f1, f2, f3, f4, f5);
     }
 
     // fields

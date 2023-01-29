@@ -1,6 +1,7 @@
 package twilightforest.structures;
 
 import net.minecraft.init.Blocks;
+
 import twilightforest.block.TFBlocks;
 
 public class StructureTFDecoratorCastle extends StructureTFDecorator {

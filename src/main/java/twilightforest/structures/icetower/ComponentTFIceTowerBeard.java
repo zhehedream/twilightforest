@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
@@ -14,8 +15,7 @@ public class ComponentTFIceTowerBeard extends StructureTFComponent {
     protected int size;
     protected int height;
 
-    public ComponentTFIceTowerBeard() {
-    }
+    public ComponentTFIceTowerBeard() {}
 
     public ComponentTFIceTowerBeard(int i, ComponentTFTowerWing wing) {
         super(i);
@@ -29,8 +29,13 @@ public class ComponentTFIceTowerBeard extends StructureTFComponent {
         this.deco = wing.deco;
 
         // just hang out at the very bottom of the tower
-        this.boundingBox = new StructureBoundingBox(wing.getBoundingBox().minX, wing.getBoundingBox().minY - this.height, wing.getBoundingBox().minZ, wing.getBoundingBox().maxX,
-                wing.getBoundingBox().minY, wing.getBoundingBox().maxZ);
+        this.boundingBox = new StructureBoundingBox(
+                wing.getBoundingBox().minX,
+                wing.getBoundingBox().minY - this.height,
+                wing.getBoundingBox().minZ,
+                wing.getBoundingBox().maxX,
+                wing.getBoundingBox().minY,
+                wing.getBoundingBox().maxZ);
     }
 
     /**

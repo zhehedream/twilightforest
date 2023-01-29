@@ -4,9 +4,11 @@ import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 public class TFGenLampposts extends TFGenerator {
+
     private static final int MAX_HANG = 8;
 
     public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -18,7 +20,8 @@ public class TFGenLampposts extends TFGenerator {
 
             // is it air or replaceable above our grass block
             for (int dy = 0; dy < height; dy++) {
-                if (!world.isAirBlock(x, y + dy, z) && !world.getBlock(x, y + dy, z).isReplaceable(world, x, y + dy, z)) {
+                if (!world.isAirBlock(x, y + dy, z)
+                        && !world.getBlock(x, y + dy, z).isReplaceable(world, x, y + dy, z)) {
                     clear = false;
                 }
             }

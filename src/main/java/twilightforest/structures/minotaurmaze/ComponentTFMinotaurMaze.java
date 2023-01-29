@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.TFMaze;
@@ -27,7 +28,17 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
         super(index);
         this.setCoordBaseMode(0);
         this.level = level;
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -getRadius(), 0, -getRadius(), getRadius() * 2, 5, getRadius() * 2, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -getRadius(),
+                0,
+                -getRadius(),
+                getRadius() * 2,
+                5,
+                getRadius() * 2,
+                0);
 
         // make maze object
         maze = new TFMaze(getMazeSize(), getMazeSize());
@@ -167,26 +178,44 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
                 StructureTFComponent component = null;
 
                 // dead ends
-                if (!maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z) && maze.isWall(x, z, x, z - 1) && maze.isWall(x, z, x, z + 1)) {
+                if (!maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z)
+                        && maze.isWall(x, z, x, z - 1)
+                        && maze.isWall(x, z, x, z + 1)) {
                     component = makeDeadEnd(random, x, z, 3);
                 }
-                if (maze.isWall(x, z, x - 1, z) && !maze.isWall(x, z, x + 1, z) && maze.isWall(x, z, x, z - 1) && maze.isWall(x, z, x, z + 1)) {
+                if (maze.isWall(x, z, x - 1, z) && !maze.isWall(x, z, x + 1, z)
+                        && maze.isWall(x, z, x, z - 1)
+                        && maze.isWall(x, z, x, z + 1)) {
                     component = makeDeadEnd(random, x, z, 1);
                 }
-                if (maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z) && !maze.isWall(x, z, x, z - 1) && maze.isWall(x, z, x, z + 1)) {
+                if (maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z)
+                        && !maze.isWall(x, z, x, z - 1)
+                        && maze.isWall(x, z, x, z + 1)) {
                     component = makeDeadEnd(random, x, z, 0);
                 }
-                if (maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z) && maze.isWall(x, z, x, z - 1) && !maze.isWall(x, z, x, z + 1)) {
+                if (maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z)
+                        && maze.isWall(x, z, x, z - 1)
+                        && !maze.isWall(x, z, x, z + 1)) {
                     component = makeDeadEnd(random, x, z, 2);
                 }
 
                 // corridors
-                if (!maze.isWall(x, z, x - 1, z) && !maze.isWall(x, z, x + 1, z) && maze.isWall(x, z, x, z - 1) && maze.isWall(x, z, x, z + 1) && maze.isWall(x - 1, z, x - 1, z - 1)
-                        && maze.isWall(x - 1, z, x - 1, z + 1) && maze.isWall(x + 1, z, x + 1, z - 1) && maze.isWall(x + 1, z, x + 1, z + 1)) {
+                if (!maze.isWall(x, z, x - 1, z) && !maze.isWall(x, z, x + 1, z)
+                        && maze.isWall(x, z, x, z - 1)
+                        && maze.isWall(x, z, x, z + 1)
+                        && maze.isWall(x - 1, z, x - 1, z - 1)
+                        && maze.isWall(x - 1, z, x - 1, z + 1)
+                        && maze.isWall(x + 1, z, x + 1, z - 1)
+                        && maze.isWall(x + 1, z, x + 1, z + 1)) {
                     component = makeCorridor(random, x, z, 1);
                 }
-                if (!maze.isWall(x, z, x, z - 1) && !maze.isWall(x, z, x, z + 1) && maze.isWall(x, z, x - 1, z) && maze.isWall(x, z, x + 1, z) && maze.isWall(x, z - 1, x - 1, z - 1)
-                        && maze.isWall(x, z - 1, x + 1, z - 1) && maze.isWall(x, z + 1, x - 1, z + 1) && maze.isWall(x, z + 1, x + 1, z + 1)) {
+                if (!maze.isWall(x, z, x, z - 1) && !maze.isWall(x, z, x, z + 1)
+                        && maze.isWall(x, z, x - 1, z)
+                        && maze.isWall(x, z, x + 1, z)
+                        && maze.isWall(x, z - 1, x - 1, z - 1)
+                        && maze.isWall(x, z - 1, x + 1, z - 1)
+                        && maze.isWall(x, z + 1, x - 1, z + 1)
+                        && maze.isWall(x, z + 1, x + 1, z + 1)) {
                     component = makeCorridor(random, x, z, 0);
                 }
 
@@ -209,24 +238,25 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
         int decorationType = random.nextInt(8);
 
         switch (decorationType) {
-        default:
-        case 0:
-            // blank with fence doorway
-            return new ComponentTFMazeDeadEnd(4, worldX, worldY, worldZ, rotation);
-        case 1:
-            return new ComponentTFMazeDeadEndChest(4, worldX, worldY, worldZ, rotation);
-        case 2:
-            return new ComponentTFMazeDeadEndTrappedChest(4, worldX, worldY, worldZ, rotation);
-        case 3:
-            return new ComponentTFMazeDeadEndTorches(4, worldX, worldY, worldZ, rotation);
-        case 4:
-            return new ComponentTFMazeDeadEndFountain(4, worldX, worldY, worldZ, rotation);
-        case 5:
-            return new ComponentTFMazeDeadEndFountainLava(4, worldX, worldY, worldZ, rotation);
-        case 6:
-            return new ComponentTFMazeDeadEndPainting(4, worldX, worldY, worldZ, rotation);
-        case 7:
-            return this.level == 1 ? new ComponentTFMazeDeadEndRoots(4, worldX, worldY, worldZ, rotation) : new ComponentTFMazeDeadEndShrooms(4, worldX, worldY, worldZ, rotation);
+            default:
+            case 0:
+                // blank with fence doorway
+                return new ComponentTFMazeDeadEnd(4, worldX, worldY, worldZ, rotation);
+            case 1:
+                return new ComponentTFMazeDeadEndChest(4, worldX, worldY, worldZ, rotation);
+            case 2:
+                return new ComponentTFMazeDeadEndTrappedChest(4, worldX, worldY, worldZ, rotation);
+            case 3:
+                return new ComponentTFMazeDeadEndTorches(4, worldX, worldY, worldZ, rotation);
+            case 4:
+                return new ComponentTFMazeDeadEndFountain(4, worldX, worldY, worldZ, rotation);
+            case 5:
+                return new ComponentTFMazeDeadEndFountainLava(4, worldX, worldY, worldZ, rotation);
+            case 6:
+                return new ComponentTFMazeDeadEndPainting(4, worldX, worldY, worldZ, rotation);
+            case 7:
+                return this.level == 1 ? new ComponentTFMazeDeadEndRoots(4, worldX, worldY, worldZ, rotation)
+                        : new ComponentTFMazeDeadEndShrooms(4, worldX, worldY, worldZ, rotation);
 
         }
 
@@ -240,17 +270,18 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
         int decorationType = random.nextInt(5);
 
         switch (decorationType) {
-        default:
-        case 0:
-            return null;
-        case 1:
-            return new ComponentTFMazeCorridor(4, worldX, worldY, worldZ, rotation);
-        case 2:
-            return new ComponentTFMazeCorridorIronFence(4, worldX, worldY, worldZ, rotation);
-        case 3:
-            return null; // painting
-        case 4:
-            return this.level == 1 ? new ComponentTFMazeCorridorRoots(4, worldX, worldY, worldZ, rotation) : new ComponentTFMazeCorridorShrooms(4, worldX, worldY, worldZ, rotation);
+            default:
+            case 0:
+                return null;
+            case 1:
+                return new ComponentTFMazeCorridor(4, worldX, worldY, worldZ, rotation);
+            case 2:
+                return new ComponentTFMazeCorridorIronFence(4, worldX, worldY, worldZ, rotation);
+            case 3:
+                return null; // painting
+            case 4:
+                return this.level == 1 ? new ComponentTFMazeCorridorRoots(4, worldX, worldY, worldZ, rotation)
+                        : new ComponentTFMazeCorridorShrooms(4, worldX, worldY, worldZ, rotation);
         }
 
     }
@@ -267,7 +298,14 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
             int centerX = boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2);
             int centerZ = boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2);
 
-            ComponentTFMinotaurMaze maze = new ComponentTFMinotaurMaze(1, centerX, boundingBox.minY - 10, centerZ, rcoords[2], rcoords[3], 2);
+            ComponentTFMinotaurMaze maze = new ComponentTFMinotaurMaze(
+                    1,
+                    centerX,
+                    boundingBox.minY - 10,
+                    centerZ,
+                    rcoords[2],
+                    rcoords[3],
+                    2);
             list.add(maze);
             maze.buildComponent(this, list, random);
         }
@@ -291,15 +329,53 @@ public class ComponentTFMinotaurMaze extends StructureTFComponent {
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // level 2 maze surrounded by bedrock
         if (level == 2) {
-            fillWithBlocks(world, sbb, 0, -1, 0, getDiameter() + 2, 6, getDiameter() + 2, Blocks.bedrock, Blocks.air, false);
+            fillWithBlocks(
+                    world,
+                    sbb,
+                    0,
+                    -1,
+                    0,
+                    getDiameter() + 2,
+                    6,
+                    getDiameter() + 2,
+                    Blocks.bedrock,
+                    Blocks.air,
+                    false);
         }
 
         // clear the area
         fillWithAir(world, sbb, 1, 1, 1, getDiameter(), 4, getDiameter());
-//        fillWithBlocks(world, sbb, 0, 0, 0, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, Blocks.stone, false);
-//        fillWithBlocks(world, sbb, 0, 5, 0, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, Blocks.stone, true);
-        fillWithMetadataBlocks(world, sbb, 1, 5, 1, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, 0, Blocks.stone, 0, this.level == 1);
-        fillWithMetadataBlocks(world, sbb, 1, 0, 1, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, 6, Blocks.stone, 0, false);
+        // fillWithBlocks(world, sbb, 0, 0, 0, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, Blocks.stone,
+        // false);
+        // fillWithBlocks(world, sbb, 0, 5, 0, getDiameter(), 5, getDiameter(), TFBlocks.mazestone, Blocks.stone, true);
+        fillWithMetadataBlocks(
+                world,
+                sbb,
+                1,
+                5,
+                1,
+                getDiameter(),
+                5,
+                getDiameter(),
+                TFBlocks.mazestone,
+                0,
+                Blocks.stone,
+                0,
+                this.level == 1);
+        fillWithMetadataBlocks(
+                world,
+                sbb,
+                1,
+                0,
+                1,
+                getDiameter(),
+                0,
+                getDiameter(),
+                TFBlocks.mazestone,
+                6,
+                Blocks.stone,
+                0,
+                false);
 
         //
         maze.headBlockID = TFBlocks.mazestone;

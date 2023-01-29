@@ -53,7 +53,8 @@ public class EntityTFMistWolf extends EntityTFHostileWolf {
                 }
 
                 if (effectDuration > 0) {
-                    ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, effectDuration * 20, 0));
+                    ((EntityLivingBase) par1Entity)
+                            .addPotionEffect(new PotionEffect(Potion.blindness.id, effectDuration * 20, 0));
                 }
             }
 

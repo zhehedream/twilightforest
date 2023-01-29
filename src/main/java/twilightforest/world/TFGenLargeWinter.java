@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
@@ -75,35 +76,35 @@ public class TFGenLargeWinter extends TFTreeGenerator {
         int branchLength = radius > 4 ? radius - 1 : radius - 2;
 
         switch (y % 2) {
-        case 0:
-            // branches
-            for (int i = 1; i <= branchLength; i++) {
-                this.setBlockAndMetadata(world, x + 0 - i, y, z + 0, treeBlock, branchMeta & 3 | 4);
-                this.setBlockAndMetadata(world, x + 0, y, z + 1 + i, treeBlock, branchMeta & 3 | 8);
-                this.setBlockAndMetadata(world, x + 1 + i, y, z + 1, treeBlock, branchMeta & 3 | 4);
-                this.setBlockAndMetadata(world, x + 1, y, z - 0 - i, treeBlock, branchMeta & 3 | 8);
-            }
-            break;
-        case 1:
-            for (int i = 1; i <= branchLength; i++) {
-                this.setBlockAndMetadata(world, x + 0 - i, y, z + 1, treeBlock, branchMeta & 3 | 4);
-                this.setBlockAndMetadata(world, x + 1, y, z + 1 + i, treeBlock, branchMeta & 3 | 8);
-                this.setBlockAndMetadata(world, x + 1 + i, y, z + 0, treeBlock, branchMeta & 3 | 4);
-                this.setBlockAndMetadata(world, x + 0, y, z - 0 - i, treeBlock, branchMeta & 3 | 8);
-            }
-            break;
+            case 0:
+                // branches
+                for (int i = 1; i <= branchLength; i++) {
+                    this.setBlockAndMetadata(world, x + 0 - i, y, z + 0, treeBlock, branchMeta & 3 | 4);
+                    this.setBlockAndMetadata(world, x + 0, y, z + 1 + i, treeBlock, branchMeta & 3 | 8);
+                    this.setBlockAndMetadata(world, x + 1 + i, y, z + 1, treeBlock, branchMeta & 3 | 4);
+                    this.setBlockAndMetadata(world, x + 1, y, z - 0 - i, treeBlock, branchMeta & 3 | 8);
+                }
+                break;
+            case 1:
+                for (int i = 1; i <= branchLength; i++) {
+                    this.setBlockAndMetadata(world, x + 0 - i, y, z + 1, treeBlock, branchMeta & 3 | 4);
+                    this.setBlockAndMetadata(world, x + 1, y, z + 1 + i, treeBlock, branchMeta & 3 | 8);
+                    this.setBlockAndMetadata(world, x + 1 + i, y, z + 0, treeBlock, branchMeta & 3 | 4);
+                    this.setBlockAndMetadata(world, x + 0, y, z - 0 - i, treeBlock, branchMeta & 3 | 8);
+                }
+                break;
         }
     }
 
     private int leafRadius(int treeHeight, int dy, int functionType) {
         switch (functionType) {
-        case 0:
-        default:
-            return (dy - 1) % 4;
-        case 1:
-            return (int) (4F * (float) dy / (float) treeHeight + (0.75F * dy % 3));
-        case 99:
-            return (treeHeight - (dy / 2) - 1) % 4; // bad
+            case 0:
+            default:
+                return (dy - 1) % 4;
+            case 1:
+                return (int) (4F * (float) dy / (float) treeHeight + (0.75F * dy % 3));
+            case 99:
+                return (treeHeight - (dy / 2) - 1) % 4; // bad
         }
     }
 

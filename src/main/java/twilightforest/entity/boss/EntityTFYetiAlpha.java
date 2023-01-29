@@ -25,6 +25,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.TwilightForestMod;
@@ -92,8 +93,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -143,8 +144,14 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
         // when tired, spawn tears/sweat
         if (this.isTired()) {
             for (int i = 0; i < 20; i++) {
-                this.worldObj.spawnParticle("splash", this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, this.posY + this.getEyeHeight(),
-                        this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, (rand.nextFloat() - 0.5F) * 0.75F, 0, (rand.nextFloat() - 0.5F) * 0.75F);
+                this.worldObj.spawnParticle(
+                        "splash",
+                        this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5,
+                        this.posY + this.getEyeHeight(),
+                        this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5,
+                        (rand.nextFloat() - 0.5F) * 0.75F,
+                        0,
+                        (rand.nextFloat() - 0.5F) * 0.75F);
             }
         }
 
@@ -155,23 +162,31 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
         double py = hgt % 5F;
         double pz = 3F * Math.sin(rotation);
 
-        TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowstuff", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
+        TwilightForestMod.proxy.spawnParticle(
+                this.worldObj,
+                "snowstuff",
+                this.lastTickPosX + px,
+                this.lastTickPosY + py,
+                this.lastTickPosZ + pz,
+                0,
+                0,
+                0);
     }
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a
-     * pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
     @Override
     public boolean interact(EntityPlayer par1EntityPlayer) {
         if (super.interact(par1EntityPlayer)) {
             return true;
-        } else if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer)) {
-            par1EntityPlayer.mountEntity(this);
-            return true;
-        } else {
-            return false;
-        }
+        } else
+            if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer)) {
+                par1EntityPlayer.mountEntity(this);
+                return true;
+            } else {
+                return false;
+            }
     }
 
     /**
@@ -203,8 +218,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
     }
 
     /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by
-     * a player. @param par2 - Level of Looting used to kill this mob.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
     @Override
     protected void dropFewItems(boolean flag, int looting) {
@@ -260,15 +275,17 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
             double var1 = Math.cos((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
             double var3 = Math.sin((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
 
-            return Vec3.createVectorHelper(this.posX + var1, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + var3);
+            return Vec3.createVectorHelper(
+                    this.posX + var1,
+                    this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(),
+                    this.posZ + var3);
         } else {
             return Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
         }
     }
 
     /**
-     * If a rider of this entity can interact with this entity. Should return true on the ridden entity
-     * if so.
+     * If a rider of this entity can interact with this entity. Should return true on the ridden entity if so.
      *
      * @return if the entity can be interacted with from a rider
      */
@@ -297,11 +314,17 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
                     if (currentID != Blocks.air) {
                         int currentMeta = this.worldObj.getBlockMetadata(dx, dy, dz);
 
-                        if (currentID != Blocks.obsidian && currentID != Blocks.end_stone && currentID != Blocks.bedrock) {
+                        if (currentID != Blocks.obsidian && currentID != Blocks.end_stone
+                                && currentID != Blocks.bedrock) {
                             this.worldObj.setBlock(dx, dy, dz, Blocks.air, 0, 2);
 
                             // here, this effect will have to do
-                            worldObj.playAuxSFX(2001, dx, dy, dz, Block.getIdFromBlock(currentID) + (currentMeta << 12));
+                            worldObj.playAuxSFX(
+                                    2001,
+                                    dx,
+                                    dy,
+                                    dz,
+                                    Block.getIdFromBlock(currentID) + (currentMeta << 12));
                         } else {
                             wasBlocked = true;
                         }
@@ -455,7 +478,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
 
     @SuppressWarnings("unchecked")
     private void hitNearbyEntities() {
-        ArrayList<Entity> nearby = new ArrayList<Entity>(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 0, 5)));
+        ArrayList<Entity> nearby = new ArrayList<Entity>(
+                this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 0, 5)));
 
         for (Entity entity : nearby) {
             if (entity instanceof EntityLivingBase) {
@@ -477,7 +501,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
         super.onDeath(par1DamageSource);
         if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
             ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightProgressYeti);
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                    .triggerAchievement(TFAchievementPage.twilightProgressYeti);
         }
 
         // mark the lair as defeated
@@ -487,8 +512,10 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
             int dz = MathHelper.floor_double(this.posZ);
 
             if (worldObj.provider instanceof WorldProviderTwilightForest) {
-                ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider).getChunkProvider();
-                TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr).getFeatureAt(dx, dz, worldObj);
+                ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider)
+                        .getChunkProvider();
+                TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr)
+                        .getFeatureAt(dx, dz, worldObj);
 
                 if (nearbyFeature == TFFeature.yetiCave) {
                     chunkProvider.setStructureConquered(dx, dy, dz, true);

@@ -3,12 +3,13 @@ package twilightforest.structures.mushroomtower;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
+import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFMushroomTowerBridge extends ComponentTFMushroomTowerWing {
 
@@ -23,7 +24,8 @@ public class ComponentTFMushroomTowerBridge extends ComponentTFMushroomTowerWing
     protected ComponentTFMushroomTowerBridge(int i, int x, int y, int z, int pSize, int pHeight, int direction) {
         super(i, x, y, z, pSize, pHeight, direction);
 
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, size - 1, height - 1, 3, direction);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, 0, 0, 0, size - 1, height - 1, 3, direction);
 
         this.dSize = pSize;
         this.dHeight = pHeight;
@@ -58,18 +60,42 @@ public class ComponentTFMushroomTowerBridge extends ComponentTFMushroomTowerWing
 
         int[] dest = new int[] { dSize - 1, 1, 1 };
 
-        boolean madeWing = makeTowerWing(list, rand, this.getComponentType(), dest[0], dest[1], dest[2], dSize, dHeight, 0);
+        boolean madeWing = makeTowerWing(
+                list,
+                rand,
+                this.getComponentType(),
+                dest[0],
+                dest[1],
+                dest[2],
+                dSize,
+                dHeight,
+                0);
 
         if (!madeWing) {
             int[] dx = offsetTowerCoords(dest[0], dest[1], dest[2], dSize, 0);
 
-            FMLLog.fine("[TwilightForest] Making tower wing failed when bridge was already made.  Size = " + dSize + ", x = " + dx[0] + " z = " + dx[2]);
+            FMLLog.fine(
+                    "[TwilightForest] Making tower wing failed when bridge was already made.  Size = " + dSize
+                            + ", x = "
+                            + dx[0]
+                            + " z = "
+                            + dx[2]);
         }
     }
 
     public StructureBoundingBox getWingBB() {
         int[] dest = offsetTowerCoords(dSize - 1, 1, 1, dSize, this.getCoordBaseMode());
-        return StructureTFComponent.getComponentToAddBoundingBox(dest[0], dest[1], dest[2], 0, 0, 0, dSize - 1, dHeight - 1, dSize - 1, this.getCoordBaseMode());
+        return StructureTFComponent.getComponentToAddBoundingBox(
+                dest[0],
+                dest[1],
+                dest[2],
+                0,
+                0,
+                0,
+                dSize - 1,
+                dHeight - 1,
+                dSize - 1,
+                this.getCoordBaseMode());
 
     }
 

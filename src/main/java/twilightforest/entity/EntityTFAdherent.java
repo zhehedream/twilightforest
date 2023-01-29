@@ -14,11 +14,11 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.item.TFItems;
 
@@ -68,7 +68,7 @@ public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITF
 
     @Override
     protected void dropFewItems(boolean hitByPlayer, int looting) {
-        if(hitByPlayer) {
+        if (hitByPlayer) {
             ItemStack item = new ItemStack(TFItems.metaItem, 1 + looting, 0);
             int dropCount = this.rand.nextInt(3);
 
@@ -77,7 +77,7 @@ public class EntityTFAdherent extends EntityMob implements IRangedAttackMob, ITF
             }
         }
     }
-    
+
     /**
      * Trigger achievement when killed
      */

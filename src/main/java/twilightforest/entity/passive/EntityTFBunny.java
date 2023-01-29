@@ -16,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 
 public class EntityTFBunny extends EntityCreature implements IAnimals {
@@ -69,30 +70,30 @@ public class EntityTFBunny extends EntityCreature implements IAnimals {
         return true;
     }
 
-//    /**
-//     * Returns the texture's file path as a String.
-//     */
-//    @Override
-//    public String getTexture()
-//    {
-//        switch (this.getBunnyType())
-//        {
-//            case 0:
-//                return TwilightForestMod.MODEL_DIR + "bunnydutch.png";
-//
-//            case 1:
-//                return TwilightForestMod.MODEL_DIR + "bunnydutch.png";
-//
-//            case 2:
-//                return TwilightForestMod.MODEL_DIR + "bunnywhite.png";
-//
-//            case 3:
-//                return TwilightForestMod.MODEL_DIR + "bunnybrown.png";
-//
-//            default:
-//                return super.getTexture();
-//        }
-//    }
+    // /**
+    // * Returns the texture's file path as a String.
+    // */
+    // @Override
+    // public String getTexture()
+    // {
+    // switch (this.getBunnyType())
+    // {
+    // case 0:
+    // return TwilightForestMod.MODEL_DIR + "bunnydutch.png";
+    //
+    // case 1:
+    // return TwilightForestMod.MODEL_DIR + "bunnydutch.png";
+    //
+    // case 2:
+    // return TwilightForestMod.MODEL_DIR + "bunnywhite.png";
+    //
+    // case 3:
+    // return TwilightForestMod.MODEL_DIR + "bunnybrown.png";
+    //
+    // default:
+    // return super.getTexture();
+    // }
+    // }
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -137,8 +138,8 @@ public class EntityTFBunny extends EntityCreature implements IAnimals {
     }
 
     /**
-     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path
-     * to the block. Args: x, y, z
+     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
+     * Args: x, y, z
      */
     @Override
     public float getBlockPathWeight(int par1, int par2, int par3) {

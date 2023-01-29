@@ -3,10 +3,12 @@ package twilightforest.world;
 import java.util.Random;
 
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFMagicLogSpecial;
 import twilightforest.block.TFBlocks;
 
 public class TFGenTreeOfTransformation extends TFGenCanopyTree {
+
     public TFGenTreeOfTransformation() {
         this(false);
     }

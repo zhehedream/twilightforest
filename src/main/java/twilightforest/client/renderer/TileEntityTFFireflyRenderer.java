@@ -1,10 +1,11 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFFirefly;
 import twilightforest.tileentity.TileEntityTFFirefly;
@@ -12,7 +13,8 @@ import twilightforest.tileentity.TileEntityTFFirefly;
 public class TileEntityTFFireflyRenderer extends TileEntitySpecialRenderer {
 
     private ModelTFFirefly fireflyModel;
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "firefly-tiny.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "firefly-tiny.png");
 
     public TileEntityTFFireflyRenderer() {
         fireflyModel = new ModelTFFirefly();
@@ -66,16 +68,16 @@ public class TileEntityTFFireflyRenderer extends TileEntitySpecialRenderer {
         GL11.glDisable(3042 /* GL_BLEND */);
         fireflyModel.render(0.0625f);
 
-//        
-//        GL11.glEnable(3042 /*GL_BLEND*/);
-//        GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
-//        GL11.glBlendFunc(770, 771);
-//        GL11.glColor4f(1.0F, 1.0F, 1.0F, f1);
+        //
+        // GL11.glEnable(3042 /*GL_BLEND*/);
+        // GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
+        // GL11.glBlendFunc(770, 771);
+        // GL11.glColor4f(1.0F, 1.0F, 1.0F, f1);
 
         // render the firefly glow
         GL11.glEnable(3042 /* GL_BLEND */);
         GL11.glDisable(3008 /* GL_ALPHA_TEST */);
-//        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        // GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glBlendFunc(770, 1);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, tileentity.glowIntensity);

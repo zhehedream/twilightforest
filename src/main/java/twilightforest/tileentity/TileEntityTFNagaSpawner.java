@@ -2,6 +2,7 @@ package twilightforest.tileentity;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+
 import twilightforest.entity.TFCreatures;
 
 public class TileEntityTFNagaSpawner extends TileEntityTFBossSpawner {

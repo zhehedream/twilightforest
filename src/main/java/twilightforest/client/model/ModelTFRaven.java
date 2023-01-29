@@ -10,9 +10,11 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.entity.passive.EntityTFBird;
 
 public class ModelTFRaven extends ModelBase {
+
     // fields
     ModelRenderer head;
     ModelRenderer beak1;
@@ -118,7 +120,8 @@ public class ModelTFRaven extends ModelBase {
     /**
      * Sets the models various rotation angles.
      */
-    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6,
+            Entity par7Entity) {
         head.rotateAngleX = par5 / (180F / (float) Math.PI);
         head.rotateAngleY = par4 / (180F / (float) Math.PI);
         head.rotateAngleZ = par4 > 5 ? -0.2617994F : 0;

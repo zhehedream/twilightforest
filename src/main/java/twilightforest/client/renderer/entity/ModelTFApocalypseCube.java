@@ -42,11 +42,12 @@ public class ModelTFApocalypseCube extends ModelQuadruped {
     }
 
     /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the
-     * movement of arms and legs, where par1 represents the time(so that arms and legs swing back and
-     * forth) and par2 represents how "far" arms and legs can swing at most.
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
      */
-    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
+    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_,
+            float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
         super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, p_78087_7_);
 
         this.body.rotateAngleX = 0F;

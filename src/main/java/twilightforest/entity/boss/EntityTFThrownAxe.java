@@ -31,7 +31,8 @@ public class EntityTFThrownAxe extends EntityThrowable {
 
             // if we're not set to pass, damage what we hit
             if (!passThru) {
-                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), PROJECTILE_DAMAGE);
+                par1MovingObjectPosition.entityHit
+                        .attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), PROJECTILE_DAMAGE);
             }
         }
 

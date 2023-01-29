@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.item.TFItems;
 
@@ -36,7 +37,7 @@ public class EntityTFHarbingerCube extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D);
     }
-    
+
     /**
      * Trigger achievement when killed
      */
@@ -55,10 +56,10 @@ public class EntityTFHarbingerCube extends EntityMob {
     protected boolean isAIEnabled() {
         return true;
     }
-    
+
     @Override
     protected void dropFewItems(boolean hitByPlayer, int looting) {
-        if(hitByPlayer) {
+        if (hitByPlayer) {
             ItemStack item = new ItemStack(TFItems.metaItem, 1 + looting, 1);
             int dropCount = this.rand.nextInt(3);
 
@@ -67,5 +68,5 @@ public class EntityTFHarbingerCube extends EntityMob {
             }
         }
     }
-    
+
 }

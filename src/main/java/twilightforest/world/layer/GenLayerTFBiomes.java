@@ -3,6 +3,7 @@ package twilightforest.world.layer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.biomes.TFBiomeBase;
 
 /**
@@ -13,9 +14,11 @@ import twilightforest.biomes.TFBiomeBase;
  */
 public class GenLayerTFBiomes extends GenLayer {
 
-    protected BiomeGenBase commonBiomes[] = (new BiomeGenBase[] { TFBiomeBase.twilightForest, TFBiomeBase.twilightForest2, TFBiomeBase.highlands, TFBiomeBase.mushrooms, TFBiomeBase.tfSwamp,
+    protected BiomeGenBase commonBiomes[] = (new BiomeGenBase[] { TFBiomeBase.twilightForest,
+            TFBiomeBase.twilightForest2, TFBiomeBase.highlands, TFBiomeBase.mushrooms, TFBiomeBase.tfSwamp,
             TFBiomeBase.clearing, TFBiomeBase.darkForest });
-    protected BiomeGenBase rareBiomes[] = (new BiomeGenBase[] { TFBiomeBase.tfLake, TFBiomeBase.glacier, TFBiomeBase.deepMushrooms, TFBiomeBase.enchantedForest, TFBiomeBase.fireSwamp });
+    protected BiomeGenBase rareBiomes[] = (new BiomeGenBase[] { TFBiomeBase.tfLake, TFBiomeBase.glacier,
+            TFBiomeBase.deepMushrooms, TFBiomeBase.enchantedForest, TFBiomeBase.fireSwamp });
 
     public GenLayerTFBiomes(long l, GenLayer genlayer) {
         super(l);
@@ -42,13 +45,13 @@ public class GenLayerTFBiomes extends GenLayer {
 
         }
 
-//        for (int i = 0; i < width * depth; i++)
-//        {
-//            if (dest[i] < 0 || dest[i] > TFBiomeBase.fireSwamp.biomeID)
-//            {
-//                System.err.printf("Made a bad ID, %d at %d, %d while generating\n", dest[i], x, z);
-//            }
-//        }
+        // for (int i = 0; i < width * depth; i++)
+        // {
+        // if (dest[i] < 0 || dest[i] > TFBiomeBase.fireSwamp.biomeID)
+        // {
+        // System.err.printf("Made a bad ID, %d at %d, %d while generating\n", dest[i], x, z);
+        // }
+        // }
 
         return dest;
     }

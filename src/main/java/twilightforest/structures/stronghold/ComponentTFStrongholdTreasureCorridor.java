@@ -6,6 +6,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 
 public class ComponentTFStrongholdTreasureCorridor extends StructureTFStrongholdComponent {

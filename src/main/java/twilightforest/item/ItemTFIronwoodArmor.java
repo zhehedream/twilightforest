@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -12,7 +10,10 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFIronwoodArmor extends ItemArmor {
 
@@ -30,7 +31,8 @@ public class ItemTFIronwoodArmor extends ItemArmor {
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
 
-        if (itemstack.getItem() == TFItems.ironwoodPlate || itemstack.getItem() == TFItems.ironwoodHelm || itemstack.getItem() == TFItems.ironwoodBoots) {
+        if (itemstack.getItem() == TFItems.ironwoodPlate || itemstack.getItem() == TFItems.ironwoodHelm
+                || itemstack.getItem() == TFItems.ironwoodBoots) {
             return TwilightForestMod.ARMOR_DIR + "ironwood_1.png";
         }
         if (itemstack.getItem() == TFItems.ironwoodLegs) {
@@ -47,16 +49,16 @@ public class ItemTFIronwoodArmor extends ItemArmor {
     public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
         ItemStack istack = new ItemStack(item, 1, 0);
         switch (this.armorType) {
-        case 0:
-            istack.addEnchantment(Enchantment.aquaAffinity, 1);
-            break;
-        case 1:
-        case 2:
-            istack.addEnchantment(Enchantment.protection, 1);
-            break;
-        case 3:
-            istack.addEnchantment(Enchantment.featherFalling, 1);
-            break;
+            case 0:
+                istack.addEnchantment(Enchantment.aquaAffinity, 1);
+                break;
+            case 1:
+            case 2:
+                istack.addEnchantment(Enchantment.protection, 1);
+                break;
+            case 3:
+                istack.addEnchantment(Enchantment.featherFalling, 1);
+                break;
         }
         itemList.add(istack);
     }
@@ -65,12 +67,14 @@ public class ItemTFIronwoodArmor extends ItemArmor {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with ironwood ingots
-        return par2ItemStack.getItem() == TFItems.ironwoodIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.ironwoodIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

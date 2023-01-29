@@ -3,15 +3,16 @@ package twilightforest.structures.mushroomtower;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerRoof;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
+import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
 
@@ -71,7 +72,16 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
 
             int childHeight = (rand.nextInt(3) + rand.nextInt(3) + 2) * FLOOR_HEIGHT + 1;
 
-            boolean madeIt = makeMainBridge(list, rand, this.getComponentType() + 1, dest[0], dest[1], dest[2], size + 4, childHeight, 2);
+            boolean madeIt = makeMainBridge(
+                    list,
+                    rand,
+                    this.getComponentType() + 1,
+                    dest[0],
+                    dest[1],
+                    dest[2],
+                    size + 4,
+                    childHeight,
+                    2);
 
             if (!madeIt) {
                 FMLLog.fine("[TwilightForest]  Did not make bridge back to new main");
@@ -93,7 +103,16 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
 
                 int childHeight = (rand.nextInt(2) + rand.nextInt(2) + 2) * FLOOR_HEIGHT + 1;
 
-                makeBridge(list, rand, this.getComponentType() + 1, dest[0], dest[1], dest[2], size - 4, childHeight, i);
+                makeBridge(
+                        list,
+                        rand,
+                        this.getComponentType() + 1,
+                        dest[0],
+                        dest[1],
+                        dest[2],
+                        size - 4,
+                        childHeight,
+                        i);
             }
         }
 
@@ -109,17 +128,19 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
      */
     private boolean isOutOfRange(StructureComponent parent, int nx, int ny, int nz, int range) {
 
-//        System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
-//        System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
-//        System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
+        // System.out.println("x range is " + Math.abs(nx - parent.getBoundingBox().minX));
+        // System.out.println("z range is " + Math.abs(nz - parent.getBoundingBox().minZ));
+        // System.out.println("nz is " + nz + ", parent.minz is " + parent.getBoundingBox().minZ);
 
-        return Math.abs(nx - parent.getBoundingBox().getCenterX()) > range || Math.abs(nz - parent.getBoundingBox().getCenterZ()) > range;
+        return Math.abs(nx - parent.getBoundingBox().getCenterX()) > range
+                || Math.abs(nz - parent.getBoundingBox().getCenterZ()) > range;
     }
 
     /**
      * Make a new wing
      */
-    public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight,
+            int rotation) {
 
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, wingSize, direction);
@@ -134,7 +155,14 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             dx = adjustCoordinates(dx[0], dx[1], dx[2], wingSize, direction, list);
         }
 
-        ComponentTFMushroomTowerWing wing = new ComponentTFMushroomTowerWing(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFMushroomTowerWing wing = new ComponentTFMushroomTowerWing(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
         // check to see if it intersects something already there
         StructureComponent intersect = StructureComponent.findIntersecting(list, wing.getBoundingBox());
         if (intersect == null || intersect == this || intersect instanceof ComponentTFTowerRoofMushroom) {
@@ -166,19 +194,23 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             if (obj instanceof ComponentTFTowerWing && !(obj instanceof ComponentTFMushroomTowerBridge)) {
                 ComponentTFTowerWing otherWing = (ComponentTFTowerWing) obj;
 
-                if (wingSize == otherWing.size && otherWing.getBoundingBox().intersectsWith(x - 3, z - 3, x + 3, z + 3)) {
-//                    System.out.println("I found an intersecting thing : " + otherWing + ", size = " + wingSize + " direction = " + direction);
-//                    System.out.println("x = " + x + ", z = " + z + " other.minX = " + otherWing.getBoundingBox().minX + " other.maxX = " + otherWing.getBoundingBox().maxX + " other.minZ = " + otherWing.getBoundingBox().minZ + " other.maxZ = " + otherWing.getBoundingBox().maxZ);
+                if (wingSize == otherWing.size
+                        && otherWing.getBoundingBox().intersectsWith(x - 3, z - 3, x + 3, z + 3)) {
+                    // System.out.println("I found an intersecting thing : " + otherWing + ", size = " + wingSize + "
+                    // direction = " + direction);
+                    // System.out.println("x = " + x + ", z = " + z + " other.minX = " + otherWing.getBoundingBox().minX
+                    // + " other.maxX = " + otherWing.getBoundingBox().maxX + " other.minZ = " +
+                    // otherWing.getBoundingBox().minZ + " other.maxZ = " + otherWing.getBoundingBox().maxZ);
 
                     switch (direction) {
-                    case 0:
-                        return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().minZ };
-                    case 1:
-                        return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().minZ };
-                    case 2:
-                        return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().maxZ };
-                    case 3:
-                        return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().maxZ };
+                        case 0:
+                            return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().minZ };
+                        case 1:
+                            return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().minZ };
+                        case 2:
+                            return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().maxZ };
+                        case 3:
+                            return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().maxZ };
                     }
                 }
             }
@@ -198,7 +230,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
         boxAbove.maxY = 256;
 
         for (Object obj : list) {
-            if (this != obj && obj instanceof ComponentTFTowerWing && !(obj instanceof ComponentTFMushroomTowerBridge)) {
+            if (this != obj && obj instanceof ComponentTFTowerWing
+                    && !(obj instanceof ComponentTFMushroomTowerBridge)) {
                 ComponentTFTowerWing otherWing = (ComponentTFTowerWing) obj;
 
                 if (size == otherWing.size && otherWing.getBoundingBox().intersectsWith(boxAbove)) {
@@ -225,7 +258,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             roof.buildComponent(this, list, rand);
         } else {
             roof = new ComponentTFTowerRoofMushroom(this.getComponentType() + 1, this, 1.0F);
-            if (StructureComponent.findIntersecting(list, roof.getBoundingBox()) instanceof ComponentTFTowerRoofMushroom) {
+            if (StructureComponent
+                    .findIntersecting(list, roof.getBoundingBox()) instanceof ComponentTFTowerRoofMushroom) {
                 list.add(roof);
                 roof.buildComponent(this, list, rand);
             } else {
@@ -237,11 +271,13 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
         }
     }
 
-    protected boolean makeBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    protected boolean makeBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight,
+            int rotation) {
         return this.makeBridge(list, rand, index, x, y, z, wingSize, wingHeight, rotation, false);
     }
 
-    protected boolean makeBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation, boolean ascender) {
+    protected boolean makeBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight,
+            int rotation, boolean ascender) {
         // bridges are size always
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, 3, direction);
@@ -251,7 +287,14 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             wingHeight = 4;
         }
 
-        ComponentTFMushroomTowerBridge bridge = new ComponentTFMushroomTowerBridge(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFMushroomTowerBridge bridge = new ComponentTFMushroomTowerBridge(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
         bridge.isAscender = ascender;
         // check to see if it intersects something already there
         StructureComponent intersect = StructureComponent.findIntersecting(list, bridge.getBoundingBox());
@@ -271,12 +314,20 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
         }
     }
 
-    private boolean makeMainBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    private boolean makeMainBridge(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight,
+            int rotation) {
 
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, 3, direction);
 
-        ComponentTFMushroomTowerMainBridge bridge = new ComponentTFMushroomTowerMainBridge(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFMushroomTowerMainBridge bridge = new ComponentTFMushroomTowerMainBridge(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
 
         list.add(bridge);
         bridge.buildComponent(this, list, rand);
@@ -326,10 +377,11 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
-//        // clear inside
-//        fillWithAir(world, sbb, 1, 1, 1, size - 2, height - 2, size - 2);
+        // // clear inside
+        // fillWithAir(world, sbb, 1, 1, 1, size - 2, height - 2, size - 2);
 
         makeTrunk(world, sbb);
 
@@ -401,7 +453,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
             ladderDir++;
             ladderDir %= 4;
 
-//            decorateFloor(world, decoRNG, i, (i * floorHeight), (i * floorHeight) + floorHeight, ladderDir, downLadderDir, sbb);
+            // decorateFloor(world, decoRNG, i, (i * floorHeight), (i * floorHeight) + floorHeight, ladderDir,
+            // downLadderDir, sbb);
 
         }
 
@@ -425,7 +478,14 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
                 // make a floor!
                 if (dist <= hollow) {
                     {
-                        placeBlockAtCurrentPosition(world, deco.floorID, this.isAscender ? 3 : deco.floorMeta, dx + cx, dy, dz + cz, sbb);
+                        placeBlockAtCurrentPosition(
+                                world,
+                                deco.floorID,
+                                this.isAscender ? 3 : deco.floorMeta,
+                                dx + cx,
+                                dy,
+                                dz + cz,
+                                sbb);
                     }
                 }
             }
@@ -444,8 +504,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
     }
 
     /**
-     * Called to decorate each floor. This is responsible for adding a ladder up, the stub of the ladder
-     * going down, then picking a theme for each floor and executing it.
+     * Called to decorate each floor. This is responsible for adding a ladder up, the stub of the ladder going down,
+     * then picking a theme for each floor and executing it.
      * 
      * @param floor
      * @param bottom
@@ -453,7 +513,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
      * @param ladderUpDir
      * @param laddderDownDir
      */
-    protected void decorateFloor(World world, Random rand, int floor, int bottom, int top, int ladderUpDir, int ladderDownDir, StructureBoundingBox sbb) {
+    protected void decorateFloor(World world, Random rand, int floor, int bottom, int top, int ladderUpDir,
+            int ladderDownDir, StructureBoundingBox sbb) {
         // decorateWraparoundWallSteps(world, rand, bottom, top, ladderUpDir, ladderDownDir, sbb);
 
     }

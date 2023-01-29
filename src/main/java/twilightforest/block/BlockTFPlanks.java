@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,11 +12,16 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import twilightforest.item.TFItems;
 
-public class BlockTFPlanks  extends Block {
+import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class BlockTFPlanks extends Block {
+
     public IIcon[] icons;
-    public static String[] textureNames = new String[] { "twilight_oak", "canopy", "mangrove", "darkwood", "timewood", "transwood", "minewood", "sortingwood" };
+    public static String[] textureNames = new String[] { "twilight_oak", "canopy", "mangrove", "darkwood", "timewood",
+            "transwood", "minewood", "sortingwood" };
 
     public BlockTFPlanks() {
         super(Material.wood);
@@ -27,7 +30,7 @@ public class BlockTFPlanks  extends Block {
         this.setStepSound(Block.soundTypeWood);
     }
 
-    //TODO: Add the random texture variations from TF 1.12
+    // TODO: Add the random texture variations from TF 1.12
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
@@ -43,7 +46,7 @@ public class BlockTFPlanks  extends Block {
         }
     }
 
-    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face) {
+    public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face) {
         return this.getFlammability(world, x, y, z, face);
     }
 
@@ -58,10 +61,10 @@ public class BlockTFPlanks  extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks (Item item, CreativeTabs creativeTab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs creativeTab, List itemList) {
         for (int i = 0; i < textureNames.length; i++) {
             itemList.add(new ItemStack(item, 1, i));
-        }   
+        }
     }
 
 }

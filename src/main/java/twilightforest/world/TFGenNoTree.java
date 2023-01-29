@@ -8,8 +8,8 @@ import net.minecraft.world.World;
  * Used to generate no particular tree
  */
 public class TFGenNoTree extends TFTreeGenerator {
-    public TFGenNoTree() {
-    }
+
+    public TFGenNoTree() {}
 
     public TFGenNoTree(boolean par1) {
         super(par1);

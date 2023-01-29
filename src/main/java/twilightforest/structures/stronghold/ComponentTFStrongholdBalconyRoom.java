@@ -151,7 +151,15 @@ public class ComponentTFStrongholdBalconyRoom extends StructureTFStrongholdCompo
         for (int y = 1; y < 8; y++) {
             for (int z = 5; z < 8; z++) {
                 this.placeBlockRotated(world, Blocks.air, 0, y + 6, y + 1, z, rotation, sbb);
-                this.placeBlockRotated(world, deco.stairID, this.getStairMeta(0 + rotation), y + 6, y, z, rotation, sbb);
+                this.placeBlockRotated(
+                        world,
+                        deco.stairID,
+                        this.getStairMeta(0 + rotation),
+                        y + 6,
+                        y,
+                        z,
+                        rotation,
+                        sbb);
                 this.placeBlockRotated(world, deco.blockID, deco.blockMeta, y + 6, y - 1, z, rotation, sbb);
             }
         }

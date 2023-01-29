@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+
 import twilightforest.TwilightForestMod;
 
 public class ItemTFGlassSword extends ItemSword {
@@ -27,11 +28,12 @@ public class ItemTFGlassSword extends ItemSword {
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev.
-     * They just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving,
+            EntityLivingBase par3EntityLiving) {
         boolean result = super.hitEntity(par1ItemStack, par2EntityLiving, par3EntityLiving);
         if (result) {
             par1ItemStack.damageItem(1000, par3EntityLiving);
@@ -41,8 +43,8 @@ public class ItemTFGlassSword extends ItemSword {
     }
 
     /**
-     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if
-     * return value is true further processing is canceled and the entity is not attacked.
+     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if return value is true
+     * further processing is canceled and the entity is not attacked.
      *
      * @param stack  The Item being used
      * @param player The player that is attacking
@@ -56,7 +58,14 @@ public class ItemTFGlassSword extends ItemSword {
                 double px = entity.posX + itemRand.nextFloat() * entity.width * 2.0F - entity.width;
                 double py = entity.posY + itemRand.nextFloat() * entity.height;
                 double pz = entity.posZ + itemRand.nextFloat() * entity.width * 2.0F - entity.width;
-                entity.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.stained_glass) + "_" + 0, px, py, pz, 0, 0, 0);
+                entity.worldObj.spawnParticle(
+                        "blockcrack_" + Block.getIdFromBlock(Blocks.stained_glass) + "_" + 0,
+                        px,
+                        py,
+                        pz,
+                        0,
+                        0,
+                        0);
             }
 
             player.playSound(Blocks.glass.stepSound.getBreakSound(), 1F, 0.5F);

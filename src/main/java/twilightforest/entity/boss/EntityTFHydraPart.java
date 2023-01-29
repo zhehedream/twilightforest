@@ -9,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityTFHydraPart extends EntityLiving {
+
     public EntityTFHydra hydraObj;
 
     public EntityTFHydraPart(World world) {
@@ -79,7 +80,8 @@ public class EntityTFHydraPart extends EntityLiving {
             double var5 = this.posZ + (this.newPosZ - this.posZ) / this.newPosRotationIncrements;
             double var7 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - this.rotationYaw);
             this.rotationYaw = (float) (this.rotationYaw + var7 / this.newPosRotationIncrements);
-            this.rotationPitch = (float) (this.rotationPitch + (this.newRotationPitch - this.rotationPitch) / this.newPosRotationIncrements);
+            this.rotationPitch = (float) (this.rotationPitch
+                    + (this.newRotationPitch - this.rotationPitch) / this.newPosRotationIncrements);
             --this.newPosRotationIncrements;
             this.setPosition(var1, var3, var5);
             this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -91,22 +93,14 @@ public class EntityTFHydraPart extends EntityLiving {
         this.rotationYawHead = this.rotationYaw;
         this.prevRotationYawHead = this.prevRotationYaw;
 
-        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {
-        }
-        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {
-        }
-        for (; renderYawOffset - prevRenderYawOffset < -180F; prevRenderYawOffset -= 360F) {
-        }
-        for (; renderYawOffset - prevRenderYawOffset >= 180F; prevRenderYawOffset += 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {
-        }
-        for (; rotationYawHead - prevRotationYawHead < -180F; prevRotationYawHead -= 360F) {
-        }
-        for (; rotationYawHead - prevRotationYawHead >= 180F; prevRotationYawHead += 360F) {
-        }
+        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {}
+        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {}
+        for (; renderYawOffset - prevRenderYawOffset < -180F; prevRenderYawOffset -= 360F) {}
+        for (; renderYawOffset - prevRenderYawOffset >= 180F; prevRenderYawOffset += 360F) {}
+        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {}
+        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {}
+        for (; rotationYawHead - prevRotationYawHead < -180F; prevRotationYawHead -= 360F) {}
+        for (; rotationYawHead - prevRotationYawHead >= 180F; prevRotationYawHead += 360F) {}
 
     }
 

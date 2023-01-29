@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelTFBoar extends ModelQuadruped {
+
     public ModelTFBoar() {
         super(6, 0.0F);
 

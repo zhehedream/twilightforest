@@ -1,30 +1,31 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMapBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapData;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFMagicMapData;
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFEmptyMagicMap extends ItemMapBase {
+
     protected ItemTFEmptyMagicMap() {
         super();
         this.setCreativeTab(TFItems.creativeTab);
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack,
-     * world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if(world.provider.dimensionId != TwilightForestMod.dimensionID) {
+        if (world.provider.dimensionId != TwilightForestMod.dimensionID) {
             return itemStack;
         }
         ItemStack mapItem = new ItemStack(TFItems.magicMap, 1, world.getUniqueDataId(ItemTFMagicMap.STR_ID));
@@ -61,6 +62,7 @@ public class ItemTFEmptyMagicMap extends ItemMapBase {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

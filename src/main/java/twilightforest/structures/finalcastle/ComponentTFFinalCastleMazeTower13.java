@@ -8,18 +8,19 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
+
     public static final int LOWEST_DOOR = 144;
     public static final int HIGHEST_DOOR = 222;
 
     public int type;
 
-    public ComponentTFFinalCastleMazeTower13() {
-    }
+    public ComponentTFFinalCastleMazeTower13() {}
 
     public ComponentTFFinalCastleMazeTower13(Random rand, int i, int x, int y, int z, int type, int direction) {
         super(i);
@@ -35,30 +36,54 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // entrance should be on a random floor
         int entranceFloor = rand.nextInt(floors);
 
-        // rationalize entrance floor if the tower is going to be too low, put the entrance floor at bottom. Too high, put it at top
+        // rationalize entrance floor if the tower is going to be too low, put the entrance floor at bottom. Too high,
+        // put it at top
         if ((y - (entranceFloor * 8)) < LOWEST_DOOR) {
-            // System.out.println("Tower at " + x + ", " + z + " is getting too low, setting entrance to bottom floor.");
+            // System.out.println("Tower at " + x + ", " + z + " is getting too low, setting entrance to bottom
+            // floor.");
             entranceFloor = 0;
         }
         if ((y + ((floors - entranceFloor) * 8)) > HIGHEST_DOOR) {
-            // System.out.println("Tower at " + x + ", " + z + " is getting too high, setting entrance to floor " + (floors - 1) + ".");
+            // System.out.println("Tower at " + x + ", " + z + " is getting too high, setting entrance to floor " +
+            // (floors - 1) + ".");
             entranceFloor = floors - 1;
         }
 
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -6, 0 - (entranceFloor * 8), -6, this.size - 1, this.height, this.size - 1, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -6,
+                0 - (entranceFloor * 8),
+                -6,
+                this.size - 1,
+                this.height,
+                this.size - 1,
+                0);
 
         // we should have a door where we started
         addOpening(0, entranceFloor * 8 + 1, size / 2, 2);
 
     }
 
-    public ComponentTFFinalCastleMazeTower13(Random rand, int i, int x, int y, int z, int floors, int entranceFloor, int type, int direction) {
+    public ComponentTFFinalCastleMazeTower13(Random rand, int i, int x, int y, int z, int floors, int entranceFloor,
+            int type, int direction) {
         super(i);
         this.setCoordBaseMode(direction);
         this.type = type;
         this.size = 13;
         this.height = floors * 8 + 1;
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -6, 0 - (entranceFloor * 8), -6, this.size - 1, this.height, this.size - 1, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -6,
+                0 - (entranceFloor * 8),
+                -6,
+                this.size - 1,
+                this.height,
+                this.size - 1,
+                0);
         addOpening(0, entranceFloor * 8 + 1, size / 2, 2);
     }
 
@@ -74,7 +99,8 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         foundation.buildComponent(this, list, rand);
 
         // add roof
-        StructureTFComponent roof = rand.nextBoolean() ? new ComponentTFFinalCastleRoof13Conical(rand, 4, this) : new ComponentTFFinalCastleRoof13Crenellated(rand, 4, this);
+        StructureTFComponent roof = rand.nextBoolean() ? new ComponentTFFinalCastleRoof13Conical(rand, 4, this)
+                : new ComponentTFFinalCastleRoof13Crenellated(rand, 4, this);
         list.add(roof);
         roof.buildComponent(this, list, rand);
     }
@@ -158,7 +184,9 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
         int relativeDir = (absoluteDir + 4 - this.coordBaseMode) % 4;
 
-        // System.out.println("Determining best direction! center is at " + cx + ", " + cz + " and dest is at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir is " + relativeDir);
+        // System.out.println("Determining best direction! center is at " + cx + ", " + cz + " and dest is at " + dest +
+        // " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir is
+        // " + relativeDir);
 
         return relativeDir;
     }
@@ -181,7 +209,9 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         }
         int relativeDir = (absoluteDir + 4 - this.coordBaseMode) % 4;
 
-        // System.out.println("Determining second direction! center is at " + cx + ", " + cz + " and dest is at " + dest + " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir is " + relativeDir);
+        // System.out.println("Determining second direction! center is at " + cx + ", " + cz + " and dest is at " + dest
+        // + " offset is " + dx + ", " + dz + " so the best absolute direction is " + absoluteDir + " and relative dir
+        // is " + relativeDir);
 
         return relativeDir;
     }
@@ -199,12 +229,18 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         }
     }
 
-    private boolean buildContinueTowerTowards(List list, Random rand, ChunkCoordinates dest, int direction, int howFar) {
+    private boolean buildContinueTowerTowards(List list, Random rand, ChunkCoordinates dest, int direction,
+            int howFar) {
         ChunkCoordinates opening = this.getValidOpeningCC(rand, direction);
 
         // adjust opening towards dest.posY if we are getting close to dest
         int adjustmentRange = 60;
-        if (this.isWithinRange(dest.posX, dest.posZ, this.boundingBox.minX + 6, this.boundingBox.minZ + 6, adjustmentRange)) {
+        if (this.isWithinRange(
+                dest.posX,
+                dest.posZ,
+                this.boundingBox.minX + 6,
+                this.boundingBox.minZ + 6,
+                adjustmentRange)) {
             opening.posY = this.adjustOpening(opening.posY, dest);
         }
 
@@ -216,7 +252,8 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // build towards
         ChunkCoordinates tc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, howFar, direction);
 
-        // System.out.println("Our coord mode is " + this.getCoordBaseMode() + ", and direction is " + direction + ", so our door is going to be at " + opening + " and the new tower will appear at " + tc);
+        // System.out.println("Our coord mode is " + this.getCoordBaseMode() + ", and direction is " + direction + ", so
+        // our door is going to be at " + opening + " and the new tower will appear at " + tc);
 
         // find start
         StructureComponent start = (StructureComponent) list.get(0);
@@ -228,7 +265,14 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
         if (isWithinRange(centerX, centerZ, tc.posX, tc.posZ, 128)) {
 
-            ComponentTFFinalCastleMazeTower13 sTower = new ComponentTFFinalCastleMazeTower13(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, this.type, direction);
+            ComponentTFFinalCastleMazeTower13 sTower = new ComponentTFFinalCastleMazeTower13(
+                    rand,
+                    this.getComponentType() + 1,
+                    tc.posX,
+                    tc.posY,
+                    tc.posZ,
+                    this.type,
+                    direction);
 
             StructureBoundingBox largerBB = new StructureBoundingBox(sTower.getBoundingBox());
 
@@ -248,7 +292,13 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
                 // add bridge
                 ChunkCoordinates bc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, 1, direction);
-                ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, direction);
+                ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                        this.getComponentType() + 1,
+                        bc.posX,
+                        bc.posY,
+                        bc.posZ,
+                        howFar - 7,
+                        direction);
                 list.add(bridge);
                 bridge.buildComponent(this, list, rand);
 
@@ -295,7 +345,13 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
             eTower.buildComponent(this, list, rand);
             // add bridge
             ChunkCoordinates bc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, 1, direction);
-            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, direction);
+            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                    this.getComponentType() + 1,
+                    bc.posX,
+                    bc.posY,
+                    bc.posZ,
+                    howFar - 7,
+                    direction);
             list.add(bridge);
             bridge.buildComponent(this, list, rand);
 
@@ -310,7 +366,13 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
     }
 
     protected ComponentTFFinalCastleMazeTower13 makeNewDamagedTower(Random rand, int direction, ChunkCoordinates tc) {
-        return new ComponentTFFinalCastleDamagedTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
+        return new ComponentTFFinalCastleDamagedTower(
+                rand,
+                this.getComponentType() + 1,
+                tc.posX,
+                tc.posY,
+                tc.posZ,
+                direction);
     }
 
     private int adjustOpening(int posY, ChunkCoordinates dest) {
@@ -347,9 +409,21 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         // what type of tower?
         ComponentTFFinalCastleMazeTower13 eTower;
         if (this.type == 0) {
-            eTower = new ComponentTFFinalCastleEntranceTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
+            eTower = new ComponentTFFinalCastleEntranceTower(
+                    rand,
+                    this.getComponentType() + 1,
+                    tc.posX,
+                    tc.posY,
+                    tc.posZ,
+                    direction);
         } else {
-            eTower = new ComponentTFFinalCastleBellTower21(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
+            eTower = new ComponentTFFinalCastleBellTower21(
+                    rand,
+                    this.getComponentType() + 1,
+                    tc.posX,
+                    tc.posY,
+                    tc.posZ,
+                    direction);
         }
 
         StructureBoundingBox largerBB = new StructureBoundingBox(eTower.getBoundingBox());
@@ -368,7 +442,13 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
             eTower.buildComponent(this, list, rand);
             // add bridge
             ChunkCoordinates bc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, 1, direction);
-            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, direction);
+            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                    this.getComponentType() + 1,
+                    bc.posX,
+                    bc.posY,
+                    bc.posZ,
+                    howFar - 7,
+                    direction);
             list.add(bridge);
             bridge.buildComponent(this, list, rand);
 
@@ -386,14 +466,14 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         boolean inRange = Math.abs(centerX - posX) < range && Math.abs(centerZ - posZ) < range;
 
         if (!inRange) {
-//          System.out.println("Tested range, center is at " + centerX + ", " + centerZ + " and tower is " + posX + ", " + posZ + " so distance is " + Math.max(Math.abs(centerX - posX),  Math.abs(centerZ - posZ)));
+            // System.out.println("Tested range, center is at " + centerX + ", " + centerZ + " and tower is " + posX +
+            // ", " + posZ + " so distance is " + Math.max(Math.abs(centerX - posX), Math.abs(centerZ - posZ)));
         }
         return inRange;
     }
 
     /**
-     * Gets a random position in the specified direction that connects to a floor currently in the
-     * tower.
+     * Gets a random position in the specified direction that connects to a floor currently in the tower.
      */
     public ChunkCoordinates getValidOpeningCC(Random rand, int direction) {
         int floors = (this.height / 8);
@@ -419,8 +499,7 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
     }
 
     /**
-     * Provides coordinates to make a tower such that it will open into the parent tower at the provided
-     * coordinates.
+     * Provides coordinates to make a tower such that it will open into the parent tower at the provided coordinates.
      */
     protected ChunkCoordinates offsetTowerCCoords(int x, int y, int z, int howFar, int direction) {
         int dx = getXWithOffset(x, z);
@@ -428,18 +507,18 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         int dz = getZWithOffset(x, z);
 
         switch (direction) {
-        case 0:
-            dx += howFar;
-            break;
-        case 1:
-            dz += howFar;
-            break;
-        case 2:
-            dx -= howFar;
-            break;
-        case 3:
-            dz -= howFar;
-            break;
+            case 0:
+                dx += howFar;
+                break;
+            case 1:
+                dz += howFar;
+                break;
+            case 2:
+                dx -= howFar;
+                break;
+            case 3:
+                dz -= howFar;
+                break;
         }
         // ugh?
         return new ChunkCoordinates(dx, dy, dz);
@@ -447,10 +526,22 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         // walls
-        fillWithRandomizedBlocks(world, sbb, 0, 0, 0, this.size - 1, this.height - 1, this.size - 1, false, rand, deco.randomBlocks);
+        fillWithRandomizedBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                this.size - 1,
+                this.height - 1,
+                this.size - 1,
+                false,
+                rand,
+                deco.randomBlocks);
 
         // stone to ground
         for (int x = 0; x < this.size; x++) {
@@ -483,7 +574,20 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
         int floors = (this.highestOpening / 8) + 1;
 
         for (int i = 1; i < floors; i++) {
-            this.fillWithMetadataBlocks(world, sbb, 1, i * 8, 1, 11, i * 8, 11, deco.blockID, deco.blockMeta, deco.blockID, deco.blockMeta, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    1,
+                    i * 8,
+                    1,
+                    11,
+                    i * 8,
+                    11,
+                    deco.blockID,
+                    deco.blockMeta,
+                    deco.blockID,
+                    deco.blockMeta,
+                    false);
 
             // stairs
             addStairsDown(world, sbb, (i + 2) % 4, i * 8);
@@ -539,14 +643,66 @@ public class ComponentTFFinalCastleMazeTower13 extends ComponentTFTowerWing {
 
         // clear the door
         if (dx == 0 || dx == size - 1) {
-            this.fillWithMetadataBlocks(world, sbb, dx, dy - 1, dz - 2, dx, dy + 4, dz + 2, deco.accentID, deco.accentMeta, Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    dx,
+                    dy - 1,
+                    dz - 2,
+                    dx,
+                    dy + 4,
+                    dz + 2,
+                    deco.accentID,
+                    deco.accentMeta,
+                    Blocks.air,
+                    0,
+                    false);
             // this.fillWithAir(world, sbb, dx, dy, dz - 1, dx, dy + 3, dz + 1);
-            this.fillWithMetadataBlocks(world, sbb, dx, dy, dz - 1, dx, dy + 3, dz + 1, TFBlocks.castleDoor, this.getGlyphMeta(), Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    dx,
+                    dy,
+                    dz - 1,
+                    dx,
+                    dy + 3,
+                    dz + 1,
+                    TFBlocks.castleDoor,
+                    this.getGlyphMeta(),
+                    Blocks.air,
+                    0,
+                    false);
         }
         if (dz == 0 || dz == size - 1) {
-            this.fillWithMetadataBlocks(world, sbb, dx - 2, dy - 1, dz, dx + 2, dy + 4, dz, deco.accentID, deco.accentMeta, Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    dx - 2,
+                    dy - 1,
+                    dz,
+                    dx + 2,
+                    dy + 4,
+                    dz,
+                    deco.accentID,
+                    deco.accentMeta,
+                    Blocks.air,
+                    0,
+                    false);
             // this.fillWithAir(world, sbb, dx - 1, dy, dz, dx + 1, dy + 3, dz);
-            this.fillWithMetadataBlocks(world, sbb, dx - 1, dy, dz, dx + 1, dy + 3, dz, TFBlocks.castleDoor, this.getGlyphMeta(), Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    dx - 1,
+                    dy,
+                    dz,
+                    dx + 1,
+                    dy + 3,
+                    dz,
+                    TFBlocks.castleDoor,
+                    this.getGlyphMeta(),
+                    Blocks.air,
+                    0,
+                    false);
         }
     }
 }

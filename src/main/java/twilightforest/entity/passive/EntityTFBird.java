@@ -27,8 +27,8 @@ public abstract class EntityTFBird extends EntityAnimal {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -58,24 +58,23 @@ public abstract class EntityTFBird extends EntityAnimal {
 
         this.flapLength += this.flapSpeed * 2.0F;
 
-//        // rise up when we go fast?
-//        if (this.getMoveHelper().getSpeed() > 0.39F && this.moveForward > 0.1F)
-//        {
-//            this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
-//            this.moveForward *= 2F;
-//        }
+        // // rise up when we go fast?
+        // if (this.getMoveHelper().getSpeed() > 0.39F && this.moveForward > 0.1F)
+        // {
+        // this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
+        // this.moveForward *= 2F;
+        // }
     }
 
     /**
      * Called when the mob is falling. Calculates and applies fall damage.
      */
     @Override
-    protected void fall(float par1) {
-    }
+    protected void fall(float par1) {}
 
     /**
-     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for
-     * spiders and wolves to prevent them from trampling crops
+     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for spiders and wolves to
+     * prevent them from trampling crops
      */
     @Override
     protected boolean canTriggerWalking() {
@@ -91,8 +90,7 @@ public abstract class EntityTFBird extends EntityAnimal {
     }
 
     /**
-     * This function is used when two same-species animals in 'love mode' breed to generate the new baby
-     * animal.
+     * This function is used when two same-species animals in 'love mode' breed to generate the new baby animal.
      */
     @Override
     public EntityAnimal createChild(EntityAgeable entityanimal) {

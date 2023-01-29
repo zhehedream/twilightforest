@@ -5,12 +5,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFMagicLog;
 import twilightforest.block.BlockTFMagicLogSpecial;
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
 public class TFGenSortingTree extends TFGenerator {
+
     protected Block treeBlock = TFBlocks.magicLog;
     protected int treeMeta = BlockTFMagicLog.META_SORT;
     protected int branchMeta = treeMeta | 12;

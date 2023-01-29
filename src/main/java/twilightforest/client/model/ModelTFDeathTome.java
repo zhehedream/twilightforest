@@ -1,12 +1,12 @@
 package twilightforest.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
 
 public class ModelTFDeathTome extends ModelBook {
 
@@ -61,15 +61,16 @@ public class ModelTFDeathTome extends ModelBook {
     /**
      * Sets the models various rotation angles.
      */
-    public void setRotationAngles(float bounce, float flipRight, float flipLeft, float open, float rotate, float scale) {
+    public void setRotationAngles(float bounce, float flipRight, float flipLeft, float open, float rotate,
+            float scale) {
         book.rotateAngleZ = -0.8726646259971647F;
         this.everything.rotateAngleY = rotate / (180F / (float) Math.PI) + (float) Math.PI / 2.0F;
 
     }
 
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are
-     * the same second and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
      */
     @Override
     public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float partialTick) {

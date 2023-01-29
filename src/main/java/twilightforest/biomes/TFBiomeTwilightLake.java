@@ -8,8 +8,8 @@ public class TFBiomeTwilightLake extends TFBiomeBase {
     public TFBiomeTwilightLake(int i) {
         super(i);
 
-//        this.rootHeight = -1.9F;
-//        this.heightVariation = 0.5F;
+        // this.rootHeight = -1.9F;
+        // this.heightVariation = 0.5F;
 
         this.temperature = 0.66F;
         this.rainfall = 1F;

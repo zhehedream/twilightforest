@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.TFCreatures;
@@ -17,8 +18,7 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
 
     static int FLOOR_LEVEL = 3;
 
-    public ComponentTFHedgeMaze() {
-    }
+    public ComponentTFHedgeMaze() {}
 
     public ComponentTFHedgeMaze(World world, Random rand, int i, int x, int y, int z) {
         super(i);
@@ -26,7 +26,8 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
         this.setCoordBaseMode(0);
 
         // the maze is 50 x 50 for now
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -RADIUS, -3, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, -RADIUS, -3, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
     }
 
     @Override
@@ -137,8 +138,7 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
     }
 
     /**
-     * Decorates a room in the maze. Makes assumptions that the room is 3x3 cells and thus 11x11 blocks
-     * large.
+     * Decorates a room in the maze. Makes assumptions that the room is 3x3 cells and thus 11x11 blocks large.
      * 
      * @param rand
      * @param world
@@ -177,15 +177,15 @@ public class ComponentTFHedgeMaze extends StructureTFComponent {
         String mobID;
 
         switch (rand.nextInt(3)) {
-        case 1:
-            mobID = TFCreatures.getSpawnerNameFor("Swarm Spider");
-            break;
-        case 2:
-            mobID = TFCreatures.getSpawnerNameFor("Hostile Wolf");
-            break;
-        case 0:
-        default:
-            mobID = TFCreatures.getSpawnerNameFor("Hedge Spider");
+            case 1:
+                mobID = TFCreatures.getSpawnerNameFor("Swarm Spider");
+                break;
+            case 2:
+                mobID = TFCreatures.getSpawnerNameFor("Hostile Wolf");
+                break;
+            case 0:
+            default:
+                mobID = TFCreatures.getSpawnerNameFor("Hedge Spider");
         }
         placeSpawnerAtCurrentPosition(world, rand, rx, FLOOR_LEVEL, rz, mobID, sbb);
     }

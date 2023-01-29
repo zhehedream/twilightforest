@@ -7,6 +7,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 // An area that we're going to destroy. Default is just a StructureBoundingBox
 public class DestroyArea {
+
     StructureBoundingBox destroyBox;
 
     public DestroyArea(StructureBoundingBox tower, Random rand, int y) {
@@ -29,7 +30,8 @@ public class DestroyArea {
     /**
      * construct a new area that does not intersect any other areas in the list
      */
-    public static DestroyArea createNonIntersecting(StructureBoundingBox tower, Random rand, int y, ArrayList<DestroyArea> otherAreas) {
+    public static DestroyArea createNonIntersecting(StructureBoundingBox tower, Random rand, int y,
+            ArrayList<DestroyArea> otherAreas) {
         int attempts = 100;
 
         DestroyArea area = null;
@@ -53,6 +55,10 @@ public class DestroyArea {
      * We check if the box would intersect even if it was one block larger in the x and z directions
      */
     private boolean intersectsWith(DestroyArea otherArea) {
-        return this.destroyBox.intersectsWith(otherArea.destroyBox.minX - 1, otherArea.destroyBox.minZ - 1, otherArea.destroyBox.maxX + 1, otherArea.destroyBox.maxX + 1);
+        return this.destroyBox.intersectsWith(
+                otherArea.destroyBox.minX - 1,
+                otherArea.destroyBox.minZ - 1,
+                otherArea.destroyBox.maxX + 1,
+                otherArea.destroyBox.maxX + 1);
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 
 public class EntityTFLichMinion extends EntityZombie {
@@ -75,14 +76,23 @@ public class EntityTFLichMinion extends EntityZombie {
 
     @SuppressWarnings("unchecked")
     private void findNewMaster() {
-        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(EntityTFLich.class, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
+                EntityTFLich.class,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
 
         for (EntityTFLich nearbyLich : nearbyLiches) {
             if (!nearbyLich.isShadowClone() && nearbyLich.wantsNewMinion(this)) {
                 this.master = nearbyLich;
 
                 // animate our new linkage!
-                master.makeBlackMagicTrail(posX, posY + this.getEyeHeight(), posZ, master.posX, master.posY + master.getEyeHeight(), master.posZ);
+                master.makeBlackMagicTrail(
+                        posX,
+                        posY + this.getEyeHeight(),
+                        posZ,
+                        master.posX,
+                        master.posY + master.getEyeHeight(),
+                        master.posZ);
 
                 // become angry at our masters target
                 setAttackTarget(master.getAttackTarget());
@@ -104,15 +114,15 @@ public class EntityTFLichMinion extends EntityZombie {
         }
     }
 
-//    /**
-//     * Initialize this creature.
-//     */
-//    @Override
-//    public void initCreature()
-//    {
-//        this.addRandomArmor();
-//        this.func_82162_bC();
-//    }
+    // /**
+    // * Initialize this creature.
+    // */
+    // @Override
+    // public void initCreature()
+    // {
+    // this.addRandomArmor();
+    // this.func_82162_bC();
+    // }
 
     @Override
     protected void addRandomArmor() {

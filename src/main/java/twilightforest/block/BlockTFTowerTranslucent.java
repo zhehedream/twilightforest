@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,8 +14,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
-import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFTowerTranslucent extends Block {
 
@@ -47,9 +47,8 @@ public class BlockTFTowerTranslucent extends Block {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -72,8 +71,7 @@ public class BlockTFTowerTranslucent extends Block {
     }
 
     /**
-     * Return true if a player with Silk Touch can harvest this block directly, and not its normal
-     * drops.
+     * Return true if a player with Silk Touch can harvest this block directly, and not its normal drops.
      */
     @Override
     protected boolean canSilkHarvest() {
@@ -81,8 +79,8 @@ public class BlockTFTowerTranslucent extends Block {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
@@ -107,7 +105,12 @@ public class BlockTFTowerTranslucent extends Block {
             this.setBlockBounds(0.375F, 0.375F, 0.375F, 0.625F, 0.625F, 0.625F);
         }
         if (meta == META_REACTOR_DEBRIS) {
-            this.setBlockBounds(sideRNG.nextFloat() * 0.4F, sideRNG.nextFloat() * 0.4F, sideRNG.nextFloat() * 0.4F, 1.0F - sideRNG.nextFloat() * 0.4F, 1.0F - sideRNG.nextFloat() * 0.4F,
+            this.setBlockBounds(
+                    sideRNG.nextFloat() * 0.4F,
+                    sideRNG.nextFloat() * 0.4F,
+                    sideRNG.nextFloat() * 0.4F,
+                    1.0F - sideRNG.nextFloat() * 0.4F,
+                    1.0F - sideRNG.nextFloat() * 0.4F,
                     1.0F - sideRNG.nextFloat() * 0.4F);
         } else {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -134,15 +137,15 @@ public class BlockTFTowerTranslucent extends Block {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 
         switch (meta) {
-        case META_REAPPEARING_INACTIVE:
-        case META_REAPPEARING_ACTIVE:
-        default:
-            return false;
-        case META_BUILT_INACTIVE:
-        case META_BUILT_ACTIVE:
-        case META_REVERTER_REPLACEMENT:
-        case META_REACTOR_DEBRIS:
-            return true;
+            case META_REAPPEARING_INACTIVE:
+            case META_REAPPEARING_ACTIVE:
+            default:
+                return false;
+            case META_BUILT_INACTIVE:
+            case META_BUILT_ACTIVE:
+            case META_REVERTER_REPLACEMENT:
+            case META_REACTOR_DEBRIS:
+                return true;
         }
     }
 
@@ -152,35 +155,41 @@ public class BlockTFTowerTranslucent extends Block {
     @Override
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
-        case META_REAPPEARING_INACTIVE:
-        default:
-            return TEX_REAPPEARING_INACTIVE;
-        case META_REAPPEARING_ACTIVE:
-            return TEX_REAPPEARING_ACTIVE;
-        case META_BUILT_INACTIVE:
-            return TEX_BUILT_INACTIVE;
-        case META_BUILT_ACTIVE:
-            return TEX_BUILT_ACTIVE;
-        case META_REVERTER_REPLACEMENT:
-            return TEX_REVERTER_REPLACEMENT;
-        case META_REACTOR_DEBRIS:
-            Block toMimic = sideRNG.nextBoolean() ? (sideRNG.nextBoolean() ? Blocks.portal : Blocks.netherrack) : (sideRNG.nextBoolean() ? Blocks.bedrock : Blocks.obsidian);
-            return toMimic.getIcon(side, meta);
-        case META_FAKE_GOLD:
-            return Blocks.gold_block.getIcon(side, meta);
-        case META_FAKE_DIAMOND:
-            return Blocks.diamond_block.getIcon(side, meta);
+            case META_REAPPEARING_INACTIVE:
+            default:
+                return TEX_REAPPEARING_INACTIVE;
+            case META_REAPPEARING_ACTIVE:
+                return TEX_REAPPEARING_ACTIVE;
+            case META_BUILT_INACTIVE:
+                return TEX_BUILT_INACTIVE;
+            case META_BUILT_ACTIVE:
+                return TEX_BUILT_ACTIVE;
+            case META_REVERTER_REPLACEMENT:
+                return TEX_REVERTER_REPLACEMENT;
+            case META_REACTOR_DEBRIS:
+                Block toMimic = sideRNG.nextBoolean() ? (sideRNG.nextBoolean() ? Blocks.portal : Blocks.netherrack)
+                        : (sideRNG.nextBoolean() ? Blocks.bedrock : Blocks.obsidian);
+                return toMimic.getIcon(side, meta);
+            case META_FAKE_GOLD:
+                return Blocks.gold_block.getIcon(side, meta);
+            case META_FAKE_DIAMOND:
+                return Blocks.diamond_block.getIcon(side, meta);
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        BlockTFTowerTranslucent.TEX_REAPPEARING_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_trace_off");
-        BlockTFTowerTranslucent.TEX_REAPPEARING_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_trace_on");
-        BlockTFTowerTranslucent.TEX_BUILT_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_built_off");
-        BlockTFTowerTranslucent.TEX_BUILT_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_built_on");
-        BlockTFTowerTranslucent.TEX_REVERTER_REPLACEMENT = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_antibuilt");
+        BlockTFTowerTranslucent.TEX_REAPPEARING_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_trace_off");
+        BlockTFTowerTranslucent.TEX_REAPPEARING_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_trace_on");
+        BlockTFTowerTranslucent.TEX_BUILT_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_built_off");
+        BlockTFTowerTranslucent.TEX_BUILT_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_built_on");
+        BlockTFTowerTranslucent.TEX_REVERTER_REPLACEMENT = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_antibuilt");
     }
 
     /**

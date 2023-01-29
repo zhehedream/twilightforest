@@ -6,11 +6,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Facing;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.block.BlockTFTowerDevice;
 import twilightforest.block.BlockTFTowerTranslucent;
 import twilightforest.block.TFBlocks;
 
 public class TileEntityTFTowerBuilder extends TileEntity {
+
     private static final int RANGE = 16;
 
     int ticksRunning = 0;
@@ -53,8 +55,8 @@ public class TileEntityTFTowerBuilder extends TileEntity {
     }
 
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
-     * this to count ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
+     * ticks and creates a new spawn inside its implementation.
      */
     @Override
     public void updateEntity() {
@@ -102,7 +104,13 @@ public class TileEntityTFTowerBuilder extends TileEntity {
             this.trackedPlayer = null;
             if (++ticksStopped == 60) {
                 // force the builder back into an inactive state
-                worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, TFBlocks.towerDevice, BlockTFTowerDevice.META_BUILDER_TIMEOUT, 3);
+                worldObj.setBlock(
+                        this.xCoord,
+                        this.yCoord,
+                        this.zCoord,
+                        TFBlocks.towerDevice,
+                        BlockTFTowerDevice.META_BUILDER_TIMEOUT,
+                        3);
                 worldObj.scheduleBlockUpdate(this.xCoord, this.yCoord, this.zCoord, TFBlocks.towerDevice, 4);
             }
         }
@@ -112,7 +120,11 @@ public class TileEntityTFTowerBuilder extends TileEntity {
      * Are the specified destination coordinates within our build range?
      */
     private boolean isInBounds(int nextX, int nextY, int nextZ) {
-        return nextX > this.xCoord - RANGE && nextX < this.xCoord + RANGE && nextY > this.yCoord - RANGE && nextY < this.yCoord + RANGE && nextZ > this.zCoord - RANGE && nextZ < this.zCoord + RANGE;
+        return nextX > this.xCoord - RANGE && nextX < this.xCoord + RANGE
+                && nextY > this.yCoord - RANGE
+                && nextY < this.yCoord + RANGE
+                && nextZ > this.zCoord - RANGE
+                && nextZ < this.zCoord + RANGE;
     }
 
     /**
@@ -128,17 +140,18 @@ public class TileEntityTFTowerBuilder extends TileEntity {
             } else if (pitch == 2) {
                 return 0;
             } else {
-                int direction = MathHelper.floor_double((double) (trackedPlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+                int direction = MathHelper.floor_double((double) (trackedPlayer.rotationYaw * 4.0F / 360.0F) + 0.5D)
+                        & 3;
 
                 switch (direction) {
-                case 0: // south
-                    return 3;
-                case 1: // west
-                    return 4;
-                case 2: // north
-                    return 2;
-                case 3: // east
-                    return 5;
+                    case 0: // south
+                        return 3;
+                    case 1: // west
+                        return 4;
+                    case 2: // north
+                        return 2;
+                    case 3: // east
+                        return 5;
                 }
             }
         }

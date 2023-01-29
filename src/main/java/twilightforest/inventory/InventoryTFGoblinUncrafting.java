@@ -3,6 +3,7 @@ package twilightforest.inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
 
 public class InventoryTFGoblinUncrafting implements IInventory {
@@ -90,8 +91,7 @@ public class InventoryTFGoblinUncrafting implements IInventory {
     }
 
     @Override
-    public void markDirty() {
-    }
+    public void markDirty() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer var1) {
@@ -99,16 +99,13 @@ public class InventoryTFGoblinUncrafting implements IInventory {
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the
-     * given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
     @Override
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {

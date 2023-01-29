@@ -1,11 +1,12 @@
 package twilightforest.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFGiantLeaves extends BlockTFGiantBlock {
 
@@ -19,9 +20,8 @@ public class BlockTFGiantLeaves extends BlockTFGiantBlock {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     public boolean isOpaqueCube() {
         return false;
@@ -43,8 +43,8 @@ public class BlockTFGiantLeaves extends BlockTFGiantBlock {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
@@ -65,24 +65,24 @@ public class BlockTFGiantLeaves extends BlockTFGiantBlock {
     }
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
         switch (side) {
-        case 0:
-            return (y & 3) == 3;
-        case 1:
-            return (y & 3) == 0;
-        case 2:
-            return (z & 3) == 3;
-        case 3:
-            return (z & 3) == 0;
-        case 4:
-            return (x & 3) == 3;
-        case 5:
-            return (x & 3) == 0;
+            case 0:
+                return (y & 3) == 3;
+            case 1:
+                return (y & 3) == 0;
+            case 2:
+                return (z & 3) == 3;
+            case 3:
+                return (z & 3) == 0;
+            case 4:
+                return (x & 3) == 3;
+            case 5:
+                return (x & 3) == 0;
         }
 
         return super.shouldSideBeRendered(world, x, y, z, side);

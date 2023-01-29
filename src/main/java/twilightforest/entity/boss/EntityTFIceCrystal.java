@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 
 public class EntityTFIceCrystal extends EntityMob {
@@ -92,18 +93,18 @@ public class EntityTFIceCrystal extends EntityMob {
         this.maxCrystalAge = 600;
     }
 
-//
-//    /**
-//     * Get this Entity's EnumCreatureAttribute
-//     */
-//    public EnumCreatureAttribute getCreatureAttribute()
-//    {
-//        return EnumCreatureAttribute.UNDEAD;
-//    }
+    //
+    // /**
+    // * Get this Entity's EnumCreatureAttribute
+    // */
+    // public EnumCreatureAttribute getCreatureAttribute()
+    // {
+    // return EnumCreatureAttribute.UNDEAD;
+    // }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();

@@ -15,8 +15,8 @@ public class TileEntityTFMoonworm extends TileEntityTFCritter {
     }
 
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
-     * this to count ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
+     * ticks and creates a new spawn inside its implementation.
      */
     @Override
     public void updateEntity() {

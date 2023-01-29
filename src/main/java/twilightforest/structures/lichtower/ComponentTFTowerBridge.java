@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFTowerBridge extends ComponentTFTowerWing {
@@ -42,7 +43,17 @@ public class ComponentTFTowerBridge extends ComponentTFTowerWing {
      */
     public StructureBoundingBox getWingBB() {
         int[] dest = offsetTowerCoords(2, 1, 1, dSize, this.getCoordBaseMode());
-        return StructureTFComponent.getComponentToAddBoundingBox(dest[0], dest[1], dest[2], 0, 0, 0, dSize - 1, dHeight - 1, dSize - 1, this.getCoordBaseMode());
+        return StructureTFComponent.getComponentToAddBoundingBox(
+                dest[0],
+                dest[1],
+                dest[2],
+                0,
+                0,
+                0,
+                dSize - 1,
+                dHeight - 1,
+                dSize - 1,
+                this.getCoordBaseMode());
     }
 
     @Override
@@ -68,11 +79,11 @@ public class ComponentTFTowerBridge extends ComponentTFTowerWing {
         this.fillWithAir(world, sbb, 0, 1, 1, 2, 2, 1);
 
         // marker blocks
-//        placeBlockAtCurrentPosition(world, Blocks.wool, this.coordBaseMode, size / 2, 2, size / 2, sbb);
-//        placeBlockAtCurrentPosition(world, Blocks.gold_block, 0, 0, 0, 0, sbb);
+        // placeBlockAtCurrentPosition(world, Blocks.wool, this.coordBaseMode, size / 2, 2, size / 2, sbb);
+        // placeBlockAtCurrentPosition(world, Blocks.gold_block, 0, 0, 0, 0, sbb);
 
         // door opening?
-//        makeDoorOpening(world, sbb);
+        // makeDoorOpening(world, sbb);
 
         return true;
     }

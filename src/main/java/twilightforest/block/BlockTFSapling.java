@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 import twilightforest.world.TFGenCanopyTree;
@@ -27,12 +26,15 @@ import twilightforest.world.TFGenSmallTwilightOak;
 import twilightforest.world.TFGenSortingTree;
 import twilightforest.world.TFGenTreeOfTime;
 import twilightforest.world.TFGenTreeOfTransformation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFSapling extends BlockSapling {
 
     private IIcon[] icons;
-    private String[] iconNames = new String[] { "sapling_oak", "sapling_canopy", "sapling_mangrove", "sapling_darkwood", "sapling_hollow_oak", "sapling_time", "sapling_transformation",
-            "sapling_mining", "sapling_sorting", "sapling_rainboak" };
+    private String[] iconNames = new String[] { "sapling_oak", "sapling_canopy", "sapling_mangrove", "sapling_darkwood",
+            "sapling_hollow_oak", "sapling_time", "sapling_transformation", "sapling_mining", "sapling_sorting",
+            "sapling_rainboak" };
 
     protected BlockTFSapling() {
         super();
@@ -67,35 +69,35 @@ public class BlockTFSapling extends BlockSapling {
         boolean largeTree = false;
 
         switch (meta) {
-        case 1:
-            treeGenerator = new TFGenCanopyTree(true);
-            break;
-        case 2:
-            treeGenerator = new TFGenMangroveTree(true);
-            break;
-        case 3:
-            treeGenerator = new TFGenDarkCanopyTree(true);
-            break;
-        case 4:
-            treeGenerator = new TFGenHollowTree(true);
-            break;
-        case 5:
-            treeGenerator = new TFGenTreeOfTime(true);
-            break;
-        case 6:
-            treeGenerator = new TFGenTreeOfTransformation(true);
-            break;
-        case 7:
-            treeGenerator = new TFGenMinersTree(true);
-            break;
-        case 8:
-            treeGenerator = new TFGenSortingTree(true);
-            break;
-        case 9:
-            treeGenerator = rand.nextInt(7) == 0 ? new TFGenLargeRainboak(true) : new TFGenSmallRainboak(true);
-            break;
-        default:
-            treeGenerator = new TFGenSmallTwilightOak(true);
+            case 1:
+                treeGenerator = new TFGenCanopyTree(true);
+                break;
+            case 2:
+                treeGenerator = new TFGenMangroveTree(true);
+                break;
+            case 3:
+                treeGenerator = new TFGenDarkCanopyTree(true);
+                break;
+            case 4:
+                treeGenerator = new TFGenHollowTree(true);
+                break;
+            case 5:
+                treeGenerator = new TFGenTreeOfTime(true);
+                break;
+            case 6:
+                treeGenerator = new TFGenTreeOfTransformation(true);
+                break;
+            case 7:
+                treeGenerator = new TFGenMinersTree(true);
+                break;
+            case 8:
+                treeGenerator = new TFGenSortingTree(true);
+                break;
+            case 9:
+                treeGenerator = rand.nextInt(7) == 0 ? new TFGenLargeRainboak(true) : new TFGenSmallRainboak(true);
+                break;
+            default:
+                treeGenerator = new TFGenSmallTwilightOak(true);
         }
 
         if (largeTree) {

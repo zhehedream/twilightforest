@@ -57,12 +57,12 @@ public class EntityTFIceSnowball extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        /*if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
-            if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), DAMAGE)) {
-                // damage armor?
-                // TODO:
-            }
-        }*/
+        /*
+         * if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof
+         * EntityLivingBase) { if
+         * (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()),
+         * DAMAGE)) { // damage armor? // TODO: } }
+         */
         pop();
     }
 
@@ -71,7 +71,14 @@ public class EntityTFIceSnowball extends EntityThrowable {
      */
     protected void pop() {
         for (int i = 0; i < 8; ++i) {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D, rand.nextGaussian() * 0.05D);
+            this.worldObj.spawnParticle(
+                    "snowballpoof",
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    rand.nextGaussian() * 0.05D,
+                    rand.nextDouble() * 0.2D,
+                    rand.nextGaussian() * 0.05D);
         }
 
         // noise

@@ -6,11 +6,13 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerRoof;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFDarkTowerRoof extends ComponentTFTowerRoof {
+
     public ComponentTFDarkTowerRoof() {
         super();
         // TODO Auto-generated constructor stub

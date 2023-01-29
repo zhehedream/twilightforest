@@ -5,12 +5,14 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFBlockGoblin;
 
 public class RenderTFBlockGoblin extends RenderBiped {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "blockgoblin.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "blockgoblin.png");
 
     public RenderTFBlockGoblin(ModelBiped par1ModelBiped, float par2) {
         super(par1ModelBiped, par2);

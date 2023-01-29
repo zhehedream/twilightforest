@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.EntityTFRedcap;
 
 public class EntityAITFAvoidFrontalAttack extends EntityAIBase {
@@ -32,7 +33,9 @@ public class EntityAITFAvoidFrontalAttack extends EntityAIBase {
     public boolean shouldExecute() {
         EntityLivingBase attackTarget = this.me.getAttackTarget();
 
-        if (attackTarget == null || attackTarget.getDistanceToEntity(me) > maxDistance || attackTarget.getDistanceToEntity(me) < minDistance || !isTargetLookingAtMe(attackTarget)) {
+        if (attackTarget == null || attackTarget.getDistanceToEntity(me) > maxDistance
+                || attackTarget.getDistanceToEntity(me) < minDistance
+                || !isTargetLookingAtMe(attackTarget)) {
             return false;
         } else {
             this.entityTarget = attackTarget;
@@ -74,7 +77,9 @@ public class EntityAITFAvoidFrontalAttack extends EntityAIBase {
             return false;
         }
 
-        boolean shouldContinue = attackTarget.getDistanceToEntity(me) < maxDistance && attackTarget.getDistanceToEntity(me) > minDistance && isTargetLookingAtMe(attackTarget);
+        boolean shouldContinue = attackTarget.getDistanceToEntity(me) < maxDistance
+                && attackTarget.getDistanceToEntity(me) > minDistance
+                && isTargetLookingAtMe(attackTarget);
 
         // System.out.println("ai evaluating should continue to " + shouldContinue);
 
@@ -132,7 +137,7 @@ public class EntityAITFAvoidFrontalAttack extends EntityAIBase {
 
         float difference = MathHelper.abs((attackTarget.rotationYaw - angle) % 360);
 
-//        System.out.println("Difference in angle of approach is " + difference);
+        // System.out.println("Difference in angle of approach is " + difference);
 
         return difference < 60 || difference > 300;
     }

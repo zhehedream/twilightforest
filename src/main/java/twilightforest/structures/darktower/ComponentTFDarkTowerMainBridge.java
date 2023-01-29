@@ -16,7 +16,8 @@ public class ComponentTFDarkTowerMainBridge extends ComponentTFDarkTowerBridge {
         super(i, x, y, z, 15, pHeight, direction);
     }
 
-    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         // make another size 15 main tower
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, 19, direction);

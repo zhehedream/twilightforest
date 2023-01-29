@@ -32,7 +32,8 @@ public class ComponentTFTowerOutbuilding extends ComponentTFTowerWing {
      * Outbuildings should not make new wings close to the ground.
      */
     @Override
-    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int direction) {
+    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int direction) {
         if (y > 7) {
             return super.makeTowerWing(list, rand, index, x, y, z, wingSize, wingHeight, direction);
         } else {

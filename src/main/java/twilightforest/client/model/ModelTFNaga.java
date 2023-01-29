@@ -3,10 +3,12 @@ package twilightforest.client.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 import twilightforest.entity.boss.EntityTFNaga;
 import twilightforest.entity.boss.EntityTFNagaSegment;
 
 public class ModelTFNaga extends ModelBase {
+
     public ModelTFNaga() {
         head = new ModelRenderer(this, 0, 0);
         head.addBox(-8F, -12F, -8F, 16, 16, 16, 0F);

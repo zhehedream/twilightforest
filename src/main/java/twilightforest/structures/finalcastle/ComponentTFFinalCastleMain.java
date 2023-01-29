@@ -5,21 +5,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFFeature;
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.StructureTFDecoratorCastle;
+import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFFinalCastleMain extends StructureTFComponent {
-    public ComponentTFFinalCastleMain() {
-    }
+
+    public ComponentTFFinalCastleMain() {}
 
     public ComponentTFFinalCastleMain(World world, Random rand, int i, int x, int y, int z) {
         this.setCoordBaseMode(0);
@@ -63,19 +64,43 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         gazebo.buildComponent(this, list, rand);
 
         // build 4 towers on sides
-        ComponentTFFinalCastleStairTower tower0 = new ComponentTFFinalCastleStairTower(rand, 3, boundingBox.minX, boundingBox.minY + 3, boundingBox.minZ, 2);
+        ComponentTFFinalCastleStairTower tower0 = new ComponentTFFinalCastleStairTower(
+                rand,
+                3,
+                boundingBox.minX,
+                boundingBox.minY + 3,
+                boundingBox.minZ,
+                2);
         list.add(tower0);
         tower0.buildComponent(this, list, rand);
 
-        ComponentTFFinalCastleLargeTower tower1 = new ComponentTFFinalCastleLargeTower(rand, 3, boundingBox.maxX, boundingBox.minY + 3, boundingBox.minZ, 3);
+        ComponentTFFinalCastleLargeTower tower1 = new ComponentTFFinalCastleLargeTower(
+                rand,
+                3,
+                boundingBox.maxX,
+                boundingBox.minY + 3,
+                boundingBox.minZ,
+                3);
         list.add(tower1);
         tower1.buildComponent(this, list, rand);
 
-        ComponentTFFinalCastleStairTower tower2 = new ComponentTFFinalCastleStairTower(rand, 3, boundingBox.minX, boundingBox.minY + 3, boundingBox.maxZ, 1);
+        ComponentTFFinalCastleStairTower tower2 = new ComponentTFFinalCastleStairTower(
+                rand,
+                3,
+                boundingBox.minX,
+                boundingBox.minY + 3,
+                boundingBox.maxZ,
+                1);
         list.add(tower2);
         tower2.buildComponent(this, list, rand);
 
-        ComponentTFFinalCastleStairTower tower3 = new ComponentTFFinalCastleStairTower(rand, 3, boundingBox.maxX, boundingBox.minY + 3, boundingBox.maxZ, 0);
+        ComponentTFFinalCastleStairTower tower3 = new ComponentTFFinalCastleStairTower(
+                rand,
+                3,
+                boundingBox.maxX,
+                boundingBox.minY + 3,
+                boundingBox.maxZ,
+                0);
         list.add(tower3);
         tower3.buildComponent(this, list, rand);
 
@@ -88,7 +113,13 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         buildTowerMaze(list, rand, 0, 30, 24, 60, 2, 1, dest);
 
         // initial stairs down towards dungeon
-        ComponentTFFinalCastleDungeonSteps steps0 = new ComponentTFFinalCastleDungeonSteps(rand, 5, boundingBox.minX + 18, boundingBox.minY + 1, boundingBox.minZ + 18, 0);
+        ComponentTFFinalCastleDungeonSteps steps0 = new ComponentTFFinalCastleDungeonSteps(
+                rand,
+                5,
+                boundingBox.minX + 18,
+                boundingBox.minY + 1,
+                boundingBox.minZ + 18,
+                0);
         list.add(steps0);
         steps0.buildComponent(this, list, rand);
 
@@ -102,13 +133,29 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
 
         // ComponentTFFinalCastleMural on front
         ChunkCoordinates mc = this.offsetTowerCCoords(48, 23, 25, 1, 0);
-        ComponentTFFinalCastleMural ComponentTFFinalCastleMural0 = new ComponentTFFinalCastleMural(rand, 7, mc.posX, mc.posY, mc.posZ, 35, 30, 0);
+        ComponentTFFinalCastleMural ComponentTFFinalCastleMural0 = new ComponentTFFinalCastleMural(
+                rand,
+                7,
+                mc.posX,
+                mc.posY,
+                mc.posZ,
+                35,
+                30,
+                0);
         list.add(ComponentTFFinalCastleMural0);
         ComponentTFFinalCastleMural0.buildComponent(this, list, rand);
 
         // ComponentTFFinalCastleMural inside
         ChunkCoordinates mc1 = this.offsetTowerCCoords(48, 33, 24, -1, 0);
-        ComponentTFFinalCastleMural ComponentTFFinalCastleMural1 = new ComponentTFFinalCastleMural(rand, 7, mc1.posX, mc1.posY, mc.posZ, 19, 12, 2);
+        ComponentTFFinalCastleMural ComponentTFFinalCastleMural1 = new ComponentTFFinalCastleMural(
+                rand,
+                7,
+                mc1.posX,
+                mc1.posY,
+                mc.posZ,
+                19,
+                12,
+                2);
         list.add(ComponentTFFinalCastleMural1);
         ComponentTFFinalCastleMural1.buildComponent(this, list, rand);
     }
@@ -116,16 +163,30 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
     /**
      * Build a side tower, then tell it to start building towards the destination
      */
-    private void buildTowerMaze(List list, Random rand, int x, int y, int z, int howFar, int direction, int type, ChunkCoordinates dest) {
+    private void buildTowerMaze(List list, Random rand, int x, int y, int z, int howFar, int direction, int type,
+            ChunkCoordinates dest) {
         // duplicate list
         LinkedList before = new LinkedList(list);
 
         // build
         ChunkCoordinates tc = this.offsetTowerCCoords(x, y, z, howFar, direction);
-        ComponentTFFinalCastleMazeTower13 sTower = new ComponentTFFinalCastleMazeTower13(rand, 3, tc.posX, tc.posY, tc.posZ, type, direction);
+        ComponentTFFinalCastleMazeTower13 sTower = new ComponentTFFinalCastleMazeTower13(
+                rand,
+                3,
+                tc.posX,
+                tc.posY,
+                tc.posZ,
+                type,
+                direction);
         // add bridge
         ChunkCoordinates bc = this.offsetTowerCCoords(x, y, z, 1, direction);
-        ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, direction);
+        ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                this.getComponentType() + 1,
+                bc.posX,
+                bc.posY,
+                bc.posZ,
+                howFar - 7,
+                direction);
         list.add(bridge);
         bridge.buildComponent(this, list, rand);
 
@@ -156,13 +217,13 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
             }
 
             structurecomponent = (StructureComponent) iterator.next();
-        } while (!((structurecomponent instanceof ComponentTFFinalCastleEntranceTower && type == 0) || (structurecomponent instanceof ComponentTFFinalCastleBellTower21 && type == 1)));
+        } while (!((structurecomponent instanceof ComponentTFFinalCastleEntranceTower && type == 0)
+                || (structurecomponent instanceof ComponentTFFinalCastleBellTower21 && type == 1)));
         return true;
     }
 
     /**
-     * Provides coordinates to make a tower such that it will open into the parent tower at the provided
-     * coordinates.
+     * Provides coordinates to make a tower such that it will open into the parent tower at the provided coordinates.
      */
     protected ChunkCoordinates offsetTowerCCoords(int x, int y, int z, int howFar, int direction) {
 
@@ -171,18 +232,18 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         int dz = getZWithOffset(x, z);
 
         switch (direction) {
-        case 0:
-            dx += howFar;
-            break;
-        case 1:
-            dz += howFar;
-            break;
-        case 2:
-            dx -= howFar;
-            break;
-        case 3:
-            dz -= howFar;
-            break;
+            case 0:
+                dx += howFar;
+                break;
+            case 1:
+                dz += howFar;
+                break;
+            case 2:
+                dx -= howFar;
+                break;
+            case 3:
+                dz -= howFar;
+                break;
         }
 
         // ugh?
@@ -213,16 +274,81 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
 
             y = 25 - i;
             int x = 37 - i;
-            this.fillWithMetadataBlocks(world, sbb, x, y, 14, x, y, 22, deco.stairID, getStairMeta(0), deco.stairID, getStairMeta(0), false);
-            this.fillWithMetadataBlocks(world, sbb, x, y - 1, 14, x, y - 1, 22, deco.blockID, deco.blockMeta, deco.blockID, deco.blockMeta, false);
-            this.fillWithMetadataBlocks(world, sbb, x, y, 26, x, y, 34, deco.stairID, getStairMeta(0), deco.stairID, getStairMeta(0), false);
-            this.fillWithMetadataBlocks(world, sbb, x, y - 1, 26, x, y - 1, 34, deco.blockID, deco.blockMeta, deco.blockID, deco.blockMeta, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    y,
+                    14,
+                    x,
+                    y,
+                    22,
+                    deco.stairID,
+                    getStairMeta(0),
+                    deco.stairID,
+                    getStairMeta(0),
+                    false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    y - 1,
+                    14,
+                    x,
+                    y - 1,
+                    22,
+                    deco.blockID,
+                    deco.blockMeta,
+                    deco.blockID,
+                    deco.blockMeta,
+                    false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    y,
+                    26,
+                    x,
+                    y,
+                    34,
+                    deco.stairID,
+                    getStairMeta(0),
+                    deco.stairID,
+                    getStairMeta(0),
+                    false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    y - 1,
+                    26,
+                    x,
+                    y - 1,
+                    34,
+                    deco.blockID,
+                    deco.blockMeta,
+                    deco.blockID,
+                    deco.blockMeta,
+                    false);
         }
 
         // pillars
         for (int x = 11; x < 47; x += 12) {
             for (int z = 11; z < 47; z += 12) {
-                this.fillWithMetadataBlocks(world, sbb, x, 1, z, x + 2, 40, z + 2, deco.pillarID, deco.pillarMeta, deco.blockID, deco.blockMeta, false);
+                this.fillWithMetadataBlocks(
+                        world,
+                        sbb,
+                        x,
+                        1,
+                        z,
+                        x + 2,
+                        40,
+                        z + 2,
+                        deco.pillarID,
+                        deco.pillarMeta,
+                        deco.blockID,
+                        deco.blockMeta,
+                        false);
 
                 makePillarBase(world, sbb, x, z, 1, 0);
                 makePillarBase(world, sbb, x, z, 19, 4);
@@ -255,12 +381,77 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         // force field around dungeon stairs
         Block fieldBlock = TFBlocks.forceField;
         int fieldMeta = 6;
-        this.fillWithMetadataBlocks(world, sbb, 12, 1, 12, 24, 10, 12, fieldBlock, fieldMeta, fieldBlock, fieldMeta, false);
-        this.fillWithMetadataBlocks(world, sbb, 12, 1, 12, 12, 10, 24, fieldBlock, fieldMeta, fieldBlock, fieldMeta, false);
-        this.fillWithMetadataBlocks(world, sbb, 24, 1, 12, 24, 10, 24, fieldBlock, fieldMeta, fieldBlock, fieldMeta, false);
-        this.fillWithMetadataBlocks(world, sbb, 12, 1, 24, 24, 10, 24, fieldBlock, fieldMeta, fieldBlock, fieldMeta, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                12,
+                1,
+                12,
+                24,
+                10,
+                12,
+                fieldBlock,
+                fieldMeta,
+                fieldBlock,
+                fieldMeta,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                12,
+                1,
+                12,
+                12,
+                10,
+                24,
+                fieldBlock,
+                fieldMeta,
+                fieldBlock,
+                fieldMeta,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                24,
+                1,
+                12,
+                24,
+                10,
+                24,
+                fieldBlock,
+                fieldMeta,
+                fieldBlock,
+                fieldMeta,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                12,
+                1,
+                24,
+                24,
+                10,
+                24,
+                fieldBlock,
+                fieldMeta,
+                fieldBlock,
+                fieldMeta,
+                false);
 
-        this.fillWithMetadataBlocks(world, sbb, 12, 10, 12, 24, 10, 24, fieldBlock, fieldMeta, fieldBlock, fieldMeta, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                12,
+                10,
+                12,
+                24,
+                10,
+                24,
+                fieldBlock,
+                fieldMeta,
+                fieldBlock,
+                fieldMeta,
+                false);
 
         // doors in dungeon force field
         this.fillWithMetadataBlocks(world, sbb, 17, 1, 12, 19, 4, 12, TFBlocks.castleDoor, 2, Blocks.air, 0, false);
@@ -298,23 +489,112 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
     }
 
     private void makeMezzTopStairs(World world, StructureBoundingBox sbb, int y, int z, int stairMeta) {
-        this.fillWithMetadataBlocks(world, sbb, 38, y, z, 46, y, z, deco.stairID, getStairMeta(stairMeta), deco.stairID, getStairMeta(stairMeta), false);
-        this.fillWithMetadataBlocks(world, sbb, 38, y - 1, z, 46, y - 1, z, deco.blockID, deco.blockMeta, deco.blockID, deco.blockMeta, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                38,
+                y,
+                z,
+                46,
+                y,
+                z,
+                deco.stairID,
+                getStairMeta(stairMeta),
+                deco.stairID,
+                getStairMeta(stairMeta),
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                38,
+                y - 1,
+                z,
+                46,
+                y - 1,
+                z,
+                deco.blockID,
+                deco.blockMeta,
+                deco.blockID,
+                deco.blockMeta,
+                false);
         this.fillWithAir(world, sbb, 38, y + 1, z, 46, y + 3, z);
     }
 
     private void makeHalfPillarBase(World world, StructureBoundingBox sbb, int rotation, int y, int z, int metaBit) {
-        this.fillBlocksRotated(world, sbb, 2, y, z - 1, 2, y, z + 3, deco.stairID, getStairMeta(2 + rotation) | metaBit, rotation);
+        this.fillBlocksRotated(
+                world,
+                sbb,
+                2,
+                y,
+                z - 1,
+                2,
+                y,
+                z + 3,
+                deco.stairID,
+                getStairMeta(2 + rotation) | metaBit,
+                rotation);
         this.placeBlockRotated(world, deco.stairID, getStairMeta(1 + rotation) | metaBit, 1, y, z - 1, rotation, sbb);
         this.placeBlockRotated(world, deco.stairID, getStairMeta(3 + rotation) | metaBit, 1, y, z + 3, rotation, sbb);
     }
 
     private void makePillarBase(World world, StructureBoundingBox sbb, int x, int z, int y, int metaBit) {
-        this.fillWithMetadataBlocks(world, sbb, x + 0, y, z + 3, x + 3, y, z + 3, deco.stairID, getStairMeta(3) | metaBit, Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, x - 1, y, z - 1, x + 2, y, z - 1, deco.stairID, getStairMeta(1) | metaBit, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                x + 0,
+                y,
+                z + 3,
+                x + 3,
+                y,
+                z + 3,
+                deco.stairID,
+                getStairMeta(3) | metaBit,
+                Blocks.air,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                x - 1,
+                y,
+                z - 1,
+                x + 2,
+                y,
+                z - 1,
+                deco.stairID,
+                getStairMeta(1) | metaBit,
+                Blocks.air,
+                0,
+                false);
 
-        this.fillWithMetadataBlocks(world, sbb, x + 3, y, z - 1, x + 3, y, z + 2, deco.stairID, getStairMeta(2) | metaBit, Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, x - 1, y, z + 0, x - 1, y, z + 3, deco.stairID, getStairMeta(0) | metaBit, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                x + 3,
+                y,
+                z - 1,
+                x + 3,
+                y,
+                z + 2,
+                deco.stairID,
+                getStairMeta(2) | metaBit,
+                Blocks.air,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                x - 1,
+                y,
+                z + 0,
+                x - 1,
+                y,
+                z + 3,
+                deco.stairID,
+                getStairMeta(0) | metaBit,
+                Blocks.air,
+                0,
+                false);
     }
 
 }

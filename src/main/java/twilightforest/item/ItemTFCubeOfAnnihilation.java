@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.HashMap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,8 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFCubeOfAnnihilation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFCubeOfAnnihilation extends ItemTF {
 
@@ -29,11 +30,12 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         return false;
     }
 
@@ -80,8 +82,8 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
     }
 
     /**
-     * Method for the client to determine if the cube has been thrown or not. Not as accurate as server
-     * method due to lag, etc.
+     * Method for the client to determine if the cube has been thrown or not. Not as accurate as server method due to
+     * lag, etc.
      * 
      * @param stack
      */
@@ -99,7 +101,8 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
      * @param player
      */
     public static void setCubeAsReturned(EntityPlayer player) {
-        if (player != null && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TFItems.cubeOfAnnihilation) {
+        if (player != null && player.getCurrentEquippedItem() != null
+                && player.getCurrentEquippedItem().getItem() == TFItems.cubeOfAnnihilation) {
             setCubeAsReturned(player.getCurrentEquippedItem());
         }
     }
@@ -107,8 +110,8 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      *
-     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the
-     *                     same if usingItem is not null)
+     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the same if
+     *                     usingItem is not null)
      * @param renderPass   The pass to get the icon for, 0 is default.
      * @param player       The player holding the item
      * @param usingItem    The item the player is actively using. Can be null if not using anything.
@@ -143,11 +146,11 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
      */
     @Override
     public void onUsingTick(ItemStack stack, EntityPlayer player, int count) {
-//        if (stack.getItemDamage() >= this.getMaxDamage()) {
-//            // do not use
-//            player.stopUsingItem();
-//            return;
-//        }
+        // if (stack.getItemDamage() >= this.getMaxDamage()) {
+        // // do not use
+        // player.stopUsingItem();
+        // return;
+        // }
 
     }
 
@@ -173,7 +176,8 @@ public class ItemTFCubeOfAnnihilation extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
         this.annihilateIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":annihilate_particle");
     }
 

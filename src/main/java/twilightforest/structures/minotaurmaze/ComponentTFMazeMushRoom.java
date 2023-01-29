@@ -35,7 +35,14 @@ public class ComponentTFMazeMushRoom extends ComponentTFMazeRoom {
                 }
                 // add small mushrooms all over
                 if (rand.nextInt(dist) > 0) {
-                    this.placeBlockAtCurrentPosition(world, rand.nextBoolean() ? Blocks.red_mushroom : Blocks.brown_mushroom, 0, x, 1, z, sbb);
+                    this.placeBlockAtCurrentPosition(
+                            world,
+                            rand.nextBoolean() ? Blocks.red_mushroom : Blocks.brown_mushroom,
+                            0,
+                            x,
+                            1,
+                            z,
+                            sbb);
                 }
             }
         }
@@ -75,7 +82,8 @@ public class ComponentTFMazeMushRoom extends ComponentTFMazeRoom {
     /**
      * Make a 3x3 square mushroom centered on the specified coords.
      */
-    private void makeMediumMushroom(World world, StructureBoundingBox sbb, int mx, int my, int mz, Block redMushroomBlock) {
+    private void makeMediumMushroom(World world, StructureBoundingBox sbb, int mx, int my, int mz,
+            Block redMushroomBlock) {
         // cap
         this.placeBlockAtCurrentPosition(world, redMushroomBlock, 5, mx + 0, my, mz + 0, sbb);
         this.placeBlockAtCurrentPosition(world, redMushroomBlock, 6, mx + 1, my, mz + 0, sbb);

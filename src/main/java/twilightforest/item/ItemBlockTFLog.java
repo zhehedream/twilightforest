@@ -5,11 +5,13 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.block.TFBlocks;
 
 public class ItemBlockTFLog extends ItemBlock {
 
-    public static final String woodNames[] = { "oak", "canopy", "mangrove", "darkwood", "x", "root", "oreroot", "rotten" };
+    public static final String woodNames[] = { "oak", "canopy", "mangrove", "darkwood", "x", "root", "oreroot",
+            "rotten" };
 
     public ItemBlockTFLog(Block log) {
         super(log);
@@ -36,7 +38,8 @@ public class ItemBlockTFLog extends ItemBlock {
             // log
             meta &= 7;
             int i = MathHelper.clamp_int(meta, 0, 7);
-            return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(woodNames[i]).append(".log").toString();
+            return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(woodNames[i])
+                    .append(".log").toString();
         }
     }
 
@@ -45,12 +48,12 @@ public class ItemBlockTFLog extends ItemBlock {
         return i;
     }
 
-//    /**
-//     * Display meta in tooltip
-//     */
-//    @Override
-//    public void addInformation(ItemStack par1ItemStack, List par2List) {
-//        par2List.add("Meta = " + par1ItemStack.getItemDamage());
-//    }
+    // /**
+    // * Display meta in tooltip
+    // */
+    // @Override
+    // public void addInformation(ItemStack par1ItemStack, List par2List) {
+    // par2List.add("Meta = " + par1ItemStack.getItemDamage());
+    // }
 
 }

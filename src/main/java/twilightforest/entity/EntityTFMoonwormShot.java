@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,8 +8,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFMoonwormShot extends EntityThrowable {
 
@@ -59,17 +60,17 @@ public class EntityTFMoonwormShot extends EntityThrowable {
     }
 
     public void makeTrail() {
-//        for (int i = 0; i < 5; i++) {
-//            double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//            double dy = posY + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//            double dz = posZ + 0.5 * (rand.nextDouble() - rand.nextDouble()); 
-//            
-//            double s1 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.17F;
-//            double s2 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.80F;
-//            double s3 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.69F;
-//
-//            worldObj.spawnParticle("mobSpell", dx, dy, dz, s1, s2, s3);
-//        }
+        // for (int i = 0; i < 5; i++) {
+        // double dx = posX + 0.5 * (rand.nextDouble() - rand.nextDouble());
+        // double dy = posY + 0.5 * (rand.nextDouble() - rand.nextDouble());
+        // double dz = posZ + 0.5 * (rand.nextDouble() - rand.nextDouble());
+        //
+        // double s1 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.17F;
+        // double s2 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.80F;
+        // double s3 = ((rand.nextFloat() * 0.5F) + 0.5F) * 0.69F;
+        //
+        // worldObj.spawnParticle("mobSpell", dx, dy, dz, s1, s2, s3);
+        // }
     }
 
     /**
@@ -103,7 +104,17 @@ public class EntityTFMoonwormShot extends EntityThrowable {
 
         if (mop.typeOfHit == MovingObjectType.BLOCK) {
             if (!worldObj.isRemote) {
-                TFItems.moonwormQueen.onItemUse(null, (EntityPlayer) this.getThrower(), this.worldObj, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit, 0, 0, 0);
+                TFItems.moonwormQueen.onItemUse(
+                        null,
+                        (EntityPlayer) this.getThrower(),
+                        this.worldObj,
+                        mop.blockX,
+                        mop.blockY,
+                        mop.blockZ,
+                        mop.sideHit,
+                        0,
+                        0,
+                        0);
             } else {
                 // particles
 
@@ -115,7 +126,14 @@ public class EntityTFMoonwormShot extends EntityThrowable {
         }
 
         for (int var3 = 0; var3 < 8; ++var3) {
-            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(TFBlocks.moonworm) + "_0", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle(
+                    "blockcrack_" + Block.getIdFromBlock(TFBlocks.moonworm) + "_0",
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    0.0D,
+                    0.0D,
+                    0.0D);
         }
 
         if (!this.worldObj.isRemote) {

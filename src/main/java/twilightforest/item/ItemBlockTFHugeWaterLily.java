@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 public class ItemBlockTFHugeWaterLily extends ItemBlock {
@@ -16,13 +17,13 @@ public class ItemBlockTFHugeWaterLily extends ItemBlock {
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack,
-     * world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      * 
      * Copied from ItemWaterlily
      */
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_) {
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(p_77659_2_, p_77659_3_, true);
+        MovingObjectPosition movingobjectposition = this
+                .getMovingObjectPositionFromPlayer(p_77659_2_, p_77659_3_, true);
 
         if (movingobjectposition == null) {
             return p_77659_1_;
@@ -40,11 +41,17 @@ public class ItemBlockTFHugeWaterLily extends ItemBlock {
                     return p_77659_1_;
                 }
 
-                if (p_77659_2_.getBlock(i, j, k).getMaterial() == Material.water && p_77659_2_.getBlockMetadata(i, j, k) == 0 && p_77659_2_.isAirBlock(i, j + 1, k)) {
+                if (p_77659_2_.getBlock(i, j, k).getMaterial() == Material.water
+                        && p_77659_2_.getBlockMetadata(i, j, k) == 0
+                        && p_77659_2_.isAirBlock(i, j + 1, k)) {
                     // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(p_77659_2_, i, j + 1, k);
+                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot
+                            .getBlockSnapshot(p_77659_2_, i, j + 1, k);
                     p_77659_2_.setBlock(i, j + 1, k, TFBlocks.hugeWaterLily);
-                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(p_77659_3_, blocksnapshot, net.minecraftforge.common.util.ForgeDirection.UP).isCanceled()) {
+                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(
+                            p_77659_3_,
+                            blocksnapshot,
+                            net.minecraftforge.common.util.ForgeDirection.UP).isCanceled()) {
                         blocksnapshot.restore(true, false);
                         return p_77659_1_;
                     }

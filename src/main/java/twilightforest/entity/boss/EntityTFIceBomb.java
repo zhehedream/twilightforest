@@ -10,10 +10,10 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFYeti;
 import twilightforest.entity.TFDamageSources;
@@ -148,7 +148,8 @@ public class EntityTFIceBomb extends EntityThrowable {
 
     @SuppressWarnings("unchecked")
     private void hitNearbyEntities() {
-        ArrayList<Entity> nearby = new ArrayList<Entity>(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(3, 2, 3)));
+        ArrayList<Entity> nearby = new ArrayList<Entity>(
+                this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(3, 2, 3)));
 
         for (Entity entity : nearby) {
             if (entity instanceof EntityLivingBase && entity != this.getThrower()) {
@@ -166,7 +167,8 @@ public class EntityTFIceBomb extends EntityThrowable {
                 } else {
                     entity.attackEntityFrom(TFDamageSources.iceBomb, 1);
                     int chillLevel = 2;
-                    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20 * 5, chillLevel, true));
+                    ((EntityLivingBase) entity)
+                            .addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20 * 5, chillLevel, true));
                 }
             }
         }

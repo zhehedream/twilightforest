@@ -43,7 +43,8 @@ public class EntityTFHydraMortar extends EntityThrowable {
     public void onUpdate() {
         super.onUpdate();
 
-        this.func_145771_j(this.posX, (this.boundingBox.minY + this.boundingBox.maxY) / 2.0D, this.posZ); // push out of block
+        this.func_145771_j(this.posX, (this.boundingBox.minY + this.boundingBox.maxY) / 2.0D, this.posZ); // push out of
+                                                                                                          // block
 
         if (this.onGround) {
             if (!worldObj.isRemote) {
@@ -84,10 +85,13 @@ public class EntityTFHydraMortar extends EntityThrowable {
     }
 
     @Override
-    public float func_145772_a(Explosion par1Explosion, World par2World, int par3, int par4, int par5, Block par6Block) {
+    public float func_145772_a(Explosion par1Explosion, World par2World, int par3, int par4, int par5,
+            Block par6Block) {
         float var6 = super.func_145772_a(par1Explosion, par2World, par3, par4, par5, par6Block);
 
-        if (this.megaBlast && par6Block != Blocks.bedrock && par6Block != Blocks.end_portal && par6Block != Blocks.end_portal_frame) {
+        if (this.megaBlast && par6Block != Blocks.bedrock
+                && par6Block != Blocks.end_portal
+                && par6Block != Blocks.end_portal_frame) {
             var6 = Math.min(0.8F, var6);
         }
 
@@ -107,10 +111,13 @@ public class EntityTFHydraMortar extends EntityThrowable {
 
         if (!worldObj.isRemote) {
             // damage nearby things
-            List<Entity> nearbyList = new ArrayList<Entity>(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
+            List<Entity> nearbyList = new ArrayList<Entity>(
+                    this.worldObj
+                            .getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 
             for (Entity nearby : nearbyList) {
-                if (nearby.attackEntityFrom(DamageSource.causeFireballDamage(null, this.getThrower()), DIRECT_DAMAGE) && !nearby.isImmuneToFire()) {
+                if (nearby.attackEntityFrom(DamageSource.causeFireballDamage(null, this.getThrower()), DIRECT_DAMAGE)
+                        && !nearby.isImmuneToFire()) {
                     nearby.setFire(BURN_FACTOR);
                 }
             }
@@ -124,13 +131,15 @@ public class EntityTFHydraMortar extends EntityThrowable {
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
-//        System.out.println("Hydra mortar being attacked!");
+        // System.out.println("Hydra mortar being attacked!");
 
         setBeenAttacked();
         if (damagesource.getEntity() != null && !this.worldObj.isRemote) {
             Vec3 vec3d = damagesource.getEntity().getLookVec();
             if (vec3d != null) {
-                this.setThrowableHeading(vec3d.xCoord, vec3d.yCoord + 1, vec3d.zCoord, 1.5F, 0.1F); // reflect faster and more accurately
+                this.setThrowableHeading(vec3d.xCoord, vec3d.yCoord + 1, vec3d.zCoord, 1.5F, 0.1F); // reflect faster
+                                                                                                    // and more
+                                                                                                    // accurately
                 this.onGround = false;
                 this.fuse += 20;
 

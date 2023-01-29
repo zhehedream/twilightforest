@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,9 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.passive.EntityTFTinyFirefly;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFFireflyJar extends Block {
 
@@ -34,8 +35,7 @@ public class BlockTFFireflyJar extends Block {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -43,9 +43,8 @@ public class BlockTFFireflyJar extends Block {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -83,8 +82,8 @@ public class BlockTFFireflyJar extends Block {
     }
 
     /**
-     * Return true if the block is a normal, solid cube. This determines indirect power state, entity
-     * ejection from blocks, and a few others.
+     * Return true if the block is a normal, solid cube. This determines indirect power state, entity ejection from
+     * blocks, and a few others.
      * 
      * @param world The current world
      * @param x     X Position

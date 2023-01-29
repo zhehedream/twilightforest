@@ -77,7 +77,7 @@ public class EntityTFLichBomb extends EntityThrowable {
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
-//        System.out.println("Lich bolt being attacked!");
+        // System.out.println("Lich bolt being attacked!");
 
         setBeenAttacked();
         if (damagesource.getEntity() != null) {
@@ -110,7 +110,9 @@ public class EntityTFLichBomb extends EntityThrowable {
         boolean passThrough = false;
 
         // pass through other lich bolts
-        if (par1MovingObjectPosition.entityHit != null && (par1MovingObjectPosition.entityHit instanceof EntityTFLichBolt || par1MovingObjectPosition.entityHit instanceof EntityTFLichBomb)) {
+        if (par1MovingObjectPosition.entityHit != null
+                && (par1MovingObjectPosition.entityHit instanceof EntityTFLichBolt
+                        || par1MovingObjectPosition.entityHit instanceof EntityTFLichBomb)) {
             passThrough = true;
         }
 

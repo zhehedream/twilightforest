@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
@@ -23,8 +21,11 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFHedge extends BlockLeavesBase {
 
@@ -43,27 +44,26 @@ public class BlockTFHedge extends BlockLeavesBase {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         switch (meta) {
-        case 0:
-            float f = 0.0625F;
-            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1 - f, z + 1);
-        default:
-        case 1:
-            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1);
+            case 0:
+                float f = 0.0625F;
+                return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1 - f, z + 1);
+            default:
+            case 1:
+                return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1);
         }
 
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -73,13 +73,14 @@ public class BlockTFHedge extends BlockLeavesBase {
     @SideOnly(Side.CLIENT)
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
         Block i1 = par1IBlockAccess.getBlock(par2, par3, par4);
-        return !this.field_150121_P && i1 == this ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+        return !this.field_150121_P && i1 == this ? false
+                : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     /**
@@ -106,11 +107,11 @@ public class BlockTFHedge extends BlockLeavesBase {
     @Override
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
-        case 1:
-            return BlockTFHedge.sprDarkwoodLeaves;
-        default:
-        case 0:
-            return BlockTFHedge.sprHedge;
+            case 1:
+                return BlockTFHedge.sprDarkwoodLeaves;
+            default:
+            case 0:
+                return BlockTFHedge.sprHedge;
         }
     }
 
@@ -155,8 +156,8 @@ public class BlockTFHedge extends BlockLeavesBase {
     }
 
     /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the
-     * coordinates of the block and l is the block's subtype/damage.
+     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
+     * block and l is the block's subtype/damage.
      */
     @Override
     public void harvestBlock(World world, EntityPlayer entityplayer, int i, int j, int k, int meta) {
@@ -171,8 +172,8 @@ public class BlockTFHedge extends BlockLeavesBase {
     }
 
     /**
-     * This should be called 5 ticks after we've received a click event from a player. If we see player
-     * nearby swinging at a hedge block, prick them
+     * This should be called 5 ticks after we've received a click event from a player. If we see player nearby swinging
+     * at a hedge block, prick them
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -180,7 +181,9 @@ public class BlockTFHedge extends BlockLeavesBase {
         double range = 4.0; // do we need to get this with a better method than hardcoding it?
 
         // find players within harvest range
-        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(range, range, range));
+        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
+                EntityPlayer.class,
+                AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(range, range, range));
 
         // are they swinging?
         for (EntityPlayer player : nearbyPlayers) {
@@ -213,33 +216,34 @@ public class BlockTFHedge extends BlockLeavesBase {
         return worldObj.rayTraceBlocks(position, dest);
     }
 
-//    /**
-//     * Is the player swinging, server version.  Ugggh.  Okay, this sucks and we don't really need it
-//     */
-//    private boolean isPlayerSwinging(EntityPlayer player) {
-//        if (player instanceof EntityPlayerMP) {
-//            ItemInWorldManager iiwm = ((EntityPlayerMP)player).itemInWorldManager;
-//            // curblockDamage > initialDamage
-//            return ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 9)).intValue() > ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 5)).intValue();
-//            
-////            for (int i = 0; i < ItemInWorldManager.class.getDeclaredFields().length; i++) {
-////                // if we find a boolean in here, just assume that's it for the time being
-////                if (ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i) instanceof Boolean) {
-////                    return ((Boolean)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i)).booleanValue();
-////                }
-////            }
-//        }
-//        // we didn't find it
-//        return false;
-//    }
+    // /**
+    // * Is the player swinging, server version. Ugggh. Okay, this sucks and we don't really need it
+    // */
+    // private boolean isPlayerSwinging(EntityPlayer player) {
+    // if (player instanceof EntityPlayerMP) {
+    // ItemInWorldManager iiwm = ((EntityPlayerMP)player).itemInWorldManager;
+    // // curblockDamage > initialDamage
+    // return ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 9)).intValue() >
+    // ((Integer)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, 5)).intValue();
+    //
+    //// for (int i = 0; i < ItemInWorldManager.class.getDeclaredFields().length; i++) {
+    //// // if we find a boolean in here, just assume that's it for the time being
+    //// if (ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i) instanceof Boolean) {
+    //// return ((Boolean)ModLoader.getPrivateValue(ItemInWorldManager.class, iiwm, i)).booleanValue();
+    //// }
+    //// }
+    // }
+    // // we didn't find it
+    // return false;
+    // }
 
     private boolean shouldDamage(Entity entity) {
-        return !(entity instanceof EntitySpider) && !(entity instanceof EntityItem) && !entity.doesEntityNotTriggerPressurePlate();
+        return !(entity instanceof EntitySpider) && !(entity instanceof EntityItem)
+                && !entity.doesEntityNotTriggerPressurePlate();
     }
 
     /**
-     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0%
-     * chance.
+     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0% chance.
      * 
      * @param world    The current world
      * @param x        The blocks X position
@@ -247,8 +251,7 @@ public class BlockTFHedge extends BlockLeavesBase {
      * @param z        The blocks Z position
      * @param metadata The blocks current metadata
      * @param face     The face that the fire is coming from
-     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed
-     *         by fire
+     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed by fire
      */
     @Override
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
@@ -257,8 +260,8 @@ public class BlockTFHedge extends BlockLeavesBase {
     }
 
     /**
-     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire
-     * will spread around this block.
+     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire will spread
+     * around this block.
      * 
      * @param world    The current world
      * @param x        The blocks X position
@@ -308,7 +311,8 @@ public class BlockTFHedge extends BlockLeavesBase {
      * Drops the block items with a specified chance of dropping the specified items
      */
     @Override
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int meta, float par6, int fortune) {
+    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int meta, float par6,
+            int fortune) {
         if (!par1World.isRemote && meta == 1) {
             if (par1World.rand.nextInt(40) == 0) {
                 Item var9 = this.getItemDropped(meta, par1World.rand, fortune);

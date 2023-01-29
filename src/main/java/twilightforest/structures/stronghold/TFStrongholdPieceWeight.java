@@ -19,7 +19,8 @@ public class TFStrongholdPieceWeight {
         this(par1Class, weight, limit, 0);
     }
 
-    public TFStrongholdPieceWeight(Class<? extends StructureTFComponent> par1Class, int weight, int limit, int minDepth) {
+    public TFStrongholdPieceWeight(Class<? extends StructureTFComponent> par1Class, int weight, int limit,
+            int minDepth) {
         this.pieceClass = par1Class;
         this.pieceWeight = weight;
         this.instancesLimit = limit;

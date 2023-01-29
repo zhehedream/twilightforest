@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
@@ -57,31 +58,31 @@ public class ComponentTFMazeUpperEntrance extends StructureTFComponent {
         fillWithAir(world, sbb, 15, 1, 7, 15, 3, 8);
 
         // random holes
-//        this.randomlyRareFillWithBlocks(world, sbb, 0, 1, 0, 15, 4, 15, 0, false);
-//        this.randomlyRareFillWithBlocks(world, sbb, 0, 3, 0, 15, 4, 15, 0, true);
-//        this.randomlyRareFillWithBlocks(world, sbb, 0, 4, 0, 15, 4, 15, 0, true);
+        // this.randomlyRareFillWithBlocks(world, sbb, 0, 1, 0, 15, 4, 15, 0, false);
+        // this.randomlyRareFillWithBlocks(world, sbb, 0, 3, 0, 15, 4, 15, 0, true);
+        // this.randomlyRareFillWithBlocks(world, sbb, 0, 4, 0, 15, 4, 15, 0, true);
         this.fillWithAir(world, sbb, 1, 1, 1, 14, 4, 14);
 
         // entrance pit
         this.fillWithMetadataBlocks(world, sbb, 5, 1, 5, 10, 1, 10, TFBlocks.mazestone, 3, Blocks.air, 0, false);
         this.fillWithMetadataBlocks(world, sbb, 5, 4, 5, 10, 4, 10, TFBlocks.mazestone, 3, Blocks.air, 0, false);
         this.randomlyFillWithBlocks(world, sbb, rand, 0.7F, 5, 2, 5, 10, 3, 10, Blocks.iron_bars, Blocks.air, false);
-//        this.fillWithMetadataBlocks(world, sbb, 5, 2, 5, 10, 3, 10, Blocks.iron_bars, 0, Blocks.air, 0, false);
+        // this.fillWithMetadataBlocks(world, sbb, 5, 2, 5, 10, 3, 10, Blocks.iron_bars, 0, Blocks.air, 0, false);
 
         this.fillWithAir(world, sbb, 6, 0, 6, 9, 4, 9);
 
-//        int var8 = this.getXWithOffset(0, 0);
-//        int var9 = this.getYWithOffset(0);
-//        int var10 = this.getZWithOffset(0, 0);
-//
-//        System.out.println("Drawing entrance at " + var8 + ", " + var9 + ", " + var10);
+        // int var8 = this.getXWithOffset(0, 0);
+        // int var9 = this.getYWithOffset(0);
+        // int var10 = this.getZWithOffset(0, 0);
+        //
+        // System.out.println("Drawing entrance at " + var8 + ", " + var9 + ", " + var10);
 
         return true;
     }
 
     /**
-     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A
-     * median of all the levels in the BB's horizontal rectangle).
+     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A median of all the
+     * levels in the BB's horizontal rectangle).
      */
     protected int getAverageGroundLevel(World par1World, StructureBoundingBox par2StructureBoundingBox) {
         int var3 = 0;
@@ -90,7 +91,9 @@ public class ComponentTFMazeUpperEntrance extends StructureTFComponent {
         for (int var5 = this.boundingBox.minZ; var5 <= this.boundingBox.maxZ; ++var5) {
             for (int var6 = this.boundingBox.minX; var6 <= this.boundingBox.maxX; ++var6) {
                 if (par2StructureBoundingBox.isVecInside(var6, 64, var5)) {
-                    var3 += Math.max(par1World.getTopSolidOrLiquidBlock(var6, var5), par1World.provider.getAverageGroundLevel());
+                    var3 += Math.max(
+                            par1World.getTopSolidOrLiquidBlock(var6, var5),
+                            par1World.provider.getAverageGroundLevel());
                     ++var4;
                 }
             }

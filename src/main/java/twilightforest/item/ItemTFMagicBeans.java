@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.world.WorldProviderTwilightForest;
 
@@ -16,10 +17,11 @@ public class ItemTFMagicBeans extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         Block blockAt = world.getBlock(x, y, z);
 
         int minY = y + 1;
@@ -144,7 +146,9 @@ public class ItemTFMagicBeans extends ItemTF {
      */
     private boolean tryToPlaceStalk(World world, int x, int y, int z) {
         Block blockThere = world.getBlock(x, y, z);
-        if (blockThere == Blocks.air || blockThere.isReplaceable(world, x, y, z) || blockThere.canBeReplacedByLeaves(world, x, y, z) || blockThere.isLeaves(world, x, y, z)
+        if (blockThere == Blocks.air || blockThere.isReplaceable(world, x, y, z)
+                || blockThere.canBeReplacedByLeaves(world, x, y, z)
+                || blockThere.isLeaves(world, x, y, z)
                 || blockThere.canSustainLeaves(world, x, y, z)) {
             world.setBlock(x, y, z, TFBlocks.hugeStalk);
             return true;

@@ -2,16 +2,16 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFCinderLog extends BlockLog {
 
@@ -25,14 +25,15 @@ public class BlockTFCinderLog extends BlockLog {
         this.setCreativeTab(TFItems.creativeTab);
     }
 
-    // From the specified side and block metadata retrieves the blocks texture. Args: side, metadata 
+    // From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
     @Override
     public IIcon getIcon(int side, int meta) {
         int orient = meta & 12;
 
         return orient == 12 ? this.cornerIcon
                 : (orient == 0 && (side == 1 || side == 0) ? this.topIcon
-                        : (orient == 4 && (side == 5 || side == 4) ? this.topIcon : (orient == 8 && (side == 2 || side == 3) ? this.topIcon : blockIcon)));
+                        : (orient == 4 && (side == 5 || side == 4) ? this.topIcon
+                                : (orient == 8 && (side == 2 || side == 3) ? this.topIcon : blockIcon)));
     }
 
     @Override

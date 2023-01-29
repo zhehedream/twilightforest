@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.*;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,10 +14,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenerator;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFOreMagnet extends ItemTF {
 
@@ -42,8 +43,7 @@ public class ItemTFOreMagnet extends ItemTF {
     }
 
     /**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer,
-     * itemInUseCount
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
     @Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World world, EntityPlayer player, int useRemaining) {
@@ -97,8 +97,8 @@ public class ItemTFOreMagnet extends ItemTF {
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      * 
-     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the
-     *                     same if usingItem is not null)
+     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the same if
+     *                     usingItem is not null)
      * @param renderPass   The pass to get the icon for, 0 is default.
      * @param player       The player holding the item
      * @param usingItem    The item the player is actively using. Can be null if not using anything.
@@ -221,7 +221,7 @@ public class ItemTFOreMagnet extends ItemTF {
                 foundX = coord.posX;
                 foundY = coord.posY;
                 foundZ = coord.posZ;
-                FOUND_ORE_BLOCKS.add(new Integer[]{Block.getIdFromBlock(foundID), foundMeta});
+                FOUND_ORE_BLOCKS.add(new Integer[] { Block.getIdFromBlock(foundID), foundMeta });
                 break;
             }
         }
@@ -247,52 +247,58 @@ public class ItemTFOreMagnet extends ItemTF {
                 Block replaceID = world.getBlock(replaceX, replaceY, replaceZ);
                 int replaceMeta = world.getBlockMetadata(replaceX, replaceY, replaceZ);
 
-                if ((isNetherrack ? isNetherReplaceable(world, replaceID, replaceMeta, replaceX, replaceY, replaceZ) : isReplaceable(world, replaceID, replaceMeta, replaceX, replaceY, replaceZ))
+                if ((isNetherrack ? isNetherReplaceable(world, replaceID, replaceMeta, replaceX, replaceY, replaceZ)
+                        : isReplaceable(world, replaceID, replaceMeta, replaceX, replaceY, replaceZ))
                         || replaceID == Blocks.air) {
                     // set vein to stone / netherrack
-                    world.setBlock(coord.posX, coord.posY, coord.posZ, isNetherrack ? Blocks.netherrack : Blocks.stone, 0, 2);
+                    world.setBlock(
+                            coord.posX,
+                            coord.posY,
+                            coord.posZ,
+                            isNetherrack ? Blocks.netherrack : Blocks.stone,
+                            0,
+                            2);
 
                     // set close to ore material
                     world.setBlock(replaceX, replaceY, replaceZ, foundID, foundMeta, 2);
 
-                    //Tile Entity Handleing
+                    // Tile Entity Handleing
                     entry.getValue().ifPresent(tile -> {
-                        //Set XYZ on the Tile
+                        // Set XYZ on the Tile
                         {
                             tile.xCoord = replaceX;
                             tile.yCoord = replaceY;
                             tile.zCoord = replaceZ;
                         }
-                        //Validate the tile and set the new position on the chunk-data
+                        // Validate the tile and set the new position on the chunk-data
                         {
                             tile.validate();
                             world.setTileEntity(replaceX, replaceY, replaceZ, tile);
                         }
-                        //remove the old position from the chunk-data and re-Validate the tile
+                        // remove the old position from the chunk-data and re-Validate the tile
                         {
                             world.removeTileEntity(coord.posX, coord.posY, coord.posZ);
                             tile.validate();
                         }
-                        //mark the tile as dirty so it gets saved to disk
+                        // mark the tile as dirty so it gets saved to disk
                         tile.markDirty();
                     });
                     blocksMoved++;
                 }
                 /*
                  * else {
-                 *    System.out.println("Not moving a block because we did not find a replaceable block to move to");
-                 * }
+                 * System.out.println("Not moving a block because we did not find a replaceable block to move to"); }
                  */
             }
 
-//            player.addChatMessage("Moved blocks!  " + blocksMoved);
+            // player.addChatMessage("Moved blocks! " + blocksMoved);
         }
         return blocksMoved;
     }
 
     /**
-     * Get the player look vector, but offset by the specified parameters. We use to scan the area
-     * around where the player is looking in the likely case there's no ore in the exact look direction.
+     * Get the player look vector, but offset by the specified parameters. We use to scan the area around where the
+     * player is looking in the likely case there's no ore in the exact look direction.
      */
     private Vec3 getOffsetLook(EntityPlayer player, float yawOffset, float pitchOffset) {
         float var2 = MathHelper.cos(-(player.rotationYaw + yawOffset) * 0.017453292F - (float) Math.PI);
@@ -303,9 +309,8 @@ public class ItemTFOreMagnet extends ItemTF {
     }
 
     private static boolean isReplaceable(World world, Block replaceID, int replaceMeta, int x, int y, int z) {
-        //Make found Ores NOT replaceable
-        if (FOUND_ORE_BLOCKS.contains(new Integer[]{Block.getIdFromBlock(replaceID), replaceMeta}))
-            return false;
+        // Make found Ores NOT replaceable
+        if (FOUND_ORE_BLOCKS.contains(new Integer[] { Block.getIdFromBlock(replaceID), replaceMeta })) return false;
 
         if (replaceID == Blocks.dirt) {
             return true;
@@ -320,8 +325,7 @@ public class ItemTFOreMagnet extends ItemTF {
     }
 
     private static boolean isNetherReplaceable(World world, Block replaceID, int replaceMeta, int x, int y, int z) {
-        if (FOUND_ORE_BLOCKS.contains(new Integer[]{Block.getIdFromBlock(replaceID), replaceMeta}))
-            return false;
+        if (FOUND_ORE_BLOCKS.contains(new Integer[] { Block.getIdFromBlock(replaceID), replaceMeta })) return false;
 
         if (replaceID == Blocks.netherrack) {
             return true;
@@ -331,7 +335,8 @@ public class ItemTFOreMagnet extends ItemTF {
 
     private static final int MAX_FIND_VEIN_RECURSION_DEPTH = 24;
 
-    private static boolean findVein(World world, int x, int y, int z, Block oreID, int oreMeta, Map<ChunkCoordinates, Optional<TileEntity>> veinBlocks) {
+    private static boolean findVein(World world, int x, int y, int z, Block oreID, int oreMeta,
+            Map<ChunkCoordinates, Optional<TileEntity>> veinBlocks) {
         ChunkCoordinates here = new ChunkCoordinates(x, y, z);
 
         // is this already on the list?

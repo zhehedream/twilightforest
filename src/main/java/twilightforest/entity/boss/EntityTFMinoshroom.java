@@ -4,6 +4,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import twilightforest.entity.EntityTFMinotaur;
 import twilightforest.item.TFItems;
 

@@ -6,13 +6,13 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFIceTowerStairs extends ComponentTFTowerWing {
 
-    public ComponentTFIceTowerStairs() {
-    }
+    public ComponentTFIceTowerStairs() {}
 
     public ComponentTFIceTowerStairs(int index, int x, int y, int z, int size, int height, int direction) {
         super(index, x, y, z, size, height, direction);

@@ -3,8 +3,6 @@ package twilightforest.client.renderer;
 import java.util.Collection;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -18,6 +16,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapData.MapCoord;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TFMagicMapData;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.ItemTFMagicMap;
@@ -26,8 +27,10 @@ import twilightforest.item.TFItems;
 public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRenderer {
 
     private static final ResourceLocation vanillaMapIcons = new ResourceLocation("textures/map/map_icons.png");
-    private static final ResourceLocation twilightMapIcons = new ResourceLocation(TwilightForestMod.GUI_DIR + "mapicons.png");
-    private static final ResourceLocation mapBackgroundTextures = new ResourceLocation("textures/map/map_background.png");
+    private static final ResourceLocation twilightMapIcons = new ResourceLocation(
+            TwilightForestMod.GUI_DIR + "mapicons.png");
+    private static final ResourceLocation mapBackgroundTextures = new ResourceLocation(
+            "textures/map/map_background.png");
     private int[] intArray = new int[16384];
     private DynamicTexture bufferedImage;
     private final ResourceLocation textureLoc;
@@ -51,12 +54,12 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
      */
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return item.getItem() == TFItems.magicMap && (type == ItemRenderType.FIRST_PERSON_MAP || (RenderItem.renderInFrame && type == ItemRenderType.ENTITY));
+        return item.getItem() == TFItems.magicMap && (type == ItemRenderType.FIRST_PERSON_MAP
+                || (RenderItem.renderInFrame && type == ItemRenderType.ENTITY));
     }
 
     /**
-     * Checks if certain helper functionality should be executed for this renderer. See
-     * ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See ItemRendererHelper for more info
      * 
      * @param type   The render type
      * @param item   The ItemStack being rendered
@@ -69,8 +72,8 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
     }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
-     * and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run, and what extra
+     * data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered
@@ -101,7 +104,8 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
     }
 
     @SuppressWarnings("unchecked")
-    public void renderMap(EntityPlayer par1EntityPlayer, TextureManager par2TextureManager, TFMagicMapData par3MapData) {
+    public void renderMap(EntityPlayer par1EntityPlayer, TextureManager par2TextureManager,
+            TFMagicMapData par3MapData) {
         TFMagicMapData magicMapData = (TFMagicMapData) par3MapData;
 
         for (int i = 0; i < 16384; ++i) {
@@ -128,17 +132,40 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         tesselator.startDrawingQuads();
-        tesselator.addVertexWithUV((double) ((float) (var15 + 0) + var18), (double) ((float) (var16 + 128) - var18), -0.009999999776482582D, 0.0D, 1.0D);
-        tesselator.addVertexWithUV((double) ((float) (var15 + 128) - var18), (double) ((float) (var16 + 128) - var18), -0.009999999776482582D, 1.0D, 1.0D);
-        tesselator.addVertexWithUV((double) ((float) (var15 + 128) - var18), (double) ((float) (var16 + 0) + var18), -0.009999999776482582D, 1.0D, 0.0D);
-        tesselator.addVertexWithUV((double) ((float) (var15 + 0) + var18), (double) ((float) (var16 + 0) + var18), -0.009999999776482582D, 0.0D, 0.0D);
+        tesselator.addVertexWithUV(
+                (double) ((float) (var15 + 0) + var18),
+                (double) ((float) (var16 + 128) - var18),
+                -0.009999999776482582D,
+                0.0D,
+                1.0D);
+        tesselator.addVertexWithUV(
+                (double) ((float) (var15 + 128) - var18),
+                (double) ((float) (var16 + 128) - var18),
+                -0.009999999776482582D,
+                1.0D,
+                1.0D);
+        tesselator.addVertexWithUV(
+                (double) ((float) (var15 + 128) - var18),
+                (double) ((float) (var16 + 0) + var18),
+                -0.009999999776482582D,
+                1.0D,
+                0.0D);
+        tesselator.addVertexWithUV(
+                (double) ((float) (var15 + 0) + var18),
+                (double) ((float) (var16 + 0) + var18),
+                -0.009999999776482582D,
+                0.0D,
+                0.0D);
         tesselator.draw();
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glDisable(GL11.GL_BLEND);
         par2TextureManager.bindTexture(vanillaMapIcons);
         for (MapCoord mapCoord : (Collection<MapCoord>) par3MapData.playersVisibleOnMap.values()) {
             GL11.glPushMatrix();
-            GL11.glTranslatef((float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F, (float) var16 + (float) mapCoord.centerZ / 2.0F + 64.0F, -0.04F);
+            GL11.glTranslatef(
+                    (float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F,
+                    (float) var16 + (float) mapCoord.centerZ / 2.0F + 64.0F,
+                    -0.04F);
             GL11.glRotatef((float) (mapCoord.iconRotation * 360) / 16.0F, 0.0F, 0.0F, 1.0F);
             GL11.glScalef(4.0F, 4.0F, 3.0F);
             GL11.glTranslatef(-0.125F, 0.125F, 0.0F);
@@ -159,7 +186,10 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
 
         for (MapCoord mapCoord : (List<MapCoord>) magicMapData.featuresVisibleOnMap) {
             GL11.glPushMatrix();
-            GL11.glTranslatef((float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F, (float) var16 + (float) mapCoord.centerZ / 2.0F + 64.0F, -0.02F);
+            GL11.glTranslatef(
+                    (float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F,
+                    (float) var16 + (float) mapCoord.centerZ / 2.0F + 64.0F,
+                    -0.02F);
             GL11.glRotatef((float) (mapCoord.iconRotation * 360) / 16.0F, 0.0F, 0.0F, 1.0F);
             GL11.glScalef(4.0F, 4.0F, 3.0F);
             GL11.glTranslatef(-0.125F, 0.125F, 0.0F);
@@ -176,11 +206,11 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
             GL11.glPopMatrix();
         }
 
-//        GL11.glPushMatrix();
-//        GL11.glTranslatef(0.0F, 0.0F, -0.04F);
-//        GL11.glScalef(1.0F, 1.0F, 1.0F);
-//        this.fontRenderer.drawString(par3MapData.mapName, var15, var16, -16777216);
-//        GL11.glPopMatrix();
+        // GL11.glPushMatrix();
+        // GL11.glTranslatef(0.0F, 0.0F, -0.04F);
+        // GL11.glScalef(1.0F, 1.0F, 1.0F);
+        // this.fontRenderer.drawString(par3MapData.mapName, var15, var16, -16777216);
+        // GL11.glPopMatrix();
     }
 
     private void renderMapInFrame(ItemStack item, RenderManager renderManager, TFMagicMapData mapData) {

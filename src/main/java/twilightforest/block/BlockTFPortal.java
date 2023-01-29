@@ -3,9 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
@@ -26,9 +23,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFTeleporter;
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFPortal extends BlockBreakable {
 
@@ -75,8 +76,8 @@ public class BlockTFPortal extends BlockBreakable {
     }
 
     /**
-     * The function name says it all. Tries to create a portal at the specified location. In this case,
-     * the location is the location of a pool with very specific parameters.
+     * The function name says it all. Tries to create a portal at the specified location. In this case, the location is
+     * the location of a pool with very specific parameters.
      */
     public boolean tryToCreatePortal(World world, int dx, int dy, int dz) {
         if (isGoodPortalPool(world, dx, dy, dz)) {
@@ -136,8 +137,7 @@ public class BlockTFPortal extends BlockBreakable {
     }
 
     /**
-     * Returns true only if there is water here, and at dx + 1, dy + 1, grass surrounding it, and solid
-     * beneath.
+     * Returns true only if there is water here, and at dx + 1, dy + 1, grass surrounding it, and solid beneath.
      * 
      * 
      * GGGG G+wG GwwG GGGG
@@ -221,8 +221,8 @@ public class BlockTFPortal extends BlockBreakable {
     }
 
     /**
-     * Each twilight portal pool block should have grass or dirt on one side and a portal on the other.
-     * If this is not true, delete this block, presumably causing a chain reaction.
+     * Each twilight portal pool block should have grass or dirt on one side and a portal on the other. If this is not
+     * true, delete this block, presumably causing a chain reaction.
      */
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block notUsed) {
@@ -281,13 +281,18 @@ public class BlockTFPortal extends BlockBreakable {
                     // send to twilight
                     if (playerMP.dimension != TwilightForestMod.dimensionID) {
                         playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
-                        //playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
-                        FMLLog.info("[TwilightForest] Player touched the portal block.  Sending the player to dimension " + TwilightForestMod.dimensionID);
+                        // playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
+                        FMLLog.info(
+                                "[TwilightForest] Player touched the portal block.  Sending the player to dimension "
+                                        + TwilightForestMod.dimensionID);
 
-                        playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, TwilightForestMod.dimensionID,
-                                new TFTeleporter(playerMP.mcServer.worldServerForDimension(TwilightForestMod.dimensionID)));
-                        //playerMP.addExperienceLevel(0);
-                        //playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
+                        playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(
+                                playerMP,
+                                TwilightForestMod.dimensionID,
+                                new TFTeleporter(
+                                        playerMP.mcServer.worldServerForDimension(TwilightForestMod.dimensionID)));
+                        // playerMP.addExperienceLevel(0);
+                        // playerMP.triggerAchievement(TFAchievementPage.twilightPortal);
                         playerMP.triggerAchievement(TFAchievementPage.twilightArrival);
 
                         // set respawn point for TF dimension to near the arrival portal
@@ -295,12 +300,18 @@ public class BlockTFPortal extends BlockBreakable {
                         int spawnY = MathHelper.floor_double(playerMP.posY);
                         int spawnZ = MathHelper.floor_double(playerMP.posZ);
 
-                        playerMP.setSpawnChunk(new ChunkCoordinates(spawnX, spawnY, spawnZ), true, TwilightForestMod.dimensionID);
+                        playerMP.setSpawnChunk(
+                                new ChunkCoordinates(spawnX, spawnY, spawnZ),
+                                true,
+                                TwilightForestMod.dimensionID);
                     } else {
                         // System.out.println("Player touched the portal block. Sending the player to dimension 0");
                         // playerMP.travelToDimension(0);
-                        playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TFTeleporter(playerMP.mcServer.worldServerForDimension(0)));
-                       //playerMP.addExperienceLevel(0);
+                        playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(
+                                playerMP,
+                                0,
+                                new TFTeleporter(playerMP.mcServer.worldServerForDimension(0)));
+                        // playerMP.addExperienceLevel(0);
                     }
                 }
             } else {
@@ -329,7 +340,8 @@ public class BlockTFPortal extends BlockBreakable {
             entity.worldObj.removeEntity(entity);
             entity.isDead = false;
             entity.worldObj.theProfiler.startSection("reposition");
-            minecraftserver.getConfigurationManager().transferEntityToWorld(entity, dim, worldserver, worldserver1, new TFTeleporter(worldserver1));
+            minecraftserver.getConfigurationManager()
+                    .transferEntityToWorld(entity, dim, worldserver, worldserver1, new TFTeleporter(worldserver1));
             entity.worldObj.theProfiler.endStartSection("reloading");
             Entity transferEntity = EntityList.createEntityByName(EntityList.getEntityString(entity), worldserver1);
 
@@ -349,7 +361,13 @@ public class BlockTFPortal extends BlockBreakable {
     @Override
     public void randomDisplayTick(World world, int i, int j, int k, Random random) {
         if (random.nextInt(100) == 0) {
-            world.playSoundEffect(i + 0.5D, j + 0.5D, k + 0.5D, "portal.portal", 1.0F, random.nextFloat() * 0.4F + 0.8F);
+            world.playSoundEffect(
+                    i + 0.5D,
+                    j + 0.5D,
+                    k + 0.5D,
+                    "portal.portal",
+                    1.0F,
+                    random.nextFloat() * 0.4F + 0.8F);
         }
         for (int l = 0; l < 4; l++) {
             double d = i + random.nextFloat();

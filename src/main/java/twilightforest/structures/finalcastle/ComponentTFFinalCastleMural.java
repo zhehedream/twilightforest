@@ -4,31 +4,44 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleMural extends StructureTFComponent {
+
     private int height;
     private int width;
 
     // we will model the mural in this byte array
     private byte[][] mural;
 
-    public ComponentTFFinalCastleMural() {
-    }
+    public ComponentTFFinalCastleMural() {}
 
     public ComponentTFFinalCastleMural(Random rand, int i, int x, int y, int z, int width, int height, int direction) {
         super(i);
         this.setCoordBaseMode(direction);
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox2(x, y, z, 0, -height / 2, -width / 2, 1, height - 1, width - 1, direction);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox2(
+                x,
+                y,
+                z,
+                0,
+                -height / 2,
+                -width / 2,
+                1,
+                height - 1,
+                width - 1,
+                direction);
     }
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         this.height = this.boundingBox.getYSize();
-        this.width = (this.coordBaseMode == 0 || this.coordBaseMode == 2) ? this.boundingBox.getZSize() : this.boundingBox.getXSize();
+        this.width = (this.coordBaseMode == 0 || this.coordBaseMode == 2) ? this.boundingBox.getZSize()
+                : this.boundingBox.getXSize();
 
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         if (mural == null) {
             // only make it once
@@ -68,21 +81,24 @@ public class ComponentTFFinalCastleMural extends StructureTFComponent {
         return true;
     }
 
-    private void makeHorizontalTree(Random decoRNG, byte[][] mural, int centerX, int centerY, int branchLength, boolean positive) {
+    private void makeHorizontalTree(Random decoRNG, byte[][] mural, int centerX, int centerY, int branchLength,
+            boolean positive) {
         this.fillHorizontalLine(mural, centerX, centerY, branchLength, positive);
 
         this.makeHorizontalBranch(mural, decoRNG, centerX, centerY, branchLength, positive, true);
         this.makeHorizontalBranch(mural, decoRNG, centerX, centerY, branchLength, positive, false);
     }
 
-    private void makeVerticalTree(Random decoRNG, byte[][] mural, int centerX, int centerY, int branchLength, boolean positive) {
+    private void makeVerticalTree(Random decoRNG, byte[][] mural, int centerX, int centerY, int branchLength,
+            boolean positive) {
         this.fillVerticalLine(mural, centerX, centerY, branchLength, positive);
 
         this.makeVerticalBranch(mural, decoRNG, centerX, centerY, branchLength, positive, true);
         this.makeVerticalBranch(mural, decoRNG, centerX, centerY, branchLength, positive, false);
     }
 
-    private boolean makeHorizontalBranch(byte[][] mural, Random rand, int sx, int sy, int length, boolean plusX, boolean plusY) {
+    private boolean makeHorizontalBranch(byte[][] mural, Random rand, int sx, int sy, int length, boolean plusX,
+            boolean plusY) {
         int downLine = (length / 2) + 1 + rand.nextInt(Math.max(length / 2, 2));
         int branchLength = rand.nextInt(width / 8) + width / 8;
 
@@ -130,7 +146,8 @@ public class ComponentTFFinalCastleMural extends StructureTFComponent {
         }
     }
 
-    private boolean makeVerticalBranch(byte[][] mural, Random rand, int sx, int sy, int length, boolean plusY, boolean plusX) {
+    private boolean makeVerticalBranch(byte[][] mural, Random rand, int sx, int sy, int length, boolean plusY,
+            boolean plusX) {
         int downLine = (length / 2) + 1 + rand.nextInt(Math.max(length / 2, 2));
         int branchLength = rand.nextInt(height / 8) + height / 8;
 
@@ -146,8 +163,7 @@ public class ComponentTFFinalCastleMural extends StructureTFComponent {
         }
         if (clear) {
             int bx = sx;
-            int by = sy + (plusY ? downLine : -downLine);
-            ;
+            int by = sy + (plusY ? downLine : -downLine);;
 
             // jag
             this.fillHorizontalLine(mural, bx, by, 1, plusX);

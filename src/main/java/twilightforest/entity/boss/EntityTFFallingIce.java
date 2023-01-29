@@ -2,8 +2,6 @@ package twilightforest.entity.boss;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -12,7 +10,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFFallingIce extends Entity {
 
@@ -44,15 +45,14 @@ public class EntityTFFallingIce extends Entity {
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for
-     * spiders and wolves to prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
+     * prevent them from trampling crops
      */
     protected boolean canTriggerWalking() {
         return false;
     }
 
-    protected void entityInit() {
-    }
+    protected void entityInit() {}
 
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.
@@ -91,16 +91,17 @@ public class EntityTFFallingIce extends Entity {
 
                 this.setDead();
             }
-//            else if (this.fallTime > 100 && !this.worldObj.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
-//            {
-//                // something's wrong
-//                this.setDead();
-//            }
+            // else if (this.fallTime > 100 && !this.worldObj.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
+            // {
+            // // something's wrong
+            // this.setDead();
+            // }
         }
 
         // kill other nearby blocks if they are not as old as this one
         if (!this.worldObj.isRemote) {
-            ArrayList<Entity> nearby = new ArrayList<Entity>(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox));
+            ArrayList<Entity> nearby = new ArrayList<Entity>(
+                    this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox));
 
             for (Entity entity : nearby) {
                 if (entity instanceof EntityTFFallingIce) {
@@ -136,11 +137,14 @@ public class EntityTFFallingIce extends Entity {
         int distance = MathHelper.ceiling_float_int(par1 - 1.0F);
 
         if (distance > 0) {
-            ArrayList<Entity> nearby = new ArrayList<Entity>(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2, 0, 2)));
+            ArrayList<Entity> nearby = new ArrayList<Entity>(
+                    this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2, 0, 2)));
             DamageSource damagesource = DamageSource.fallingBlock;
             for (Entity entity : nearby) {
                 if (!(entity instanceof EntityTFYetiAlpha)) {
-                    entity.attackEntityFrom(damagesource, (float) Math.min(MathHelper.floor_float((float) distance * this.hurtAmount), this.hurtMax));
+                    entity.attackEntityFrom(
+                            damagesource,
+                            (float) Math.min(MathHelper.floor_float((float) distance * this.hurtAmount), this.hurtMax));
                 }
             }
         }
@@ -150,7 +154,8 @@ public class EntityTFFallingIce extends Entity {
             double dy = this.posY + 2 + 3F * (rand.nextFloat() - rand.nextFloat());
             double dz = this.posZ + 3F * (rand.nextFloat() - rand.nextFloat());
 
-            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.packed_ice) + "_0", dx, dy, dz, 0, 0, 0);
+            this.worldObj
+                    .spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.packed_ice) + "_0", dx, dy, dz, 0, 0, 0);
         }
 
         this.playSound(Blocks.anvil.stepSound.getBreakSound(), 3F, 0.5F);

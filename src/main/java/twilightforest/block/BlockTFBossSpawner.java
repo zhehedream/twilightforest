@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,13 +13,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import twilightforest.item.TFItems;
+
 import twilightforest.tileentity.TileEntityTFHydraSpawner;
 import twilightforest.tileentity.TileEntityTFKnightPhantomsSpawner;
 import twilightforest.tileentity.TileEntityTFLichSpawner;
 import twilightforest.tileentity.TileEntityTFNagaSpawner;
 import twilightforest.tileentity.TileEntityTFSnowQueenSpawner;
 import twilightforest.tileentity.TileEntityTFTowerBossSpawner;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFBossSpawner extends BlockContainer {
 
@@ -33,9 +33,8 @@ public class BlockTFBossSpawner extends BlockContainer {
     }
 
     /**
-     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to
-     * the Block base class allows for mods that wish to extend vanilla blocks, and also want to have a
-     * tile entity on that block, may.
+     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to the Block base
+     * class allows for mods that wish to extend vanilla blocks, and also want to have a tile entity on that block, may.
      *
      * Return true from this function to specify this block has a tile entity.
      *
@@ -53,20 +52,20 @@ public class BlockTFBossSpawner extends BlockContainer {
     @Override
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
-        case 0:
-            return new TileEntityTFNagaSpawner();
-        case 1:
-            return new TileEntityTFLichSpawner();
-        case 2:
-            return new TileEntityTFHydraSpawner();
-        case 3:
-            return new TileEntityTFTowerBossSpawner();
-        case 4:
-            return new TileEntityTFKnightPhantomsSpawner();
-        case 5:
-            return new TileEntityTFSnowQueenSpawner();
-        default:
-            return null;
+            case 0:
+                return new TileEntityTFNagaSpawner();
+            case 1:
+                return new TileEntityTFLichSpawner();
+            case 2:
+                return new TileEntityTFHydraSpawner();
+            case 3:
+                return new TileEntityTFTowerBossSpawner();
+            case 4:
+                return new TileEntityTFKnightPhantomsSpawner();
+            case 5:
+                return new TileEntityTFSnowQueenSpawner();
+            default:
+                return null;
         }
     }
 
@@ -98,12 +97,12 @@ public class BlockTFBossSpawner extends BlockContainer {
      */
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-         list.add(new ItemStack(item, 1, 0));
-         list.add(new ItemStack(item, 1, 1));
-         list.add(new ItemStack(item, 1, 2));
-         list.add(new ItemStack(item, 1, 3));
-         list.add(new ItemStack(item, 1, 4));
-         list.add(new ItemStack(item, 1, 5));
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
+        list.add(new ItemStack(item, 1, 2));
+        list.add(new ItemStack(item, 1, 3));
+        list.add(new ItemStack(item, 1, 4));
+        list.add(new ItemStack(item, 1, 5));
     }
 
     /**

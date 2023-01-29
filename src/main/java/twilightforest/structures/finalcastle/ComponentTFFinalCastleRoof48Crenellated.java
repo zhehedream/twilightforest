@@ -6,12 +6,13 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleRoof48Crenellated extends StructureTFComponent {
-    public ComponentTFFinalCastleRoof48Crenellated() {
-    }
+
+    public ComponentTFFinalCastleRoof48Crenellated() {}
 
     public ComponentTFFinalCastleRoof48Crenellated(Random rand, int i, StructureTFComponent keep) {
         super(i);
@@ -19,8 +20,13 @@ public class ComponentTFFinalCastleRoof48Crenellated extends StructureTFComponen
         int height = 5;
 
         this.setCoordBaseMode(keep.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(keep.getBoundingBox().minX - 2, keep.getBoundingBox().maxY - 1, keep.getBoundingBox().minZ - 2, keep.getBoundingBox().maxX + 2,
-                keep.getBoundingBox().maxY + height - 1, keep.getBoundingBox().maxZ + 2);
+        this.boundingBox = new StructureBoundingBox(
+                keep.getBoundingBox().minX - 2,
+                keep.getBoundingBox().maxY - 1,
+                keep.getBoundingBox().minZ - 2,
+                keep.getBoundingBox().maxX + 2,
+                keep.getBoundingBox().maxY + height - 1,
+                keep.getBoundingBox().maxZ + 2);
     }
 
     @Override
@@ -33,7 +39,20 @@ public class ComponentTFFinalCastleRoof48Crenellated extends StructureTFComponen
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // add second layer of floor
-        this.fillWithMetadataBlocks(world, sbb, 2, 2, 2, 50, 2, 50, TFBlocks.castleMagic, 3, TFBlocks.castleMagic, 3, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                2,
+                2,
+                2,
+                50,
+                2,
+                50,
+                TFBlocks.castleMagic,
+                3,
+                TFBlocks.castleMagic,
+                3,
+                false);
 
         // crenellations
         for (int rotation = 0; rotation < 4; rotation++) {

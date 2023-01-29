@@ -3,6 +3,7 @@ package twilightforest.structures;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.darktower.StructureDecoratorDarkTower;
 import twilightforest.structures.icetower.StructureDecoratorIceTower;
 import twilightforest.structures.mushroomtower.StructureDecoratorMushroomTower;
@@ -15,6 +16,7 @@ import twilightforest.structures.stronghold.StructureTFDecoratorStronghold;
  *
  */
 public class StructureTFDecorator {
+
     public Block blockID = Blocks.stone;
     public int blockMeta;
 

@@ -1,8 +1,5 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -12,6 +9,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 public class RenderTFThrownAxe extends RenderItem {
 
@@ -76,7 +76,15 @@ public class RenderTFThrownAxe extends RenderItem {
         this.bindTexture(TextureMap.locationItemsTexture);
 
         // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        ItemRenderer.renderItemIn2D(tessellator, par2Icon.getMaxU(), par2Icon.getMinV(), par2Icon.getMinU(), par2Icon.getMaxV(), par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
+        ItemRenderer.renderItemIn2D(
+                tessellator,
+                par2Icon.getMaxU(),
+                par2Icon.getMinV(),
+                par2Icon.getMinU(),
+                par2Icon.getMaxV(),
+                par2Icon.getIconWidth(),
+                par2Icon.getIconHeight(),
+                f12);
 
         GL11.glPopMatrix();
     }

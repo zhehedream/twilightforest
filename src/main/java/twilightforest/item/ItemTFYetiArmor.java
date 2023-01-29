@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +14,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFYetiArmor extends ItemArmor {
 
@@ -34,8 +35,8 @@ public class ItemTFYetiArmor extends ItemArmor {
     }
 
     /**
-     * Called by RenderBiped and RenderPlayer to determine the armor texture that should be use for the
-     * currently equiped item. This will only be called on instances of ItemArmor.
+     * Called by RenderBiped and RenderPlayer to determine the armor texture that should be use for the currently
+     * equiped item. This will only be called on instances of ItemArmor.
      * 
      * Returning null from this function will use the default value.
      * 
@@ -47,13 +48,13 @@ public class ItemTFYetiArmor extends ItemArmor {
      */
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
         switch (slot) {
-        case 0:
-        case 3:
-        default:
-            return TwilightForestMod.ARMOR_DIR + "yetiarmor_1.png";
-        case 1:
-        case 2:
-            return TwilightForestMod.ARMOR_DIR + "yetiarmor_2.png";
+            case 0:
+            case 3:
+            default:
+                return TwilightForestMod.ARMOR_DIR + "yetiarmor_1.png";
+            case 1:
+            case 2:
+                return TwilightForestMod.ARMOR_DIR + "yetiarmor_2.png";
 
         }
     }
@@ -66,15 +67,15 @@ public class ItemTFYetiArmor extends ItemArmor {
     public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
         ItemStack istack = new ItemStack(item, 1, 0);
         switch (this.armorType) {
-        case 0:
-        case 1:
-        case 2:
-            istack.addEnchantment(Enchantment.protection, 2);
-            break;
-        case 3:
-            istack.addEnchantment(Enchantment.protection, 2);
-            istack.addEnchantment(Enchantment.featherFalling, 4);
-            break;
+            case 0:
+            case 1:
+            case 2:
+                istack.addEnchantment(Enchantment.protection, 2);
+                break;
+            case 3:
+                istack.addEnchantment(Enchantment.protection, 2);
+                istack.addEnchantment(Enchantment.featherFalling, 4);
+                break;
         }
         itemList.add(istack);
     }
@@ -94,7 +95,8 @@ public class ItemTFYetiArmor extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**

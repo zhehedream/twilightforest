@@ -2,8 +2,6 @@ package twilightforest.entity;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,8 +24,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.entity.ai.EntityAITFHeavySpearAttack;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFGoblinKnightUpper extends EntityMob {
 
@@ -143,7 +144,8 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
     public void onUpdate() {
         if (this.isEntityAlive()) {
             // synch target with lower goblin
-            if (this.ridingEntity != null && this.ridingEntity instanceof EntityLiving && this.getAttackTarget() == null) {
+            if (this.ridingEntity != null && this.ridingEntity instanceof EntityLiving
+                    && this.getAttackTarget() == null) {
                 this.setAttackTarget(((EntityLiving) this.ridingEntity).getAttackTarget());
             }
 
@@ -181,13 +183,21 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
         for (int i = 0; i < 50; i++) {
             // worldObj.spawnParticle("crit", px + (rand.nextFloat() - rand.nextFloat()) * 0.5F, py +
             // rand.nextFloat(), pz + (rand.nextFloat() - rand.nextFloat()) * 0.5F, 0, 0.5, 0);
-            worldObj.spawnParticle("largesmoke", px, py, pz, (rand.nextFloat() - rand.nextFloat()) * 0.25F, 0, (rand.nextFloat() - rand.nextFloat()) * 0.25F);
+            worldObj.spawnParticle(
+                    "largesmoke",
+                    px,
+                    py,
+                    pz,
+                    (rand.nextFloat() - rand.nextFloat()) * 0.25F,
+                    0,
+                    (rand.nextFloat() - rand.nextFloat()) * 0.25F);
         }
 
         // damage things in front that aren't us or our "mount"
         double radius = 1.5D;
 
-        AxisAlignedBB spearBB = AxisAlignedBB.getBoundingBox(px - radius, py - radius, pz - radius, px + radius, py + radius, pz + radius);
+        AxisAlignedBB spearBB = AxisAlignedBB
+                .getBoundingBox(px - radius, py - radius, pz - radius, px + radius, py + radius, pz + radius);
 
         List<Entity> inBox = worldObj.getEntitiesWithinAABB(Entity.class, spearBB);
 
@@ -214,10 +224,10 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
      * Handles updating while being ridden by an entity
      */
     public void updateRidden() {
-//        if (this.ridingEntity != null)
-//        {
-//            this.renderYawOffset = ((EntityLiving)this.ridingEntity).renderYawOffset;
-//        }
+        // if (this.ridingEntity != null)
+        // {
+        // this.renderYawOffset = ((EntityLiving)this.ridingEntity).renderYawOffset;
+        // }
         super.updateRidden();
         if (this.ridingEntity instanceof EntityLivingBase) {
             this.renderYawOffset = ((EntityLivingBase) this.ridingEntity).renderYawOffset;
@@ -317,7 +327,9 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
 
         boolean attackSuccess = super.attackEntityFrom(par1DamageSource, damageAmount);
 
-        if (attackSuccess && this.ridingEntity != null && this.ridingEntity instanceof EntityLiving && attacker != null) {
+        if (attackSuccess && this.ridingEntity != null
+                && this.ridingEntity instanceof EntityLiving
+                && attacker != null) {
             ((EntityLiving) this.ridingEntity).knockBack(attacker, damageAmount, 0.1, 0.1);
         }
 
@@ -354,17 +366,24 @@ public class EntityTFGoblinKnightUpper extends EntityMob {
         if (damageAmount > SHIELD_DAMAGE_THRESHOLD && !this.worldObj.isRemote) {
             damageShield();
         } else {
-            this.worldObj.playSoundAtEntity(this, "random.break", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+            this.worldObj.playSoundAtEntity(
+                    this,
+                    "random.break",
+                    1.0F,
+                    ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         }
 
         // knock back slightly
-        EntityLiving toKnockback = (this.ridingEntity != null && this.ridingEntity instanceof EntityLiving) ? (EntityLiving) this.ridingEntity : this;
+        EntityLiving toKnockback = (this.ridingEntity != null && this.ridingEntity instanceof EntityLiving)
+                ? (EntityLiving) this.ridingEntity
+                : this;
 
         if (par1DamageSource.getEntity() != null) {
             double d0 = par1DamageSource.getEntity().posX - this.posX;
             double d1;
 
-            for (d1 = par1DamageSource.getEntity().posZ - this.posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D) {
+            for (d1 = par1DamageSource.getEntity().posZ - this.posZ; d0 * d0 + d1 * d1
+                    < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D) {
                 d0 = (Math.random() - Math.random()) * 0.01D;
             }
 

@@ -7,6 +7,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerRoof;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
@@ -24,8 +25,13 @@ public class ComponentTFTowerRoofMushroom extends ComponentTFTowerRoof {
 
         this.setCoordBaseMode(0);
 
-        this.boundingBox = new StructureBoundingBox(wing.getBoundingBox().minX - overhang, wing.getBoundingBox().maxY + 2, wing.getBoundingBox().minZ - overhang, wing.getBoundingBox().maxX + overhang,
-                wing.getBoundingBox().maxY + this.height + 1, wing.getBoundingBox().maxZ + overhang);
+        this.boundingBox = new StructureBoundingBox(
+                wing.getBoundingBox().minX - overhang,
+                wing.getBoundingBox().maxY + 2,
+                wing.getBoundingBox().minZ - overhang,
+                wing.getBoundingBox().maxX + overhang,
+                wing.getBoundingBox().maxY + this.height + 1,
+                wing.getBoundingBox().maxZ + overhang);
 
     }
 
@@ -71,8 +77,8 @@ public class ComponentTFTowerRoofMushroom extends ComponentTFTowerRoof {
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
                 // determine how far we are from the center.
-//                int ax = Math.abs(dx);
-//                int az = Math.abs(dz);
+                // int ax = Math.abs(dx);
+                // int az = Math.abs(dz);
                 float dist = MathHelper.sqrt_float(dx * dx + dz * dz);
 
                 // make a trunk!

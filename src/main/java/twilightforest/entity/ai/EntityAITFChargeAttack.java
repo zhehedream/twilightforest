@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.ITFCharger;
 
 public class EntityAITFChargeAttack extends EntityAIBase {
@@ -51,7 +52,11 @@ public class EntityAITFChargeAttack extends EntityAIBase {
                 return false;
             } else {
                 Vec3 chargePos = findChargePoint(charger, chargeTarget, 2.1);
-                boolean canSeeTargetFromDest = chargeTarget.worldObj.rayTraceBlocks(Vec3.createVectorHelper(chargeTarget.posX, chargeTarget.posY + chargeTarget.getEyeHeight(), chargeTarget.posZ),
+                boolean canSeeTargetFromDest = chargeTarget.worldObj.rayTraceBlocks(
+                        Vec3.createVectorHelper(
+                                chargeTarget.posX,
+                                chargeTarget.posY + chargeTarget.getEyeHeight(),
+                                chargeTarget.posZ),
                         chargePos) == null;
                 if (chargePos == null || !canSeeTargetFromDest) {
                     return false;
@@ -92,7 +97,8 @@ public class EntityAITFChargeAttack extends EntityAIBase {
     @Override
     public void updateTask() {
         // look where we're going
-        this.charger.getLookHelper().setLookPosition(chargeX, chargeY - 1, chargeZ, 10.0F, this.charger.getVerticalFaceSpeed());
+        this.charger.getLookHelper()
+                .setLookPosition(chargeX, chargeY - 1, chargeZ, 10.0F, this.charger.getVerticalFaceSpeed());
 
         if (windup > 0) {
             if (--windup == 0) {
@@ -112,7 +118,9 @@ public class EntityAITFChargeAttack extends EntityAIBase {
         // attack the target when we get in range
         double var1 = this.charger.width * 2.1F * this.charger.width * 2.1F;
 
-        if (this.charger.getDistanceSq(this.chargeTarget.posX, this.chargeTarget.boundingBox.minY, this.chargeTarget.posZ) <= var1) {
+        if (this.charger
+                .getDistanceSq(this.chargeTarget.posX, this.chargeTarget.boundingBox.minY, this.chargeTarget.posZ)
+                <= var1) {
             if (!this.hasAttacked) {
                 this.hasAttacked = true;
                 this.charger.attackEntityAsMob(this.chargeTarget);
@@ -154,8 +162,8 @@ public class EntityAITFChargeAttack extends EntityAIBase {
         double dx = MathHelper.cos(rangle) * (distance + overshoot);
         double dz = MathHelper.sin(rangle) * (distance + overshoot);
 
-//        System.out.println("Charge position is " + (attacker.posX + dx) + ", " + (attacker.posZ + dz));
-//        System.out.println("Target position is " + target.posX + ", " + target.posZ);
+        // System.out.println("Charge position is " + (attacker.posX + dx) + ", " + (attacker.posZ + dz));
+        // System.out.println("Target position is " + target.posX + ", " + target.posZ);
 
         // add that to the target entity's position, and we have our destination
         return Vec3.createVectorHelper(attacker.posX + dx, target.posY, attacker.posZ + dz);

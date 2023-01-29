@@ -7,8 +7,6 @@ import static net.minecraftforge.common.util.ForgeDirection.WEST;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,8 +18,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFForceField extends BlockPane {
 
@@ -98,10 +99,11 @@ public class BlockTFForceField extends BlockPane {
     }
 
     /**
-     * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they
-     * intersect the mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
+     * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
+     * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
-    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list,
+            Entity entity) {
         super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
 
         // just fill in the whole bounding box when we connect on all sides

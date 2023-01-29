@@ -2,8 +2,6 @@ package twilightforest.entity;
 
 import java.util.List;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +13,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFGenericPacketHandler;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
 import twilightforest.item.ItemTFCubeOfAnnihilation;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 public class EntityTFCubeOfAnnihilation extends EntityThrowable {
 
@@ -98,7 +99,11 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
                         if (canAnnihilate(dx, dy, dz, block, currentMeta)) {
                             this.worldObj.setBlockToAir(dx, dy, dz);
 
-                            this.worldObj.playSoundAtEntity(this, "random.fizz", 0.125f, this.rand.nextFloat() * 0.25F + 0.75F);
+                            this.worldObj.playSoundAtEntity(
+                                    this,
+                                    "random.fizz",
+                                    0.125f,
+                                    this.rand.nextFloat() * 0.25F + 0.75F);
 
                             this.sendAnnihilateBlockPacket(worldObj, dx, dy, dz);
 
@@ -117,7 +122,10 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
 
     private boolean canAnnihilate(int dx, int dy, int dz, Block block, int meta) {
         // whitelist many castle blocks
-        if (block == TFBlocks.deadrock || block == TFBlocks.castleBlock || (block == TFBlocks.castleMagic && meta != 3) || block == TFBlocks.forceField || block == TFBlocks.thorns) {
+        if (block == TFBlocks.deadrock || block == TFBlocks.castleBlock
+                || (block == TFBlocks.castleMagic && meta != 3)
+                || block == TFBlocks.forceField
+                || block == TFBlocks.thorns) {
             return true;
         }
 
@@ -128,7 +136,12 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
         // send packet
         FMLProxyPacket message = TFGenericPacketHandler.makeAnnihilateBlockPacket(x, y, z);
 
-        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 64);
+        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(
+                world.provider.dimensionId,
+                x,
+                y,
+                z,
+                64);
 
         TwilightForestMod.genericChannel.sendToAllAround(message, targetPoint);
     }
@@ -150,7 +163,9 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
 
             if (this.isReturning()) {
                 // if we are returning, and are near enough to the player, then we are done
-                List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+                List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+                        this,
+                        this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 
                 if (list.contains(this.getThrower()) && !this.worldObj.isRemote) {
                     // System.out.println("we have returned");
@@ -162,7 +177,10 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
             }
 
             // always head towards either the point or towards the player
-            Vec3 destPoint = Vec3.createVectorHelper(this.getThrower().posX, this.getThrower().posY + this.getThrower().getEyeHeight(), this.getThrower().posZ);
+            Vec3 destPoint = Vec3.createVectorHelper(
+                    this.getThrower().posX,
+                    this.getThrower().posY + this.getThrower().getEyeHeight(),
+                    this.getThrower().posZ);
 
             if (!this.isReturning()) {
                 Vec3 look = this.getThrower().getLookVec();
@@ -181,14 +199,18 @@ public class EntityTFCubeOfAnnihilation extends EntityThrowable {
             // System.out.println("Dest point = " + destPoint);
 
             // set motions
-            Vec3 velocity = Vec3.createVectorHelper(this.posX - destPoint.xCoord, (this.posY + this.height / 2F) - destPoint.yCoord, this.posZ - destPoint.zCoord);
+            Vec3 velocity = Vec3.createVectorHelper(
+                    this.posX - destPoint.xCoord,
+                    (this.posY + this.height / 2F) - destPoint.yCoord,
+                    this.posZ - destPoint.zCoord);
 
             this.motionX -= velocity.xCoord;
             this.motionY -= velocity.yCoord;
             this.motionZ -= velocity.zCoord;
 
             // normalize speed
-            float currentSpeed = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+            float currentSpeed = MathHelper.sqrt_double(
+                    this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 
             float maxSpeed = 0.5F;
 

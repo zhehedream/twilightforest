@@ -1,12 +1,13 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
 
@@ -24,7 +25,8 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         // rotate the sides
         int meta = world.getBlockMetadata(x, y, z);
 
@@ -53,51 +55,47 @@ public class RenderBlockTFMagicLeaves implements ISimpleBlockRenderingHandler {
         int type = meta & 3;
 
         switch (type) {
-        case 0:
-            renderer.uvRotateEast = 3;
-            renderer.uvRotateBottom = 0;
+            case 0:
+                renderer.uvRotateEast = 3;
+                renderer.uvRotateBottom = 0;
 
-            renderer.uvRotateNorth = 2;
-            renderer.uvRotateSouth = 2;
-            break;
-        case 1:
-            // bottom and top are semi-random
-            renderer.uvRotateBottom = (x + y + z) & 3;
-            renderer.uvRotateTop = (x + y + z) & 3;
+                renderer.uvRotateNorth = 2;
+                renderer.uvRotateSouth = 2;
+                break;
+            case 1:
+                // bottom and top are semi-random
+                renderer.uvRotateBottom = (x + y + z) & 3;
+                renderer.uvRotateTop = (x + y + z) & 3;
 
-            // sides flow down
-            renderer.uvRotateEast = 1;
-            renderer.uvRotateWest = 2;
+                // sides flow down
+                renderer.uvRotateEast = 1;
+                renderer.uvRotateWest = 2;
 
-            renderer.uvRotateNorth = 2;
-            renderer.uvRotateSouth = 1;
-            break;
-        case 2:
-            // bottom and top are semi-random
-            renderer.uvRotateBottom = (x + y + z) & 3;
-            renderer.uvRotateTop = (x + y + z) & 3;
+                renderer.uvRotateNorth = 2;
+                renderer.uvRotateSouth = 1;
+                break;
+            case 2:
+                // bottom and top are semi-random
+                renderer.uvRotateBottom = (x + y + z) & 3;
+                renderer.uvRotateTop = (x + y + z) & 3;
 
-            // sides flow up
-            renderer.uvRotateEast = 2;
-            renderer.uvRotateWest = 1;
+                // sides flow up
+                renderer.uvRotateEast = 2;
+                renderer.uvRotateWest = 1;
 
-            renderer.uvRotateNorth = 1;
-            renderer.uvRotateSouth = 2;
-            break;
-        case 3:
-            // all semi-random
-            renderer.uvRotateBottom = (x + y + z) & 3;
-            renderer.uvRotateTop = (x + y + z) & 3;
+                renderer.uvRotateNorth = 1;
+                renderer.uvRotateSouth = 2;
+                break;
+            case 3:
+                // all semi-random
+                renderer.uvRotateBottom = (x + y + z) & 3;
+                renderer.uvRotateTop = (x + y + z) & 3;
 
-            renderer.uvRotateEast = (x + y + z) & 3;
-            ;
-            renderer.uvRotateWest = (x + y + z) & 3;
-            ;
+                renderer.uvRotateEast = (x + y + z) & 3;;
+                renderer.uvRotateWest = (x + y + z) & 3;;
 
-            renderer.uvRotateNorth = (x + y + z) & 3;
-            ;
-            renderer.uvRotateSouth = (x + y + z) & 3;
-            ;
+                renderer.uvRotateNorth = (x + y + z) & 3;;
+                renderer.uvRotateSouth = (x + y + z) & 3;;
         }
     }
 

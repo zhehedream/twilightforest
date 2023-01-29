@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class TFGenFireJet extends TFGenerator {
+
     private Block plantBlockId;
     private int plantBlockMeta;
 
@@ -23,9 +24,12 @@ public class TFGenFireJet extends TFGenerator {
             int dy = y + rand.nextInt(4) - rand.nextInt(4);
             int dz = z + rand.nextInt(8) - rand.nextInt(8);
 
-            if (world.isAirBlock(dx, dy, dz) && world.canBlockSeeTheSky(dx, dy, dz) && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.grass
-                    && world.getBlock(dx + 1, dy - 1, dz).getMaterial() == Material.grass && world.getBlock(dx - 1, dy - 1, dz).getMaterial() == Material.grass
-                    && world.getBlock(dx, dy - 1, dz + 1).getMaterial() == Material.grass && world.getBlock(dx, dy - 1, dz - 1).getMaterial() == Material.grass) {
+            if (world.isAirBlock(dx, dy, dz) && world.canBlockSeeTheSky(dx, dy, dz)
+                    && world.getBlock(dx, dy - 1, dz).getMaterial() == Material.grass
+                    && world.getBlock(dx + 1, dy - 1, dz).getMaterial() == Material.grass
+                    && world.getBlock(dx - 1, dy - 1, dz).getMaterial() == Material.grass
+                    && world.getBlock(dx, dy - 1, dz + 1).getMaterial() == Material.grass
+                    && world.getBlock(dx, dy - 1, dz - 1).getMaterial() == Material.grass) {
                 // jet
                 world.setBlock(dx, dy - 1, dz, this.plantBlockId, this.plantBlockMeta, 0);
 

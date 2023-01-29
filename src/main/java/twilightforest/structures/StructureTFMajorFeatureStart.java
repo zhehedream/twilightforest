@@ -13,6 +13,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import net.minecraft.world.gen.structure.StructureStrongholdPieces;
+
 import twilightforest.TFFeature;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
@@ -69,12 +70,11 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         MapGenStructureIO.func_143031_a(ComponentTFYetiCave.class, "TFYeti");
     }
 
-    public StructureTFMajorFeatureStart() {
-    }
+    public StructureTFMajorFeatureStart() {}
 
     public StructureTFMajorFeatureStart(World world, Random rand, int chunkX, int chunkZ) {
         StructureStrongholdPieces.prepareStructurePieces();
-        //TFStrongholdPieces.prepareStructurePieces();
+        // TFStrongholdPieces.prepareStructurePieces();
 
         int x = (chunkX << 4) + 8;
         int z = (chunkZ << 4) + 8;
@@ -208,35 +208,36 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         }
     }
 
-//    /**
-//     * Keeps iterating Structure Pieces and spawning them until the checks tell it to stop
-//     */
-//    public void generateStructure(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox)
-//    {
-//        if (this.getComponents().getFirst() instanceof ComponentTFStrongholdEntrance)
-//        {
-//            //System.out.println("We're generating a stronghold!");
-//            
-//            for (StructureComponent component : (LinkedList<StructureComponent>) getComponents())
-//            {
-//                
-//                // TODO: we need to test the shield bounding box here, otherwise we lose shield facings across chunk boundires
-//                
-//                if (isShieldable(component) ? isIntersectingLarger(par3StructureBoundingBox, component) : isIntersectingLarger(par3StructureBoundingBox, component))
-//                {
-//                    if (isShieldable(component))
-//                    {
-//                        addShieldFor(par1World, component, (LinkedList<StructureComponent>) getComponents(), par3StructureBoundingBox);
-//                    }
-//                    component.addComponentParts(par1World, par2Random, par3StructureBoundingBox);
-//                }
-//            }
-//        }
-//        else
-//        {
-//            super.generateStructure(par1World, par2Random, par3StructureBoundingBox);
-//        }
-//    }
+    // /**
+    // * Keeps iterating Structure Pieces and spawning them until the checks tell it to stop
+    // */
+    // public void generateStructure(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox)
+    // {
+    // if (this.getComponents().getFirst() instanceof ComponentTFStrongholdEntrance)
+    // {
+    // //System.out.println("We're generating a stronghold!");
+    //
+    // for (StructureComponent component : (LinkedList<StructureComponent>) getComponents())
+    // {
+    //
+    // // TODO: we need to test the shield bounding box here, otherwise we lose shield facings across chunk boundires
+    //
+    // if (isShieldable(component) ? isIntersectingLarger(par3StructureBoundingBox, component) :
+    // isIntersectingLarger(par3StructureBoundingBox, component))
+    // {
+    // if (isShieldable(component))
+    // {
+    // addShieldFor(par1World, component, (LinkedList<StructureComponent>) getComponents(), par3StructureBoundingBox);
+    // }
+    // component.addComponentParts(par1World, par2Random, par3StructureBoundingBox);
+    // }
+    // }
+    // }
+    // else
+    // {
+    // super.generateStructure(par1World, par2Random, par3StructureBoundingBox);
+    // }
+    // }
 
     /**
      * Check if the component is within the chunk bounding box, but check as if it was one larger
@@ -246,7 +247,9 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         StructureBoundingBox compBB = component.getBoundingBox();
 
         // don't bother checking Y
-        return (compBB.maxX + 1) >= chunkBB.minX && (compBB.minX - 1) <= chunkBB.maxX && (compBB.maxZ + 1) >= chunkBB.minZ && (compBB.minZ - 1) <= chunkBB.maxZ;
+        return (compBB.maxX + 1) >= chunkBB.minX && (compBB.minX - 1) <= chunkBB.maxX
+                && (compBB.maxZ + 1) >= chunkBB.minZ
+                && (compBB.minZ - 1) <= chunkBB.maxZ;
     }
 
     @SuppressWarnings("unused")
@@ -258,7 +261,8 @@ public class StructureTFMajorFeatureStart extends StructureStart {
      * Make the stronghold shield around a component's bounding box
      */
     @SuppressWarnings("unused")
-    private void addShieldFor(World world, StructureComponent component, List<StructureComponent> otherComponents, StructureBoundingBox chunkBox) {
+    private void addShieldFor(World world, StructureComponent component, List<StructureComponent> otherComponents,
+            StructureBoundingBox chunkBox) {
         StructureBoundingBox shieldBox = new StructureBoundingBox(component.getBoundingBox());
 
         shieldBox.minX--;
@@ -281,7 +285,11 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         for (int x = shieldBox.minX; x <= shieldBox.maxX; x++) {
             for (int y = shieldBox.minY; y <= shieldBox.maxY; y++) {
                 for (int z = shieldBox.minZ; z <= shieldBox.maxZ; z++) {
-                    if (x == shieldBox.minX || x == shieldBox.maxX || y == shieldBox.minY || y == shieldBox.maxY || z == shieldBox.minZ || z == shieldBox.maxZ) {
+                    if (x == shieldBox.minX || x == shieldBox.maxX
+                            || y == shieldBox.minY
+                            || y == shieldBox.maxY
+                            || z == shieldBox.minZ
+                            || z == shieldBox.maxZ) {
                         if (chunkBox.isVecInside(x, y, z)) {
                             // test other boxes
                             boolean notIntersecting = true;

@@ -6,11 +6,12 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 /**
- * This component is the base for the maze/ruins combo feature. There are village-like ruins above
- * and a maze underneath.
+ * This component is the base for the maze/ruins combo feature. There are village-like ruins above and a maze
+ * underneath.
  * 
  * @author Ben
  *
@@ -39,25 +40,40 @@ public class ComponentTFMazeRuins extends StructureTFComponent {
         super.buildComponent(structurecomponent, list, random);
 
         // add a maze
-        ComponentTFMinotaurMaze maze = new ComponentTFMinotaurMaze(1, boundingBox.minX, boundingBox.minY - 14, boundingBox.minZ, 1);
+        ComponentTFMinotaurMaze maze = new ComponentTFMinotaurMaze(
+                1,
+                boundingBox.minX,
+                boundingBox.minY - 14,
+                boundingBox.minZ,
+                1);
         list.add(maze);
         maze.buildComponent(this, list, random);
 
         // add maze entrance shaft
-        ComponentTFMazeEntranceShaft mazeEnter = new ComponentTFMazeEntranceShaft(2, random, boundingBox.minX + 1, boundingBox.minY, boundingBox.minZ + 1);
+        ComponentTFMazeEntranceShaft mazeEnter = new ComponentTFMazeEntranceShaft(
+                2,
+                random,
+                boundingBox.minX + 1,
+                boundingBox.minY,
+                boundingBox.minZ + 1);
         list.add(mazeEnter);
         mazeEnter.buildComponent(this, list, random);
 
         // add aboveground maze entrance building
-        ComponentTFMazeMound mazeAbove = new ComponentTFMazeMound(2, random, boundingBox.minX - 14, boundingBox.minY, boundingBox.minZ - 14);
+        ComponentTFMazeMound mazeAbove = new ComponentTFMazeMound(
+                2,
+                random,
+                boundingBox.minX - 14,
+                boundingBox.minY,
+                boundingBox.minZ - 14);
         list.add(mazeAbove);
         mazeAbove.buildComponent(this, list, random);
 
     }
 
     /**
-     * second Part of Structure generating, this for example places Spiderwebs, Mob Spawners, it closes
-     * Mineshafts at the end, it adds Fences...
+     * second Part of Structure generating, this for example places Spiderwebs, Mob Spawners, it closes Mineshafts at
+     * the end, it adds Fences...
      */
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {

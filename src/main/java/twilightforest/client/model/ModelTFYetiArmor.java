@@ -75,54 +75,54 @@ public class ModelTFYetiArmor extends ModelBiped {
         this.bipedLeftArm.setRotationPoint(5.0F, 2.0F + 0.0f, 0.0F);
 
         switch (part) {
-        case 0: // helmet
-            this.bipedHead.showModel = true;
-            this.bipedHeadwear.showModel = false;
-            this.bipedBody.showModel = false;
-            this.bipedRightArm.showModel = false;
-            this.bipedLeftArm.showModel = false;
-            this.bipedLegBody.showModel = false;
-            this.bipedRightLeg.showModel = false;
-            this.bipedLeftLeg.showModel = false;
-            break;
-        case 1: // chest
-            this.bipedHead.showModel = false;
-            this.bipedHeadwear.showModel = false;
-            this.bipedBody.showModel = true;
-            this.bipedRightArm.showModel = true;
-            this.bipedLeftArm.showModel = true;
-            this.bipedLegBody.showModel = false;
-            this.bipedRightLeg.showModel = false;
-            this.bipedLeftLeg.showModel = false;
-            break;
-        case 2: // pants
-            this.bipedHead.showModel = false;
-            this.bipedHeadwear.showModel = false;
-            this.bipedBody.showModel = false;
-            this.bipedRightArm.showModel = false;
-            this.bipedLeftArm.showModel = false;
-            this.bipedLegBody.showModel = true;
-            this.bipedRightLeg.showModel = true;
-            this.bipedLeftLeg.showModel = true;
-            this.leftRuff.showModel = false;
-            this.leftToe.showModel = false;
-            this.rightRuff.showModel = false;
-            this.rightToe.showModel = false;
-            break;
-        case 3: // boots
-            this.bipedHead.showModel = false;
-            this.bipedHeadwear.showModel = false;
-            this.bipedBody.showModel = false;
-            this.bipedRightArm.showModel = false;
-            this.bipedLeftArm.showModel = false;
-            this.bipedLegBody.showModel = false;
-            this.bipedRightLeg.showModel = true;
-            this.bipedLeftLeg.showModel = true;
-            this.leftRuff.showModel = true;
-            this.leftToe.showModel = true;
-            this.rightRuff.showModel = true;
-            this.rightToe.showModel = true;
-            break;
+            case 0: // helmet
+                this.bipedHead.showModel = true;
+                this.bipedHeadwear.showModel = false;
+                this.bipedBody.showModel = false;
+                this.bipedRightArm.showModel = false;
+                this.bipedLeftArm.showModel = false;
+                this.bipedLegBody.showModel = false;
+                this.bipedRightLeg.showModel = false;
+                this.bipedLeftLeg.showModel = false;
+                break;
+            case 1: // chest
+                this.bipedHead.showModel = false;
+                this.bipedHeadwear.showModel = false;
+                this.bipedBody.showModel = true;
+                this.bipedRightArm.showModel = true;
+                this.bipedLeftArm.showModel = true;
+                this.bipedLegBody.showModel = false;
+                this.bipedRightLeg.showModel = false;
+                this.bipedLeftLeg.showModel = false;
+                break;
+            case 2: // pants
+                this.bipedHead.showModel = false;
+                this.bipedHeadwear.showModel = false;
+                this.bipedBody.showModel = false;
+                this.bipedRightArm.showModel = false;
+                this.bipedLeftArm.showModel = false;
+                this.bipedLegBody.showModel = true;
+                this.bipedRightLeg.showModel = true;
+                this.bipedLeftLeg.showModel = true;
+                this.leftRuff.showModel = false;
+                this.leftToe.showModel = false;
+                this.rightRuff.showModel = false;
+                this.rightToe.showModel = false;
+                break;
+            case 3: // boots
+                this.bipedHead.showModel = false;
+                this.bipedHeadwear.showModel = false;
+                this.bipedBody.showModel = false;
+                this.bipedRightArm.showModel = false;
+                this.bipedLeftArm.showModel = false;
+                this.bipedLegBody.showModel = false;
+                this.bipedRightLeg.showModel = true;
+                this.bipedLeftLeg.showModel = true;
+                this.leftRuff.showModel = true;
+                this.leftToe.showModel = true;
+                this.rightRuff.showModel = true;
+                this.rightToe.showModel = true;
+                break;
 
         }
     }

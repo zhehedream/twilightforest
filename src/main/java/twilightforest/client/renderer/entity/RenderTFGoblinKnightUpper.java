@@ -1,9 +1,10 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.entity.EntityTFGoblinKnightUpper;
 
 public class RenderTFGoblinKnightUpper extends RenderTFBiped {
@@ -58,31 +59,31 @@ public class RenderTFGoblinKnightUpper extends RenderTFBiped {
             return (10 - (attackTime - 50)) * -4.5F;
         }
 
-//        if (attackTime <= 10)
-//        {
-//            // rock back
-//            return attackTime * 3.0F;
-//        }
-//        if (attackTime > 10 && attackTime <= 40)
-//        {
-//            // hang back
-//            return 30F;
-//        }
-//        if (attackTime > 40 && attackTime <= 43)
-//        {
-//            // slam forward
-//            return (attackTime - 40) * -25F + 30F;
-//        }
-//        if (attackTime > 43 && attackTime <= 90)
-//        {
-//            // stay forward
-//            return -45F;
-//        }
-//        if (attackTime > 90 && attackTime <= 100)
-//        {
-//            // back to normal
-//            return (10 - (attackTime - 90)) * -4.5F;
-//        }
+        // if (attackTime <= 10)
+        // {
+        // // rock back
+        // return attackTime * 3.0F;
+        // }
+        // if (attackTime > 10 && attackTime <= 40)
+        // {
+        // // hang back
+        // return 30F;
+        // }
+        // if (attackTime > 40 && attackTime <= 43)
+        // {
+        // // slam forward
+        // return (attackTime - 40) * -25F + 30F;
+        // }
+        // if (attackTime > 43 && attackTime <= 90)
+        // {
+        // // stay forward
+        // return -45F;
+        // }
+        // if (attackTime > 90 && attackTime <= 100)
+        // {
+        // // back to normal
+        // return (10 - (attackTime - 90)) * -4.5F;
+        // }
 
         return 0;
 

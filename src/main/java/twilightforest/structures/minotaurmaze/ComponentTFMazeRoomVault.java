@@ -5,10 +5,12 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFMazeRoomVault extends ComponentTFMazeRoom {
+
     public ComponentTFMazeRoomVault() {
         super();
         // TODO Auto-generated constructor stub

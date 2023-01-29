@@ -7,17 +7,20 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.MapGenBase;
+
 import twilightforest.TFFeature;
 import twilightforest.block.TFBlocks;
 
 public class TFGenRavine extends MapGenBase {
+
     private float field_35627_a[];
 
     public TFGenRavine() {
         field_35627_a = new float[1024];
     }
 
-    protected void generateRavine(long l, int i, int j, Block blockStorage[], double d, double d1, double d2, float f, float f1, float f2, int k, int i1, double d3) {
+    protected void generateRavine(long l, int i, int j, Block blockStorage[], double d, double d1, double d2, float f,
+            float f1, float f2, int k, int i1, double d3) {
         Random random = new Random(l);
         double d4 = i * 16 + 8;
         double d5 = j * 16 + 8;
@@ -67,7 +70,9 @@ public class TFGenRavine extends MapGenBase {
             if ((d8a * d8a + d9a * d9a) - d10a * d10a > d11 * d11) {
                 return;
             }
-            if (d < d4 - 16D - d6 * 2D || d2 < d5 - 16D - d6 * 2D || d > d4 + 16D + d6 * 2D || d2 > d5 + 16D + d6 * 2D) {
+            if (d < d4 - 16D - d6 * 2D || d2 < d5 - 16D - d6 * 2D
+                    || d > d4 + 16D + d6 * 2D
+                    || d2 > d5 + 16D + d6 * 2D) {
                 continue;
             }
             int d8 = MathHelper.floor_double(d - d6) - i * 16 - 1;
@@ -135,10 +140,13 @@ public class TFGenRavine extends MapGenBase {
                             if (curentBlock == Blocks.grass) {
                                 flag2 = true;
                             }
-                            if (curentBlock == Blocks.stone || curentBlock == TFBlocks.trollSteinn || curentBlock == Blocks.dirt || curentBlock == Blocks.grass) {
+                            if (curentBlock == Blocks.stone || curentBlock == TFBlocks.trollSteinn
+                                    || curentBlock == Blocks.dirt
+                                    || curentBlock == Blocks.grass) {
                                 blockStorage[i4] = Blocks.air;
                                 if (flag2 && blockStorage[i4 - 1] == Blocks.dirt) {
-                                    blockStorage[i4 - 1] = this.worldObj.getBiomeGenForCoords(l2 + i * 16, l3 + j * 16).topBlock;
+                                    blockStorage[i4 - 1] = this.worldObj
+                                            .getBiomeGenForCoords(l2 + i * 16, l3 + j * 16).topBlock;
                                 }
                             }
                         }
@@ -154,7 +162,8 @@ public class TFGenRavine extends MapGenBase {
         }
     }
 
-    protected void func_151538_a(World world, int centerChunkX, int centerChunkZ, int currentChunkX, int currentChunkZ, Block shortStorage[]) {
+    protected void func_151538_a(World world, int centerChunkX, int centerChunkZ, int currentChunkX, int currentChunkZ,
+            Block shortStorage[]) {
         if (rand.nextInt(127) != 0) {
             return;
         }

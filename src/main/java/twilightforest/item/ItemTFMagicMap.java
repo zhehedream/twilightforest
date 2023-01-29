@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,14 +12,18 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.storage.MapData.MapInfo;
+
 import twilightforest.TFFeature;
 import twilightforest.TFMagicMapData;
 import twilightforest.TFMapPacketHandler;
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.world.TFWorldChunkManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFMagicMap extends ItemMap {
+
     public static final String STR_ID = "magicmap";
 
     protected ItemTFMagicMap() {
@@ -71,7 +73,7 @@ public class ItemTFMagicMap extends ItemMap {
             int xDraw = MathHelper.floor_double(entity.posX - (double) xCenter) / scaleFactor + xSize / 2;
             int zDraw = MathHelper.floor_double(entity.posZ - (double) zCenter) / scaleFactor + zSize / 2;
             int drawSize = 512 / scaleFactor;
-//            int drawSize = 1024 / scaleFactor;
+            // int drawSize = 1024 / scaleFactor;
 
             MapInfo mapInfo = mapData.func_82568_a((EntityPlayer) entity);
             ++mapInfo.field_82569_d;
@@ -101,28 +103,40 @@ public class ItemTFMagicMap extends ItemMap {
                                     biomeFrequencies[biomeID]++;
 
                                     // make rivers and streams 3x more prominent
-                                    if (biomeID == BiomeGenBase.river.biomeID || biomeID == TFBiomeBase.stream.biomeID) {
+                                    if (biomeID == BiomeGenBase.river.biomeID
+                                            || biomeID == TFBiomeBase.stream.biomeID) {
                                         biomeFrequencies[biomeID] += 2;
                                     }
                                     // add in TF features
                                     if (world.getWorldChunkManager() instanceof TFWorldChunkManager) {
-                                        TFWorldChunkManager tfManager = (TFWorldChunkManager) world.getWorldChunkManager();
+                                        TFWorldChunkManager tfManager = (TFWorldChunkManager) world
+                                                .getWorldChunkManager();
 
-                                        if (tfManager.isInFeatureChunk(world, xDraw2 + xStep2, zDraw2 + zStep2) && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
-                                            mapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, world), xDraw2, zDraw2);
+                                        if (tfManager.isInFeatureChunk(world, xDraw2 + xStep2, zDraw2 + zStep2)
+                                                && zStep >= 0
+                                                && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
+                                            mapData.addFeatureToMap(
+                                                    TFFeature.getNearestFeature(
+                                                            (xDraw2 + xStep2) >> 4,
+                                                            (zDraw2 + zStep2) >> 4,
+                                                            world),
+                                                    xDraw2,
+                                                    zDraw2);
                                         }
                                     }
 
-//                                  // mark features we find into the mapdata, provided they are within our draw area
-//                                  if (biomeID == TFBiomeBase.majorFeature.biomeID && zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize) {
-//                                      par3MapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4, (zDraw2 + zStep2) >> 4, par1World), xDraw2, zDraw2);
-////                                      biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
-//                                  }
+                                    // // mark features we find into the mapdata, provided they are within our draw area
+                                    // if (biomeID == TFBiomeBase.majorFeature.biomeID && zStep >= 0 && xOffset *
+                                    // xOffset + zOffset * zOffset < drawSize * drawSize) {
+                                    // par3MapData.addFeatureToMap(TFFeature.getNearestFeature((xDraw2 + xStep2) >> 4,
+                                    // (zDraw2 + zStep2) >> 4, par1World), xDraw2, zDraw2);
+                                    //// biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
+                                    // }
 
-//                                    // mark features we find into the mapdata, provided they are within our draw area
-//                                    if (biomeID == TFBiomeBase.minorFeature.biomeID) {
-//                                        biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
-//                                    }
+                                    // // mark features we find into the mapdata, provided they are within our draw area
+                                    // if (biomeID == TFBiomeBase.minorFeature.biomeID) {
+                                    // biomeFrequencies[biomeID] += 4096; // don't bother, now the icon will show
+                                    // }
                                 }
                             }
 
@@ -140,7 +154,8 @@ public class ItemTFMagicMap extends ItemMap {
                             // increase biomeID by one so we can properly show oceans
                             biomeIDToShow++;
 
-                            if (zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize && (!var20 || (xStep + zStep & 1) != 0)) {
+                            if (zStep >= 0 && xOffset * xOffset + zOffset * zOffset < drawSize * drawSize
+                                    && (!var20 || (xStep + zStep & 1) != 0)) {
                                 byte existingColor = mapData.colors[xStep + zStep * xSize];
 
                                 if (existingColor != biomeIDToShow) {
@@ -166,8 +181,8 @@ public class ItemTFMagicMap extends ItemMap {
     }
 
     /**
-     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a
-     * player hand and update it's contents.
+     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
+     * update it's contents.
      */
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5) {
         if (!world.isRemote) {
@@ -211,14 +226,14 @@ public class ItemTFMagicMap extends ItemMap {
     /**
      * returns null if no update is to be sent
      * 
-     * We have re-written this to provide a Packet250CustomPayload to be sent, since the map data packet
-     * is only for the actual map map.
+     * We have re-written this to provide a Packet250CustomPayload to be sent, since the map data packet is only for the
+     * actual map map.
      * 
      * Also every 4 player update packets we send is actually a feature icon update packet.
      */
     @Override
     public Packet func_150911_c(ItemStack itemStack, World world, EntityPlayer player) {
-//        System.out.println("Getting magic map packet");
+        // System.out.println("Getting magic map packet");
 
         byte[] mapBytes = this.getMapData(itemStack, world).getUpdatePacketData(itemStack, world, player);
 
@@ -240,14 +255,17 @@ public class ItemTFMagicMap extends ItemMap {
 
     // Add the map number to the tooltip
     public String getItemStackDisplayName(ItemStack itemStack) {
-        return (String.valueOf(StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #" + itemStack.getItemDamage())).trim();
+        return (String.valueOf(
+                StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
+                        + itemStack.getItemDamage())).trim();
     }
 
     // Properly register icon source
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
 }

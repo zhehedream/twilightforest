@@ -7,9 +7,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.EntityTFKobold;
 
 public class EntityAITFPanicOnFlockDeath extends EntityAIBase {
+
     private EntityCreature flockCreature;
     private float speed;
     private double fleeX;
@@ -34,7 +36,9 @@ public class EntityAITFPanicOnFlockDeath extends EntityAIBase {
         boolean yikes = fleeTimer > 0;
 
         // check if any of us is dead within 4 squares
-        List<EntityLiving> flockList = this.flockCreature.worldObj.getEntitiesWithinAABB(this.flockCreature.getClass(), this.flockCreature.boundingBox.expand(4.0D, 2.0D, 4.0D));
+        List<EntityLiving> flockList = this.flockCreature.worldObj.getEntitiesWithinAABB(
+                this.flockCreature.getClass(),
+                this.flockCreature.boundingBox.expand(4.0D, 2.0D, 4.0D));
         for (EntityLiving flocker : flockList) {
             if (flocker.deathTime > 0) {
                 yikes = true;

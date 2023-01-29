@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 
 public class EntityTFSquirrel extends EntityCreature implements IAnimals {
@@ -51,12 +52,11 @@ public class EntityTFSquirrel extends EntityCreature implements IAnimals {
     }
 
     /**
-     * Called when the mob is falling. Calculates and applies fall damage. TODO: maybe they should just
-     * take less damage?
+     * Called when the mob is falling. Calculates and applies fall damage. TODO: maybe they should just take less
+     * damage?
      */
     @Override
-    protected void fall(float par1) {
-    }
+    protected void fall(float par1) {}
 
     /**
      * Returns true if the newer Entity AI code should be run
@@ -75,8 +75,8 @@ public class EntityTFSquirrel extends EntityCreature implements IAnimals {
     }
 
     /**
-     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path
-     * to the block. Args: x, y, z
+     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
+     * Args: x, y, z
      */
     @Override
     public float getBlockPathWeight(int par1, int par2, int par3) {

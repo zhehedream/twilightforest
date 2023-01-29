@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
@@ -106,7 +107,8 @@ public class TFGenCanopyOak extends TFGenCanopyTree {
      * @param angle
      * @param tilt
      */
-    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt, boolean trunk, Random treeRNG) {
+    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt,
+            boolean trunk, Random treeRNG) {
         ChunkCoordinates src = new ChunkCoordinates(x, y + height, z);
         ChunkCoordinates dest = translateCoords(src.posX, src.posY, src.posZ, length, angle, tilt);
 
@@ -125,7 +127,16 @@ public class TFGenCanopyOak extends TFGenCanopyTree {
             dest.posZ = z + limit;
         }
 
-        drawBresehnam(world, src.posX, src.posY, src.posZ, dest.posX, dest.posY, dest.posZ, treeBlock, trunk ? treeMeta : branchMeta);
+        drawBresehnam(
+                world,
+                src.posX,
+                src.posY,
+                src.posZ,
+                dest.posX,
+                dest.posY,
+                dest.posZ,
+                treeBlock,
+                trunk ? treeMeta : branchMeta);
 
         // do this here until that bug with the lighting is fixed
         if (trunk) {
@@ -137,9 +148,9 @@ public class TFGenCanopyOak extends TFGenCanopyTree {
 
         drawLeafBlob(world, dest.posX, dest.posY, dest.posZ, blobSize, leafBlock, leafMeta);
 
-//        makeLeafCircle(world, dest.posX, dest.posY - 1, dest.posZ, 3, leafBlock, leafMeta, true);    
-//        makeLeafCircle(world, dest.posX, dest.posY, dest.posZ, 4, leafBlock, leafMeta, true);    
-//        makeLeafCircle(world, dest.posX, dest.posY + 1, dest.posZ, 2, leafBlock, leafMeta, true);    
+        // makeLeafCircle(world, dest.posX, dest.posY - 1, dest.posZ, 3, leafBlock, leafMeta, true);
+        // makeLeafCircle(world, dest.posX, dest.posY, dest.posZ, 4, leafBlock, leafMeta, true);
+        // makeLeafCircle(world, dest.posX, dest.posY + 1, dest.posZ, 2, leafBlock, leafMeta, true);
 
         setBlockAndMetadata(world, dest.posX + 1, dest.posY, dest.posZ, treeBlock, branchMeta);
         setBlockAndMetadata(world, dest.posX - 1, dest.posY, dest.posZ, treeBlock, branchMeta);

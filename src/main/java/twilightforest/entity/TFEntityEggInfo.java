@@ -7,6 +7,7 @@ import net.minecraft.util.ChatComponentTranslation;
  * Very similar to EntityEggInfo, but registers the stat info differently
  */
 public class TFEntityEggInfo {
+
     /**
      * The entityID of the spawned mob
      */
@@ -33,14 +34,22 @@ public class TFEntityEggInfo {
     public static StatBase makeEntityKillStat(TFEntityEggInfo eggInfo) {
         String s = TFCreatures.getStringFromID(eggInfo.spawnedID);
         return s == null ? null
-                : (new StatBase("stat.killEntity." + s, new ChatComponentTranslation("stat.entityKill", new Object[] { new ChatComponentTranslation("entity." + s + ".name", new Object[0]) })))
-                        .registerStat();
+                : (new StatBase(
+                        "stat.killEntity." + s,
+                        new ChatComponentTranslation(
+                                "stat.entityKill",
+                                new Object[] { new ChatComponentTranslation("entity." + s + ".name", new Object[0]) })))
+                                        .registerStat();
     }
 
     public static StatBase makeEntityKilledByStat(TFEntityEggInfo p_151176_0_) {
         String s = TFCreatures.getStringFromID(p_151176_0_.spawnedID);
         return s == null ? null
-                : (new StatBase("stat.entityKilledBy." + s, new ChatComponentTranslation("stat.entityKilledBy", new Object[] { new ChatComponentTranslation("entity." + s + ".name", new Object[0]) })))
-                        .registerStat();
+                : (new StatBase(
+                        "stat.entityKilledBy." + s,
+                        new ChatComponentTranslation(
+                                "stat.entityKilledBy",
+                                new Object[] { new ChatComponentTranslation("entity." + s + ".name", new Object[0]) })))
+                                        .registerStat();
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 
 public class BehaviorTFMobEggDispense extends BehaviorDefaultDispenseItem {
+
     /** Reference to the MinecraftServer object. */
     final MinecraftServer mcServer;
 

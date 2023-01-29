@@ -1,6 +1,7 @@
 package twilightforest.world.layer;
 
 import net.minecraft.world.gen.layer.GenLayer;
+
 import twilightforest.biomes.TFBiomeBase;
 
 public class GenLayerTFCheckBad extends GenLayer {
@@ -20,7 +21,12 @@ public class GenLayerTFCheckBad extends GenLayer {
 
         for (int i = 0; i < width * depth; i++) {
             if (input[i] < 0 || input[i] > TFBiomeBase.fireSwamp.biomeID) {
-                System.err.printf("Got a bad ID, %d at %d, %d while checking during stage %s\n", input[i], x, z, this.stage);
+                System.err.printf(
+                        "Got a bad ID, %d at %d, %d while checking during stage %s\n",
+                        input[i],
+                        x,
+                        z,
+                        this.stage);
             }
         }
 

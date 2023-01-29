@@ -8,13 +8,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 /**
- * This is a copypasta of the sand/gravel/clay generator that produces mycelium blobs for mushroom
- * biomes
+ * This is a copypasta of the sand/gravel/clay generator that produces mycelium blobs for mushroom biomes
  * 
  * @author Ben
  *
  */
 public class TFGenMyceliumBlob extends WorldGenerator {
+
     private Block myceliumBlockId;
     private int numberOfBlocks;
 
@@ -29,10 +29,10 @@ public class TFGenMyceliumBlob extends WorldGenerator {
     }
 
     public boolean generate(World world, Random random, int x, int y, int z) {
-//        if (world.getBlock(i, j, k).getMaterial() != Material.water)
-//        {
-//            return false;
-//        }
+        // if (world.getBlock(i, j, k).getMaterial() != Material.water)
+        // {
+        // return false;
+        // }
         int range = random.nextInt(numberOfBlocks - 2) + 2;
         int yRange = 1;
         for (int dx = x - range; dx <= x + range; dx++) {

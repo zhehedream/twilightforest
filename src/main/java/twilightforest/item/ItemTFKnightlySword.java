@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,7 +11,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFKnightlySword extends ItemSword {
 
@@ -42,12 +43,13 @@ public class ItemTFKnightlySword extends ItemSword {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with knightmetal ingots
-        return par2ItemStack.getItem() == TFItems.knightMetal ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.knightMetal ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
-     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if
-     * return value is true further processing is canceled and the entity is not attacked.
+     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if return value is true
+     * further processing is canceled and the entity is not attacked.
      * 
      * @param stack  The Item being used
      * @param player The player that is attacking
@@ -65,25 +67,25 @@ public class ItemTFKnightlySword extends ItemSword {
         return false;
     }
 
-//    /**
-//     * Returns the damage against a given entity.
-//     */
-//    @Override
-//    public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
-//    {
-//           if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
-//           {
-//               //System.out.println("Minotaur Axe extra damage!");
-//               this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
-//               this.bonusDamagePlayer = null;
-//               this.bonusDamageEntity = null;
-//               return super.getDamageVsEntity(par1Entity, itemStack) + BONUS_DAMAGE;
-//           }
-//           else
-//           {
-//               return super.getDamageVsEntity(par1Entity, itemStack);
-//           }
-//    }
+    // /**
+    // * Returns the damage against a given entity.
+    // */
+    // @Override
+    // public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
+    // {
+    // if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
+    // {
+    // //System.out.println("Minotaur Axe extra damage!");
+    // this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
+    // this.bonusDamagePlayer = null;
+    // this.bonusDamageEntity = null;
+    // return super.getDamageVsEntity(par1Entity, itemStack) + BONUS_DAMAGE;
+    // }
+    // else
+    // {
+    // return super.getDamageVsEntity(par1Entity, itemStack);
+    // }
+    // }
 
     /**
      * Properly register icon source
@@ -91,7 +93,8 @@ public class ItemTFKnightlySword extends ItemSword {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**

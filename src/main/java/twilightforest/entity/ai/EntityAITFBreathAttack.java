@@ -10,6 +10,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.IBreathAttacker;
 
 public class EntityAITFBreathAttack extends EntityAIBase {
@@ -42,7 +43,8 @@ public class EntityAITFBreathAttack extends EntityAIBase {
     public boolean shouldExecute() {
         this.attackTarget = this.entityHost.getAttackTarget();
 
-        if (this.attackTarget == null || this.entityHost.getDistanceToEntity(attackTarget) > this.breathRange || !this.entityHost.canEntityBeSeen(attackTarget)) {
+        if (this.attackTarget == null || this.entityHost.getDistanceToEntity(attackTarget) > this.breathRange
+                || !this.entityHost.canEntityBeSeen(attackTarget)) {
             return false;
         } else {
             breathX = attackTarget.posX;
@@ -71,7 +73,9 @@ public class EntityAITFBreathAttack extends EntityAIBase {
      */
     @Override
     public boolean continueExecuting() {
-        return this.durationLeft > 0 && !this.entityHost.isDead && !this.attackTarget.isDead && this.entityHost.getDistanceToEntity(attackTarget) <= this.breathRange
+        return this.durationLeft > 0 && !this.entityHost.isDead
+                && !this.attackTarget.isDead
+                && this.entityHost.getDistanceToEntity(attackTarget) <= this.breathRange
                 && this.entityHost.canEntityBeSeen(attackTarget);
     }
 
@@ -118,14 +122,18 @@ public class EntityAITFBreathAttack extends EntityAIBase {
         Vec3 lookVec = this.entityHost.getLook(1.0F);
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
         float var9 = 3.0F;
-        List<Entity> possibleList = this.entityHost.worldObj.getEntitiesWithinAABBExcludingEntity(this.entityHost,
-                this.entityHost.boundingBox.addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range).expand(var9, var9, var9));
+        List<Entity> possibleList = this.entityHost.worldObj.getEntitiesWithinAABBExcludingEntity(
+                this.entityHost,
+                this.entityHost.boundingBox
+                        .addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range)
+                        .expand(var9, var9, var9));
         double hitDist = 0;
 
         for (Entity possibleEntity : possibleList) {
             if (possibleEntity.canBeCollidedWith() && possibleEntity != this.entityHost) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox
+                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {

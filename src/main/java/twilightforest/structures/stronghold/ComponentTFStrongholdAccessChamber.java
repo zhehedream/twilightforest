@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFStrongholdAccessChamber extends StructureTFStrongholdComponent {
@@ -59,10 +60,62 @@ public class ComponentTFStrongholdAccessChamber extends StructureTFStrongholdCom
         this.fillWithAir(world, sbb, 3, -2, 3, 5, 2, 5);
 
         // stairs surrounding shaft
-        this.fillWithMetadataBlocks(world, sbb, 2, 0, 3, 2, 0, 6, deco.stairID, this.getStairMeta(2), Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 6, 0, 2, 6, 0, 6, deco.stairID, this.getStairMeta(0), Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 3, 0, 2, 5, 0, 2, deco.stairID, this.getStairMeta(3), Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 3, 0, 6, 5, 0, 6, deco.stairID, this.getStairMeta(1), Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                2,
+                0,
+                3,
+                2,
+                0,
+                6,
+                deco.stairID,
+                this.getStairMeta(2),
+                Blocks.air,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                6,
+                0,
+                2,
+                6,
+                0,
+                6,
+                deco.stairID,
+                this.getStairMeta(0),
+                Blocks.air,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                3,
+                0,
+                2,
+                5,
+                0,
+                2,
+                deco.stairID,
+                this.getStairMeta(3),
+                Blocks.air,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                3,
+                0,
+                6,
+                5,
+                0,
+                6,
+                deco.stairID,
+                this.getStairMeta(1),
+                Blocks.air,
+                0,
+                false);
 
         // pillar
         this.placeBlockAtCurrentPosition(world, deco.pillarID, deco.pillarMeta, 2, 0, 2, sbb);

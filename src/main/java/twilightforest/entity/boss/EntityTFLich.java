@@ -26,6 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.entity.EntityTFSwarmSpider;
@@ -44,7 +45,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
     EntityTFLich masterLich;
 
-    private static final ItemStack heldItems[] = { new ItemStack(TFItems.scepterTwilight, 1), new ItemStack(TFItems.scepterZombie, 1), new ItemStack(Items.golden_sword, 1) };
+    private static final ItemStack heldItems[] = { new ItemStack(TFItems.scepterTwilight, 1),
+            new ItemStack(TFItems.scepterZombie, 1), new ItemStack(Items.golden_sword, 1) };
     public static final int MAX_SHADOW_CLONES = 2;
     public static final int INITIAL_SHIELD_STRENGTH = 5;
     public static final int MAX_ACTIVE_MINIONS = 3;
@@ -58,7 +60,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         super(world);
         setSize(1.1F, 2.5F);
         // texture = TwilightForestMod.MODEL_DIR + "twilightlich64.png";
-//        this.yOffset = .25F;
+        // this.yOffset = .25F;
 
         setShadowClone(false);
         this.masterLich = null;
@@ -103,7 +105,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MAX_HEALTH); // max health
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D); // attack damage
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.800000011920929D); // movement speed
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.800000011920929D); // movement
+                                                                                                         // speed
     }
 
     @Override
@@ -138,14 +141,14 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     private void dropScepter() {
         int scepterType = rand.nextInt(3);
         switch (scepterType) {
-        case 0:
-            this.entityDropItem(new ItemStack(TFItems.scepterZombie), 0);
-            break;
-        case 1:
-            this.entityDropItem(new ItemStack(TFItems.scepterLifeDrain), 0);
-            break;
-        default:
-            this.entityDropItem(new ItemStack(TFItems.scepterTwilight), 0);
+            case 0:
+                this.entityDropItem(new ItemStack(TFItems.scepterZombie), 0);
+                break;
+            case 1:
+                this.entityDropItem(new ItemStack(TFItems.scepterLifeDrain), 0);
+                break;
+            default:
+                this.entityDropItem(new ItemStack(TFItems.scepterTwilight), 0);
         }
     }
 
@@ -153,20 +156,20 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         ItemStack goldThing;
         int thingType = rand.nextInt(5);
         switch (thingType) {
-        case 0:
-            goldThing = new ItemStack(Items.golden_sword);
-            break;
-        case 1:
-            goldThing = new ItemStack(Items.golden_helmet);
-            break;
-        case 2:
-            goldThing = new ItemStack(Items.golden_chestplate);
-            break;
-        case 3:
-            goldThing = new ItemStack(Items.golden_leggings);
-            break;
-        default:
-            goldThing = new ItemStack(Items.golden_boots);
+            case 0:
+                goldThing = new ItemStack(Items.golden_sword);
+                break;
+            case 1:
+                goldThing = new ItemStack(Items.golden_helmet);
+                break;
+            case 2:
+                goldThing = new ItemStack(Items.golden_chestplate);
+                break;
+            case 3:
+                goldThing = new ItemStack(Items.golden_leggings);
+                break;
+            default:
+                goldThing = new ItemStack(Items.golden_boots);
         }
         // enchant!
         EnchantmentHelper.addRandomEnchantment(rand, goldThing, 10 + rand.nextInt(30));
@@ -253,7 +256,14 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                 blu = 0.00F * sparkle;
             }
 
-            worldObj.spawnParticle("mobSpell", dx + (rand.nextGaussian() * 0.025), dy + (rand.nextGaussian() * 0.025), dz + (rand.nextGaussian() * 0.025), red, grn, blu);
+            worldObj.spawnParticle(
+                    "mobSpell",
+                    dx + (rand.nextGaussian() * 0.025),
+                    dy + (rand.nextGaussian() * 0.025),
+                    dz + (rand.nextGaussian() * 0.025),
+                    red,
+                    grn,
+                    blu);
         }
 
         if (isShadowClone()) {
@@ -284,15 +294,19 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
 
         if (isShadowClone()) {
-            this.worldObj.playSoundAtEntity(this, "random.fizz", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+            this.worldObj.playSoundAtEntity(
+                    this,
+                    "random.fizz",
+                    1.0F,
+                    ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
             return false;
         }
 
         Entity prevTarget = this.entityToAttack;
 
-//        System.out.println("Damage source is " + par1DamageSource);
-//        System.out.println("Damage type is " + par1DamageSource.getDamageType());
-//        System.out.println("Damage source source is " + par1DamageSource.getSourceOfDamage());
+        // System.out.println("Damage source is " + par1DamageSource);
+        // System.out.println("Damage type is " + par1DamageSource.getDamageType());
+        // System.out.println("Damage source source is " + par1DamageSource.getSourceOfDamage());
 
         // ignore all bolts that are not reflected
         if (damageSource.getEntity() instanceof EntityTFLich) {
@@ -305,10 +319,18 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                 // reduce shield for magic damage greater than 1 heart
                 if (getShieldStrength() > 0) {
                     setShieldStrength(getShieldStrength() - 1);
-                    this.worldObj.playSoundAtEntity(this, "random.break", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    this.worldObj.playSoundAtEntity(
+                            this,
+                            "random.break",
+                            1.0F,
+                            ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 }
             } else {
-                this.worldObj.playSoundAtEntity(this, "random.break", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                this.worldObj.playSoundAtEntity(
+                        this,
+                        "random.break",
+                        1.0F,
+                        ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 // HACK for creative mode: but get annoyed at what's causing it.
                 if (damageSource.getEntity() instanceof EntityPlayer) {
                     this.entityToAttack = damageSource.getEntity();
@@ -337,18 +359,18 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
     }
 
-//    /**
-//     * Another method to stop the shadow clones from being attacked
-//     */
-//    @Override
-//    public boolean canAttackWithItem() {
-//        if (isShadowClone()) {
-//            return false;
-//        }
-//        else {
-//            return super.canAttackWithItem();
-//        }
-//    }
+    // /**
+    // * Another method to stop the shadow clones from being attacked
+    // */
+    // @Override
+    // public boolean canAttackWithItem() {
+    // if (isShadowClone()) {
+    // return false;
+    // }
+    // else {
+    // return super.canAttackWithItem();
+    // }
+    // }
 
     /**
      * Attack!
@@ -434,7 +456,9 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
         if (getPhase() == 3) {
             // melee!
-            if (this.attackTime <= 0 && f < 2.0F && targetedEntity.boundingBox.maxY > this.boundingBox.minY && targetedEntity.boundingBox.minY < this.boundingBox.maxY) {
+            if (this.attackTime <= 0 && f < 2.0F
+                    && targetedEntity.boundingBox.maxY > this.boundingBox.minY
+                    && targetedEntity.boundingBox.minY < this.boundingBox.maxY) {
                 this.attackTime = 20;
                 this.attackEntityAsMob(targetedEntity);
                 hasAttacked = true;
@@ -455,10 +479,15 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         double sz = posZ + (MathHelper.sin(bodyFacingAngle) * 0.65);
 
         double tx = targetedEntity.posX - sx;
-        double ty = (targetedEntity.boundingBox.minY + (double) (targetedEntity.height / 2.0F)) - (posY + height / 2.0F);
+        double ty = (targetedEntity.boundingBox.minY + (double) (targetedEntity.height / 2.0F))
+                - (posY + height / 2.0F);
         double tz = targetedEntity.posZ - sz;
 
-        worldObj.playSoundAtEntity(this, "mob.ghast.fireball", getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+        worldObj.playSoundAtEntity(
+                this,
+                "mob.ghast.fireball",
+                getSoundVolume(),
+                (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
         EntityTFLichBolt projectile = new EntityTFLichBolt(worldObj, this);
         projectile.setThrowableHeading(tx, ty, tz, projectile.func_70182_d(), 1.0F);
 
@@ -479,10 +508,15 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         double sz = posZ + (MathHelper.sin(bodyFacingAngle) * 0.65);
 
         double tx = targetedEntity.posX - sx;
-        double ty = (targetedEntity.boundingBox.minY + (double) (targetedEntity.height / 2.0F)) - (posY + height / 2.0F);
+        double ty = (targetedEntity.boundingBox.minY + (double) (targetedEntity.height / 2.0F))
+                - (posY + height / 2.0F);
         double tz = targetedEntity.posZ - sz;
 
-        worldObj.playSoundAtEntity(this, "mob.ghast.fireball", getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+        worldObj.playSoundAtEntity(
+                this,
+                "mob.ghast.fireball",
+                getSoundVolume(),
+                (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
         EntityTFLichBomb projectile = new EntityTFLichBomb(worldObj, this);
         projectile.setThrowableHeading(tx, ty, tz, projectile.func_40077_c(), 1.0F);
 
@@ -496,7 +530,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      */
     @SuppressWarnings("unchecked")
     protected void popNearbyMob() {
-        List<Entity> nearbyMobs = worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<Entity> nearbyMobs = worldObj.getEntitiesWithinAABBExcludingEntity(
+                this,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
 
         for (Entity entity : nearbyMobs) {
             if (entity instanceof EntityLiving && canPop(entity) && canEntityBeSeen(entity)) {
@@ -508,11 +545,18 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                     mob.spawnExplosionParticle();
 
                     // play death sound
-//                    worldObj.playSoundAtEntity(mob, mob.getDeathSound(), mob.getSoundVolume(), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+                    // worldObj.playSoundAtEntity(mob, mob.getDeathSound(), mob.getSoundVolume(), (rand.nextFloat() -
+                    // rand.nextFloat()) * 0.2F + 1.0F);
                 }
 
                 // make trail so it's clear that we did it
-                makeRedMagicTrail(mob.posX, mob.posY + mob.height / 2.0, mob.posZ, this.posX, this.posY + this.height / 2.0, this.posZ);
+                makeRedMagicTrail(
+                        mob.posX,
+                        mob.posY + mob.height / 2.0,
+                        mob.posZ,
+                        this.posX,
+                        this.posY + this.height / 2.0,
+                        this.posZ);
 
                 // one per cycle, please
                 break;
@@ -526,7 +570,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      */
     @SuppressWarnings("rawtypes")
     protected boolean canPop(Entity nearby) {
-        Class[] poppable = { EntitySkeleton.class, EntityZombie.class, EntityEnderman.class, EntitySpider.class, EntityCreeper.class, EntityTFSwarmSpider.class };
+        Class[] poppable = { EntitySkeleton.class, EntityZombie.class, EntityEnderman.class, EntitySpider.class,
+                EntityCreeper.class, EntityTFSwarmSpider.class };
 
         for (Class pop : poppable) {
             if (nearby.getClass() == pop) {
@@ -551,7 +596,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     @SuppressWarnings("unchecked")
     protected int countMyClones() {
         // check if there are enough clones. we check a 32x16x32 area
-        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(EntityTFLich.class, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
+                EntityTFLich.class,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
         int count = 0;
 
         for (EntityTFLich nearbyLich : nearbyLiches) {
@@ -568,7 +616,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     }
 
     protected void spawnShadowClone(Entity targetedEntity) {
-//        System.out.println("Lich is making a shadow clone!");
+        // System.out.println("Lich is making a shadow clone!");
 
         // find a good spot
         Vec3 cloneSpot = findVecInLOSOf(targetedEntity);
@@ -590,7 +638,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      */
     @SuppressWarnings("unchecked")
     protected void despawnClones() {
-        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(this.getClass(), AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
+                this.getClass(),
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
 
         for (EntityTFLich nearbyLich : nearbyLiches) {
             if (nearbyLich.isShadowClone()) {
@@ -615,8 +666,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     @SuppressWarnings("unchecked")
     protected int countMyMinions() {
         // check if there are enough clones. we check a 32x16x32 area
-        List<EntityTFLichMinion> nearbyMinons = worldObj.getEntitiesWithinAABB(EntityTFLichMinion.class,
-                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<EntityTFLichMinion> nearbyMinons = worldObj.getEntitiesWithinAABB(
+                EntityTFLichMinion.class,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
         int count = 0;
 
         for (EntityTFLichMinion nearbyMinon : nearbyMinons) {
@@ -642,10 +695,20 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         minion.setAttackTarget(targetedEntity);
 
         minion.spawnExplosionParticle();
-        this.worldObj.playSoundAtEntity(minion, "random.pop", 1.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+        this.worldObj.playSoundAtEntity(
+                minion,
+                "random.pop",
+                1.0F,
+                ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 
         // make sparkles leading to it
-        makeBlackMagicTrail(posX, posY + this.getEyeHeight(), posZ, minionSpot.xCoord, minionSpot.yCoord + minion.height / 2.0, minionSpot.zCoord);
+        makeBlackMagicTrail(
+                posX,
+                posY + this.getEyeHeight(),
+                posZ,
+                minionSpot.xCoord,
+                minionSpot.yCoord + minion.height / 2.0,
+                minionSpot.zCoord);
     }
 
     public boolean wantsNewMinion(EntityTFLichMinion minion) {
@@ -666,7 +729,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                 // double distance = (this.posX - masterLich.posX) * (this.posX - masterLich.posX) + (this.posY -
                 // masterLich.posY) * (this.posY - masterLich.posY) + (this.posZ - masterLich.posZ) * (this.posZ -
                 // masterLich.posZ);
-//                System.out.println("Clone says that distance from master is " + distance);
+                // System.out.println("Clone says that distance from master is " + distance);
             }
         }
     }
@@ -676,7 +739,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      */
     @SuppressWarnings("unchecked")
     private void findNewMaster() {
-        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(EntityTFLich.class, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(32.0D, 16.0D, 32.0D));
+        List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
+                EntityTFLich.class,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(32.0D, 16.0D, 32.0D));
 
         for (EntityTFLich nearbyLich : nearbyLiches) {
             if (!nearbyLich.isShadowClone() && nearbyLich.wantsNewClone(this)) {
@@ -709,7 +775,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
             if (!this.canEntityBeSeen(entity)) {
                 // um teleport mishap, return to start
-//                System.out.println("Teleport fail!!!");
+                // System.out.println("Teleport fail!!!");
                 teleportToNoChecks(srcX, srcY, srcZ);
 
             }
@@ -752,27 +818,33 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
             // did we not find anything at all to stand on?
             if (by == 0) {
-//                System.out.println("teleport find failed to find a block to stand on");
+                // System.out.println("teleport find failed to find a block to stand on");
                 continue;
             }
 
             //
             if (!canEntitySee(targetEntity, tx, ty, tz)) {
-//                System.out.println("teleport find failed because of lack of LOS");
-//                System.out.println("ty = " + ty);
+                // System.out.println("teleport find failed because of lack of LOS");
+                // System.out.println("ty = " + ty);
                 continue;
             }
 
             // check that we're not colliding and not in liquid
             float halfWidth = this.width / 2.0F;
-            AxisAlignedBB destBox = AxisAlignedBB.getBoundingBox(tx - halfWidth, ty - yOffset + ySize, tz - halfWidth, tx + halfWidth, ty - yOffset + ySize + height, tz + halfWidth);
+            AxisAlignedBB destBox = AxisAlignedBB.getBoundingBox(
+                    tx - halfWidth,
+                    ty - yOffset + ySize,
+                    tz - halfWidth,
+                    tx + halfWidth,
+                    ty - yOffset + ySize + height,
+                    tz + halfWidth);
             if (worldObj.getCollidingBoundingBoxes(this, destBox).size() > 0) {
-//                System.out.println("teleport find failed because of collision");
+                // System.out.println("teleport find failed because of collision");
                 continue;
             }
 
             if (worldObj.isAnyLiquid(destBox)) {
-//                System.out.println("teleport find failed because of liquid at destination");
+                // System.out.println("teleport find failed because of liquid at destination");
                 continue;
             }
 
@@ -784,8 +856,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
             return null;
         }
 
-//        System.out.println("I think we found a good destination at " + tx + ", " + ty + ", " + tz);
-//        System.out.println("canEntitySee = " + canEntitySee(targetEntity, tx, ty, tz));
+        // System.out.println("I think we found a good destination at " + tx + ", " + ty + ", " + tz);
+        // System.out.println("canEntitySee = " + canEntitySee(targetEntity, tx, ty, tz));
         return Vec3.createVectorHelper(tx, ty, tz);
     }
 
@@ -793,7 +865,9 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
      * Can the specified entity see the specified location?
      */
     protected boolean canEntitySee(Entity entity, double dx, double dy, double dz) {
-        return worldObj.rayTraceBlocks(Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ), Vec3.createVectorHelper(dx, dy, dz)) == null;
+        return worldObj.rayTraceBlocks(
+                Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ),
+                Vec3.createVectorHelper(dx, dy, dz)) == null;
 
     }
 
@@ -859,7 +933,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     /**
      * Make a trail of particles from one point to another
      */
-    protected void makeBlackMagicTrail(double srcX, double srcY, double srcZ, double destX, double destY, double destZ) {
+    protected void makeBlackMagicTrail(double srcX, double srcY, double srcZ, double destX, double destY,
+            double destZ) {
         // make particle trail
         int particles = 32;
         for (int i = 0; i < particles; i++) {
@@ -966,7 +1041,8 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         super.onDeath(par1DamageSource);
         if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
             ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightKillLich);
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                    .triggerAchievement(TFAchievementPage.twilightKillLich);
 
         }
 
@@ -977,8 +1053,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
             int dz = MathHelper.floor_double(this.posZ);
 
             if (worldObj.provider instanceof WorldProviderTwilightForest) {
-                ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider).getChunkProvider();
-                TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr).getFeatureAt(dx, dz, worldObj);
+                ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider)
+                        .getChunkProvider();
+                TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr)
+                        .getFeatureAt(dx, dz, worldObj);
 
                 if (nearbyFeature == TFFeature.lichTower) {
                     chunkProvider.setStructureConquered(dx, dy, dz, true);
@@ -987,10 +1065,10 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
     }
 
-//    @Override
-//    public int getBossHealth() {
-//        return this.dataWatcher.getWatchableObjectInt(EntityTFLich.DATA_BOSSHEALTH);
-//    }
+    // @Override
+    // public int getBossHealth() {
+    // return this.dataWatcher.getWatchableObjectInt(EntityTFLich.DATA_BOSSHEALTH);
+    // }
 
     /**
      * Get this Entity's EnumCreatureAttribute

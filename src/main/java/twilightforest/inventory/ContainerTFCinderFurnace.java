@@ -1,7 +1,5 @@
 package twilightforest.inventory;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,9 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
+
 import twilightforest.tileentity.TileEntityTFCinderFurnace;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerTFCinderFurnace extends Container {
+
     private TileEntityTFCinderFurnace tileFurnace;
     private int lastCookTime;
     private int lastBurnTime;
@@ -96,8 +98,7 @@ public class ContainerTFCinderFurnace extends Container {
     }
 
     /**
-     * Called when a player shift-clicks on a slot. You must override this or you will crash when
-     * someone does that.
+     * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      */
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_) {
         ItemStack itemstack = null;

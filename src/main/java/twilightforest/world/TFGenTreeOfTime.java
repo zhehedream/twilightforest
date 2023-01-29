@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 public class TFGenTreeOfTime extends TFGenHollowTree {
@@ -57,23 +58,71 @@ public class TFGenTreeOfTime extends TFGenHollowTree {
     }
 
     /**
-     * Build the crown of the tree. This builds a smaller crown, since the large ones were causing some
-     * performance issues
+     * Build the crown of the tree. This builds a smaller crown, since the large ones were causing some performance
+     * issues
      */
     protected void buildTinyCrown(World world, Random random, int x, int y, int z, int diameter, int height) {
         int crownRadius = 4;
         int bvar = 1;
 
         // 3-5 medium branches starting at the bottom of the crown
-        buildBranchRing(world, random, x, y, z, diameter, height - crownRadius, 0, crownRadius, 0, 0.35D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - crownRadius,
+                0,
+                crownRadius,
+                0,
+                0.35D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // 3-5 medium branches at the crown middle
-        buildBranchRing(world, random, x, y, z, diameter, height - (crownRadius / 2), 0, crownRadius, 0, 0.28D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - (crownRadius / 2),
+                0,
+                crownRadius,
+                0,
+                0.28D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // 2-4 medium branches at the crown top
         buildBranchRing(world, random, x, y, z, diameter, height, 0, crownRadius, 0, 0.15D, 0, 2, 4, 0, true);
 
         // 3-6 medium branches going straight up
-        buildBranchRing(world, random, x, y, z, diameter, height, 0, (crownRadius / 2), 0, 0.05D, 0, bvar, bvar + 2, 0, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height,
+                0,
+                (crownRadius / 2),
+                0,
+                0.05D,
+                0,
+                bvar,
+                bvar + 2,
+                0,
+                true);
     }
 }

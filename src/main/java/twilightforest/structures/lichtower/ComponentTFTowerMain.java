@@ -9,6 +9,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.TFCreatures;
 import twilightforest.structures.StructureTFComponent;
@@ -86,7 +87,8 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         for (int i = 0; i < 16; i++) {
             int[] dest = getValidOpening(rand, i % 4);
             int childHeight = 6 + rand.nextInt(5);
-            if (rand.nextInt(3) == 0 || !makeTowerWing(list, rand, 1, dest[0], dest[1], dest[2], 5, childHeight, i % 4)) {
+            if (rand.nextInt(3) == 0
+                    || !makeTowerWing(list, rand, 1, dest[0], dest[1], dest[2], 5, childHeight, i % 4)) {
                 makeTowerWing(list, rand, 1, dest[0], dest[1], dest[2], 3, childHeight, i % 4);
             }
         }
@@ -103,33 +105,41 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         int rz = 0;
 
         switch (rotation) {
-        case 0:
-            // for directions 0 or 2, the wall lies along the z axis
-            rx = size - 1;
-            rz = 6 + rand.nextInt(8);
-            break;
-        case 1:
-            // for directions 1 or 3, the wall lies along the x axis
-            rx = 1 + rand.nextInt(11);
-            rz = size - 1;
-            break;
-        case 2:
-            rx = 0;
-            rz = 1 + rand.nextInt(8);
-            break;
-        case 3:
-            rx = 3 + rand.nextInt(11);
-            rz = 0;
-            break;
+            case 0:
+                // for directions 0 or 2, the wall lies along the z axis
+                rx = size - 1;
+                rz = 6 + rand.nextInt(8);
+                break;
+            case 1:
+                // for directions 1 or 3, the wall lies along the x axis
+                rx = 1 + rand.nextInt(11);
+                rz = size - 1;
+                break;
+            case 2:
+                rx = 0;
+                rz = 1 + rand.nextInt(8);
+                break;
+            case 3:
+                rx = 3 + rand.nextInt(11);
+                rz = 0;
+                break;
         }
 
         return new int[] { rx, ry, rz };
     }
 
-    public boolean makeTowerOutbuilding(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerOutbuilding(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, wingSize, direction);
-        ComponentTFTowerOutbuilding outbuilding = new ComponentTFTowerOutbuilding(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFTowerOutbuilding outbuilding = new ComponentTFTowerOutbuilding(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
         // check to see if it intersects something already there
         StructureComponent intersect = StructureComponent.findIntersecting(list, outbuilding.getBoundingBox());
         if (intersect == null || intersect == this) {
@@ -145,7 +155,18 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // make walls
-        fillWithRandomizedBlocks(world, sbb, 0, 0, 0, size - 1, height - 1, size - 1, false, rand, StructureTFComponent.getStrongholdStones());
+        fillWithRandomizedBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                size - 1,
+                height - 1,
+                size - 1,
+                false,
+                rand,
+                StructureTFComponent.getStrongholdStones());
 
         // clear inside
         fillWithAir(world, sbb, 1, 1, 1, size - 2, height - 2, size - 2);
@@ -170,7 +191,7 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         makeStairs(world, rand, sbb);
 
         // throw a bunch of opening markers in there
-        //makeOpeningMarkers(world, rand, 100, sbb);
+        // makeOpeningMarkers(world, rand, 100, sbb);
 
         // openings
         makeOpenings(world, sbb);
@@ -242,16 +263,16 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
         // place spawner in the middle
         String mobID = "Skeleton";
         switch (rand.nextInt(4)) {
-        case 0:
-        case 1:
-            mobID = "Skeleton";
-            break;
-        case 2:
-            mobID = "Zombie";
-            break;
-        case 3:
-            mobID = TFCreatures.getSpawnerNameFor("Swarm Spider");
-            break;
+            case 0:
+            case 1:
+                mobID = "Skeleton";
+                break;
+            case 2:
+                mobID = "Zombie";
+                break;
+            case 3:
+                mobID = TFCreatures.getSpawnerNameFor("Swarm Spider");
+                break;
         }
         placeSpawnerAtCurrentPosition(world, rand, 7, floorLevel + 2, 7, mobID, sbb);
 
@@ -443,9 +464,11 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
     }
 
     /**
-     * Place up to 5 torches (with fence holders) on the wall, checking that they don't overlap any paintings or other torches
+     * Place up to 5 torches (with fence holders) on the wall, checking that they don't overlap any paintings or other
+     * torches
      */
-    protected void generateTorchesOnWall(World world, Random rand, int floorLevel, int direction, StructureBoundingBox sbb) {
+    protected void generateTorchesOnWall(World world, Random rand, int floorLevel, int direction,
+            StructureBoundingBox sbb) {
         for (int i = 0; i < 5; i++) {
             // get some random coordinates on the wall in the chunk
             ChunkCoordinates wCoords = getRandomWallSpot(rand, floorLevel, direction, sbb);
@@ -453,22 +476,28 @@ public class ComponentTFTowerMain extends ComponentTFTowerWing {
             // offset to see where the fence should be
             ChunkCoordinates tCoords = new ChunkCoordinates(wCoords);
             switch (direction) {
-            case 0:
-                tCoords.posZ++;
-                break;
-            case 1:
-                tCoords.posX--;
-                break;
-            case 2:
-                tCoords.posZ--;
-                break;
-            case 3:
-                tCoords.posX++;
-                break;
+                case 0:
+                    tCoords.posZ++;
+                    break;
+                case 1:
+                    tCoords.posX--;
+                    break;
+                case 2:
+                    tCoords.posZ--;
+                    break;
+                case 3:
+                    tCoords.posX++;
+                    break;
             }
 
             // is there a painting or another torch there?
-            AxisAlignedBB torchBox = AxisAlignedBB.getBoundingBox(tCoords.posX, tCoords.posY, tCoords.posZ, tCoords.posX + 1.0, tCoords.posY + 2.0, tCoords.posZ + 1.0);
+            AxisAlignedBB torchBox = AxisAlignedBB.getBoundingBox(
+                    tCoords.posX,
+                    tCoords.posY,
+                    tCoords.posZ,
+                    tCoords.posX + 1.0,
+                    tCoords.posY + 2.0,
+                    tCoords.posZ + 1.0);
             if (world.getBlock(tCoords.posX, tCoords.posY, tCoords.posZ) == Blocks.air
                     && world.getBlock(tCoords.posX, tCoords.posY + 1, tCoords.posZ) == Blocks.air
                     && world.getEntitiesWithinAABBExcludingEntity(null, torchBox).size() == 0) {

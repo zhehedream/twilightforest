@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.BlockTFTowerDevice;
 import twilightforest.block.TFBlocks;
@@ -30,15 +31,19 @@ public class TileEntityTFGhastTrapInactive extends TileEntity {
     }
 
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
-     * this to count ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
+     * ticks and creates a new spawn inside its implementation.
      */
     @Override
     public void updateEntity() {
         // check to see if there are any dying mini ghasts within our scan range
-        AxisAlignedBB aabb = AxisAlignedBB
-                .getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1))
-                .expand(10D, 16D, 10D);
+        AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(
+                (double) this.xCoord,
+                (double) this.yCoord,
+                (double) this.zCoord,
+                (double) (this.xCoord + 1),
+                (double) (this.yCoord + 1),
+                (double) (this.zCoord + 1)).expand(10D, 16D, 10D);
 
         List<EntityTFMiniGhast> nearbyGhasts = worldObj.getEntitiesWithinAABB(EntityTFMiniGhast.class, aabb);
 
@@ -66,23 +71,58 @@ public class TileEntityTFGhastTrapInactive extends TileEntity {
             }
 
             if (chargeLevel >= 1 && counter % 10 == 0) {
-                ((BlockTFTowerDevice) TFBlocks.towerDevice).sparkle(worldObj, this.xCoord, this.yCoord, this.zCoord, worldObj.rand);
+                ((BlockTFTowerDevice) TFBlocks.towerDevice)
+                        .sparkle(worldObj, this.xCoord, this.yCoord, this.zCoord, worldObj.rand);
 
-                worldObj.playSound(this.xCoord + 0.5D, this.yCoord + 1.5D, this.zCoord + 0.5D, "note.harp", 1.0F, 1.0F, false);
+                worldObj.playSound(
+                        this.xCoord + 0.5D,
+                        this.yCoord + 1.5D,
+                        this.zCoord + 0.5D,
+                        "note.harp",
+                        1.0F,
+                        1.0F,
+                        false);
             }
             if (chargeLevel >= 2) {
-                worldObj.spawnParticle("smoke", this.xCoord + 0.1 + rand.nextFloat() * 0.8, this.yCoord + 1.05, this.zCoord + 0.1 + rand.nextFloat() * 0.8,
-                        (rand.nextFloat() - rand.nextFloat()) * 0.05, 0.00, (rand.nextFloat() - rand.nextFloat()) * 0.05);
+                worldObj.spawnParticle(
+                        "smoke",
+                        this.xCoord + 0.1 + rand.nextFloat() * 0.8,
+                        this.yCoord + 1.05,
+                        this.zCoord + 0.1 + rand.nextFloat() * 0.8,
+                        (rand.nextFloat() - rand.nextFloat()) * 0.05,
+                        0.00,
+                        (rand.nextFloat() - rand.nextFloat()) * 0.05);
                 if (counter % 10 == 0) {
-                    worldObj.playSound(this.xCoord + 0.5D, this.yCoord + 1.5D, this.zCoord + 0.5D, "note.harp", 1.2F, 0.8F, false);
+                    worldObj.playSound(
+                            this.xCoord + 0.5D,
+                            this.yCoord + 1.5D,
+                            this.zCoord + 0.5D,
+                            "note.harp",
+                            1.2F,
+                            0.8F,
+                            false);
                 }
             }
             if (chargeLevel >= 3) {
-                worldObj.spawnParticle("largesmoke", this.xCoord + 0.1 + rand.nextFloat() * 0.8, this.yCoord + 1.05, this.zCoord + 0.1 + rand.nextFloat() * 0.8,
-                        (rand.nextFloat() - rand.nextFloat()) * 0.05, 0.05, (rand.nextFloat() - rand.nextFloat()) * 0.05);
-                ((BlockTFTowerDevice) TFBlocks.towerDevice).sparkle(worldObj, this.xCoord, this.yCoord, this.zCoord, worldObj.rand);
+                worldObj.spawnParticle(
+                        "largesmoke",
+                        this.xCoord + 0.1 + rand.nextFloat() * 0.8,
+                        this.yCoord + 1.05,
+                        this.zCoord + 0.1 + rand.nextFloat() * 0.8,
+                        (rand.nextFloat() - rand.nextFloat()) * 0.05,
+                        0.05,
+                        (rand.nextFloat() - rand.nextFloat()) * 0.05);
+                ((BlockTFTowerDevice) TFBlocks.towerDevice)
+                        .sparkle(worldObj, this.xCoord, this.yCoord, this.zCoord, worldObj.rand);
                 if (counter % 5 == 0) {
-                    worldObj.playSound(this.xCoord + 0.5D, this.yCoord + 1.5D, this.zCoord + 0.5D, "note.harp", 1.5F, 2F, false);
+                    worldObj.playSound(
+                            this.xCoord + 0.5D,
+                            this.yCoord + 1.5D,
+                            this.zCoord + 0.5D,
+                            "note.harp",
+                            1.5F,
+                            2F,
+                            false);
                 }
             }
         }

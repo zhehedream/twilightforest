@@ -50,7 +50,13 @@ public class TFGenHollowStump extends TFGenHollowTree {
 
                     if (dist <= diameter) {
                         if (hasAirAround(world, dx + x, dy + y, dz + z)) {
-                            this.setBlockAndMetadata(world, dx + x, dy + y, dz + z, treeBlock, dist > hollow ? treeMeta : branchMeta);
+                            this.setBlockAndMetadata(
+                                    world,
+                                    dx + x,
+                                    dy + y,
+                                    dz + z,
+                                    treeBlock,
+                                    dist > hollow ? treeMeta : branchMeta);
                         } else {
                             this.setBlockAndMetadata(world, dx + x, dy + y, dz + z, rootBlock, rootMeta);
                         }

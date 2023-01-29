@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.boss.EntityTFHydra;
 import twilightforest.entity.boss.EntityTFHydraPart;
@@ -20,8 +21,7 @@ public class RenderTFHydraHead extends RenderLiving {
     }
 
     /**
-     * Override render to perform a few special rendering tricks, like not rendering "dead" heads &
-     * their necks
+     * Override render to perform a few special rendering tricks, like not rendering "dead" heads & their necks
      */
     @Override
     public void doRender(Entity entity, double d, double d1, double d2, float f, float f1) {

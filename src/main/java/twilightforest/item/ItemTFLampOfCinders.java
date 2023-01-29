@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,9 +7,12 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFLampOfCinders extends ItemTF {
 
@@ -30,7 +31,8 @@ public class ItemTFLampOfCinders extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     @Override
@@ -44,11 +46,12 @@ public class ItemTFLampOfCinders extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (burnBlock(player, world, x, y, z)) {
             world.playSoundAtEntity(player, this.getSound(), 0.5F, 1.5F);
 
@@ -80,8 +83,7 @@ public class ItemTFLampOfCinders extends ItemTF {
     }
 
     /**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer,
-     * itemInUseCount
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
     @Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World world, EntityPlayer player, int useRemaining) {

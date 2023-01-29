@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
+
 import twilightforest.entity.passive.EntityTFQuestRam;
 
 public class EntityAITFFindLoose extends EntityAIBase {
@@ -39,7 +40,8 @@ public class EntityAITFFindLoose extends EntityAIBase {
         } else {
             this.temptingItem = null;
 
-            List<EntityItem> nearbyItems = this.temptedEntity.worldObj.getEntitiesWithinAABB(EntityItem.class, this.temptedEntity.boundingBox.expand(16.0D, 4.0D, 16.0D));
+            List<EntityItem> nearbyItems = this.temptedEntity.worldObj
+                    .getEntitiesWithinAABB(EntityItem.class, this.temptedEntity.boundingBox.expand(16.0D, 4.0D, 16.0D));
 
             for (EntityItem itemNearby : nearbyItems) {
                 if (itemNearby.getEntityItem().getItem() == temptID && itemNearby.isEntityAlive()) {
@@ -87,12 +89,14 @@ public class EntityAITFFindLoose extends EntityAIBase {
      */
     @Override
     public void updateTask() {
-        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingItem, 30.0F, this.temptedEntity.getVerticalFaceSpeed());
+        this.temptedEntity.getLookHelper()
+                .setLookPositionWithEntity(this.temptingItem, 30.0F, this.temptedEntity.getVerticalFaceSpeed());
 
         if (this.temptedEntity.getDistanceSqToEntity(this.temptingItem) < 6.25D) {
             this.temptedEntity.getNavigator().clearPathEntity();
         } else {
-            this.temptedEntity.getNavigator().tryMoveToXYZ(temptingItem.posX, temptingItem.posY, temptingItem.posZ, this.pursueSpeed);
+            this.temptedEntity.getNavigator()
+                    .tryMoveToXYZ(temptingItem.posX, temptingItem.posY, temptingItem.posZ, this.pursueSpeed);
         }
     }
 }

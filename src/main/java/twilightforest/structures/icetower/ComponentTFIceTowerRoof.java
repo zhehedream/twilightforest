@@ -5,13 +5,13 @@ import java.util.Random;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.structures.lichtower.ComponentTFTowerRoof;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFIceTowerRoof extends ComponentTFTowerRoof {
 
-    public ComponentTFIceTowerRoof() {
-    }
+    public ComponentTFIceTowerRoof() {}
 
     public ComponentTFIceTowerRoof(int i, ComponentTFTowerWing wing) {
         super(i, wing);

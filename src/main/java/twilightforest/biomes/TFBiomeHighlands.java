@@ -19,6 +19,7 @@ import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.block.BlockTFPlant;
@@ -34,7 +35,9 @@ public class TFBiomeHighlands extends TFBiomeBase {
     private static final WorldGenMegaPineTree megaPineGen2 = new WorldGenMegaPineTree(false, true);
     private static final WorldGenBlockBlob genBoulder = new WorldGenBlockBlob(Blocks.mossy_cobblestone, 0);
     private static final TFGenTrollRoots genTrollRoots = new TFGenTrollRoots();
-    private static final WorldGenTallGrass worldGenMushgloom = new WorldGenTallGrass(TFBlocks.plant, BlockTFPlant.META_MUSHGLOOM);
+    private static final WorldGenTallGrass worldGenMushgloom = new WorldGenTallGrass(
+            TFBlocks.plant,
+            BlockTFPlant.META_MUSHGLOOM);
 
     public TFBiomeHighlands(int i) {
         super(i);
@@ -75,10 +78,12 @@ public class TFBiomeHighlands extends TFBiomeBase {
 
     // Gets a WorldGen appropriate for this biome.
     public WorldGenerator getRandomWorldGenForGrass(Random random) {
-        return random.nextInt(5) > 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass, 1);
+        return random.nextInt(5) > 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2)
+                : new WorldGenTallGrass(Blocks.tallgrass, 1);
     }
 
-    public void genTerrainBlocks(World world, Random rand, Block[] blockStorage, byte[] metaStorage, int x, int z, double noiseVal) {
+    public void genTerrainBlocks(World world, Random rand, Block[] blockStorage, byte[] metaStorage, int x, int z,
+            double noiseVal) {
         this.topBlock = Blocks.grass;
         this.field_150604_aj = 0;
         this.fillerBlock = Blocks.dirt;

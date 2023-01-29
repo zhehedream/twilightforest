@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,11 +15,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFChargeAttack;
 import twilightforest.entity.ai.EntityAITFKidnapRider;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFPinchBeetle extends EntityMob {
+
     public EntityTFPinchBeetle(World world) {
         super(world);
         // texture = TwilightForestMod.MODEL_DIR + "pinchbeetle.png";
@@ -105,8 +107,8 @@ public class EntityTFPinchBeetle extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -175,19 +177,18 @@ public class EntityTFPinchBeetle extends EntityMob {
     }
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a
-     * pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
     @Override
     public boolean interact(EntityPlayer par1EntityPlayer) {
         if (super.interact(par1EntityPlayer)) {
             return true;
         }
-//        else if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer))
-//        {
-//            par1EntityPlayer.mountEntity(this);
-//            return true;
-//        }
+        // else if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer))
+        // {
+        // par1EntityPlayer.mountEntity(this);
+        // return true;
+        // }
         else {
             return false;
         }
@@ -236,15 +237,17 @@ public class EntityTFPinchBeetle extends EntityMob {
             double var1 = Math.cos((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
             double var3 = Math.sin((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
 
-            return Vec3.createVectorHelper(this.posX + var1, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + var3);
+            return Vec3.createVectorHelper(
+                    this.posX + var1,
+                    this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(),
+                    this.posZ + var3);
         } else {
             return Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
         }
     }
 
     /**
-     * If a rider of this entity can interact with this entity. Should return true on the ridden entity
-     * if so.
+     * If a rider of this entity can interact with this entity. Should return true on the ridden entity if so.
      *
      * @return if the entity can be interacted with from a rider
      */

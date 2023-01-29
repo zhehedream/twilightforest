@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.TFCreatures;
@@ -94,12 +95,20 @@ public class ComponentTFHollowTreeLeafDungeon extends StructureTFComponent {
         this.placeTreasureAtCurrentPosition(world, rand, radius + 2, radius - 1, radius, TFTreasure.tree_cache, sbb);
 
         // then spawner
-        placeSpawnerAtCurrentPosition(world, rand, radius, radius, radius, TFCreatures.getSpawnerNameFor("Swarm Spider"), sbb);
+        placeSpawnerAtCurrentPosition(
+                world,
+                rand,
+                radius,
+                radius,
+                radius,
+                TFCreatures.getSpawnerNameFor("Swarm Spider"),
+                sbb);
 
         return true;
     }
 
-    private void drawBlockBlob(World world, StructureBoundingBox sbb, int sx, int sy, int sz, int blobRadius, Block blockID, int metadata, boolean isLeaves) {
+    private void drawBlockBlob(World world, StructureBoundingBox sbb, int sx, int sy, int sz, int blobRadius,
+            Block blockID, int metadata, boolean isLeaves) {
         // then trace out a quadrant
         for (byte dx = 0; dx <= blobRadius; dx++) {
             for (byte dy = 0; dy <= blobRadius; dy++) {

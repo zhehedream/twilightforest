@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -19,8 +17,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFMagicAttack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFSlimeBeetle extends EntityMob {
 
@@ -95,22 +96,22 @@ public class EntityTFSlimeBeetle extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-//        // dribble slime particles out of mouth
-//        Vec3 look = this.getLookVec();
-//
-//        double dist = 0.9;
-//        double px = this.posX + look.xCoord * dist;
-//        double py = this.posY + 0.25 + look.yCoord * dist;
-//        double pz = this.posZ + look.zCoord * dist;
-//
-//        worldObj.spawnParticle("slime", px, py, pz, 0, 0, 0);
+        // // dribble slime particles out of mouth
+        // Vec3 look = this.getLookVec();
+        //
+        // double dist = 0.9;
+        // double px = this.posX + look.xCoord * dist;
+        // double py = this.posY + 0.25 + look.yCoord * dist;
+        // double pz = this.posZ + look.zCoord * dist;
+        //
+        // worldObj.spawnParticle("slime", px, py, pz, 0, 0, 0);
 
     }
 

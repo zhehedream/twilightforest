@@ -13,6 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import twilightforest.entity.ai.EntityAITFGiantAttackOnCollide;
 import twilightforest.item.TFItems;
 
@@ -59,8 +60,8 @@ public class EntityTFGiantMiner extends EntityMob {
     }
 
     /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by
-     * a player. @param par2 - Level of Looting used to kill this mob.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
     protected void dropFewItems(boolean par1, int par2) {
         Item item = this.getDropItem();

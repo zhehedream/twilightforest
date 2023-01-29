@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.TwilightForestMod;
@@ -153,7 +154,8 @@ public class EntityTFRedcap extends EntityMob {
             int chunkZ = MathHelper.floor_double(posZ) >> 4;
             if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hill1) {
                 // award level 1 hill cheevo
-                ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHill1);
+                ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                        .triggerAchievement(TFAchievementPage.twilightHill1);
             }
 
         }

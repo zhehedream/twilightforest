@@ -1,12 +1,12 @@
 package twilightforest.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
+
 import twilightforest.entity.EntityTFRovingCube;
 
 /**
  * 
- * This is a task that runs when we are near a symbol and have stopped pathfinding, but are not
- * centered on the symbol.
+ * This is a task that runs when we are near a symbol and have stopped pathfinding, but are not centered on the symbol.
  * 
  * The goal of this task is to center on a symbol.
  * 
@@ -53,11 +53,10 @@ public class EntityAICubeCenterOnSymbol extends EntityAIBase {
 
         this.myCube.getMoveHelper().setMoveTo(this.xPosition + 0.5F, this.yPosition, this.zPosition + 0.5F, this.speed);
 
-        /*if (this.myCube.ticksExisted % 5 == 0) {
-            // System.out.println("Centering cube on symbol. Dist = " + dist);
-            // System.out.println("heading to " + this.xPosition + ", " + this.yPosition + ", " +
-            // this.zPosition);
-        }*/
+        /*
+         * if (this.myCube.ticksExisted % 5 == 0) { // System.out.println("Centering cube on symbol. Dist = " + dist);
+         * // System.out.println("heading to " + this.xPosition + ", " + this.yPosition + ", " + // this.zPosition); }
+         */
 
         return dist > 0.1F && this.isCourseTraversable();
     }

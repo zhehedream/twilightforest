@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFStrongholdBossRoom extends StructureTFStrongholdComponent {
@@ -172,9 +173,35 @@ public class ComponentTFStrongholdBossRoom extends StructureTFStrongholdComponen
      */
     protected void placeDoorwayAt(World world, Random rand, int x, int y, int z, StructureBoundingBox sbb) {
         if (x == 0 || x == getXSize()) {
-            this.fillWithMetadataBlocks(world, sbb, x, y, z - 1, x, y + 3, z + 1, Blocks.iron_bars, 0, Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    y,
+                    z - 1,
+                    x,
+                    y + 3,
+                    z + 1,
+                    Blocks.iron_bars,
+                    0,
+                    Blocks.air,
+                    0,
+                    false);
         } else {
-            this.fillWithMetadataBlocks(world, sbb, x - 1, y, z, x + 1, y + 3, z, Blocks.iron_bars, 0, Blocks.air, 0, false);
+            this.fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x - 1,
+                    y,
+                    z,
+                    x + 1,
+                    y + 3,
+                    z,
+                    Blocks.iron_bars,
+                    0,
+                    Blocks.air,
+                    0,
+                    false);
         }
     }
 

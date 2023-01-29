@@ -1,7 +1,5 @@
 package twilightforest.entity.passive;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAmbientCreature;
@@ -9,10 +7,14 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class EntityTFMobileFirefly extends EntityAmbientCreature {
+
     /**
-     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which
-     * it will fly. upon getting close a new target will be selected
+     * randomly selected ChunkCoordinates in a 7x6x7 box around the bat (y offset -2 to 4) towards which it will fly.
+     * upon getting close a new target will be selected
      */
     private ChunkCoordinates currentFlightTarget;
 
@@ -61,8 +63,7 @@ public class EntityTFMobileFirefly extends EntityAmbientCreature {
         return false;
     }
 
-    protected void collideWithEntity(Entity par1Entity) {
-    }
+    protected void collideWithEntity(Entity par1Entity) {}
 
     /**
      * Set monster attributes
@@ -95,13 +96,18 @@ public class EntityTFMobileFirefly extends EntityAmbientCreature {
     protected void updateAITasks() {
         super.updateAITasks();
 
-        if (this.currentFlightTarget != null
-                && (!this.worldObj.isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ) || this.currentFlightTarget.posY < 1)) {
+        if (this.currentFlightTarget != null && (!this.worldObj
+                .isAirBlock(this.currentFlightTarget.posX, this.currentFlightTarget.posY, this.currentFlightTarget.posZ)
+                || this.currentFlightTarget.posY < 1)) {
             this.currentFlightTarget = null;
         }
 
-        if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0 || this.currentFlightTarget.getDistanceSquared((int) this.posX, (int) this.posY, (int) this.posZ) < 4.0F) {
-            this.currentFlightTarget = new ChunkCoordinates((int) this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int) this.posY + this.rand.nextInt(6) - 2,
+        if (this.currentFlightTarget == null || this.rand.nextInt(30) == 0
+                || this.currentFlightTarget.getDistanceSquared((int) this.posX, (int) this.posY, (int) this.posZ)
+                        < 4.0F) {
+            this.currentFlightTarget = new ChunkCoordinates(
+                    (int) this.posX + this.rand.nextInt(7) - this.rand.nextInt(7),
+                    (int) this.posY + this.rand.nextInt(6) - 2,
                     (int) this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
         }
 
@@ -119,8 +125,8 @@ public class EntityTFMobileFirefly extends EntityAmbientCreature {
     }
 
     /**
-     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for
-     * spiders and wolves to prevent them from trampling crops
+     * returns if this entity triggers Blocks.onEntityWalking on the blocks they walk on. used for spiders and wolves to
+     * prevent them from trampling crops
      */
     @Override
     protected boolean canTriggerWalking() {
@@ -131,17 +137,14 @@ public class EntityTFMobileFirefly extends EntityAmbientCreature {
      * Called when the mob is falling. Calculates and applies fall damage.
      */
     @Override
-    protected void fall(float par1) {
-    }
+    protected void fall(float par1) {}
 
     /**
-     * Takes in the distance the entity has fallen this tick and whether its on the ground to update the
-     * fall distance and deal fall damage if landing on the ground. Args: distanceFallenThisTick,
-     * onGround
+     * Takes in the distance the entity has fallen this tick and whether its on the ground to update the fall distance
+     * and deal fall damage if landing on the ground. Args: distanceFallenThisTick, onGround
      */
     @Override
-    protected void updateFallState(double par1, boolean par3) {
-    }
+    protected void updateFallState(double par1, boolean par3) {}
 
     /**
      * Return whether this entity should NOT trigger a pressure plate or a tripwire.

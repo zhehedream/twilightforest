@@ -2,6 +2,7 @@ package twilightforest.world.layer;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.biomes.TFBiomeBase;
 
 /**
@@ -58,8 +59,8 @@ public class GenLayerTFKeyBiomes extends GenLayer {
     }
 
     /**
-     * Determine which map "region" the specified points are in. Assign the 0-3 of the index to the key
-     * biomes based on that region.
+     * Determine which map "region" the specified points are in. Assign the 0-3 of the index to the key biomes based on
+     * that region.
      */
     private int getKeyBiomeFor(int mapX, int mapZ, int index) {
 
@@ -72,15 +73,15 @@ public class GenLayerTFKeyBiomes extends GenLayer {
         // do we need to shuffle this better?
         // the current version just "rotates" the 4 key biomes
         switch ((index + offset) % 4) {
-        case 0:
-        default:
-            return TFBiomeBase.glacier.biomeID;
-        case 1:
-            return TFBiomeBase.fireSwamp.biomeID;
-        case 2:
-            return TFBiomeBase.darkForestCenter.biomeID;
-        case 3:
-            return TFBiomeBase.highlandsCenter.biomeID;
+            case 0:
+            default:
+                return TFBiomeBase.glacier.biomeID;
+            case 1:
+                return TFBiomeBase.fireSwamp.biomeID;
+            case 2:
+                return TFBiomeBase.darkForestCenter.biomeID;
+            case 3:
+                return TFBiomeBase.highlandsCenter.biomeID;
         }
     }
 }

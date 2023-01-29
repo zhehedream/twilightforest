@@ -10,7 +10,8 @@ import net.minecraft.server.MinecraftServer;
 
 public class CommandTFProgress extends CommandBase {
 
-    String[] bosses = new String[] { "none", "naga", "lich", "mooshroom", "hydra", "knights", "urghast", "yeti", "snowqueen", "giants", "final" };
+    String[] bosses = new String[] { "none", "naga", "lich", "mooshroom", "hydra", "knights", "urghast", "yeti",
+            "snowqueen", "giants", "final" };
 
     @Override
     public String getCommandName() {
@@ -37,7 +38,11 @@ public class CommandTFProgress extends CommandBase {
             EntityPlayerMP player = getPlayer(sender, args[0]);
             int bossIndex = getBossIndex(args[1]);
 
-            func_152373_a(sender, this, "Setting player %s progress to past boss %s.", new Object[] { player.getCommandSenderName(), bosses[bossIndex] });
+            func_152373_a(
+                    sender,
+                    this,
+                    "Setting player %s progress to past boss %s.",
+                    new Object[] { player.getCommandSenderName(), bosses[bossIndex] });
 
             setProgress(player, bossIndex);
         }
@@ -54,47 +59,47 @@ public class CommandTFProgress extends CommandBase {
 
         // give achievements
         switch (bossIndex) {
-        case 0:
-        default:
-            break;
-        case 1:
-            player.triggerAchievement(TFAchievementPage.twilightPortal);
-            player.triggerAchievement(TFAchievementPage.twilightArrival);
-            player.triggerAchievement(TFAchievementPage.twilightHunter);
-            player.triggerAchievement(TFAchievementPage.twilightKillNaga);
-            player.triggerAchievement(TFAchievementPage.twilightProgressNaga);
-            break;
-        case 2:
-            player.triggerAchievement(TFAchievementPage.twilightKillLich);
-            player.triggerAchievement(TFAchievementPage.twilightProgressLich);
-            break;
-        case 3:
-            player.triggerAchievement(TFAchievementPage.twilightProgressLabyrinth);
-            break;
-        case 4:
-            player.triggerAchievement(TFAchievementPage.twilightKillHydra);
-            player.triggerAchievement(TFAchievementPage.twilightProgressHydra);
-            break;
-        case 5:
-            player.triggerAchievement(TFAchievementPage.twilightProgressTrophyPedestal);
-            player.triggerAchievement(TFAchievementPage.twilightProgressKnights);
-            break;
-        case 6:
-            player.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-            break;
-        case 7:
-            player.triggerAchievement(TFAchievementPage.twilightProgressYeti);
-            break;
-        case 8:
-            player.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
-            break;
-        case 9:
-            player.triggerAchievement(TFAchievementPage.twilightProgressTroll);
-            break;
-        case 10:
-            player.triggerAchievement(TFAchievementPage.twilightProgressThorns);
-            player.triggerAchievement(TFAchievementPage.twilightProgressCastle);
-            break;
+            case 0:
+            default:
+                break;
+            case 1:
+                player.triggerAchievement(TFAchievementPage.twilightPortal);
+                player.triggerAchievement(TFAchievementPage.twilightArrival);
+                player.triggerAchievement(TFAchievementPage.twilightHunter);
+                player.triggerAchievement(TFAchievementPage.twilightKillNaga);
+                player.triggerAchievement(TFAchievementPage.twilightProgressNaga);
+                break;
+            case 2:
+                player.triggerAchievement(TFAchievementPage.twilightKillLich);
+                player.triggerAchievement(TFAchievementPage.twilightProgressLich);
+                break;
+            case 3:
+                player.triggerAchievement(TFAchievementPage.twilightProgressLabyrinth);
+                break;
+            case 4:
+                player.triggerAchievement(TFAchievementPage.twilightKillHydra);
+                player.triggerAchievement(TFAchievementPage.twilightProgressHydra);
+                break;
+            case 5:
+                player.triggerAchievement(TFAchievementPage.twilightProgressTrophyPedestal);
+                player.triggerAchievement(TFAchievementPage.twilightProgressKnights);
+                break;
+            case 6:
+                player.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+                break;
+            case 7:
+                player.triggerAchievement(TFAchievementPage.twilightProgressYeti);
+                break;
+            case 8:
+                player.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
+                break;
+            case 9:
+                player.triggerAchievement(TFAchievementPage.twilightProgressTroll);
+                break;
+            case 10:
+                player.triggerAchievement(TFAchievementPage.twilightProgressThorns);
+                player.triggerAchievement(TFAchievementPage.twilightProgressCastle);
+                break;
         }
     }
 
@@ -112,7 +117,8 @@ public class CommandTFProgress extends CommandBase {
      * Adds the strings available in this command to the given list of tab completion options.
      */
     public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getListOfPlayers()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, bosses) : null);
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.getListOfPlayers())
+                : (args.length == 2 ? getListOfStringsMatchingLastWord(args, bosses) : null);
     }
 
     protected String[] getListOfPlayers() {

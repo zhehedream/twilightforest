@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.HashMap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFHedgeSpider;
 import twilightforest.entity.EntityTFHostileWolf;
@@ -37,6 +36,8 @@ import twilightforest.entity.passive.EntityTFBoar;
 import twilightforest.entity.passive.EntityTFDeer;
 import twilightforest.entity.passive.EntityTFPenguin;
 import twilightforest.entity.passive.EntityTFRaven;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFTransformPowder extends ItemTF {
 
@@ -63,7 +64,8 @@ public class ItemTFTransformPowder extends ItemTF {
         addTwoWayTransformation(EntityTFSkeletonDruid.class, EntityWitch.class);
     }
 
-    public void addTwoWayTransformation(Class<? extends EntityLivingBase> class1, Class<? extends EntityLivingBase> class2) {
+    public void addTwoWayTransformation(Class<? extends EntityLivingBase> class1,
+            Class<? extends EntityLivingBase> class2) {
 
         transformMap.put(class1, class2);
         transformMap.put(class2, class1);
@@ -73,7 +75,8 @@ public class ItemTFTransformPowder extends ItemTF {
      * dye sheep, place saddles, etc ...
      */
     @Override
-    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, EntityLivingBase target) {
+    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer,
+            EntityLivingBase target) {
         // this is where we transform normal entities into twilight entities and vice versa
 
         Class<?> transformClass = getMonsterTransform(target.getClass());
@@ -86,12 +89,20 @@ public class ItemTFTransformPowder extends ItemTF {
                     ((EntityLiving) target).spawnExplosionParticle();
                 }
 
-                target.worldObj.playSound(target.posX + 0.5D, target.posY + 0.5D, target.posZ + 0.5D, "mob.zombie.remedy", 1.0F + itemRand.nextFloat(), itemRand.nextFloat() * 0.7F + 0.3F, false);
+                target.worldObj.playSound(
+                        target.posX + 0.5D,
+                        target.posY + 0.5D,
+                        target.posZ + 0.5D,
+                        "mob.zombie.remedy",
+                        1.0F + itemRand.nextFloat(),
+                        itemRand.nextFloat() * 0.7F + 0.3F,
+                        false);
             } else {
                 // add new monster with old monster's attributes
                 EntityLivingBase newMonster = null;
                 try {
-                    newMonster = (EntityLivingBase) transformClass.getConstructor(new Class[] { World.class }).newInstance(new Object[] { target.worldObj });
+                    newMonster = (EntityLivingBase) transformClass.getConstructor(new Class[] { World.class })
+                            .newInstance(new Object[] { target.worldObj });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -99,7 +110,12 @@ public class ItemTFTransformPowder extends ItemTF {
                 if (newMonster == null) {
                     return false;
                 } else {
-                    newMonster.setPositionAndRotation(target.posX, target.posY, target.posZ, target.rotationYaw, target.rotationPitch);
+                    newMonster.setPositionAndRotation(
+                            target.posX,
+                            target.posY,
+                            target.posZ,
+                            target.rotationYaw,
+                            target.rotationPitch);
                     // newMonster.initCreature();
 
                     target.worldObj.spawnEntityInWorld(newMonster);
@@ -118,8 +134,8 @@ public class ItemTFTransformPowder extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player) {
@@ -128,8 +144,14 @@ public class ItemTFTransformPowder extends ItemTF {
 
             // particle effect
             for (int i = 0; i < 30; i++) {
-                world.spawnParticle("magicCrit", fanBox.minX + world.rand.nextFloat() * (fanBox.maxX - fanBox.minX), fanBox.minY + world.rand.nextFloat() * (fanBox.maxY - fanBox.minY),
-                        fanBox.minZ + world.rand.nextFloat() * (fanBox.maxZ - fanBox.minZ), 0, 0, 0);
+                world.spawnParticle(
+                        "magicCrit",
+                        fanBox.minX + world.rand.nextFloat() * (fanBox.maxX - fanBox.minX),
+                        fanBox.minY + world.rand.nextFloat() * (fanBox.maxY - fanBox.minY),
+                        fanBox.minZ + world.rand.nextFloat() * (fanBox.maxZ - fanBox.minZ),
+                        0,
+                        0,
+                        0);
             }
 
         }
@@ -144,7 +166,13 @@ public class ItemTFTransformPowder extends ItemTF {
         Vec3 lookVec = player.getLookVec();
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
 
-        return AxisAlignedBB.getBoundingBox(destVec.xCoord - radius, destVec.yCoord - radius, destVec.zCoord - radius, destVec.xCoord + radius, destVec.yCoord + radius, destVec.zCoord + radius);
+        return AxisAlignedBB.getBoundingBox(
+                destVec.xCoord - radius,
+                destVec.yCoord - radius,
+                destVec.zCoord - radius,
+                destVec.xCoord + radius,
+                destVec.yCoord + radius,
+                destVec.zCoord + radius);
     }
 
     /**
@@ -160,6 +188,7 @@ public class ItemTFTransformPowder extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

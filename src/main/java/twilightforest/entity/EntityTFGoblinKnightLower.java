@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.entity.ai.EntityAITFRiderSpearAttack;
 import twilightforest.item.TFItems;
 
@@ -144,7 +145,8 @@ public class EntityTFGoblinKnightLower extends EntityMob {
     public void onUpdate() {
         if (this.isEntityAlive()) {
             // synch target with lower goblin
-            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLiving && this.getAttackTarget() == null) {
+            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLiving
+                    && this.getAttackTarget() == null) {
                 this.setAttackTarget(((EntityLiving) this.riddenByEntity).getAttackTarget());
             }
         }

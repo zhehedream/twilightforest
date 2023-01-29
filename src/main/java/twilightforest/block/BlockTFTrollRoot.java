@@ -10,6 +10,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
@@ -38,8 +39,7 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with
-     * plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with plants.
      */
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
@@ -49,7 +49,9 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     public static boolean canPlaceRootBelow(World world, int x, int y, int z) {
         Block blockAbove = world.getBlock(x, y, z);
 
-        return blockAbove.getMaterial() == Material.rock || blockAbove == TFBlocks.trollVidr || blockAbove == TFBlocks.trollBer || blockAbove == TFBlocks.unripeTrollBer;
+        return blockAbove.getMaterial() == Material.rock || blockAbove == TFBlocks.trollVidr
+                || blockAbove == TFBlocks.trollBer
+                || blockAbove == TFBlocks.unripeTrollBer;
     }
 
     /**
@@ -60,8 +62,8 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int x, int y, int z) {
@@ -69,9 +71,8 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -79,8 +80,7 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -104,8 +104,8 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed
-     * (coordinates passed are their own) Args: x, y, z, neighbor Block
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor Block
      */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         this.checkAndDropBlock(world, x, y, z);
@@ -122,8 +122,7 @@ public class BlockTFTrollRoot extends Block implements IShearable {
     }
 
     /**
-     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in
-     * 1.1.
+     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in 1.1.
      *
      * @param meta    Blocks Metadata
      * @param fortune Current item fortune level

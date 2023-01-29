@@ -13,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.entity.ai.EntityAITFBreathAttack;
@@ -70,8 +71,8 @@ public class EntityTFWinterWolf extends EntityTFHostileWolf implements IBreathAt
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -112,7 +113,13 @@ public class EntityTFWinterWolf extends EntityTFHostileWolf implements IBreathAt
     }
 
     public void playBreathSound() {
-        worldObj.playSoundEffect(this.posX + 0.5, this.posY + 0.5, this.posZ + 0.5, "mob.ghast.fireball", rand.nextFloat() * 0.5F, rand.nextFloat() * 0.5F);
+        worldObj.playSoundEffect(
+                this.posX + 0.5,
+                this.posY + 0.5,
+                this.posZ + 0.5,
+                "mob.ghast.fireball",
+                rand.nextFloat() * 0.5F,
+                rand.nextFloat() * 0.5F);
     }
 
     /**
@@ -135,10 +142,10 @@ public class EntityTFWinterWolf extends EntityTFHostileWolf implements IBreathAt
 
     @Override
     public void doBreathAttack(Entity target) {
-//        if (!target.isImmuneToFire() && target.attackEntityFrom(DamageSource.inFire, BREATH_DAMAGE))
-//        {
-//            target.setFire(BREATH_DURATION);
-//        }
+        // if (!target.isImmuneToFire() && target.attackEntityFrom(DamageSource.inFire, BREATH_DAMAGE))
+        // {
+        // target.setFire(BREATH_DURATION);
+        // }
     }
 
     /**

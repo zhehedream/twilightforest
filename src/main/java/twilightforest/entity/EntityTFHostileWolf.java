@@ -11,6 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 
@@ -66,9 +67,13 @@ public class EntityTFHostileWolf extends EntityWolf implements IMob {
         int chunkZ = MathHelper.floor_double(posZ) >> 4;
         if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hedgeMaze) {
             // don't check light level
-            return worldObj.checkNoEntityCollision(boundingBox) && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0 && !worldObj.isAnyLiquid(boundingBox);
+            return worldObj.checkNoEntityCollision(boundingBox)
+                    && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0
+                    && !worldObj.isAnyLiquid(boundingBox);
         } else {
-            return isValidLightLevel() && worldObj.checkNoEntityCollision(boundingBox) && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0 && !worldObj.isAnyLiquid(boundingBox);
+            return isValidLightLevel() && worldObj.checkNoEntityCollision(boundingBox)
+                    && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0
+                    && !worldObj.isAnyLiquid(boundingBox);
         }
     }
 
@@ -97,8 +102,8 @@ public class EntityTFHostileWolf extends EntityWolf implements IMob {
     }
 
     /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or
-     * seeds depending on the animal type)
+     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
+     * the animal type)
      */
     @Override
     public boolean isBreedingItem(ItemStack par1ItemStack) {
@@ -106,8 +111,7 @@ public class EntityTFHostileWolf extends EntityWolf implements IMob {
     }
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a
-     * pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
     @Override
     public boolean interact(EntityPlayer par1EntityPlayer) {

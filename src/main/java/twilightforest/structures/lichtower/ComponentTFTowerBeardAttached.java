@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFTowerBeardAttached extends ComponentTFTowerBeard {
@@ -17,8 +18,13 @@ public class ComponentTFTowerBeardAttached extends ComponentTFTowerBeard {
         super(i, wing);
 
         // just hang out at the very bottom of the tower
-        this.boundingBox = new StructureBoundingBox(wing.getBoundingBox().minX, wing.getBoundingBox().minY - this.height - 1, wing.getBoundingBox().minZ, wing.getBoundingBox().maxX,
-                wing.getBoundingBox().minY - 1, wing.getBoundingBox().maxZ);
+        this.boundingBox = new StructureBoundingBox(
+                wing.getBoundingBox().minX,
+                wing.getBoundingBox().minY - this.height - 1,
+                wing.getBoundingBox().minZ,
+                wing.getBoundingBox().maxX,
+                wing.getBoundingBox().minY - 1,
+                wing.getBoundingBox().maxZ);
 
     }
 
@@ -35,7 +41,18 @@ public class ComponentTFTowerBeardAttached extends ComponentTFTowerBeard {
             int min = y + 1;
             int max = size - y;
 
-            fillWithRandomizedBlocks(world, sbb, 0, height - y, min, max, height - y, max, false, rand, StructureTFComponent.getStrongholdStones());
+            fillWithRandomizedBlocks(
+                    world,
+                    sbb,
+                    0,
+                    height - y,
+                    min,
+                    max,
+                    height - y,
+                    max,
+                    false,
+                    rand,
+                    StructureTFComponent.getStrongholdStones());
         }
         return true;
     }

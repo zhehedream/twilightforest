@@ -1,10 +1,11 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFMoonworm;
 import twilightforest.tileentity.TileEntityTFMoonworm;
@@ -12,7 +13,8 @@ import twilightforest.tileentity.TileEntityTFMoonworm;
 public class TileEntityTFMoonwormRenderer extends TileEntitySpecialRenderer {
 
     private ModelTFMoonworm moonwormModel;
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "moonworm.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "moonworm.png");
 
     public TileEntityTFMoonwormRenderer() {
         moonwormModel = new ModelTFMoonworm();
@@ -27,7 +29,8 @@ public class TileEntityTFMoonwormRenderer extends TileEntitySpecialRenderer {
     /**
      * Render a cute firefly!
      */
-    private void renderTileEntityFireflyAt(TileEntityTFMoonworm tileentity, double d, double d1, double d2, float partialTime) {
+    private void renderTileEntityFireflyAt(TileEntityTFMoonworm tileentity, double d, double d1, double d2,
+            float partialTime) {
         GL11.glPushMatrix();
         int facing = tileentity.getBlockMetadata();
 

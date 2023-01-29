@@ -1,10 +1,11 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFHydraMortar;
 import twilightforest.entity.boss.EntityTFHydraMortar;
@@ -12,7 +13,8 @@ import twilightforest.entity.boss.EntityTFHydraMortar;
 public class RenderTFHydraMortar extends Render {
 
     private ModelTFHydraMortar mortarModel;
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "hydramortar.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "hydramortar.png");
 
     public RenderTFHydraMortar() {
         mortarModel = new ModelTFHydraMortar();
@@ -20,11 +22,10 @@ public class RenderTFHydraMortar extends Render {
     }
 
     /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its
-     * argument and then handing it off to a worker function which does the actual work. In all
-     * probabilty, the class Render is generic (Render<T extends Entity) and this method has signature
-     * public void doRender(T entity, double d, double d1, double d2, float f, float f1). But JAD is pre
-     * 1.5 so doesn't do that.
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
+     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
     @Override
     public void doRender(Entity var1, double x, double y, double z, float var8, float partialTick) {

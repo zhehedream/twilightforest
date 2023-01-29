@@ -10,6 +10,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.boss.EntityTFSnowQueen;
 import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 
@@ -32,7 +33,8 @@ public class EntityAITFHoverBeam extends EntityAIBase {
     private double beamY;
     private boolean isInPosition;
 
-    public EntityAITFHoverBeam(EntityTFSnowQueen entityTFSnowQueen, Class<EntityPlayer> class1, int hoverTime, int dropTime) {
+    public EntityAITFHoverBeam(EntityTFSnowQueen entityTFSnowQueen, Class<EntityPlayer> class1, int hoverTime,
+            int dropTime) {
         this.attacker = entityTFSnowQueen;
         this.classTarget = class1;
         this.setMutexBits(3);
@@ -44,7 +46,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         this.isInPosition = false;
     }
 
-    //  Returns whether the EntityAIBase should begin execution.
+    // Returns whether the EntityAIBase should begin execution.
     @Override
     public boolean shouldExecute() {
         EntityLivingBase target = this.attacker.getAttackTarget();
@@ -177,7 +179,7 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         // System.out.println("Hovering!");
     }
 
-    //  What, if anything, is the head currently looking at?
+    // What, if anything, is the head currently looking at?
     @SuppressWarnings("unchecked")
     private Entity getHeadLookTarget() {
         Entity pointedEntity = null;
@@ -186,14 +188,18 @@ public class EntityAITFHoverBeam extends EntityAIBase {
         Vec3 lookVec = this.attacker.getLook(1.0F);
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
         float var9 = 3.0F;
-        List<Entity> possibleList = this.attacker.worldObj.getEntitiesWithinAABBExcludingEntity(this.attacker,
-                this.attacker.boundingBox.addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range).expand(var9, var9, var9));
+        List<Entity> possibleList = this.attacker.worldObj.getEntitiesWithinAABBExcludingEntity(
+                this.attacker,
+                this.attacker.boundingBox
+                        .addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range)
+                        .expand(var9, var9, var9));
         double hitDist = 0;
 
         for (Entity possibleEntity : possibleList) {
             if (possibleEntity.canBeCollidedWith() && possibleEntity != this.attacker) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox
+                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {
@@ -225,14 +231,15 @@ public class EntityAITFHoverBeam extends EntityAIBase {
             hy = target.posY + HOVER_HEIGHT;
             hz = target.posZ + (this.attacker.getRNG().nextFloat() - this.attacker.getRNG().nextFloat()) * HOVER_RADIUS;
 
-            if (!isPositionOccupied(hx, hy, hz) && this.canEntitySee(this.attacker, hx, hy, hz) && this.canEntitySee(target, hx, hy, hz)) {
+            if (!isPositionOccupied(hx, hy, hz) && this.canEntitySee(this.attacker, hx, hy, hz)
+                    && this.canEntitySee(target, hx, hy, hz)) {
                 break;
             }
         }
 
-        /*if (tries == 99) {
-            // System.out.println("Found no spots, giving up");
-        }*/
+        /*
+         * if (tries == 99) { // System.out.println("Found no spots, giving up"); }
+         */
 
         this.hoverPosX = hx;
         this.hoverPosY = hy;
@@ -246,7 +253,8 @@ public class EntityAITFHoverBeam extends EntityAIBase {
 
     private boolean isPositionOccupied(double hx, double hy, double hz) {
         float radius = this.attacker.width / 2F;
-        AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(hx - radius, hy, hz - radius, hx + radius, hy + this.attacker.height, hz + radius);
+        AxisAlignedBB aabb = AxisAlignedBB
+                .getBoundingBox(hx - radius, hy, hz - radius, hx + radius, hy + this.attacker.height, hz + radius);
 
         boolean isOccupied = this.attacker.worldObj.getCollidingBoundingBoxes(attacker, aabb).isEmpty();
 
@@ -255,7 +263,9 @@ public class EntityAITFHoverBeam extends EntityAIBase {
 
     // Can the specified entity see the specified location?
     protected boolean canEntitySee(Entity entity, double dx, double dy, double dz) {
-        return entity.worldObj.rayTraceBlocks(Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ), Vec3.createVectorHelper(dx, dy, dz)) == null;
+        return entity.worldObj.rayTraceBlocks(
+                Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ),
+                Vec3.createVectorHelper(dx, dy, dz)) == null;
     }
 
 }

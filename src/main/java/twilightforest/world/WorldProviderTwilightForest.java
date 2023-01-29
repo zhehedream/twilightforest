@@ -3,8 +3,6 @@
  */
 package twilightforest.world;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -12,10 +10,13 @@ import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.client.renderer.TFSkyRenderer;
 import twilightforest.client.renderer.TFWeatherRenderer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Ben
@@ -80,10 +81,16 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
     public IChunkProvider createChunkGenerator() {
         // save chunk generator?
         if (this.chunkProvider == null) {
-            this.chunkProvider = new ChunkProviderTwilightForest(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
+            this.chunkProvider = new ChunkProviderTwilightForest(
+                    worldObj,
+                    worldObj.getSeed(),
+                    worldObj.getWorldInfo().isMapFeaturesEnabled());
             return this.chunkProvider;
         } else {
-            return new ChunkProviderTwilightForest(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
+            return new ChunkProviderTwilightForest(
+                    worldObj,
+                    worldObj.getSeed(),
+                    worldObj.getWorldInfo().isMapFeaturesEnabled());
         }
     }
 
@@ -99,29 +106,29 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
         return false;
     }
 
-//
-//    @Override
-//    public float getCloudHeight()
-//    {
-//        return 64F;
-//    }
+    //
+    // @Override
+    // public float getCloudHeight()
+    // {
+    // return 64F;
+    // }
 
     public int getAverageGroundLevel() {
         return 30;
     }
 
-//    @Override
-//    public boolean canCoordinateBeSpawn(int i, int j)
-//    {
-//        int k = worldObj.getFirstUncoveredBlock(i, j);
-//        if(k == 0)
-//        {
-//            return false;
-//        } else
-//        {
-//            return Blocks.blocksList[k].getMaterial().isSolid();
-//        }
-//    }
+    // @Override
+    // public boolean canCoordinateBeSpawn(int i, int j)
+    // {
+    // int k = worldObj.getFirstUncoveredBlock(i, j);
+    // if(k == 0)
+    // {
+    // return false;
+    // } else
+    // {
+    // return Blocks.blocksList[k].getMaterial().isSolid();
+    // }
+    // }
 
     /**
      * True if the player can respawn in this dimension (true = overworld, false = nether).
@@ -206,16 +213,16 @@ public class WorldProviderTwilightForest extends WorldProviderSurface {
     public void updateWeather() {
         super.updateWeather();
 
-//        for (ChunkCoordIntPair coord : (HashSet<ChunkCoordIntPair>)this.worldObj.activeChunkSet)
-//        {
-//            Chunk chunk = this.worldObj.getChunkFromChunkCoords(coord.chunkXPos, coord.chunkZPos);
-//            
-//            if (chunk.queuedLightChecks < 4096)
-//            {
-//                //System.out.println("Stopping light checks!");
-//                chunk.queuedLightChecks = 4096;
-//            }
-//        }
+        // for (ChunkCoordIntPair coord : (HashSet<ChunkCoordIntPair>)this.worldObj.activeChunkSet)
+        // {
+        // Chunk chunk = this.worldObj.getChunkFromChunkCoords(coord.chunkXPos, coord.chunkZPos);
+        //
+        // if (chunk.queuedLightChecks < 4096)
+        // {
+        // //System.out.println("Stopping light checks!");
+        // chunk.queuedLightChecks = 4096;
+        // }
+        // }
     }
 
     @SideOnly(Side.CLIENT)

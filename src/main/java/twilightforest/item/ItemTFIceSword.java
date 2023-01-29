@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+
 import twilightforest.TwilightForestMod;
 
 public class ItemTFIceSword extends ItemSword {
@@ -25,15 +26,17 @@ public class ItemTFIceSword extends ItemSword {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with packed ice
-        return par2ItemStack.getItem() == Item.getItemFromBlock(Blocks.packed_ice) ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == Item.getItemFromBlock(Blocks.packed_ice) ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev.
-     * They just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving) {
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLiving,
+            EntityLivingBase par3EntityLiving) {
         boolean result = super.hitEntity(par1ItemStack, par2EntityLiving, par3EntityLiving);
 
         if (result) {
@@ -45,8 +48,8 @@ public class ItemTFIceSword extends ItemSword {
     }
 
     /**
-     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if
-     * return value is true further processing is canceled and the entity is not attacked.
+     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if return value is true
+     * further processing is canceled and the entity is not attacked.
      *
      * @param stack  The Item being used
      * @param player The player that is attacking

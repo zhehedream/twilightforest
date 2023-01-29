@@ -1,6 +1,7 @@
 package twilightforest.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
+
 import twilightforest.entity.TFCreatures;
 
 public class TileEntityTFLichSpawner extends TileEntityTFBossSpawner {

@@ -2,6 +2,7 @@ package twilightforest.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemMultiTexture;
+
 import twilightforest.block.BlockTFThorns;
 
 public class ItemBlockTFThorns extends ItemMultiTexture {

@@ -2,6 +2,13 @@ package twilightforest;
 
 import java.io.IOException;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.Packet;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.S34PacketMaps;
+
+import twilightforest.item.ItemTFMagicMap;
+import twilightforest.item.ItemTFMazeMap;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
@@ -10,12 +17,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler.Sharable;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.S34PacketMaps;
-import twilightforest.item.ItemTFMagicMap;
-import twilightforest.item.ItemTFMazeMap;
 
 @Sharable
 public class TFMapPacketHandler {
@@ -59,10 +60,12 @@ public class TFMapPacketHandler {
     public void incomingPacket(ClientCustomPacketEvent event) {
         if (event.packet.channel().equals(ItemTFMagicMap.STR_ID)) {
             S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
-            ItemTFMagicMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld()).updateMPMapData(mapPacket.func_149187_d());
+            ItemTFMagicMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld())
+                    .updateMPMapData(mapPacket.func_149187_d());
         } else if (event.packet.channel().equals(ItemTFMazeMap.STR_ID)) {
             S34PacketMaps mapPacket = readMapPacket(event.packet.payload());
-            TFMazeMapData data = ItemTFMazeMap.getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld());
+            TFMazeMapData data = ItemTFMazeMap
+                    .getMPMapData(mapPacket.func_149188_c(), TwilightForestMod.proxy.getClientWorld());
             data.updateMPMapData(mapPacket.func_149187_d());
             Minecraft.getMinecraft().entityRenderer.getMapItemRenderer().func_148246_a(data);
         }

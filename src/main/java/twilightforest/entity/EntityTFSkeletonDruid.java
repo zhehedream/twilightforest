@@ -24,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.item.TFItems;
 
@@ -100,8 +101,8 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
     }
 
     /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by
-     * a player. @param par2 - Level of Looting used to kill this mob.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
     protected void dropFewItems(boolean par1, int lootingModifier) {
         int numberOfItemsToDrop;

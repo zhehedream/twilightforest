@@ -38,8 +38,8 @@ public class InventoryTFGoblinInput implements IInventory {
     }
 
     /**
-     * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg.
-     * Returns the new stack.
+     * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new
+     * stack.
      */
     @Override
     public ItemStack decrStackSize(int slotNum, int amount) {
@@ -68,8 +68,8 @@ public class InventoryTFGoblinInput implements IInventory {
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an
-     * EntityItem - like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
+     * like when you close a workbench GUI.
      */
     @Override
     public ItemStack getStackInSlotOnClosing(int par1) {
@@ -83,8 +83,7 @@ public class InventoryTFGoblinInput implements IInventory {
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor
-     * sections).
+     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
     @Override
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
@@ -93,8 +92,8 @@ public class InventoryTFGoblinInput implements IInventory {
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be
-     * extended. *Isn't this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
+     * this more of a set than a get?*
      */
     @Override
     public int getInventoryStackLimit() {
@@ -118,16 +117,13 @@ public class InventoryTFGoblinInput implements IInventory {
     }
 
     @Override
-    public void openInventory() {
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-    }
+    public void closeInventory() {}
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the
-     * given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
     @Override
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {

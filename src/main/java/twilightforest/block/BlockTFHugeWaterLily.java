@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+
 import twilightforest.item.TFItems;
 
 public class BlockTFHugeWaterLily extends BlockBush {
@@ -21,16 +22,15 @@ public class BlockTFHugeWaterLily extends BlockBush {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return null;
     }
 
     /**
-     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with
-     * plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with plants.
      */
     public boolean canBlockStay(World world, int x, int y, int z) {
         return world.getBlock(x, y - 1, z).getMaterial() == Material.water && world.getBlockMetadata(x, y - 1, z) == 0;

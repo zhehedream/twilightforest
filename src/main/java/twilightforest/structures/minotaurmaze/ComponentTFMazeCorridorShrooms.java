@@ -28,7 +28,14 @@ public class ComponentTFMazeCorridorShrooms extends ComponentTFMazeCorridor {
                     this.placeBlockAtCurrentPosition(world, Blocks.mycelium, 0, x, 0, z, sbb);
                 }
                 if (rand.nextInt(2) > 0) {
-                    this.placeBlockAtCurrentPosition(world, rand.nextBoolean() ? Blocks.red_mushroom : Blocks.brown_mushroom, 0, x, 1, z, sbb);
+                    this.placeBlockAtCurrentPosition(
+                            world,
+                            rand.nextBoolean() ? Blocks.red_mushroom : Blocks.brown_mushroom,
+                            0,
+                            x,
+                            1,
+                            z,
+                            sbb);
                 }
             }
         }
@@ -39,13 +46,39 @@ public class ComponentTFMazeCorridorShrooms extends ComponentTFMazeCorridor {
         int mushZ = rand.nextInt(4) + 1;
         this.placeBlockAtCurrentPosition(world, mushType, 15, 1, mushY - 1, mushZ, sbb);
         this.fillWithMetadataBlocks(world, sbb, 1, 1, mushZ, 1, mushY, mushZ, mushType, 10, Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 1, mushY, mushZ - 1, 2, mushY, mushZ + 1, mushType, 14, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                1,
+                mushY,
+                mushZ - 1,
+                2,
+                mushY,
+                mushZ + 1,
+                mushType,
+                14,
+                Blocks.air,
+                0,
+                false);
 
         mushType = mushType == Blocks.brown_mushroom_block ? Blocks.red_mushroom_block : Blocks.brown_mushroom_block;
         mushY = rand.nextInt(4) + 1;
         mushZ = rand.nextInt(4) + 1;
         this.fillWithMetadataBlocks(world, sbb, 4, 1, mushZ, 4, mushY, mushZ, mushType, 10, Blocks.air, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 3, mushY, mushZ - 1, 4, mushY, mushZ + 1, mushType, 14, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                3,
+                mushY,
+                mushZ - 1,
+                4,
+                mushY,
+                mushZ + 1,
+                mushType,
+                14,
+                Blocks.air,
+                0,
+                false);
 
         return true;
     }

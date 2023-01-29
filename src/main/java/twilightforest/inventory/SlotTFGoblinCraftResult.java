@@ -16,7 +16,8 @@ public class SlotTFGoblinCraftResult extends SlotCrafting {
     protected InventoryCrafting assemblyMatrix;
     protected IInventory resultSlot;
 
-    public SlotTFGoblinCraftResult(EntityPlayer player, IInventory input, IInventory uncraftingMatrix, IInventory assemblyMatrix, IInventory result, int slotIndex, int x, int y) {
+    public SlotTFGoblinCraftResult(EntityPlayer player, IInventory input, IInventory uncraftingMatrix,
+            IInventory assemblyMatrix, IInventory result, int slotIndex, int x, int y) {
         super(player, assemblyMatrix, result, slotIndex, x, y);
         this.thePlayer = player;
         this.inputSlot = input;
@@ -33,7 +34,9 @@ public class SlotTFGoblinCraftResult extends SlotCrafting {
         // combined. Will that work?
         boolean combined = true;
 
-        if (ItemStack.areItemStacksEqual(CraftingManager.getInstance().findMatchingRecipe(this.assemblyMatrix, this.thePlayer.worldObj), par1ItemStack)) {
+        if (ItemStack.areItemStacksEqual(
+                CraftingManager.getInstance().findMatchingRecipe(this.assemblyMatrix, this.thePlayer.worldObj),
+                par1ItemStack)) {
             combined = false;
         }
 

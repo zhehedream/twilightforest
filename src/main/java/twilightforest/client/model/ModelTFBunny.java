@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ModelTFBunny extends ModelBase {
+
     // fields
     ModelRenderer tail;
     ModelRenderer body;

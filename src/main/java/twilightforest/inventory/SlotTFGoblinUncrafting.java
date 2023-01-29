@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
 
 public class SlotTFGoblinUncrafting extends Slot {
@@ -13,7 +14,8 @@ public class SlotTFGoblinUncrafting extends Slot {
     protected InventoryTFGoblinUncrafting uncraftingMatrix;
     protected IInventory assemblyMatrix;
 
-    public SlotTFGoblinUncrafting(EntityPlayer par1EntityPlayer, IInventory inputSlot, InventoryTFGoblinUncrafting uncraftingMatrix, IInventory assemblyMatrix, int slotNum, int x, int y) {
+    public SlotTFGoblinUncrafting(EntityPlayer par1EntityPlayer, IInventory inputSlot,
+            InventoryTFGoblinUncrafting uncraftingMatrix, IInventory assemblyMatrix, int slotNum, int x, int y) {
         super(uncraftingMatrix, slotNum, x, y);
         this.thePlayer = par1EntityPlayer;
         this.inputSlot = inputSlot;
@@ -47,7 +49,8 @@ public class SlotTFGoblinUncrafting extends Slot {
         }
 
         // if you don't have enough XP, no
-        if (this.uncraftingMatrix.uncraftingCost > par1EntityPlayer.experienceLevel && !par1EntityPlayer.capabilities.isCreativeMode) {
+        if (this.uncraftingMatrix.uncraftingCost > par1EntityPlayer.experienceLevel
+                && !par1EntityPlayer.capabilities.isCreativeMode) {
             return false;
         }
 

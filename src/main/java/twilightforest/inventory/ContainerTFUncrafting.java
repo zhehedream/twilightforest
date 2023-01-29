@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +28,9 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class ContainerTFUncrafting extends Container {
 
@@ -44,7 +45,16 @@ public class ContainerTFUncrafting extends Container {
     public ContainerTFUncrafting(InventoryPlayer inventory, World world, int x, int y, int z) {
         this.worldObj = world;
         this.addSlotToContainer(new Slot(this.tinkerInput, 0, 13, 35));
-        this.addSlotToContainer(new SlotTFGoblinCraftResult(inventory.player, this.tinkerInput, this.uncraftingMatrix, this.assemblyMatrix, this.tinkerResult, 0, 147, 35));
+        this.addSlotToContainer(
+                new SlotTFGoblinCraftResult(
+                        inventory.player,
+                        this.tinkerInput,
+                        this.uncraftingMatrix,
+                        this.assemblyMatrix,
+                        this.tinkerResult,
+                        0,
+                        147,
+                        35));
 
         int invX;
         int invY;
@@ -52,12 +62,27 @@ public class ContainerTFUncrafting extends Container {
         for (invX = 0; invX < 3; ++invX) {
             for (invY = 0; invY < 3; ++invY) {
                 this.addSlotToContainer(
-                        new SlotTFGoblinUncrafting(inventory.player, this.tinkerInput, this.uncraftingMatrix, this.assemblyMatrix, invY + invX * 3, 300000 + invY * 18, 17 + invX * 18));
+                        new SlotTFGoblinUncrafting(
+                                inventory.player,
+                                this.tinkerInput,
+                                this.uncraftingMatrix,
+                                this.assemblyMatrix,
+                                invY + invX * 3,
+                                300000 + invY * 18,
+                                17 + invX * 18));
             }
         }
         for (invX = 0; invX < 3; ++invX) {
             for (invY = 0; invY < 3; ++invY) {
-                this.addSlotToContainer(new SlotTFGoblinAssembly(inventory.player, this.tinkerInput, this.assemblyMatrix, this.uncraftingMatrix, invY + invX * 3, 62 + invY * 18, 17 + invX * 18));
+                this.addSlotToContainer(
+                        new SlotTFGoblinAssembly(
+                                inventory.player,
+                                this.tinkerInput,
+                                this.assemblyMatrix,
+                                this.uncraftingMatrix,
+                                invY + invX * 3,
+                                62 + invY * 18,
+                                17 + invX * 18));
             }
         }
 
@@ -105,7 +130,8 @@ public class ContainerTFUncrafting extends Container {
                         if (ingredient != null && ingredient.stackSize > 1) {
                             ingredient.stackSize = 1;
                         }
-                        if (ingredient != null && (ingredient.getItemDamageForDisplay() == -1 || ingredient.getItemDamageForDisplay() == Short.MAX_VALUE)) {
+                        if (ingredient != null && (ingredient.getItemDamageForDisplay() == -1
+                                || ingredient.getItemDamageForDisplay() == Short.MAX_VALUE)) {
                             ingredient.setItemDamage(0);
                         }
                         this.uncraftingMatrix.setInventorySlotContents(invX + invY * 3, ingredient);
@@ -152,37 +178,41 @@ public class ContainerTFUncrafting extends Container {
         if (par1IInventory == this.assemblyMatrix || par1IInventory == this.tinkerInput) {
             if (isMatrixEmpty(this.tinkerInput)) {
                 // display the output
-                this.tinkerResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.assemblyMatrix, this.worldObj));
+                this.tinkerResult.setInventorySlotContents(
+                        0,
+                        CraftingManager.getInstance().findMatchingRecipe(this.assemblyMatrix, this.worldObj));
                 this.uncraftingMatrix.recraftingCost = 0;
             } else {
-//                if (isMatrixEmpty(this.assemblyMatrix)) {
-//                    // we just emptied the assembly matrix and need to re-prepare for uncrafting
-//                    this.tinkerResult.setInventorySlotContents(0, null);
-//                    this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
-//                    this.uncraftingMatrix.recraftingCost = 0;
-//                }
-//                else {
+                // if (isMatrixEmpty(this.assemblyMatrix)) {
+                // // we just emptied the assembly matrix and need to re-prepare for uncrafting
+                // this.tinkerResult.setInventorySlotContents(0, null);
+                // this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
+                // this.uncraftingMatrix.recraftingCost = 0;
+                // }
+                // else {
                 // we placed an item in the assembly matrix, the next step will re-initialize these with correct
                 // values
                 this.tinkerResult.setInventorySlotContents(0, null);
                 this.uncraftingMatrix.uncraftingCost = calculateUncraftingCost();
                 this.uncraftingMatrix.recraftingCost = 0;
-//                }
+                // }
             }
         }
 
         // repairing / recrafting: if there is an input item, and items in both grids, can we combine them
         // to produce an output item that is the same type as the input item?
-        if (par1IInventory != this.combineMatrix && !isMatrixEmpty(this.uncraftingMatrix) && !isMatrixEmpty(this.assemblyMatrix)) {
+        if (par1IInventory != this.combineMatrix && !isMatrixEmpty(this.uncraftingMatrix)
+                && !isMatrixEmpty(this.assemblyMatrix)) {
             // combine the two matrixen
             for (int i = 0; i < 9; i++) {
                 if (this.assemblyMatrix.getStackInSlot(i) != null) {
                     this.combineMatrix.setInventorySlotContents(i, this.assemblyMatrix.getStackInSlot(i));
-                } else if (this.uncraftingMatrix.getStackInSlot(i) != null && this.uncraftingMatrix.getStackInSlot(i).stackSize > 0) {
-                    this.combineMatrix.setInventorySlotContents(i, this.uncraftingMatrix.getStackInSlot(i));
-                } else {
-                    this.combineMatrix.setInventorySlotContents(i, null);
-                }
+                } else if (this.uncraftingMatrix.getStackInSlot(i) != null
+                        && this.uncraftingMatrix.getStackInSlot(i).stackSize > 0) {
+                            this.combineMatrix.setInventorySlotContents(i, this.uncraftingMatrix.getStackInSlot(i));
+                        } else {
+                            this.combineMatrix.setInventorySlotContents(i, null);
+                        }
             }
             // is there a result from this combined thing?
             ItemStack result = CraftingManager.getInstance().findMatchingRecipe(this.combineMatrix, this.worldObj);
@@ -260,7 +290,8 @@ public class ContainerTFUncrafting extends Container {
      * Problematic ingredients are not allowed to be uncrafted in the uncrafting table.
      */
     protected boolean isIngredientProblematic(ItemStack ingredient) {
-        return ingredient != null && (ingredient.getItem().hasContainerItem(ingredient) || ingredient.getUnlocalizedName().contains("itemMatter"));
+        return ingredient != null && (ingredient.getItem().hasContainerItem(ingredient)
+                || ingredient.getUnlocalizedName().contains("itemMatter"));
     }
 
     /**
@@ -273,9 +304,11 @@ public class ContainerTFUncrafting extends Container {
     public IRecipe getRecipeFor(ItemStack inputStack) {
         if (inputStack != null) {
             for (IRecipe recipe : (List<IRecipe>) (CraftingManager.getInstance().getRecipeList())) {
-                if ((recipe instanceof ShapedRecipes || recipe instanceof ShapedOreRecipe) && recipe.getRecipeOutput().getItem() == inputStack.getItem()
+                if ((recipe instanceof ShapedRecipes || recipe instanceof ShapedOreRecipe)
+                        && recipe.getRecipeOutput().getItem() == inputStack.getItem()
                         && inputStack.stackSize >= recipe.getRecipeOutput().stackSize
-                        && (!recipe.getRecipeOutput().getHasSubtypes() || recipe.getRecipeOutput().getItemDamage() == inputStack.getItemDamage())) {
+                        && (!recipe.getRecipeOutput().getHasSubtypes()
+                                || recipe.getRecipeOutput().getItemDamage() == inputStack.getItemDamage())) {
                     return recipe;
                 }
             }
@@ -284,8 +317,8 @@ public class ContainerTFUncrafting extends Container {
     }
 
     /**
-     * Checks if the result is a valid match for the input. Currently only accepts armor or tools that
-     * are the same type as the input
+     * Checks if the result is a valid match for the input. Currently only accepts armor or tools that are the same type
+     * as the input
      * 
      * @param resultStack
      */
@@ -348,7 +381,8 @@ public class ContainerTFUncrafting extends Container {
      * @return
      */
     public int calculateRecraftingCost() {
-        if (tinkerInput.getStackInSlot(0) == null || !tinkerInput.getStackInSlot(0).isItemEnchanted() || tinkerResult.getStackInSlot(0) == null) {
+        if (tinkerInput.getStackInSlot(0) == null || !tinkerInput.getStackInSlot(0).isItemEnchanted()
+                || tinkerResult.getStackInSlot(0) == null) {
             return 0;
         } else {
             // okay, if we're here the input item must be enchanted, and we are repairing or recrafting it
@@ -372,7 +406,8 @@ public class ContainerTFUncrafting extends Container {
             cost += damagedCost;
 
             // factor in enchantibility difference
-            int enchantabilityDifference = input.getItem().getItemEnchantability() - output.getItem().getItemEnchantability();
+            int enchantabilityDifference = input.getItem().getItemEnchantability()
+                    - output.getItem().getItemEnchantability();
             // System.out.println("enchantabilityDifference cost is " + enchantabilityDifference);
             cost += enchantabilityDifference;
 
@@ -432,21 +467,21 @@ public class ContainerTFUncrafting extends Container {
 
     public int getWeightModifier(Enchantment ench) {
         switch (ench.getWeight()) {
-        case 1:
-            return 8;
-        case 2:
-            return 4;
-        case 3:
-        case 4:
-        case 5:
-            return 2;
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        default:
-        case 10:
-            return 1;
+            case 1:
+                return 8;
+            case 2:
+                return 4;
+            case 3:
+            case 4:
+            case 5:
+                return 2;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            default:
+            case 10:
+                return 1;
         }
     }
 
@@ -458,7 +493,8 @@ public class ContainerTFUncrafting extends Container {
 
         // if the player is trying to take an item out of the assembly grid, and the assembly grid is empty,
         // take the item from the uncrafting grid.
-        if (slotNum > 0 && par4EntityPlayer.inventory.getItemStack() == null && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.assemblyMatrix
+        if (slotNum > 0 && par4EntityPlayer.inventory.getItemStack() == null
+                && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.assemblyMatrix
                 && !((Slot) this.inventorySlots.get(slotNum)).getHasStack()) {
             // is the assembly matrix empty?
             if (isMatrixEmpty(this.assemblyMatrix)) {
@@ -468,19 +504,22 @@ public class ContainerTFUncrafting extends Container {
 
         // if the player is trying to take the result item and they don't have the XP to pay for it, reject
         // them
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.tinkerResult && calculateRecraftingCost() > par4EntityPlayer.experienceLevel
+        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.tinkerResult
+                && calculateRecraftingCost() > par4EntityPlayer.experienceLevel
                 && !par4EntityPlayer.capabilities.isCreativeMode) {
             return null;
         }
 
         // similarly, reject uncrafting if they can't do that either
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix && calculateUncraftingCost() > par4EntityPlayer.experienceLevel
+        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
+                && calculateUncraftingCost() > par4EntityPlayer.experienceLevel
                 && !par4EntityPlayer.capabilities.isCreativeMode) {
             return null;
         }
 
         // don't allow uncrafting if the server option is turned off
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix && TwilightForestMod.disableUncrafting) {
+        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
+                && TwilightForestMod.disableUncrafting) {
             // send the player a message
             // par4EntityPlayer.sendChatToPlayer("Uncrafting is disabled in the server configuration.");
             return null;
@@ -488,7 +527,8 @@ public class ContainerTFUncrafting extends Container {
 
         // finally, don't give them damaged goods
         if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
-                && (((Slot) this.inventorySlots.get(slotNum)).getStack() == null || ((Slot) this.inventorySlots.get(slotNum)).getStack().stackSize == 0)) {
+                && (((Slot) this.inventorySlots.get(slotNum)).getStack() == null
+                        || ((Slot) this.inventorySlots.get(slotNum)).getStack().stackSize == 0)) {
             return null;
         }
 
@@ -558,8 +598,8 @@ public class ContainerTFUncrafting extends Container {
     }
 
     /**
-     * Determine, based on the item damage, how many parts are damaged. We're already assuming that the
-     * item is loaded into the uncrafing matrix.
+     * Determine, based on the item damage, how many parts are damaged. We're already assuming that the item is loaded
+     * into the uncrafing matrix.
      */
     public int countDamagedParts(ItemStack input) {
         int totalMax4 = Math.max(4, countDamageableParts(this.uncraftingMatrix));
@@ -665,14 +705,14 @@ public class ContainerTFUncrafting extends Container {
     public ItemStack[] getRecipeItemsShaped(ShapedRecipes shaped) {
         return shaped.recipeItems;
 
-//        try {
-//            return (ItemStack[])(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 2));
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//        } catch (SecurityException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
+        // try {
+        // return (ItemStack[])(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 2));
+        // } catch (IllegalArgumentException e) {
+        // e.printStackTrace();
+        // } catch (SecurityException e) {
+        // e.printStackTrace();
+        // }
+        // return null;
     }
 
     /**
@@ -728,14 +768,14 @@ public class ContainerTFUncrafting extends Container {
     public int getRecipeWidthShaped(ShapedRecipes shaped) {
         return shaped.recipeWidth;
 
-//        try {
-//            return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 0))).intValue();
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//        } catch (SecurityException e) {
-//            e.printStackTrace();
-//        }
-//        return 0;
+        // try {
+        // return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 0))).intValue();
+        // } catch (IllegalArgumentException e) {
+        // e.printStackTrace();
+        // } catch (SecurityException e) {
+        // e.printStackTrace();
+        // }
+        // return 0;
     }
 
     /**
@@ -746,7 +786,8 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeWidthOre(ShapedOreRecipe shaped) {
         try {
-            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4))).intValue();
+            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4)))
+                    .intValue();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (SecurityException e) {
@@ -776,14 +817,14 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeHeightShaped(ShapedRecipes shaped) {
         return shaped.recipeHeight;
-//        try {
-//            return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 1))).intValue();
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//        } catch (SecurityException e) {
-//            e.printStackTrace();
-//        }
-//        return 0;
+        // try {
+        // return ((Integer)(ObfuscationReflectionHelper.getPrivateValue(ShapedRecipes.class, shaped, 1))).intValue();
+        // } catch (IllegalArgumentException e) {
+        // e.printStackTrace();
+        // } catch (SecurityException e) {
+        // e.printStackTrace();
+        // }
+        // return 0;
     }
 
     /**
@@ -794,7 +835,8 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeHeightOre(ShapedOreRecipe shaped) {
         try {
-            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5))).intValue();
+            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5)))
+                    .intValue();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (SecurityException e) {

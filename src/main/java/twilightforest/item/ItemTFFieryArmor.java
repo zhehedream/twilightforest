@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,7 +13,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFFieryArmor extends ItemArmor {
 
@@ -35,7 +36,8 @@ public class ItemTFFieryArmor extends ItemArmor {
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
 
-        if (itemstack.getItem() == TFItems.fieryPlate || itemstack.getItem() == TFItems.fieryHelm || itemstack.getItem() == TFItems.fieryBoots) {
+        if (itemstack.getItem() == TFItems.fieryPlate || itemstack.getItem() == TFItems.fieryHelm
+                || itemstack.getItem() == TFItems.fieryBoots) {
             return TwilightForestMod.ARMOR_DIR + "fiery_1.png";
         }
         if (itemstack.getItem() == TFItems.fieryLegs) {
@@ -61,7 +63,8 @@ public class ItemTFFieryArmor extends ItemArmor {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with fiery ingots
-        return par2ItemStack.getItem() == TFItems.fieryIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.fieryIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -70,7 +73,8 @@ public class ItemTFFieryArmor extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**

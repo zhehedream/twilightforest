@@ -1,15 +1,16 @@
 // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
 // Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) braces deadcode 
+// Decompiler options: packimports(3) braces deadcode
 
 package twilightforest.world.layer;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.biomes.TFBiomeBase;
 
 // Referenced classes of package net.minecraft.src:
-//            GenLayer, IntCache, BiomeGenBase
+// GenLayer, IntCache, BiomeGenBase
 
 public class GenLayerTFStream extends GenLayer {
 
@@ -32,11 +33,11 @@ public class GenLayerTFStream extends GenLayer {
                 int down = input[dx + 1 + (dz + 0) * nwidth];
                 int up = input[dx + 1 + (dz + 2) * nwidth];
                 int mid = input[dx + 1 + (dz + 1) * nwidth];
-//                if(mid == 0 || left == 0 || right == 0 || down == 0 || up == 0)
-//                {
-//                    output[dx + dz * width] = TFBiomeBase.stream.biomeID;
-//                    continue;
-//                }
+                // if(mid == 0 || left == 0 || right == 0 || down == 0 || up == 0)
+                // {
+                // output[dx + dz * width] = TFBiomeBase.stream.biomeID;
+                // continue;
+                // }
                 if (shouldStream(mid, left, down, right, up)) {
                     output[dx + dz * width] = TFBiomeBase.stream.biomeID;
                 } else {

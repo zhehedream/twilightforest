@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
+
 import twilightforest.entity.TFCreatures;
 
 public class TFGenWitchHut extends TFGenerator {

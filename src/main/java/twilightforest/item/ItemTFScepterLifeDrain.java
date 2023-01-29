@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -22,7 +20,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFScepterLifeDrain extends ItemTF {
 
@@ -57,9 +58,14 @@ public class ItemTFScepterLifeDrain extends ItemTF {
 
             Item popItem = getTargetDropItemId(target) != null ? getTargetDropItemId(target) : Items.rotten_flesh;
 
-            worldObj.spawnParticle("iconcrack_" + Item.getIdFromItem(popItem), target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - gaussX * gaussFactor,
-                    target.posY + itemRand.nextFloat() * target.height - gaussY * gaussFactor, target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - gaussZ * gaussFactor, gaussX,
-                    gaussY, gaussZ);
+            worldObj.spawnParticle(
+                    "iconcrack_" + Item.getIdFromItem(popItem),
+                    target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - gaussX * gaussFactor,
+                    target.posY + itemRand.nextFloat() * target.height - gaussY * gaussFactor,
+                    target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - gaussZ * gaussFactor,
+                    gaussX,
+                    gaussY,
+                    gaussZ);
         }
     }
 
@@ -78,15 +84,18 @@ public class ItemTFScepterLifeDrain extends ItemTF {
         Vec3 lookVec = player.getLook(1.0F);
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
         float var9 = 1.0F;
-        List<Entity> possibleList = worldObj.getEntitiesWithinAABBExcludingEntity(player,
-                player.boundingBox.addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range).expand(var9, var9, var9));
+        List<Entity> possibleList = worldObj.getEntitiesWithinAABBExcludingEntity(
+                player,
+                player.boundingBox.addCoord(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range)
+                        .expand(var9, var9, var9));
         double hitDist = 0;
 
         for (Entity possibleEntity : possibleList) {
 
             if (possibleEntity.canBeCollidedWith()) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox
+                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {
@@ -130,11 +139,22 @@ public class ItemTFScepterLifeDrain extends ItemTF {
                     if (target.getHealth() <= 3) {
                         // make it explode
 
-                        makeRedMagicTrail(worldObj, player.posX, player.posY + player.getEyeHeight(), player.posZ, target.posX, target.posY + target.getEyeHeight(), target.posZ);
+                        makeRedMagicTrail(
+                                worldObj,
+                                player.posX,
+                                player.posY + player.getEyeHeight(),
+                                player.posZ,
+                                target.posX,
+                                target.posY + target.getEyeHeight(),
+                                target.posZ);
                         if (target instanceof EntityLiving) {
                             ((EntityLiving) target).spawnExplosionParticle();
                         }
-                        worldObj.playSoundAtEntity(target, "game.player.hurt.fall.big", 1.0F, ((itemRand.nextFloat() - itemRand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                        worldObj.playSoundAtEntity(
+                                target,
+                                "game.player.hurt.fall.big",
+                                1.0F,
+                                ((itemRand.nextFloat() - itemRand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                         animateTargetShatter(worldObj, (EntityLivingBase) target);
                         if (!worldObj.isRemote) {
                             target.setDead();
@@ -165,9 +185,20 @@ public class ItemTFScepterLifeDrain extends ItemTF {
                     }
                 } else {
                     // this is a new creature to start draining
-                    makeRedMagicTrail(worldObj, player.posX, player.posY + player.getEyeHeight(), player.posZ, target.posX, target.posY + target.getEyeHeight(), target.posZ);
+                    makeRedMagicTrail(
+                            worldObj,
+                            player.posX,
+                            player.posY + player.getEyeHeight(),
+                            player.posZ,
+                            target.posX,
+                            target.posY + target.getEyeHeight(),
+                            target.posZ);
 
-                    worldObj.playSoundAtEntity(player, "fire.ignite", 1.0F, (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+                    worldObj.playSoundAtEntity(
+                            player,
+                            "fire.ignite",
+                            1.0F,
+                            (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
 
                     if (!worldObj.isRemote) {
                         target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(player, player), 1);
@@ -199,7 +230,8 @@ public class ItemTFScepterLifeDrain extends ItemTF {
     /**
      * Make a trail of particles from one point to another
      */
-    protected void makeRedMagicTrail(World worldObj, double srcX, double srcY, double srcZ, double destX, double destY, double destZ) {
+    protected void makeRedMagicTrail(World worldObj, double srcX, double srcY, double srcZ, double destX, double destY,
+            double destZ) {
         // make particle trail
         int particles = 32;
         for (int i = 0; i < particles; i++) {
@@ -254,6 +286,7 @@ public class ItemTFScepterLifeDrain extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

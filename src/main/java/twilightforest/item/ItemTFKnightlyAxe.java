@@ -2,10 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import com.google.common.collect.Multimap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.TwilightForestMod;
+
+import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFKnightlyAxe extends ItemAxe {
 
@@ -49,12 +51,13 @@ public class ItemTFKnightlyAxe extends ItemAxe {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with knightmetal ingots
-        return par2ItemStack.getItem() == TFItems.knightMetal ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.knightMetal ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
-     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if
-     * return value is true further processing is canceled and the entity is not attacked.
+     * Called when the player Left Clicks (attacks) an entity. Processed before damage is done, if return value is true
+     * further processing is canceled and the entity is not attacked.
      * 
      * @param stack  The Item being used
      * @param player The player that is attacking
@@ -72,24 +75,24 @@ public class ItemTFKnightlyAxe extends ItemAxe {
         return false;
     }
 
-//    /**
-//     * Returns the damage against a given entity.
-//     */
-//    @Override
-//    public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
-//    {
-//           if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
-//           {
-//               this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
-//               this.bonusDamagePlayer = null;
-//               this.bonusDamageEntity = null;
-//               return this.damageVsEntity + BONUS_DAMAGE;
-//           }
-//           else
-//           {
-//               return super.getDamageVsEntity(par1Entity, itemStack);
-//           }
-//    }
+    // /**
+    // * Returns the damage against a given entity.
+    // */
+    // @Override
+    // public float getDamageVsEntity(Entity par1Entity, ItemStack itemStack)
+    // {
+    // if (this.bonusDamagePlayer != null && this.bonusDamageEntity != null && par1Entity == this.bonusDamageEntity)
+    // {
+    // this.bonusDamagePlayer.onEnchantmentCritical(par1Entity);
+    // this.bonusDamagePlayer = null;
+    // this.bonusDamageEntity = null;
+    // return this.damageVsEntity + BONUS_DAMAGE;
+    // }
+    // else
+    // {
+    // return super.getDamageVsEntity(par1Entity, itemStack);
+    // }
+    // }
 
     /**
      * Properly register icon source
@@ -97,7 +100,8 @@ public class ItemTFKnightlyAxe extends ItemAxe {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**
@@ -118,7 +122,9 @@ public class ItemTFKnightlyAxe extends ItemAxe {
         // remove old damage value
         multimap.removeAll(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
         // add new one
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", (double) this.damageVsEntity, 0));
+        multimap.put(
+                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(field_111210_e, "Tool modifier", (double) this.damageVsEntity, 0));
         return multimap;
     }
 }

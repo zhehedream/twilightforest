@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
@@ -40,27 +41,27 @@ public class TFGenHollowTree extends TFGenerator {
 
         // do we have enough height?
         if (y < 1 || y + height + diameter > TFWorld.MAXHEIGHT) {
-//            System.out.println("Failed with hollow tree of height " + height);
+            // System.out.println("Failed with hollow tree of height " + height);
             return false;
         }
-//        System.out.println("Succeeded with hollow tree of height " + height);
+        // System.out.println("Succeeded with hollow tree of height " + height);
 
-//        // are we going to hit something?
-//        for (int dx = -diameter; dx <= diameter; dx++)
-//        {
-//            for (int dz = -diameter; dz <= diameter; dz++)
-//            {
-//                for (int dy = 1; dy <= height; dy++)
-//                {
-//                    int whatsThere = world.getBlock(dx + x, dy + y, dz + z);
-//                    if(whatsThere != 0 && whatsThere != Blocks.leaves)
-//                    {
-//                        System.out.println("Failed tree due to things at the base at height " + dy);
-//                        return false;
-//                    }
-//                }
-//            }
-//        }
+        // // are we going to hit something?
+        // for (int dx = -diameter; dx <= diameter; dx++)
+        // {
+        // for (int dz = -diameter; dz <= diameter; dz++)
+        // {
+        // for (int dy = 1; dy <= height; dy++)
+        // {
+        // int whatsThere = world.getBlock(dx + x, dy + y, dz + z);
+        // if(whatsThere != 0 && whatsThere != Blocks.leaves)
+        // {
+        // System.out.println("Failed tree due to things at the base at height " + dy);
+        // return false;
+        // }
+        // }
+        // }
+        // }
         // check the top too
         int crownRadius = diameter * 4 + 8;
         for (int dx = -crownRadius; dx <= crownRadius; dx++) {
@@ -68,7 +69,7 @@ public class TFGenHollowTree extends TFGenerator {
                 for (int dy = height - crownRadius; dy <= height + crownRadius; dy++) {
                     Block whatsThere = world.getBlock(dx + x, dy + y, dz + z);
                     if (whatsThere != Blocks.air && whatsThere != Blocks.leaves) {
-//                        System.out.println("Failed tree due to things at the top");
+                        // System.out.println("Failed tree due to things at the top");
                         return false;
                     }
                 }
@@ -133,24 +134,72 @@ public class TFGenHollowTree extends TFGenerator {
         int bvar = diameter + 2;
 
         // okay, let's do 3-5 main branches starting at the bottom of the crown
-        buildBranchRing(world, random, x, y, z, diameter, height - crownRadius, 0, crownRadius, 0, 0.35D, 0, bvar, bvar + 2, 2, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - crownRadius,
+                0,
+                crownRadius,
+                0,
+                0.35D,
+                0,
+                bvar,
+                bvar + 2,
+                2,
+                true);
 
         // then, let's do 3-5 medium branches at the crown middle
-        buildBranchRing(world, random, x, y, z, diameter, height - (crownRadius / 2), 0, crownRadius, 0, 0.28D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - (crownRadius / 2),
+                0,
+                crownRadius,
+                0,
+                0.28D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // finally, let's do 2-4 main branches at the crown top
         buildBranchRing(world, random, x, y, z, diameter, height, 0, crownRadius, 0, 0.15D, 0, 2, 4, 2, true);
 
         // and extra finally, let's do 3-6 medium branches going straight up
-        buildBranchRing(world, random, x, y, z, diameter, height, 0, (crownRadius / 2), 0, 0.05D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height,
+                0,
+                (crownRadius / 2),
+                0,
+                0.05D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // this glass sphere approximates where we want our crown
         // drawBlob(x, y + height, z, (byte)crownRadius, (byte)Blocks.glass, false);
     }
 
     /**
-     * Build the crown of the tree. This builds a smaller crown, since the large ones were causing some
-     * performance issues
+     * Build the crown of the tree. This builds a smaller crown, since the large ones were causing some performance
+     * issues
      * 
      * @param height
      */
@@ -159,23 +208,72 @@ public class TFGenHollowTree extends TFGenerator {
         int bvar = 2;
 
         // 3-5 medium branches starting at the bottom of the crown
-        buildBranchRing(world, random, x, y, z, diameter, height - crownRadius, 0, crownRadius, 0, 0.35D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - crownRadius,
+                0,
+                crownRadius,
+                0,
+                0.35D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // 3-5 medium branches at the crown middle
-        buildBranchRing(world, random, x, y, z, diameter, height - (crownRadius / 2), 0, crownRadius, 0, 0.28D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height - (crownRadius / 2),
+                0,
+                crownRadius,
+                0,
+                0.28D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // 2-4 medium branches at the crown top
         buildBranchRing(world, random, x, y, z, diameter, height, 0, crownRadius, 0, 0.15D, 0, 2, 4, 1, true);
 
         // 3-6 medium branches going straight up
-        buildBranchRing(world, random, x, y, z, diameter, height, 0, (crownRadius / 2), 0, 0.05D, 0, bvar, bvar + 2, 1, true);
+        buildBranchRing(
+                world,
+                random,
+                x,
+                y,
+                z,
+                diameter,
+                height,
+                0,
+                (crownRadius / 2),
+                0,
+                0.05D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
     }
 
     /**
      * Build a ring of branches around the tree size 0 = small, 1 = med, 2 = large, 3 = root
      */
-    protected void buildBranchRing(World world, Random random, int x, int y, int z, int diameter, int branchHeight, int heightVar, int length, int lengthVar, double tilt, double tiltVar,
-            int minBranches, int maxBranches, int size, boolean leafy) {
+    protected void buildBranchRing(World world, Random random, int x, int y, int z, int diameter, int branchHeight,
+            int heightVar, int length, int lengthVar, double tilt, double tiltVar, int minBranches, int maxBranches,
+            int size, boolean leafy) {
         // let's do this!
         int numBranches = random.nextInt(maxBranches - minBranches) + minBranches;
         double branchRotation = 1.0 / (numBranches + 1);
@@ -189,17 +287,60 @@ public class TFGenHollowTree extends TFGenerator {
                 dHeight = branchHeight;
             }
 
-            switch(size) {
-            case 1:
-                makeMedBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
-                break;
-            case 2:
-                makeLargeBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
-                break;
-            case 3:
-                makeRoot(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt);
-            default:
-                makeSmallBranch(world, random, x, y, z, diameter, dHeight, length, i * branchRotation + branchOffset, tilt, leafy);
+            switch (size) {
+                case 1:
+                    makeMedBranch(
+                            world,
+                            random,
+                            x,
+                            y,
+                            z,
+                            diameter,
+                            dHeight,
+                            length,
+                            i * branchRotation + branchOffset,
+                            tilt,
+                            leafy);
+                    break;
+                case 2:
+                    makeLargeBranch(
+                            world,
+                            random,
+                            x,
+                            y,
+                            z,
+                            diameter,
+                            dHeight,
+                            length,
+                            i * branchRotation + branchOffset,
+                            tilt,
+                            leafy);
+                    break;
+                case 3:
+                    makeRoot(
+                            world,
+                            random,
+                            x,
+                            y,
+                            z,
+                            diameter,
+                            dHeight,
+                            length,
+                            i * branchRotation + branchOffset,
+                            tilt);
+                default:
+                    makeSmallBranch(
+                            world,
+                            random,
+                            x,
+                            y,
+                            z,
+                            diameter,
+                            dHeight,
+                            length,
+                            i * branchRotation + branchOffset,
+                            tilt,
+                            leafy);
             }
         }
     }
@@ -222,7 +363,13 @@ public class TFGenHollowTree extends TFGenerator {
 
                     if (dist <= diameter) {
                         if (hasAirAround(world, dx + x, dy + y, dz + z)) {
-                            this.setBlockAndMetadata(world, dx + x, dy + y, dz + z, treeBlock, dist > hollow ? treeMeta : branchMeta);
+                            this.setBlockAndMetadata(
+                                    world,
+                                    dx + x,
+                                    dy + y,
+                                    dz + z,
+                                    treeBlock,
+                                    dist > hollow ? treeMeta : branchMeta);
                         } else {
                             this.setBlockAndMetadata(world, dx + x, dy + y, dz + z, rootBlock, rootMeta);
                         }
@@ -253,7 +400,7 @@ public class TFGenHollowTree extends TFGenerator {
 
                     // how about a ladder? is that okay?
                     if (dist == hollow && dx == hollow) {
-//                        putBlockAndMetadata(dx + x, dy + y, dz + z, Blocks.ladder,  4, true);
+                        // putBlockAndMetadata(dx + x, dy + y, dz + z, Blocks.ladder, 4, true);
                         setBlockAndMetadata(world, dx + x, dy + y, dz + z, Blocks.vine, 8);
                     }
                 }
@@ -264,7 +411,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a branch!
      */
-    protected void makeMedBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight, double length, double angle, double tilt, boolean leafy) {
+    protected void makeMedBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight,
+            double length, double angle, double tilt, boolean leafy) {
         int sx = x, sy = y + branchHeight, sz = z;
         int[] src = translate(sx, sy, sz, diameter, angle, 0.5);
 
@@ -275,7 +423,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a branch!
      */
-    protected void makeMedBranch(World world, Random random, int sx, int sy, int sz, double length, double angle, double tilt, boolean leafy) {
+    protected void makeMedBranch(World world, Random random, int sx, int sy, int sz, double length, double angle,
+            double tilt, boolean leafy) {
         int[] src = { sx, sy, sz };
         int[] dest = translate(src[0], src[1], src[2], length, angle, tilt);
 
@@ -287,12 +436,8 @@ public class TFGenHollowTree extends TFGenerator {
 
         if (leafy) {
             /*
-             * int numLeafBalls = random.nextInt(2) + 1; for(int i = 0; i <= numLeafBalls; i++) {
-             * 
-             * double slength = random.nextDouble() * 0.6 + 0.2; int[] bdst = translate(src[0], src[1], src[2],
-             * slength, angle, tilt);
-             * 
-             * 
+             * int numLeafBalls = random.nextInt(2) + 1; for(int i = 0; i <= numLeafBalls; i++) { double slength =
+             * random.nextDouble() * 0.6 + 0.2; int[] bdst = translate(src[0], src[1], src[2], slength, angle, tilt);
              * drawBlob(bdst[0], bdst[1], bdst[2], 2, leafBlock, false); }
              */
 
@@ -323,7 +468,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a small branch with a leaf blob at the end
      */
-    protected void makeSmallBranch(World world, Random random, int sx, int sy, int sz, double length, double angle, double tilt, boolean leafy) {
+    protected void makeSmallBranch(World world, Random random, int sx, int sy, int sz, double length, double angle,
+            double tilt, boolean leafy) {
         int[] src = { sx, sy, sz };
         int[] dest = translate(src[0], src[1], src[2], length, angle, tilt);
 
@@ -339,7 +485,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a small branch at a certain height
      */
-    protected void makeSmallBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight, double length, double angle, double tilt, boolean leafy) {
+    protected void makeSmallBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight,
+            double length, double angle, double tilt, boolean leafy) {
         int sx = x, sy = y + branchHeight, sz = z;
         int[] src = translate(sx, sy, sz, diameter, angle, 0.5);
 
@@ -349,7 +496,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a root
      */
-    protected void makeRoot(World world, Random random, int x, int y, int z, int diameter, int branchHeight, double length, double angle, double tilt) {
+    protected void makeRoot(World world, Random random, int x, int y, int z, int diameter, int branchHeight,
+            double length, double angle, double tilt) {
         ChunkCoordinates src = translateCoords(x, y + branchHeight, z, diameter, angle, 0.5);
         ChunkCoordinates dest = translateCoords(src.posX, src.posY, src.posZ, length, angle, tilt);
 
@@ -372,7 +520,8 @@ public class TFGenHollowTree extends TFGenerator {
      * 
      * The large branch will have 1-4 medium branches and several small branches too
      */
-    protected void makeLargeBranch(World world, Random random, int sx, int sy, int sz, double length, double angle, double tilt, boolean leafy) {
+    protected void makeLargeBranch(World world, Random random, int sx, int sy, int sz, double length, double angle,
+            double tilt, boolean leafy) {
         int[] src = { sx, sy, sz };
         int[] dest = translate(src[0], src[1], src[2], length, angle, tilt);
 
@@ -386,7 +535,16 @@ public class TFGenHollowTree extends TFGenerator {
             int vx = (i & 2) == 0 ? 1 : 0;
             int vy = (i & 1) == 0 ? 1 : -1;
             int vz = (i & 2) == 0 ? 0 : 1;
-            drawBresehnam(world, src[0] + vx, src[1] + vy, src[2] + vz, dest[0], dest[1], dest[2], treeBlock, branchMeta);
+            drawBresehnam(
+                    world,
+                    src[0] + vx,
+                    src[1] + vy,
+                    src[2] + vz,
+                    dest[0],
+                    dest[1],
+                    dest[2],
+                    treeBlock,
+                    branchMeta);
         }
 
         if (leafy) {
@@ -416,7 +574,16 @@ public class TFGenHollowTree extends TFGenerator {
             double angleVar = random.nextDouble() * 0.25 * ((i & 1) == 0 ? 1.0 : -1.0);
             int[] bsrc = translate(src[0], src[1], src[2], length * outVar, angle, tilt);
 
-            makeSmallBranch(world, random, bsrc[0], bsrc[1], bsrc[2], Math.max(length * 0.3, 2), angle + angleVar, tilt, leafy);
+            makeSmallBranch(
+                    world,
+                    random,
+                    bsrc[0],
+                    bsrc[1],
+                    bsrc[2],
+                    Math.max(length * 0.3, 2),
+                    angle + angleVar,
+                    tilt,
+                    leafy);
         }
 
         if (random.nextInt(LEAF_DUNGEON_CHANCE) == 0) {
@@ -459,7 +626,8 @@ public class TFGenHollowTree extends TFGenerator {
     /**
      * Make a large, branching "base" branch off of the tree
      */
-    protected void makeLargeBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight, double length, double angle, double tilt, boolean leafy) {
+    protected void makeLargeBranch(World world, Random random, int x, int y, int z, int diameter, int branchHeight,
+            double length, double angle, double tilt, boolean leafy) {
         int sx = x, sy = y + branchHeight, sz = z;
         int[] src = translate(sx, sy, sz, diameter, angle, 0.5);
 

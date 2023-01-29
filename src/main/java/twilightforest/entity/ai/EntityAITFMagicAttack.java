@@ -6,12 +6,14 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.entity.EntityTFNatureBolt;
 import twilightforest.entity.EntityTFSlimeProjectile;
 import twilightforest.entity.EntityTFTomeBolt;
 import twilightforest.entity.boss.EntityTFLichBolt;
 
 public class EntityAITFMagicAttack extends EntityAIBase {
+
     public static final int SLIME = 4;
     public static final int LICH = 3;
     public static final int TOME = 2;
@@ -24,8 +26,8 @@ public class EntityAITFMagicAttack extends EntityAIBase {
     EntityLivingBase attackTarget;
 
     /**
-     * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to
-     * the maxRangedAttackTime.
+     * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
+     * maxRangedAttackTime.
      */
     int rangedAttackTime = 0;
     float moveSpeed;
@@ -94,7 +96,8 @@ public class EntityAITFMagicAttack extends EntityAIBase {
     @Override
     public void updateTask() {
         double maxRange = 100.0D;
-        double targetDistance = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.boundingBox.minY, this.attackTarget.posZ);
+        double targetDistance = this.entityHost
+                .getDistanceSq(this.attackTarget.posX, this.attackTarget.boundingBox.minY, this.attackTarget.posZ);
         boolean canSee = this.entityHost.getEntitySenses().canSee(this.attackTarget);
 
         if (canSee) {
@@ -128,22 +131,40 @@ public class EntityAITFMagicAttack extends EntityAIBase {
 
         if (this.rangedAttackID == NATURE) {
             projectile = new EntityTFNatureBolt(this.worldObj, this.entityHost);
-            this.worldObj.playSoundAtEntity(this.entityHost, "mob.ghast.fireball", 1.0F, 1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
+            this.worldObj.playSoundAtEntity(
+                    this.entityHost,
+                    "mob.ghast.fireball",
+                    1.0F,
+                    1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
         } else if (this.rangedAttackID == TOME) {
             projectile = new EntityTFTomeBolt(this.worldObj, this.entityHost);
-            this.worldObj.playSoundAtEntity(this.entityHost, "mob.ghast.fireball", 1.0F, 1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
+            this.worldObj.playSoundAtEntity(
+                    this.entityHost,
+                    "mob.ghast.fireball",
+                    1.0F,
+                    1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
         } else if (this.rangedAttackID == LICH) {
             projectile = new EntityTFLichBolt(this.worldObj, this.entityHost);
-            this.worldObj.playSoundAtEntity(this.entityHost, "mob.ghast.fireball", 1.0F, 1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
+            this.worldObj.playSoundAtEntity(
+                    this.entityHost,
+                    "mob.ghast.fireball",
+                    1.0F,
+                    1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
         } else if (this.rangedAttackID == SLIME) {
             projectile = new EntityTFSlimeProjectile(this.worldObj, this.entityHost);
-            this.worldObj.playSoundAtEntity(this.entityHost, "mob.slime.small", 1.0F, 1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
+            this.worldObj.playSoundAtEntity(
+                    this.entityHost,
+                    "mob.slime.small",
+                    1.0F,
+                    1.0F / (this.entityHost.getRNG().nextFloat() * 0.4F + 0.8F));
         }
 
         // launch the projectile
         if (projectile != null) {
             double tx = this.attackTarget.posX - this.entityHost.posX;
-            double ty = this.attackTarget.posY + this.attackTarget.getEyeHeight() - 1.100000023841858D - projectile.posY;
+            double ty = this.attackTarget.posY + this.attackTarget.getEyeHeight()
+                    - 1.100000023841858D
+                    - projectile.posY;
             double tz = this.attackTarget.posZ - this.entityHost.posZ;
             float heightOffset = MathHelper.sqrt_double(tx * tx + tz * tz) * 0.2F;
             projectile.setThrowableHeading(tx, ty + heightOffset, tz, 0.6F, 6.0F); // 0.6 speed, 6.0 inaccuracy

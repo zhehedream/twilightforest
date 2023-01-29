@@ -1,6 +1,7 @@
 package twilightforest.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
+
 import twilightforest.entity.EntityTFGoblinKnightUpper;
 
 public class EntityAITFHeavySpearAttack extends EntityAIBase {

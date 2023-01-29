@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -18,9 +16,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 import twilightforest.tileentity.TileEntityTFCinderFurnace;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFCinderFurnace extends BlockContainer {
 
@@ -66,7 +67,8 @@ public class BlockTFCinderFurnace extends BlockContainer {
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_,
+            float p_149727_7_, float p_149727_8_, float p_149727_9_) {
         if (world.isRemote) {
             return true;
         } else {
@@ -167,16 +169,22 @@ public class BlockTFCinderFurnace extends BlockContainer {
                             }
 
                             itemstack.stackSize -= j1;
-                            EntityItem entityitem = new EntityItem(world, (double) ((float) x + dx), (double) ((float) y + dy), (double) ((float) z + dz),
+                            EntityItem entityitem = new EntityItem(
+                                    world,
+                                    (double) ((float) x + dx),
+                                    (double) ((float) y + dy),
+                                    (double) ((float) z + dz),
                                     new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 
                             if (itemstack.hasTagCompound()) {
-                                entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
+                                entityitem.getEntityItem()
+                                        .setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                             }
 
                             float pointFive = 0.05F;
                             entityitem.motionX = (double) ((float) this.furnaceRandom.nextGaussian() * pointFive);
-                            entityitem.motionY = (double) ((float) this.furnaceRandom.nextGaussian() * pointFive + 0.2F);
+                            entityitem.motionY = (double) ((float) this.furnaceRandom.nextGaussian() * pointFive
+                                    + 0.2F);
                             entityitem.motionZ = (double) ((float) this.furnaceRandom.nextGaussian() * pointFive);
                             world.spawnEntityInWorld(entityitem);
                         }

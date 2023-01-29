@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
 public class ComponentTFDarkTowerRoofFourPost extends ComponentTFDarkTowerRoof {

@@ -1,12 +1,13 @@
 package twilightforest.block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.ItemBlockTFMeta;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TFBlocks {
 
@@ -106,7 +107,8 @@ public class TFBlocks {
         underBrick = (new BlockTFUnderBrick()).setBlockName("TFUnderBrick");
         thorns = (new BlockTFThorns()).setBlockName("TFThorns");
         burntThorns = (new BlockTFBurntThorns()).setBlockName("TFBurntThorns");
-        thornRose = (new BlockTFThornRose()).setBlockName("TFThornRose").setBlockTextureName(TwilightForestMod.ID + ":thornRose");
+        thornRose = (new BlockTFThornRose()).setBlockName("TFThornRose")
+                .setBlockTextureName(TwilightForestMod.ID + ":thornRose");
         leaves3 = (new BlockTFLeaves3()).setBlockName("TFLeaves3").setBlockTextureName("leaves_oak");
         deadrock = (new BlockTFDeadrock()).setBlockName("TFDeadrock");
         darkleaves = (new BlockTFDarkLeaves()).setBlockName("DarkLeaves");
@@ -128,7 +130,8 @@ public class TFBlocks {
         trollBer = (new BlockTFRipeTorchCluster()).setBlockName("TrollBer");
         knightmetalStorage = (new BlockTFKnightmetalBlock()).setBlockName("KnightmetalBlock");
         hugeLilyPad = (new BlockTFHugeLilyPad()).setBlockName("HugeLilyPad");
-        hugeWaterLily = (new BlockTFHugeWaterLily()).setBlockName("HugeWaterLily").setBlockTextureName(TwilightForestMod.ID + ":huge_waterlily");
+        hugeWaterLily = (new BlockTFHugeWaterLily()).setBlockName("HugeWaterLily")
+                .setBlockTextureName(TwilightForestMod.ID + ":huge_waterlily");
         slider = (new BlockTFSlider()).setBlockName("Slider");
         castleBlock = (new BlockTFCastleBlock()).setBlockName("CastleBrick");
         castleMagic = (new BlockTFCastleMagic()).setBlockName("CastleMagic");
@@ -169,15 +172,29 @@ public class TFBlocks {
         registerMyBlock(trophyPedestal);
         registerMyBlock(auroraBlock, ItemBlock.class);
         registerMyBlock(underBrick);
-        registerMyBlock(thorns, twilightforest.item.ItemBlockTFThorns.class, thorns, ((BlockTFThorns) thorns).getNames());
+        registerMyBlock(
+                thorns,
+                twilightforest.item.ItemBlockTFThorns.class,
+                thorns,
+                ((BlockTFThorns) thorns).getNames());
         registerMyBlock(burntThorns, ItemBlock.class);
         registerMyBlock(thornRose, ItemBlock.class);
         registerMyBlock(leaves3);
         registerMyBlock(deadrock, twilightforest.item.ItemBlockTFDeadrock.class, deadrock, BlockTFDeadrock.names);
         registerMyBlock(darkleaves, ItemBlock.class);
         registerMyBlock(auroraPillar, ItemBlock.class);
-        registerMyBlock(auroraSlab, twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), false);
-        registerMyBlock(auroraDoubleSlab, twilightforest.item.ItemBlockTFAuroraSlab.class, ((BlockSlab) auroraSlab), ((BlockSlab) auroraDoubleSlab), true);
+        registerMyBlock(
+                auroraSlab,
+                twilightforest.item.ItemBlockTFAuroraSlab.class,
+                ((BlockSlab) auroraSlab),
+                ((BlockSlab) auroraDoubleSlab),
+                false);
+        registerMyBlock(
+                auroraDoubleSlab,
+                twilightforest.item.ItemBlockTFAuroraSlab.class,
+                ((BlockSlab) auroraSlab),
+                ((BlockSlab) auroraDoubleSlab),
+                true);
         registerMyBlock(trollSteinn, ItemBlock.class);
         registerMyBlock(wispyCloud, ItemBlock.class);
         registerMyBlock(fluffyCloud, ItemBlock.class);
@@ -211,12 +228,14 @@ public class TFBlocks {
         Blocks.fire.setFireInfo(leaves3, 30, 60);
     }
 
-    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, BlockSlab singleSlab, BlockSlab doubleSlab, boolean isDouble) {
+    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, BlockSlab singleSlab,
+            BlockSlab doubleSlab, boolean isDouble) {
         GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), singleSlab, doubleSlab, isDouble);
 
     }
 
-    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, Block blockAgain, String[] names) {
+    private static void registerMyBlock(Block block, Class<? extends ItemBlock> pickup, Block blockAgain,
+            String[] names) {
         GameRegistry.registerBlock(block, pickup, block.getUnlocalizedName(), blockAgain, names);
     }
 

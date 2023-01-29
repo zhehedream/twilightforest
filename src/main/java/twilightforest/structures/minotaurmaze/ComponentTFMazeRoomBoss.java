@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.TFTreasure;
 import twilightforest.entity.boss.EntityTFMinoshroom;
 
@@ -55,7 +56,14 @@ public class ComponentTFMazeRoomBoss extends ComponentTFMazeRoom {
                 }
                 // add small mushrooms all over
                 if (mushroom) {
-                    this.placeBlockAtCurrentPosition(world, mushRed ? Blocks.red_mushroom : Blocks.brown_mushroom, 0, x, 1, z, sbb);
+                    this.placeBlockAtCurrentPosition(
+                            world,
+                            mushRed ? Blocks.red_mushroom : Blocks.brown_mushroom,
+                            0,
+                            x,
+                            1,
+                            z,
+                            sbb);
                 }
             }
         }

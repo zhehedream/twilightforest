@@ -18,7 +18,8 @@ public class ComponentTFMushroomTowerMainBridge extends ComponentTFMushroomTower
     }
 
     @Override
-    public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight,
+            int rotation) {
 
         // make a new size 15 main tower
         int direction = (getCoordBaseMode() + rotation) % 4;
@@ -27,7 +28,14 @@ public class ComponentTFMushroomTowerMainBridge extends ComponentTFMushroomTower
         // adjust coordinates to fit an existing tower
         dx = adjustCoordinates(dx[0], dx[1], dx[2], 15, direction, list);
 
-        ComponentTFMushroomTowerMain wing = new ComponentTFMushroomTowerMain(index, dx[0], dx[1], dx[2], 15, wingHeight, direction);
+        ComponentTFMushroomTowerMain wing = new ComponentTFMushroomTowerMain(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                15,
+                wingHeight,
+                direction);
 
         list.add(wing);
         wing.buildComponent((StructureComponent) list.get(0), list, rand);

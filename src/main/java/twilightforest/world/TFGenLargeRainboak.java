@@ -6,17 +6,19 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 /**
- * This is a lame copy of WorldGenLargeTree, since I'm too lazy to make my own tree and all the
- * methods in WorldGenLargeTree are package-only
+ * This is a lame copy of WorldGenLargeTree, since I'm too lazy to make my own tree and all the methods in
+ * WorldGenLargeTree are package-only
  *
  */
 public class TFGenLargeRainboak extends TFTreeGenerator {
+
     /**
-     * Contains three sets of two values that provide complimentary indices for a given 'major' index -
-     * 1 and 2 for 0, 0 and 2 for 1, and 0 and 1 for 2.
+     * Contains three sets of two values that provide complimentary indices for a given 'major' index - 1 and 2 for 0, 0
+     * and 2 for 1, and 0 and 1 for 2.
      */
     static final byte[] otherCoordPairs = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
 
@@ -35,8 +37,7 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     double leafDensity = 1.0D;
 
     /**
-     * Currently always 1, can be set to 2 in the class constructor to generate a double-sized tree
-     * trunk for big trees.
+     * Currently always 1, can be set to 2 in the class constructor to generate a double-sized tree trunk for big trees.
      */
     int trunkSize = 1;
 
@@ -46,8 +47,7 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     int heightLimitLimit = 12;
 
     /**
-     * Sets the distance limit for how far away the generator will populate leaves from the base leaf
-     * node.
+     * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
      */
     int leafDistanceLimit = 4;
 
@@ -107,7 +107,9 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
 
                     if (this.checkBlockLine(var17, var18) == -1) {
                         int[] var19 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };
-                        double var20 = Math.sqrt(Math.pow((double) Math.abs(this.basePos[0] - var17[0]), 2.0D) + Math.pow((double) Math.abs(this.basePos[2] - var17[2]), 2.0D));
+                        double var20 = Math.sqrt(
+                                Math.pow((double) Math.abs(this.basePos[0] - var17[0]), 2.0D)
+                                        + Math.pow((double) Math.abs(this.basePos[2] - var17[2]), 2.0D));
                         double var22 = var20 * this.branchSlope;
 
                         if ((double) var17[1] - var22 > (double) var5) {
@@ -149,7 +151,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
             var13 = -var7;
 
             while (var13 <= var7) {
-                double var15 = Math.pow((double) Math.abs(var12) + 0.5D, 2.0D) + Math.pow((double) Math.abs(var13) + 0.5D, 2.0D);
+                double var15 = Math.pow((double) Math.abs(var12) + 0.5D, 2.0D)
+                        + Math.pow((double) Math.abs(var13) + 0.5D, 2.0D);
 
                 if (var15 > (double) (par4 * par4)) {
                     ++var13;
@@ -157,7 +160,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
                     var11[var9] = var10[var9] + var13;
                     Block var14 = this.worldObj.getBlock(var11[0], var11[1], var11[2]);
 
-                    if (var14 != Blocks.air && !var14.canBeReplacedByLeaves(this.worldObj, var11[0], var11[1], var11[2])) {
+                    if (var14 != Blocks.air
+                            && !var14.canBeReplacedByLeaves(this.worldObj, var11[0], var11[1], var11[2])) {
                         ++var13;
                     } else {
                         this.setBlockAndMetadata(this.worldObj, var11[0], var11[1], var11[2], leaves, meta);
@@ -184,7 +188,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
             } else if (Math.abs(var3) >= var2) {
                 var4 = 0.0F;
             } else {
-                var4 = (float) Math.sqrt(Math.pow((double) Math.abs(var2), 2.0D) - Math.pow((double) Math.abs(var3), 2.0D));
+                var4 = (float) Math
+                        .sqrt(Math.pow((double) Math.abs(var2), 2.0D) - Math.pow((double) Math.abs(var3), 2.0D));
             }
 
             var4 *= 0.5F;
@@ -193,7 +198,9 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     float leafSize(int par1) {
-        return par1 >= 0 && par1 < this.leafDistanceLimit ? (par1 != 0 && par1 != this.leafDistanceLimit - 1 ? 3.0F : 2.0F) : -1.0F;
+        return par1 >= 0 && par1 < this.leafDistanceLimit
+                ? (par1 != 0 && par1 != this.leafDistanceLimit - 1 ? 3.0F : 2.0F)
+                : -1.0F;
     }
 
     /**
@@ -209,8 +216,7 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     /**
-     * Places a line of the specified block ID into the world from the first coordinate triplet to the
-     * second.
+     * Places a line of the specified block ID into the world from the first coordinate triplet to the second.
      */
     void placeBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, Block log) {
         int[] var4 = new int[] { 0, 0, 0 };
@@ -243,8 +249,10 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
 
             for (int var16 = var4[var6] + var9; var15 != var16; var15 += var9) {
                 var14[var6] = MathHelper.floor_double((double) (par1ArrayOfInteger[var6] + var15) + 0.5D);
-                var14[var7] = MathHelper.floor_double((double) par1ArrayOfInteger[var7] + (double) var15 * var10 + 0.5D);
-                var14[var8] = MathHelper.floor_double((double) par1ArrayOfInteger[var8] + (double) var15 * var12 + 0.5D);
+                var14[var7] = MathHelper
+                        .floor_double((double) par1ArrayOfInteger[var7] + (double) var15 * var10 + 0.5D);
+                var14[var8] = MathHelper
+                        .floor_double((double) par1ArrayOfInteger[var8] + (double) var15 * var12 + 0.5D);
                 byte var17 = 0;
                 int var18 = Math.abs(var14[0] - par1ArrayOfInteger[0]);
                 int var19 = Math.abs(var14[2] - par1ArrayOfInteger[2]);
@@ -285,8 +293,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     /**
-     * Places the trunk for the big tree that is being generated. Able to generate double-sized trunks
-     * by changing a field that is always 1 to 2.
+     * Places the trunk for the big tree that is being generated. Able to generate double-sized trunks by changing a
+     * field that is always 1 to 2.
      */
     void generateTrunk() {
         int var1 = this.basePos[0];
@@ -311,8 +319,7 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     /**
-     * Generates additional wood blocks to fill out the bases of different leaf nodes that would
-     * otherwise degrade.
+     * Generates additional wood blocks to fill out the bases of different leaf nodes that would otherwise degrade.
      */
     void generateLeafNodeBases() {
         int var1 = 0;
@@ -331,9 +338,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     /**
-     * Checks a line of blocks in the world from the first coordinate to triplet to the second,
-     * returning the distance (in blocks) before a non-air, non-leaf block is encountered and/or the end
-     * is encountered.
+     * Checks a line of blocks in the world from the first coordinate to triplet to the second, returning the distance
+     * (in blocks) before a non-air, non-leaf block is encountered and/or the end is encountered.
      */
     int checkBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger) {
         int[] var3 = new int[] { 0, 0, 0 };
@@ -383,8 +389,8 @@ public class TFGenLargeRainboak extends TFTreeGenerator {
     }
 
     /**
-     * Returns a boolean indicating whether or not the current location for the tree, spanning basePos
-     * to to the height limit, is valid.
+     * Returns a boolean indicating whether or not the current location for the tree, spanning basePos to to the height
+     * limit, is valid.
      */
     boolean validTreeLocation() {
         int[] var1 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };

@@ -1,15 +1,15 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.block.BlockTFCastleMagic;
-import twilightforest.block.TFBlocks;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
 
@@ -114,7 +114,8 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         renderer.clearOverrideBlockTexture();
         renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
         renderer.renderStandardBlock(block, x, y, z);
@@ -128,9 +129,9 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
         float blu = (float) (color & 255) / 255.0F;
 
         // if the block is a door or other clickable block(?), pulse the glyph a little
-        //if (block == TFBlocks.castleDoor) {
-        //TODO: Add code to do this
-        //}
+        // if (block == TFBlocks.castleDoor) {
+        // TODO: Add code to do this
+        // }
 
         Tessellator tessellator = Tessellator.instance;
         tessellator.setBrightness(15 << 20 | 15 << 4); // full brightness
@@ -139,22 +140,28 @@ public class RenderBlockTFCastleMagic implements ISimpleBlockRenderingHandler {
         renderer.enableAO = false;
         float pixel = 1 / 16F;
 
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y - 1, z, 0) && world.isAirBlock(x, y - 1, z)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x, y - 1, z, 0) && world.isAirBlock(x, y - 1, z)) {
             renderer.renderFaceYNeg(block, (double) x, (double) y - pixel, (double) z, renderer.overrideBlockTexture);
         }
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y + 1, z, 1) && world.isAirBlock(x, y + 1, z)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x, y + 1, z, 1) && world.isAirBlock(x, y + 1, z)) {
             renderer.renderFaceYPos(block, (double) x, (double) y + pixel, (double) z, renderer.overrideBlockTexture);
         }
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y, z - 1, 2) && world.isAirBlock(x, y, z - 1)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x, y, z - 1, 2) && world.isAirBlock(x, y, z - 1)) {
             renderer.renderFaceZNeg(block, (double) x, (double) y, (double) z - pixel, renderer.overrideBlockTexture);
         }
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y, z + 1, 3) && world.isAirBlock(x, y, z + 1)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x, y, z + 1, 3) && world.isAirBlock(x, y, z + 1)) {
             renderer.renderFaceZPos(block, (double) x, (double) y, (double) z + pixel, renderer.overrideBlockTexture);
         }
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x - 1, y, z, 4) && world.isAirBlock(x - 1, y, z)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x - 1, y, z, 4) && world.isAirBlock(x - 1, y, z)) {
             renderer.renderFaceXNeg(block, (double) x - pixel, (double) y, (double) z, renderer.overrideBlockTexture);
         }
-        if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x + 1, y, z, 5) && world.isAirBlock(x + 1, y, z)) {
+        if (renderer.renderAllFaces
+                || block.shouldSideBeRendered(world, x + 1, y, z, 5) && world.isAirBlock(x + 1, y, z)) {
             renderer.renderFaceXPos(block, (double) x + pixel, (double) y, (double) z, renderer.overrideBlockTexture);
         }
 

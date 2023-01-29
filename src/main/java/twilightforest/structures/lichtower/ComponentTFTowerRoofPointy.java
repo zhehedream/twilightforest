@@ -53,7 +53,8 @@ public class ComponentTFTowerRoofPointy extends ComponentTFTowerRoof {
                         placeBlockAtCurrentPosition(world, Blocks.wooden_slab, slabMeta, x, y + 1, z, sbb);
                     }
                     // mid blocks
-                    if (((((x == min || x == max) && z == mid) && x % 2 == 0) || (((z == min || z == max) && x == mid) && z % 2 == 0)) && mid != min + 1) {
+                    if (((((x == min || x == max) && z == mid) && x % 2 == 0)
+                            || (((z == min || z == max) && x == mid) && z % 2 == 0)) && mid != min + 1) {
                         placeBlockAtCurrentPosition(world, Blocks.wooden_slab, slabMeta, x, y + 1, z, sbb);
                     }
                 }

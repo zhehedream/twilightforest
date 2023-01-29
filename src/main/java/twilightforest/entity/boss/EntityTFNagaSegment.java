@@ -2,8 +2,6 @@ package twilightforest.entity.boss;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,6 +10,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFNagaSegment extends Entity {
 
@@ -37,15 +38,16 @@ public class EntityTFNagaSegment extends Entity {
     }
 
     /**
-     * When we're attacked transfer damage to the head. Segments only transfer 2/3 normal damage to the
-     * head. Segments do not transfer damage from fire, explosions or lava.
+     * When we're attacked transfer damage to the head. Segments only transfer 2/3 normal damage to the head. Segments
+     * do not transfer damage from fire, explosions or lava.
      */
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float damage) {
         // do not transfer (or take) fire, explosion, or lava damage.
         if (damagesource.isExplosion() || damagesource.isFireDamage()) {
             // hurtTime = 0;
-//            System.out.println("Prevented damage from fire/explosion/lava.  DamageSource == " + damagesource.damageType);
+            // System.out.println("Prevented damage from fire/explosion/lava. DamageSource == " +
+            // damagesource.damageType);
             return false;
         }
 
@@ -78,16 +80,12 @@ public class EntityTFNagaSegment extends Entity {
         lastTickPosY = posY;
         lastTickPosZ = posZ;
 
-//        System.out.println("Updating " + this + " with angles " + rotationYaw + ", " + rotationPitch);
+        // System.out.println("Updating " + this + " with angles " + rotationYaw + ", " + rotationPitch);
 
-        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {
-        }
-        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {
-        }
-        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {
-        }
+        for (; rotationYaw - prevRotationYaw < -180F; prevRotationYaw -= 360F) {}
+        for (; rotationYaw - prevRotationYaw >= 180F; prevRotationYaw += 360F) {}
+        for (; rotationPitch - prevRotationPitch < -180F; prevRotationPitch -= 360F) {}
+        for (; rotationPitch - prevRotationPitch >= 180F; prevRotationPitch += 360F) {}
 
         // this.pushOutOfBlocks(posX, posY, posZ);
 
@@ -95,7 +93,7 @@ public class EntityTFNagaSegment extends Entity {
             this.motionY -= 0.08D;
         } else {
             this.motionX *= 0.800000011920929D;
-//            this.motionY *= 0.800000011920929D;
+            // this.motionY *= 0.800000011920929D;
             this.motionZ *= 0.800000011920929D;
         }
 
@@ -103,20 +101,20 @@ public class EntityTFNagaSegment extends Entity {
 
         collideWithOthers();
 
-//        if (this.segment == 6)
-//        {
-//            System.out.println("Updating segment 6");
-//            
-////            int dx = MathHelper.floor_double(this.posX);
-////            int dy = MathHelper.floor_double(this.posY);
-////            int dz = MathHelper.floor_double(this.posZ);
-////            
-////            if (worldObj.isAirBlock(dx, dy, dz))
-////            {
-////                worldObj.setBlock(dx, dy, dz, Blocks.torch);
-////            }
-//            
-//        }
+        // if (this.segment == 6)
+        // {
+        // System.out.println("Updating segment 6");
+        //
+        //// int dx = MathHelper.floor_double(this.posX);
+        //// int dy = MathHelper.floor_double(this.posY);
+        //// int dz = MathHelper.floor_double(this.posZ);
+        ////
+        //// if (worldObj.isAirBlock(dx, dy, dz))
+        //// {
+        //// worldObj.setBlock(dx, dy, dz, Blocks.torch);
+        //// }
+        //
+        // }
 
         if (deathCounter > 0) {
             deathCounter--;
@@ -129,12 +127,18 @@ public class EntityTFNagaSegment extends Entity {
                     double d2 = rand.nextGaussian() * 0.02D;
                     String explosionType = rand.nextBoolean() ? "largeexplode" : "explode";
 
-                    worldObj.spawnParticle(explosionType, (posX + rand.nextFloat() * width * 2.0F) - width, posY + rand.nextFloat() * height, (posZ + rand.nextFloat() * width * 2.0F) - width, d, d1,
+                    worldObj.spawnParticle(
+                            explosionType,
+                            (posX + rand.nextFloat() * width * 2.0F) - width,
+                            posY + rand.nextFloat() * height,
+                            (posZ + rand.nextFloat() * width * 2.0F) - width,
+                            d,
+                            d1,
                             d2);
                 }
 
                 // really explode?
-//                worldObj.newExplosion(null, posX, posY, posZ, 3.0F, true);
+                // worldObj.newExplosion(null, posX, posY, posZ, 3.0F, true);
 
                 setDead();
                 worldObj.removeEntity(this);
@@ -145,7 +149,9 @@ public class EntityTFNagaSegment extends Entity {
 
     @SuppressWarnings("unchecked")
     protected void collideWithOthers() {
-        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+                this,
+                this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
         for (Entity entity : list) {
             if (entity.canBePushed()) {
@@ -158,7 +164,8 @@ public class EntityTFNagaSegment extends Entity {
         entity.applyEntityCollision(this);
 
         // attack anything that's not us
-        if ((entity instanceof EntityLivingBase) && !(entity instanceof EntityTFNaga) && !(entity instanceof EntityTFNagaSegment)) {
+        if ((entity instanceof EntityLivingBase) && !(entity instanceof EntityTFNaga)
+                && !(entity instanceof EntityTFNagaSegment)) {
             naga.attackTime = 10;
             int attackStrength = 2;
 
@@ -206,16 +213,13 @@ public class EntityTFNagaSegment extends Entity {
     }
 
     @Override
-    protected void entityInit() {
-    }
+    protected void entityInit() {}
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-    }
+    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {}
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-    }
+    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {}
 
     /**
      * Plays step sound at given x, y, z for the entity

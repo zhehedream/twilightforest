@@ -5,10 +5,12 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.TFTreasure;
 import twilightforest.block.TFBlocks;
 
 public class ComponentTFHillMaze extends StructureTFComponent {
+
     public ComponentTFHillMaze() {
         super();
     }
@@ -22,15 +24,47 @@ public class ComponentTFHillMaze extends StructureTFComponent {
 
         this.setCoordBaseMode(0);
 
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -getRadius(), 0, -getRadius(), getRadius() * 2, 5, getRadius() * 2, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -getRadius(),
+                0,
+                -getRadius(),
+                getRadius() * 2,
+                5,
+                getRadius() * 2,
+                0);
     }
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // clear the area
         fillWithBlocks(world, sbb, 0, 1, 0, getDiameter(), 3, getDiameter(), Blocks.air, Blocks.air, false);
-        fillWithBlocks(world, sbb, 0, 0, 0, getDiameter(), 0, getDiameter(), TFBlocks.mazestone, TFBlocks.mazestone, false);
-        fillWithBlocks(world, sbb, 0, 4, 0, getDiameter(), 4, getDiameter(), TFBlocks.mazestone, TFBlocks.mazestone, true);
+        fillWithBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                getDiameter(),
+                0,
+                getDiameter(),
+                TFBlocks.mazestone,
+                TFBlocks.mazestone,
+                false);
+        fillWithBlocks(
+                world,
+                sbb,
+                0,
+                4,
+                0,
+                getDiameter(),
+                4,
+                getDiameter(),
+                TFBlocks.mazestone,
+                TFBlocks.mazestone,
+                true);
 
         // make maze object
         TFMaze maze = new TFMaze(getMazeSize(), getMazeSize());
@@ -122,8 +156,7 @@ public class ComponentTFHillMaze extends StructureTFComponent {
     }
 
     /**
-     * Decorates a room in the maze. Makes assumptions that the room is 3x3 cells and thus 11x11 blocks
-     * large.
+     * Decorates a room in the maze. Makes assumptions that the room is 3x3 cells and thus 11x11 blocks large.
      * 
      * @param rand
      * @param world
@@ -156,15 +189,15 @@ public class ComponentTFHillMaze extends StructureTFComponent {
         String mobID;
 
         switch (rand.nextInt(3)) {
-        case 1:
-            mobID = "Skeleton";
-            break;
-        case 2:
-            mobID = "Zombie";
-            break;
-        case 0:
-        default:
-            mobID = "Spider";
+            case 1:
+                mobID = "Skeleton";
+                break;
+            case 2:
+                mobID = "Zombie";
+                break;
+            case 0:
+            default:
+                mobID = "Spider";
         }
 
         placeSpawnerAtCurrentPosition(world, rand, rx, FLOOR_LEVEL, rz, mobID, sbb);

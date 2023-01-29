@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,8 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFAuroraBrick extends Block {
 
@@ -42,10 +43,10 @@ public class BlockTFAuroraBrick extends Block {
         BlockTFAuroraBrick.icons[6] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
         BlockTFAuroraBrick.icons[7] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick7");
 
-//        BlockTFAuroraBrick.icons[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick0");
-//        BlockTFAuroraBrick.icons[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick2");
-//        BlockTFAuroraBrick.icons[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick4");
-//        BlockTFAuroraBrick.icons[3] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
+        // BlockTFAuroraBrick.icons[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick0");
+        // BlockTFAuroraBrick.icons[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick2");
+        // BlockTFAuroraBrick.icons[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick4");
+        // BlockTFAuroraBrick.icons[3] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":aurorabrick6");
 
     }
 
@@ -60,21 +61,21 @@ public class BlockTFAuroraBrick extends Block {
             return icons[15 - meta];
         }
 
-//        switch (meta % 8) {
-//        default:
-//            return icons[(meta % 8) * 2];
-//        case 4:
-//        case 5:
-//        case 6:
-//        case 7:
-//            return icons[(7 - (meta % 8)) * 2];
-//        }
+        // switch (meta % 8) {
+        // default:
+        // return icons[(meta % 8) * 2];
+        // case 4:
+        // case 5:
+        // case 6:
+        // case 7:
+        // return icons[(7 - (meta % 8)) * 2];
+        // }
 
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {
@@ -138,8 +139,7 @@ public class BlockTFAuroraBrick extends Block {
     }
 
     /**
-     * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ,
-     * block metadata
+     * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
     public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta) {
         return Math.abs(x + z) % 16;

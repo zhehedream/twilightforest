@@ -2,10 +2,6 @@ package twilightforest.entity;
 
 import java.util.List;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -16,7 +12,12 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
 
 public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawnData {
 
@@ -59,8 +60,8 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
     }
 
     /**
-     * Called when creating the entity to determine which direction the block will slide. The logic here
-     * is a little tricky
+     * Called when creating the entity to determine which direction the block will slide. The logic here is a little
+     * tricky
      */
     private void determineMoveDirection() {
         this.moveX = 0F;
@@ -77,7 +78,8 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
                 this.moveY = -1F;
             } else if (!this.worldObj.isAirBlock(bx, by - 1, bz) && this.worldObj.isAirBlock(bx, by + 1, bz)) {
                 this.moveY = 1F;
-            } else if (!this.worldObj.isAirBlock(bx, by, bz + 1) && this.worldObj.isAirBlock(bx, by, bz - 1)) { // then try Z
+            } else if (!this.worldObj.isAirBlock(bx, by, bz + 1) && this.worldObj.isAirBlock(bx, by, bz - 1)) { // then
+                                                                                                                // try Z
                 this.moveZ = -1F;
             } else if (!this.worldObj.isAirBlock(bx, by, bz - 1) && this.worldObj.isAirBlock(bx, by, bz + 1)) {
                 this.moveZ = 1F;
@@ -96,7 +98,8 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
                 this.moveY = -1F;
             } else if (!this.worldObj.isAirBlock(bx, by - 1, bz) && this.worldObj.isAirBlock(bx, by + 1, bz)) {
                 this.moveY = 1F;
-            } else if (!this.worldObj.isAirBlock(bx + 1, by, bz) && this.worldObj.isAirBlock(bx - 1, by, bz)) { // then try X
+            } else if (!this.worldObj.isAirBlock(bx + 1, by, bz) && this.worldObj.isAirBlock(bx - 1, by, bz)) { // then
+                                                                                                                // try X
                 this.moveX = -1F;
             } else if (!this.worldObj.isAirBlock(bx - 1, by, bz) && this.worldObj.isAirBlock(bx + 1, by, bz)) {
                 this.moveX = 1F;
@@ -134,12 +137,11 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
     }
 
     @Override
-    protected void entityInit() {
-    }
+    protected void entityInit() {}
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for
-     * spiders and wolves to prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
+     * prevent them from trampling crops
      */
     protected boolean canTriggerWalking() {
         return false;
@@ -181,7 +183,13 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
 
             // sound
             if (this.slideTime % 5 == 0) {
-                this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, TwilightForestMod.ID + ":random.slider", 1.0F, 0.9F + (this.rand.nextFloat() * 0.4F));
+                this.worldObj.playSoundEffect(
+                        this.posX,
+                        this.posY,
+                        this.posZ,
+                        TwilightForestMod.ID + ":random.slider",
+                        1.0F,
+                        0.9F + (this.rand.nextFloat() * 0.4F));
             }
 
             if (!this.worldObj.isRemote) {
@@ -219,21 +227,30 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
 
                     this.setDead();
 
-                    if (this.worldObj.canPlaceEntityOnSide(this.myBlock, bx, by, bz, true, 1, (Entity) null, (ItemStack) null) && this.worldObj.setBlock(bx, by, bz, this.myBlock, this.myMeta, 3)) {
+                    if (this.worldObj
+                            .canPlaceEntityOnSide(this.myBlock, bx, by, bz, true, 1, (Entity) null, (ItemStack) null)
+                            && this.worldObj.setBlock(bx, by, bz, this.myBlock, this.myMeta, 3)) {
                         // successfully set block
                     } else if (this.canDropItem) {
-                        this.entityDropItem(new ItemStack(this.myBlock, 1, this.myBlock.damageDropped(this.myMeta)), 0.0F);
+                        this.entityDropItem(
+                                new ItemStack(this.myBlock, 1, this.myBlock.damageDropped(this.myMeta)),
+                                0.0F);
                     }
-                } else if (this.slideTime > 100 && !this.worldObj.isRemote && (by < 1 || by > 256) || this.slideTime > 600) {
-                    if (this.canDropItem) {
-                        this.entityDropItem(new ItemStack(this.myBlock, 1, this.myBlock.damageDropped(this.myMeta)), 0.0F);
-                    }
+                } else if (this.slideTime > 100 && !this.worldObj.isRemote && (by < 1 || by > 256)
+                        || this.slideTime > 600) {
+                            if (this.canDropItem) {
+                                this.entityDropItem(
+                                        new ItemStack(this.myBlock, 1, this.myBlock.damageDropped(this.myMeta)),
+                                        0.0F);
+                            }
 
-                    this.setDead();
-                }
+                            this.setDead();
+                        }
 
                 // push things out and damage them
-                this.damageKnockbackEntities(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox), this);
+                this.damageKnockbackEntities(
+                        this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox),
+                        this);
             }
         }
     }
@@ -255,8 +272,8 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
     }
 
     /**
-     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the
-     * entity to be pushable on contact, like boats or minecarts.
+     * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
+     * pushable on contact, like boats or minecarts.
      */
     public AxisAlignedBB getCollisionBox(Entity p_70114_1_) {
         return null;
@@ -304,8 +321,7 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
     }
 
     /**
-     * Called by the server when constructing the spawn packet. Data should be added to the provided
-     * stream.
+     * Called by the server when constructing the spawn packet. Data should be added to the provided stream.
      *
      * @param buffer The packet data stream
      */
@@ -319,8 +335,8 @@ public class EntityTFSlideBlock extends Entity implements IEntityAdditionalSpawn
     }
 
     /**
-     * Called by the client when it receives a Entity spawn packet. Data should be read out of the
-     * stream in the same way as it was written.
+     * Called by the client when it receives a Entity spawn packet. Data should be read out of the stream in the same
+     * way as it was written.
      *
      * @param data The packet data stream
      */

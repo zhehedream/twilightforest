@@ -25,6 +25,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.ai.EntityAITFCollideAttackFixed;
@@ -32,10 +33,15 @@ import twilightforest.entity.boss.EntityTFIceBomb;
 import twilightforest.item.TFItems;
 
 public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
+
     private static final int ROCK_FLAG = 16;
 
     private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
-    private EntityAITFCollideAttackFixed aiAttackOnCollide = new EntityAITFCollideAttackFixed(this, EntityPlayer.class, 1.2D, false);
+    private EntityAITFCollideAttackFixed aiAttackOnCollide = new EntityAITFCollideAttackFixed(
+            this,
+            EntityPlayer.class,
+            1.2D,
+            false);
 
     public EntityTFTroll(World world) {
         super(world);
@@ -76,8 +82,8 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -144,9 +150,9 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
             this.ripenTrollBerNearby(this.deathTime / 5);
         }
 
-        //if (this.deathTime == 1) {
-            // this.makeTrollStoneInAABB(this.boundingBox);
-        //}
+        // if (this.deathTime == 1) {
+        // this.makeTrollStoneInAABB(this.boundingBox);
+        // }
     }
 
     private void ripenTrollBerNearby(int offset) {
@@ -169,7 +175,8 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
     }
 
     private void ripenBer(int offset, int cx, int cy, int cz) {
-        if (this.worldObj.getBlock(cx, cy, cz) == TFBlocks.unripeTrollBer && this.rand.nextBoolean() && (Math.abs(cx + cy + cz) % 5 == offset)) {
+        if (this.worldObj.getBlock(cx, cy, cz) == TFBlocks.unripeTrollBer && this.rand.nextBoolean()
+                && (Math.abs(cx + cy + cz) % 5 == offset)) {
             this.worldObj.setBlock(cx, cy, cz, TFBlocks.trollBer);
             worldObj.playAuxSFX(2004, cx, cy, cz, 0);
         }
@@ -238,7 +245,8 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
 
     // Swings the item the player is holding.
     public void swingItem() {
-        if (!this.isSwingInProgress || this.swingProgressInt >= this.getArmSwingAnimationEnd() / 2 || this.swingProgressInt < 0) {
+        if (!this.isSwingInProgress || this.swingProgressInt >= this.getArmSwingAnimationEnd() / 2
+                || this.swingProgressInt < 0) {
             this.swingProgressInt = -1;
             this.isSwingInProgress = true;
 
@@ -267,9 +275,8 @@ public class EntityTFTroll extends EntityMob implements IRangedAttackMob {
     }
 
     /**
-     * Returns an integer indicating the end point of the swing animation, used by
-     * {@link #swingProgress} to provide a progress indicator. Takes dig speed enchantments into
-     * account.
+     * Returns an integer indicating the end point of the swing animation, used by {@link #swingProgress} to provide a
+     * progress indicator. Takes dig speed enchantments into account.
      */
     private int getArmSwingAnimationEnd() {
         return 6;

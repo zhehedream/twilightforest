@@ -23,8 +23,13 @@ public class ComponentTFTowerRoofStairsOverhang extends ComponentTFTowerRoof {
         this.height = size / 2;
 
         // just hang out at the very top of the tower
-        this.boundingBox = new StructureBoundingBox(wing.getBoundingBox().minX - 1, wing.getBoundingBox().maxY, wing.getBoundingBox().minZ - 1, wing.getBoundingBox().maxX + 1,
-                wing.getBoundingBox().maxY + this.height - 1, wing.getBoundingBox().maxZ + 1);
+        this.boundingBox = new StructureBoundingBox(
+                wing.getBoundingBox().minX - 1,
+                wing.getBoundingBox().maxY,
+                wing.getBoundingBox().minZ - 1,
+                wing.getBoundingBox().maxX + 1,
+                wing.getBoundingBox().maxY + this.height - 1,
+                wing.getBoundingBox().maxZ + 1);
 
     }
 

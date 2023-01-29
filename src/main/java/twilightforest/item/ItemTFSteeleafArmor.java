@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
@@ -12,7 +10,10 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFSteeleafArmor extends ItemArmor {
 
@@ -31,7 +32,8 @@ public class ItemTFSteeleafArmor extends ItemArmor {
 
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
-        if (itemstack.getItem() == TFItems.steeleafPlate || itemstack.getItem() == TFItems.steeleafHelm || itemstack.getItem() == TFItems.steeleafBoots) {
+        if (itemstack.getItem() == TFItems.steeleafPlate || itemstack.getItem() == TFItems.steeleafHelm
+                || itemstack.getItem() == TFItems.steeleafBoots) {
             return TwilightForestMod.ARMOR_DIR + "steeleaf_1.png";
         }
         if (itemstack.getItem() == TFItems.steeleafLegs) {
@@ -48,18 +50,18 @@ public class ItemTFSteeleafArmor extends ItemArmor {
     public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         ItemStack istack = new ItemStack(par1, 1, 0);
         switch (this.armorType) {
-        case 0:
-            istack.addEnchantment(Enchantment.projectileProtection, 2);
-            break;
-        case 1:
-            istack.addEnchantment(Enchantment.blastProtection, 2);
-            break;
-        case 2:
-            istack.addEnchantment(Enchantment.fireProtection, 2);
-            break;
-        case 3:
-            istack.addEnchantment(Enchantment.featherFalling, 2);
-            break;
+            case 0:
+                istack.addEnchantment(Enchantment.projectileProtection, 2);
+                break;
+            case 1:
+                istack.addEnchantment(Enchantment.blastProtection, 2);
+                break;
+            case 2:
+                istack.addEnchantment(Enchantment.fireProtection, 2);
+                break;
+            case 3:
+                istack.addEnchantment(Enchantment.featherFalling, 2);
+                break;
         }
         par3List.add(istack);
     }
@@ -70,7 +72,8 @@ public class ItemTFSteeleafArmor extends ItemArmor {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with steeleaf ingots
-        return par2ItemStack.getItem() == TFItems.steeleafIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.steeleafIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -79,6 +82,7 @@ public class ItemTFSteeleafArmor extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

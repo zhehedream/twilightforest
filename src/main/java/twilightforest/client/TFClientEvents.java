@@ -2,9 +2,6 @@ package twilightforest.client;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
@@ -14,7 +11,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.item.ItemTFBowBase;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class TFClientEvents {
 
@@ -29,7 +30,9 @@ public class TFClientEvents {
      */
     @SubscribeEvent
     public void renderLivingPost(RenderLivingEvent.Post event) {
-        if (event.entity.getDataWatcher().getWatchableObjectInt(7) == Potion.potionTypes[Potion.moveSlowdown.getId()].getLiquidColor() && event.entity.getDataWatcher().getWatchableObjectByte(8) > 0) {
+        if (event.entity.getDataWatcher().getWatchableObjectInt(7)
+                == Potion.potionTypes[Potion.moveSlowdown.getId()].getLiquidColor()
+                && event.entity.getDataWatcher().getWatchableObjectByte(8) > 0) {
 
             // System.out.println("Rendering slowed entity");
             this.renderIcedEntity(event.entity, event.renderer, event.x, event.y, event.z);
@@ -57,10 +60,10 @@ public class TFClientEvents {
     }
 
     /**
-     * Render an entity with the ice effect. This just displays a bunch of ice cubes around on their
-     * model
+     * Render an entity with the ice effect. This just displays a bunch of ice cubes around on their model
      */
-    private void renderIcedEntity(EntityLivingBase entity, RendererLivingEntity renderer, double x, double y, double z) {
+    private void renderIcedEntity(EntityLivingBase entity, RendererLivingEntity renderer, double x, double y,
+            double z) {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 

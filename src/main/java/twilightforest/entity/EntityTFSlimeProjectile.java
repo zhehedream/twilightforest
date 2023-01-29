@@ -58,19 +58,26 @@ public class EntityTFSlimeProjectile extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        /*if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
-            if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8)) {
-                // damage armor?
-                // TODO:
-            }
-        }*/
+        /*
+         * if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof
+         * EntityLivingBase) { if
+         * (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()),
+         * 8)) { // damage armor? // TODO: } }
+         */
         pop();
     }
 
     // Yeah, do that
     protected void pop() {
         for (int i = 0; i < 8; ++i) {
-            this.worldObj.spawnParticle("slime", this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D, rand.nextGaussian() * 0.05D);
+            this.worldObj.spawnParticle(
+                    "slime",
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    rand.nextGaussian() * 0.05D,
+                    rand.nextDouble() * 0.2D,
+                    rand.nextGaussian() * 0.05D);
         }
 
         // noise

@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.entity.EntityTFKingSpider;
@@ -95,7 +96,7 @@ public class TFBiomeDarkForest extends TFBiomeBase {
         double var3 = (double) MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ((ColorizerGrass.getGrassColor(var1, var3) & 0xFEFEFE) + 0x1E0E4E) / 2;
 
-//        return 0x554114;
+        // return 0x554114;
     }
 
     /**
@@ -120,7 +121,8 @@ public class TFBiomeDarkForest extends TFBiomeBase {
         } else {
             return par1EnumCreatureType == EnumCreatureType.creature ? this.spawnableCreatureList
                     : (par1EnumCreatureType == EnumCreatureType.waterCreature ? this.spawnableWaterCreatureList
-                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList : null));
+                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList
+                                    : null));
         }
     }
 

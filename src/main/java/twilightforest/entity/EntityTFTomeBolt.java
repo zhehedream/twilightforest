@@ -61,19 +61,29 @@ public class EntityTFTomeBolt extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
-            if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 6)) {
+        if (par1MovingObjectPosition.entityHit != null
+                && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
+            if (par1MovingObjectPosition.entityHit
+                    .attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 6)) {
                 // inflict move slowdown
-                byte potionStrength = (byte) (worldObj.difficultySetting == EnumDifficulty.PEACEFUL ? 3 : worldObj.difficultySetting == EnumDifficulty.NORMAL ? 7 : 9);
+                byte potionStrength = (byte) (worldObj.difficultySetting == EnumDifficulty.PEACEFUL ? 3
+                        : worldObj.difficultySetting == EnumDifficulty.NORMAL ? 7 : 9);
                 if (potionStrength > 0) {
-                    ((EntityLivingBase) par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, potionStrength * 20, 1));
+                    ((EntityLivingBase) par1MovingObjectPosition.entityHit)
+                            .addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, potionStrength * 20, 1));
                 }
 
             }
         }
 
         for (int i = 0; i < 8; ++i) {
-            this.worldObj.spawnParticle("iconcrack_" + Item.getIdFromItem(Items.fire_charge), this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D,
+            this.worldObj.spawnParticle(
+                    "iconcrack_" + Item.getIdFromItem(Items.fire_charge),
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    rand.nextGaussian() * 0.05D,
+                    rand.nextDouble() * 0.2D,
                     rand.nextGaussian() * 0.05D);
         }
 

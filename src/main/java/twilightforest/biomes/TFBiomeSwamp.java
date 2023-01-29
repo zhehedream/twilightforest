@@ -21,6 +21,7 @@ import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenVines;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.block.BlockTFPlant;
@@ -43,8 +44,8 @@ public class TFBiomeSwamp extends TFBiomeBase {
     public TFBiomeSwamp(int i) {
         super(i);
 
-//        this.rootHeight = -0.25F;
-//        this.heightVariation = 0.0F;
+        // this.rootHeight = -0.25F;
+        // this.heightVariation = 0.0F;
 
         this.temperature = 0.8F;
         this.rainfall = 0.9F;
@@ -146,7 +147,8 @@ public class TFBiomeSwamp extends TFBiomeBase {
         } else {
             return par1EnumCreatureType == EnumCreatureType.creature ? this.spawnableCreatureList
                     : (par1EnumCreatureType == EnumCreatureType.waterCreature ? this.spawnableWaterCreatureList
-                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList : null));
+                            : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList
+                                    : null));
         }
     }
 

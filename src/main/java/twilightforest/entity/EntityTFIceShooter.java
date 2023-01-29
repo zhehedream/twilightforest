@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 
@@ -60,8 +61,8 @@ public class EntityTFIceShooter extends EntityMob implements IRangedAttackMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -71,7 +72,15 @@ public class EntityTFIceShooter extends EntityMob implements IRangedAttackMob {
             float py = this.getEyeHeight() + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.5F;
             float pz = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.3F;
 
-            TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowguardian", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
+            TwilightForestMod.proxy.spawnParticle(
+                    this.worldObj,
+                    "snowguardian",
+                    this.lastTickPosX + px,
+                    this.lastTickPosY + py,
+                    this.lastTickPosZ + pz,
+                    0,
+                    0,
+                    0);
         }
     }
 
@@ -120,7 +129,9 @@ public class EntityTFIceShooter extends EntityMob implements IRangedAttackMob {
     public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2) {
         EntityTFIceSnowball entitysnowball = new EntityTFIceSnowball(this.worldObj, this);
         double d0 = par1EntityLivingBase.posX - this.posX;
-        double d1 = par1EntityLivingBase.posY + (double) par1EntityLivingBase.getEyeHeight() - 1.100000023841858D - entitysnowball.posY;
+        double d1 = par1EntityLivingBase.posY + (double) par1EntityLivingBase.getEyeHeight()
+                - 1.100000023841858D
+                - entitysnowball.posY;
         double d2 = par1EntityLivingBase.posZ - this.posZ;
         float f1 = MathHelper.sqrt_double(d0 * d0 + d2 * d2) * 0.2F;
         entitysnowball.setThrowableHeading(d0, d1 + (double) f1, d2, 0.6F, 12.0F);

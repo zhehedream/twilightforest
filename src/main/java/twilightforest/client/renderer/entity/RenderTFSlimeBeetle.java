@@ -1,19 +1,21 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFSlimeBeetle;
 
 public class RenderTFSlimeBeetle extends RenderLiving {
 
     ModelBase renderModel;
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "slimebeetle.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "slimebeetle.png");
 
     public RenderTFSlimeBeetle(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);

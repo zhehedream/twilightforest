@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.entity.passive.EntityTFQuestRam;
 
 public class ComponentTFQuestGrove extends StructureTFComponent {
@@ -26,7 +27,8 @@ public class ComponentTFQuestGrove extends StructureTFComponent {
         this.setCoordBaseMode(0);
 
         // the maze is 25 x 25 for now
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -RADIUS, 0, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, -RADIUS, 0, -RADIUS, RADIUS * 2, 10, RADIUS * 2, 0);
     }
 
     @Override

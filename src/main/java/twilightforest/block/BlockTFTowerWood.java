@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,9 +13,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFTowerTermite;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -46,8 +47,8 @@ public class BlockTFTowerWood extends Block {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {
@@ -75,17 +76,17 @@ public class BlockTFTowerWood extends Block {
     @Override
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
-        case 0:
-        default:
-            return TEX_PLAIN;
-        case 1:
-            return TEX_ENCASED;
-        case 2:
-            return TEX_CRACKED;
-        case 3:
-            return TEX_MOSSY;
-        case META_INFESTED:
-            return TEX_INFESTED;
+            case 0:
+            default:
+                return TEX_PLAIN;
+            case 1:
+                return TEX_ENCASED;
+            case 2:
+                return TEX_CRACKED;
+            case 3:
+                return TEX_MOSSY;
+            case META_INFESTED:
+                return TEX_INFESTED;
         }
     }
 
@@ -120,8 +121,7 @@ public class BlockTFTowerWood extends Block {
     }
 
     /**
-     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in
-     * 1.1.
+     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in 1.1.
      *
      * @param meta    Blocks Metadata
      * @param fortune Current item fortune level
@@ -168,8 +168,7 @@ public class BlockTFTowerWood extends Block {
     }
 
     /**
-     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0%
-     * chance.
+     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0% chance.
      * 
      * @param world    The current world
      * @param x        The blocks X position
@@ -177,8 +176,7 @@ public class BlockTFTowerWood extends Block {
      * @param z        The blocks Z position
      * @param metadata The blocks current metadata
      * @param face     The face that the fire is coming from
-     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed
-     *         by fire
+     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed by fire
      */
     @Override
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
@@ -186,8 +184,8 @@ public class BlockTFTowerWood extends Block {
     }
 
     /**
-     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire
-     * will spread around this block.
+     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire will spread
+     * around this block.
      * 
      * @param world    The current world
      * @param x        The blocks X position

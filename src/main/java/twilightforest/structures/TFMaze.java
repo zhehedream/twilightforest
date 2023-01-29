@@ -2,19 +2,20 @@ package twilightforest.structures;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenCanopyTree;
+import cpw.mods.fml.common.FMLLog;
 
 /**
  * This is a maze of cells and walls.
  * 
- * The cells are at odd numbered x and y values, and the walls are at even numbered ones. This does
- * make the storage slightly inefficient, but oh wells.
+ * The cells are at odd numbered x and y values, and the walls are at even numbered ones. This does make the storage
+ * slightly inefficient, but oh wells.
  * 
  * @author Ben
  *
@@ -123,8 +124,8 @@ public class TFMaze {
     }
 
     /**
-     * Gets the wall value, or OUT_OF_BOUNDS if the area is out of bounds or the coordinates are not
-     * orthogonally adjacent.
+     * Gets the wall value, or OUT_OF_BOUNDS if the area is out of bounds or the coordinates are not orthogonally
+     * adjacent.
      */
     public int getWall(int sx, int sz, int dx, int dz) {
         if (dx == sx + 1 && dz == sz) {
@@ -309,7 +310,8 @@ public class TFMaze {
     /**
      * Copy the maze into a StructureTFComponent
      */
-    public void copyToStructure(World world, int dx, int dy, int dz, StructureTFComponent component, StructureBoundingBox sbb) {
+    public void copyToStructure(World world, int dx, int dy, int dz, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         for (int x = 0; x < rawWidth; x++) {
             for (int z = 0; z < rawDepth; z++) {
                 // only draw walls. if the data is 0 the there's a wall
@@ -325,7 +327,7 @@ public class TFMaze {
                     if (isEven(x) && isEven(z)) {
                         if (type == 4 && shouldTree(x, z)) {
                             // occasionally make a tree
-//                            (new TFGenCanopyTree()).generate(world, rand, mdx, dy, mdz);
+                            // (new TFGenCanopyTree()).generate(world, rand, mdx, dy, mdz);
                             putCanopyTree(world, mdx, dy, mdz, component, sbb);
                         } else {
                             // make a block!
@@ -418,8 +420,16 @@ public class TFMaze {
                     int mdz = dz + (z / 2 * (evenBias + oddBias));
 
                     if (isEven(x) && isEven(z)) {
-                        if (shouldTorch(x, z) && component.getBlockAtCurrentPosition(world, mdx, mdy, mdz, sbb) == wallBlockID) {
-                            component.placeBlockAtCurrentPosition(world, torchBlockID, torchBlockMeta, mdx, mdy, mdz, sbb);
+                        if (shouldTorch(x, z)
+                                && component.getBlockAtCurrentPosition(world, mdx, mdy, mdz, sbb) == wallBlockID) {
+                            component.placeBlockAtCurrentPosition(
+                                    world,
+                                    torchBlockID,
+                                    torchBlockMeta,
+                                    mdx,
+                                    mdy,
+                                    mdz,
+                                    sbb);
                         }
                     }
                 }
@@ -427,7 +437,8 @@ public class TFMaze {
         }
     }
 
-    protected void makeWallThing(World world, int dy, StructureTFComponent component, StructureBoundingBox sbb, int mdx, int mdz, int even, int odd) {
+    protected void makeWallThing(World world, int dy, StructureTFComponent component, StructureBoundingBox sbb, int mdx,
+            int mdz, int even, int odd) {
         for (int y = 0; y < head; y++) {
             putHeadBlock(world, mdx + even, dy + tall + y, mdz + odd, component, sbb);
         }
@@ -442,7 +453,8 @@ public class TFMaze {
     /**
      * Puts a wall block in the structure, if pillar blocks are properly specified
      */
-    protected void putPillarBlock(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putPillarBlock(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         component.placeBlockAtCurrentPosition(world, pillarBlockID, pillarBlockMeta, x, y, z, sbb);
     }
 
@@ -456,7 +468,8 @@ public class TFMaze {
     /**
      * Puts a wall block in the structure, at the specified structure coordinates.
      */
-    protected void putWallBlock(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putWallBlock(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         if (wallVarRarity > 0 && rand.nextFloat() < this.wallVarRarity) {
             component.placeBlockAtCurrentPosition(world, wallVar0ID, wallVar0Meta, x, y, z, sbb);
         } else {
@@ -467,7 +480,8 @@ public class TFMaze {
     /**
      * Puts a wall block in the structure, at the specified structure coordinates.
      */
-    protected void putDoorBlock(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putDoorBlock(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         component.placeBlockAtCurrentPosition(world, doorBlockID, doorBlockMeta, x, y, z, sbb);
     }
 
@@ -482,7 +496,8 @@ public class TFMaze {
         world.setBlock(x, y, z, headBlockID, headBlockMeta, 2);
     }
 
-    protected void putHeadBlock(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putHeadBlock(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         component.placeBlockAtCurrentPosition(world, headBlockID, headBlockMeta, x, y, z, sbb);
     }
 
@@ -496,14 +511,16 @@ public class TFMaze {
     /**
      * Puts a root block in the structure, at the specified structure coordinates.
      */
-    protected void putRootBlock(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putRootBlock(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
         component.placeBlockAtCurrentPosition(world, rootBlockID, rootBlockMeta, x, y, z, sbb);
     }
 
     /**
      * Puts a canopy tree in the world at the specified structure coordinates.
      */
-    protected void putCanopyTree(World world, int x, int y, int z, StructureTFComponent component, StructureBoundingBox sbb) {
+    protected void putCanopyTree(World world, int x, int y, int z, StructureTFComponent component,
+            StructureBoundingBox sbb) {
 
         int wx = component.getXWithOffset(x, z);
         int wy = component.getYWithOffset(y);
@@ -557,12 +574,15 @@ public class TFMaze {
      */
     public boolean shouldTorch(int rx, int rz) {
         // if there is out of bounds in any direction, no
-        if (getRaw(rx + 1, rz) == OOB || getRaw(rx - 1, rz) == OOB || getRaw(rx, rz + 1) == OOB || getRaw(rx, rz - 1) == OOB) {
+        if (getRaw(rx + 1, rz) == OOB || getRaw(rx - 1, rz) == OOB
+                || getRaw(rx, rz + 1) == OOB
+                || getRaw(rx, rz - 1) == OOB) {
             return false;
         }
 
         // if there are walls in two opposite directions, no
-        if ((getRaw(rx + 1, rz) == 0 && getRaw(rx - 1, rz) == 0) || (getRaw(rx, rz + 1) == 0 && getRaw(rx, rz - 1) == 0)) {
+        if ((getRaw(rx + 1, rz) == 0 && getRaw(rx - 1, rz) == 0)
+                || (getRaw(rx, rz + 1) == 0 && getRaw(rx, rz - 1) == 0)) {
             return false;
         }
 
@@ -582,12 +602,15 @@ public class TFMaze {
         }
 
         // if there is out of bounds in any direction, no
-        if (getRaw(rx + 1, rz) == OOB || getRaw(rx - 1, rz) == OOB || getRaw(rx, rz + 1) == OOB || getRaw(rx, rz - 1) == OOB) {
+        if (getRaw(rx + 1, rz) == OOB || getRaw(rx - 1, rz) == OOB
+                || getRaw(rx, rz + 1) == OOB
+                || getRaw(rx, rz - 1) == OOB) {
             return false;
         }
 
         // if there are walls in two opposite directions, no
-        if ((getRaw(rx + 1, rz) == 0 && getRaw(rx - 1, rz) == 0) || (getRaw(rx, rz + 1) == 0 && getRaw(rx, rz - 1) == 0)) {
+        if ((getRaw(rx + 1, rz) == 0 && getRaw(rx - 1, rz) == 0)
+                || (getRaw(rx, rz + 1) == 0 && getRaw(rx, rz - 1) == 0)) {
             return false;
         }
 
@@ -610,7 +633,7 @@ public class TFMaze {
         } else if ((rz == 0 || rz == rawDepth - 1) && (getRaw(rx + 1, rz) != 0 || getRaw(rx - 1, rz) != 0)) {
             return true;
         } else {
-            return rand.nextInt(50) == 0; 
+            return rand.nextInt(50) == 0;
         }
     }
 
@@ -710,8 +733,8 @@ public class TFMaze {
     }
 
     /**
-     * Mark the cell as visited. If we have any unvisited neighbors, pick one randomly, carve the wall
-     * between them, then call this function on that neighbor.
+     * Mark the cell as visited. If we have any unvisited neighbors, pick one randomly, carve the wall between them,
+     * then call this function on that neighbor.
      * 
      * @param sx
      * @param sz

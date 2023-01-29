@@ -3,8 +3,6 @@ package twilightforest.item;
 import java.util.Iterator;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,9 +20,12 @@ import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.TFCreatures;
 import twilightforest.entity.TFEntityEggInfo;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFSpawnEgg extends ItemMonsterPlacer {
 
@@ -48,18 +49,21 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
         String entityname = TFCreatures.getStringFromID(itemStack.getItemDamage());
 
         if (entityname != null) {
-            prefix = prefix + " " + StatCollector.translateToLocal(String.format("entity.%s.%s.name", TwilightForestMod.ID, entityname));
+            prefix = prefix + " "
+                    + StatCollector
+                            .translateToLocal(String.format("entity.%s.%s.name", TwilightForestMod.ID, entityname));
         }
 
         return prefix;
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6,
+            int par7, float par8, float par9, float par10) {
         if (world.isRemote) {
             return true;
         } else {
@@ -73,7 +77,12 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
                 var12 = 0.5D;
             }
 
-            Entity entity = spawnCreature(world, itemStack.getItemDamage(), (double) par4 + 0.5D, (double) par5 + var12, (double) par6 + 0.5D);
+            Entity entity = spawnCreature(
+                    world,
+                    itemStack.getItemDamage(),
+                    (double) par4 + 0.5D,
+                    (double) par5 + var12,
+                    (double) par6 + 0.5D);
 
             if (entity != null) {
                 if (entity instanceof EntityLiving && itemStack.hasDisplayName()) {
@@ -89,8 +98,8 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
     }
 
     /**
-     * Spawns the creature specified by the egg's type in the location specified by the last three
-     * parameters. Parameters: world, entityID, x, y, z.
+     * Spawns the creature specified by the egg's type in the location specified by the last three parameters.
+     * Parameters: world, entityID, x, y, z.
      */
     public static Entity spawnCreature(World world, int par1, double par2, double par4, double par6) {
         // System.out.println("Trying to spawn twilight egg");

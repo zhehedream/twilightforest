@@ -6,15 +6,17 @@
 
 package twilightforest.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.entity.passive.EntityTFBird;
 
 public class ModelTFTinyBird extends ModelBase {
+
     // fields
     ModelRenderer beak;
     ModelRenderer head;
@@ -109,7 +111,7 @@ public class ModelTFTinyBird extends ModelBase {
             rightarm.render(par7);
             leftarm.render(par7);
             tail.render(par7);
-//            beak.render(par7);
+            // beak.render(par7);
         }
     }
 
@@ -122,7 +124,8 @@ public class ModelTFTinyBird extends ModelBase {
     /**
      * Sets the models various rotation angles.
      */
-    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6,
+            Entity par7Entity) {
         head.rotateAngleX = par5 / (180F / (float) Math.PI);
         head.rotateAngleY = par4 / (180F / (float) Math.PI);
 

@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +8,12 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.EntityTFMoonwormShot;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFMoonwormQueen extends ItemTF {
 
@@ -39,11 +40,12 @@ public class ItemTFMoonwormQueen extends ItemTF {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one
-     * of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         // adjust x, y, z for which block we're placing onto
         Block currentBlockID = world.getBlock(x, y, z);
 
@@ -58,32 +60,33 @@ public class ItemTFMoonwormQueen extends ItemTF {
 
         if (currentBlockID == Blocks.snow) {
             side = 1;
-        } else if (currentBlockID != Blocks.vine && currentBlockID != Blocks.tallgrass && currentBlockID != Blocks.deadbush
+        } else if (currentBlockID != Blocks.vine && currentBlockID != Blocks.tallgrass
+                && currentBlockID != Blocks.deadbush
                 && (currentBlockID == Blocks.air || !currentBlockID.isReplaceable(world, x, y, z))) {
-            if (side == 0) {
-                --y;
-            }
+                    if (side == 0) {
+                        --y;
+                    }
 
-            if (side == 1) {
-                ++y;
-            }
+                    if (side == 1) {
+                        ++y;
+                    }
 
-            if (side == 2) {
-                --z;
-            }
+                    if (side == 2) {
+                        --z;
+                    }
 
-            if (side == 3) {
-                ++z;
-            }
+                    if (side == 3) {
+                        ++z;
+                    }
 
-            if (side == 4) {
-                --x;
-            }
+                    if (side == 4) {
+                        --x;
+                    }
 
-            if (side == 5) {
-                ++x;
-            }
-        }
+                    if (side == 5) {
+                        ++x;
+                    }
+                }
 
         // try to place firefly
         if (world.canPlaceEntityOnSide(TFBlocks.moonworm, x, y, z, false, side, player, par1ItemStack)) {
@@ -95,7 +98,12 @@ public class ItemTFMoonwormQueen extends ItemTF {
                     TFBlocks.moonworm.onBlockPlacedBy(world, x, y, z, player, par1ItemStack);
                 }
 
-                world.playSoundEffect((double) (x + 0.5F), (double) (y + 0.5F), (double) (z + 0.5F), this.getSound(), TFBlocks.moonworm.stepSound.getVolume() / 2.0F,
+                world.playSoundEffect(
+                        (double) (x + 0.5F),
+                        (double) (y + 0.5F),
+                        (double) (z + 0.5F),
+                        this.getSound(),
+                        TFBlocks.moonworm.stepSound.getVolume() / 2.0F,
                         TFBlocks.moonworm.stepSound.getPitch() * 0.8F);
 
                 if (par1ItemStack != null) {
@@ -115,8 +123,7 @@ public class ItemTFMoonwormQueen extends ItemTF {
     }
 
     /**
-     * called when the player releases the use item button. Args: itemstack, world, entityplayer,
-     * itemInUseCount
+     * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
     @Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World world, EntityPlayer player, int useRemaining) {
@@ -137,8 +144,8 @@ public class ItemTFMoonwormQueen extends ItemTF {
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      * 
-     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the
-     *                     same if usingItem is not null)
+     * @param stack        The item stack to get the icon for. (Usually this, and usingItem will be the same if
+     *                     usingItem is not null)
      * @param renderPass   The pass to get the icon for, 0 is default.
      * @param player       The player holding the item
      * @param usingItem    The item the player is actively using. Can be null if not using anything.

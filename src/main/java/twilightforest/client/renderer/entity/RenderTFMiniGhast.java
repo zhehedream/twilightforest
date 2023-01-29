@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFTowerGhast;
 
@@ -27,15 +28,15 @@ public class RenderTFMiniGhast extends RenderLiving {
     protected ResourceLocation getEntityTexture(Entity par1Entity) {
         if (par1Entity instanceof EntityTFTowerGhast) {
             switch (((EntityTFTowerGhast) par1Entity).getAttackStatus()) {
-            default:
-            case 0:
-                return textureLocClosed;
+                default:
+                case 0:
+                    return textureLocClosed;
 
-            case 1:
-                return textureLocOpen;
+                case 1:
+                    return textureLocOpen;
 
-            case 2:
-                return textureLocAttack;
+                case 2:
+                    return textureLocAttack;
             }
         }
 

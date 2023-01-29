@@ -12,6 +12,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+
 import twilightforest.TFFeature;
 
 public class EntityTFTowerGhast extends EntityGhast {
@@ -47,11 +48,11 @@ public class EntityTFTowerGhast extends EntityGhast {
 
         this.inTrapCounter = 0;
     }
-//    
-//    public int getMaxHealth()
-//    {
-//        return 30;
-//    }
+    //
+    // public int getMaxHealth()
+    // {
+    // return 30;
+    // }
 
     /**
      * Set monster attributes
@@ -88,19 +89,19 @@ public class EntityTFTowerGhast extends EntityGhast {
         super.onUpdate();
         // byte aggroStatus = this.dataWatcher.getWatchableObjectByte(AGGRO_STATUS);
 
-//        switch (aggroStatus)
-//        {
-//        case 0:
-//        default:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
-//            break;
-//        case 1:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
-//            break;
-//        case 2:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
-//            break;
-//        }
+        // switch (aggroStatus)
+        // {
+        // case 0:
+        // default:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
+        // break;
+        // case 1:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
+        // break;
+        // case 2:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
+        // break;
+        // }
     }
 
     public int getAttackStatus() {
@@ -108,8 +109,8 @@ public class EntityTFTowerGhast extends EntityGhast {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         // age when in light, like mobs
@@ -120,8 +121,14 @@ public class EntityTFTowerGhast extends EntityGhast {
         }
 
         if (this.rand.nextBoolean()) {
-            this.worldObj.spawnParticle("reddust", this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height - 0.25D,
-                    this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0, 0, 0);
+            this.worldObj.spawnParticle(
+                    "reddust",
+                    this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                    this.posY + this.rand.nextDouble() * (double) this.height - 0.25D,
+                    this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                    0,
+                    0,
+                    0);
         }
 
         super.onLivingUpdate();
@@ -178,16 +185,26 @@ public class EntityTFTowerGhast extends EntityGhast {
                 this.courseChangeCooldown += this.rand.nextInt(20) + 20;
                 distanceDesired = (double) MathHelper.sqrt_double(distanceDesired);
 
-                if (!this.isWithinHomeDistance(MathHelper.floor_double(waypointX), MathHelper.floor_double(waypointY), MathHelper.floor_double(waypointZ))) {
+                if (!this.isWithinHomeDistance(
+                        MathHelper.floor_double(waypointX),
+                        MathHelper.floor_double(waypointY),
+                        MathHelper.floor_double(waypointZ))) {
                     // change waypoint to be more towards home
-                    ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posZ), worldObj);
+                    ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(
+                            MathHelper.floor_double(this.posX),
+                            MathHelper.floor_double(this.posZ),
+                            worldObj);
 
-                    Vec3 homeVector = Vec3.createVectorHelper(cc.posX - this.posX, cc.posY + 128 - this.posY, cc.posZ - this.posZ);
+                    Vec3 homeVector = Vec3
+                            .createVectorHelper(cc.posX - this.posX, cc.posY + 128 - this.posY, cc.posZ - this.posZ);
                     homeVector = homeVector.normalize();
 
-                    this.waypointX = this.posX + homeVector.xCoord * 16.0F + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-                    this.waypointY = this.posY + homeVector.yCoord * 16.0F + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-                    this.waypointZ = this.posZ + homeVector.zCoord * 16.0F + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                    this.waypointX = this.posX + homeVector.xCoord * 16.0F
+                            + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                    this.waypointY = this.posY + homeVector.yCoord * 16.0F
+                            + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                    this.waypointZ = this.posZ + homeVector.zCoord * 16.0F
+                            + (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 
                     // System.out.println("Setting tower ghast on a course towards home: " + this.waypointX + ", " +
                     // this.waypointY + ", " + this.waypointZ);
@@ -212,14 +229,21 @@ public class EntityTFTowerGhast extends EntityGhast {
         // check if our target is still within range
         double targetRange = (this.aggroCounter > 0 || this.isAggressive) ? aggroRange : stareRange;
 
-        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < targetRange * targetRange && this.canEntityBeSeen(this.targetedEntity)) {
+        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < targetRange * targetRange
+                && this.canEntityBeSeen(this.targetedEntity)) {
             // turn towards target
             this.faceEntity(this.targetedEntity, 10F, this.getVerticalFaceSpeed());
 
             // attack if aggressive
             if (this.isAggressive) {
                 if (this.attackCounter == 10) {
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1007, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(
+                            (EntityPlayer) null,
+                            1007,
+                            (int) this.posX,
+                            (int) this.posY,
+                            (int) this.posZ,
+                            0);
                 }
 
                 ++this.attackCounter;
@@ -233,7 +257,8 @@ public class EntityTFTowerGhast extends EntityGhast {
             // ignore player, move normally
             this.isAggressive = false;
             this.targetedEntity = null;
-            this.renderYawOffset = this.rotationYaw = -((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float) Math.PI;
+            this.renderYawOffset = this.rotationYaw = -((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F
+                    / (float) Math.PI;
 
             // changing the pitch with movement looks goofy and un-ghast-like
             // double dist = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
@@ -247,7 +272,8 @@ public class EntityTFTowerGhast extends EntityGhast {
 
         // set aggro status
         byte currentAggroStatus = this.dataWatcher.getWatchableObjectByte(AGGRO_STATUS);
-        byte newAggroStatus = (byte) (this.attackCounter > 10 ? 2 : (this.aggroCounter > 0 || this.isAggressive) ? 1 : 0);
+        byte newAggroStatus = (byte) (this.attackCounter > 10 ? 2
+                : (this.aggroCounter > 0 || this.isAggressive) ? 1 : 0);
 
         if (currentAggroStatus != newAggroStatus) {
             this.dataWatcher.updateObject(AGGRO_STATUS, Byte.valueOf(newAggroStatus));
@@ -255,8 +281,8 @@ public class EntityTFTowerGhast extends EntityGhast {
     }
 
     /**
-     * Something is deeply wrong with the calculations based off of this value, so let's set it high
-     * enough that it's ignored.
+     * Something is deeply wrong with the calculations based off of this value, so let's set it high enough that it's
+     * ignored.
      */
     @Override
     public int getVerticalFaceSpeed() {
@@ -268,11 +294,13 @@ public class EntityTFTowerGhast extends EntityGhast {
      */
     protected void spitFireball() {
         double offsetX = this.targetedEntity.posX - this.posX;
-        double offsetY = this.targetedEntity.boundingBox.minY + (double) (this.targetedEntity.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
+        double offsetY = this.targetedEntity.boundingBox.minY + (double) (this.targetedEntity.height / 2.0F)
+                - (this.posY + (double) (this.height / 2.0F));
         double offsetZ = this.targetedEntity.posZ - this.posZ;
 
         // fireball sound effect
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+        this.worldObj
+                .playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
 
         EntityLargeFireball entityFireball = new EntityLargeFireball(this.worldObj, this, offsetX, offsetY, offsetZ);
         // var17.field_92012_e = this.explosionPower;
@@ -290,8 +318,8 @@ public class EntityTFTowerGhast extends EntityGhast {
     }
 
     /**
-     * Find a player in our aggro range. If we feel the need to become aggressive towards that player,
-     * or it is within our stare range, return
+     * Find a player in our aggro range. If we feel the need to become aggressive towards that player, or it is within
+     * our stare range, return
      * 
      * @return
      */
@@ -328,8 +356,8 @@ public class EntityTFTowerGhast extends EntityGhast {
     }
 
     /**
-     * Checks to see if this tower ghast should be attacking this player. Tower ghasts attack if the
-     * block above the player is not Tower wood
+     * Checks to see if this tower ghast should be attacking this player. Tower ghasts attack if the block above the
+     * player is not Tower wood
      */
     protected boolean shouldAttackPlayer(EntityPlayer par1EntityPlayer) {
         int dx = MathHelper.floor_double(par1EntityPlayer.posX);
@@ -380,8 +408,11 @@ public class EntityTFTowerGhast extends EntityGhast {
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
     public boolean getCanSpawnHere() {
-        return this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox)
-                && this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel();
+        return this.worldObj.checkNoEntityCollision(this.boundingBox)
+                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+                && !this.worldObj.isAnyLiquid(this.boundingBox)
+                && this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL
+                && this.isValidLightLevel();
     }
 
     /**
@@ -411,11 +442,14 @@ public class EntityTFTowerGhast extends EntityGhast {
 
             } else {
                 // set our home position to the center of the tower
-                ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posZ), worldObj);
+                ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(
+                        MathHelper.floor_double(this.posX),
+                        MathHelper.floor_double(this.posZ),
+                        worldObj);
                 this.setHomeArea(cc.posX, cc.posY + 128, cc.posZ, 64);
 
-//                System.out.println("Ghast is at  " + this.posX + ", " + this.posY + ", " + this.posZ);
-//                System.out.println("Set home area to " + cc.posX + ", " + (cc.posY + 128) + ", " + cc.posZ);
+                // System.out.println("Ghast is at " + this.posX + ", " + this.posY + ", " + this.posZ);
+                // System.out.println("Set home area to " + cc.posX + ", " + (cc.posY + 128) + ", " + cc.posZ);
             }
         }
     }
@@ -429,10 +463,14 @@ public class EntityTFTowerGhast extends EntityGhast {
         } else {
             ChunkCoordinates home = this.getHomePosition();
 
-//            System.out.println("Checking home for " + x + ", " + y + ", " + z + " and home is " + home.posX + ", " + home.posY + ", " + home.posZ);
-//            System.out.println("home.getDistanceSquared(x, home.posY, z) =  "  + home.getDistanceSquared(x, home.posY, z) + " compared to " + (this.getMaximumHomeDistance() * this.getMaximumHomeDistance()));
+            // System.out.println("Checking home for " + x + ", " + y + ", " + z + " and home is " + home.posX + ", " +
+            // home.posY + ", " + home.posZ);
+            // System.out.println("home.getDistanceSquared(x, home.posY, z) = " + home.getDistanceSquared(x, home.posY,
+            // z) + " compared to " + (this.getMaximumHomeDistance() * this.getMaximumHomeDistance()));
 
-            return y > 64 && y < 210 && home.getDistanceSquared(x, home.posY, z) < this.getMaximumHomeDistance() * this.getMaximumHomeDistance();
+            return y > 64 && y < 210
+                    && home.getDistanceSquared(x, home.posY, z)
+                            < this.getMaximumHomeDistance() * this.getMaximumHomeDistance();
         }
     }
 

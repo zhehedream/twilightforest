@@ -10,6 +10,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.world.TFGenerator;
@@ -96,10 +97,36 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
         int bvar = radius + 2;
 
         // okay, let's do 3-5 main branches starting at the bottom of the crown
-        index += buildBranchRing(list, rand, index, height - crownRadius, 0, crownRadius, 0, 0.35D, 0, bvar, bvar + 2, 2, true);
+        index += buildBranchRing(
+                list,
+                rand,
+                index,
+                height - crownRadius,
+                0,
+                crownRadius,
+                0,
+                0.35D,
+                0,
+                bvar,
+                bvar + 2,
+                2,
+                true);
 
         // then, let's do 3-5 medium branches at the crown middle
-        index += buildBranchRing(list, rand, index, height - (crownRadius / 2), 0, crownRadius, 0, 0.28D, 0, bvar, bvar + 2, 1, true);
+        index += buildBranchRing(
+                list,
+                rand,
+                index,
+                height - (crownRadius / 2),
+                0,
+                crownRadius,
+                0,
+                0.28D,
+                0,
+                bvar,
+                bvar + 2,
+                1,
+                true);
 
         // finally, let's do 2-4 main branches at the crown top
         index += buildBranchRing(list, rand, index, height, 0, crownRadius, 0, 0.15D, 0, 2, 4, 2, true);
@@ -111,8 +138,8 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
     /**
      * Build a ring of branches around the tree size 0 = small, 1 = med, 2 = large, 3 = root
      */
-    protected int buildBranchRing(List list, Random rand, int index, int branchHeight, int heightVar, int length, int lengthVar, double tilt, double tiltVar, int minBranches, int maxBranches,
-            int size, boolean leafy) {
+    protected int buildBranchRing(List list, Random rand, int index, int branchHeight, int heightVar, int length,
+            int lengthVar, double tilt, double tiltVar, int minBranches, int maxBranches, int size, boolean leafy) {
         // let's do this!
         int numBranches = rand.nextInt(maxBranches - minBranches + 1) + minBranches;
         double branchRotation = 1.0 / numBranches;
@@ -140,30 +167,66 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
         return numBranches;
     }
 
-    public void makeSmallBranch(List list, Random rand, int index, int branchHeight, int branchLength, double branchRotation, double branchAngle, boolean leafy) {
+    public void makeSmallBranch(List list, Random rand, int index, int branchHeight, int branchLength,
+            double branchRotation, double branchAngle, boolean leafy) {
         ChunkCoordinates bSrc = getBranchSrc(branchHeight, branchRotation);
-        ComponentTFHollowTreeSmallBranch branch = new ComponentTFHollowTreeSmallBranch(index, bSrc.posX, bSrc.posY, bSrc.posZ, branchLength, branchRotation, branchAngle, leafy);
+        ComponentTFHollowTreeSmallBranch branch = new ComponentTFHollowTreeSmallBranch(
+                index,
+                bSrc.posX,
+                bSrc.posY,
+                bSrc.posZ,
+                branchLength,
+                branchRotation,
+                branchAngle,
+                leafy);
         list.add(branch);
         branch.buildComponent(this, list, rand);
     }
 
-    public void makeMedBranch(List list, Random rand, int index, int branchHeight, int branchLength, double branchRotation, double branchAngle, boolean leafy) {
+    public void makeMedBranch(List list, Random rand, int index, int branchHeight, int branchLength,
+            double branchRotation, double branchAngle, boolean leafy) {
         ChunkCoordinates bSrc = getBranchSrc(branchHeight, branchRotation);
-        ComponentTFHollowTreeMedBranch branch = new ComponentTFHollowTreeMedBranch(index, bSrc.posX, bSrc.posY, bSrc.posZ, branchLength, branchRotation, branchAngle, leafy);
+        ComponentTFHollowTreeMedBranch branch = new ComponentTFHollowTreeMedBranch(
+                index,
+                bSrc.posX,
+                bSrc.posY,
+                bSrc.posZ,
+                branchLength,
+                branchRotation,
+                branchAngle,
+                leafy);
         list.add(branch);
         branch.buildComponent(this, list, rand);
     }
 
-    public void makeLargeBranch(List list, Random rand, int index, int branchHeight, int branchLength, double branchRotation, double branchAngle, boolean leafy) {
+    public void makeLargeBranch(List list, Random rand, int index, int branchHeight, int branchLength,
+            double branchRotation, double branchAngle, boolean leafy) {
         ChunkCoordinates bSrc = getBranchSrc(branchHeight, branchRotation);
-        ComponentTFHollowTreeMedBranch branch = new ComponentTFHollowTreeLargeBranch(index, bSrc.posX, bSrc.posY, bSrc.posZ, branchLength, branchRotation, branchAngle, leafy);
+        ComponentTFHollowTreeMedBranch branch = new ComponentTFHollowTreeLargeBranch(
+                index,
+                bSrc.posX,
+                bSrc.posY,
+                bSrc.posZ,
+                branchLength,
+                branchRotation,
+                branchAngle,
+                leafy);
         list.add(branch);
         branch.buildComponent(this, list, rand);
     }
 
-    public void makeRoot(List list, Random rand, int index, int branchHeight, int branchLength, double branchRotation, double branchAngle) {
+    public void makeRoot(List list, Random rand, int index, int branchHeight, int branchLength, double branchRotation,
+            double branchAngle) {
         ChunkCoordinates bSrc = getBranchSrc(branchHeight, branchRotation);
-        ComponentTFHollowTreeRoot branch = new ComponentTFHollowTreeRoot(index, bSrc.posX, bSrc.posY, bSrc.posZ, branchLength, branchRotation, branchAngle, false);
+        ComponentTFHollowTreeRoot branch = new ComponentTFHollowTreeRoot(
+                index,
+                bSrc.posX,
+                bSrc.posY,
+                bSrc.posZ,
+                branchLength,
+                branchRotation,
+                branchAngle,
+                false);
         list.add(branch);
         branch.buildComponent(this, list, rand);
     }
@@ -172,7 +235,13 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
      * Where should we start this branch?
      */
     private ChunkCoordinates getBranchSrc(int branchHeight, double branchRotation) {
-        return TFGenerator.translateCoords(boundingBox.minX + radius + 1, boundingBox.minY + branchHeight, boundingBox.minZ + radius + 1, radius, branchRotation, 0.5);
+        return TFGenerator.translateCoords(
+                boundingBox.minX + radius + 1,
+                boundingBox.minY + branchHeight,
+                boundingBox.minZ + radius + 1,
+                radius,
+                branchRotation,
+                0.5);
     }
 
     /**
@@ -205,7 +274,13 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
                 for (int dy = 0; dy <= height; dy++) {
                     // fill the body of the trunk
                     if (dist <= radius && dist > hollow) {
-                        this.placeBlockAtCurrentPosition(world, TFBlocks.log, 0, dx + 1, dy, dz + 1, sbb); // offset, since our BB is slightly larger than the trunk
+                        this.placeBlockAtCurrentPosition(world, TFBlocks.log, 0, dx + 1, dy, dz + 1, sbb); // offset,
+                                                                                                           // since our
+                                                                                                           // BB is
+                                                                                                           // slightly
+                                                                                                           // larger
+                                                                                                           // than the
+                                                                                                           // trunk
                     }
                 }
 
@@ -236,7 +311,8 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
      * Add a random insect
      */
     protected void addInsect(World world, int fHeight, double fAngle, Random random, StructureBoundingBox sbb) {
-        ChunkCoordinates bugSpot = TFGenerator.translateCoords(this.radius + 1, fHeight, this.radius + 1, this.radius + 1, fAngle, 0.5);
+        ChunkCoordinates bugSpot = TFGenerator
+                .translateCoords(this.radius + 1, fHeight, this.radius + 1, this.radius + 1, fAngle, 0.5);
 
         fAngle = fAngle % 1.0;
         int insectMeta = 0;
@@ -251,13 +327,21 @@ public class ComponentTFHollowTreeTrunk extends StructureTFComponent {
             insectMeta = 2;
         }
 
-        addInsect(world, random.nextBoolean() ? TFBlocks.firefly : TFBlocks.cicada, insectMeta, bugSpot.posX, bugSpot.posY, bugSpot.posZ, sbb);
+        addInsect(
+                world,
+                random.nextBoolean() ? TFBlocks.firefly : TFBlocks.cicada,
+                insectMeta,
+                bugSpot.posX,
+                bugSpot.posY,
+                bugSpot.posZ,
+                sbb);
     }
 
     /**
      * Add an insect if we can at the position specified
      */
-    private void addInsect(World world, Block blockID, int insectMeta, int posX, int posY, int posZ, StructureBoundingBox sbb) {
+    private void addInsect(World world, Block blockID, int insectMeta, int posX, int posY, int posZ,
+            StructureBoundingBox sbb) {
         int ox = this.getXWithOffset(posX, posZ);
         int oy = this.getYWithOffset(posY);
         int oz = this.getZWithOffset(posX, posZ);

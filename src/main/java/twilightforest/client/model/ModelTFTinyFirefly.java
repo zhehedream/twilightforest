@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelTFTinyFirefly extends ModelBase {
+
     public ModelTFTinyFirefly() {
         glow1 = new ModelRenderer(this, 20, 0);
         glow1.addBox(-5F, -5F, 0F, 10, 10, 0, 0F);

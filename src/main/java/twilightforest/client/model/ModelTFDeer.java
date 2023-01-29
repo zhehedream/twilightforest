@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelTFDeer extends ModelQuadruped {
+
     public ModelTFDeer() {
         super(12, 0.0F);
 
@@ -38,7 +39,7 @@ public class ModelTFDeer extends ModelQuadruped {
         // neck
         neck = new ModelRenderer(this, 10, 19);
         neck.addBox(-2.5F, -8, -11F, 3, 9, 4, 0F);
-//        neck.setRotationPoint(1F, 5F, 2F);
+        // neck.setRotationPoint(1F, 5F, 2F);
 
         neck.rotateAngleX = 4.974188f;
 

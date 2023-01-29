@@ -2,16 +2,17 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFTrollSteinn extends Block {
 
@@ -48,31 +49,41 @@ public class BlockTFTrollSteinn extends Block {
             double ry = (double) ((float) y + random.nextFloat());
             double rz = (double) ((float) z + random.nextFloat());
 
-            if (side == 0 && !world.getBlock(x, y - 1, z).isOpaqueCube() && world.getBlockLightValue(x, y - 1, z) <= threshhold) {
+            if (side == 0 && !world.getBlock(x, y - 1, z).isOpaqueCube()
+                    && world.getBlockLightValue(x, y - 1, z) <= threshhold) {
                 ry = (double) (y + 0) - pixel;
             }
 
-            if (side == 1 && !world.getBlock(x, y + 1, z).isOpaqueCube() && world.getBlockLightValue(x, y + 1, z) <= threshhold) {
+            if (side == 1 && !world.getBlock(x, y + 1, z).isOpaqueCube()
+                    && world.getBlockLightValue(x, y + 1, z) <= threshhold) {
                 ry = (double) (y + 1) + pixel;
             }
 
-            if (side == 2 && !world.getBlock(x, y, z + 1).isOpaqueCube() && world.getBlockLightValue(x, y, z + 1) <= threshhold) {
+            if (side == 2 && !world.getBlock(x, y, z + 1).isOpaqueCube()
+                    && world.getBlockLightValue(x, y, z + 1) <= threshhold) {
                 rz = (double) (z + 1) + pixel;
             }
 
-            if (side == 3 && !world.getBlock(x, y, z - 1).isOpaqueCube() && world.getBlockLightValue(x, y, z - 1) <= threshhold) {
+            if (side == 3 && !world.getBlock(x, y, z - 1).isOpaqueCube()
+                    && world.getBlockLightValue(x, y, z - 1) <= threshhold) {
                 rz = (double) (z + 0) - pixel;
             }
 
-            if (side == 4 && !world.getBlock(x + 1, y, z).isOpaqueCube() && world.getBlockLightValue(x + 1, y, z) <= threshhold) {
+            if (side == 4 && !world.getBlock(x + 1, y, z).isOpaqueCube()
+                    && world.getBlockLightValue(x + 1, y, z) <= threshhold) {
                 rx = (double) (x + 1) + pixel;
             }
 
-            if (side == 5 && !world.getBlock(x - 1, y, z).isOpaqueCube() && world.getBlockLightValue(x - 1, y, z) <= threshhold) {
+            if (side == 5 && !world.getBlock(x - 1, y, z).isOpaqueCube()
+                    && world.getBlockLightValue(x - 1, y, z) <= threshhold) {
                 rx = (double) (x + 0) - pixel;
             }
 
-            if (rx < (double) x || rx > (double) (x + 1) || ry < 0.0D || ry > (double) (y + 1) || rz < (double) z || rz > (double) (z + 1)) {
+            if (rx < (double) x || rx > (double) (x + 1)
+                    || ry < 0.0D
+                    || ry > (double) (y + 1)
+                    || rz < (double) z
+                    || rz > (double) (z + 1)) {
                 world.spawnParticle("reddust", rx, ry, rz, 0.25D, -1.0D, 0.5D);
             }
         }

@@ -3,8 +3,6 @@ package twilightforest.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFFieryPick extends ItemPickaxe {
 
@@ -27,8 +28,10 @@ public class ItemTFFieryPick extends ItemPickaxe {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block blockID, int x, int y, int z, EntityLivingBase par7EntityLiving) {
-        if (super.onBlockDestroyed(itemStack, world, blockID, x, y, z, par7EntityLiving) && this.func_150897_b(blockID)) {
+    public boolean onBlockDestroyed(ItemStack itemStack, World world, Block blockID, int x, int y, int z,
+            EntityLivingBase par7EntityLiving) {
+        if (super.onBlockDestroyed(itemStack, world, blockID, x, y, z, par7EntityLiving)
+                && this.func_150897_b(blockID)) {
             // we are just displaying the fire animation here, so check if we're on the client
             if (world.isRemote) {
                 int meta = world.getBlockMetadata(x, y, z); // I guess the block is still there at this point
@@ -46,7 +49,14 @@ public class ItemTFFieryPick extends ItemPickaxe {
                             double ry = itemRand.nextGaussian() * 0.02D;
                             double rz = itemRand.nextGaussian() * 0.02D;
                             double magnitude = 20.0;
-                            world.spawnParticle("flame", x + 0.5 + (rx * magnitude), y + 0.5 + (ry * magnitude), z + 0.5 + (rz * magnitude), -rx, -ry, -rz);
+                            world.spawnParticle(
+                                    "flame",
+                                    x + 0.5 + (rx * magnitude),
+                                    y + 0.5 + (ry * magnitude),
+                                    z + 0.5 + (rz * magnitude),
+                                    -rx,
+                                    -ry,
+                                    -rz);
                         }
                     }
                 }
@@ -58,8 +68,8 @@ public class ItemTFFieryPick extends ItemPickaxe {
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev.
-     * They just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase target, EntityLivingBase par3EntityLiving) {
@@ -73,9 +83,14 @@ public class ItemTFFieryPick extends ItemPickaxe {
                     double var4 = itemRand.nextGaussian() * 0.02D;
                     double var6 = itemRand.nextGaussian() * 0.02D;
                     double var8 = 10.0D;
-                    target.worldObj.spawnParticle("flame", target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
+                    target.worldObj.spawnParticle(
+                            "flame",
+                            target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
                             target.posY + itemRand.nextFloat() * target.height - var4 * var8,
-                            target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8, var2, var4, var6);
+                            target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8,
+                            var2,
+                            var4,
+                            var6);
                 }
             } else {
                 target.setFire(15);
@@ -110,7 +125,8 @@ public class ItemTFFieryPick extends ItemPickaxe {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with fiery ingots
-        return par2ItemStack.getItem() == TFItems.fieryIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.fieryIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -126,6 +142,7 @@ public class ItemTFFieryPick extends ItemPickaxe {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

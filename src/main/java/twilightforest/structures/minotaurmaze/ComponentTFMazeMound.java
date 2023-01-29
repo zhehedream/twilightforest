@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFMazeMound extends StructureTFComponent {
@@ -36,7 +37,12 @@ public class ComponentTFMazeMound extends StructureTFComponent {
         super.buildComponent(structurecomponent, list, random);
 
         // add aboveground maze entrance building
-        mazeAbove = new ComponentTFMazeUpperEntrance(3, random, boundingBox.minX + 10, boundingBox.minY + 0, boundingBox.minZ + 10);
+        mazeAbove = new ComponentTFMazeUpperEntrance(
+                3,
+                random,
+                boundingBox.minX + 10,
+                boundingBox.minY + 0,
+                boundingBox.minZ + 10);
         list.add(mazeAbove);
         mazeAbove.buildComponent(this, list, random);
     }
@@ -71,7 +77,8 @@ public class ComponentTFMazeMound extends StructureTFComponent {
                 int hheight = (int) (Math.cos((double) dist / DIAMETER * Math.PI) * (DIAMETER / 3));
 
                 // leave a hole in the middle
-                if (!(cx <= 2 && cx >= -1 && cz <= 2 && cz >= -1) && ((!(cx <= 2 && cx >= -1) && !(cz <= 2 && cz >= -1)) || hheight > 6)) {
+                if (!(cx <= 2 && cx >= -1 && cz <= 2 && cz >= -1)
+                        && ((!(cx <= 2 && cx >= -1) && !(cz <= 2 && cz >= -1)) || hheight > 6)) {
                     this.placeBlockAtCurrentPosition(world, Blocks.grass, 0, x, hheight, z, sbb);
 
                     // only fill to the bottom when we're not in the entrances
@@ -88,8 +95,8 @@ public class ComponentTFMazeMound extends StructureTFComponent {
     }
 
     /**
-     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A
-     * median of all the levels in the BB's horizontal rectangle).
+     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A median of all the
+     * levels in the BB's horizontal rectangle).
      */
     protected int getAverageGroundLevel(World par1World, StructureBoundingBox par2StructureBoundingBox) {
         int totalHeight = 0;
@@ -98,7 +105,9 @@ public class ComponentTFMazeMound extends StructureTFComponent {
         for (int var5 = this.boundingBox.minZ; var5 <= this.boundingBox.maxZ; ++var5) {
             for (int var6 = this.boundingBox.minX; var6 <= this.boundingBox.maxX; ++var6) {
                 if (par2StructureBoundingBox.isVecInside(var6, 64, var5)) {
-                    totalHeight += Math.max(par1World.getTopSolidOrLiquidBlock(var6, var5), par1World.provider.getAverageGroundLevel());
+                    totalHeight += Math.max(
+                            par1World.getTopSolidOrLiquidBlock(var6, var5),
+                            par1World.provider.getAverageGroundLevel());
                     ++totalMeasures;
                 }
             }

@@ -3,6 +3,7 @@ package twilightforest.client.renderer.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.passive.EntityTFTinyBird;
 
@@ -28,15 +29,15 @@ public class RenderTFTinyBird extends RenderTFBird {
     protected ResourceLocation getEntityTexture(Entity par1Entity) {
         if (par1Entity instanceof EntityTFTinyBird) {
             switch (((EntityTFTinyBird) par1Entity).getBirdType()) {
-            default:
-            case 0:
-                return textureLocSparrow;
-            case 1:
-                return textureLocBluebird;
-            case 2:
-                return textureLocCardinal;
-            case 3:
-                return textureLocFinch;
+                default:
+                case 0:
+                    return textureLocSparrow;
+                case 1:
+                    return textureLocBluebird;
+                case 2:
+                    return textureLocCardinal;
+                case 3:
+                    return textureLocFinch;
             }
         }
 

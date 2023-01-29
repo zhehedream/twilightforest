@@ -1,25 +1,27 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderWolf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 
 public class RenderTFMistWolf extends RenderWolf {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "mistwolf.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "mistwolf.png");
 
     public RenderTFMistWolf(ModelBase par1ModelBase, ModelBase par2ModelBase, float par3) {
         super(par1ModelBase, par2ModelBase, par3);
     }
 
     /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered.
-     * Args: entityLiving, partialTickTime
+     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
+     * entityLiving, partialTickTime
      */
     protected void preRenderCallback(EntityLivingBase par1EntityLiving, float par2) {
         float wolfScale = 1.9F;
@@ -46,8 +48,8 @@ public class RenderTFMistWolf extends RenderWolf {
      * Queries whether should render the specified pass or not.
      */
     protected int shouldRenderPass(EntityLivingBase par1EntityLiving, int par2, float par3) {
-//        GL11.glFogf(GL11.GL_FOG_START, 1.0f);    
-//        GL11.glFogf(GL11.GL_FOG_END, 5.0f);
+        // GL11.glFogf(GL11.GL_FOG_START, 1.0f);
+        // GL11.glFogf(GL11.GL_FOG_END, 5.0f);
 
         return -1;
     }

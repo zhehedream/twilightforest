@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.ai.EntityAITFFlockToSameKind;
@@ -121,8 +122,8 @@ public class EntityTFKobold extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -131,8 +132,14 @@ public class EntityTFKobold extends EntityMob {
         // when panicked, spawn tears/sweat
         if (isPanicked()) {
             for (int i = 0; i < 2; i++) {
-                this.worldObj.spawnParticle("splash", this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, this.posY + this.getEyeHeight(),
-                        this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5, 0, 0, 0);
+                this.worldObj.spawnParticle(
+                        "splash",
+                        this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 0.5,
+                        this.posY + this.getEyeHeight(),
+                        this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 0.5,
+                        0,
+                        0,
+                        0);
             }
         }
 

@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 
@@ -28,8 +29,8 @@ public class EntityTFHedgeSpider extends EntitySpider {
     }
 
     /**
-     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in
-     * attacking (Animals, Spiders at day, peaceful PigZombies).
+     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
+     * (Animals, Spiders at day, peaceful PigZombies).
      */
     @Override
     protected Entity findPlayerToAttack() {
@@ -66,7 +67,8 @@ public class EntityTFHedgeSpider extends EntitySpider {
             int chunkZ = MathHelper.floor_double(posZ) >> 4;
             if (TFFeature.getNearestFeature(chunkX, chunkZ, worldObj) == TFFeature.hedgeMaze) {
                 // award hedge maze cheevo
-                ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHedge);
+                ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                        .triggerAchievement(TFAchievementPage.twilightHedge);
             }
         }
     }

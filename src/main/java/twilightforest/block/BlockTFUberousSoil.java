@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
@@ -34,17 +35,15 @@ public class BlockTFUberousSoil extends Block implements IGrowable {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     public boolean isOpaqueCube() {
         return false;
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     public boolean renderAsNormalBlock() {
         return false;
@@ -65,22 +64,21 @@ public class BlockTFUberousSoil extends Block implements IGrowable {
     }
 
     /**
-     * Determines if this block can support the passed in plant, allowing it to be planted and grow.
-     * Some examples: Reeds check if its a reed, or if its sand/dirt/grass and adjacent to water Cacti
-     * checks if its a cacti, or if its sand Nether types check for soul sand Crops check for tilled
-     * soil Caves check if it's a solid surface Plains check if its grass or dirt Water check if its
-     * still water
+     * Determines if this block can support the passed in plant, allowing it to be planted and grow. Some examples:
+     * Reeds check if its a reed, or if its sand/dirt/grass and adjacent to water Cacti checks if its a cacti, or if its
+     * sand Nether types check for soul sand Crops check for tilled soil Caves check if it's a solid surface Plains
+     * check if its grass or dirt Water check if its still water
      *
      * @param world     The current world
      * @param x         X Position
      * @param y         Y Position
      * @param z         Z position
-     * @param direction The direction relative to the given position the plant wants to be, typically
-     *                  its UP
+     * @param direction The direction relative to the given position the plant wants to be, typically its UP
      * @param plantable The plant that wants to check
      * @return True to allow the plant to be planted/stay.
      */
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction,
+            IPlantable plantable) {
         // Block plant = plantable.getPlant(world, x, y + 1, z);
         EnumPlantType plantType = plantable.getPlantType(world, x, y + 1, z);
 
@@ -88,8 +86,8 @@ public class BlockTFUberousSoil extends Block implements IGrowable {
     }
 
     /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed
-     * (coordinates passed are their own) Args: x, y, z, neighbor Block
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor Block
      */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
         Block above = world.getBlock(x, y + 1, z);
@@ -153,7 +151,8 @@ public class BlockTFUberousSoil extends Block implements IGrowable {
         }
 
         Block blockAt = world.getBlock(gx, gy, gz);
-        if (world.isAirBlock(gx, gy + 1, gz) && (blockAt == Blocks.dirt || blockAt == Blocks.grass || blockAt == Blocks.farmland)) {
+        if (world.isAirBlock(gx, gy + 1, gz)
+                && (blockAt == Blocks.dirt || blockAt == Blocks.grass || blockAt == Blocks.farmland)) {
             world.setBlock(gx, gy, gz, this);
         }
     }

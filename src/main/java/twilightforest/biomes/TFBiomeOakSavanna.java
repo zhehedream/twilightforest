@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFGenCanopyOak;
@@ -68,7 +69,8 @@ public class TFBiomeOakSavanna extends TFBiomeTwilightForest {
             return BlockFlower.field_149859_a[4 + l];
         } else if (p_150572_1_.nextInt(3) > 0) {
             l = p_150572_1_.nextInt(3);
-            return l == 0 ? BlockFlower.field_149859_a[0] : (l == 1 ? BlockFlower.field_149859_a[3] : BlockFlower.field_149859_a[8]);
+            return l == 0 ? BlockFlower.field_149859_a[0]
+                    : (l == 1 ? BlockFlower.field_149859_a[3] : BlockFlower.field_149859_a[8]);
         } else {
             return BlockFlower.field_149858_b[0];
         }

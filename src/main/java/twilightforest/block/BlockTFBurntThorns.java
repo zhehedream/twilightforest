@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.item.TFItems;
 
 public class BlockTFBurntThorns extends BlockTFThorns {
@@ -22,8 +23,7 @@ public class BlockTFBurntThorns extends BlockTFThorns {
     }
 
     /**
-     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y,
-     * z, entity
+     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         // dissolve

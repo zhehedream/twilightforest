@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import twilightforest.item.TFItems;
 
 public class EntityTFArmoredGiant extends EntityTFGiantMiner {

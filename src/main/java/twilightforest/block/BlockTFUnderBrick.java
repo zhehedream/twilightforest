@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,13 +10,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFUnderBrick extends Block {
 
     private static IIcon[] iconSide = new IIcon[4];
-//    private static IIcon[] iconFloor = new IIcon[4];
+    // private static IIcon[] iconFloor = new IIcon[4];
 
     public BlockTFUnderBrick() {
         super(Material.rock);
@@ -33,18 +34,18 @@ public class BlockTFUnderBrick extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-//        for (int i = 0; i < this.iconSide.length; i++)
-//        {
-//            this.iconFloor[i] = Blocks.stonebrick.getIcon(0, i);
-//        }
+        // for (int i = 0; i < this.iconSide.length; i++)
+        // {
+        // this.iconFloor[i] = Blocks.stonebrick.getIcon(0, i);
+        // }
 
         BlockTFUnderBrick.iconSide[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick");
         BlockTFUnderBrick.iconSide[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_mossy");
         BlockTFUnderBrick.iconSide[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_cracked");
 
-//        this.iconFloor[0] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
-//        this.iconFloor[1] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
-//        this.iconFloor[2] =  par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+        // this.iconFloor[0] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+        // this.iconFloor[1] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
+        // this.iconFloor[2] = par1IconRegister.registerIcon(TwilightForestMod.ID + ":knightbrick_floor");
     }
 
     /**
@@ -68,8 +69,8 @@ public class BlockTFUnderBrick extends Block {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {

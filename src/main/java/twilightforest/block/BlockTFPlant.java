@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
@@ -25,16 +23,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFPlant extends BlockBush implements IShearable {
 
-    boolean[] isGrassColor = { false, false, false, false, true, true, false, false, true, false, true, false, false, false, false, false };
+    boolean[] isGrassColor = { false, false, false, false, true, true, false, false, true, false, true, false, false,
+            false, false, false };
     int[] lightValue = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 8, 0, 0 };
 
     private IIcon[] icons;
-    private String[] iconNames = new String[] { null, null, null, "mosspatch", "mayapple", "cloverpatch", null, null, "fiddlehead", "mushgloom", null, null, null, "torchberry", "rootstrand", null };
+    private String[] iconNames = new String[] { null, null, null, "mosspatch", "mayapple", "cloverpatch", null, null,
+            "fiddlehead", "mushgloom", null, null, null, "torchberry", "rootstrand", null };
     public static IIcon mayappleSide;
 
     public static final int META_MOSSPATCH = 3;
@@ -102,12 +105,12 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         // we need to get the metadata
         Block blockAt = par1World.getBlock(x, y, z);
 
-        return (blockAt == Blocks.air || blockAt.getMaterial().isReplaceable()) && canBlockStay(par1World, x, y, z, par6ItemStack.getItemDamage());
+        return (blockAt == Blocks.air || blockAt.getMaterial().isReplaceable())
+                && canBlockStay(par1World, x, y, z, par6ItemStack.getItemDamage());
     }
 
     /**
-     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with
-     * plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with plants.
      */
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
@@ -125,18 +128,19 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         Block soil = world.getBlock(x, y - 1, z);
 
         switch (meta) {
-        case META_TORCHBERRY:
-        case META_ROOT_STRAND:
-            return BlockTFPlant.canPlaceRootBelow(world, x, y + 1, z);
-        case 0: // let's make this happen
-        case META_FORESTGRASS:
-        case META_DEADBUSH:
-            return (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
-        case META_MUSHGLOOM:
-        case META_MOSSPATCH:
-            return soil != null && soil.isSideSolid(world, x, y, z, ForgeDirection.UP);
-        default:
-            return (world.getFullBlockLightValue(x, y, z) >= 3 || world.canBlockSeeTheSky(x, y, z)) && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+            case META_TORCHBERRY:
+            case META_ROOT_STRAND:
+                return BlockTFPlant.canPlaceRootBelow(world, x, y + 1, z);
+            case 0: // let's make this happen
+            case META_FORESTGRASS:
+            case META_DEADBUSH:
+                return (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+            case META_MUSHGLOOM:
+            case META_MOSSPATCH:
+                return soil != null && soil.isSideSolid(world, x, y, z, ForgeDirection.UP);
+            default:
+                return (world.getFullBlockLightValue(x, y, z) >= 3 || world.canBlockSeeTheSky(x, y, z))
+                        && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
         }
     }
 
@@ -156,12 +160,22 @@ public class BlockTFPlant extends BlockBush implements IShearable {
             int zOff0 = (int) (seed >> 18 & 3L);
             int zOff1 = (int) (seed >> 21 & 3L);
 
-            boolean xConnect0 = par1IBlockAccess.getBlock(x + 1, y, z) == this && par1IBlockAccess.getBlockMetadata(x + 1, y, z) == META_MOSSPATCH;
-            boolean xConnect1 = par1IBlockAccess.getBlock(x - 1, y, z) == this && par1IBlockAccess.getBlockMetadata(x - 1, y, z) == META_MOSSPATCH;
-            boolean zConnect0 = par1IBlockAccess.getBlock(x, y, z + 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z + 1) == META_MOSSPATCH;
-            boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_MOSSPATCH;
+            boolean xConnect0 = par1IBlockAccess.getBlock(x + 1, y, z) == this
+                    && par1IBlockAccess.getBlockMetadata(x + 1, y, z) == META_MOSSPATCH;
+            boolean xConnect1 = par1IBlockAccess.getBlock(x - 1, y, z) == this
+                    && par1IBlockAccess.getBlockMetadata(x - 1, y, z) == META_MOSSPATCH;
+            boolean zConnect0 = par1IBlockAccess.getBlock(x, y, z + 1) == this
+                    && par1IBlockAccess.getBlockMetadata(x, y, z + 1) == META_MOSSPATCH;
+            boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this
+                    && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_MOSSPATCH;
 
-            this.setBlockBounds(xConnect1 ? 0F : (1F + xOff1) / 16F, 0.0F, zConnect1 ? 0F : (1F + zOff1) / 16F, xConnect0 ? 1F : (15F - xOff0) / 16F, 1F / 16F, zConnect0 ? 1F : (15F - zOff0) / 16F);
+            this.setBlockBounds(
+                    xConnect1 ? 0F : (1F + xOff1) / 16F,
+                    0.0F,
+                    zConnect1 ? 0F : (1F + zOff1) / 16F,
+                    xConnect0 ? 1F : (15F - xOff0) / 16F,
+                    1F / 16F,
+                    zConnect0 ? 1F : (15F - zOff0) / 16F);
         } else if (meta == META_CLOVERPATCH) {
             long seed = x * 3129871L ^ y * 116129781L ^ z;
             seed = seed * seed * 42317861L + seed * 11L;
@@ -174,12 +188,22 @@ public class BlockTFPlant extends BlockBush implements IShearable {
             int yOff0 = (int) (seed >> 24 & 1L);
             int yOff1 = (int) (seed >> 27 & 1L);
 
-            boolean xConnect0 = par1IBlockAccess.getBlock(x + 1, y, z) == this && par1IBlockAccess.getBlockMetadata(x + 1, y, z) == META_CLOVERPATCH;
-            boolean xConnect1 = par1IBlockAccess.getBlock(x - 1, y, z) == this && par1IBlockAccess.getBlockMetadata(x - 1, y, z) == META_CLOVERPATCH;
-            boolean zConnect0 = par1IBlockAccess.getBlock(x, y, z + 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z + 1) == META_CLOVERPATCH;
-            boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_CLOVERPATCH;
+            boolean xConnect0 = par1IBlockAccess.getBlock(x + 1, y, z) == this
+                    && par1IBlockAccess.getBlockMetadata(x + 1, y, z) == META_CLOVERPATCH;
+            boolean xConnect1 = par1IBlockAccess.getBlock(x - 1, y, z) == this
+                    && par1IBlockAccess.getBlockMetadata(x - 1, y, z) == META_CLOVERPATCH;
+            boolean zConnect0 = par1IBlockAccess.getBlock(x, y, z + 1) == this
+                    && par1IBlockAccess.getBlockMetadata(x, y, z + 1) == META_CLOVERPATCH;
+            boolean zConnect1 = par1IBlockAccess.getBlock(x, y, z - 1) == this
+                    && par1IBlockAccess.getBlockMetadata(x, y, z - 1) == META_CLOVERPATCH;
 
-            this.setBlockBounds(xConnect1 ? 0F : (1F + xOff1) / 16F, 0.0F, zConnect1 ? 0F : (1F + zOff1) / 16F, xConnect0 ? 1F : (15F - xOff0) / 16F, (1F + yOff0 + yOff1) / 16F, zConnect0 ? 1F : (15F - zOff0) / 16F);
+            this.setBlockBounds(
+                    xConnect1 ? 0F : (1F + xOff1) / 16F,
+                    0.0F,
+                    zConnect1 ? 0F : (1F + zOff1) / 16F,
+                    xConnect0 ? 1F : (15F - xOff0) / 16F,
+                    (1F + yOff0 + yOff1) / 16F,
+                    zConnect0 ? 1F : (15F - zOff0) / 16F);
 
             // this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2F / 16F, 1.0F);
         } else if (meta == META_MAYAPPLE) {
@@ -198,8 +222,8 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
@@ -208,8 +232,8 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int x, int y, int z) {
@@ -219,9 +243,8 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -229,8 +252,7 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -250,11 +272,11 @@ public class BlockTFPlant extends BlockBush implements IShearable {
      */
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
-        //int meta = world.getBlockMetadata(x, y, z);
-        //if (world.getBlockLightValue(x, y, z) < lightValue[meta]) {
-            // par1World.updateLightByType(EnumSkyBlock.Block, x, y, z);
-            // par1World.markBlockForUpdate(x, y, z); // do we need this now?
-        //}
+        // int meta = world.getBlockMetadata(x, y, z);
+        // if (world.getBlockLightValue(x, y, z) < lightValue[meta]) {
+        // par1World.updateLightByType(EnumSkyBlock.Block, x, y, z);
+        // par1World.markBlockForUpdate(x, y, z); // do we need this now?
+        // }
     }
 
     /**
@@ -284,34 +306,35 @@ public class BlockTFPlant extends BlockBush implements IShearable {
             return true;
         } else {
             int blockMeta = world.getBlockMetadata(x, y, z);
-            return (blockID == TFBlocks.plant && blockMeta == META_ROOT_STRAND) || (blockID == TFBlocks.root && blockMeta == BlockTFRoots.ROOT_META);
+            return (blockID == TFBlocks.plant && blockMeta == META_ROOT_STRAND)
+                    || (blockID == TFBlocks.root && blockMeta == BlockTFRoots.ROOT_META);
         }
 
     }
 
-//    /**
-//     * Drops the block items with a specified chance of dropping the specified items
-//     */
-//    public void dropBlockAsItemWithChance(World var1, int var2, int var3, int var4, int var5, float var6, int var7)
-//    {
-//        super.dropBlockAsItemWithChance(var1, var2, var3, var4, var5, var6, var7);
-//
-//        if (!var1.isRemote && var5 == 1)
-//        {
-//            this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemComponents, 1, 2));
-//        }
-//
-//        if (!var1.isRemote && var5 == 3)
-//        {
-//            this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemPlants, 1, 3));
-//        }
-//
-//        if (!var1.isRemote && (var5 == 2 || var5 == 4) && var1.rand.nextInt(10) == 0)
-//        {
-//            this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemArtifactTainted, 1, 0));
-//        }
-//    }
-//    
+    // /**
+    // * Drops the block items with a specified chance of dropping the specified items
+    // */
+    // public void dropBlockAsItemWithChance(World var1, int var2, int var3, int var4, int var5, float var6, int var7)
+    // {
+    // super.dropBlockAsItemWithChance(var1, var2, var3, var4, var5, var6, var7);
+    //
+    // if (!var1.isRemote && var5 == 1)
+    // {
+    // this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemComponents, 1, 2));
+    // }
+    //
+    // if (!var1.isRemote && var5 == 3)
+    // {
+    // this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemPlants, 1, 3));
+    // }
+    //
+    // if (!var1.isRemote && (var5 == 2 || var5 == 4) && var1.rand.nextInt(10) == 0)
+    // {
+    // this.dropBlockAsItem_do(var1, var2, var3, var4, new ItemStack(mod_ThaumCraft.itemArtifactTainted, 1, 0));
+    // }
+    // }
+    //
 
     /**
      * This returns a complete list of items dropped from this block.
@@ -332,20 +355,20 @@ public class BlockTFPlant extends BlockBush implements IShearable {
 
         // blah
         switch (meta) {
-        case META_TORCHBERRY:
-            ret.add(new ItemStack(TFItems.torchberries));
-            break;
-        case META_MOSSPATCH:
-        case META_MAYAPPLE:
-        case META_CLOVERPATCH:
-        case META_ROOT_STRAND:
-        case META_FORESTGRASS:
-        case META_DEADBUSH:
-            // Just don't drop anythin
-            break;
-        default:
-            ret.add(new ItemStack(this, 1, meta));
-            break;
+            case META_TORCHBERRY:
+                ret.add(new ItemStack(TFItems.torchberries));
+                break;
+            case META_MOSSPATCH:
+            case META_MAYAPPLE:
+            case META_CLOVERPATCH:
+            case META_ROOT_STRAND:
+            case META_FORESTGRASS:
+            case META_DEADBUSH:
+                // Just don't drop anythin
+                break;
+            default:
+                ret.add(new ItemStack(this, 1, meta));
+                break;
         }
 
         return ret;
@@ -375,13 +398,12 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * Performs the shear function on this object. This is called for both client, and server. The
-     * object should perform all actions related to being sheared, except for dropping of the items.
+     * Performs the shear function on this object. This is called for both client, and server. The object should perform
+     * all actions related to being sheared, except for dropping of the items.
      *
      * Returns a list of items that resulted from the shearing process.
      *
-     * For entities, they should trust there internal location information over the values passed into
-     * this function.
+     * For entities, they should trust there internal location information over the values passed into this function.
      *
      * @param item    The itemstack that is being used, Possible to be null
      * @param world   The current world
@@ -400,12 +422,13 @@ public class BlockTFPlant extends BlockBush implements IShearable {
     }
 
     /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the
-     * coordinates of the block and l is the block's subtype/damage.
+     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
+     * block and l is the block's subtype/damage.
      */
     public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {
         // do not call normal harvest if the player is shearing
-        if (world.isRemote || player.getCurrentEquippedItem() == null || player.getCurrentEquippedItem().getItem() != Items.shears) {
+        if (world.isRemote || player.getCurrentEquippedItem() == null
+                || player.getCurrentEquippedItem().getItem() != Items.shears) {
             super.harvestBlock(world, player, x, y, z, meta);
         }
     }
@@ -436,11 +459,11 @@ public class BlockTFPlant extends BlockBush implements IShearable {
         int meta = world.getBlockMetadata(x, y, z);
 
         switch (meta) {
-        case META_MOSSPATCH:
-        case META_MUSHGLOOM:
-            return EnumPlantType.Cave;
-        default:
-            return EnumPlantType.Plains;
+            case META_MOSSPATCH:
+            case META_MUSHGLOOM:
+                return EnumPlantType.Cave;
+            default:
+                return EnumPlantType.Plains;
         }
     }
 

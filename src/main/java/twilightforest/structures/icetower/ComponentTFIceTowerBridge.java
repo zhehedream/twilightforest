@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFIceTowerBridge extends StructureTFComponent {
@@ -63,8 +64,34 @@ public class ComponentTFIceTowerBridge extends StructureTFComponent {
 
         // pillars
         for (int x = 2; x < length; x += 3) {
-            fillWithMetadataBlocks(world, sbb, x, 1, 0, x, 5, 0, deco.pillarID, deco.pillarMeta, deco.pillarID, deco.pillarMeta, false);
-            fillWithMetadataBlocks(world, sbb, x, 1, 4, x, 5, 4, deco.pillarID, deco.pillarMeta, deco.pillarID, deco.pillarMeta, false);
+            fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    1,
+                    0,
+                    x,
+                    5,
+                    0,
+                    deco.pillarID,
+                    deco.pillarMeta,
+                    deco.pillarID,
+                    deco.pillarMeta,
+                    false);
+            fillWithMetadataBlocks(
+                    world,
+                    sbb,
+                    x,
+                    1,
+                    4,
+                    x,
+                    5,
+                    4,
+                    deco.pillarID,
+                    deco.pillarMeta,
+                    deco.pillarID,
+                    deco.pillarMeta,
+                    false);
         }
 
         return true;

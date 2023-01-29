@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.passive.EntityTFBunny;
 
@@ -27,16 +28,16 @@ public class RenderTFBunny extends RenderLiving {
     protected ResourceLocation getEntityTexture(Entity par1Entity) {
         if (par1Entity instanceof EntityTFBunny) {
             switch (((EntityTFBunny) par1Entity).getBunnyType()) {
-            default:
-            case 0:
-            case 1:
-                return textureLocDutch;
+                default:
+                case 0:
+                case 1:
+                    return textureLocDutch;
 
-            case 2:
-                return textureLocWhite;
+                case 2:
+                    return textureLocWhite;
 
-            case 3:
-                return textureLocBrown;
+                case 3:
+                    return textureLocBrown;
             }
         }
 

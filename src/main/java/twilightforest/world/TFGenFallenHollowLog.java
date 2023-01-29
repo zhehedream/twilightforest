@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 
@@ -42,7 +43,13 @@ public class TFGenFallenHollowLog extends TFGenerator {
             if (rand.nextBoolean()) {
                 this.setBlockAndMetadata(world, x + 1, y - 1, z + dz + 3, TFBlocks.log, 8);
                 if (rand.nextBoolean()) {
-                    this.setBlockAndMetadata(world, x + 1, y + 0, z + dz + 3, TFBlocks.plant, BlockTFPlant.META_MOSSPATCH);
+                    this.setBlockAndMetadata(
+                            world,
+                            x + 1,
+                            y + 0,
+                            z + dz + 3,
+                            TFBlocks.plant,
+                            BlockTFPlant.META_MOSSPATCH);
                 }
             } else {
                 this.setBlockAndMetadata(world, x + 1, y - 1, z + dz + 3, Blocks.dirt, 0);
@@ -51,7 +58,13 @@ public class TFGenFallenHollowLog extends TFGenerator {
             if (rand.nextBoolean()) {
                 this.setBlockAndMetadata(world, x + 2, y - 1, z + dz + 3, TFBlocks.log, 8);
                 if (rand.nextBoolean()) {
-                    this.setBlockAndMetadata(world, x + 2, y + 0, z + dz + 3, TFBlocks.plant, BlockTFPlant.META_MOSSPATCH);
+                    this.setBlockAndMetadata(
+                            world,
+                            x + 2,
+                            y + 0,
+                            z + dz + 3,
+                            TFBlocks.plant,
+                            BlockTFPlant.META_MOSSPATCH);
                 }
             } else {
                 this.setBlockAndMetadata(world, x + 2, y - 1, z + dz + 3, Blocks.dirt, 0);

@@ -1,7 +1,5 @@
 package twilightforest.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,10 +10,14 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFCrumbleHorn extends ItemTF {
+
     private static final int CHANCE_HARVEST = 20;
     private static final int CHANCE_CRUMBLE = 5;
 
@@ -85,7 +87,12 @@ public class ItemTFCrumbleHorn extends ItemTF {
         Vec3 lookVec = player.getLookVec();
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
 
-        AxisAlignedBB crumbleBox = AxisAlignedBB.getBoundingBox(destVec.xCoord - radius, destVec.yCoord - radius, destVec.zCoord - radius, destVec.xCoord + radius, destVec.yCoord + radius,
+        AxisAlignedBB crumbleBox = AxisAlignedBB.getBoundingBox(
+                destVec.xCoord - radius,
+                destVec.yCoord - radius,
+                destVec.zCoord - radius,
+                destVec.xCoord + radius,
+                destVec.yCoord + radius,
                 destVec.zCoord + radius);
 
         return crumbleBlocksInAABB(world, player, crumbleBox);
@@ -172,6 +179,7 @@ public class ItemTFCrumbleHorn extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

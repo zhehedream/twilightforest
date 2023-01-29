@@ -3,12 +3,14 @@ package twilightforest.entity.ai;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAITarget;
 
+import cpw.mods.fml.common.FMLLog;
+
 public class EntityAITFFlockTarget extends EntityAITarget {
+
     EntityLivingBase flockCreature;
     EntityLivingBase flockTarget;
 
@@ -24,7 +26,9 @@ public class EntityAITFFlockTarget extends EntityAITarget {
     @SuppressWarnings("unchecked")
     @Override
     public boolean shouldExecute() {
-        List<EntityLivingBase> flockList = this.flockCreature.worldObj.getEntitiesWithinAABB(this.flockCreature.getClass(), this.flockCreature.boundingBox.expand(16.0D, 4.0D, 16.0D));
+        List<EntityLivingBase> flockList = this.flockCreature.worldObj.getEntitiesWithinAABB(
+                this.flockCreature.getClass(),
+                this.flockCreature.boundingBox.expand(16.0D, 4.0D, 16.0D));
         List<EntityLivingBase> targetList = new ArrayList<EntityLivingBase>();
 
         for (EntityLivingBase flocker : flockList) {

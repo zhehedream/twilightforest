@@ -1,12 +1,12 @@
 package twilightforest.client.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+
+import org.lwjgl.opengl.GL11;
 
 public class ModelTFAdherent extends ModelBiped {
 
@@ -50,9 +50,9 @@ public class ModelTFAdherent extends ModelBiped {
     }
 
     /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the
-     * movement of arms and legs, where par1 represents the time(so that arms and legs swing back and
-     * forth) and par2 represents how "far" arms and legs can swing at most.
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
      */
 
     @Override
@@ -76,8 +76,8 @@ public class ModelTFAdherent extends ModelBiped {
     }
 
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are
-     * the same second and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
      */
     @Override
     public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float partialTick) {

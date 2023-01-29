@@ -5,9 +5,11 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 public class TFGenHangingLamps extends TFGenerator {
+
     private static final int MAX_HANG = 8;
 
     public boolean generate(World world, Random rand, int x, int y, int z) {

@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 
 /**
@@ -43,7 +44,8 @@ public class TFGenCanopyMushroom extends TFTreeGenerator {
 
         // check if we're on dirt or grass
         Block blockUnder = world.getBlock(x, y - 1, z);
-        if (blockUnder != Blocks.grass && blockUnder != Blocks.dirt && blockUnder != Blocks.mycelium || y >= 256 - treeHeight - 1) {
+        if (blockUnder != Blocks.grass && blockUnder != Blocks.dirt && blockUnder != Blocks.mycelium
+                || y >= 256 - treeHeight - 1) {
             return false;
         }
 
@@ -71,7 +73,8 @@ public class TFGenCanopyMushroom extends TFTreeGenerator {
      * @param angle
      * @param tilt
      */
-    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt, boolean trunk, Random treeRNG) {
+    void buildBranch(World world, int x, int y, int z, int height, double length, double angle, double tilt,
+            boolean trunk, Random treeRNG) {
         ChunkCoordinates src = new ChunkCoordinates(x, y + height, z);
         ChunkCoordinates dest = translateCoords(src.posX, src.posY, src.posZ, length, angle, tilt);
 
@@ -92,10 +95,28 @@ public class TFGenCanopyMushroom extends TFTreeGenerator {
         if (src.posX != dest.posX || src.posZ != dest.posZ) {
             // branch
             drawBresehnam(world, src.posX, src.posY, src.posZ, dest.posX, src.posY, dest.posZ, treeBlock, branchMeta);
-            drawBresehnam(world, dest.posX, src.posY + 1, dest.posZ, dest.posX, dest.posY - 1, dest.posZ, treeBlock, treeMeta);
+            drawBresehnam(
+                    world,
+                    dest.posX,
+                    src.posY + 1,
+                    dest.posZ,
+                    dest.posX,
+                    dest.posY - 1,
+                    dest.posZ,
+                    treeBlock,
+                    treeMeta);
         } else {
             // trunk
-            drawBresehnam(world, src.posX, src.posY, src.posZ, dest.posX, dest.posY - 1, dest.posZ, treeBlock, treeMeta);
+            drawBresehnam(
+                    world,
+                    src.posX,
+                    src.posY,
+                    src.posZ,
+                    dest.posX,
+                    dest.posY - 1,
+                    dest.posZ,
+                    treeBlock,
+                    treeMeta);
         }
 
         // do this here until that bug with the lighting is fixed
@@ -174,17 +195,17 @@ public class TFGenCanopyMushroom extends TFTreeGenerator {
     private void addFirefly(World world, int x, int y, int z, int height, double angle) {
         int iAngle = (int) (angle * 4.0);
         switch (iAngle) {
-        case 0:
-            setBlockAndMetadata(world, x + 1, y + height, z, TFBlocks.firefly, 0);
-            break;
-        case 1:
-            setBlockAndMetadata(world, x - 1, y + height, z, TFBlocks.firefly, 0);
-            break;
-        case 2:
-            setBlockAndMetadata(world, x, y + height, z + 1, TFBlocks.firefly, 0);
-            break;
-        case 3:
-            setBlockAndMetadata(world, x, y + height, z - 1, TFBlocks.firefly, 0);
+            case 0:
+                setBlockAndMetadata(world, x + 1, y + height, z, TFBlocks.firefly, 0);
+                break;
+            case 1:
+                setBlockAndMetadata(world, x - 1, y + height, z, TFBlocks.firefly, 0);
+                break;
+            case 2:
+                setBlockAndMetadata(world, x, y + height, z + 1, TFBlocks.firefly, 0);
+                break;
+            case 3:
+                setBlockAndMetadata(world, x, y + height, z - 1, TFBlocks.firefly, 0);
         }
     }
 }

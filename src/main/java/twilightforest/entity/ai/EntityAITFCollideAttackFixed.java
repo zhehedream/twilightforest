@@ -15,6 +15,7 @@ import net.minecraft.world.World;
  *
  */
 public class EntityAITFCollideAttackFixed extends EntityAIBase {
+
     World worldObj;
     EntityCreature attacker;
     /**
@@ -24,8 +25,7 @@ public class EntityAITFCollideAttackFixed extends EntityAIBase {
     /** The speed with which the mob will approach the target */
     double speedTowardsTarget;
     /**
-     * When true, the mob will continue chasing its target, even if it can't find a path to them right
-     * now.
+     * When true, the mob will continue chasing its target, even if it can't find a path to them right now.
      */
     boolean longMemory;
     /** The PathEntity of our entity. */
@@ -37,7 +37,8 @@ public class EntityAITFCollideAttackFixed extends EntityAIBase {
     private double pathZ;
     private int failedPathFindingPenalty;
 
-    public EntityAITFCollideAttackFixed(EntityCreature par1EntityCreature, Class<? extends EntityLivingBase> par2Class, double par3, boolean par5) {
+    public EntityAITFCollideAttackFixed(EntityCreature par1EntityCreature, Class<? extends EntityLivingBase> par2Class,
+            double par3, boolean par5) {
         this(par1EntityCreature, par3, par5);
         this.classTarget = par2Class;
     }
@@ -81,7 +82,9 @@ public class EntityAITFCollideAttackFixed extends EntityAIBase {
         return entitylivingbase == null ? false
                 : (!entitylivingbase.isEntityAlive() ? false
                         : (!this.longMemory ? !this.attacker.getNavigator().noPath()
-                                : this.attacker.isWithinHomeDistance(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posY),
+                                : this.attacker.isWithinHomeDistance(
+                                        MathHelper.floor_double(entitylivingbase.posX),
+                                        MathHelper.floor_double(entitylivingbase.posY),
                                         MathHelper.floor_double(entitylivingbase.posZ))));
     }
 
@@ -107,13 +110,17 @@ public class EntityAITFCollideAttackFixed extends EntityAIBase {
         EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
         this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
 
-        double distanceToAttacker = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.boundingBox.minY, entitylivingbase.posZ);
-        double attackRange = (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + entitylivingbase.width);
+        double distanceToAttacker = this.attacker
+                .getDistanceSq(entitylivingbase.posX, entitylivingbase.boundingBox.minY, entitylivingbase.posZ);
+        double attackRange = (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F
+                + entitylivingbase.width);
 
         --this.delayTicks;
 
-        if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.delayTicks <= 0 && (this.pathX == 0.0D && this.pathY == 0.0D && this.pathZ == 0.0D
-                || entitylivingbase.getDistanceSq(this.pathX, this.pathY, this.pathZ) >= 1.0D || this.attacker.getRNG().nextFloat() < 0.05F)) {
+        if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.delayTicks <= 0
+                && (this.pathX == 0.0D && this.pathY == 0.0D && this.pathZ == 0.0D
+                        || entitylivingbase.getDistanceSq(this.pathX, this.pathY, this.pathZ) >= 1.0D
+                        || this.attacker.getRNG().nextFloat() < 0.05F)) {
             this.pathX = entitylivingbase.posX;
             this.pathY = entitylivingbase.boundingBox.minY;
             this.pathZ = entitylivingbase.posZ;
@@ -121,7 +128,8 @@ public class EntityAITFCollideAttackFixed extends EntityAIBase {
 
             if (this.attacker.getNavigator().getPath() != null) {
                 PathPoint finalPathPoint = this.attacker.getNavigator().getPath().getFinalPathPoint();
-                if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1) {
+                if (finalPathPoint != null && entitylivingbase
+                        .getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1) {
                     failedPathFindingPenalty = 0;
                 } else {
                     failedPathFindingPenalty += 10;

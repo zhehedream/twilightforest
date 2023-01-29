@@ -3,7 +3,6 @@ package twilightforest.entity.boss;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -18,6 +17,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.TFTreasure;
@@ -29,10 +29,11 @@ import twilightforest.entity.EntityTFTowerGhast;
 import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.TFWorldChunkManager;
 import twilightforest.world.WorldProviderTwilightForest;
+import cpw.mods.fml.common.FMLLog;
 
 public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayData {
 
-//    private static final int DATA_BOSSHEALTH = 17;
+    // private static final int DATA_BOSSHEALTH = 17;
     private static final int DATA_TANTRUM = 18;
 
     // private static final int CRUISING_ALTITUDE = 235; // absolute cruising altitude
@@ -80,10 +81,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
     }
 
-//    public int getMaxHealth()
-//    {
-//        return 250;
-//    }
+    // public int getMaxHealth()
+    // {
+    // return 250;
+    // }
 
     /**
      * Set monster attributes
@@ -97,7 +98,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     @Override
     protected void entityInit() {
         super.entityInit();
-//        this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(this.getMaxHealth()));
+        // this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(this.getMaxHealth()));
         this.dataWatcher.addObject(DATA_TANTRUM, (byte) 0);
     }
 
@@ -125,7 +126,14 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
                 double d2 = rand.nextGaussian() * 0.02D;
                 String explosionType = rand.nextBoolean() ? "hugeexplosion" : "explode";
 
-                worldObj.spawnParticle(explosionType, (posX + rand.nextFloat() * width * 2.0F) - width, posY + rand.nextFloat() * height, (posZ + rand.nextFloat() * width * 2.0F) - width, d, d1, d2);
+                worldObj.spawnParticle(
+                        explosionType,
+                        (posX + rand.nextFloat() * width * 2.0F) - width,
+                        posY + rand.nextFloat() * height,
+                        (posZ + rand.nextFloat() * width * 2.0F) - width,
+                        d,
+                        d1,
+                        d2);
             }
         }
     }
@@ -148,7 +156,9 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
         if ("fireball".equals(source.getDamageType()) && source.getEntity() instanceof EntityPlayer) {
             // 'hide' fireball attacks so that we don't take 1000 damage.
-            attackSuccessful = super.attackEntityFrom(DamageSource.causeThrownDamage(source.getSourceOfDamage(), source.getEntity()), damage);
+            attackSuccessful = super.attackEntityFrom(
+                    DamageSource.causeThrownDamage(source.getSourceOfDamage(), source.getEntity()),
+                    damage);
         } else {
             attackSuccessful = super.attackEntityFrom(source, damage);
         }
@@ -289,7 +299,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         this.despawnEntity();
 
         // despawn mini ghasts that are in our AABB
-        List<EntityTFMiniGhast> nearbyGhasts = worldObj.getEntitiesWithinAABB(EntityTFMiniGhast.class, this.boundingBox.expand(1, 1, 1));
+        List<EntityTFMiniGhast> nearbyGhasts = worldObj
+                .getEntitiesWithinAABB(EntityTFMiniGhast.class, this.boundingBox.expand(1, 1, 1));
         for (EntityTFMiniGhast ghast : nearbyGhasts) {
             ghast.setDead();
             this.heal(2);
@@ -375,7 +386,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         // check if our target is still within range
         double targetRange = (this.aggroCounter > 0 || this.isAggressive) ? aggroRange : stareRange;
 
-        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < targetRange * targetRange && this.canEntityBeSeen(this.targetedEntity)) {
+        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < targetRange * targetRange
+                && this.canEntityBeSeen(this.targetedEntity)) {
             // turn towards target
             this.faceEntity(this.targetedEntity, 10F, this.getVerticalFaceSpeed());
 
@@ -412,7 +424,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
         // set aggro status
         byte currentAggroStatus = this.dataWatcher.getWatchableObjectByte(16);
-        byte newAggroStatus = (byte) (this.attackCounter > 10 ? 2 : (this.aggroCounter > 0 || this.isAggressive) ? 1 : 0);
+        byte newAggroStatus = (byte) (this.attackCounter > 10 ? 2
+                : (this.aggroCounter > 0 || this.isAggressive) ? 1 : 0);
 
         if (currentAggroStatus != newAggroStatus) {
             this.dataWatcher.updateObject(16, Byte.valueOf(newAggroStatus));
@@ -448,8 +461,15 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
      * Make a tear particle fall off the ghast
      */
     private void shedTear() {
-        TwilightForestMod.proxy.spawnParticle(this.worldObj, "bosstear", this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
-                this.posY + this.rand.nextDouble() * (double) this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0, 0, 0);
+        TwilightForestMod.proxy.spawnParticle(
+                this.worldObj,
+                "bosstear",
+                this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                this.posY + this.rand.nextDouble() * (double) this.height - 0.25D,
+                this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                0,
+                0,
+                0);
     }
 
     /**
@@ -538,7 +558,9 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         int trapsWithEnoughGhasts = 0;
 
         for (ChunkCoordinates trap : this.trapLocations) {
-            AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(trap.posX, trap.posY, trap.posZ, trap.posX + 1, trap.posY + 1, trap.posZ + 1).expand(8D, 16D, 8D);
+            AxisAlignedBB aabb = AxisAlignedBB
+                    .getBoundingBox(trap.posX, trap.posY, trap.posZ, trap.posX + 1, trap.posY + 1, trap.posZ + 1)
+                    .expand(8D, 16D, 8D);
 
             List<EntityTFMiniGhast> nearbyGhasts = worldObj.getEntitiesWithinAABB(EntityTFMiniGhast.class, aabb);
 
@@ -599,13 +621,20 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
      */
     protected void spitFireball() {
         double offsetX = this.targetedEntity.posX - this.posX;
-        double offsetY = this.targetedEntity.boundingBox.minY + (double) (this.targetedEntity.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
+        double offsetY = this.targetedEntity.boundingBox.minY + (double) (this.targetedEntity.height / 2.0F)
+                - (this.posY + (double) (this.height / 2.0F));
         double offsetZ = this.targetedEntity.posZ - this.posZ;
 
         // fireball sound effect
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+        this.worldObj
+                .playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
 
-        EntityTFUrGhastFireball entityFireball = new EntityTFUrGhastFireball(this.worldObj, this, offsetX, offsetY, offsetZ);
+        EntityTFUrGhastFireball entityFireball = new EntityTFUrGhastFireball(
+                this.worldObj,
+                this,
+                offsetX,
+                offsetY,
+                offsetZ);
         entityFireball.field_92057_e = 1;
         double shotSpawnDistance = 8.5D;
         Vec3 lookVec = this.getLook(1.0F);
@@ -615,7 +644,12 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         this.worldObj.spawnEntityInWorld(entityFireball);
 
         for (int i = 0; i < 2; i++) {
-            entityFireball = new EntityTFUrGhastFireball(this.worldObj, this, offsetX + (rand.nextFloat() - rand.nextFloat()) * 8, offsetY, offsetZ + (rand.nextFloat() - rand.nextFloat()) * 8);
+            entityFireball = new EntityTFUrGhastFireball(
+                    this.worldObj,
+                    this,
+                    offsetX + (rand.nextFloat() - rand.nextFloat()) * 8,
+                    offsetY,
+                    offsetZ + (rand.nextFloat() - rand.nextFloat()) * 8);
             entityFireball.field_92057_e = 1;
             entityFireball.posX = this.posX + lookVec.xCoord * shotSpawnDistance;
             entityFireball.posY = this.posY + (double) (this.height / 2.0F) + lookVec.yCoord * shotSpawnDistance;
@@ -677,7 +711,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
     private boolean isTrapAt(int x, int y, int z) {
         return worldObj.blockExists(x, y, z) && worldObj.getBlock(x, y, z) == TFBlocks.towerDevice
-                && (worldObj.getBlockMetadata(x, y, z) == BlockTFTowerDevice.META_GHASTTRAP_INACTIVE || worldObj.getBlockMetadata(x, y, z) == BlockTFTowerDevice.META_GHASTTRAP_ACTIVE);
+                && (worldObj.getBlockMetadata(x, y, z) == BlockTFTowerDevice.META_GHASTTRAP_INACTIVE
+                        || worldObj.getBlockMetadata(x, y, z) == BlockTFTowerDevice.META_GHASTTRAP_ACTIVE);
     }
 
     /**
@@ -731,10 +766,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     /**
      * Needed for boss health bar on the client
      */
-//    @Override
-//    public int getBossHealth() {
-//        return this.dataWatcher.getWatchableObjectInt(DATA_BOSSHEALTH);
-//    }
+    // @Override
+    // public int getBossHealth() {
+    // return this.dataWatcher.getWatchableObjectInt(DATA_BOSSHEALTH);
+    // }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
@@ -769,7 +804,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         super.onDeath(par1DamageSource);
         if (par1DamageSource.getSourceOfDamage() instanceof EntityPlayer) {
             ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
-            ((EntityPlayer) par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+            ((EntityPlayer) par1DamageSource.getSourceOfDamage())
+                    .triggerAchievement(TFAchievementPage.twilightProgressUrghast);
 
         }
 
@@ -780,8 +816,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
             int dy = chestCoords.posY;
             int dz = chestCoords.posZ;
 
-            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider).getChunkProvider();
-            TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr).getFeatureAt(dx, dz, worldObj);
+            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) worldObj.provider)
+                    .getChunkProvider();
+            TFFeature nearbyFeature = ((TFWorldChunkManager) worldObj.provider.worldChunkMgr)
+                    .getFeatureAt(dx, dz, worldObj);
 
             if (nearbyFeature == TFFeature.darkTower) {
                 chunkProvider.setStructureConquered(dx, dy, dz, true);
@@ -806,7 +844,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
             return new ChunkCoordinates(ax, ay + 2, az);
         } else {
-            return new ChunkCoordinates(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+            return new ChunkCoordinates(
+                    MathHelper.floor_double(this.posX),
+                    MathHelper.floor_double(this.posY),
+                    MathHelper.floor_double(this.posZ));
         }
     }
 }

@@ -3,6 +3,7 @@ package twilightforest.entity.ai;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.entity.EntityTFRedcap;
 
 public class EntityAITFRedcapPlantTNT extends EntityAITFRedcapBase {
@@ -15,7 +16,10 @@ public class EntityAITFRedcapPlantTNT extends EntityAITFRedcapBase {
     public boolean shouldExecute() {
         EntityLivingBase attackTarget = this.entityObj.getAttackTarget();
 
-        if (attackTarget != null && entityObj.getTntLeft() > 0 && entityObj.getDistanceSqToEntity(attackTarget) < 25 && !isTargetLookingAtMe(attackTarget) && !isLitTNTNearby(8)
+        if (attackTarget != null && entityObj.getTntLeft() > 0
+                && entityObj.getDistanceSqToEntity(attackTarget) < 25
+                && !isTargetLookingAtMe(attackTarget)
+                && !isLitTNTNearby(8)
                 && findBlockTNTNearby(5) == null) {
             // System.out.println("Redcap can plant TNT");
             return true;

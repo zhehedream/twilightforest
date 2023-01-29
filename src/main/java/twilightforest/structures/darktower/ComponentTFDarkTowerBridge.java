@@ -6,6 +6,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.lichtower.ComponentTFTowerWing;
 
@@ -34,7 +35,8 @@ public class ComponentTFDarkTowerBridge extends ComponentTFTowerWing {
         makeTowerWing(list, rand, this.getComponentType(), 4, 1, 2, dSize, dHeight, 0);
     }
 
-    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         // kill too-small towers
         if (wingHeight < 6) {
             return false;
@@ -48,7 +50,14 @@ public class ComponentTFDarkTowerBridge extends ComponentTFTowerWing {
             return false;
         }
 
-        ComponentTFTowerWing wing = new ComponentTFDarkTowerWing(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFTowerWing wing = new ComponentTFDarkTowerWing(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
         // check to see if it intersects something already there
         StructureComponent intersect = StructureComponent.findIntersecting(list, wing.getBoundingBox());
         if (intersect == null || intersect == this) {
@@ -92,7 +101,17 @@ public class ComponentTFDarkTowerBridge extends ComponentTFTowerWing {
      */
     public StructureBoundingBox getWingBB() {
         int[] dest = offsetTowerCoords(4, 1, 2, dSize, this.getCoordBaseMode());
-        return StructureTFComponent.getComponentToAddBoundingBox(dest[0], dest[1], dest[2], 0, 0, 0, dSize - 1, dHeight - 1, dSize - 1, this.getCoordBaseMode());
+        return StructureTFComponent.getComponentToAddBoundingBox(
+                dest[0],
+                dest[1],
+                dest[2],
+                0,
+                0,
+                0,
+                dSize - 1,
+                dHeight - 1,
+                dSize - 1,
+                this.getCoordBaseMode());
     }
 
 }

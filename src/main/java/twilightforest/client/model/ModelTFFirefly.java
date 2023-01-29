@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelTFFirefly extends ModelBase {
+
     public ModelTFFirefly() {
         legs = new ModelRenderer(this, 0, 21);
         legs.addBox(-4F, 7.9F, -5F, 8, 1, 10, 0F);
@@ -29,7 +30,7 @@ public class ModelTFFirefly extends ModelBase {
         legs.render(f5);
         fatbody.render(f5);
         skinnybody.render(f5);
-//        glow.render(f5);
+        // glow.render(f5);
 
     }
 

@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 
@@ -37,7 +38,20 @@ public class ComponentTFMazeRoomCollapse extends ComponentTFMazeRoom {
                     this.fillWithAir(world, sbb, x, gravel, z, x, gravel + 5, z);
                 } else if (root > 0) {
                     this.fillWithBlocks(world, sbb, x, 5, z, x, 5 + root, z, Blocks.dirt, Blocks.air, true);
-                    this.fillWithMetadataBlocks(world, sbb, x, 5 - rand.nextInt(5), z, x, 5, z, TFBlocks.plant, BlockTFPlant.META_ROOT_STRAND, Blocks.air, 0, false);
+                    this.fillWithMetadataBlocks(
+                            world,
+                            sbb,
+                            x,
+                            5 - rand.nextInt(5),
+                            z,
+                            x,
+                            5,
+                            z,
+                            TFBlocks.plant,
+                            BlockTFPlant.META_ROOT_STRAND,
+                            Blocks.air,
+                            0,
+                            false);
                 } else if (rand.nextInt(dist + 1) > 0) {
                     // remove ceiling
                     this.fillWithAir(world, sbb, x, 5, z, x, 5, z);

@@ -2,6 +2,7 @@ package twilightforest.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
 import twilightforest.block.BlockTFFireJet;
 import twilightforest.block.TFBlocks;
 
@@ -19,8 +20,8 @@ public class TileEntityTFPoppingJet extends TileEntity {
     }
 
     /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses
-     * this to count ticks and creates a new spawn inside its implementation.
+     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
+     * ticks and creates a new spawn inside its implementation.
      */
     @Override
     public void updateEntity() {
@@ -33,8 +34,21 @@ public class TileEntityTFPoppingJet extends TileEntity {
             this.invalidate();
         } else {
             if (counter % 20 == 0) {
-                worldObj.spawnParticle("lava", this.xCoord + 0.5, this.yCoord + 1.5, this.zCoord + 0.5, 0.0D, 0.0D, 0.0D);
-                worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "liquid.lavapop", 0.2F + worldObj.rand.nextFloat() * 0.2F, 0.9F + worldObj.rand.nextFloat() * 0.15F);
+                worldObj.spawnParticle(
+                        "lava",
+                        this.xCoord + 0.5,
+                        this.yCoord + 1.5,
+                        this.zCoord + 0.5,
+                        0.0D,
+                        0.0D,
+                        0.0D);
+                worldObj.playSoundEffect(
+                        this.xCoord,
+                        this.yCoord,
+                        this.zCoord,
+                        "liquid.lavapop",
+                        0.2F + worldObj.rand.nextFloat() * 0.2F,
+                        0.9F + worldObj.rand.nextFloat() * 0.15F);
             }
 
         }

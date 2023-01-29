@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 
@@ -20,8 +21,8 @@ public class TFBiomeTwilightForestVariant extends TFBiomeBase {
         this.temperature = 0.7F;
         this.rainfall = 0.8F;
 
-//        this.rootHeight = 0.15F;
-//        this.heightVariation = 0.4F;
+        // this.rootHeight = 0.15F;
+        // this.heightVariation = 0.4F;
 
         getTFBiomeDecorator().setTreesPerChunk(25);
         getTFBiomeDecorator().setGrassPerChunk(15);

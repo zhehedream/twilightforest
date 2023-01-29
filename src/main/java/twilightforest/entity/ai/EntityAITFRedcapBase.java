@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.entity.EntityTFRedcap;
 
 public abstract class EntityAITFRedcapBase extends EntityAIBase {

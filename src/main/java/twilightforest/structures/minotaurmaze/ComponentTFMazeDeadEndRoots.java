@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.BlockTFPlant;
 import twilightforest.block.TFBlocks;
 
@@ -33,7 +34,14 @@ public class ComponentTFMazeDeadEndRoots extends ComponentTFMazeDeadEnd {
 
                     // roots
                     for (int y = 6 - length; y < 6; y++) {
-                        this.placeBlockAtCurrentPosition(world, TFBlocks.plant, BlockTFPlant.META_ROOT_STRAND, x, y, z, sbb);
+                        this.placeBlockAtCurrentPosition(
+                                world,
+                                TFBlocks.plant,
+                                BlockTFPlant.META_ROOT_STRAND,
+                                x,
+                                y,
+                                z,
+                                sbb);
                     }
 
                     // occasional gravel

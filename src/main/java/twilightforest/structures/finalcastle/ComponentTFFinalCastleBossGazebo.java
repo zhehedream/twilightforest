@@ -6,21 +6,27 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.StructureTFDecoratorCastle;
 
 public class ComponentTFFinalCastleBossGazebo extends StructureTFComponent {
-    public ComponentTFFinalCastleBossGazebo() {
-    }
+
+    public ComponentTFFinalCastleBossGazebo() {}
 
     public ComponentTFFinalCastleBossGazebo(Random rand, int i, StructureTFComponent keep) {
         super(i);
         this.spawnListIndex = -1; // no monsters
 
         this.setCoordBaseMode(keep.getCoordBaseMode());
-        this.boundingBox = new StructureBoundingBox(keep.getBoundingBox().minX + 14, keep.getBoundingBox().maxY + 2, keep.getBoundingBox().minZ + 14, keep.getBoundingBox().maxX - 14,
-                keep.getBoundingBox().maxY + 13, keep.getBoundingBox().maxZ - 14);
+        this.boundingBox = new StructureBoundingBox(
+                keep.getBoundingBox().minX + 14,
+                keep.getBoundingBox().maxY + 2,
+                keep.getBoundingBox().minZ + 14,
+                keep.getBoundingBox().maxX - 14,
+                keep.getBoundingBox().maxY + 13,
+                keep.getBoundingBox().maxZ - 14);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -42,7 +48,20 @@ public class ComponentTFFinalCastleBossGazebo extends StructureTFComponent {
         }
 
         // roof
-        this.fillWithMetadataBlocks(world, sbb, 0, 11, 0, 20, 11, 20, deco.fenceID, deco.fenceMeta, deco.fenceID, deco.fenceMeta, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                11,
+                0,
+                20,
+                11,
+                20,
+                deco.fenceID,
+                deco.fenceMeta,
+                deco.fenceID,
+                deco.fenceMeta,
+                false);
 
         this.placeSignAtCurrentPosition(world, 10, 0, 10, "Final Boss Here", "You win!", sbb);
 

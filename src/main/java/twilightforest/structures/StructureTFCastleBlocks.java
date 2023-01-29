@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 
 public class StructureTFCastleBlocks extends StructureComponent.BlockSelector {

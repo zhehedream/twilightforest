@@ -1,14 +1,15 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
 
@@ -25,7 +26,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         int l = block.colorMultiplier(world, x, y, z);
         float f = (float) (l >> 16 & 255) / 255.0F;
         float f1 = (float) (l >> 8 & 255) / 255.0F;
@@ -35,13 +37,13 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         int type = metadata & 12;
 
         switch (type) {
-        case 0:
-        default:
-            return this.renderCactusLikeY(block, x, y, z, f, f1, f2, metadata, world, renderer);
-        case 4:
-            return this.renderCactusLikeX(block, x, y, z, f, f1, f2, metadata, world, renderer);
-        case 8:
-            return this.renderCactusLikeZ(block, x, y, z, f, f1, f2, metadata, world, renderer);
+            case 0:
+            default:
+                return this.renderCactusLikeY(block, x, y, z, f, f1, f2, metadata, world, renderer);
+            case 4:
+                return this.renderCactusLikeX(block, x, y, z, f, f1, f2, metadata, world, renderer);
+            case 8:
+                return this.renderCactusLikeZ(block, x, y, z, f, f1, f2, metadata, world, renderer);
         }
 
     }
@@ -61,7 +63,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
      * 
      * @param metadata
      */
-    public boolean renderCactusLikeX(Block block, int x, int y, int z, float red, float green, float blue, int metadata, IBlockAccess world, RenderBlocks renderer) {
+    public boolean renderCactusLikeX(Block block, int x, int y, int z, float red, float green, float blue, int metadata,
+            IBlockAccess world, RenderBlocks renderer) {
         setUVRotationX(renderer);
 
         Tessellator tessellator = Tessellator.instance;
@@ -85,45 +88,129 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         int blockBrightness = block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z);
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(renderer.blockAccess, x - 1, y, z, 4)) {
-            tessellator.setBrightness(renderer.renderMinX > 0.0D ? blockBrightness : block.getMixedBrightnessForBlock(renderer.blockAccess, x - 1, y, z));
+            tessellator.setBrightness(
+                    renderer.renderMinX > 0.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(renderer.blockAccess, x - 1, y, z));
             tessellator.setColorOpaque_F(bRed, bGreen, bBlue);
-            renderer.renderFaceXNeg(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 4));
+            renderer.renderFaceXNeg(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 4));
         }
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(renderer.blockAccess, x + 1, y, z, 5)) {
-            tessellator.setBrightness(renderer.renderMaxX < 1.0D ? blockBrightness : block.getMixedBrightnessForBlock(renderer.blockAccess, x + 1, y, z));
+            tessellator.setBrightness(
+                    renderer.renderMaxX < 1.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(renderer.blockAccess, x + 1, y, z));
             tessellator.setColorOpaque_F(tRed, tGreen, tBlue);
-            renderer.renderFaceXPos(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 5));
+            renderer.renderFaceXPos(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 5));
         }
 
-        drawXSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, onePixel, blockBrightness);
+        drawXSides(
+                block,
+                x,
+                y,
+                z,
+                renderer,
+                metadata,
+                zRed,
+                xRed,
+                zGreen,
+                xGreen,
+                zBlue,
+                xBlue,
+                onePixel,
+                blockBrightness);
 
         resetUVRotation(renderer);
 
         if (canConnectTo(world, x, y, z + 1)) {
             setUVRotationZ(renderer);
             renderer.setRenderBounds(0F, 0F, 1F - onePixel, 1F, 1F, 1F);
-            drawZSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawZSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x, y, z - 1)) {
             setUVRotationZ(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, 1F, 1F, onePixel);
-            drawZSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawZSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x, y + 1, z)) {
             resetUVRotation(renderer);
             renderer.setRenderBounds(0F, 1F - onePixel, 0F, 1F, 1F, 1F);
-            drawYSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawYSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
         }
 
         if (canConnectTo(world, x, y - 1, z)) {
             resetUVRotation(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, 1F, onePixel, 1F);
-            drawYSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawYSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
         }
 
         return true;
@@ -134,7 +221,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
      * 
      * @param metadata
      */
-    public boolean renderCactusLikeY(Block block, int x, int y, int z, float red, float green, float blue, int metadata, IBlockAccess world, RenderBlocks renderer) {
+    public boolean renderCactusLikeY(Block block, int x, int y, int z, float red, float green, float blue, int metadata,
+            IBlockAccess world, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
         float middle = 0.5F;
         float full = 1.0F;
@@ -156,44 +244,128 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         int blockBrightness = block.getMixedBrightnessForBlock(world, x, y, z);
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y - 1, z, 0)) {
-            tessellator.setBrightness(renderer.renderMinY > 0.0D ? blockBrightness : block.getMixedBrightnessForBlock(world, x, y - 1, z));
+            tessellator.setBrightness(
+                    renderer.renderMinY > 0.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(world, x, y - 1, z));
             tessellator.setColorOpaque_F(bRed, bGreen, bBlue);
-            renderer.renderFaceYNeg(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, world, x, y, z, 0));
+            renderer.renderFaceYNeg(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, world, x, y, z, 0));
         }
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(world, x, y + 1, z, 1)) {
-            tessellator.setBrightness(renderer.renderMaxY < 1.0D ? blockBrightness : block.getMixedBrightnessForBlock(world, x, y + 1, z));
+            tessellator.setBrightness(
+                    renderer.renderMaxY < 1.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(world, x, y + 1, z));
             tessellator.setColorOpaque_F(tRed, tGreen, tBlue);
-            renderer.renderFaceYPos(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, world, x, y, z, 1));
+            renderer.renderFaceYPos(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, world, x, y, z, 1));
         }
 
-        drawYSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, onePixel, blockBrightness);
+        drawYSides(
+                block,
+                x,
+                y,
+                z,
+                renderer,
+                metadata,
+                zRed,
+                xRed,
+                zGreen,
+                xGreen,
+                zBlue,
+                xBlue,
+                onePixel,
+                blockBrightness);
 
         if (canConnectTo(world, x + 1, y, z)) {
             setUVRotationX(renderer);
             renderer.setRenderBounds(1F - onePixel, 0F, 0F, 1F, 1F, 1F);
-            drawXSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawXSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x - 1, y, z)) {
             setUVRotationX(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, onePixel, 1F, 1F);
-            drawXSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawXSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x, y, z + 1)) {
             setUVRotationZ(renderer);
             renderer.setRenderBounds(0F, 0F, 1F - onePixel, 1F, 1F, 1F);
-            drawZSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawZSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x, y, z - 1)) {
             setUVRotationZ(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, 1F, 1F, onePixel);
-            drawZSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawZSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
@@ -205,7 +377,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
      * 
      * @param metadata
      */
-    public boolean renderCactusLikeZ(Block block, int x, int y, int z, float red, float green, float blue, int metadata, IBlockAccess world, RenderBlocks renderer) {
+    public boolean renderCactusLikeZ(Block block, int x, int y, int z, float red, float green, float blue, int metadata,
+            IBlockAccess world, RenderBlocks renderer) {
         setUVRotationZ(renderer);
 
         Tessellator tessellator = Tessellator.instance;
@@ -229,52 +402,136 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         int blockBrightness = block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z);
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(renderer.blockAccess, x, y, z - 1, 0)) {
-            tessellator.setBrightness(renderer.renderMinZ > 0.0D ? blockBrightness : block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z - 1));
+            tessellator.setBrightness(
+                    renderer.renderMinZ > 0.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z - 1));
             tessellator.setColorOpaque_F(bRed, bGreen, bBlue);
-            renderer.renderFaceZNeg(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 2));
+            renderer.renderFaceZNeg(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 2));
         }
 
         if (renderer.renderAllFaces || block.shouldSideBeRendered(renderer.blockAccess, x, y, z + 1, 1)) {
-            tessellator.setBrightness(renderer.renderMaxZ < 1.0D ? blockBrightness : block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z + 1));
+            tessellator.setBrightness(
+                    renderer.renderMaxZ < 1.0D ? blockBrightness
+                            : block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z + 1));
             tessellator.setColorOpaque_F(tRed, tGreen, tBlue);
-            renderer.renderFaceZPos(block, (double) x, (double) y, (double) z, renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 3));
+            renderer.renderFaceZPos(
+                    block,
+                    (double) x,
+                    (double) y,
+                    (double) z,
+                    renderer.getBlockIcon(block, renderer.blockAccess, x, y, z, 3));
         }
 
-        drawZSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, onePixel, blockBrightness);
+        drawZSides(
+                block,
+                x,
+                y,
+                z,
+                renderer,
+                metadata,
+                zRed,
+                xRed,
+                zGreen,
+                xGreen,
+                zBlue,
+                xBlue,
+                onePixel,
+                blockBrightness);
 
         resetUVRotation(renderer);
 
         if (canConnectTo(world, x + 1, y, z)) {
             setUVRotationX(renderer);
             renderer.setRenderBounds(1F - onePixel, 0F, 0F, 1F, 1F, 1F);
-            drawXSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawXSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x - 1, y, z)) {
             setUVRotationX(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, onePixel, 1F, 1F);
-            drawXSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawXSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
             resetUVRotation(renderer);
         }
 
         if (canConnectTo(world, x, y + 1, z)) {
             resetUVRotation(renderer);
             renderer.setRenderBounds(0F, 1F - onePixel, 0F, 1F, 1F, 1F);
-            drawYSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawYSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
         }
 
         if (canConnectTo(world, x, y - 1, z)) {
             resetUVRotation(renderer);
             renderer.setRenderBounds(0F, 0F, 0F, 1F, onePixel, 1F);
-            drawYSides(block, x, y, z, renderer, metadata, zRed, xRed, zGreen, xGreen, zBlue, xBlue, 0.063F * 3F, blockBrightness);
+            drawYSides(
+                    block,
+                    x,
+                    y,
+                    z,
+                    renderer,
+                    metadata,
+                    zRed,
+                    xRed,
+                    zGreen,
+                    xGreen,
+                    zBlue,
+                    xBlue,
+                    0.063F * 3F,
+                    blockBrightness);
         }
 
         return true;
     }
 
-    private void drawXSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed, float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel,
-            int l) {
+    private void drawXSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed,
+            float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel, int l) {
         Tessellator tessellator = Tessellator.instance;
 
         tessellator.setBrightness(l);
@@ -294,8 +551,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         tessellator.addTranslation(0.0F, onePixel, 0.0F);
     }
 
-    private void drawYSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed, float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel,
-            int blockBrightness) {
+    private void drawYSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed,
+            float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel, int blockBrightness) {
         Tessellator tessellator = Tessellator.instance;
 
         tessellator.setBrightness(blockBrightness);
@@ -315,8 +572,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         tessellator.addTranslation(onePixel, 0.0F, 0.0F);
     }
 
-    private void drawZSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed, float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel,
-            int blockBrightness) {
+    private void drawZSides(Block block, int x, int y, int z, RenderBlocks renderer, int metadata, float zRed,
+            float xRed, float zGreen, float xGreen, float zBlue, float xBlue, float onePixel, int blockBrightness) {
         Tessellator tessellator = Tessellator.instance;
 
         tessellator.setBrightness(blockBrightness);
@@ -372,16 +629,16 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-//        // top
-//        renderblocks.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.1875F, 0.9375F);
-//        renderInvBlock(renderblocks, par1Block, meta, tessellator);
-//        
-//        // middle
-//        renderblocks.setRenderBounds(0.125, 0.1875F, 0.125, 0.875F, 0.8125F, 0.875F);
-//        renderInvBlock(renderblocks, par1Block, meta, tessellator);
-//        
-//        // bottom
-//        renderblocks.setRenderBounds(0.0625F, 0.8125F, 0.0625F, 0.9375F, 1.0F, 0.9375F);
+        // // top
+        // renderblocks.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.1875F, 0.9375F);
+        // renderInvBlock(renderblocks, par1Block, meta, tessellator);
+        //
+        // // middle
+        // renderblocks.setRenderBounds(0.125, 0.1875F, 0.125, 0.875F, 0.8125F, 0.875F);
+        // renderInvBlock(renderblocks, par1Block, meta, tessellator);
+        //
+        // // bottom
+        // renderblocks.setRenderBounds(0.0625F, 0.8125F, 0.0625F, 0.9375F, 1.0F, 0.9375F);
         renderInvBlock(renderblocks, par1Block, meta, tessellator);
 
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
@@ -389,7 +646,8 @@ public class RenderBlockTFThorns implements ISimpleBlockRenderingHandler {
         par1Block.setBlockBoundsForItemRender();
     }
 
-    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta, Tessellator tessellator) {
+    protected static void renderInvBlock(RenderBlocks renderblocks, Block par1Block, int meta,
+            Tessellator tessellator) {
         float onePixel = 0.0625F * 3F;
 
         tessellator.startDrawingQuads();

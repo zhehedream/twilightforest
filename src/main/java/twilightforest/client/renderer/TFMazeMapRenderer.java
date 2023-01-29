@@ -1,7 +1,5 @@
 package twilightforest.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -12,13 +10,17 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TFMazeMapData;
 import twilightforest.item.ItemTFMazeMap;
 import twilightforest.item.TFItems;
 
 public class TFMazeMapRenderer implements IItemRenderer {
 
-    private static final ResourceLocation mapBackgroundTextures = new ResourceLocation("textures/map/map_background.png");
+    private static final ResourceLocation mapBackgroundTextures = new ResourceLocation(
+            "textures/map/map_background.png");
 
     public TFMazeMapRenderer(GameSettings gameSettings, TextureManager textureManager) {
         // TODO Auto-generated constructor stub
@@ -33,12 +35,12 @@ public class TFMazeMapRenderer implements IItemRenderer {
      */
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return (item.getItem() == TFItems.mazeMap || item.getItem() == TFItems.oreMap) && (RenderItem.renderInFrame && type == ItemRenderType.ENTITY);
+        return (item.getItem() == TFItems.mazeMap || item.getItem() == TFItems.oreMap)
+                && (RenderItem.renderInFrame && type == ItemRenderType.ENTITY);
     }
 
     /**
-     * Checks if certain helper functionality should be executed for this renderer. See
-     * ItemRendererHelper for more info
+     * Checks if certain helper functionality should be executed for this renderer. See ItemRendererHelper for more info
      * 
      * @param type   The render type
      * @param item   The ItemStack being rendered
@@ -51,8 +53,8 @@ public class TFMazeMapRenderer implements IItemRenderer {
     }
 
     /**
-     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run,
-     * and what extra data is passed into the data parameter.
+     * Called to do the actual rendering, see ItemRenderType for details on when specific types are run, and what extra
+     * data is passed into the data parameter.
      * 
      * @param type The render type
      * @param item The ItemStack being rendered

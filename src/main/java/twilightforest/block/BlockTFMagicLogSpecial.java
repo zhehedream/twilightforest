@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,13 +18,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
+
 import twilightforest.TFGenericPacketHandler;
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.item.ItemTFOreMagnet;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
+
     protected BlockTFMagicLogSpecial() {
         super();
         this.setCreativeTab(TFItems.creativeTab);
@@ -58,31 +60,35 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
         if (orient == 12) {
             // off blocks
             switch (woodType) {
-            default:
-            case META_TIME:
-                return (side == 1 || side == 0) ? SPR_TIMETOP : SPR_TIMECLOCKOFF;
-            case META_TRANS:
-                return (side == 1 || side == 0) ? SPR_TRANSTOP : SPR_TRANSHEARTOFF;
-            case META_MINE:
-                return (side == 1 || side == 0) ? SPR_MINETOP : SPR_MINEGEMOFF;
-            case META_SORT:
-                return (side == 1 || side == 0) ? SPR_SORTTOP : SPR_SORTEYEOFF;
+                default:
+                case META_TIME:
+                    return (side == 1 || side == 0) ? SPR_TIMETOP : SPR_TIMECLOCKOFF;
+                case META_TRANS:
+                    return (side == 1 || side == 0) ? SPR_TRANSTOP : SPR_TRANSHEARTOFF;
+                case META_MINE:
+                    return (side == 1 || side == 0) ? SPR_MINETOP : SPR_MINEGEMOFF;
+                case META_SORT:
+                    return (side == 1 || side == 0) ? SPR_SORTTOP : SPR_SORTEYEOFF;
             }
         } else {
             switch (woodType) {
-            default:
-            case META_TIME:
-                return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP
-                        : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMECLOCK));
-            case META_TRANS:
-                return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP
-                        : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSHEART));
-            case META_MINE:
-                return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP
-                        : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINEGEM));
-            case META_SORT:
-                return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP
-                        : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTEYE));
+                default:
+                case META_TIME:
+                    return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP
+                            : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP
+                                    : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMECLOCK));
+                case META_TRANS:
+                    return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP
+                            : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP
+                                    : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSHEART));
+                case META_MINE:
+                    return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP
+                            : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP
+                                    : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINEGEM));
+                case META_SORT:
+                    return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP
+                            : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP
+                                    : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTEYE));
             }
         }
     }
@@ -95,31 +101,32 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
             // block is off, do not tick
             return;
         }
-        if(!world.isRemote) {
-            switch(meta & 3) {
-            case 0:
-                // tree of time effect
-                world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.click", 0.1F, 0.5F);
-                doTreeOfTimeEffect(world, x, y, z, rand);
-                break;
-            case 1:
-                // tree of transformation effect
-                doTreeOfTransformationEffect(world, x, y, z, rand);
-                break;
-            case 2:
-                // miner's tree effect
-                doMinersTreeEffect(world, x, y, z, rand);
-                break;
-            case 3:
-                // sorting tree effect
-                doSortingTreeEffect(world, x, y, z, rand);
+        if (!world.isRemote) {
+            switch (meta & 3) {
+                case 0:
+                    // tree of time effect
+                    world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.click", 0.1F, 0.5F);
+                    doTreeOfTimeEffect(world, x, y, z, rand);
+                    break;
+                case 1:
+                    // tree of transformation effect
+                    doTreeOfTransformationEffect(world, x, y, z, rand);
+                    break;
+                case 2:
+                    // miner's tree effect
+                    doMinersTreeEffect(world, x, y, z, rand);
+                    break;
+                case 3:
+                    // sorting tree effect
+                    doSortingTreeEffect(world, x, y, z, rand);
             }
         }
         world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
+            float par8, float par9) {
         int meta = world.getBlockMetadata(x, y, z);
 
         int orient = meta & 12;
@@ -139,8 +146,7 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
     }
 
     /**
-     * The tree of time adds extra ticks to blocks, so that they have twice the normal chance to get a
-     * random tick
+     * The tree of time adds extra ticks to blocks, so that they have twice the normal chance to get a random tick
      */
     private void doTreeOfTimeEffect(World world, int x, int y, int z, Random rand) {
         int numticks = 8 * 3 * this.tickRate(world);
@@ -171,8 +177,7 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
     }
 
     /**
-     * The tree of transformation transforms the biome in the area near it into the enchanted forest
-     * biome.
+     * The tree of transformation transforms the biome in the area near it into the enchanted forest biome.
      * 
      * TODO: also change entities
      */
@@ -191,7 +196,8 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
 
                     Chunk chunkAt = world.getChunkFromBlockCoords(x + dx, z + dz);
 
-                    chunkAt.getBiomeArray()[((z + dz) & 15) << 4 | ((x + dx) & 15)] = (byte) TFBiomeBase.enchantedForest.biomeID;
+                    chunkAt.getBiomeArray()[((z + dz) & 15) << 4
+                            | ((x + dx) & 15)] = (byte) TFBiomeBase.enchantedForest.biomeID;
 
                     world.markBlockForUpdate((x + dx), y, (z + dz));
 
@@ -213,9 +219,15 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
      * Send a tiny update packet to the client to inform it of the changed biome
      */
     private void sendChangedBiome(World world, int x, int z, Chunk chunkAt) {
-        FMLProxyPacket message = TFGenericPacketHandler.makeBiomeChangePacket(x, z, (byte) TFBiomeBase.enchantedForest.biomeID);
+        FMLProxyPacket message = TFGenericPacketHandler
+                .makeBiomeChangePacket(x, z, (byte) TFBiomeBase.enchantedForest.biomeID);
 
-        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, 128, z, 128);
+        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(
+                world.provider.dimensionId,
+                x,
+                128,
+                z,
+                128);
 
         TwilightForestMod.genericChannel.sendToAllAround(message, targetPoint);
         // FMLLog.info("Sent chunk update packet from tree.");
@@ -261,7 +273,8 @@ public class BlockTFMagicLogSpecial extends BlockTFMagicLog {
                         IInventory thisChest = Blocks.chest.func_149951_m(world, sx, sy, sz);
 
                         // make sure we haven't counted this chest
-                        if (thisChest != null && !checkIfChestsContains(chests, (IInventory) world.getTileEntity(sx, sy, sz))) {
+                        if (thisChest != null
+                                && !checkIfChestsContains(chests, (IInventory) world.getTileEntity(sx, sy, sz))) {
                             int itemsInChest = 0;
 
                             // count items

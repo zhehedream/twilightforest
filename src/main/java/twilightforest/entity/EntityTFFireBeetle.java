@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -18,8 +16,11 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFBreathAttack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
 
@@ -112,7 +113,6 @@ public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
 
     /*
      * (non-Javadoc)
-     * 
      * @see twilightforest.entity.IBreathAttacker#isBreathing()
      */
     @Override
@@ -122,7 +122,6 @@ public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
 
     /*
      * (non-Javadoc)
-     * 
      * @see twilightforest.entity.IBreathAttacker#setBreathing(boolean)
      */
     @Override
@@ -135,8 +134,8 @@ public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
@@ -180,7 +179,13 @@ public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
     }
 
     public void playBreathSound() {
-        worldObj.playSoundEffect(this.posX + 0.5, this.posY + 0.5, this.posZ + 0.5, "mob.ghast.fireball", rand.nextFloat() * 0.5F, rand.nextFloat() * 0.5F);
+        worldObj.playSoundEffect(
+                this.posX + 0.5,
+                this.posY + 0.5,
+                this.posZ + 0.5,
+                "mob.ghast.fireball",
+                rand.nextFloat() * 0.5F,
+                rand.nextFloat() * 0.5F);
     }
 
     @Override
@@ -233,7 +238,6 @@ public class EntityTFFireBeetle extends EntityMob implements IBreathAttacker {
 
     /*
      * (non-Javadoc)
-     * 
      * @see twilightforest.entity.IBreathAttacker#doBreathAttack(net.minecraft.entity.Entity)
      */
     @Override

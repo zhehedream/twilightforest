@@ -3,10 +3,11 @@ package twilightforest.structures.stronghold;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
+import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFStrongholdEntrance extends StructureTFStrongholdComponent {
 
@@ -65,7 +66,8 @@ public class ComponentTFStrongholdEntrance extends StructureTFStrongholdComponen
         for (StructureTFStrongholdComponent component : pieceList) {
             shieldBox.expandTo(component.getBoundingBox());
 
-            if (component instanceof ComponentTFStrongholdSmallStairs && ((ComponentTFStrongholdSmallStairs) component).hasTreasure) {
+            if (component instanceof ComponentTFStrongholdSmallStairs
+                    && ((ComponentTFStrongholdSmallStairs) component).hasTreasure) {
                 tStairs++;
             }
             if (component instanceof ComponentTFStrongholdTreasureCorridor) {
@@ -82,16 +84,24 @@ public class ComponentTFStrongholdEntrance extends StructureTFStrongholdComponen
             }
         }
 
-//        FMLLog.fine("MEGASHIELD computed!  %d, %d, %d to %d, %d, %d.\n", shieldBox.minX, shieldBox.minY, shieldBox.minZ, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
-//        FMLLog.fine("Stronghold at this point contains %d elements.\n", pieceList.size());
-//        
-//        FMLLog.fine("Room count! TStairs = %d, TCorr = %d, Dead End = %d, TRoom = %d, Boss = %d \n", tStairs, tCorridors, deadEnd, tRooms, bossRooms);
+        // FMLLog.fine("MEGASHIELD computed! %d, %d, %d to %d, %d, %d.\n", shieldBox.minX, shieldBox.minY,
+        // shieldBox.minZ, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
+        // FMLLog.fine("Stronghold at this point contains %d elements.\n", pieceList.size());
+        //
+        // FMLLog.fine("Room count! TStairs = %d, TCorr = %d, Dead End = %d, TRoom = %d, Boss = %d \n", tStairs,
+        // tCorridors, deadEnd, tRooms, bossRooms);
 
-//        StructureTFStrongholdShield shield = new StructureTFStrongholdShield(shieldBox.minX - 1, shieldBox.minY, shieldBox.minZ - 1, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
-//        list.add(shield);
+        // StructureTFStrongholdShield shield = new StructureTFStrongholdShield(shieldBox.minX - 1, shieldBox.minY,
+        // shieldBox.minZ - 1, shieldBox.maxX, shieldBox.maxY, shieldBox.maxZ);
+        // list.add(shield);
 
         // add the upper stronghold
-        StructureTFStrongholdComponent accessChamber = new ComponentTFStrongholdAccessChamber(2, this.getCoordBaseMode(), boundingBox.minX + 8, boundingBox.minY + 7, boundingBox.minZ + 4);
+        StructureTFStrongholdComponent accessChamber = new ComponentTFStrongholdAccessChamber(
+                2,
+                this.getCoordBaseMode(),
+                boundingBox.minX + 8,
+                boundingBox.minY + 7,
+                boundingBox.minZ + 4);
         list.add(accessChamber);
         accessChamber.buildComponent(this, list, random);
 

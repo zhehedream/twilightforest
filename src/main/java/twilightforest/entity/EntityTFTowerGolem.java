@@ -1,7 +1,5 @@
 package twilightforest.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -20,7 +18,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityTFTowerGolem extends EntityMob {
 
@@ -125,8 +126,8 @@ public class EntityTFTowerGolem extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -135,24 +136,37 @@ public class EntityTFTowerGolem extends EntityMob {
             --this.attackTimer;
         }
 
-        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.rand.nextInt(5) == 0) {
+        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D
+                && this.rand.nextInt(5) == 0) {
             int var1 = MathHelper.floor_double(this.posX);
             int var2 = MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset);
             int var3 = MathHelper.floor_double(this.posZ);
             Block block = this.worldObj.getBlock(var1, var2, var3);
 
             if (block.getMaterial() != Material.air) {
-                this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(var1, var2, var3),
-                        this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, this.boundingBox.minY + 0.1D,
-                        this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width, 4.0D * ((double) this.rand.nextFloat() - 0.5D), 0.5D,
+                this.worldObj.spawnParticle(
+                        "blockcrack_" + Block.getIdFromBlock(block)
+                                + "_"
+                                + this.worldObj.getBlockMetadata(var1, var2, var3),
+                        this.posX + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
+                        this.boundingBox.minY + 0.1D,
+                        this.posZ + ((double) this.rand.nextFloat() - 0.5D) * (double) this.width,
+                        4.0D * ((double) this.rand.nextFloat() - 0.5D),
+                        0.5D,
                         ((double) this.rand.nextFloat() - 0.5D) * 4.0D);
             }
         }
 
         // redstone sparkles?
         if (this.rand.nextBoolean()) {
-            this.worldObj.spawnParticle("reddust", this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height - 0.25D,
-                    this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0, 0, 0);
+            this.worldObj.spawnParticle(
+                    "reddust",
+                    this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                    this.posY + this.rand.nextDouble() * (double) this.height - 0.25D,
+                    this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width,
+                    0,
+                    0,
+                    0);
         }
 
     }
@@ -173,8 +187,8 @@ public class EntityTFTowerGolem extends EntityMob {
     }
 
     /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by
-     * a player. @param par2 - Level of Looting used to kill this mob.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
     protected void dropFewItems(boolean par1, int par2) {
         int var4;

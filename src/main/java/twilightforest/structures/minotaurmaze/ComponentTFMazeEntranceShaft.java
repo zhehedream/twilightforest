@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
@@ -61,8 +62,8 @@ public class ComponentTFMazeEntranceShaft extends StructureTFComponent {
     }
 
     /**
-     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A
-     * median of all the levels in the BB's horizontal rectangle).
+     * Discover the y coordinate that will serve as the ground level of the supplied BoundingBox. (A median of all the
+     * levels in the BB's horizontal rectangle).
      */
     protected int getAverageGroundLevel(World par1World, StructureBoundingBox par2StructureBoundingBox) {
         int var3 = 0;
@@ -71,7 +72,9 @@ public class ComponentTFMazeEntranceShaft extends StructureTFComponent {
         for (int var5 = this.boundingBox.minZ; var5 <= this.boundingBox.maxZ; ++var5) {
             for (int var6 = this.boundingBox.minX; var6 <= this.boundingBox.maxX; ++var6) {
                 if (par2StructureBoundingBox.isVecInside(var6, 64, var5)) {
-                    var3 += Math.max(par1World.getTopSolidOrLiquidBlock(var6, var5), par1World.provider.getAverageGroundLevel());
+                    var3 += Math.max(
+                            par1World.getTopSolidOrLiquidBlock(var6, var5),
+                            par1World.provider.getAverageGroundLevel());
                     ++var4;
                 }
             }

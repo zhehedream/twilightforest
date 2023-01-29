@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 import twilightforest.entity.TFCreatures;
 import twilightforest.world.TFGenCaveStalactite;
@@ -33,7 +34,8 @@ public class ComponentTFHollowHill extends StructureTFComponent {
         radius = ((hillSize * 2 + 1) * 8) - 6;
 
         // can we determine the size here?
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -radius, -3, -radius, radius * 2, 10, radius * 2, 0);
+        this.boundingBox = StructureTFComponent
+                .getComponentToAddBoundingBox(x, y, z, -radius, -3, -radius, radius * 2, 10, radius * 2, 0);
     }
 
     /**
@@ -63,10 +65,12 @@ public class ComponentTFHollowHill extends StructureTFComponent {
     @Override
     public void buildComponent(StructureComponent structurecomponent, List list, Random random) {
 
-//        // add a maze
-//        ComponentTFHillMaze maze = new ComponentTFHillMaze(1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), boundingBox.minY - 20, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2), hillSize);
-//        list.add(maze);
-//        maze.buildComponent(this, list, random);
+        // // add a maze
+        // ComponentTFHillMaze maze = new ComponentTFHillMaze(1, boundingBox.minX + ((boundingBox.maxX -
+        // boundingBox.minX) / 2), boundingBox.minY - 20, boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) /
+        // 2), hillSize);
+        // list.add(maze);
+        // maze.buildComponent(this, list, random);
 
     }
 
@@ -75,8 +79,8 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-//        int area = (int)(Math.PI * radius * radius);
-//        int sn = area / 16; // number of stalactites (there will actually be around twice this number)
+        // int area = (int)(Math.PI * radius * radius);
+        // int sn = area / 16; // number of stalactites (there will actually be around twice this number)
         int[] sna = { 0, 128, 256, 512 };
         int sn = sna[hillSize]; // number of stalactites mga = {0, 3, 9, 18}
         int[] mga = { 0, 1, 4, 9 };
@@ -92,7 +96,7 @@ public class ComponentTFHollowHill extends StructureTFComponent {
             String mobID = getMobID(rand);
 
             placeSpawnerAtCurrentPosition(world, rand, dest[0], rand.nextInt(4), dest[1], mobID, sbb);
-//            placeMobSpawner(dest[0], hy + rand.nextInt(4), dest[1]);
+            // placeMobSpawner(dest[0], hy + rand.nextInt(4), dest[1]);
         }
         // treasure chests!!
         for (int i = 0; i < tc; i++) {
@@ -117,12 +121,12 @@ public class ComponentTFHollowHill extends StructureTFComponent {
         }
 
         // level 3 hills get 2 mid-air wraith spawners
-//      if (hillSize == 3) {
-//            int[] dest = getEmptyCoordsInHill(hy + 10, 20);
-//            placeWraithSpawner(dest[0], hy + 10, dest[1]);
-//            dest = getEmptyCoordsInHill(hy + 10, 20);
-//            placeWraithSpawner(dest[0], hy + 10, dest[1]);
-//      }
+        // if (hillSize == 3) {
+        // int[] dest = getEmptyCoordsInHill(hy + 10, 20);
+        // placeWraithSpawner(dest[0], hy + 10, dest[1]);
+        // dest = getEmptyCoordsInHill(hy + 10, 20);
+        // placeWraithSpawner(dest[0], hy + 10, dest[1]);
+        // }
         return true;
     }
 
@@ -135,7 +139,14 @@ public class ComponentTFHollowHill extends StructureTFComponent {
         Random chestRNG = new Random(world.getSeed() + x * z);
 
         // try placing it
-        placeTreasureAtCurrentPosition(world, chestRNG, x, y, z, this.hillSize == 3 ? TFTreasure.hill3 : (this.hillSize == 2 ? TFTreasure.hill2 : TFTreasure.hill1), sbb);
+        placeTreasureAtCurrentPosition(
+                world,
+                chestRNG,
+                x,
+                y,
+                z,
+                this.hillSize == 3 ? TFTreasure.hill3 : (this.hillSize == 2 ? TFTreasure.hill2 : TFTreasure.hill1),
+                sbb);
 
         // make something for it to stand on, if necessary
         func_151554_b(world, Blocks.cobblestone, 0, x, y - 1, z, sbb);
@@ -163,7 +174,8 @@ public class ComponentTFHollowHill extends StructureTFComponent {
     /**
      * Make a random stone stalactite
      */
-    protected void generateBlockStalactite(World world, Block blockToGenerate, float length, boolean up, int x, int y, int z, StructureBoundingBox sbb) {
+    protected void generateBlockStalactite(World world, Block blockToGenerate, float length, boolean up, int x, int y,
+            int z, StructureBoundingBox sbb) {
         // are the coordinates in our bounding box?
         int dx = getXWithOffset(x, z);
         int dy = getYWithOffset(y);
@@ -201,7 +213,8 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      */
     boolean isInHill(int mapX, int mapY, int mapZ) {
         int dx = boundingBox.minX + radius - mapX;
-        int dy = (boundingBox.minY - mapY) * 2; // hill is half as high as it is wide, thus we just double y distance from center. I *think* that
+        int dy = (boundingBox.minY - mapY) * 2; // hill is half as high as it is wide, thus we just double y distance
+                                                // from center. I *think* that
                                                 // math works!
         int dz = boundingBox.minZ + radius - mapZ;
         int dist = dx * dx + dy * dy + dz * dz;
@@ -241,16 +254,16 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      * @return
      */
     protected String getMobID(Random rand, int level) {
-        switch(level) {
-        case 1:
-            return getLevel1Mob(rand);
-        case 2:
-            return getLevel2Mob(rand);
-        case 3:
-            return getLevel3Mob(rand);
-        default:
-            // aaah, default: spider!
-            return "Spider";
+        switch (level) {
+            case 1:
+                return getLevel1Mob(rand);
+            case 2:
+                return getLevel2Mob(rand);
+            case 3:
+                return getLevel3Mob(rand);
+            default:
+                // aaah, default: spider!
+                return "Spider";
         }
     }
 
@@ -259,23 +272,23 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      */
     public String getLevel1Mob(Random rand) {
         switch (rand.nextInt(10)) {
-        case 0:
-        case 1:
-        case 2:
-            return TFCreatures.getSpawnerNameFor("Swarm Spider");
-        case 3:
-        case 4:
-        case 5:
-            return "Spider";
-        case 6:
-        case 7:
-            return "Zombie";
-        case 8:
-            return "Silverfish";
-        case 9:
-            return TFCreatures.getSpawnerNameFor("Redcap");
-        default:
-            return TFCreatures.getSpawnerNameFor("Swarm Spider");
+            case 0:
+            case 1:
+            case 2:
+                return TFCreatures.getSpawnerNameFor("Swarm Spider");
+            case 3:
+            case 4:
+            case 5:
+                return "Spider";
+            case 6:
+            case 7:
+                return "Zombie";
+            case 8:
+                return "Silverfish";
+            case 9:
+                return TFCreatures.getSpawnerNameFor("Redcap");
+            default:
+                return TFCreatures.getSpawnerNameFor("Swarm Spider");
         }
     }
 
@@ -284,51 +297,50 @@ public class ComponentTFHollowHill extends StructureTFComponent {
      */
     public String getLevel2Mob(Random rand) {
         switch (rand.nextInt(10)) {
-        case 0:
-        case 1:
-        case 2:
-            return TFCreatures.getSpawnerNameFor("Redcap");
-        case 3:
-        case 4:
-        case 5:
-            return "Zombie";
-        case 6:
-        case 7:
-            return "Skeleton";
-        case 8:
-            return TFCreatures.getSpawnerNameFor("Swarm Spider");
-        case 9:
-            return "CaveSpider";
-        default:
-            return TFCreatures.getSpawnerNameFor("Redcap");
+            case 0:
+            case 1:
+            case 2:
+                return TFCreatures.getSpawnerNameFor("Redcap");
+            case 3:
+            case 4:
+            case 5:
+                return "Zombie";
+            case 6:
+            case 7:
+                return "Skeleton";
+            case 8:
+                return TFCreatures.getSpawnerNameFor("Swarm Spider");
+            case 9:
+                return "CaveSpider";
+            default:
+                return TFCreatures.getSpawnerNameFor("Redcap");
         }
     }
 
     /**
-     * Returns a mob string appropriate for a level 3 hill. The level 3 also has 2 mid-air wraith
-     * spawners.
+     * Returns a mob string appropriate for a level 3 hill. The level 3 also has 2 mid-air wraith spawners.
      */
     public String getLevel3Mob(Random rand) {
         switch (rand.nextInt(11)) {
-        case 0:
-            return TFCreatures.getSpawnerNameFor("Slime Beetle");
-        case 1:
-            return TFCreatures.getSpawnerNameFor("Fire Beetle");
-        case 2:
-            return TFCreatures.getSpawnerNameFor("Pinch Beetle");
-        case 3:
-        case 4:
-        case 5:
-            return "Skeleton";
-        case 6:
-        case 7:
-        case 8:
-            return "CaveSpider";
-        case 9:
-            return "Creeper";
-        case 10:
-        default:
-            return TFCreatures.getSpawnerNameFor("Twilight Wraith");
+            case 0:
+                return TFCreatures.getSpawnerNameFor("Slime Beetle");
+            case 1:
+                return TFCreatures.getSpawnerNameFor("Fire Beetle");
+            case 2:
+                return TFCreatures.getSpawnerNameFor("Pinch Beetle");
+            case 3:
+            case 4:
+            case 5:
+                return "Skeleton";
+            case 6:
+            case 7:
+            case 8:
+                return "CaveSpider";
+            case 9:
+                return "Creeper";
+            case 10:
+            default:
+                return TFCreatures.getSpawnerNameFor("Twilight Wraith");
         }
     }
 }

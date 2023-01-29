@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,9 +10,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFMagicLog extends BlockLog {
 
@@ -53,19 +53,23 @@ public class BlockTFMagicLog extends BlockLog {
         int woodType = meta & 3;
 
         switch (woodType) {
-        default:
-        case META_TIME:
-            return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP
-                    : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMESIDE));
-        case META_TRANS:
-            return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP
-                    : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSSIDE));
-        case META_MINE:
-            return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP
-                    : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINESIDE));
-        case META_SORT:
-            return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP
-                    : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTSIDE));
+            default:
+            case META_TIME:
+                return orient == 0 && (side == 1 || side == 0) ? SPR_TIMETOP
+                        : (orient == 4 && (side == 5 || side == 4) ? SPR_TIMETOP
+                                : (orient == 8 && (side == 2 || side == 3) ? SPR_TIMETOP : SPR_TIMESIDE));
+            case META_TRANS:
+                return orient == 0 && (side == 1 || side == 0) ? SPR_TRANSTOP
+                        : (orient == 4 && (side == 5 || side == 4) ? SPR_TRANSTOP
+                                : (orient == 8 && (side == 2 || side == 3) ? SPR_TRANSTOP : SPR_TRANSSIDE));
+            case META_MINE:
+                return orient == 0 && (side == 1 || side == 0) ? SPR_MINETOP
+                        : (orient == 4 && (side == 5 || side == 4) ? SPR_MINETOP
+                                : (orient == 8 && (side == 2 || side == 3) ? SPR_MINETOP : SPR_MINESIDE));
+            case META_SORT:
+                return orient == 0 && (side == 1 || side == 0) ? SPR_SORTTOP
+                        : (orient == 4 && (side == 5 || side == 4) ? SPR_SORTTOP
+                                : (orient == 8 && (side == 2 || side == 3) ? SPR_SORTTOP : SPR_SORTSIDE));
         }
 
     }

@@ -2,10 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import com.google.common.collect.Multimap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,8 +14,14 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.block.BlockTFGiantBlock;
 import twilightforest.block.TFBlocks;
+
+import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFGiantPick extends ItemPickaxe {
 
@@ -49,7 +51,8 @@ public class ItemTFGiantPick extends ItemPickaxe {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with knightmetal ingots
-        return par2ItemStack.getItem() == TFItems.knightMetal ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.knightMetal ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -101,7 +104,9 @@ public class ItemTFGiantPick extends ItemPickaxe {
         // remove old damage value
         multimap.removeAll(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
         // add new one
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", (double) this.damageVsEntity, 0));
+        multimap.put(
+                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(field_111210_e, "Tool modifier", (double) this.damageVsEntity, 0));
         return multimap;
     }
 

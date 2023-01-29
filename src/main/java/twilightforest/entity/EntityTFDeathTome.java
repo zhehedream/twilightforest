@@ -14,6 +14,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFMagicAttack;
 import twilightforest.item.TFItems;
@@ -63,8 +64,14 @@ public class EntityTFDeathTome extends EntityMob {
         super.onLivingUpdate();
 
         for (int i = 0; i < 1; ++i) {
-            this.worldObj.spawnParticle("enchantmenttable", this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * (this.height - 0.75D) + 0.5D,
-                    this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, 0, 0.5, 0);
+            this.worldObj.spawnParticle(
+                    "enchantmenttable",
+                    this.posX + (this.rand.nextDouble() - 0.5D) * this.width,
+                    this.posY + this.rand.nextDouble() * (this.height - 0.75D) + 0.5D,
+                    this.posZ + (this.rand.nextDouble() - 0.5D) * this.width,
+                    0,
+                    0.5,
+                    0);
         }
     }
 

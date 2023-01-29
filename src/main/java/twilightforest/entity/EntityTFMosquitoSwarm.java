@@ -16,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
@@ -76,7 +77,8 @@ public class EntityTFMosquitoSwarm extends EntityMob {
                 }
 
                 if (duration > 0) {
-                    ((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(Potion.hunger.id, duration * 20, 0));
+                    ((EntityLivingBase) par1Entity)
+                            .addPotionEffect(new PotionEffect(Potion.hunger.id, duration * 20, 0));
                 }
             }
 
@@ -92,9 +94,11 @@ public class EntityTFMosquitoSwarm extends EntityMob {
     @Override
     public boolean getCanSpawnHere() {
         // are we in the swamp
-        if (worldObj.getBiomeGenForCoords(MathHelper.floor_double(posX), MathHelper.floor_double(posZ)) == TFBiomeBase.tfSwamp) {
+        if (worldObj.getBiomeGenForCoords(MathHelper.floor_double(posX), MathHelper.floor_double(posZ))
+                == TFBiomeBase.tfSwamp) {
             // don't check light level
-            return worldObj.checkNoEntityCollision(boundingBox) && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0;
+            return worldObj.checkNoEntityCollision(boundingBox)
+                    && worldObj.getCollidingBoundingBoxes(this, boundingBox).size() == 0;
         } else {
             // normal EntityMob spawn check, checks light level
             return super.getCanSpawnHere();

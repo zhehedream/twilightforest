@@ -2,9 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -15,8 +12,12 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFLoyalZombie;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFZombieWand extends ItemTF {
 
@@ -40,14 +41,20 @@ public class ItemTFZombieWand extends ItemTF {
                 if (mop != null) {
                     // make a zombie there
                     EntityTFLoyalZombie zombie = new EntityTFLoyalZombie(worldObj);
-                    zombie.setPositionAndRotation(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord, 1.0F, 1.0F); /// NPE here needs to be fixed
+                    zombie.setPositionAndRotation(mop.hitVec.xCoord, mop.hitVec.yCoord, mop.hitVec.zCoord, 1.0F, 1.0F); /// NPE
+                                                                                                                        /// here
+                                                                                                                        /// needs
+                                                                                                                        /// to
+                                                                                                                        /// be
+                                                                                                                        /// fixed
                     zombie.setTamed(true);
                     try {
                         zombie.func_152115_b(player.getUniqueID().toString());
                         // zombie.setOwner(player.getCommandSenderName());
                     } catch (NoSuchMethodError ex) {
                         // ignore?
-                        FMLLog.warning("[TwilightForest] Could not determine player name for loyal zombie, ignoring error.");
+                        FMLLog.warning(
+                                "[TwilightForest] Could not determine player name for loyal zombie, ignoring error.");
                     }
                     zombie.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 1200, 1));
                     worldObj.spawnEntityInWorld(zombie);
@@ -115,6 +122,7 @@ public class ItemTFZombieWand extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

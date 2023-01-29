@@ -2,6 +2,7 @@ package twilightforest.world.layer;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.biomes.TFBiomeBase;
 
 public class GenLayerTFThornBorder extends GenLayer {
@@ -49,8 +50,8 @@ public class GenLayerTFThornBorder extends GenLayer {
     }
 
     /**
-     * Returns true if the center biome is the first specified biome and any of the surrounding biomes
-     * are the second bioms
+     * Returns true if the center biome is the first specified biome and any of the surrounding biomes are the second
+     * bioms
      */
     private boolean onBorder(int biomeID, int biomeID2, int center, int right, int left, int up, int down) {
         if (center != biomeID) {
@@ -74,8 +75,8 @@ public class GenLayerTFThornBorder extends GenLayer {
     }
 
     /**
-     * Returns true if the center biome is not the specified biome and any of the surrounding biomes are
-     * the specified biomes
+     * Returns true if the center biome is not the specified biome and any of the surrounding biomes are the specified
+     * biomes
      */
     private boolean onBorder(int biomeID, int center, int right, int left, int up, int down) {
         if (center == biomeID) {

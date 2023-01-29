@@ -65,21 +65,31 @@ public class EntityTFNatureBolt extends EntityThrowable {
     @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         // only damage living things
-        if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
-            if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 2)) {
+        if (par1MovingObjectPosition.entityHit != null
+                && par1MovingObjectPosition.entityHit instanceof EntityLivingBase) {
+            if (par1MovingObjectPosition.entityHit
+                    .attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 2)) {
                 // similar to EntityCaveSpider
-                byte poisonStrength = (byte) (worldObj.difficultySetting == EnumDifficulty.PEACEFUL ? 0 : worldObj.difficultySetting == EnumDifficulty.NORMAL ? 3 : 7);
+                byte poisonStrength = (byte) (worldObj.difficultySetting == EnumDifficulty.PEACEFUL ? 0
+                        : worldObj.difficultySetting == EnumDifficulty.NORMAL ? 3 : 7);
                 if (poisonStrength > 0) {
-                    ((EntityLivingBase) par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(Potion.poison.id, poisonStrength * 20, 0));
+                    ((EntityLivingBase) par1MovingObjectPosition.entityHit)
+                            .addPotionEffect(new PotionEffect(Potion.poison.id, poisonStrength * 20, 0));
 
-//                    System.out.println("Poisoning entityHit " + par1MovingObjectPosition.entityHit);
+                    // System.out.println("Poisoning entityHit " + par1MovingObjectPosition.entityHit);
                 }
 
             }
         }
 
         for (int i = 0; i < 8; ++i) {
-            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.leaves) + "_0", this.posX, this.posY, this.posZ, rand.nextGaussian() * 0.05D, rand.nextDouble() * 0.2D,
+            this.worldObj.spawnParticle(
+                    "blockcrack_" + Block.getIdFromBlock(Blocks.leaves) + "_0",
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    rand.nextGaussian() * 0.05D,
+                    rand.nextDouble() * 0.2D,
                     rand.nextGaussian() * 0.05D);
         }
 
@@ -95,7 +105,8 @@ public class EntityTFNatureBolt extends EntityThrowable {
                 Material materialHit = worldObj.getBlock(dx, dy, dz).getMaterial();
 
                 if (materialHit == Material.grass && this.playerTarget != null) {
-                    Items.dye.onItemUse(new ItemStack(Items.dye, 1, 15), playerTarget, worldObj, dx, dy, dz, 0, 0, 0, 0);
+                    Items.dye
+                            .onItemUse(new ItemStack(Items.dye, 1, 15), playerTarget, worldObj, dx, dy, dz, 0, 0, 0, 0);
                 } else if (materialHit.isSolid() && canReplaceBlock(worldObj, dx, dy, dz)) {
                     worldObj.setBlock(dx, dy, dz, Blocks.leaves, 2, 3);
                 }

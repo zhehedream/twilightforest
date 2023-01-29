@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
@@ -24,8 +25,7 @@ public class BlockTFRipeTorchCluster extends BlockTFTrollRoot {
     }
 
     /**
-     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in
-     * 1.1.
+     * Metadata and fortune sensitive version, this replaces the old (int meta, Random rand) version in 1.1.
      *
      * @param meta    Blocks Metadata
      * @param fortune Current item fortune level
@@ -61,12 +61,13 @@ public class BlockTFRipeTorchCluster extends BlockTFTrollRoot {
     }
 
     /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the
-     * coordinates of the block and l is the block's subtype/damage.
+     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
+     * block and l is the block's subtype/damage.
      */
     public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {
         // do not call normal harvest if the player is shearing
-        if (world.isRemote || player.getCurrentEquippedItem() == null || player.getCurrentEquippedItem().getItem() != Items.shears) {
+        if (world.isRemote || player.getCurrentEquippedItem() == null
+                || player.getCurrentEquippedItem().getItem() != Items.shears) {
             super.harvestBlock(world, player, x, y, z, meta);
         }
     }

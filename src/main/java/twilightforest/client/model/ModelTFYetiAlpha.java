@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.entity.boss.EntityTFYetiAlpha;
 
 public class ModelTFYetiAlpha extends ModelBiped {
@@ -122,11 +123,12 @@ public class ModelTFYetiAlpha extends ModelBiped {
     }
 
     /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the
-     * movement of arms and legs, where par1 represents the time(so that arms and legs swing back and
-     * forth) and par2 represents how "far" arms and legs can swing at most.
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
      */
-    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6,
+            Entity par7Entity) {
         EntityTFYetiAlpha yeti = (EntityTFYetiAlpha) par7Entity;
 
         this.bipedHead.rotateAngleY = par4 / (180F / (float) Math.PI);
@@ -184,8 +186,8 @@ public class ModelTFYetiAlpha extends ModelBiped {
             this.bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.66F + (float) Math.PI) * 2.0F * par2 * 0.5F;
             this.bipedLeftArm.rotateAngleX = MathHelper.cos(par1 * 0.66F) * 2.0F * par2 * 0.5F;
 
-//            this.bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
-//            this.bipedLeftArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
+            // this.bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
+            // this.bipedLeftArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
 
             this.bipedRightArm.rotateAngleY += MathHelper.cos(par1 * 0.25F) * 0.5F + 0.5F;
             this.bipedLeftArm.rotateAngleY -= MathHelper.cos(par1 * 0.25F) * 0.5F + 0.5F;

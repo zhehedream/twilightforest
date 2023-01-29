@@ -43,11 +43,17 @@ public class EntitySeekerArrow extends EntityArrow {
                 AxisAlignedBB targetBB = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
 
                 // add two possible courses to our selection box
-                Vec3 courseVec = Vec3.createVectorHelper(this.motionX * seekDistance, this.motionY * seekDistance, this.motionZ * seekDistance);
+                Vec3 courseVec = Vec3.createVectorHelper(
+                        this.motionX * seekDistance,
+                        this.motionY * seekDistance,
+                        this.motionZ * seekDistance);
                 courseVec.rotateAroundY((float) (Math.PI / 6F));
                 targetBB = targetBB.addCoord(courseVec.xCoord, courseVec.yCoord, courseVec.zCoord);
 
-                courseVec = Vec3.createVectorHelper(this.motionX * seekDistance, this.motionY * seekDistance, this.motionZ * seekDistance);
+                courseVec = Vec3.createVectorHelper(
+                        this.motionX * seekDistance,
+                        this.motionY * seekDistance,
+                        this.motionZ * seekDistance);
                 courseVec.rotateAroundY(-(float) (Math.PI / 6F));
                 targetBB = targetBB.addCoord(courseVec.xCoord, courseVec.yCoord, courseVec.zCoord);
 
@@ -55,7 +61,8 @@ public class EntitySeekerArrow extends EntityArrow {
                 targetBB.maxY += 3;
 
                 // find targets in box
-                List targets = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, targetBB, IEntitySelector.selectAnything);
+                List targets = this.worldObj
+                        .getEntitiesWithinAABBExcludingEntity(this, targetBB, IEntitySelector.selectAnything);
 
                 double closestDot = 1;
 
@@ -68,7 +75,10 @@ public class EntitySeekerArrow extends EntityArrow {
 
                         courseVec = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ);
                         courseVec = courseVec.normalize();
-                        Vec3 targetVec = Vec3.createVectorHelper(this.posX - living.posX, this.posY - (living.posY + (double) living.getEyeHeight()), this.posZ - living.posZ);
+                        Vec3 targetVec = Vec3.createVectorHelper(
+                                this.posX - living.posX,
+                                this.posY - (living.posY + (double) living.getEyeHeight()),
+                                this.posZ - living.posZ);
 
                         // double d0 = targetVec.lengthVector(); // do we need this?
                         targetVec = targetVec.normalize();
@@ -82,17 +92,22 @@ public class EntitySeekerArrow extends EntityArrow {
                         }
                     }
                 }
-                //if (targets.size() > 0) {
-                    // cpw.mods.fml.common.FMLLog.info("--- End of list");
-                    // cpw.mods.fml.common.FMLLog.info("We have chosen " + this.homingTarget + " as the target");
-                //}
+                // if (targets.size() > 0) {
+                // cpw.mods.fml.common.FMLLog.info("--- End of list");
+                // cpw.mods.fml.common.FMLLog.info("We have chosen " + this.homingTarget + " as the target");
+                // }
             } else {
                 // find ideal heading
-                Vec3 targetVec = Vec3.createVectorHelper(this.posX - this.homingTarget.posX, this.posY - (this.homingTarget.posY + this.homingTarget.getEyeHeight()),
+                Vec3 targetVec = Vec3.createVectorHelper(
+                        this.posX - this.homingTarget.posX,
+                        this.posY - (this.homingTarget.posY + this.homingTarget.getEyeHeight()),
                         this.posZ - this.homingTarget.posZ);
                 targetVec = targetVec.normalize();
 
-                Vec3 courseVec = Vec3.createVectorHelper(this.motionX * seekDistance, this.motionY * seekDistance, this.motionZ * seekDistance);
+                Vec3 courseVec = Vec3.createVectorHelper(
+                        this.motionX * seekDistance,
+                        this.motionY * seekDistance,
+                        this.motionZ * seekDistance);
                 courseVec = courseVec.normalize();
 
                 double dotProduct = courseVec.dotProduct(targetVec);
@@ -101,7 +116,8 @@ public class EntitySeekerArrow extends EntityArrow {
                 if (dotProduct < 0) {
 
                     // match current speed
-                    float currentSpeed = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    float currentSpeed = MathHelper.sqrt_double(
+                            this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 
                     currentSpeed *= 1.0;
 
@@ -114,9 +130,11 @@ public class EntitySeekerArrow extends EntityArrow {
                     double dy = MathHelper.clamp_double(targetVec.yCoord, -1.0, 1.0);
                     double dz = MathHelper.clamp_double(targetVec.zCoord, -2.0, 2.0);
 
-                    // cpw.mods.fml.common.FMLLog.info("Current heading is " + this.motionX + ", " + this.motionY + ", " +
+                    // cpw.mods.fml.common.FMLLog.info("Current heading is " + this.motionX + ", " + this.motionY + ", "
+                    // +
                     // this.motionZ);
-                    // cpw.mods.fml.common.FMLLog.info("Ideal heading is " + targetVec.xCoord + ", " + targetVec.yCoord + ", " +
+                    // cpw.mods.fml.common.FMLLog.info("Ideal heading is " + targetVec.xCoord + ", " + targetVec.yCoord
+                    // + ", " +
                     // targetVec.zCoord);
                     // cpw.mods.fml.common.FMLLog.info("Adjustment is " + dx + ", " + dy + ", " + dz);
 
@@ -139,7 +157,8 @@ public class EntitySeekerArrow extends EntityArrow {
     }
 
     private boolean isThisArrowFlying() {
-        return MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) > 1.0;
+        return MathHelper.sqrt_double(
+                this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) > 1.0;
     }
 
 }

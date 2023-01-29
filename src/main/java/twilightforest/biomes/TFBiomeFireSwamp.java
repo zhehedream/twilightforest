@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenVines;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.block.BlockTFFireJet;
@@ -20,8 +21,8 @@ public class TFBiomeFireSwamp extends TFBiomeBase {
     protected TFBiomeFireSwamp(int i) {
         super(i);
 
-//        this.rootHeight = -0.25F;
-//        this.heightVariation = 0.0F;
+        // this.rootHeight = -0.25F;
+        // this.heightVariation = 0.0F;
 
         this.temperature = 1.0F;
         this.rainfall = 0.4F;

@@ -16,12 +16,20 @@ public class ComponentTFDarkTowerBossBridge extends ComponentTFDarkTowerBridge {
         super(i, x, y, z, pSize, pHeight, direction);
     }
 
-    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         // make another size 15 main tower
         int direction = (getCoordBaseMode() + rotation) % 4;
         int[] dx = offsetTowerCoords(x, y, z, wingSize, direction);
 
-        ComponentTFDarkTowerBossTrap wing = new ComponentTFDarkTowerBossTrap(index, dx[0], dx[1], dx[2], wingSize, wingHeight, direction);
+        ComponentTFDarkTowerBossTrap wing = new ComponentTFDarkTowerBossTrap(
+                index,
+                dx[0],
+                dx[1],
+                dx[2],
+                wingSize,
+                wingHeight,
+                direction);
         list.add(wing);
         wing.buildComponent(this, list, rand);
         addOpening(x, y, z, rotation);

@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,9 +17,13 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFPeacockFan extends ItemTF {
+
     protected ItemTFPeacockFan() {
         super();
         this.setCreativeTab(TFItems.creativeTab);
@@ -61,13 +63,26 @@ public class ItemTFPeacockFan extends ItemTF {
 
                 // particle effect
                 for (int i = 0; i < 30; i++) {
-                    world.spawnParticle("cloud", fanBox.minX + world.rand.nextFloat() * (fanBox.maxX - fanBox.minX), fanBox.minY + world.rand.nextFloat() * (fanBox.maxY - fanBox.minY),
-                            fanBox.minZ + world.rand.nextFloat() * (fanBox.maxZ - fanBox.minZ), lookVec.xCoord, lookVec.yCoord, lookVec.zCoord);
+                    world.spawnParticle(
+                            "cloud",
+                            fanBox.minX + world.rand.nextFloat() * (fanBox.maxX - fanBox.minX),
+                            fanBox.minY + world.rand.nextFloat() * (fanBox.maxY - fanBox.minY),
+                            fanBox.minZ + world.rand.nextFloat() * (fanBox.maxZ - fanBox.minZ),
+                            lookVec.xCoord,
+                            lookVec.yCoord,
+                            lookVec.zCoord);
                 }
 
             }
 
-            world.playSound(player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, "random.breath", 1.0F + itemRand.nextFloat(), itemRand.nextFloat() * 0.7F + 0.3F, false);
+            world.playSound(
+                    player.posX + 0.5D,
+                    player.posY + 0.5D,
+                    player.posZ + 0.5D,
+                    "random.breath",
+                    1.0F + itemRand.nextFloat(),
+                    itemRand.nextFloat() * 0.7F + 0.3F,
+                    false);
 
         }
 
@@ -140,7 +155,12 @@ public class ItemTFPeacockFan extends ItemTF {
         Vec3 lookVec = player.getLookVec();
         Vec3 destVec = srcVec.addVector(lookVec.xCoord * range, lookVec.yCoord * range, lookVec.zCoord * range);
 
-        AxisAlignedBB crumbleBox = AxisAlignedBB.getBoundingBox(destVec.xCoord - radius, destVec.yCoord - radius, destVec.zCoord - radius, destVec.xCoord + radius, destVec.yCoord + radius,
+        AxisAlignedBB crumbleBox = AxisAlignedBB.getBoundingBox(
+                destVec.xCoord - radius,
+                destVec.yCoord - radius,
+                destVec.zCoord - radius,
+                destVec.xCoord + radius,
+                destVec.yCoord + radius,
                 destVec.zCoord + radius);
         return crumbleBox;
     }
@@ -199,6 +219,7 @@ public class ItemTFPeacockFan extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

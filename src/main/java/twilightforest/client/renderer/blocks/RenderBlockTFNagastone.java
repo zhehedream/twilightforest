@@ -1,12 +1,13 @@
 package twilightforest.client.renderer.blocks;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderBlockTFNagastone implements ISimpleBlockRenderingHandler {
 
@@ -24,7 +25,8 @@ public class RenderBlockTFNagastone implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         // rotate the sides
         int meta = world.getBlockMetadata(x, y, z);
 
@@ -52,63 +54,63 @@ public class RenderBlockTFNagastone implements ISimpleBlockRenderingHandler {
         // heads
         if (type == 0) {
             switch (orient) {
-            case 0:
-                renderer.uvRotateTop = 1;
-                renderer.uvRotateBottom = 2;
-                break;
-            case 1:
-                renderer.uvRotateTop = 2;
-                renderer.uvRotateBottom = 1;
-                renderer.uvRotateSouth = 0;
-                break;
-            case 2:
-                renderer.uvRotateTop = 0;
-                renderer.uvRotateBottom = 3;
-                break;
-            case 3:
-                renderer.uvRotateTop = 3;
-                renderer.uvRotateBottom = 0;
-                break;
+                case 0:
+                    renderer.uvRotateTop = 1;
+                    renderer.uvRotateBottom = 2;
+                    break;
+                case 1:
+                    renderer.uvRotateTop = 2;
+                    renderer.uvRotateBottom = 1;
+                    renderer.uvRotateSouth = 0;
+                    break;
+                case 2:
+                    renderer.uvRotateTop = 0;
+                    renderer.uvRotateBottom = 3;
+                    break;
+                case 3:
+                    renderer.uvRotateTop = 3;
+                    renderer.uvRotateBottom = 0;
+                    break;
             }
         } else if (type == 4 || type == 8) {
             switch (orient) {
-            case 0:
-                renderer.uvRotateTop = 2;
-                renderer.uvRotateBottom = 1;
-                renderer.uvRotateWest = 2;
-                break;
-            case 1:
-                renderer.uvRotateTop = 1;
-                renderer.uvRotateBottom = 2;
-                renderer.uvRotateEast = 2;
-                break;
-            case 2:
-                renderer.uvRotateTop = 3;
-                renderer.uvRotateBottom = 0;
-                renderer.uvRotateSouth = 2;
-                break;
-            case 3:
-                renderer.uvRotateTop = 0;
-                renderer.uvRotateBottom = 3;
-                renderer.uvRotateNorth = 2;
-                break;
+                case 0:
+                    renderer.uvRotateTop = 2;
+                    renderer.uvRotateBottom = 1;
+                    renderer.uvRotateWest = 2;
+                    break;
+                case 1:
+                    renderer.uvRotateTop = 1;
+                    renderer.uvRotateBottom = 2;
+                    renderer.uvRotateEast = 2;
+                    break;
+                case 2:
+                    renderer.uvRotateTop = 3;
+                    renderer.uvRotateBottom = 0;
+                    renderer.uvRotateSouth = 2;
+                    break;
+                case 3:
+                    renderer.uvRotateTop = 0;
+                    renderer.uvRotateBottom = 3;
+                    renderer.uvRotateNorth = 2;
+                    break;
             }
         } else if (type == 12) {
             switch (orient) {
-            case 0:
-                renderer.uvRotateTop = 0;
-                renderer.uvRotateBottom = 0;
-                break;
-            case 1:
-                renderer.uvRotateTop = 1;
-                renderer.uvRotateBottom = 1;
-                break;
-            case 2:
-                renderer.uvRotateNorth = 2;
-                renderer.uvRotateSouth = 2;
-                renderer.uvRotateEast = 2;
-                renderer.uvRotateWest = 2;
-                break;
+                case 0:
+                    renderer.uvRotateTop = 0;
+                    renderer.uvRotateBottom = 0;
+                    break;
+                case 1:
+                    renderer.uvRotateTop = 1;
+                    renderer.uvRotateBottom = 1;
+                    break;
+                case 2:
+                    renderer.uvRotateNorth = 2;
+                    renderer.uvRotateSouth = 2;
+                    renderer.uvRotateEast = 2;
+                    renderer.uvRotateWest = 2;
+                    break;
             }
         }
     }

@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFOreMeter extends ItemTF {
 
@@ -33,10 +34,10 @@ public class ItemTFOreMeter extends ItemTF {
             countOreInArea(player, world, useX, useZ, 3);
         }
 
-//        player.addChatMessage("func_72971_b = " + player.worldObj.func_72971_b(1.0f));
-//        player.addChatMessage("calculateSkylightSubtracted = " + player.worldObj.calculateSkylightSubtracted(1.0f));
+        // player.addChatMessage("func_72971_b = " + player.worldObj.func_72971_b(1.0f));
+        // player.addChatMessage("calculateSkylightSubtracted = " + player.worldObj.calculateSkylightSubtracted(1.0f));
 
-//        player.addChatMessage("player health =" + player.getHealth());
+        // player.addChatMessage("player health =" + player.getHealth());
 
         return super.onItemRightClick(par1ItemStack, world, player);
     }
@@ -59,18 +60,27 @@ public class ItemTFOreMeter extends ItemTF {
         int countRoots = countBlockInChunk(world, TFBlocks.root, BlockTFRoots.ROOT_META, chunkX, chunkZ);
         int countOreRoots = countBlockInChunk(world, TFBlocks.root, BlockTFRoots.OREROOT_META, chunkX, chunkZ);
 
-        int total = countStone + countDirt + countGravel + countCoal + countIron + countGold + countDiamond + countLapis + countRedstone + countRoots + countOreRoots;
+        int total = countStone + countDirt
+                + countGravel
+                + countCoal
+                + countIron
+                + countGold
+                + countDiamond
+                + countLapis
+                + countRedstone
+                + countRoots
+                + countOreRoots;
 
-//        player.addChatMessage("Ore Meter!");
-//        player.addChatMessage("Metering chunk  [" + chunkX + ", " + chunkZ + "]");
-//        player.addChatMessage("Coal - " + countCoal + " " + percent(countCoal, total));
-//        player.addChatMessage("Iron - " + countIron + " " + percent(countIron, total));
-//        player.addChatMessage("Gold - " + countGold + " " + percent(countGold, total));
-//        player.addChatMessage("Diamond - " + countDiamond + " " + percent(countDiamond, total));
-//        player.addChatMessage("Lapis - " + countLapis + " " + percent(countLapis, total));
-//        player.addChatMessage("Redstone - " + countRedstone + " " + percent(countRedstone, total));
-//        player.addChatMessage("Roots - " + countRoots + " " + percent(countRoots, total));
-//        player.addChatMessage("Ore Roots - " + countOreRoots + " " + percent(countOreRoots, total));
+        // player.addChatMessage("Ore Meter!");
+        // player.addChatMessage("Metering chunk [" + chunkX + ", " + chunkZ + "]");
+        // player.addChatMessage("Coal - " + countCoal + " " + percent(countCoal, total));
+        // player.addChatMessage("Iron - " + countIron + " " + percent(countIron, total));
+        // player.addChatMessage("Gold - " + countGold + " " + percent(countGold, total));
+        // player.addChatMessage("Diamond - " + countDiamond + " " + percent(countDiamond, total));
+        // player.addChatMessage("Lapis - " + countLapis + " " + percent(countLapis, total));
+        // player.addChatMessage("Redstone - " + countRedstone + " " + percent(countRedstone, total));
+        // player.addChatMessage("Roots - " + countRoots + " " + percent(countRoots, total));
+        // player.addChatMessage("Ore Roots - " + countOreRoots + " " + percent(countOreRoots, total));
     }
 
     private void countOreInArea(EntityPlayer player, World world, int useX, int useZ, int radius) {
@@ -115,18 +125,29 @@ public class ItemTFOreMeter extends ItemTF {
             }
         }
 
-        total = countStone + countDirt + countGravel + countCoal + countIron + countGold + countDiamond + countLapis + countRedstone + countRoots + countOreRoots;
+        total = countStone + countDirt
+                + countGravel
+                + countCoal
+                + countIron
+                + countGold
+                + countDiamond
+                + countLapis
+                + countRedstone
+                + countRoots
+                + countOreRoots;
 
-//        player.addChatMessage("Ore Meter!");
-//        player.addChatMessage("Metering chunks in radius " + radius + " around chunk [" + chunkX + ", " + chunkZ + "]");
-//        player.addChatMessage("Coal - " + countCoal + " " + percent(countCoal, total));
-//        player.addChatMessage("Iron - " + countIron + " " + percent(countIron, total));
-//        player.addChatMessage("Gold - " + countGold + " " + percent(countGold, total));
-//        player.addChatMessage("Diamond - " + countDiamond + " " + percent(countDiamond, total) + ", exposed - " + countExposedDiamond);
-//        player.addChatMessage("Lapis - " + countLapis + " " + percent(countLapis, total));
-//        player.addChatMessage("Redstone - " + countRedstone + " " + percent(countRedstone, total));
-//        player.addChatMessage("Roots - " + countRoots + " " + percent(countRoots, total));
-//        player.addChatMessage("Ore Roots - " + countOreRoots + " " + percent(countOreRoots, total));
+        // player.addChatMessage("Ore Meter!");
+        // player.addChatMessage("Metering chunks in radius " + radius + " around chunk [" + chunkX + ", " + chunkZ +
+        // "]");
+        // player.addChatMessage("Coal - " + countCoal + " " + percent(countCoal, total));
+        // player.addChatMessage("Iron - " + countIron + " " + percent(countIron, total));
+        // player.addChatMessage("Gold - " + countGold + " " + percent(countGold, total));
+        // player.addChatMessage("Diamond - " + countDiamond + " " + percent(countDiamond, total) + ", exposed - " +
+        // countExposedDiamond);
+        // player.addChatMessage("Lapis - " + countLapis + " " + percent(countLapis, total));
+        // player.addChatMessage("Redstone - " + countRedstone + " " + percent(countRedstone, total));
+        // player.addChatMessage("Roots - " + countRoots + " " + percent(countRoots, total));
+        // player.addChatMessage("Ore Roots - " + countOreRoots + " " + percent(countOreRoots, total));
     }
 
     public float percent(int count, int total) {
@@ -180,7 +201,10 @@ public class ItemTFOreMeter extends ItemTF {
                 for (int y = 0; y < 256; y++) {
                     if (world.getBlock(x, y, z) == blockID) {
                         // check if exposed
-                        if (world.isAirBlock(x + 1, y, z) || world.isAirBlock(x - 1, y, z) || world.isAirBlock(x, y + 1, z) || world.isAirBlock(x, y - 1, z) || world.isAirBlock(x, y + 1, z)
+                        if (world.isAirBlock(x + 1, y, z) || world.isAirBlock(x - 1, y, z)
+                                || world.isAirBlock(x, y + 1, z)
+                                || world.isAirBlock(x, y - 1, z)
+                                || world.isAirBlock(x, y + 1, z)
                                 || world.isAirBlock(x, y - 1, z)) {
                             count++;
                         }
@@ -204,6 +228,7 @@ public class ItemTFOreMeter extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSourceImpl;
 import net.minecraft.block.material.Material;
@@ -19,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 import twilightforest.tileentity.TileEntityTFCReactorActive;
@@ -26,6 +25,8 @@ import twilightforest.tileentity.TileEntityTFGhastTrapActive;
 import twilightforest.tileentity.TileEntityTFGhastTrapInactive;
 import twilightforest.tileentity.TileEntityTFReverter;
 import twilightforest.tileentity.TileEntityTFTowerBuilder;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -93,73 +94,93 @@ public class BlockTFTowerDevice extends Block {
     @Override
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
-        case META_REAPPEARING_INACTIVE:
-        default:
-            return TEX_REAPPEARING_INACTIVE;
-        case META_REAPPEARING_ACTIVE:
-            return TEX_REAPPEARING_ACTIVE;
-        case META_VANISH_INACTIVE:
-            return TEX_VANISH_INACTIVE;
-        case META_VANISH_ACTIVE:
-            return TEX_VANISH_ACTIVE;
-        case META_VANISH_LOCKED:
-            return TEX_VANISH_LOCKED;
-        case META_VANISH_UNLOCKED:
-            return TEX_VANISH_UNLOCKED;
-        case META_BUILDER_INACTIVE:
-            return TEX_BUILDER_INACTIVE;
-        case META_BUILDER_TIMEOUT:
-            return TEX_BUILDER_TIMEOUT;
-        case META_BUILDER_ACTIVE:
-            return TEX_BUILDER_ACTIVE;
-        case META_ANTIBUILDER:
-            return TEX_ANTIBUILDER;
-        case META_GHASTTRAP_INACTIVE:
-            if (side >= 2) {
-                return TEX_GHASTTRAP_INACTIVE;
-            } else if (side == 1) {
-                return TEX_GHASTTRAP_LID_INACTIVE;
-            } else {
-                return TFBlocks.towerWood.getIcon(side, 1);
-            }
-        case META_GHASTTRAP_ACTIVE:
-            if (side >= 2) {
-                return TEX_GHASTTRAP_ACTIVE;
-            } else if (side == 1) {
-                return TEX_GHASTTRAP_LID_ACTIVE;
-            } else {
-                return TFBlocks.towerWood.getIcon(side, 1);
-            }
-        case META_REACTOR_INACTIVE:
-            return TEX_REACTOR_INACTIVE;
-        case META_REACTOR_ACTIVE:
-            return TEX_REACTOR_ACTIVE;
+            case META_REAPPEARING_INACTIVE:
+            default:
+                return TEX_REAPPEARING_INACTIVE;
+            case META_REAPPEARING_ACTIVE:
+                return TEX_REAPPEARING_ACTIVE;
+            case META_VANISH_INACTIVE:
+                return TEX_VANISH_INACTIVE;
+            case META_VANISH_ACTIVE:
+                return TEX_VANISH_ACTIVE;
+            case META_VANISH_LOCKED:
+                return TEX_VANISH_LOCKED;
+            case META_VANISH_UNLOCKED:
+                return TEX_VANISH_UNLOCKED;
+            case META_BUILDER_INACTIVE:
+                return TEX_BUILDER_INACTIVE;
+            case META_BUILDER_TIMEOUT:
+                return TEX_BUILDER_TIMEOUT;
+            case META_BUILDER_ACTIVE:
+                return TEX_BUILDER_ACTIVE;
+            case META_ANTIBUILDER:
+                return TEX_ANTIBUILDER;
+            case META_GHASTTRAP_INACTIVE:
+                if (side >= 2) {
+                    return TEX_GHASTTRAP_INACTIVE;
+                } else if (side == 1) {
+                    return TEX_GHASTTRAP_LID_INACTIVE;
+                } else {
+                    return TFBlocks.towerWood.getIcon(side, 1);
+                }
+            case META_GHASTTRAP_ACTIVE:
+                if (side >= 2) {
+                    return TEX_GHASTTRAP_ACTIVE;
+                } else if (side == 1) {
+                    return TEX_GHASTTRAP_LID_ACTIVE;
+                } else {
+                    return TFBlocks.towerWood.getIcon(side, 1);
+                }
+            case META_REACTOR_INACTIVE:
+                return TEX_REACTOR_INACTIVE;
+            case META_REACTOR_ACTIVE:
+                return TEX_REACTOR_ACTIVE;
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        BlockTFTowerDevice.TEX_REAPPEARING_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_off");
-        BlockTFTowerDevice.TEX_REAPPEARING_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_on");
-        BlockTFTowerDevice.TEX_VANISH_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_vanish_off");
-        BlockTFTowerDevice.TEX_VANISH_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_vanish_on");
-        BlockTFTowerDevice.TEX_VANISH_LOCKED = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_lock_on");
-        BlockTFTowerDevice.TEX_VANISH_UNLOCKED = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_lock_off");
-        BlockTFTowerDevice.TEX_BUILDER_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_builder_off");
-        BlockTFTowerDevice.TEX_BUILDER_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_builder_on");
-        BlockTFTowerDevice.TEX_ANTIBUILDER = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_antibuilder");
-        BlockTFTowerDevice.TEX_BUILDER_TIMEOUT = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_builder_timeout");
-        BlockTFTowerDevice.TEX_GHASTTRAP_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_ghasttrap_off");
-        BlockTFTowerDevice.TEX_GHASTTRAP_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_ghasttrap_on");
-        BlockTFTowerDevice.TEX_REACTOR_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reactor_off");
-        BlockTFTowerDevice.TEX_REACTOR_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_reactor_on");
-        BlockTFTowerDevice.TEX_GHASTTRAP_LID_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_ghasttraplid_off");
-        BlockTFTowerDevice.TEX_GHASTTRAP_LID_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_ghasttraplid_on");
-        BlockTFTowerDevice.TEX_SMOKER_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_smoker_off");
-        BlockTFTowerDevice.TEX_SMOKER_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_smoker_on");
-        BlockTFTowerDevice.TEX_FIREJET_INACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_firejet_off");
-        BlockTFTowerDevice.TEX_FIREJET_ACTIVE = par1IconRegister.registerIcon(TwilightForestMod.ID + ":towerdev_firejet_on");
+        BlockTFTowerDevice.TEX_REAPPEARING_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_off");
+        BlockTFTowerDevice.TEX_REAPPEARING_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reappearing_on");
+        BlockTFTowerDevice.TEX_VANISH_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_vanish_off");
+        BlockTFTowerDevice.TEX_VANISH_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_vanish_on");
+        BlockTFTowerDevice.TEX_VANISH_LOCKED = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_lock_on");
+        BlockTFTowerDevice.TEX_VANISH_UNLOCKED = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_lock_off");
+        BlockTFTowerDevice.TEX_BUILDER_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_builder_off");
+        BlockTFTowerDevice.TEX_BUILDER_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_builder_on");
+        BlockTFTowerDevice.TEX_ANTIBUILDER = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_antibuilder");
+        BlockTFTowerDevice.TEX_BUILDER_TIMEOUT = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_builder_timeout");
+        BlockTFTowerDevice.TEX_GHASTTRAP_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_ghasttrap_off");
+        BlockTFTowerDevice.TEX_GHASTTRAP_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_ghasttrap_on");
+        BlockTFTowerDevice.TEX_REACTOR_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reactor_off");
+        BlockTFTowerDevice.TEX_REACTOR_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_reactor_on");
+        BlockTFTowerDevice.TEX_GHASTTRAP_LID_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_ghasttraplid_off");
+        BlockTFTowerDevice.TEX_GHASTTRAP_LID_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_ghasttraplid_on");
+        BlockTFTowerDevice.TEX_SMOKER_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_smoker_off");
+        BlockTFTowerDevice.TEX_SMOKER_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_smoker_on");
+        BlockTFTowerDevice.TEX_FIREJET_INACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_firejet_off");
+        BlockTFTowerDevice.TEX_FIREJET_ACTIVE = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":towerdev_firejet_on");
     }
 
     /**
@@ -181,7 +202,8 @@ public class BlockTFTowerDevice extends Block {
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,
+            float par7, float par8, float par9) {
         int meta = par1World.getBlockMetadata(x, y, z);
 
         if (meta == META_VANISH_INACTIVE) {
@@ -218,7 +240,8 @@ public class BlockTFTowerDevice extends Block {
      * @return The amount of the explosion absorbed.
      */
     @Override
-    public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX,
+            double explosionY, double explosionZ) {
         int meta = world.getBlockMetadata(x, y, z);
 
         if (meta == META_VANISH_INACTIVE) {
@@ -239,14 +262,14 @@ public class BlockTFTowerDevice extends Block {
         int meta = world.getBlockMetadata(x, y, z);
 
         switch (meta) {
-        case META_REAPPEARING_ACTIVE:
-        case META_VANISH_INACTIVE:
-        case META_VANISH_ACTIVE:
-        case META_VANISH_LOCKED:
-        case META_VANISH_UNLOCKED:
-            return -1;
-        default:
-            return super.getBlockHardness(world, x, y, z);
+            case META_REAPPEARING_ACTIVE:
+            case META_VANISH_INACTIVE:
+            case META_VANISH_ACTIVE:
+            case META_VANISH_LOCKED:
+            case META_VANISH_UNLOCKED:
+                return -1;
+            default:
+                return super.getBlockHardness(world, x, y, z);
         }
     }
 
@@ -261,7 +284,8 @@ public class BlockTFTowerDevice extends Block {
         for (int dx = x - 2; dx <= x + 2; dx++) {
             for (int dy = y - 2; dy <= y + 2; dy++) {
                 for (int dz = z - 2; dz <= z + 2; dz++) {
-                    if (world.getBlock(dx, dy, dz) == TFBlocks.towerDevice && world.getBlockMetadata(dx, dy, dz) == META_VANISH_LOCKED) {
+                    if (world.getBlock(dx, dy, dz) == TFBlocks.towerDevice
+                            && world.getBlockMetadata(dx, dy, dz) == META_VANISH_LOCKED) {
                         locked = true;
                     }
                 }
@@ -315,19 +339,21 @@ public class BlockTFTowerDevice extends Block {
     }
 
     /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed
-     * (coordinates passed are their own) Args: x, y, z, neighbor blockID
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor blockID
      */
     @Override
     public void onNeighborBlockChange(World par1World, int x, int y, int z, Block myBlockID) {
         int meta = par1World.getBlockMetadata(x, y, z);
 
         if (!par1World.isRemote) {
-            if (meta == META_VANISH_INACTIVE && par1World.isBlockIndirectlyGettingPowered(x, y, z) && !areNearbyLockBlocks(par1World, x, y, z)) {
+            if (meta == META_VANISH_INACTIVE && par1World.isBlockIndirectlyGettingPowered(x, y, z)
+                    && !areNearbyLockBlocks(par1World, x, y, z)) {
                 changeToActiveVanishBlock(par1World, x, y, z, META_VANISH_ACTIVE);
             }
 
-            if (meta == META_REAPPEARING_INACTIVE && par1World.isBlockIndirectlyGettingPowered(x, y, z) && !areNearbyLockBlocks(par1World, x, y, z)) {
+            if (meta == META_REAPPEARING_INACTIVE && par1World.isBlockIndirectlyGettingPowered(x, y, z)
+                    && !areNearbyLockBlocks(par1World, x, y, z)) {
                 changeToActiveVanishBlock(par1World, x, y, z, META_REAPPEARING_ACTIVE);
             }
 
@@ -349,7 +375,8 @@ public class BlockTFTowerDevice extends Block {
                 changeToBlockMeta(par1World, x, y, z, META_BUILDER_INACTIVE);
             }
 
-            if (meta == META_GHASTTRAP_INACTIVE && isInactiveTrapCharged(par1World, x, y, z) && par1World.isBlockIndirectlyGettingPowered(x, y, z)) {
+            if (meta == META_GHASTTRAP_INACTIVE && isInactiveTrapCharged(par1World, x, y, z)
+                    && par1World.isBlockIndirectlyGettingPowered(x, y, z)) {
                 changeToBlockMeta(par1World, x, y, z, META_GHASTTRAP_ACTIVE);
                 par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.click", 0.3F, 0.6F);
 
@@ -375,7 +402,13 @@ public class BlockTFTowerDevice extends Block {
                 if (meta == META_VANISH_ACTIVE) {
                     par1World.setBlock(x, y, z, Blocks.air, 0, 3);
                 } else {
-                    par1World.setBlock(x, y, z, TFBlocks.towerTranslucent, BlockTFTowerTranslucent.META_REAPPEARING_INACTIVE, 3);
+                    par1World.setBlock(
+                            x,
+                            y,
+                            z,
+                            TFBlocks.towerTranslucent,
+                            BlockTFTowerTranslucent.META_REAPPEARING_INACTIVE,
+                            3);
                     par1World.scheduleBlockUpdate(x, y, z, TFBlocks.towerTranslucent, 80);
                 }
                 par1World.notifyBlocksOfNeighborChange(x, y, z, this);
@@ -439,8 +472,11 @@ public class BlockTFTowerDevice extends Block {
      * Check if the reactor has all the specified things around it
      */
     private boolean isReactorReady(World world, int x, int y, int z) {
-        if (world.getBlock(x, y + 1, z) != Blocks.redstone_block || world.getBlock(x, y - 1, z) != Blocks.redstone_block || world.getBlock(x + 1, y, z) != Blocks.redstone_block
-                || world.getBlock(x - 1, y, z) != Blocks.redstone_block || world.getBlock(x, y, z + 1) != Blocks.redstone_block || world.getBlock(x, y, z - 1) != Blocks.redstone_block) {
+        if (world.getBlock(x, y + 1, z) != Blocks.redstone_block || world.getBlock(x, y - 1, z) != Blocks.redstone_block
+                || world.getBlock(x + 1, y, z) != Blocks.redstone_block
+                || world.getBlock(x - 1, y, z) != Blocks.redstone_block
+                || world.getBlock(x, y, z + 1) != Blocks.redstone_block
+                || world.getBlock(x, y, z - 1) != Blocks.redstone_block) {
             return false;
         }
 
@@ -456,7 +492,8 @@ public class BlockTFTowerDevice extends Block {
     public void randomDisplayTick(World par1World, int x, int y, int z, Random par5Random) {
         int meta = par1World.getBlockMetadata(x, y, z);
 
-        if (meta == META_VANISH_ACTIVE || meta == META_REAPPEARING_ACTIVE || meta == BlockTFTowerDevice.META_BUILDER_ACTIVE) {
+        if (meta == META_VANISH_ACTIVE || meta == META_REAPPEARING_ACTIVE
+                || meta == BlockTFTowerDevice.META_BUILDER_ACTIVE) {
             for (int i = 0; i < 1; ++i) {
                 this.sparkle(par1World, x, y, z, par5Random);
             }
@@ -511,13 +548,16 @@ public class BlockTFTowerDevice extends Block {
         Block thereID = world.getBlock(x, y, z);
         int thereMeta = world.getBlockMetadata(x, y, z);
 
-        if (thereID == TFBlocks.towerDevice && (thereMeta == META_VANISH_INACTIVE || thereMeta == META_VANISH_UNLOCKED) && !areNearbyLockBlocks(world, x, y, z)) {
+        if (thereID == TFBlocks.towerDevice && (thereMeta == META_VANISH_INACTIVE || thereMeta == META_VANISH_UNLOCKED)
+                && !areNearbyLockBlocks(world, x, y, z)) {
             changeToActiveVanishBlock(world, x, y, z, META_VANISH_ACTIVE);
-        } else if (thereID == TFBlocks.towerDevice && thereMeta == META_REAPPEARING_INACTIVE && !areNearbyLockBlocks(world, x, y, z)) {
-            changeToActiveVanishBlock(world, x, y, z, META_REAPPEARING_ACTIVE);
-        } else if (thereID == TFBlocks.towerTranslucent && thereMeta == BlockTFTowerTranslucent.META_BUILT_INACTIVE) {
-            changeToActiveVanishBlock(world, x, y, z, BlockTFTowerTranslucent.META_BUILT_ACTIVE);
-        }
+        } else if (thereID == TFBlocks.towerDevice && thereMeta == META_REAPPEARING_INACTIVE
+                && !areNearbyLockBlocks(world, x, y, z)) {
+                    changeToActiveVanishBlock(world, x, y, z, META_REAPPEARING_ACTIVE);
+                } else
+            if (thereID == TFBlocks.towerTranslucent && thereMeta == BlockTFTowerTranslucent.META_BUILT_INACTIVE) {
+                changeToActiveVanishBlock(world, x, y, z, BlockTFTowerTranslucent.META_BUILT_ACTIVE);
+            }
     }
 
     /**
@@ -564,24 +604,23 @@ public class BlockTFTowerDevice extends Block {
         }
 
         switch (meta) {
-        case META_BUILDER_ACTIVE:
-        case META_VANISH_ACTIVE:
-        case META_REAPPEARING_ACTIVE:
-            return 4;
-        case META_ANTIBUILDER:
-            return 10;
-        case META_GHASTTRAP_ACTIVE:
-        case META_REACTOR_ACTIVE:
-            return 15;
-        default:
-            return 0;
+            case META_BUILDER_ACTIVE:
+            case META_VANISH_ACTIVE:
+            case META_REAPPEARING_ACTIVE:
+                return 4;
+            case META_ANTIBUILDER:
+                return 10;
+            case META_GHASTTRAP_ACTIVE:
+            case META_REACTOR_ACTIVE:
+                return 15;
+            default:
+                return 0;
         }
     }
 
     /**
-     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to
-     * the Block base class allows for mods that wish to extend vinella blocks, and also want to have a
-     * tile entity on that block, may.
+     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to the Block base
+     * class allows for mods that wish to extend vinella blocks, and also want to have a tile entity on that block, may.
      *
      * Return true from this function to specify this block has a tile entity.
      *
@@ -590,7 +629,10 @@ public class BlockTFTowerDevice extends Block {
      */
     @Override
     public boolean hasTileEntity(int metadata) {
-        return metadata == META_BUILDER_ACTIVE || metadata == META_ANTIBUILDER || metadata == META_REACTOR_ACTIVE || metadata == META_GHASTTRAP_INACTIVE || metadata == META_GHASTTRAP_ACTIVE;
+        return metadata == META_BUILDER_ACTIVE || metadata == META_ANTIBUILDER
+                || metadata == META_REACTOR_ACTIVE
+                || metadata == META_GHASTTRAP_INACTIVE
+                || metadata == META_GHASTTRAP_ACTIVE;
     }
 
     @Override
@@ -616,10 +658,10 @@ public class BlockTFTowerDevice extends Block {
     @Override
     public Item getItemDropped(int meta, Random par2Random, int par3) {
         switch (meta) {
-        case META_ANTIBUILDER:
-            return null;
-        default:
-            return Item.getItemFromBlock(this);
+            case META_ANTIBUILDER:
+                return null;
+            default:
+                return Item.getItemFromBlock(this);
         }
     }
 
@@ -629,38 +671,38 @@ public class BlockTFTowerDevice extends Block {
     @Override
     public int damageDropped(int meta) {
         switch (meta) {
-        case META_REAPPEARING_ACTIVE:
-            return META_REAPPEARING_INACTIVE;
-        case META_BUILDER_ACTIVE:
-        case META_BUILDER_TIMEOUT:
-            return META_BUILDER_INACTIVE;
-        case META_VANISH_ACTIVE:
-            return META_VANISH_INACTIVE;
-        case META_GHASTTRAP_ACTIVE:
-            return META_GHASTTRAP_INACTIVE;
-        case META_REACTOR_ACTIVE:
-            return META_REACTOR_INACTIVE;
-        default:
-            return meta;
+            case META_REAPPEARING_ACTIVE:
+                return META_REAPPEARING_INACTIVE;
+            case META_BUILDER_ACTIVE:
+            case META_BUILDER_TIMEOUT:
+                return META_BUILDER_INACTIVE;
+            case META_VANISH_ACTIVE:
+                return META_VANISH_INACTIVE;
+            case META_GHASTTRAP_ACTIVE:
+                return META_GHASTTRAP_INACTIVE;
+            case META_REACTOR_ACTIVE:
+                return META_REACTOR_INACTIVE;
+            default:
+                return meta;
         }
     }
 
-//    @Override
-//    public void breakBlock(World par1World, int x, int y, int z, int par5, int meta) {
-//        super.breakBlock(par1World, x, y, z, par5, meta);
-//        
-//        //System.out.println("broke block, meta = " + meta);
-//        
-//        if (meta == META_BUILDER_ACTIVE)
-//        {
-//            // activate all adjacent inactive vanish blocks
-//            checkAndActivateVanishBlock(par1World, x - 1, y, z);
-//            checkAndActivateVanishBlock(par1World, x + 1, y, z);
-//            checkAndActivateVanishBlock(par1World, x, y + 1, z);
-//            checkAndActivateVanishBlock(par1World, x, y - 1, z);
-//            checkAndActivateVanishBlock(par1World, x, y, z + 1);
-//            checkAndActivateVanishBlock(par1World, x, y, z - 1);
-//        }
-//    }
+    // @Override
+    // public void breakBlock(World par1World, int x, int y, int z, int par5, int meta) {
+    // super.breakBlock(par1World, x, y, z, par5, meta);
+    //
+    // //System.out.println("broke block, meta = " + meta);
+    //
+    // if (meta == META_BUILDER_ACTIVE)
+    // {
+    // // activate all adjacent inactive vanish blocks
+    // checkAndActivateVanishBlock(par1World, x - 1, y, z);
+    // checkAndActivateVanishBlock(par1World, x + 1, y, z);
+    // checkAndActivateVanishBlock(par1World, x, y + 1, z);
+    // checkAndActivateVanishBlock(par1World, x, y - 1, z);
+    // checkAndActivateVanishBlock(par1World, x, y, z + 1);
+    // checkAndActivateVanishBlock(par1World, x, y, z - 1);
+    // }
+    // }
 
 }

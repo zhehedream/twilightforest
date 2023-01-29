@@ -8,12 +8,13 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMazeTower13 {
-    public ComponentTFFinalCastleDamagedTower() {
-    }
+
+    public ComponentTFFinalCastleDamagedTower() {}
 
     public ComponentTFFinalCastleDamagedTower(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, 2, direction); // TODO: change rune type
@@ -35,23 +36,31 @@ public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMa
         list.add(thorns);
         thorns.buildComponent(this, list, rand);
 
-//      // add roof
-//      StructureTFComponent roof = rand.nextBoolean() ? new Roof13Conical(rand, 4, this) :  new Roof13Crenellated(rand, 4, this);
-//      list.add(roof);
-//      roof.buildComponent(this, list, rand);
+        // // add roof
+        // StructureTFComponent roof = rand.nextBoolean() ? new Roof13Conical(rand, 4, this) : new
+        // Roof13Crenellated(rand, 4, this);
+        // list.add(roof);
+        // roof.buildComponent(this, list, rand);
 
         // keep on building?
         this.buildNonCriticalTowers(parent, list, rand);
     }
 
     protected ComponentTFFinalCastleMazeTower13 makeNewDamagedTower(Random rand, int direction, ChunkCoordinates tc) {
-        return new ComponentTFFinalCastleWreckedTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, direction);
+        return new ComponentTFFinalCastleWreckedTower(
+                rand,
+                this.getComponentType() + 1,
+                tc.posX,
+                tc.posY,
+                tc.posZ,
+                direction);
     }
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         super.addComponentParts(world, rand, sbb);
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         this.destroyTower(world, decoRNG, sbb);
 
@@ -98,9 +107,12 @@ public class ComponentTFFinalCastleDamagedTower extends ComponentTFFinalCastleMa
     protected ArrayList<DestroyArea> makeInitialDestroyList(Random rand) {
         ArrayList<DestroyArea> areas = new ArrayList<DestroyArea>(2);
 
-        areas.add(DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
-        areas.add(DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
-        areas.add(DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
+        areas.add(
+                DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
+        areas.add(
+                DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
+        areas.add(
+                DestroyArea.createNonIntersecting(this.getBoundingBox(), rand, this.getBoundingBox().maxY - 1, areas));
         return areas;
     }
 

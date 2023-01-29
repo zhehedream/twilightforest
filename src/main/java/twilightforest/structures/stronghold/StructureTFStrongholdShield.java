@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 
 public class StructureTFStrongholdShield extends StructureTFStrongholdComponent {
@@ -32,20 +33,95 @@ public class StructureTFStrongholdShield extends StructureTFStrongholdComponent 
         // Facing.facings
 
         // +x
-        this.fillWithMetadataBlocks(world, sbb, this.boundingBox.getXSize(), 0, 0, this.boundingBox.getXSize(), this.boundingBox.getYSize(), this.boundingBox.getZSize(), shieldBlock, 4, shieldBlock,
-                4, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                this.boundingBox.getXSize(),
+                0,
+                0,
+                this.boundingBox.getXSize(),
+                this.boundingBox.getYSize(),
+                this.boundingBox.getZSize(),
+                shieldBlock,
+                4,
+                shieldBlock,
+                4,
+                false);
         // -x
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, 0, 0, this.boundingBox.getYSize(), this.boundingBox.getZSize(), shieldBlock, 5, shieldBlock, 5, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                0,
+                this.boundingBox.getYSize(),
+                this.boundingBox.getZSize(),
+                shieldBlock,
+                5,
+                shieldBlock,
+                5,
+                false);
         // +z
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, this.boundingBox.getZSize(), this.boundingBox.getXSize(), this.boundingBox.getYSize(), this.boundingBox.getZSize(), shieldBlock, 2, shieldBlock,
-                2, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                this.boundingBox.getZSize(),
+                this.boundingBox.getXSize(),
+                this.boundingBox.getYSize(),
+                this.boundingBox.getZSize(),
+                shieldBlock,
+                2,
+                shieldBlock,
+                2,
+                false);
         // -z
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, 0, this.boundingBox.getXSize(), this.boundingBox.getYSize(), 0, shieldBlock, 3, shieldBlock, 3, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                this.boundingBox.getXSize(),
+                this.boundingBox.getYSize(),
+                0,
+                shieldBlock,
+                3,
+                shieldBlock,
+                3,
+                false);
         // top
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, 0, this.boundingBox.getXSize(), 0, this.boundingBox.getZSize(), shieldBlock, 1, shieldBlock, 1, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                this.boundingBox.getXSize(),
+                0,
+                this.boundingBox.getZSize(),
+                shieldBlock,
+                1,
+                shieldBlock,
+                1,
+                false);
         // bottom
-        this.fillWithMetadataBlocks(world, sbb, 0, this.boundingBox.getYSize(), 0, this.boundingBox.getXSize(), this.boundingBox.getYSize(), this.boundingBox.getZSize(), shieldBlock, 0, shieldBlock,
-                0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                this.boundingBox.getYSize(),
+                0,
+                this.boundingBox.getXSize(),
+                this.boundingBox.getYSize(),
+                this.boundingBox.getZSize(),
+                shieldBlock,
+                0,
+                shieldBlock,
+                0,
+                false);
 
         return true;
     }

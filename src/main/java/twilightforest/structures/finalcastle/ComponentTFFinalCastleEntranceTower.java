@@ -3,15 +3,16 @@ package twilightforest.structures.finalcastle;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
+import cpw.mods.fml.common.FMLLog;
 
 public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleMazeTower13 {
-    public ComponentTFFinalCastleEntranceTower() {
-    }
+
+    public ComponentTFFinalCastleEntranceTower() {}
 
     public ComponentTFFinalCastleEntranceTower(Random rand, int i, int x, int y, int z, int direction) {
         super(rand, i, x, y, z, 3, 2, 0, direction);
@@ -56,8 +57,15 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
 
         // add bottom tower
         int brDirection = (direction + this.coordBaseMode) % 4;
-        ComponentTFFinalCastleEntranceBottomTower eTower = new ComponentTFFinalCastleEntranceBottomTower(rand, this.getComponentType() + 1, this.boundingBox.minX + 6,
-                this.boundingBox.minY - (middleFloors) * 8, this.boundingBox.minZ + 6, bottomFloors + 1, bottomFloors, (brDirection + 2) % 4);
+        ComponentTFFinalCastleEntranceBottomTower eTower = new ComponentTFFinalCastleEntranceBottomTower(
+                rand,
+                this.getComponentType() + 1,
+                this.boundingBox.minX + 6,
+                this.boundingBox.minY - (middleFloors) * 8,
+                this.boundingBox.minZ + 6,
+                bottomFloors + 1,
+                bottomFloors,
+                (brDirection + 2) % 4);
         list.add(eTower);
         eTower.buildComponent(this, list, rand);
 
@@ -66,7 +74,13 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
         opening.posY -= middleFloors * 8;
 
         ChunkCoordinates bc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, 1, brDirection);
-        ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, brDirection);
+        ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                this.getComponentType() + 1,
+                bc.posX,
+                bc.posY,
+                bc.posZ,
+                howFar - 7,
+                brDirection);
         list.add(bridge);
         bridge.buildComponent(this, list, rand);
     }
@@ -84,7 +98,14 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
         // direction + ", so our door is going to be at " + opening + " and the new tower will appear at " +
         // tc);
 
-        ComponentTFFinalCastleEntranceSideTower eTower = new ComponentTFFinalCastleEntranceSideTower(rand, this.getComponentType() + 1, tc.posX, tc.posY, tc.posZ, middleFloors, middleFloors - 1,
+        ComponentTFFinalCastleEntranceSideTower eTower = new ComponentTFFinalCastleEntranceSideTower(
+                rand,
+                this.getComponentType() + 1,
+                tc.posX,
+                tc.posY,
+                tc.posZ,
+                middleFloors,
+                middleFloors - 1,
                 direction);
 
         StructureBoundingBox largerBB = new StructureBoundingBox(eTower.getBoundingBox());
@@ -101,7 +122,13 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
             eTower.buildComponent(this, list, rand);
             // add bridge
             ChunkCoordinates bc = this.offsetTowerCCoords(opening.posX, opening.posY, opening.posZ, 1, direction);
-            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(this.getComponentType() + 1, bc.posX, bc.posY, bc.posZ, howFar - 7, direction);
+            ComponentTFFinalCastleBridge bridge = new ComponentTFFinalCastleBridge(
+                    this.getComponentType() + 1,
+                    bc.posX,
+                    bc.posY,
+                    bc.posZ,
+                    howFar - 7,
+                    direction);
             list.add(bridge);
             bridge.buildComponent(this, list, rand);
 
@@ -116,8 +143,7 @@ public class ComponentTFFinalCastleEntranceTower extends ComponentTFFinalCastleM
     }
 
     /**
-     * Gets a random position in the specified direction that connects to a floor currently in the
-     * tower.
+     * Gets a random position in the specified direction that connects to a floor currently in the tower.
      */
     public ChunkCoordinates getValidOpeningCC(Random rand, int direction) {
         // for directions 0 or 2, the wall lies along the z axis

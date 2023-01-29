@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.entity.EntityTFArmoredGiant;
 import twilightforest.entity.EntityTFGiantMiner;
@@ -17,8 +18,7 @@ public class ComponentTFCloudCastle extends StructureTFComponent {
     private boolean minerPlaced = false;
     private boolean warriorPlaced = false;
 
-    public ComponentTFCloudCastle() {
-    }
+    public ComponentTFCloudCastle() {}
 
     public ComponentTFCloudCastle(int index, int x, int y, int z) {
         super(index);
@@ -64,14 +64,22 @@ public class ComponentTFCloudCastle extends StructureTFComponent {
         // tree in x direction
         boolean plus = rand.nextBoolean();
         int offset = rand.nextInt(5) - rand.nextInt(5);
-        ComponentTFCloudTree treeX = new ComponentTFCloudTree(this.getComponentType() + 1, boundingBox.minX + (plus ? 16 : -16), 168, boundingBox.minZ - 8 + (offset * 4));
+        ComponentTFCloudTree treeX = new ComponentTFCloudTree(
+                this.getComponentType() + 1,
+                boundingBox.minX + (plus ? 16 : -16),
+                168,
+                boundingBox.minZ - 8 + (offset * 4));
         list.add(treeX);
         treeX.buildComponent(this, list, rand);
 
         // tree in z direction
         plus = rand.nextBoolean();
         offset = rand.nextInt(5) - rand.nextInt(5);
-        ComponentTFCloudTree treeZ = new ComponentTFCloudTree(this.getComponentType() + 1, boundingBox.minX - 8 + (offset * 4), 168, boundingBox.minZ + (plus ? 16 : -16));
+        ComponentTFCloudTree treeZ = new ComponentTFCloudTree(
+                this.getComponentType() + 1,
+                boundingBox.minX - 8 + (offset * 4),
+                168,
+                boundingBox.minZ + (plus ? 16 : -16));
         list.add(treeZ);
         treeZ.buildComponent(this, list, rand);
 
@@ -80,9 +88,48 @@ public class ComponentTFCloudCastle extends StructureTFComponent {
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
         // make haus
-        this.fillWithMetadataBlocks(world, sbb, 0, -4, 0, 15, -1, 15, TFBlocks.fluffyCloud, 0, TFBlocks.fluffyCloud, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 0, 0, 0, 15, 11, 15, TFBlocks.giantCobble, 0, TFBlocks.giantCobble, 0, false);
-        this.fillWithMetadataBlocks(world, sbb, 0, 12, 0, 15, 15, 15, TFBlocks.giantLog, 0, TFBlocks.giantLog, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                -4,
+                0,
+                15,
+                -1,
+                15,
+                TFBlocks.fluffyCloud,
+                0,
+                TFBlocks.fluffyCloud,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                0,
+                0,
+                15,
+                11,
+                15,
+                TFBlocks.giantCobble,
+                0,
+                TFBlocks.giantCobble,
+                0,
+                false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                0,
+                12,
+                0,
+                15,
+                15,
+                15,
+                TFBlocks.giantLog,
+                0,
+                TFBlocks.giantLog,
+                0,
+                false);
 
         // clear inside
         this.fillWithAir(world, sbb, 4, 0, 4, 11, 11, 11);

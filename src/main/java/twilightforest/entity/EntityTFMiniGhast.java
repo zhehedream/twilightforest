@@ -12,6 +12,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityTFMiniGhast extends EntityTFTowerGhast {
+
     public boolean isMinion = false;
 
     public EntityTFMiniGhast(World par1World) {
@@ -47,19 +48,19 @@ public class EntityTFMiniGhast extends EntityTFTowerGhast {
         super.onUpdate();
         // byte aggroStatus = this.dataWatcher.getWatchableObjectByte(16);
 
-//        switch (aggroStatus)
-//        {
-//        case 0:
-//        default:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
-//            break;
-//        case 1:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
-//            break;
-//        case 2:
-//            this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
-//            break;
-//        }
+        // switch (aggroStatus)
+        // {
+        // case 0:
+        // default:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast.png";
+        // break;
+        // case 1:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast_openeyes.png";
+        // break;
+        // case 2:
+        // this.texture = TwilightForestMod.MODEL_DIR + "towerghast_fire.png";
+        // break;
+        // }
     }
 
     /**
@@ -76,8 +77,11 @@ public class EntityTFMiniGhast extends EntityTFTowerGhast {
             return true;
         } else {
             Vec3 var3 = par1EntityPlayer.getLook(1.0F).normalize();
-            Vec3 var4 = Vec3.createVectorHelper(this.posX - par1EntityPlayer.posX,
-                    this.boundingBox.minY + (double) (this.height / 2.0F) - (par1EntityPlayer.posY + (double) par1EntityPlayer.getEyeHeight()), this.posZ - par1EntityPlayer.posZ);
+            Vec3 var4 = Vec3.createVectorHelper(
+                    this.posX - par1EntityPlayer.posX,
+                    this.boundingBox.minY + (double) (this.height / 2.0F)
+                            - (par1EntityPlayer.posY + (double) par1EntityPlayer.getEyeHeight()),
+                    this.posZ - par1EntityPlayer.posZ);
             double var5 = var4.lengthVector();
             var4 = var4.normalize();
             double var7 = var3.dotProduct(var4);
@@ -124,8 +128,8 @@ public class EntityTFMiniGhast extends EntityTFTowerGhast {
     }
 
     /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by
-     * a player. @param par2 - Level of Looting used to kill this mob.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
     protected void dropFewItems(boolean par1, int par2) {
         // no loot from minions

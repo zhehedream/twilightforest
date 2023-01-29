@@ -1,6 +1,5 @@
 package twilightforest.entity.ai;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -8,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.boss.EntityTFSnowQueen;
 import twilightforest.entity.boss.EntityTFSnowQueen.Phase;
 
@@ -30,7 +30,8 @@ public class EntityAITFHoverThenDrop extends EntityAIBase {
 
     private double dropY;
 
-    public EntityAITFHoverThenDrop(EntityTFSnowQueen entityTFSnowQueen, Class<EntityPlayer> class1, int hoverTime, int dropTime) {
+    public EntityAITFHoverThenDrop(EntityTFSnowQueen entityTFSnowQueen, Class<EntityPlayer> class1, int hoverTime,
+            int dropTime) {
         this.attacker = entityTFSnowQueen;
         this.classTarget = class1;
         this.setMutexBits(3);
@@ -180,7 +181,8 @@ public class EntityAITFHoverThenDrop extends EntityAIBase {
             hy = target.posY + HOVER_HEIGHT;
             hz = target.posZ + (this.attacker.getRNG().nextFloat() - this.attacker.getRNG().nextFloat()) * HOVER_RADIUS;
 
-            if (!isPositionOccupied(hx, hy, hz) && this.canEntitySee(this.attacker, hx, hy, hz) && this.canEntitySee(target, hx, hy, hz)) {
+            if (!isPositionOccupied(hx, hy, hz) && this.canEntitySee(this.attacker, hx, hy, hz)
+                    && this.canEntitySee(target, hx, hy, hz)) {
                 break;
             }
         }
@@ -195,7 +197,8 @@ public class EntityAITFHoverThenDrop extends EntityAIBase {
 
     private boolean isPositionOccupied(double hx, double hy, double hz) {
         float radius = this.attacker.width / 2F;
-        AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(hx - radius, hy, hz - radius, hx + radius, hy + this.attacker.height, hz + radius);
+        AxisAlignedBB aabb = AxisAlignedBB
+                .getBoundingBox(hx - radius, hy, hz - radius, hx + radius, hy + this.attacker.height, hz + radius);
 
         boolean isOccupied = this.attacker.worldObj.getCollidingBoundingBoxes(attacker, aabb).isEmpty();
 
@@ -206,7 +209,9 @@ public class EntityAITFHoverThenDrop extends EntityAIBase {
      * Can the specified entity see the specified location?
      */
     protected boolean canEntitySee(Entity entity, double dx, double dy, double dz) {
-        return entity.worldObj.rayTraceBlocks(Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ), Vec3.createVectorHelper(dx, dy, dz)) == null;
+        return entity.worldObj.rayTraceBlocks(
+                Vec3.createVectorHelper(entity.posX, entity.posY + (double) entity.getEyeHeight(), entity.posZ),
+                Vec3.createVectorHelper(dx, dy, dz)) == null;
 
     }
 }

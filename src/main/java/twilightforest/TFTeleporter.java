@@ -2,7 +2,6 @@ package twilightforest;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -14,11 +13,14 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
+
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
 import twilightforest.world.TFWorld;
+import cpw.mods.fml.common.FMLLog;
 
 public class TFTeleporter extends Teleporter {
+
     protected WorldServer myWorld;
     protected Random rand;
 
@@ -51,14 +53,16 @@ public class TFTeleporter extends Teleporter {
 
                         FMLLog.fine("[TwilightForest] Safely rerouted!");
                     } else {
-                        FMLLog.fine("[TwilightForest] Did not find a safe spot at first try, trying again with longer range.");
+                        FMLLog.fine(
+                                "[TwilightForest] Did not find a safe spot at first try, trying again with longer range.");
                         safeCoords = findSafeCoords(400, px, pz, entity);
                         if (safeCoords != null) {
                             entity.setLocationAndAngles(safeCoords.posX, entity.posY, safeCoords.posZ, 90.0F, 0.0F);
                             x = safeCoords.posX;
                             z = safeCoords.posZ;
 
-                            FMLLog.fine("[TwilightForest] Safely rerouted to long range portal.  Return trip not guaranteed.");
+                            FMLLog.fine(
+                                    "[TwilightForest] Safely rerouted to long range portal.  Return trip not guaranteed.");
                         } else {
                             FMLLog.fine("[TwilightForest] Did not find a safe spot.");
                         }
@@ -122,8 +126,7 @@ public class TFTeleporter extends Teleporter {
                     if (!isBlockPortal(myWorld, j1, k2, j2)) {
                         continue;
                     }
-                    for (; isBlockPortal(myWorld, j1, k2 - 1, j2); k2--) {
-                    }
+                    for (; isBlockPortal(myWorld, j1, k2 - 1, j2); k2--) {}
                     double d5 = (k2 + 0.5D) - entity.posY;
                     double d7 = d1 * d1 + d5 * d5 + d3 * d3;
                     if (d < 0.0D || d7 < d) {
@@ -232,8 +235,7 @@ public class TFTeleporter extends Teleporter {
                     if (!myWorld.isAirBlock(rx, ry, rz)) {
                         continue;
                     }
-                    for (; ry > 0 && myWorld.isAirBlock(rx, ry - 1, rz); ry--) {
-                    }
+                    for (; ry > 0 && myWorld.isAirBlock(rx, ry - 1, rz); ry--) {}
 
                     if (ideal ? isIdealPortal(rx, rz, ry) : isOkayPortal(rx, rz, ry)) {
                         double yWeight = (ry + 0.5D) - entity.posY * yFactor;
@@ -258,7 +260,8 @@ public class TFTeleporter extends Teleporter {
                     int tx = rx + (potentialX - 1);
                     int ty = ry + potentialY;
                     int tz = rz + (potentialZ - 1);
-                    if (potentialY == -1 && myWorld.getBlock(tx, ty, tz).getMaterial() != Material.grass || potentialY >= 0 && !myWorld.getBlock(tx, ty, tz).getMaterial().isReplaceable()) {
+                    if (potentialY == -1 && myWorld.getBlock(tx, ty, tz).getMaterial() != Material.grass
+                            || potentialY >= 0 && !myWorld.getBlock(tx, ty, tz).getMaterial().isReplaceable()) {
                         return false;
                     }
                 }
@@ -276,7 +279,8 @@ public class TFTeleporter extends Teleporter {
                     int tx = rx + (potentialX - 1);
                     int ty = ry + potentialY;
                     int tz = rz + (potentialZ - 1);
-                    if (potentialY == -1 && !myWorld.getBlock(tx, ty, tz).getMaterial().isSolid() || potentialY >= 0 && !myWorld.getBlock(tx, ty, tz).getMaterial().isReplaceable()) {
+                    if (potentialY == -1 && !myWorld.getBlock(tx, ty, tz).getMaterial().isSolid()
+                            || potentialY >= 0 && !myWorld.getBlock(tx, ty, tz).getMaterial().isReplaceable()) {
                         return false;
                     }
                 }
@@ -358,7 +362,8 @@ public class TFTeleporter extends Teleporter {
     }
 
     public Block randNatureBlock(Random random) {
-        Block[] block = { Blocks.brown_mushroom, Blocks.red_mushroom, Blocks.tallgrass, Blocks.red_flower, Blocks.yellow_flower };
+        Block[] block = { Blocks.brown_mushroom, Blocks.red_mushroom, Blocks.tallgrass, Blocks.red_flower,
+                Blocks.yellow_flower };
 
         return block[random.nextInt(block.length)];
     }

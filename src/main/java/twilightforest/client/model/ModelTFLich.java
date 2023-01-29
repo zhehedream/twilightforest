@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.boss.EntityTFLich;
 
 public class ModelTFLich extends ModelBiped {
@@ -95,10 +96,10 @@ public class ModelTFLich extends ModelBiped {
         } else {
             // on the special render pass, render the shadow clone and the shield
             if (lich.isShadowClone()) {
-//                GL11.glDisable(GL11.GL_DEPTH_TEST);
+                // GL11.glDisable(GL11.GL_DEPTH_TEST);
 
                 super.render(entity, f, f1, f2, f3, f4, f5 * 1.125F);
-//                   GL11.glEnable(GL11.GL_DEPTH_TEST);
+                // GL11.glEnable(GL11.GL_DEPTH_TEST);
 
             } else {
                 if (lich.getShieldStrength() > 0) {
@@ -110,8 +111,8 @@ public class ModelTFLich extends ModelBiped {
     }
 
     /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are
-     * the same second and third as in the setRotationAngles method.
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
      */
     public void setLivingAnimations(EntityLivingBase par1EntityLiving, float par2, float par3, float time) {
         EntityTFLich lich = (EntityTFLich) par1EntityLiving;

@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
@@ -18,8 +16,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFHugeLilyPad extends BlockBush {
 
@@ -51,12 +52,18 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_) {
-        return AxisAlignedBB.getBoundingBox((double) p_149668_2_ + this.minX, (double) p_149668_3_ + this.minY, (double) p_149668_4_ + this.minZ, (double) p_149668_2_ + this.maxX,
-                (double) p_149668_3_ + this.maxY, (double) p_149668_4_ + this.maxZ);
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_,
+            int p_149668_4_) {
+        return AxisAlignedBB.getBoundingBox(
+                (double) p_149668_2_ + this.minX,
+                (double) p_149668_3_ + this.minY,
+                (double) p_149668_4_ + this.minZ,
+                (double) p_149668_2_ + this.maxX,
+                (double) p_149668_3_ + this.maxY,
+                (double) p_149668_4_ + this.maxZ);
     }
 
     /**
@@ -91,15 +98,15 @@ public class BlockTFHugeLilyPad extends BlockBush {
         int display = (piece + orient) % 4;
 
         switch (display) {
-        case 0:
-        default:
-            return this.blockIcon;
-        case 1:
-            return this.pad1;
-        case 2:
-            return this.pad2;
-        case 3:
-            return this.pad3;
+            case 0:
+            default:
+                return this.blockIcon;
+            case 1:
+                return this.pad1;
+            case 2:
+                return this.pad2;
+            case 3:
+                return this.pad3;
         }
     }
 
@@ -128,8 +135,8 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Called when the block is destroyed by an explosion. Useful for allowing the block to take into
-     * account tile entities, metadata, etc. when exploded, before it is removed.
+     * Called when the block is destroyed by an explosion. Useful for allowing the block to take into account tile
+     * entities, metadata, etc. when exploded, before it is removed.
      *
      * @param world     The current world
      * @param x         X Position
@@ -143,8 +150,8 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Called on server worlds only when the block is about to be replaced by a different block or the
-     * same block with a different metadata value. Args: world, x, y, z, old metadata
+     * Called on server worlds only when the block is about to be replaced by a different block or the same block with a
+     * different metadata value. Args: world, x, y, z, old metadata
      */
     public void onBlockPreDestroy(World world, int x, int y, int z, int meta) {
 
@@ -183,8 +190,7 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with
-     * plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except gets checked often with plants.
      */
     public boolean canBlockStay(World world, int x, int y, int z) {
         boolean allThisBlock = true;
@@ -196,7 +202,8 @@ public class BlockTFHugeLilyPad extends BlockBush {
         for (int dx = 0; dx < 2; dx++) {
             for (int dz = 0; dz < 2; dz++) {
                 allThisBlock &= world.getBlock(bx + dx, y, bz + dz) == this;
-                allWater &= (world.getBlock(bx + dx, y - 1, bz + dz).getMaterial() == Material.water && world.getBlockMetadata(bx + dx, y - 1, bz + dz) == 0);
+                allWater &= (world.getBlock(bx + dx, y - 1, bz + dz).getMaterial() == Material.water
+                        && world.getBlockMetadata(bx + dx, y - 1, bz + dz) == 0);
             }
         }
 
@@ -215,8 +222,8 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 =
-     * total immobility and stop pistons
+     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
+     * and stop pistons
      */
     public int getMobilityFlag() {
         return 2;
@@ -236,8 +243,8 @@ public class BlockTFHugeLilyPad extends BlockBush {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_) {

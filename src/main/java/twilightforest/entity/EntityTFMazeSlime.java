@@ -7,6 +7,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.item.TFItems;
 
@@ -39,8 +40,11 @@ public class EntityTFMazeSlime extends EntitySlime {
      */
     @Override
     public boolean getCanSpawnHere() {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox) && this.isValidLightLevel();
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL
+                && this.worldObj.checkNoEntityCollision(this.boundingBox)
+                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+                && !this.worldObj.isAnyLiquid(this.boundingBox)
+                && this.isValidLightLevel();
     }
 
     /**

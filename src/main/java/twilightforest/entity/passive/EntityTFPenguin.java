@@ -17,6 +17,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 
 public class EntityTFPenguin extends EntityTFBird {
@@ -35,7 +36,9 @@ public class EntityTFPenguin extends EntityTFBird {
         tasks.addTask(4, new EntityAIFollowParent(this, 1.15F));
         tasks.addTask(5, new EntityAIWander(this, 1.0F));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6F));
-        tasks.addTask(7, new EntityAIWatchClosest2(this, twilightforest.entity.passive.EntityTFPenguin.class, 5F, 0.02F));
+        tasks.addTask(
+                7,
+                new EntityAIWatchClosest2(this, twilightforest.entity.passive.EntityTFPenguin.class, 5F, 0.02F));
         tasks.addTask(8, new EntityAILookIdle(this));
 
     }
@@ -49,8 +52,7 @@ public class EntityTFPenguin extends EntityTFBird {
     }
 
     /**
-     * [This function is used when two same-species animals in 'love mode' breed to generate the new
-     * baby animal.]
+     * [This function is used when two same-species animals in 'love mode' breed to generate the new baby animal.]
      */
     @Override
     public EntityAnimal createChild(EntityAgeable entityanimal) {
@@ -58,8 +60,8 @@ public class EntityTFPenguin extends EntityTFBird {
     }
 
     /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or
-     * seeds depending on the animal type)
+     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
+     * the animal type)
      */
     @Override
     public boolean isBreedingItem(ItemStack par1ItemStack) {

@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 
 public class ComponentTFStrongholdSmallStairs extends StructureTFStrongholdComponent {
@@ -96,7 +97,20 @@ public class ComponentTFStrongholdSmallStairs extends StructureTFStrongholdCompo
         placeStrongholdWalls(world, sbb, 0, 0, 0, 8, 13, 8, rand, deco.randomBlocks);
 
         // railing
-        this.fillWithMetadataBlocks(world, sbb, 1, 7, 1, 7, 7, 7, deco.platformID, deco.platformMeta, Blocks.air, 0, false);
+        this.fillWithMetadataBlocks(
+                world,
+                sbb,
+                1,
+                7,
+                1,
+                7,
+                7,
+                7,
+                deco.platformID,
+                deco.platformMeta,
+                Blocks.air,
+                0,
+                false);
         this.fillWithAir(world, sbb, 2, 7, 2, 6, 7, 6);
 
         int rotation = this.enterBottom ? 0 : 2;

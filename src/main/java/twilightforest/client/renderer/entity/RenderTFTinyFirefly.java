@@ -2,12 +2,13 @@ package twilightforest.client.renderer.entity;
 
 import java.nio.FloatBuffer;
 
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFTinyFirefly;
 import twilightforest.entity.passive.EntityTFMobileFirefly;
@@ -16,7 +17,8 @@ import twilightforest.entity.passive.EntityTFTinyFirefly;
 public class RenderTFTinyFirefly extends Render {
 
     ModelTFTinyFirefly fireflyModel;
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "firefly-tiny.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "firefly-tiny.png");
 
     public RenderTFTinyFirefly() {
         fireflyModel = new ModelTFTinyFirefly();
@@ -32,7 +34,8 @@ public class RenderTFTinyFirefly extends Render {
      * @param f
      * @param f1
      */
-    public void doRenderTinyFirefly(EntityTFTinyFirefly firefly, double x, double y, double z, float brightness, float size) {
+    public void doRenderTinyFirefly(EntityTFTinyFirefly firefly, double x, double y, double z, float brightness,
+            float size) {
 
         GL11.glPushMatrix();
 
@@ -68,7 +71,7 @@ public class RenderTFTinyFirefly extends Render {
 
         GL11.glDisable(GL11.GL_LIGHTING);
 
-//        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        // GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, brightness);
         fireflyModel.glow1.render(0.0625f * size);
         GL11.glDisable(GL11.GL_BLEND);

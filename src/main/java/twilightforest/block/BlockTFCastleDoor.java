@@ -2,10 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,11 +10,16 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TFGenericPacketHandler;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.WorldProviderTwilightForest;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFCastleDoor extends Block {
 
@@ -59,9 +60,8 @@ public class BlockTFCastleDoor extends Block {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -69,8 +69,8 @@ public class BlockTFCastleDoor extends Block {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int x, int y, int z) {
@@ -91,7 +91,8 @@ public class BlockTFCastleDoor extends Block {
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,
+            float par7, float par8, float par9) {
         int meta = par1World.getBlockMetadata(x, y, z);
 
         if (!isMetaActive(meta)) {
@@ -136,7 +137,8 @@ public class BlockTFCastleDoor extends Block {
         int meta = par1World.getBlockMetadata(x, y, z);
 
         if (!par1World.isRemote && par1World.provider instanceof WorldProviderTwilightForest) {
-            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) par1World.provider).getChunkProvider();
+            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) par1World.provider)
+                    .getChunkProvider();
 
             return chunkProvider.isStructureLocked(x, y, z, meta);
         } else {
@@ -216,19 +218,36 @@ public class BlockTFCastleDoor extends Block {
         // send packet
         FMLProxyPacket message = TFGenericPacketHandler.makeAnnihilateBlockPacket(x, y, z);
 
-        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 64);
+        NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(
+                world.provider.dimensionId,
+                x,
+                y,
+                z,
+                64);
 
         TwilightForestMod.genericChannel.sendToAllAround(message, targetPoint);
     }
 
     private static void playVanishSound(World par1World, int x, int y, int z) {
-        par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 0.125f, par1World.rand.nextFloat() * 0.25F + 1.75F);
-//        par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note.harp", 0.2F, par1World.rand.nextFloat() * 2F);
+        par1World.playSoundEffect(
+                x + 0.5D,
+                y + 0.5D,
+                z + 0.5D,
+                "random.fizz",
+                0.125f,
+                par1World.rand.nextFloat() * 0.25F + 1.75F);
+        // par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note.harp", 0.2F, par1World.rand.nextFloat() * 2F);
     }
 
     private static void playReappearSound(World par1World, int x, int y, int z) {
-        par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "random.fizz", 0.125f, par1World.rand.nextFloat() * 0.25F + 1.25F);
-//        par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note.harp", 0.2F, par1World.rand.nextFloat() * 2F);
+        par1World.playSoundEffect(
+                x + 0.5D,
+                y + 0.5D,
+                z + 0.5D,
+                "random.fizz",
+                0.125f,
+                par1World.rand.nextFloat() * 0.25F + 1.25F);
+        // par1World.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note.harp", 0.2F, par1World.rand.nextFloat() * 2F);
     }
 
     private static Block getOtherBlock(Block block) {
@@ -245,10 +264,10 @@ public class BlockTFCastleDoor extends Block {
         if (block == TFBlocks.castleDoor && !isMetaActive(meta) && !isBlockLocked(world, x, y, z)) {
             changeToActiveBlock(world, x, y, z, meta);
         }
-//        if (block == TFBlocks.castleDoorVanished && !isMetaActive(meta) && !isBlockLocked(world, x, y, z))
-//        {
-//            changeToActiveBlock(world, x, y, z, meta);
-//        }
+        // if (block == TFBlocks.castleDoorVanished && !isMetaActive(meta) && !isBlockLocked(world, x, y, z))
+        // {
+        // changeToActiveBlock(world, x, y, z, meta);
+        // }
     }
 
     @Override
@@ -260,8 +279,7 @@ public class BlockTFCastleDoor extends Block {
     public void randomDisplayTick(World par1World, int x, int y, int z, Random par5Random) {
         int meta = par1World.getBlockMetadata(x, y, z);
 
-        if (isMetaActive(meta))
-            ;
+        if (isMetaActive(meta));
         {
             for (int i = 0; i < 1; ++i) {
                 // this.sparkle(par1World, x, y, z, par5Random);

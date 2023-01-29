@@ -1,13 +1,14 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.client.model.ModelTFLich;
 import twilightforest.entity.boss.EntityTFLich;
@@ -16,7 +17,8 @@ public class RenderTFLich extends RenderBiped {
 
     public static EntityTFLich entityLich = null;
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.MODEL_DIR + "twilightlich64.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "twilightlich64.png");
 
     public RenderTFLich(ModelBiped modelbiped, float f) {
         super(modelbiped, f);
@@ -27,7 +29,7 @@ public class RenderTFLich extends RenderBiped {
         EntityTFLich lich = (EntityTFLich) entity;
         if (i == 2) {
             GL11.glEnable(3042 /* GL_BLEND */);
-//            GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
+            // GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             if (lich.isShadowClone()) {
                 // clone alpha

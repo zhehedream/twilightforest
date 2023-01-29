@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
@@ -19,8 +17,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFShield extends Block {
 
@@ -77,9 +78,8 @@ public class BlockTFShield extends Block {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -87,8 +87,7 @@ public class BlockTFShield extends Block {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -115,14 +114,15 @@ public class BlockTFShield extends Block {
      * Called when the block is placed in the world.
      */
     @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving,
+            ItemStack par6ItemStack) {
         int l = BlockPistonBase.determineOrientation(par1World, par2, par3, par4, par5EntityLiving);
         par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
     }
 
     /**
-     * Gets the hardness of block at the given coordinates in the given world, relative to the ability
-     * of the given EntityPlayer.
+     * Gets the hardness of block at the given coordinates in the given world, relative to the ability of the given
+     * EntityPlayer.
      */
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {

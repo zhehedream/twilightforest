@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
+
 import twilightforest.world.ChunkProviderTwilightForest;
 import twilightforest.world.TFWorldChunkManager;
 import twilightforest.world.WorldProviderTwilightForest;
@@ -39,29 +40,40 @@ public class CommandTFFeature extends CommandBase {
                     throw new WrongUsageException("commands.tffeature.not_in_twilight_forest", new Object[0]);
                 } else {
                     // nearest feature
-                    TFFeature nearbyFeature = ((TFWorldChunkManager) player.worldObj.provider.worldChunkMgr).getFeatureAt(dx, dz, player.worldObj);
+                    TFFeature nearbyFeature = ((TFWorldChunkManager) player.worldObj.provider.worldChunkMgr)
+                            .getFeatureAt(dx, dz, player.worldObj);
 
-                    sender.addChatMessage(new ChatComponentTranslation("The nearest feature is %s", new Object[] { nearbyFeature.name }));
+                    sender.addChatMessage(
+                            new ChatComponentTranslation(
+                                    "The nearest feature is %s",
+                                    new Object[] { nearbyFeature.name }));
 
                     // are you in a structure?
-                    ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) player.worldObj.provider).getChunkProvider();
+                    ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) player.worldObj.provider)
+                            .getChunkProvider();
 
                     if (chunkProvider.isBlockInStructureBB(dx, dy, dz)) {
-                        sender.addChatMessage(new ChatComponentTranslation("You are in the structure for that feature."));
+                        sender.addChatMessage(
+                                new ChatComponentTranslation("You are in the structure for that feature."));
 
-                        sender.addChatMessage(new ChatComponentTranslation("Structure conquer flag = %s.", new Object[] { chunkProvider.isStructureConquered(dx, dy, dz) }));
+                        sender.addChatMessage(
+                                new ChatComponentTranslation(
+                                        "Structure conquer flag = %s.",
+                                        new Object[] { chunkProvider.isStructureConquered(dx, dy, dz) }));
 
                         // are you in a room?
 
                         // what is the spawn list
-//                        List<SpawnListEntry> spawnList = chunkProvider.getPossibleCreatures(EnumCreatureType.monster, dx, dy, dz);
-//                        sender.addChatMessage(new ChatComponentTranslation("Spawn list for the area is:"));
-//                        for (SpawnListEntry entry : spawnList) {
-//                            sender.addChatMessage(new ChatComponentTranslation(entry.toString()));
-//                        }
+                        // List<SpawnListEntry> spawnList = chunkProvider.getPossibleCreatures(EnumCreatureType.monster,
+                        // dx, dy, dz);
+                        // sender.addChatMessage(new ChatComponentTranslation("Spawn list for the area is:"));
+                        // for (SpawnListEntry entry : spawnList) {
+                        // sender.addChatMessage(new ChatComponentTranslation(entry.toString()));
+                        // }
 
                     } else {
-                        sender.addChatMessage(new ChatComponentTranslation("You are not in the structure for that feature."));
+                        sender.addChatMessage(
+                                new ChatComponentTranslation("You are not in the structure for that feature."));
                     }
                 }
             } else if (args[0].equalsIgnoreCase("reactivate")) {
@@ -103,10 +115,14 @@ public class CommandTFFeature extends CommandBase {
             throw new WrongUsageException("commands.tffeature.not_in_twilight_forest", new Object[0]);
         } else {
             // are you in a structure?
-            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) player.worldObj.provider).getChunkProvider();
+            ChunkProviderTwilightForest chunkProvider = ((WorldProviderTwilightForest) player.worldObj.provider)
+                    .getChunkProvider();
 
             if (chunkProvider.isBlockInStructureBB(dx, dy, dz)) {
-                sender.addChatMessage(new ChatComponentTranslation("Structure conquer flag was %s.  Changing to %s.", new Object[] { chunkProvider.isStructureConquered(dx, dy, dz), flag }));
+                sender.addChatMessage(
+                        new ChatComponentTranslation(
+                                "Structure conquer flag was %s.  Changing to %s.",
+                                new Object[] { chunkProvider.isStructureConquered(dx, dy, dz), flag }));
 
                 chunkProvider.setStructureConquered(dx, dy, dz, flag);
             } else {

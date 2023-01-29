@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.entity.boss.EntityTFYetiAlpha;
 import twilightforest.world.TFWorld;
 
@@ -36,7 +37,11 @@ public class ComponentTFYetiCave extends ComponentTFHollowHill {
      */
     boolean isInHill(int mapX, int mapY, int mapZ) {
         // yeti cave is square and 16 blocks tall
-        return mapX < this.radius * 2 && mapX > 0 && mapZ < this.radius * 2 && mapZ > 0 && mapY > TFWorld.SEALEVEL && mapY < TFWorld.SEALEVEL + 20;
+        return mapX < this.radius * 2 && mapX > 0
+                && mapZ < this.radius * 2
+                && mapZ > 0
+                && mapY > TFWorld.SEALEVEL
+                && mapY < TFWorld.SEALEVEL + 20;
     }
 
     /**
@@ -49,12 +54,12 @@ public class ComponentTFYetiCave extends ComponentTFHollowHill {
 
         // fill in features
 
-//        // ore or glowing stalactites! (smaller, less plentiful)
-//        for (int i = 0; i < sn; i++)
-//        {
-//            int[] dest = getCoordsInHill2D(rand);
-//            generateOreStalactite(world, dest[0], 1, dest[1], sbb);
-//        }
+        // // ore or glowing stalactites! (smaller, less plentiful)
+        // for (int i = 0; i < sn; i++)
+        // {
+        // int[] dest = getCoordsInHill2D(rand);
+        // generateOreStalactite(world, dest[0], 1, dest[1], sbb);
+        // }
         // stone stalactites!
         for (int i = 0; i < sn; i++) {
             int[] dest = getCoordsInHill2D(rand);

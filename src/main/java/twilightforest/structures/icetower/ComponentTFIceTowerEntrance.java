@@ -7,12 +7,12 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.structures.StructureTFComponent;
 
 public class ComponentTFIceTowerEntrance extends ComponentTFIceTowerWing {
 
-    public ComponentTFIceTowerEntrance() {
-    }
+    public ComponentTFIceTowerEntrance() {}
 
     public ComponentTFIceTowerEntrance(int i, int x, int y, int z, int pSize, int pHeight, int direction) {
         super(i, x, y, z, pSize, pHeight, direction);
@@ -47,14 +47,22 @@ public class ComponentTFIceTowerEntrance extends ComponentTFIceTowerWing {
     /**
      * Add some stairs leading to this tower
      */
-    private boolean addStairs(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int rotation) {
+    private boolean addStairs(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int rotation) {
         // add door
         this.addOpening(x, y, z, rotation);
 
         int direction = (getCoordBaseMode() + rotation) % 4;
         ChunkCoordinates dx = offsetTowerCCoords(x, y, z, this.size, direction);
 
-        ComponentTFIceTowerStairs entrance = new ComponentTFIceTowerStairs(index, dx.posX, dx.posY, dx.posZ, this.size, this.height, direction);
+        ComponentTFIceTowerStairs entrance = new ComponentTFIceTowerStairs(
+                index,
+                dx.posX,
+                dx.posY,
+                dx.posZ,
+                this.size,
+                this.height,
+                direction);
 
         list.add(entrance);
         entrance.buildComponent(list.get(0), list, rand);
@@ -64,7 +72,8 @@ public class ComponentTFIceTowerEntrance extends ComponentTFIceTowerWing {
     /**
      * Make a new wing
      */
-    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int wingSize, int wingHeight, int rotation) {
+    public boolean makeTowerWing(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int wingSize, int wingHeight, int rotation) {
         return false;
     }
 
@@ -77,14 +86,59 @@ public class ComponentTFIceTowerEntrance extends ComponentTFIceTowerWing {
 
     }
 
-    protected void decoratePillarsCornersHigh(World world, Random rand, int bottom, int top, int rotation, StructureBoundingBox sbb) {
+    protected void decoratePillarsCornersHigh(World world, Random rand, int bottom, int top, int rotation,
+            StructureBoundingBox sbb) {
         int beamMetaNS = ((this.coordBaseMode + rotation) % 2 == 0) ? 4 : 8;
         int beamMetaEW = (beamMetaNS == 4) ? 8 : 4;
 
-        this.fillBlocksRotated(world, sbb, 3, bottom + 5, 1, 3, bottom + 5, 9, deco.pillarID, deco.pillarMeta + beamMetaEW, rotation);
-        this.fillBlocksRotated(world, sbb, 7, bottom + 5, 1, 7, bottom + 5, 9, deco.pillarID, deco.pillarMeta + beamMetaEW, rotation);
-        this.fillBlocksRotated(world, sbb, 1, bottom + 5, 3, 9, bottom + 5, 3, deco.pillarID, deco.pillarMeta + beamMetaNS, rotation);
-        this.fillBlocksRotated(world, sbb, 1, bottom + 5, 7, 9, bottom + 5, 7, deco.pillarID, deco.pillarMeta + beamMetaNS, rotation);
+        this.fillBlocksRotated(
+                world,
+                sbb,
+                3,
+                bottom + 5,
+                1,
+                3,
+                bottom + 5,
+                9,
+                deco.pillarID,
+                deco.pillarMeta + beamMetaEW,
+                rotation);
+        this.fillBlocksRotated(
+                world,
+                sbb,
+                7,
+                bottom + 5,
+                1,
+                7,
+                bottom + 5,
+                9,
+                deco.pillarID,
+                deco.pillarMeta + beamMetaEW,
+                rotation);
+        this.fillBlocksRotated(
+                world,
+                sbb,
+                1,
+                bottom + 5,
+                3,
+                9,
+                bottom + 5,
+                3,
+                deco.pillarID,
+                deco.pillarMeta + beamMetaNS,
+                rotation);
+        this.fillBlocksRotated(
+                world,
+                sbb,
+                1,
+                bottom + 5,
+                7,
+                9,
+                bottom + 5,
+                7,
+                deco.pillarID,
+                deco.pillarMeta + beamMetaNS,
+                rotation);
 
         this.fillAirRotated(world, sbb, 3, bottom + 5, 3, 7, bottom + 5, 7, rotation);
 

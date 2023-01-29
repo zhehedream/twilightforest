@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
@@ -60,8 +61,8 @@ public class EntityTFIceExploder extends EntityMob {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -71,7 +72,15 @@ public class EntityTFIceExploder extends EntityMob {
             float py = this.getEyeHeight() + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.5F;
             float pz = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.3F;
 
-            TwilightForestMod.proxy.spawnParticle(this.worldObj, "snowguardian", this.lastTickPosX + px, this.lastTickPosY + py, this.lastTickPosZ + pz, 0, 0, 0);
+            TwilightForestMod.proxy.spawnParticle(
+                    this.worldObj,
+                    "snowguardian",
+                    this.lastTickPosX + px,
+                    this.lastTickPosY + py,
+                    this.lastTickPosZ + pz,
+                    0,
+                    0,
+                    0);
         }
     }
 
@@ -119,19 +128,28 @@ public class EntityTFIceExploder extends EntityMob {
             int i;
 
             boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-            this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float) EntityTFIceExploder.EXPLOSION_RADIUS, flag);
+            this.worldObj.createExplosion(
+                    this,
+                    this.posX,
+                    this.posY,
+                    this.posZ,
+                    (float) EntityTFIceExploder.EXPLOSION_RADIUS,
+                    flag);
 
             if (flag) {
                 this.detonate();
             }
 
-            if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer()) && this.func_146066_aG() && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) {
+            if (!this.worldObj.isRemote && (this.recentlyHit > 0 || this.isPlayer())
+                    && this.func_146066_aG()
+                    && this.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) {
                 i = this.getExperiencePoints(this.attackingPlayer);
 
                 while (i > 0) {
                     int j = EntityXPOrb.getXPSplit(i);
                     i -= j;
-                    this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
+                    this.worldObj
+                            .spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
                 }
             }
 
@@ -141,8 +159,14 @@ public class EntityTFIceExploder extends EntityMob {
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;
-                this.worldObj.spawnParticle("explode", this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width,
-                        this.posY + (double) (this.rand.nextFloat() * this.height), this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width, d2, d0, d1);
+                this.worldObj.spawnParticle(
+                        "explode",
+                        this.posX + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width,
+                        this.posY + (double) (this.rand.nextFloat() * this.height),
+                        this.posZ + (double) (this.rand.nextFloat() * this.width * 2.0F) - (double) this.width,
+                        d2,
+                        d0,
+                        d1);
             }
         }
     }
@@ -206,12 +230,17 @@ public class EntityTFIceExploder extends EntityMob {
 
     private boolean shouldTransformGlass(Block block, int x, int y, int z) {
         return block != Blocks.air && this.isBlockNormalBounds(block, x, y, z)
-                && (!block.getMaterial().isOpaque() || block.isLeaves(this.worldObj, x, y, z) || block == Blocks.ice || block == TFBlocks.auroraBlock);
+                && (!block.getMaterial().isOpaque() || block.isLeaves(this.worldObj, x, y, z)
+                        || block == Blocks.ice
+                        || block == TFBlocks.auroraBlock);
     }
 
     private boolean isBlockNormalBounds(Block block, int x, int y, int z) {
-        return block.getBlockBoundsMaxX() == 1.0F && block.getBlockBoundsMaxY() == 1.0F && block.getBlockBoundsMaxZ() == 1.0F && block.getBlockBoundsMinX() == 0.0F
-                && block.getBlockBoundsMinY() == 0.0F && block.getBlockBoundsMinZ() == 0.0F;
+        return block.getBlockBoundsMaxX() == 1.0F && block.getBlockBoundsMaxY() == 1.0F
+                && block.getBlockBoundsMaxZ() == 1.0F
+                && block.getBlockBoundsMinX() == 0.0F
+                && block.getBlockBoundsMinY() == 0.0F
+                && block.getBlockBoundsMinZ() == 0.0F;
     }
 
     private int getMetaForColor(int blockColor) {

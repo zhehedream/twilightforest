@@ -5,10 +5,12 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
 public class TFGenSmallTwilightOak extends TFTreeGenerator {
+
     /** The minimum height of a generated tree. */
     protected final int minTreeHeight;
 
@@ -57,7 +59,10 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
 
                             Block block = blockID;
 
-                            if (blockID != Blocks.air && !block.isLeaves(world, cx, cy, cz) && blockID != Blocks.grass && blockID != Blocks.dirt && !block.isWood(world, cx, cy, cz)) {
+                            if (blockID != Blocks.air && !block.isLeaves(world, cx, cy, cz)
+                                    && blockID != Blocks.grass
+                                    && blockID != Blocks.dirt
+                                    && !block.isWood(world, cx, cy, cz)) {
                                 allClear = false;
                             }
                         } else {
@@ -92,7 +97,8 @@ public class TFGenSmallTwilightOak extends TFTreeGenerator {
 
                                 Block block = world.getBlock(tx, cz, tz);
 
-                                if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth || rand.nextInt(2) != 0 && number != 0)
+                                if ((Math.abs(var15) != treeWidth || Math.abs(var17) != treeWidth
+                                        || rand.nextInt(2) != 0 && number != 0)
                                         && (block == null || block.canBeReplacedByLeaves(world, tx, cz, tz))) {
                                     this.setBlockAndMetadata(world, tx, cz, tz, this.leafBlock, this.leafMeta);
                                 }

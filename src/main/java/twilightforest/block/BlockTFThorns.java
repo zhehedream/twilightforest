@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
@@ -20,8 +18,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFThorns extends BlockRotatedPillar {
 
@@ -51,25 +52,23 @@ public class BlockTFThorns extends BlockRotatedPillar {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     public boolean renderAsNormalBlock() {
         return false;
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     public boolean isOpaqueCube() {
         return false;
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
@@ -79,13 +78,31 @@ public class BlockTFThorns extends BlockRotatedPillar {
         float pixel = 0.0625F;
 
         switch (rotation) {
-        case 0:
-        default:
-            return AxisAlignedBB.getBoundingBox(x + pixel * 3F, y, z + pixel * 3F, x + 1F - pixel * 3F, y + 1F, z + 1F - pixel * 3F);
-        case 4:
-            return AxisAlignedBB.getBoundingBox(x, y + pixel * 3F, z + pixel * 3F, x + 1F, y + 1F - pixel * 3F, z + 1F - pixel * 3F);
-        case 8:
-            return AxisAlignedBB.getBoundingBox(x + pixel * 3F, y + pixel * 3F, z, x + 1F - pixel * 3F, y + 1F - pixel * 3F, z + 1F);
+            case 0:
+            default:
+                return AxisAlignedBB.getBoundingBox(
+                        x + pixel * 3F,
+                        y,
+                        z + pixel * 3F,
+                        x + 1F - pixel * 3F,
+                        y + 1F,
+                        z + 1F - pixel * 3F);
+            case 4:
+                return AxisAlignedBB.getBoundingBox(
+                        x,
+                        y + pixel * 3F,
+                        z + pixel * 3F,
+                        x + 1F,
+                        y + 1F - pixel * 3F,
+                        z + 1F - pixel * 3F);
+            case 8:
+                return AxisAlignedBB.getBoundingBox(
+                        x + pixel * 3F,
+                        y + pixel * 3F,
+                        z,
+                        x + 1F - pixel * 3F,
+                        y + 1F - pixel * 3F,
+                        z + 1F);
         }
 
     }
@@ -99,8 +116,7 @@ public class BlockTFThorns extends BlockRotatedPillar {
     }
 
     /**
-     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y,
-     * z, entity
+     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         entity.attackEntityFrom(DamageSource.cactus, THORN_DAMAGE);
@@ -126,8 +142,8 @@ public class BlockTFThorns extends BlockRotatedPillar {
     }
 
     /**
-     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 =
-     * total immobility and stop pistons
+     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
+     * and stop pistons
      */
     public int getMobilityFlag() {
         return 2;
@@ -140,24 +156,39 @@ public class BlockTFThorns extends BlockRotatedPillar {
         int rotation = meta & 12;
 
         switch (rotation) {
-        case 0:
-            growThorns(world, x, y, z, ForgeDirection.UP);
-            growThorns(world, x, y, z, ForgeDirection.DOWN);
-            break;
-        case 4:
-            growThorns(world, x, y, z, ForgeDirection.EAST);
-            growThorns(world, x, y, z, ForgeDirection.WEST);
-            break;
-        case 8:
-            growThorns(world, x, y, z, ForgeDirection.NORTH);
-            growThorns(world, x, y, z, ForgeDirection.SOUTH);
-            break;
+            case 0:
+                growThorns(world, x, y, z, ForgeDirection.UP);
+                growThorns(world, x, y, z, ForgeDirection.DOWN);
+                break;
+            case 4:
+                growThorns(world, x, y, z, ForgeDirection.EAST);
+                growThorns(world, x, y, z, ForgeDirection.WEST);
+                break;
+            case 8:
+                growThorns(world, x, y, z, ForgeDirection.NORTH);
+                growThorns(world, x, y, z, ForgeDirection.SOUTH);
+                break;
         }
 
         // also try three random directions
-        growThorns(world, x, y, z, ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
-        growThorns(world, x, y, z, ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
-        growThorns(world, x, y, z, ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
+        growThorns(
+                world,
+                x,
+                y,
+                z,
+                ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
+        growThorns(
+                world,
+                x,
+                y,
+                z,
+                ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
+        growThorns(
+                world,
+                x,
+                y,
+                z,
+                ForgeDirection.VALID_DIRECTIONS[world.rand.nextInt(ForgeDirection.VALID_DIRECTIONS.length)]);
 
     }
 
@@ -188,17 +219,17 @@ public class BlockTFThorns extends BlockRotatedPillar {
      */
     public static int getMetaFor(ForgeDirection dir) {
         switch (dir) {
-        case UNKNOWN:
-        default:
-        case UP:
-        case DOWN:
-            return 0;
-        case EAST:
-        case WEST:
-            return 4;
-        case NORTH:
-        case SOUTH:
-            return 8;
+            case UNKNOWN:
+            default:
+            case UP:
+            case DOWN:
+                return 0;
+            case EAST:
+            case WEST:
+                return 4;
+            case NORTH:
+            case SOUTH:
+                return 8;
         }
     }
 

@@ -2,16 +2,17 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFTwilightWandBolt;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFTwilightWand extends ItemTF {
 
@@ -52,7 +53,11 @@ public class ItemTFTwilightWand extends ItemTF {
         if (count % 6 == 0) {
             World worldObj = player.worldObj;
 
-            worldObj.playSoundAtEntity(player, "mob.ghast.fireball", 1.0F, (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+            worldObj.playSoundAtEntity(
+                    player,
+                    "mob.ghast.fireball",
+                    1.0F,
+                    (worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.2F + 1.0F);
 
             if (!worldObj.isRemote) {
                 worldObj.spawnEntityInWorld(new EntityTFTwilightWandBolt(worldObj, player));
@@ -104,6 +109,7 @@ public class ItemTFTwilightWand extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

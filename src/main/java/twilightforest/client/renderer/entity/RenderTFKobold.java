@@ -1,7 +1,5 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -10,6 +8,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
 
 public class RenderTFKobold extends RenderTFBiped {
 
@@ -34,12 +34,15 @@ public class RenderTFKobold extends RenderTFBiped {
             this.modelBipedMain.bipedRightArm.postRender(0.0625F);
             GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
 
-            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(itemstack,
-                    net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
-            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, itemstack,
+            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient
+                    .getItemRenderer(itemstack, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
+            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(
+                    net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED,
+                    itemstack,
                     net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
 
-            if (item instanceof ItemBlock && (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(item).getRenderType()))) {
+            if (item instanceof ItemBlock
+                    && (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(item).getRenderType()))) {
                 f1 = 0.5F;
                 GL11.glTranslatef(0.0F, 0.1875F, -0.3125F);
                 f1 *= 0.75F;

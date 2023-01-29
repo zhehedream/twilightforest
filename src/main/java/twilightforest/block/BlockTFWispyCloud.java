@@ -2,13 +2,14 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFWispyCloud extends BlockBreakable {
 
@@ -36,8 +37,7 @@ public class BlockTFWispyCloud extends BlockBreakable {
     }
 
     /**
-     * Return true if a player with Silk Touch can harvest this block directly, and not its normal
-     * drops.
+     * Return true if a player with Silk Touch can harvest this block directly, and not its normal drops.
      */
     protected boolean canSilkHarvest() {
         return true;
@@ -51,8 +51,7 @@ public class BlockTFWispyCloud extends BlockBreakable {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     public boolean renderAsNormalBlock() {
         return false;

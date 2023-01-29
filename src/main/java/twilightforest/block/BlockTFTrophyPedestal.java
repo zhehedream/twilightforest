@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -24,9 +22,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFTrophyPedestal extends Block {
 
@@ -65,33 +66,33 @@ public class BlockTFTrophyPedestal extends Block {
             int rotatedSide = ((side - 2) + rotate) % 4;
 
             switch (rotatedSide) {
-            case 0:
-                return meta > 7 ? sprNagaActive : sprNaga;
-            case 1:
-                return meta > 7 ? sprLichActive : sprLich;
-            case 2:
-                return meta > 7 ? sprHydraActive : sprHydra;
-            case 3:
-                return meta > 7 ? sprUrghastActive : sprUrghast;
+                case 0:
+                    return meta > 7 ? sprNagaActive : sprNaga;
+                case 1:
+                    return meta > 7 ? sprLichActive : sprLich;
+                case 2:
+                    return meta > 7 ? sprHydraActive : sprHydra;
+                case 3:
+                    return meta > 7 ? sprUrghastActive : sprUrghast;
             }
 
         }
-//        if (side == 2)
-//        {
-//            return meta > 7 ? sprNagaActive : sprNaga;
-//        }
-//        if (side == 3)
-//        {
-//            return meta > 7 ? sprLichActive : sprLich;
-//        }
-//        if (side == 4)
-//        {
-//            return meta > 7 ? sprHydraActive : sprHydra;
-//        }
-//        if (side == 5)
-//        {
-//            return meta > 7 ? sprUrghastActive : sprUrghast;
-//        }
+        // if (side == 2)
+        // {
+        // return meta > 7 ? sprNagaActive : sprNaga;
+        // }
+        // if (side == 3)
+        // {
+        // return meta > 7 ? sprLichActive : sprLich;
+        // }
+        // if (side == 4)
+        // {
+        // return meta > 7 ? sprHydraActive : sprHydra;
+        // }
+        // if (side == 5)
+        // {
+        // return meta > 7 ? sprUrghastActive : sprUrghast;
+        // }
 
         return sprTop;
     }
@@ -133,8 +134,7 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
     public boolean renderAsNormalBlock() {
@@ -142,9 +142,8 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
     public boolean isOpaqueCube() {
@@ -160,8 +159,8 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at
-     * the given coordinates. Args: blockAccess, x, y, z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @Override
     @SideOnly(Side.CLIENT)
@@ -170,8 +169,8 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed
-     * (coordinates passed are their own) Args: x, y, z, neighbor blockID
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor blockID
      */
     @Override
     public void onNeighborBlockChange(World par1World, int x, int y, int z, Block myBlockID) {
@@ -190,7 +189,8 @@ public class BlockTFTrophyPedestal extends Block {
      * Called when the block is placed in the world.
      */
     @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
+            ItemStack par6ItemStack) {
         int facing = MathHelper.floor_double(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         int latent = par6ItemStack.getItemDamage() & 8;
@@ -213,8 +213,8 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * Just checks if there is a trophy above the position indicated. Perhaps in the future we can
-     * accept different kinds of trophies.
+     * Just checks if there is a trophy above the position indicated. Perhaps in the future we can accept different
+     * kinds of trophies.
      */
     private boolean isTrophyOnTop(World world, int x, int y, int z) {
         return world.getBlock(x, y + 1, z) == TFBlocks.trophy;
@@ -251,7 +251,9 @@ public class BlockTFTrophyPedestal extends Block {
 
     private void warnIneligiblePlayers(World world, int x, int y, int z) {
         // scan for players nearby to give the achievement
-        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
+        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
+                EntityPlayer.class,
+                AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
 
         for (EntityPlayer player : nearbyPlayers) {
             if (!isPlayerEligible(player)) {
@@ -263,7 +265,9 @@ public class BlockTFTrophyPedestal extends Block {
     private boolean areNearbyPlayersEligible(World world, int x, int y, int z) {
         boolean isEligible = false;
         // scan for players nearby to give the achievement
-        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
+        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
+                EntityPlayer.class,
+                AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
 
         for (EntityPlayer player : nearbyPlayers) {
             isEligible |= isPlayerEligible(player);
@@ -277,11 +281,12 @@ public class BlockTFTrophyPedestal extends Block {
             StatisticsFile stats = ((EntityPlayerMP) player).func_147099_x();
 
             return stats.hasAchievementUnlocked(TFAchievementPage.twilightProgressTrophyPedestal.parentAchievement);
-        } else if (player instanceof EntityClientPlayerMP && ((EntityClientPlayerMP) player).getStatFileWriter() != null) {
-            StatFileWriter stats = ((EntityClientPlayerMP) player).getStatFileWriter();
+        } else
+            if (player instanceof EntityClientPlayerMP && ((EntityClientPlayerMP) player).getStatFileWriter() != null) {
+                StatFileWriter stats = ((EntityClientPlayerMP) player).getStatFileWriter();
 
-            return stats.hasAchievementUnlocked(TFAchievementPage.twilightProgressTrophyPedestal.parentAchievement);
-        }
+                return stats.hasAchievementUnlocked(TFAchievementPage.twilightProgressTrophyPedestal.parentAchievement);
+            }
         // uh, not a player?
         return false;
     }
@@ -301,7 +306,9 @@ public class BlockTFTrophyPedestal extends Block {
     @SuppressWarnings("unchecked")
     private void rewardNearbyPlayers(World world, int x, int y, int z) {
         // scan for players nearby to give the achievement
-        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
+        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
+                EntityPlayer.class,
+                AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(16.0D, 16.0D, 16.0D));
 
         for (EntityPlayer player : nearbyPlayers) {
             player.triggerAchievement(TFAchievementPage.twilightProgressTrophyPedestal);
@@ -338,8 +345,8 @@ public class BlockTFTrophyPedestal extends Block {
     }
 
     /**
-     * Gets the hardness of block at the given coordinates in the given world, relative to the ability
-     * of the given EntityPlayer.
+     * Gets the hardness of block at the given coordinates in the given world, relative to the ability of the given
+     * EntityPlayer.
      */
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer par1EntityPlayer, World world, int x, int y, int z) {

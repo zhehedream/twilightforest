@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,11 +15,14 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 import twilightforest.tileentity.TileEntityTFFlameJet;
 import twilightforest.tileentity.TileEntityTFPoppingJet;
 import twilightforest.tileentity.TileEntityTFSmoker;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFFireJet extends Block {
 
@@ -57,16 +58,16 @@ public class BlockTFFireJet extends Block {
     @Override
     public int damageDropped(int meta) {
         switch (meta) {
-        default:
-            return meta;
-        case META_ENCASED_SMOKER_ON:
-            return META_ENCASED_SMOKER_OFF;
-        case META_ENCASED_JET_POPPING:
-        case META_ENCASED_JET_FLAME:
-            return META_ENCASED_JET_IDLE;
-        case META_JET_POPPING:
-        case META_JET_FLAME:
-            return META_JET_IDLE;
+            default:
+                return meta;
+            case META_ENCASED_SMOKER_ON:
+                return META_ENCASED_SMOKER_OFF;
+            case META_ENCASED_JET_POPPING:
+            case META_ENCASED_JET_FLAME:
+                return META_ENCASED_JET_IDLE;
+            case META_JET_POPPING:
+            case META_JET_FLAME:
+                return META_JET_IDLE;
         }
 
     }
@@ -131,15 +132,18 @@ public class BlockTFFireJet extends Block {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @Override
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int x, int y, int z) {
         int meta = par1IBlockAccess.getBlockMetadata(x, y, z);
 
-        if (meta == META_ENCASED_SMOKER_OFF || meta == META_ENCASED_SMOKER_ON || meta == META_ENCASED_JET_IDLE || meta == META_ENCASED_JET_POPPING || meta == META_ENCASED_JET_FLAME) {
+        if (meta == META_ENCASED_SMOKER_OFF || meta == META_ENCASED_SMOKER_ON
+                || meta == META_ENCASED_JET_IDLE
+                || meta == META_ENCASED_JET_POPPING
+                || meta == META_ENCASED_JET_FLAME) {
             return super.colorMultiplier(par1IBlockAccess, x, y, z);
         } else {
             int red = 0;
@@ -148,7 +152,8 @@ public class BlockTFFireJet extends Block {
 
             for (int var8 = -1; var8 <= 1; ++var8) {
                 for (int var9 = -1; var9 <= 1; ++var9) {
-                    int biomeColor = par1IBlockAccess.getBiomeGenForCoords(x + var9, z + var8).getBiomeGrassColor(x + var9, y, z + var8);
+                    int biomeColor = par1IBlockAccess.getBiomeGenForCoords(x + var9, z + var8)
+                            .getBiomeGrassColor(x + var9, y, z + var8);
                     red += (biomeColor & 16711680) >> 16;
                     grn += (biomeColor & 65280) >> 8;
                     blu += biomeColor & 255;
@@ -174,12 +179,12 @@ public class BlockTFFireJet extends Block {
             int meta = world.getBlockMetadata(x, y, z);
 
             switch (meta) {
-            case META_SMOKER:
-            default:
-                return 0;
-            case META_JET_FLAME:
-            case META_ENCASED_JET_FLAME:
-                return 15;
+                case META_SMOKER:
+                default:
+                    return 0;
+                case META_JET_FLAME:
+                case META_ENCASED_JET_FLAME:
+                    return 15;
             }
         } else {
             return 0;
@@ -208,8 +213,8 @@ public class BlockTFFireJet extends Block {
     }
 
     /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed
-     * (coordinates passed are their own) Args: x, y, z, neighbor blockID
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor blockID
      */
     @Override
     public void onNeighborBlockChange(World par1World, int x, int y, int z, Block myBlockID) {
@@ -235,8 +240,7 @@ public class BlockTFFireJet extends Block {
     }
 
     /**
-     * Find a full block of lava near the designated block. This is intentionally not really that
-     * reliable.
+     * Find a full block of lava near the designated block. This is intentionally not really that reliable.
      * 
      * 
      */
@@ -272,9 +276,8 @@ public class BlockTFFireJet extends Block {
     }
 
     /**
-     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to
-     * the Block base class allows for mods that wish to extend vinella blocks, and also want to have a
-     * tile entity on that block, may.
+     * Called throughout the code as a replacement for block instanceof BlockContainer Moving this to the Block base
+     * class allows for mods that wish to extend vinella blocks, and also want to have a tile entity on that block, may.
      * 
      * Return true from this function to specify this block has a tile entity.
      * 
@@ -284,22 +287,21 @@ public class BlockTFFireJet extends Block {
     @Override
     public boolean hasTileEntity(int meta) {
         switch (meta) {
-        case META_SMOKER:
-        case META_ENCASED_SMOKER_ON:
-        case META_JET_POPPING:
-        case META_JET_FLAME:
-        case META_ENCASED_JET_POPPING:
-        case META_ENCASED_JET_FLAME:
-            return true;
-        default:
-            return false;
+            case META_SMOKER:
+            case META_ENCASED_SMOKER_ON:
+            case META_JET_POPPING:
+            case META_JET_FLAME:
+            case META_ENCASED_JET_POPPING:
+            case META_ENCASED_JET_FLAME:
+                return true;
+            default:
+                return false;
         }
     }
 
     /**
-     * Called throughout the code as a replacement for BlockContainer.getBlockEntity Return the same
-     * thing you would from that function. This will fall back to BlockContainer.getBlockEntity if this
-     * block is a BlockContainer.
+     * Called throughout the code as a replacement for BlockContainer.getBlockEntity Return the same thing you would
+     * from that function. This will fall back to BlockContainer.getBlockEntity if this block is a BlockContainer.
      * 
      * @param metadata The Metadata of the current block
      * @return A instance of a class extending TileEntity
@@ -307,19 +309,19 @@ public class BlockTFFireJet extends Block {
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
         switch (metadata) {
-        case META_SMOKER:
-        case META_ENCASED_SMOKER_ON:
-            return new TileEntityTFSmoker();
-        case META_JET_POPPING:
-            return new TileEntityTFPoppingJet(META_JET_FLAME);
-        case META_JET_FLAME:
-            return new TileEntityTFFlameJet(META_JET_IDLE);
-        case META_ENCASED_JET_POPPING:
-            return new TileEntityTFPoppingJet(META_ENCASED_JET_FLAME);
-        case META_ENCASED_JET_FLAME:
-            return new TileEntityTFFlameJet(META_ENCASED_JET_IDLE);
-        default:
-            return null;
+            case META_SMOKER:
+            case META_ENCASED_SMOKER_ON:
+                return new TileEntityTFSmoker();
+            case META_JET_POPPING:
+                return new TileEntityTFPoppingJet(META_JET_FLAME);
+            case META_JET_FLAME:
+                return new TileEntityTFFlameJet(META_JET_IDLE);
+            case META_ENCASED_JET_POPPING:
+                return new TileEntityTFPoppingJet(META_ENCASED_JET_FLAME);
+            case META_ENCASED_JET_FLAME:
+                return new TileEntityTFFlameJet(META_ENCASED_JET_IDLE);
+            default:
+                return null;
         }
     }
 

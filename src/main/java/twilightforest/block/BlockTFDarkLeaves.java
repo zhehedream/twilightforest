@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -12,8 +10,11 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFDarkLeaves extends Block {
 
@@ -43,8 +44,8 @@ public class BlockTFDarkLeaves extends Block {
     }
 
     /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note
-     * only called when first determining what to render.
+     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
+     * when first determining what to render.
      */
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
@@ -73,8 +74,7 @@ public class BlockTFDarkLeaves extends Block {
     }
 
     /**
-     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0%
-     * chance.
+     * Chance that fire will spread and consume this block. 300 being a 100% chance, 0, being a 0% chance.
      * 
      * @param world    The current world
      * @param x        The blocks X position
@@ -82,8 +82,7 @@ public class BlockTFDarkLeaves extends Block {
      * @param z        The blocks Z position
      * @param metadata The blocks current metadata
      * @param face     The face that the fire is coming from
-     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed
-     *         by fire
+     * @return A number ranging from 0 to 300 relating used to determine if the block will be consumed by fire
      */
     @Override
     public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
@@ -91,8 +90,8 @@ public class BlockTFDarkLeaves extends Block {
     }
 
     /**
-     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire
-     * will spread around this block.
+     * Called when fire is updating on a neighbor block. The higher the number returned, the faster fire will spread
+     * around this block.
      * 
      * @param world    The current world
      * @param x        The blocks X position
@@ -127,7 +126,8 @@ public class BlockTFDarkLeaves extends Block {
      * Drops the block items with a specified chance of dropping the specified items
      */
     @Override
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int meta, float par6, int fortune) {
+    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int meta, float par6,
+            int fortune) {
         if (!par1World.isRemote) {
             if (par1World.rand.nextInt(40) == 0) {
                 Item var9 = this.getItemDropped(meta, par1World.rand, fortune);

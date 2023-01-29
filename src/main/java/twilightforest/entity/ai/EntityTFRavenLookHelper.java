@@ -6,6 +6,7 @@ import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraft.util.MathHelper;
 
 public class EntityTFRavenLookHelper extends EntityLookHelper {
+
     private EntityLiving entity;
     private float field_46149_b;
     private float field_46150_c;
@@ -68,7 +69,8 @@ public class EntityTFRavenLookHelper extends EntityLookHelper {
             this.entity.rotationPitch = this.updateRotation(this.entity.rotationPitch, var10, this.field_46150_c);
             this.entity.rotationYawHead = this.updateRotation(this.entity.rotationYawHead, var9, this.field_46149_b);
         } else {
-            this.entity.rotationYawHead = this.updateRotation(this.entity.rotationYawHead, this.entity.renderYawOffset, 10.0F);
+            this.entity.rotationYawHead = this
+                    .updateRotation(this.entity.rotationYawHead, this.entity.renderYawOffset, 10.0F);
         }
 
         float var11;

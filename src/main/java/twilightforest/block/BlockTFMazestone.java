@@ -2,8 +2,6 @@ package twilightforest.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,9 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.item.ItemTFMazebreakerPick;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -37,8 +38,7 @@ public class BlockTFMazestone extends Block {
     private static IIcon TEX_BORDER;
 
     /**
-     * Note that the texture called for here will only be used when the meta value is not a good block
-     * to mimic
+     * Note that the texture called for here will only be used when the meta value is not a good block to mimic
      * 
      * @param id
      * @param texture
@@ -58,23 +58,23 @@ public class BlockTFMazestone extends Block {
     @Override
     public IIcon getIcon(int side, int meta) {
         switch (meta) {
-        case 0:
-        default:
-            return TEX_PLAIN;
-        case 1:
-            return TEX_BRICK;
-        case 2:
-            return side > 1 ? TEX_PILLAR : TEX_PLAIN;
-        case 3:
-            return side > 1 ? TEX_DECO : TEX_BRICK;
-        case 4:
-            return TEX_CRACKED;
-        case 5:
-            return TEX_MOSSY;
-        case 6:
-            return side > 1 ? TEX_BRICK : TEX_MOSAIC;
-        case 7:
-            return side > 1 ? TEX_BRICK : TEX_BORDER;
+            case 0:
+            default:
+                return TEX_PLAIN;
+            case 1:
+                return TEX_BRICK;
+            case 2:
+                return side > 1 ? TEX_PILLAR : TEX_PLAIN;
+            case 3:
+                return side > 1 ? TEX_DECO : TEX_BRICK;
+            case 4:
+                return TEX_CRACKED;
+            case 5:
+                return TEX_MOSSY;
+            case 6:
+                return side > 1 ? TEX_BRICK : TEX_MOSAIC;
+            case 7:
+                return side > 1 ? TEX_BRICK : TEX_BORDER;
         }
     }
 

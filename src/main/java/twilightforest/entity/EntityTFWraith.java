@@ -13,6 +13,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.TwilightForestMod;
@@ -44,12 +45,11 @@ public class EntityTFWraith extends EntityFlying implements IMob {
 
     @Override
     public void onLivingUpdate() {
-        /*if (worldObj.isDaytime()) {
-            float f = getBrightness(1.0F);
-            if (f > 0.5F && worldObj.canBlockSeeTheSky(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ)) && rand.nextFloat() * 30F < (f - 0.4F) * 2.0F) {
-//                fire = 300;
-            }
-        }*/
+        /*
+         * if (worldObj.isDaytime()) { float f = getBrightness(1.0F); if (f > 0.5F &&
+         * worldObj.canBlockSeeTheSky(MathHelper.floor_double(posX), MathHelper.floor_double(posY),
+         * MathHelper.floor_double(posZ)) && rand.nextFloat() * 30F < (f - 0.4F) * 2.0F) { // fire = 300; } }
+         */
         super.onLivingUpdate();
     }
 
@@ -60,8 +60,8 @@ public class EntityTFWraith extends EntityFlying implements IMob {
     }
 
     /**
-     * Adapted from the ghast code. The ghost wanders randomly until it targets a player, at which point
-     * it moves towards the player.
+     * Adapted from the ghast code. The ghost wanders randomly until it targets a player, at which point it moves
+     * towards the player.
      * 
      * TODO: pathfinding!
      */
@@ -144,7 +144,9 @@ public class EntityTFWraith extends EntityFlying implements IMob {
     }
 
     protected void attackEntity(Entity entity, float f) {
-        if (attackTime <= 0 && f < 2.0F && entity.boundingBox.maxY > boundingBox.minY && entity.boundingBox.minY < boundingBox.maxY) {
+        if (attackTime <= 0 && f < 2.0F
+                && entity.boundingBox.maxY > boundingBox.minY
+                && entity.boundingBox.minY < boundingBox.maxY) {
             attackTime = 20;
 
             float damage = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getBaseValue();
@@ -153,8 +155,7 @@ public class EntityTFWraith extends EntityFlying implements IMob {
         }
     }
 
-    protected void attackBlockedEntity(Entity entity, float f) {
-    }
+    protected void attackBlockedEntity(Entity entity, float f) {}
 
     /**
      * Adapted from EntityMob
@@ -273,7 +274,8 @@ public class EntityTFWraith extends EntityFlying implements IMob {
 
     // Checks if the entity's current position is a valid location to spawn this entity.
     public boolean getCanSpawnHere() {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel()
+                && super.getCanSpawnHere();
     }
 
 }

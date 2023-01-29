@@ -21,6 +21,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 import twilightforest.entity.ai.EntityAITFEatLoose;
@@ -44,7 +45,7 @@ public class EntityTFQuestRam extends EntityAnimal {
         this.tasks.addTask(3, new EntityAITFEatLoose(this, Item.getItemFromBlock(Blocks.wool)));
         this.tasks.addTask(4, new EntityAITFFindLoose(this, 1.0F, Item.getItemFromBlock(Blocks.wool)));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0F));
-//        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        // this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
     }
 
@@ -104,7 +105,10 @@ public class EntityTFQuestRam extends EntityAnimal {
                 this.detachHome();
             } else {
                 // set our home position to the center of the quest grove
-                ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posZ), worldObj);
+                ChunkCoordinates cc = TFFeature.getNearestCenterXYZ(
+                        MathHelper.floor_double(this.posX),
+                        MathHelper.floor_double(this.posZ),
+                        worldObj);
                 this.setHomeArea(cc.posX, cc.posY, cc.posZ, 13);
 
                 // System.out.println("Set home area to " + cc.posX + ", " + cc.posY + ", " + cc.posZ);
@@ -139,7 +143,10 @@ public class EntityTFQuestRam extends EntityAnimal {
     @SuppressWarnings("unchecked")
     private void rewardNearbyPlayers(World world, double posX, double posY, double posZ) {
         // scan for players nearby to give the achievement
-        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1).expand(16.0D, 16.0D, 16.0D));
+        List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
+                EntityPlayer.class,
+                AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
+                        .expand(16.0D, 16.0D, 16.0D));
 
         for (EntityPlayer player : nearbyPlayers) {
             player.triggerAchievement(TFAchievementPage.twilightQuestRam);
@@ -147,15 +154,16 @@ public class EntityTFQuestRam extends EntityAnimal {
     }
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a
-     * pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
     @Override
     public boolean interact(EntityPlayer par1EntityPlayer) {
         ItemStack currentItem = par1EntityPlayer.inventory.getCurrentItem();
 
-        if (currentItem != null && currentItem.getItem() == Item.getItemFromBlock(Blocks.wool) && !isColorPresent(currentItem.getItemDamage())) {
-//            par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Items.bucketMilk));
+        if (currentItem != null && currentItem.getItem() == Item.getItemFromBlock(Blocks.wool)
+                && !isColorPresent(currentItem.getItemDamage())) {
+            // par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new
+            // ItemStack(Items.bucketMilk));
             this.setColorPresent(currentItem.getItemDamage());
             this.animateAddColor(currentItem.getItemDamage(), 50);
 
@@ -163,7 +171,8 @@ public class EntityTFQuestRam extends EntityAnimal {
                 --currentItem.stackSize;
 
                 if (currentItem.stackSize <= 0) {
-                    par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack) null);
+                    par1EntityPlayer.inventory
+                            .setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack) null);
                 }
             }
 
@@ -177,23 +186,24 @@ public class EntityTFQuestRam extends EntityAnimal {
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies
-     * and skeletons use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
      */
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-//        for (int var1 = 0; var1 < 2; ++var1)
-//        {
-//            this.worldObj.spawnParticle("mobSpell", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.44, 0.625, this.rand.nextDouble());
-//        }
+        // for (int var1 = 0; var1 < 2; ++var1)
+        // {
+        // this.worldObj.spawnParticle("mobSpell", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width,
+        // this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) *
+        // (double)this.width, 0.44, 0.625, this.rand.nextDouble());
+        // }
         checkAndAnimateColors();
     }
 
     /**
-     * Called every tick. If we have got all the colors and have not paid out the reward yet, do a
-     * colorful animation.
+     * Called every tick. If we have got all the colors and have not paid out the reward yet, do a colorful animation.
      */
     public void checkAndAnimateColors() {
         if (countColorsSet() > 15 && !getRewarded()) {
@@ -248,9 +258,10 @@ public class EntityTFQuestRam extends EntityAnimal {
     public void setColorPresent(int color) {
         int flags = this.getColorFlags();
 
-//        System.out.println("Setting color flag for color " + color);
-//        System.out.println("Color int is " + flags);
-//        System.out.println("ORing that with " + Math.pow(2, color) + " which is " + Integer.toBinaryString((int) Math.pow(2, color)));
+        // System.out.println("Setting color flag for color " + color);
+        // System.out.println("Color int is " + flags);
+        // System.out.println("ORing that with " + Math.pow(2, color) + " which is " + Integer.toBinaryString((int)
+        // Math.pow(2, color)));
 
         setColorFlags(flags | (int) Math.pow(2, color));
     }
@@ -278,8 +289,13 @@ public class EntityTFQuestRam extends EntityAnimal {
         // EntitySheep.fleeceColorTable[i][0]
 
         for (int i = 0; i < iterations; i++) {
-            this.worldObj.spawnParticle("mobSpell", this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.5, this.posY + this.rand.nextDouble() * this.height * 1.5,
-                    this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.5, EntitySheep.fleeceColorTable[color][0], EntitySheep.fleeceColorTable[color][1],
+            this.worldObj.spawnParticle(
+                    "mobSpell",
+                    this.posX + (this.rand.nextDouble() - 0.5D) * this.width * 1.5,
+                    this.posY + this.rand.nextDouble() * this.height * 1.5,
+                    this.posZ + (this.rand.nextDouble() - 0.5D) * this.width * 1.5,
+                    EntitySheep.fleeceColorTable[color][0],
+                    EntitySheep.fleeceColorTable[color][1],
                     EntitySheep.fleeceColorTable[color][2]);
         }
 

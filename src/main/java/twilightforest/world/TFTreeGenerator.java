@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
 import twilightforest.block.BlockTFRoots;
 import twilightforest.block.TFBlocks;
 
@@ -62,15 +63,16 @@ public abstract class TFTreeGenerator extends WorldGenAbstractTree {
     /**
      * Moves distance along the vector.
      * 
-     * This goofy function takes a float between 0 and 1 for the angle, where 0 is 0 degrees, .5 is 180
-     * degrees and 1 and 360 degrees. For the tilt, it takes a float between 0 and 1 where 0 is straight
-     * up, 0.5 is straight out and 1 is straight down.
+     * This goofy function takes a float between 0 and 1 for the angle, where 0 is 0 degrees, .5 is 180 degrees and 1
+     * and 360 degrees. For the tilt, it takes a float between 0 and 1 where 0 is straight up, 0.5 is straight out and 1
+     * is straight down.
      */
     public static int[] translate(int sx, int sy, int sz, double distance, double angle, double tilt) {
         return TFGenerator.translate(sx, sy, sz, distance, angle, tilt);
     }
 
-    protected static ChunkCoordinates translateCoords(int sx, int sy, int sz, double length, double angle, double tilt) {
+    protected static ChunkCoordinates translateCoords(int sx, int sy, int sz, double length, double angle,
+            double tilt) {
         return TFGenerator.translateCoords(sx, sy, sz, length, angle, tilt);
     }
 
@@ -124,7 +126,8 @@ public abstract class TFTreeGenerator extends WorldGenAbstractTree {
     /**
      * Draws a line from {x1, y1, z1} to {x2, y2, z2}
      */
-    protected void drawBresehnam(World world, int x1, int y1, int z1, int x2, int y2, int z2, Block blockValue, int metaValue) {
+    protected void drawBresehnam(World world, int x1, int y1, int z1, int x2, int y2, int z2, Block blockValue,
+            int metaValue) {
         ChunkCoordinates[] lineArray = getBresehnamArrayCoords(x1, y1, z1, x2, y2, z2);
         for (ChunkCoordinates pixel : lineArray) {
             setBlockAndMetadata(world, pixel.posX, pixel.posY, pixel.posZ, blockValue, metaValue);
@@ -134,7 +137,8 @@ public abstract class TFTreeGenerator extends WorldGenAbstractTree {
     /**
      * Draw a flat blob (circle) of leaves
      */
-    public void makeLeafCircle(World world, int sx, int sy, int sz, int rad, Block blockValue, int metaValue, boolean useHack) {
+    public void makeLeafCircle(World world, int sx, int sy, int sz, int rad, Block blockValue, int metaValue,
+            boolean useHack) {
         // trace out a quadrant
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dz = 0; dz <= rad; dz++) {
@@ -158,19 +162,19 @@ public abstract class TFTreeGenerator extends WorldGenAbstractTree {
     }
 
     /**
-     * Draw a flat blob (circle) of leaves. This one makes it offset to surround a 2x2 area instead of a
-     * 1 block area
+     * Draw a flat blob (circle) of leaves. This one makes it offset to surround a 2x2 area instead of a 1 block area
      */
-    public void makeLeafCircle2(World world, int sx, int sy, int sz, int rad, Block blockValue, int metaValue, boolean useHack) {
+    public void makeLeafCircle2(World world, int sx, int sy, int sz, int rad, Block blockValue, int metaValue,
+            boolean useHack) {
         // trace out a quadrant
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dz = 0; dz <= rad; dz++) {
-//                int dist = Math.max(dx, dz) + (int)(Math.min(dx, dz) * 0.6F);
-//
-//                //hack!  I keep getting failing leaves at a certain position.
-//                if (useHack && dx == 3 && dz == 3) {
-//                    dist = 6;
-//                }
+                // int dist = Math.max(dx, dz) + (int)(Math.min(dx, dz) * 0.6F);
+                //
+                // //hack! I keep getting failing leaves at a certain position.
+                // if (useHack && dx == 3 && dz == 3) {
+                // dist = 6;
+                // }
 
                 // if we're inside the blob, fill it
                 if (dx * dx + dz * dz <= rad * rad) {

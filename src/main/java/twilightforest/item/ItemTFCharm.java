@@ -1,9 +1,10 @@
 package twilightforest.item;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+
+import twilightforest.TwilightForestMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import twilightforest.TwilightForestMod;
 
 public class ItemTFCharm extends ItemTF {
 
@@ -18,6 +19,7 @@ public class ItemTFCharm extends ItemTF {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 }

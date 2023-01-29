@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+
 import twilightforest.block.TFBlocks;
 import twilightforest.structures.StructureTFComponent;
 
@@ -111,10 +112,11 @@ public class ComponentTFLeafSphere extends StructureTFComponent {
     /**
      * Puts a block only if the block that's there is air.
      * 
-     * TODO: This could be more efficient by combining the duplicate logic of the
-     * getBlockAtCurrentPosition and placeBlockAtCurrentPosition functions.
+     * TODO: This could be more efficient by combining the duplicate logic of the getBlockAtCurrentPosition and
+     * placeBlockAtCurrentPosition functions.
      */
-    protected void placeBlockIfEmpty(World world, Block blockID, int meta, int x, int y, int z, StructureBoundingBox sbb) {
+    protected void placeBlockIfEmpty(World world, Block blockID, int meta, int x, int y, int z,
+            StructureBoundingBox sbb) {
         if (getBlockAtCurrentPosition(world, x, y, z, sbb) == Blocks.air) {
             placeBlockAtCurrentPosition(world, blockID, meta, x, y, z, sbb);
         }

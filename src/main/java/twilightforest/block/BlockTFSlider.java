@@ -3,8 +3,6 @@ package twilightforest.block;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,9 +17,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.EntityTFSlideBlock;
 import twilightforest.item.TFItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFSlider extends BlockRotatedPillar {
 
@@ -41,8 +42,8 @@ public class BlockTFSlider extends BlockRotatedPillar {
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the
-     * pool has been cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
      */
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
@@ -53,13 +54,31 @@ public class BlockTFSlider extends BlockRotatedPillar {
         float inset = 5F;
 
         switch (rotation) {
-        case 0:
-        default:
-            return AxisAlignedBB.getBoundingBox(x + pixel * inset, y, z + pixel * inset, x + 1F - pixel * inset, y + 1F, z + 1F - pixel * inset);
-        case 4:
-            return AxisAlignedBB.getBoundingBox(x, y + pixel * inset, z + pixel * inset, x + 1F, y + 1F - pixel * inset, z + 1F - pixel * inset);
-        case 8:
-            return AxisAlignedBB.getBoundingBox(x + pixel * inset, y + pixel * inset, z, x + 1F - pixel * inset, y + 1F - pixel * inset, z + 1F);
+            case 0:
+            default:
+                return AxisAlignedBB.getBoundingBox(
+                        x + pixel * inset,
+                        y,
+                        z + pixel * inset,
+                        x + 1F - pixel * inset,
+                        y + 1F,
+                        z + 1F - pixel * inset);
+            case 4:
+                return AxisAlignedBB.getBoundingBox(
+                        x,
+                        y + pixel * inset,
+                        z + pixel * inset,
+                        x + 1F,
+                        y + 1F - pixel * inset,
+                        z + 1F - pixel * inset);
+            case 8:
+                return AxisAlignedBB.getBoundingBox(
+                        x + pixel * inset,
+                        y + pixel * inset,
+                        z,
+                        x + 1F - pixel * inset,
+                        y + 1F - pixel * inset,
+                        z + 1F);
         }
 
     }
@@ -87,31 +106,29 @@ public class BlockTFSlider extends BlockRotatedPillar {
         float inset = 5F;
 
         switch (rotation) {
-        case 0:
-        default:
-            this.setBlockBounds(pixel * inset, 0, pixel * inset, 1F - pixel * inset, 1F, 1F - pixel * inset);
-            break;
-        case 4:
-            this.setBlockBounds(0, pixel * inset, pixel * inset, 1F, 1F - pixel * inset, 1F - pixel * inset);
-            break;
-        case 8:
-            this.setBlockBounds(pixel * inset, pixel * inset, 0, 1F - pixel * inset, 1F - pixel * inset, 1F);
-            break;
+            case 0:
+            default:
+                this.setBlockBounds(pixel * inset, 0, pixel * inset, 1F - pixel * inset, 1F, 1F - pixel * inset);
+                break;
+            case 4:
+                this.setBlockBounds(0, pixel * inset, pixel * inset, 1F, 1F - pixel * inset, 1F - pixel * inset);
+                break;
+            case 8:
+                this.setBlockBounds(pixel * inset, pixel * inset, 0, 1F - pixel * inset, 1F - pixel * inset, 1F);
+                break;
         }
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons,
-     * stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     public boolean renderAsNormalBlock() {
         return false;
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the
-     * shared face of two adjacent blocks and also whether the player can attach torches, redstone wire,
-     * etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     public boolean isOpaqueCube() {
         return false;
@@ -133,35 +150,37 @@ public class BlockTFSlider extends BlockRotatedPillar {
 
         if (rotation == 0) {
             switch (side) {
-            case 0:
-            case 1:
-                return this.topIcon;
-            default:
-                return this.vertIcon;
+                case 0:
+                case 1:
+                    return this.topIcon;
+                default:
+                    return this.vertIcon;
             }
         } else if (rotation == 4) {
             switch (side) {
-            case 4:
-            case 5:
-                return this.topIcon;
-            default:
-                return this.horiIcon;
+                case 4:
+                case 5:
+                    return this.topIcon;
+                default:
+                    return this.horiIcon;
             }
         } else { // rotation == 8
             switch (side) {
-            case 2:
-            case 3:
-                return this.topIcon;
-            case 0:
-            case 1:
-                return this.vertIcon;
-            default:
-                return this.horiIcon;
+                case 2:
+                case 3:
+                    return this.topIcon;
+                case 0:
+                case 1:
+                    return this.vertIcon;
+                default:
+                    return this.horiIcon;
             }
         }
 
-//        int type = 0;
-//        return rotation == 0 && (side == 1 || side == 0) ? this.getTopIcon(type) : (rotation == 4 && (side == 5 || side == 4) ? this.getTopIcon(type) : (rotation == 8 && (side == 2 || side == 3) ? this.getTopIcon(type) : this.getSideIcon(type)));
+        // int type = 0;
+        // return rotation == 0 && (side == 1 || side == 0) ? this.getTopIcon(type) : (rotation == 4 && (side == 5 ||
+        // side == 4) ? this.getTopIcon(type) : (rotation == 8 && (side == 2 || side == 3) ? this.getTopIcon(type) :
+        // this.getSideIcon(type)));
     }
 
     @SideOnly(Side.CLIENT)
@@ -198,7 +217,13 @@ public class BlockTFSlider extends BlockRotatedPillar {
             // world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, TwilightForestMod.ID + ":random.creakstart",
             // 0.75F, 1.5F);
 
-            EntityTFSlideBlock slideBlock = new EntityTFSlideBlock(world, x + 0.5, y, z + 0.5, this, world.getBlockMetadata(x, y, z));
+            EntityTFSlideBlock slideBlock = new EntityTFSlideBlock(
+                    world,
+                    x + 0.5,
+                    y,
+                    z + 0.5,
+                    this,
+                    world.getBlockMetadata(x, y, z));
             world.spawnEntityInWorld(slideBlock);
 
         }
@@ -214,13 +239,16 @@ public class BlockTFSlider extends BlockRotatedPillar {
         int meta = world.getBlockMetadata(x, y, z);
 
         if ((meta & 12) == 0) {
-            return this.anyPlayerInRange(world, x, y, z) || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.UP)
+            return this.anyPlayerInRange(world, x, y, z)
+                    || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.UP)
                     || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.DOWN);
         } else if ((meta & 12) == 4) {
-            return this.anyPlayerInRange(world, x, y, z) || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.WEST)
+            return this.anyPlayerInRange(world, x, y, z)
+                    || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.WEST)
                     || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.EAST);
         } else if ((meta & 12) == 8) {
-            return this.anyPlayerInRange(world, x, y, z) || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.NORTH)
+            return this.anyPlayerInRange(world, x, y, z)
+                    || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.NORTH)
                     || this.isConnectedInRangeRecursive(world, x, y, z, ForgeDirection.SOUTH);
         } else {
             // why are we here?
@@ -235,7 +263,8 @@ public class BlockTFSlider extends BlockRotatedPillar {
         int dz = z + dir.offsetZ;
 
         // are the blocks connected? (block and meta are the same
-        if (world.getBlock(x, y, z) == world.getBlock(dx, dy, dz) && world.getBlockMetadata(x, y, z) == world.getBlockMetadata(dx, dy, dz)) {
+        if (world.getBlock(x, y, z) == world.getBlock(dx, dy, dz)
+                && world.getBlockMetadata(x, y, z) == world.getBlockMetadata(dx, dy, dz)) {
             return this.anyPlayerInRange(world, dx, dy, dz) || this.isConnectedInRangeRecursive(world, dx, dy, dz, dir);
         } else {
             return false;
@@ -290,8 +319,7 @@ public class BlockTFSlider extends BlockRotatedPillar {
     }
 
     /**
-     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y,
-     * z, entity
+     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         entity.attackEntityFrom(DamageSource.generic, BLOCK_DAMAGE);

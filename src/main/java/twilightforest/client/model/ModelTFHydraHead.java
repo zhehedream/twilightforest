@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+
 import twilightforest.entity.boss.EntityTFHydraHead;
 import twilightforest.entity.boss.EntityTFHydraPart;
 
@@ -85,8 +86,8 @@ public class ModelTFHydraHead extends ModelBase {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity par7Entity) {
         // System.out.println("Setting head rotation to " + f3 + ", " + f4);
 
-//        head.rotateAngleY = f3 / (180F / (float)Math.PI);
-//        head.rotateAngleX = f4 / (180F / (float)Math.PI);
+        // head.rotateAngleY = f3 / (180F / (float)Math.PI);
+        // head.rotateAngleX = f4 / (180F / (float)Math.PI);
     }
 
     @Override
@@ -121,7 +122,8 @@ public class ModelTFHydraHead extends ModelBase {
 
     public float getRotationX(EntityTFHydraPart whichHead, float time) {
 
-        return (whichHead.prevRotationPitch + (whichHead.rotationPitch - whichHead.prevRotationPitch) * time) / 57.29578F;
+        return (whichHead.prevRotationPitch + (whichHead.rotationPitch - whichHead.prevRotationPitch) * time)
+                / 57.29578F;
     }
 
 }

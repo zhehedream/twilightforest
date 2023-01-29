@@ -2,8 +2,6 @@ package twilightforest.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,7 +11,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.StatCollector;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTFFierySword extends ItemSword {
 
@@ -49,7 +50,8 @@ public class ItemTFFierySword extends ItemSword {
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
         // repair with fiery ingots
-        return par2ItemStack.getItem() == TFItems.fieryIngot ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return par2ItemStack.getItem() == TFItems.fieryIngot ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -58,12 +60,13 @@ public class ItemTFFierySword extends ItemSword {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = par1IconRegister
+                .registerIcon(TwilightForestMod.ID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev.
-     * They just raise the damage on the stack.
+     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
+     * the damage on the stack.
      */
     @Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase target, EntityLivingBase par3EntityLiving) {
@@ -77,9 +80,14 @@ public class ItemTFFierySword extends ItemSword {
                     double var4 = itemRand.nextGaussian() * 0.02D;
                     double var6 = itemRand.nextGaussian() * 0.02D;
                     double var8 = 10.0D;
-                    target.worldObj.spawnParticle("flame", target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
+                    target.worldObj.spawnParticle(
+                            "flame",
+                            target.posX + itemRand.nextFloat() * target.width * 2.0F - target.width - var2 * var8,
                             target.posY + itemRand.nextFloat() * target.height - var4 * var8,
-                            target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8, var2, var4, var6);
+                            target.posZ + itemRand.nextFloat() * target.width * 2.0F - target.width - var6 * var8,
+                            var2,
+                            var4,
+                            var6);
                 }
             } else {
                 target.setFire(15);

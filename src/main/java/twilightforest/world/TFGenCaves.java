@@ -8,17 +8,34 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.MapGenCaves;
+
 import twilightforest.biomes.TFBiomeHighlands;
 import twilightforest.block.TFBlocks;
 
 public class TFGenCaves extends MapGenCaves {
+
     /**
      * Generates a larger initial cave node than usual. Called 25% of the time.
      * 
      * @param isHighlands
      */
-    protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, Block[] blockStorage, double randX, double randY, double randZ, boolean isHighlands) {
-        this.generateCaveNode(caveSeed, centerX, centerZ, blockStorage, randX, randY, randZ, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D, isHighlands);
+    protected void generateLargeCaveNode(long caveSeed, int centerX, int centerZ, Block[] blockStorage, double randX,
+            double randY, double randZ, boolean isHighlands) {
+        this.generateCaveNode(
+                caveSeed,
+                centerX,
+                centerZ,
+                blockStorage,
+                randX,
+                randY,
+                randZ,
+                1.0F + this.rand.nextFloat() * 6.0F,
+                0.0F,
+                0.0F,
+                -1,
+                -1,
+                0.5D,
+                isHighlands);
     }
 
     /**
@@ -26,8 +43,9 @@ public class TFGenCaves extends MapGenCaves {
      * 
      * @param isHighlands
      */
-    protected void generateCaveNode(long caveSeed, int centerX, int centerZ, Block[] blockStorage, double randX, double randY, double randZ, float caveSize, float randPI, float angleToGenerate,
-            int loopOne, int loopEnd, double yScale, boolean isHighlands) {
+    protected void generateCaveNode(long caveSeed, int centerX, int centerZ, Block[] blockStorage, double randX,
+            double randY, double randZ, float caveSize, float randPI, float angleToGenerate, int loopOne, int loopEnd,
+            double yScale, boolean isHighlands) {
         double offsetCenterX = (double) (centerX * 16 + 8);
         double offsetCenterZ = (double) (centerZ * 16 + 8);
         float var23 = 0.0F;
@@ -35,10 +53,10 @@ public class TFGenCaves extends MapGenCaves {
         Random caveRNG = new Random(caveSeed);
         Random mossRNG = new Random(caveSeed);
 
-//        if (isHighlands) {
-//            //System.out.println("Saying highlands and it's not");
-//            isHighlands = false;
-//        }
+        // if (isHighlands) {
+        // //System.out.println("Saying highlands and it's not");
+        // isHighlands = false;
+        // }
 
         if (isHighlands && caveSize < 6F) {
             caveSize *= 2.5F;
@@ -59,7 +77,8 @@ public class TFGenCaves extends MapGenCaves {
         int var27 = caveRNG.nextInt(loopEnd / 2) + loopEnd / 4;
 
         for (boolean var28 = caveRNG.nextInt(6) == 0; loopOne < loopEnd; ++loopOne) {
-            double sizeVar = 1.5D + (double) (MathHelper.sin((float) loopOne * (float) Math.PI / (float) loopEnd) * caveSize * 1.0F);
+            double sizeVar = 1.5D
+                    + (double) (MathHelper.sin((float) loopOne * (float) Math.PI / (float) loopEnd) * caveSize * 1.0F);
             double scaledSize = sizeVar * yScale;
             float cosAngle = MathHelper.cos(angleToGenerate);
             float sinAngle = MathHelper.sin(angleToGenerate);
@@ -81,10 +100,36 @@ public class TFGenCaves extends MapGenCaves {
             var23 += (caveRNG.nextFloat() - caveRNG.nextFloat()) * caveRNG.nextFloat() * 4.0F;
 
             if (!shouldStop && loopOne == var27 && caveSize > 1.0F && loopEnd > 0) {
-                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI - ((float) Math.PI / 2F),
-                        angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isHighlands);
-                this.generateCaveNode(caveRNG.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveRNG.nextFloat() * 0.5F + 0.5F, randPI + ((float) Math.PI / 2F),
-                        angleToGenerate / 3.0F, loopOne, loopEnd, 1.0D, isHighlands);
+                this.generateCaveNode(
+                        caveRNG.nextLong(),
+                        centerX,
+                        centerZ,
+                        blockStorage,
+                        randX,
+                        randY,
+                        randZ,
+                        caveRNG.nextFloat() * 0.5F + 0.5F,
+                        randPI - ((float) Math.PI / 2F),
+                        angleToGenerate / 3.0F,
+                        loopOne,
+                        loopEnd,
+                        1.0D,
+                        isHighlands);
+                this.generateCaveNode(
+                        caveRNG.nextLong(),
+                        centerX,
+                        centerZ,
+                        blockStorage,
+                        randX,
+                        randY,
+                        randZ,
+                        caveRNG.nextFloat() * 0.5F + 0.5F,
+                        randPI + ((float) Math.PI / 2F),
+                        angleToGenerate / 3.0F,
+                        loopOne,
+                        loopEnd,
+                        1.0D,
+                        isHighlands);
                 return;
             }
 
@@ -98,7 +143,8 @@ public class TFGenCaves extends MapGenCaves {
                     return;
                 }
 
-                if (randX >= offsetCenterX - 16.0D - sizeVar * 2.0D && randZ >= offsetCenterZ - 16.0D - sizeVar * 2.0D && randX <= offsetCenterX + 16.0D + sizeVar * 2.0D
+                if (randX >= offsetCenterX - 16.0D - sizeVar * 2.0D && randZ >= offsetCenterZ - 16.0D - sizeVar * 2.0D
+                        && randX <= offsetCenterX + 16.0D + sizeVar * 2.0D
                         && randZ <= offsetCenterZ + 16.0D + sizeVar * 2.0D) {
                     int minX = MathHelper.floor_double(randX - sizeVar) - centerX * 16 - 1;
                     int maxX = MathHelper.floor_double(randX + sizeVar) - centerX * 16 + 1;
@@ -145,7 +191,10 @@ public class TFGenCaves extends MapGenCaves {
                                         hasHitWater = true;
                                     }
 
-                                    if (genY != maxY - 1 && genX != minX && genX != maxX - 1 && genZ != minZ && genZ != maxZ - 1) {
+                                    if (genY != maxY - 1 && genX != minX
+                                            && genX != maxX - 1
+                                            && genZ != minZ
+                                            && genZ != maxZ - 1) {
                                         genY = maxY;
                                     }
                                 }
@@ -173,18 +222,25 @@ public class TFGenCaves extends MapGenCaves {
                                                 hitGrass = true;
                                             }
 
-                                            if (blockAt != null && (blockAt == Blocks.stone || blockAt == TFBlocks.trollSteinn || blockAt.getMaterial() == Material.ground
-                                                    || blockAt.getMaterial() == Material.grass)) {
+                                            if (blockAt != null
+                                                    && (blockAt == Blocks.stone || blockAt == TFBlocks.trollSteinn
+                                                            || blockAt.getMaterial() == Material.ground
+                                                            || blockAt.getMaterial() == Material.grass)) {
                                                 if (var59 * var59 + var51 * var51 + var46 * var46 < 0.85D) {
                                                     blockStorage[caveIndex] = caveY < 10 ? Blocks.water : Blocks.air;
                                                 } else {
-                                                    Block localBlock = isHighlands ? (mossRNG.nextInt(6) == 0 ? TFBlocks.trollSteinn : Blocks.stone) : Blocks.dirt;
+                                                    Block localBlock = isHighlands
+                                                            ? (mossRNG.nextInt(6) == 0 ? TFBlocks.trollSteinn
+                                                                    : Blocks.stone)
+                                                            : Blocks.dirt;
                                                     blockStorage[caveIndex] = hitGrass ? Blocks.grass : localBlock;
                                                     hitGrass = false;
                                                 }
 
                                                 if (hitGrass && blockStorage[caveIndex - 1] == Blocks.dirt) {
-                                                    blockStorage[caveIndex - 1] = this.worldObj.getBiomeGenForCoords(genX + centerX * 16, genZ + centerZ * 16).topBlock;
+                                                    blockStorage[caveIndex - 1] = this.worldObj.getBiomeGenForCoords(
+                                                            genX + centerX * 16,
+                                                            genZ + centerZ * 16).topBlock;
                                                 }
                                             }
                                         }
@@ -222,7 +278,15 @@ public class TFGenCaves extends MapGenCaves {
             int numberOfNormalNodes = 1;
 
             if (this.rand.nextInt(4) == 0) {
-                this.generateLargeCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, isHighlands);
+                this.generateLargeCaveNode(
+                        this.rand.nextLong(),
+                        centerX,
+                        centerZ,
+                        blockStorage,
+                        randX,
+                        randY,
+                        randZ,
+                        isHighlands);
                 numberOfNormalNodes += this.rand.nextInt(4);
             }
 
@@ -235,7 +299,21 @@ public class TFGenCaves extends MapGenCaves {
                     caveSize *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
                 }
 
-                this.generateCaveNode(this.rand.nextLong(), centerX, centerZ, blockStorage, randX, randY, randZ, caveSize, randPi, randEight, 0, 0, 1.0D, isHighlands);
+                this.generateCaveNode(
+                        this.rand.nextLong(),
+                        centerX,
+                        centerZ,
+                        blockStorage,
+                        randX,
+                        randY,
+                        randZ,
+                        caveSize,
+                        randPi,
+                        randEight,
+                        0,
+                        0,
+                        1.0D,
+                        isHighlands);
             }
         }
     }

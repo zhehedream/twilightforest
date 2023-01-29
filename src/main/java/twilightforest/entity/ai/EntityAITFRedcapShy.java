@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+
 import twilightforest.entity.EntityTFRedcap;
 
 public class EntityAITFRedcapShy extends EntityAITFRedcapBase {
@@ -31,7 +32,9 @@ public class EntityAITFRedcapShy extends EntityAITFRedcapBase {
     public boolean shouldExecute() {
         EntityLivingBase attackTarget = this.entityObj.getAttackTarget();
 
-        if (attackTarget == null || !this.entityObj.isShy() || attackTarget.getDistanceToEntity(entityObj) > maxDistance || attackTarget.getDistanceToEntity(entityObj) < minDistance
+        if (attackTarget == null || !this.entityObj.isShy()
+                || attackTarget.getDistanceToEntity(entityObj) > maxDistance
+                || attackTarget.getDistanceToEntity(entityObj) < minDistance
                 || !isTargetLookingAtMe(attackTarget)) {
             return false;
         } else {
@@ -74,7 +77,8 @@ public class EntityAITFRedcapShy extends EntityAITFRedcapBase {
             return false;
         }
 
-        boolean shouldContinue = entityObj.isShy() && attackTarget.getDistanceToEntity(entityObj) < maxDistance && attackTarget.getDistanceToEntity(entityObj) > minDistance
+        boolean shouldContinue = entityObj.isShy() && attackTarget.getDistanceToEntity(entityObj) < maxDistance
+                && attackTarget.getDistanceToEntity(entityObj) > minDistance
                 && isTargetLookingAtMe(attackTarget);
 
         // System.out.println("ai evaluating should continue to " + shouldContinue);

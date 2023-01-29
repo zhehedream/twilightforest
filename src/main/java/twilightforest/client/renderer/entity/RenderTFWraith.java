@@ -1,20 +1,23 @@
 package twilightforest.client.renderer.entity;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 
 public class RenderTFWraith extends RenderBiped {
 
     // texture = TwilightForestMod.MODEL_DIR + "ghost-crown.png";
 
-    private static final ResourceLocation textureWraith = new ResourceLocation(TwilightForestMod.MODEL_DIR + "ghost.png");
-    private static final ResourceLocation textureCrown = new ResourceLocation(TwilightForestMod.MODEL_DIR + "ghost-crown.png");
+    private static final ResourceLocation textureWraith = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "ghost.png");
+    private static final ResourceLocation textureCrown = new ResourceLocation(
+            TwilightForestMod.MODEL_DIR + "ghost-crown.png");
 
     public RenderTFWraith(ModelBiped modelbiped, float f) {
         super(modelbiped, f);

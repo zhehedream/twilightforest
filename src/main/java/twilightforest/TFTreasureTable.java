@@ -47,8 +47,7 @@ public class TFTreasureTable {
     }
 
     /**
-     * Adds the ItemStack onto this list to be generated at normal rarity (10), in the quantity the
-     * itemstack contains
+     * Adds the ItemStack onto this list to be generated at normal rarity (10), in the quantity the itemstack contains
      * 
      * @param itemstack
      */
@@ -57,7 +56,7 @@ public class TFTreasureTable {
             list.add(new TFTreasureItem(itemstack, DEFAULT_RARITY));
         }
     }
-    
+
     public void add(ItemStack itemstack, int rarity) {
         if (itemstack != null) {
             list.add(new TFTreasureItem(itemstack, rarity));
@@ -85,7 +84,8 @@ public class TFTreasureTable {
     /**
      * Adds the item at the specified enchantment level, 2 enchantments
      */
-    public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1, Enchantment ench2, int enchLevel2) {
+    public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1, Enchantment ench2,
+            int enchLevel2) {
         if (itemstack != null) {
             itemstack.addEnchantment(ench1, enchLevel1);
             itemstack.addEnchantment(ench2, enchLevel2);
@@ -96,7 +96,8 @@ public class TFTreasureTable {
     /**
      * Adds the item at the specified enchantment level, 3 enchantments
      */
-    public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1, Enchantment ench2, int enchLevel2, Enchantment ench3, int enchLevel3) {
+    public void addEnchanted(ItemStack itemstack, Enchantment ench1, int enchLevel1, Enchantment ench2, int enchLevel2,
+            Enchantment ench3, int enchLevel3) {
         itemstack.addEnchantment(ench1, enchLevel1);
         itemstack.addEnchantment(ench2, enchLevel2);
         itemstack.addEnchantment(ench3, enchLevel3);

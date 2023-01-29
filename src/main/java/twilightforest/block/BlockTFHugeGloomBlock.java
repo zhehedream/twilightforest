@@ -2,15 +2,16 @@ package twilightforest.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import twilightforest.TwilightForestMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTFHugeGloomBlock extends Block {
 
@@ -39,7 +40,9 @@ public class BlockTFHugeGloomBlock extends Block {
                         : (meta >= 1 && meta <= 3 && side == 2 ? this.capTex
                                 : (meta >= 7 && meta <= 9 && side == 3 ? this.capTex
                                         : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? this.capTex
-                                                : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? this.capTex : (meta == 14 ? this.capTex : (meta == 15 ? this.stemTex : this.insideTex)))))));
+                                                : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? this.capTex
+                                                        : (meta == 14 ? this.capTex
+                                                                : (meta == 15 ? this.stemTex : this.insideTex)))))));
     }
 
     /**

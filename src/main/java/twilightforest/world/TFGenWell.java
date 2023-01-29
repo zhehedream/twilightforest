@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
 import twilightforest.TFTreasure;
 
 public class TFGenWell extends TFGenerator {
@@ -152,7 +153,9 @@ public class TFGenWell extends TFGenerator {
                 for (int dy = -1; dy >= -20; dy--) {
                     Block dblock = world.getBlock(x + dx, y + dy, z + dz);
                     // we only drill through dirt, grass, gravel and stone
-                    if (dblock != Blocks.dirt && dblock != Blocks.grass && dblock != Blocks.gravel && dblock != Blocks.stone) {
+                    if (dblock != Blocks.dirt && dblock != Blocks.grass
+                            && dblock != Blocks.gravel
+                            && dblock != Blocks.stone) {
                         break;
                     }
                     // we also need a solid block under where we're digging

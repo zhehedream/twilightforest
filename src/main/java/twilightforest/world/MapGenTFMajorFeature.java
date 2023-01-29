@@ -3,20 +3,20 @@ package twilightforest.world;
 import java.util.Collection;
 import java.util.Iterator;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenStructureData;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
+
 import twilightforest.TFFeature;
 import twilightforest.structures.StructureTFComponent;
 import twilightforest.structures.StructureTFMajorFeatureStart;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class MapGenTFMajorFeature extends MapGenStructure {
 
-    public MapGenTFMajorFeature() {
-    }
+    public MapGenTFMajorFeature() {}
 
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
@@ -42,8 +42,7 @@ public class MapGenTFMajorFeature extends MapGenStructure {
     }
 
     /**
-     * Returns true if the structure generator has generated a structure located at the given position
-     * tuple.
+     * Returns true if the structure generator has generated a structure located at the given position tuple.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public int getSpawnListIndexAt(int par1, int par2, int par3) {
@@ -60,11 +59,13 @@ public class MapGenTFMajorFeature extends MapGenStructure {
                 while (componentIterator.hasNext()) {
                     StructureComponent component = (StructureComponent) componentIterator.next();
 
-                    if (component != null && component.getBoundingBox() != null && component.getBoundingBox().isVecInside(par1, par2, par3)) {
+                    if (component != null && component.getBoundingBox() != null
+                            && component.getBoundingBox().isVecInside(par1, par2, par3)) {
                         if (component instanceof StructureTFComponent) {
                             StructureTFComponent tfComponent = (StructureTFComponent) component;
 
-                            // System.out.println("found a tfComponent at the specified coordinates. It's a " + tfComponent + ",
+                            // System.out.println("found a tfComponent at the specified coordinates. It's a " +
+                            // tfComponent + ",
                             // index = " + tfComponent.spawnListIndex);
 
                             if (tfComponent.spawnListIndex > highestFoundIndex) {
@@ -166,9 +167,13 @@ public class MapGenTFMajorFeature extends MapGenStructure {
 
                     featureStart.isConquered = flag;
 
-                    MapGenStructureData data = ObfuscationReflectionHelper.getPrivateValue(MapGenStructure.class, this, "field_143029_e");
+                    MapGenStructureData data = ObfuscationReflectionHelper
+                            .getPrivateValue(MapGenStructure.class, this, "field_143029_e");
 
-                    data.func_143043_a(featureStart.func_143021_a(start.func_143019_e(), start.func_143018_f()), start.func_143019_e(), start.func_143018_f());
+                    data.func_143043_a(
+                            featureStart.func_143021_a(start.func_143019_e(), start.func_143018_f()),
+                            start.func_143019_e(),
+                            start.func_143018_f());
                     // System.out.println("Writing data");
 
                     data.setDirty(true);

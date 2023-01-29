@@ -13,12 +13,14 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+
 import twilightforest.TFFeature;
 import twilightforest.TwilightForestMod;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.world.layer.GenLayerTF;
 
 public class TFWorldChunkManager extends WorldChunkManager {
+
     private GenLayer unzoomedBiomes;
 
     /** A GenLayer containing the indices into BiomeGenBase.biomeList[] */
@@ -82,8 +84,7 @@ public class TFWorldChunkManager extends WorldChunkManager {
     }
 
     /**
-     * Returns a list of rainfall values for the specified blocks. Args: listToReuse, x, z, width,
-     * length.
+     * Returns a list of rainfall values for the specified blocks. Args: listToReuse, x, z, width, length.
      */
     public float[] getRainfall(float par1ArrayOfFloat[], int par2, int par3, int par4, int par5) {
         IntCache.resetIntCache();
@@ -122,7 +123,8 @@ public class TFWorldChunkManager extends WorldChunkManager {
     /**
      * Returns an array of biomes for the location input.
      */
-    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase par1ArrayOfBiomeGenBase[], int x, int z, int length, int width) {
+    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase par1ArrayOfBiomeGenBase[], int x, int z, int length,
+            int width) {
         IntCache.resetIntCache();
 
         if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < length * width) {
@@ -145,18 +147,20 @@ public class TFWorldChunkManager extends WorldChunkManager {
     }
 
     /**
-     * Returns biomes to use for the blocks and loads the other data like temperature and humidity onto
-     * the WorldChunkManager Args: oldBiomeList, x, z, width, depth
+     * Returns biomes to use for the blocks and loads the other data like temperature and humidity onto the
+     * WorldChunkManager Args: oldBiomeList, x, z, width, depth
      */
-    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase par1ArrayOfBiomeGenBase[], int par2, int par3, int par4, int par5) {
+    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase par1ArrayOfBiomeGenBase[], int par2, int par3, int par4,
+            int par5) {
         return getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4, par5, true);
     }
 
     /**
-     * Return a list of biomes for the specified blocks. Args: listToReuse, x, y, width, length,
-     * cacheFlag (if false, don't check biomeCache to avoid infinite loop in BiomeCacheBlock)
+     * Return a list of biomes for the specified blocks. Args: listToReuse, x, y, width, length, cacheFlag (if false,
+     * don't check biomeCache to avoid infinite loop in BiomeCacheBlock)
      */
-    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase par1ArrayOfBiomeGenBase[], int x, int y, int width, int length, boolean cacheFlag) {
+    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase par1ArrayOfBiomeGenBase[], int x, int y, int width, int length,
+            boolean cacheFlag) {
         IntCache.resetIntCache();
 
         if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < width * length) {
@@ -275,28 +279,28 @@ public class TFWorldChunkManager extends WorldChunkManager {
 
         return chunkX == (cc.posX >> 4) && chunkZ == (cc.posZ >> 4);
 
-//        logic moved to TFFeature.getNearestCenterXYZ :
+        // logic moved to TFFeature.getNearestCenterXYZ :
 
-//        int chunkX = (mapX + 128) >> 4; 
-//        int chunkZ = (mapZ + 128) >> 4;
-//        
-//        // generate random number for the whole biome area
-//        int regionX = chunkX >> 4;
-//        int regionZ = chunkZ >> 4;
-//        
-//        long seed = (long)(regionX * 3129871) ^ (long)regionZ * 116129781L;
-//        seed = seed * seed * 42317861L + seed * 7L;
-//        
-//        int num0 = (int) (seed >> 12 & 3L);
-//        int num1 = (int) (seed >> 15 & 3L);
-//        int num2 = (int) (seed >> 18 & 3L);
-//        int num3 = (int) (seed >> 21 & 3L);
-//
-//        // slightly randomize center of biome (+/- 3)
-//        int centerX = 8 + num0 - num1;
-//        int centerZ = 8 + num2 - num3;
-//        
-//        return Math.abs(chunkX % 16) == centerX && Math.abs(chunkZ % 16) == centerZ;
+        // int chunkX = (mapX + 128) >> 4;
+        // int chunkZ = (mapZ + 128) >> 4;
+        //
+        // // generate random number for the whole biome area
+        // int regionX = chunkX >> 4;
+        // int regionZ = chunkZ >> 4;
+        //
+        // long seed = (long)(regionX * 3129871) ^ (long)regionZ * 116129781L;
+        // seed = seed * seed * 42317861L + seed * 7L;
+        //
+        // int num0 = (int) (seed >> 12 & 3L);
+        // int num1 = (int) (seed >> 15 & 3L);
+        // int num2 = (int) (seed >> 18 & 3L);
+        // int num3 = (int) (seed >> 21 & 3L);
+        //
+        // // slightly randomize center of biome (+/- 3)
+        // int centerX = 8 + num0 - num1;
+        // int centerZ = 8 + num2 - num3;
+        //
+        // return Math.abs(chunkX % 16) == centerX && Math.abs(chunkZ % 16) == centerZ;
 
     }
 

@@ -1,7 +1,5 @@
 package twilightforest.client;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -12,12 +10,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import org.lwjgl.opengl.GL11;
+
 import twilightforest.TwilightForestMod;
 import twilightforest.inventory.ContainerTFUncrafting;
 
 public class GuiTFGoblinCrafting extends GuiContainer {
 
-    private static final ResourceLocation textureLoc = new ResourceLocation(TwilightForestMod.GUI_DIR + "guigoblintinkering.png");
+    private static final ResourceLocation textureLoc = new ResourceLocation(
+            TwilightForestMod.GUI_DIR + "guigoblintinkering.png");
 
     public GuiTFGoblinCrafting(InventoryPlayer inventory, World world, int x, int y, int z) {
         super(new ContainerTFUncrafting(inventory, world, x, y, z));
@@ -27,7 +29,8 @@ public class GuiTFGoblinCrafting extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int var1, int var2) {
         this.fontRendererObj.drawString("Uncrafting Table", 8, 6, 4210752);
-        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj
+                .drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     // Draw the background layer for the GuiContainer (everything behind the items)
@@ -65,10 +68,18 @@ public class GuiTFGoblinCrafting extends GuiContainer {
             String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
-                fontRendererObj.drawStringWithShadow(cost, frameX + 48 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
+                fontRendererObj.drawStringWithShadow(
+                        cost,
+                        frameX + 48 - fontRendererObj.getStringWidth(cost),
+                        frameY + 38,
+                        color);
             } else {
                 int color = 0x80FF20;
-                fontRendererObj.drawStringWithShadow(cost, frameX + 48 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
+                fontRendererObj.drawStringWithShadow(
+                        cost,
+                        frameX + 48 - fontRendererObj.getStringWidth(cost),
+                        frameY + 38,
+                        color);
             }
         }
 
@@ -77,10 +88,18 @@ public class GuiTFGoblinCrafting extends GuiContainer {
             String cost = String.valueOf(costVal);
             if (this.mc.thePlayer.experienceLevel < costVal && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 int color = 0xA00000;
-                fontRendererObj.drawStringWithShadow(cost, frameX + 130 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
+                fontRendererObj.drawStringWithShadow(
+                        cost,
+                        frameX + 130 - fontRendererObj.getStringWidth(cost),
+                        frameY + 38,
+                        color);
             } else {
                 int color = 0x80FF20;
-                fontRendererObj.drawStringWithShadow(cost, frameX + 130 - fontRendererObj.getStringWidth(cost), frameY + 38, color);
+                fontRendererObj.drawStringWithShadow(
+                        cost,
+                        frameX + 130 - fontRendererObj.getStringWidth(cost),
+                        frameY + 38,
+                        color);
             }
         }
     }
@@ -94,7 +113,12 @@ public class GuiTFGoblinCrafting extends GuiContainer {
         itemRender.zLevel = 50.0F;
 
         itemRender.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemStackToRender, screenX, screenY);
-        itemRender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemStackToRender, screenX, screenY);
+        itemRender.renderItemOverlayIntoGUI(
+                this.fontRendererObj,
+                this.mc.renderEngine,
+                itemStackToRender,
+                screenX,
+                screenY);
 
         boolean itemBroken = false;
 

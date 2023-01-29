@@ -1,6 +1,7 @@
 package twilightforest.block;
 
 import net.minecraft.init.Blocks;
+
 import twilightforest.item.TFItems;
 
 public class BlockTFGiantObsidian extends BlockTFGiantBlock {

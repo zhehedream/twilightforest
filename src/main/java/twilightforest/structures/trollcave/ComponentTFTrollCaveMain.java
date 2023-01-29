@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+
 import twilightforest.TFTreasure;
 import twilightforest.biomes.TFBiomeBase;
 import twilightforest.block.TFBlocks;
@@ -25,8 +26,7 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
 
     public static final TFGenMyceliumBlob uberousGen = new TFGenMyceliumBlob(TFBlocks.uberousSoil, 4);
 
-    public ComponentTFTrollCaveMain() {
-    }
+    public ComponentTFTrollCaveMain() {}
 
     public ComponentTFTrollCaveMain(int index) {
         super(index);
@@ -42,7 +42,17 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         this.height = 20;
 
         int radius = this.size / 2;
-        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -radius, -this.height, -radius, this.size, this.height, this.size, 0);
+        this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(
+                x,
+                y,
+                z,
+                -radius,
+                -this.height,
+                -radius,
+                this.size,
+                this.height,
+                this.size,
+                0);
 
     }
 
@@ -79,23 +89,37 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         }
 
         // add cloud castle
-        ComponentTFCloudCastle castle = new ComponentTFCloudCastle(this.getComponentType() + 1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), 168,
+        ComponentTFCloudCastle castle = new ComponentTFCloudCastle(
+                this.getComponentType() + 1,
+                boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2),
+                168,
                 boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2));
         list.add(castle);
         castle.buildComponent(this, list, rand);
 
         // add vault
-        ComponentTFTrollVault vault = new ComponentTFTrollVault(this.getComponentType() + 1, boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2), boundingBox.minY,
+        ComponentTFTrollVault vault = new ComponentTFTrollVault(
+                this.getComponentType() + 1,
+                boundingBox.minX + ((boundingBox.maxX - boundingBox.minX) / 2),
+                boundingBox.minY,
                 boundingBox.minZ + ((boundingBox.maxZ - boundingBox.minZ) / 2));
         list.add(vault);
         vault.buildComponent(this, list, rand);
     }
 
-    protected boolean makeSmallerCave(List<StructureComponent> list, Random rand, int index, int x, int y, int z, int caveSize, int caveHeight, int rotation) {
+    protected boolean makeSmallerCave(List<StructureComponent> list, Random rand, int index, int x, int y, int z,
+            int caveSize, int caveHeight, int rotation) {
         int direction = (getCoordBaseMode() + rotation) % 4;
         ChunkCoordinates dest = offsetTowerCCoords(x, y, z, caveSize, direction);
 
-        ComponentTFTrollCaveConnect cave = new ComponentTFTrollCaveConnect(index, dest.posX, dest.posY, dest.posZ, caveSize, caveHeight, direction);
+        ComponentTFTrollCaveConnect cave = new ComponentTFTrollCaveConnect(
+                index,
+                dest.posX,
+                dest.posY,
+                dest.posZ,
+                caveSize,
+                caveHeight,
+                direction);
         // check to see if it intersects something already there
         StructureComponent intersect = StructureComponent.findIntersecting(list, cave.getBoundingBox());
         if (intersect == null || intersect == this) {
@@ -110,7 +134,8 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {
-        Random decoRNG = new Random(world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
+        Random decoRNG = new Random(
+                world.getSeed() + (this.boundingBox.minX * 321534781) ^ (this.boundingBox.minZ * 756839));
 
         // clear inside
         hollowCaveMiddle(world, sbb, rand, 0, 0, 0, this.size - 1, this.height - 1, this.size - 1);
@@ -137,16 +162,20 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
     }
 
     protected ChunkCoordinates getCoordsInCave(Random rand) {
-        return new ChunkCoordinates(rand.nextInt(this.size - 1), rand.nextInt(this.height - 1), rand.nextInt(this.size - 1));
+        return new ChunkCoordinates(
+                rand.nextInt(this.size - 1),
+                rand.nextInt(this.height - 1),
+                rand.nextInt(this.size - 1));
     }
 
     /**
-     * arguments: (World worldObj, StructureBoundingBox structBB, int minX, int minY, int minZ, int
-     * maxX, int maxY, int maxZ)
+     * arguments: (World worldObj, StructureBoundingBox structBB, int minX, int minY, int minZ, int maxX, int maxY, int
+     * maxZ)
      * 
      * @param rand
      */
-    protected void hollowCaveMiddle(World par1World, StructureBoundingBox par2StructureBoundingBox, Random rand, int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
+    protected void hollowCaveMiddle(World par1World, StructureBoundingBox par2StructureBoundingBox, Random rand,
+            int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
         int threshold = this.size / 5;
 
         for (int y = minY; y <= maxY; ++y) {
@@ -160,9 +189,18 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
 
                     if (dist > threshold) {
                         this.placeBlockAtCurrentPosition(par1World, Blocks.air, 0, x, y, z, par2StructureBoundingBox);
-                    } else if (dist == threshold && rand.nextInt(4) == 0 && this.getBlockAtCurrentPosition(par1World, x, y, z, par2StructureBoundingBox) == Blocks.stone) {
-                        this.placeBlockAtCurrentPosition(par1World, TFBlocks.trollSteinn, 0, x, y, z, par2StructureBoundingBox);
-                    }
+                    } else if (dist == threshold && rand.nextInt(4) == 0
+                            && this.getBlockAtCurrentPosition(par1World, x, y, z, par2StructureBoundingBox)
+                                    == Blocks.stone) {
+                                        this.placeBlockAtCurrentPosition(
+                                                par1World,
+                                                TFBlocks.trollSteinn,
+                                                0,
+                                                x,
+                                                y,
+                                                z,
+                                                par2StructureBoundingBox);
+                                    }
                 }
             }
         }
@@ -197,8 +235,7 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
     }
 
     /**
-     * Provides coordinates to make a tower such that it will open into the parent tower at the provided
-     * coordinates.
+     * Provides coordinates to make a tower such that it will open into the parent tower at the provided coordinates.
      */
     protected ChunkCoordinates offsetTowerCCoords(int x, int y, int z, int towerSize, int direction) {
 
@@ -207,16 +244,16 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         int dz = getZWithOffset(x, z);
 
         switch (direction) {
-        case 0:
-            return new ChunkCoordinates(dx - 1, dy - 1, dz - towerSize / 2);
-        case 1:
-            return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz - 1);
-        case 2:
-            return new ChunkCoordinates(dx + 1, dy - 1, dz + towerSize / 2);
-        case 3:
-            return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz + 1);
-        default:
-            return new ChunkCoordinates(x, y, z);
+            case 0:
+                return new ChunkCoordinates(dx - 1, dy - 1, dz - towerSize / 2);
+            case 1:
+                return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz - 1);
+            case 2:
+                return new ChunkCoordinates(dx + 1, dy - 1, dz + towerSize / 2);
+            case 3:
+                return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz + 1);
+            default:
+                return new ChunkCoordinates(x, y, z);
         }
     }
 
@@ -239,7 +276,8 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
     /**
      * Make a random stone stalactite
      */
-    protected void generateBlockStalactite(World world, Random rand, Block blockToGenerate, float length, boolean up, int x, int y, int z, StructureBoundingBox sbb) {
+    protected void generateBlockStalactite(World world, Random rand, Block blockToGenerate, float length, boolean up,
+            int x, int y, int z, StructureBoundingBox sbb) {
         // are the coordinates in our bounding box?
         int dx = getXWithOffset(x, z);
         int dy = getYWithOffset(y);
@@ -252,7 +290,8 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
     /**
      * Use the generator at the surface above specified coords
      */
-    protected void generateAtSurface(World world, WorldGenerator generator, Random rand, int x, int y, int z, StructureBoundingBox sbb) {
+    protected void generateAtSurface(World world, WorldGenerator generator, Random rand, int x, int y, int z,
+            StructureBoundingBox sbb) {
         // are the coordinates in our bounding box?
         int dx = getXWithOffset(x, z);
         int dy = y;
@@ -274,7 +313,18 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
     protected void makeTreasureCrate(World world, Random rand, StructureBoundingBox sbb) {
         // treasure!
         int mid = this.size / 2;
-        this.fillWithBlocks(world, sbb, mid - 2, 0, mid - 2, mid + 1, 3, mid + 1, Blocks.obsidian, Blocks.obsidian, false);
+        this.fillWithBlocks(
+                world,
+                sbb,
+                mid - 2,
+                0,
+                mid - 2,
+                mid + 1,
+                3,
+                mid + 1,
+                Blocks.obsidian,
+                Blocks.obsidian,
+                false);
         this.fillWithAir(world, sbb, mid - 1, 1, mid - 1, mid + 0, 2, mid + 0);
         this.placeTreasureAtCurrentPosition(world, rand, mid, 1, mid, TFTreasure.troll_garden, false, sbb);
     }
