@@ -37,8 +37,7 @@ public class ItemTFTrophy extends ItemTF {
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         for (int j = 0; j < trophyTypes.length; ++j) {
             par3List.add(new ItemStack(par1, 1, j));
         }
@@ -100,8 +99,7 @@ public class ItemTFTrophy extends ItemTF {
 
                 TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-                if (tileEntity != null && tileEntity instanceof TileEntitySkull) {
-                    TileEntitySkull skull = ((TileEntitySkull) tileEntity);
+                if (tileEntity != null && tileEntity instanceof TileEntitySkull skull) {
 
                     // use NBT method to set skulltype in order to have 1.7.10 compatibility
                     NBTTagCompound tags = new NBTTagCompound();

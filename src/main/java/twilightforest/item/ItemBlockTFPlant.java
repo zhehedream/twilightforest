@@ -39,7 +39,7 @@ public class ItemBlockTFPlant extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         int meta = itemstack.getItemDamage();
-        return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
+        return super.getUnlocalizedName() + "." + meta;
     }
 
     /**
@@ -119,9 +119,9 @@ public class ItemBlockTFPlant extends ItemBlock {
                     }
 
                     world.playSoundEffect(
-                            (double) (x + 0.5F),
-                            (double) (y + 0.5F),
-                            (double) (z + 0.5F),
+                            x + 0.5F,
+                            y + 0.5F,
+                            z + 0.5F,
                             plantBlock.stepSound.getBreakSound(),
                             (plantBlock.stepSound.getVolume() + 1.0F) / 2.0F,
                             plantBlock.stepSound.getPitch() * 0.8F);

@@ -199,15 +199,14 @@ public class ItemTFMazeMap extends ItemMap {
         if (!par2World.isRemote) {
             TFMazeMapData mapData = this.getMapData(par1ItemStack, par2World);
 
-            if (par3Entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) par3Entity;
+            if (par3Entity instanceof EntityPlayer player) {
                 mapData.updateVisiblePlayers(player, par1ItemStack);
 
                 int yProximity = MathHelper.floor_double(player.posY - mapData.yCenter);
                 if (yProximity < -YSEARCH || yProximity > YSEARCH) {
                     // fix player icon so that it's a dot
 
-                    MapCoord mapCoord = (MapCoord) mapData.playersVisibleOnMap.get(player.getCommandSenderName());
+                    MapCoord mapCoord = mapData.playersVisibleOnMap.get(player.getCommandSenderName());
                     if (mapCoord != null) {
                         mapCoord.iconSize = 6;
                     }
@@ -279,9 +278,8 @@ public class ItemTFMazeMap extends ItemMap {
      * Add the map number to the tooltip
      */
     public String getItemStackDisplayName(ItemStack itemStack) {
-        return (String.valueOf(
-                StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
-                        + itemStack.getItemDamage())).trim();
+        return (StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
+                + itemStack.getItemDamage()).trim();
     }
 
     /**

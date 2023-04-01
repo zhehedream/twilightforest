@@ -140,12 +140,12 @@ public class TileEntityTFGhastTrapActive extends TileEntity {
         if (!worldObj.isRemote) {
             // trap nearby ghasts
             AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(
-                    (double) this.xCoord,
+                    this.xCoord,
                     (double) this.yCoord + 16,
-                    (double) this.zCoord,
-                    (double) (this.xCoord + 1),
-                    (double) (this.yCoord + 16 + 1),
-                    (double) (this.zCoord + 1)).expand(6D, 16D, 6D);
+                    this.zCoord,
+                    this.xCoord + 1,
+                    this.yCoord + 16 + 1,
+                    this.zCoord + 1).expand(6D, 16D, 6D);
 
             List<EntityGhast> nearbyGhasts = worldObj.getEntitiesWithinAABB(EntityGhast.class, aabb);
 

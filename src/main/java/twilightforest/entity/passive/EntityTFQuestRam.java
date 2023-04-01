@@ -140,7 +140,6 @@ public class EntityTFQuestRam extends EntityAnimal {
     /**
      * Give achievement to nearby players
      */
-    @SuppressWarnings("unchecked")
     private void rewardNearbyPlayers(World world, double posX, double posY, double posZ) {
         // scan for players nearby to give the achievement
         List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(
@@ -171,8 +170,7 @@ public class EntityTFQuestRam extends EntityAnimal {
                 --currentItem.stackSize;
 
                 if (currentItem.stackSize <= 0) {
-                    par1EntityPlayer.inventory
-                            .setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack) null);
+                    par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, null);
                 }
             }
 

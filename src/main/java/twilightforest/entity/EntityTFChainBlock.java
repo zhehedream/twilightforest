@@ -112,36 +112,36 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
                     this.velZ *= bounce;
 
                     switch (mop.sideHit) {
-                        case 0:
+                        case 0 -> {
                             if (this.velY > 0) {
                                 this.velY *= -bounce;
                             }
-                            break;
-                        case 1:
+                        }
+                        case 1 -> {
                             if (this.velY < 0) {
                                 this.velY *= -bounce;
                             }
-                            break;
-                        case 2:
+                        }
+                        case 2 -> {
                             if (this.velZ > 0) {
                                 this.velZ *= -bounce;
                             }
-                            break;
-                        case 3:
+                        }
+                        case 3 -> {
                             if (this.velZ < 0) {
                                 this.velZ *= -bounce;
                             }
-                            break;
-                        case 4:
+                        }
+                        case 4 -> {
                             if (this.velX > 0) {
                                 this.velX *= -bounce;
                             }
-                            break;
-                        case 5:
+                        }
+                        case 5 -> {
                             if (this.velX < 0) {
                                 this.velX *= -bounce;
                             }
-                            break;
+                        }
                     }
                 }
 
@@ -186,8 +186,7 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
                     if (block != Blocks.air && block.getExplosionResistance(this) < 7F
                             && block.getBlockHardness(worldObj, dx, dy, dz) >= 0) {
 
-                        if (entity != null && entity instanceof EntityPlayer) {
-                            EntityPlayer player = (EntityPlayer) entity;
+                        if (entity != null && entity instanceof EntityPlayer player) {
 
                             if (block.canHarvestBlock(player, currentMeta)) {
                                 block.harvestBlock(this.worldObj, player, dx, dy, dz, currentMeta);
@@ -268,11 +267,11 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
 
         // on the client, if we are not attached, assume we have just spawned, and attach to the player
         if (this.worldObj.isRemote && !this.isAttached) {
-            List nearbyEntities = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+            List<Entity> nearbyEntities = this.worldObj.getEntitiesWithinAABBExcludingEntity(
                     this,
                     this.boundingBox.addCoord(-this.motionX, -this.motionY, -this.motionZ).expand(2.0D, 2.0D, 2.0D));
-            for (int i = 0; i < nearbyEntities.size(); ++i) {
-                Entity nearby = (Entity) nearbyEntities.get(i);
+            for (Object nearbyEntity : nearbyEntities) {
+                Entity nearby = (Entity) nearbyEntity;
 
                 // attach? should we check for closest player?
                 if (nearby instanceof EntityPlayer) {

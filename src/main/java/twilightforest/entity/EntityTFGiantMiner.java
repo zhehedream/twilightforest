@@ -1,5 +1,7 @@
 package twilightforest.entity;
 
+import java.util.Arrays;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -34,9 +36,7 @@ public class EntityTFGiantMiner extends EntityMob {
 
         this.setCurrentItemOrArmor(0, new ItemStack(Items.stone_pickaxe));
 
-        for (int i = 0; i < this.equipmentDropChances.length; ++i) {
-            this.equipmentDropChances[i] = 0F;
-        }
+        Arrays.fill(this.equipmentDropChances, 0F);
     }
 
     protected void applyEntityAttributes() {

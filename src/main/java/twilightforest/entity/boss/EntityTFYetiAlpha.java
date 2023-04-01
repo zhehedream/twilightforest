@@ -476,9 +476,8 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void hitNearbyEntities() {
-        ArrayList<Entity> nearby = new ArrayList<Entity>(
+        ArrayList<Entity> nearby = new ArrayList<>(
                 this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 0, 5)));
 
         for (Entity entity : nearby) {
@@ -526,7 +525,7 @@ public class EntityTFYetiAlpha extends EntityMob implements IRangedAttackMob {
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         ChunkCoordinates home = this.getHomePosition();
-        nbttagcompound.setTag("Home", newDoubleNBTList(new double[] { home.posX, home.posY, home.posZ }));
+        nbttagcompound.setTag("Home", newDoubleNBTList(home.posX, home.posY, home.posZ));
         nbttagcompound.setBoolean("HasHome", this.hasHome());
         super.writeEntityToNBT(nbttagcompound);
     }

@@ -1,6 +1,5 @@
 package twilightforest.item;
 
-import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -9,7 +8,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -38,7 +36,7 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
     @SideOnly(Side.CLIENT)
     @Override
     public int getColorFromItemStack(ItemStack itemStack, int par2) {
-        TFEntityEggInfo info = (TFEntityEggInfo) TFCreatures.entityEggs.get(Integer.valueOf(itemStack.getItemDamage()));
+        TFEntityEggInfo info = TFCreatures.entityEggs.get(itemStack.getItemDamage());
         return info != null ? (par2 == 0 ? info.primaryColor : info.secondaryColor) : 16777215;
     }
 
@@ -104,7 +102,7 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
     public static Entity spawnCreature(World world, int par1, double par2, double par4, double par6) {
         // System.out.println("Trying to spawn twilight egg");
 
-        if (!TFCreatures.entityEggs.containsKey(Integer.valueOf(par1))) {
+        if (!TFCreatures.entityEggs.containsKey(par1)) {
             return null;
         } else {
             Entity entityToSpawn = TFCreatures.createEntityByID(par1, world);
@@ -113,7 +111,7 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
                 EntityLiving entityliving = (EntityLiving) entityToSpawn;
 
                 entityToSpawn.setLocationAndAngles(par2, par4, par6, world.rand.nextFloat() * 360.0F, 0.0F);
-                entityliving.onSpawnWithEgg((IEntityLivingData) null);
+                entityliving.onSpawnWithEgg(null);
                 world.spawnEntityInWorld(entityToSpawn);
                 ((EntityLiving) entityToSpawn).playLivingSound();
             }
@@ -123,11 +121,9 @@ public class ItemTFSpawnEgg extends ItemMonsterPlacer {
 
     // returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
     @Override
-    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
-        Iterator<TFEntityEggInfo> var4 = TFCreatures.entityEggs.values().iterator();
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
 
-        while (var4.hasNext()) {
-            TFEntityEggInfo var5 = (TFEntityEggInfo) var4.next();
+        for (TFEntityEggInfo var5 : TFCreatures.entityEggs.values()) {
             itemList.add(new ItemStack(item, 1, var5.spawnedID));
         }
     }

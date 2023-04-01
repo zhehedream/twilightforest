@@ -83,7 +83,7 @@ public class TFWeatherRenderer extends IRenderHandler {
         float rainStrength = mc.theWorld.getRainStrength(partialTicks);
 
         if (rainStrength > 0.0F) {
-            mc.entityRenderer.enableLightmap((double) partialTicks);
+            mc.entityRenderer.enableLightmap(partialTicks);
 
             this.initializeRainCoords();
 
@@ -140,14 +140,11 @@ public class TFWeatherRenderer extends IRenderHandler {
                         }
 
                         float f8 = 1.0F;
-                        int j2 = k1;
 
-                        if (k1 < k) {
-                            j2 = k;
-                        }
+                        int j2 = Math.max(k1, k);
 
                         if (l1 != i2) {
-                            this.random.setSeed((long) (i1 * i1 * 3121 + i1 * 45238971 ^ l * l * 418711 + l * 13761));
+                            this.random.setSeed(i1 * i1 * 3121 + i1 * 45238971 ^ l * l * 418711 + l * 13761);
                             float f9 = biomegenbase.getFloatTemperature(i1, l1, l);
                             float downwardsMotion;
                             double xDist;
@@ -180,28 +177,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-d0 * 1.0D, -d1 * 1.0D, -d2 * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 - f6) + 0.5D,
-                                        (double) l1,
+                                        l1,
                                         (double) ((float) l - f7) + 0.5D,
-                                        (double) (0.0F * f8),
-                                        (double) ((float) l1 * f8 / 4.0F + downwardsMotion * f8));
+                                        0.0F * f8,
+                                        (float) l1 * f8 / 4.0F + downwardsMotion * f8);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 + f6) + 0.5D,
-                                        (double) l1,
+                                        l1,
                                         (double) ((float) l + f7) + 0.5D,
-                                        (double) (1.0F * f8),
-                                        (double) ((float) l1 * f8 / 4.0F + downwardsMotion * f8));
+                                        1.0F * f8,
+                                        (float) l1 * f8 / 4.0F + downwardsMotion * f8);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 + f6) + 0.5D,
-                                        (double) i2,
+                                        i2,
                                         (double) ((float) l + f7) + 0.5D,
-                                        (double) (1.0F * f8),
-                                        (double) ((float) i2 * f8 / 4.0F + downwardsMotion * f8));
+                                        1.0F * f8,
+                                        (float) i2 * f8 / 4.0F + downwardsMotion * f8);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 - f6) + 0.5D,
-                                        (double) i2,
+                                        i2,
                                         (double) ((float) l - f7) + 0.5D,
-                                        (double) (0.0F * f8),
-                                        (double) ((float) i2 * f8 / 4.0F + downwardsMotion * f8));
+                                        0.0F * f8,
+                                        (float) i2 * f8 / 4.0F + downwardsMotion * f8);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                             } else {
                                 if (b1 != 1) {
@@ -231,28 +228,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-d0 * 1.0D, -d1 * 1.0D, -d2 * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 - f6) + 0.5D,
-                                        (double) l1,
+                                        l1,
                                         (double) ((float) l - f7) + 0.5D,
-                                        (double) (0.0F * f8 + f16),
-                                        (double) ((float) l1 * f8 / 4.0F + downwardsMotion * f8 + f11));
+                                        0.0F * f8 + f16,
+                                        (float) l1 * f8 / 4.0F + downwardsMotion * f8 + f11);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 + f6) + 0.5D,
-                                        (double) l1,
+                                        l1,
                                         (double) ((float) l + f7) + 0.5D,
-                                        (double) (1.0F * f8 + f16),
-                                        (double) ((float) l1 * f8 / 4.0F + downwardsMotion * f8 + f11));
+                                        1.0F * f8 + f16,
+                                        (float) l1 * f8 / 4.0F + downwardsMotion * f8 + f11);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 + f6) + 0.5D,
-                                        (double) i2,
+                                        i2,
                                         (double) ((float) l + f7) + 0.5D,
-                                        (double) (1.0F * f8 + f16),
-                                        (double) ((float) i2 * f8 / 4.0F + downwardsMotion * f8 + f11));
+                                        1.0F * f8 + f16,
+                                        (float) i2 * f8 / 4.0F + downwardsMotion * f8 + f11);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) i1 - f6) + 0.5D,
-                                        (double) i2,
+                                        i2,
                                         (double) ((float) l - f7) + 0.5D,
-                                        (double) (0.0F * f8 + f16),
-                                        (double) ((float) i2 * f8 / 4.0F + downwardsMotion * f8 + f11));
+                                        0.0F * f8 + f16,
+                                        (float) i2 * f8 / 4.0F + downwardsMotion * f8 + f11);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                             }
                         }
@@ -267,7 +264,7 @@ public class TFWeatherRenderer extends IRenderHandler {
             GL11.glEnable(GL11.GL_CULL_FACE);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-            mc.entityRenderer.disableLightmap((double) partialTicks);
+            mc.entityRenderer.disableLightmap(partialTicks);
         }
     }
 
@@ -332,15 +329,11 @@ public class TFWeatherRenderer extends IRenderHandler {
                         }
 
                         float one = 1.0F;
-                        int rainFloor = rainHeight;
 
-                        if (rainHeight < floorY) {
-                            rainFloor = floorY;
-                        }
+                        int rainFloor = Math.max(rainHeight, floorY);
 
                         if (rainMin != rainMax) {
-                            this.random
-                                    .setSeed((long) (dx * dx * 3121 + dx * 45238971 ^ dz * dz * 418711 + dz * 13761));
+                            this.random.setSeed(dx * dx * 3121 + dx * 45238971 ^ dz * dz * 418711 + dz * 13761);
 
                             if (biomegenbase instanceof TFBiomeSnow || biomegenbase instanceof TFBiomeGlacier) {
                                 // SNOW
@@ -371,28 +364,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
 
                             } else if (biomegenbase instanceof TFBiomeSwamp) {
@@ -428,28 +421,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                             } else if (biomegenbase instanceof TFBiomeFireSwamp) {
                                 // ASHES
@@ -484,28 +477,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMin,
+                                        rainMin,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) rainMax,
+                                        rainMax,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                             } else if (biomegenbase instanceof TFBiomeDarkForest && random.nextInt(2) == 0) {
                                 // DARKTHINGS
@@ -543,28 +536,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                 tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) darkRainMin,
+                                        darkRainMin,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) darkRainMin * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) darkRainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) darkRainMin,
+                                        darkRainMin,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) darkRainMin * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) darkRainMin * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx + rainX) + 0.5D,
-                                        (double) darkRainMax,
+                                        darkRainMax,
                                         (double) ((float) dz + rainZ) + 0.5D,
-                                        (double) (1.0F * one + uFactor),
-                                        (double) ((float) darkRainMax * one / 4.0F + countFactor * one + vFactor));
+                                        1.0F * one + uFactor,
+                                        (float) darkRainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.addVertexWithUV(
                                         (double) ((float) dx - rainX) + 0.5D,
-                                        (double) darkRainMax,
+                                        darkRainMax,
                                         (double) ((float) dz - rainZ) + 0.5D,
-                                        (double) (0.0F * one + uFactor),
-                                        (double) ((float) darkRainMax * one / 4.0F + countFactor * one + vFactor));
+                                        0.0F * one + uFactor,
+                                        (float) darkRainMax * one / 4.0F + countFactor * one + vFactor);
                                 tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                             } else if (biomegenbase instanceof TFBiomeHighlands
                                     || biomegenbase instanceof TFBiomeThornlands
@@ -605,28 +598,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                                         tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                                         tessellator.addVertexWithUV(
                                                 (double) ((float) dx - rainX) + 0.5D,
-                                                (double) rainMin,
+                                                rainMin,
                                                 (double) ((float) dz - rainZ) + 0.5D,
-                                                (double) (0.0F * one + uFactor),
-                                                (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                                0.0F * one + uFactor,
+                                                (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                         tessellator.addVertexWithUV(
                                                 (double) ((float) dx + rainX) + 0.5D,
-                                                (double) rainMin,
+                                                rainMin,
                                                 (double) ((float) dz + rainZ) + 0.5D,
-                                                (double) (1.0F * one + uFactor),
-                                                (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                                1.0F * one + uFactor,
+                                                (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                                         tessellator.addVertexWithUV(
                                                 (double) ((float) dx + rainX) + 0.5D,
-                                                (double) rainMax,
+                                                rainMax,
                                                 (double) ((float) dz + rainZ) + 0.5D,
-                                                (double) (1.0F * one + uFactor),
-                                                (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                                1.0F * one + uFactor,
+                                                (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                         tessellator.addVertexWithUV(
                                                 (double) ((float) dx - rainX) + 0.5D,
-                                                (double) rainMax,
+                                                rainMax,
                                                 (double) ((float) dz - rainZ) + 0.5D,
-                                                (double) (0.0F * one + uFactor),
-                                                (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                                0.0F * one + uFactor,
+                                                (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                                         tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                                     }
 
@@ -642,7 +635,7 @@ public class TFWeatherRenderer extends IRenderHandler {
             GL11.glEnable(GL11.GL_CULL_FACE);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-            mc.entityRenderer.disableLightmap((double) partialTicks);
+            mc.entityRenderer.disableLightmap(partialTicks);
 
         }
     }
@@ -715,8 +708,7 @@ public class TFWeatherRenderer extends IRenderHandler {
 
                         float one = 1.0F;
                         if (rainMin != rainMax) {
-                            this.random
-                                    .setSeed((long) (dx * dx * 3121 + dx * 45238971 ^ dz * dz * 418711 + dz * 13761));
+                            this.random.setSeed(dx * dx * 3121 + dx * 45238971 ^ dz * dz * 418711 + dz * 13761);
 
                             if (drawFlag != 0) {
                                 if (drawFlag >= 0) {
@@ -748,28 +740,28 @@ public class TFWeatherRenderer extends IRenderHandler {
                             tessellator.setTranslation(-offX * 1.0D, -offY * 1.0D, -offZ * 1.0D);
                             tessellator.addVertexWithUV(
                                     (double) ((float) dx - rainX) + 0.5D,
-                                    (double) rainMin,
+                                    rainMin,
                                     (double) ((float) dz - rainZ) + 0.5D,
-                                    (double) (0.0F * one + uFactor),
-                                    (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                    0.0F * one + uFactor,
+                                    (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                             tessellator.addVertexWithUV(
                                     (double) ((float) dx + rainX) + 0.5D,
-                                    (double) rainMin,
+                                    rainMin,
                                     (double) ((float) dz + rainZ) + 0.5D,
-                                    (double) (1.0F * one + uFactor),
-                                    (double) ((float) rainMin * one / 4.0F + countFactor * one + vFactor));
+                                    1.0F * one + uFactor,
+                                    (float) rainMin * one / 4.0F + countFactor * one + vFactor);
                             tessellator.addVertexWithUV(
                                     (double) ((float) dx + rainX) + 0.5D,
-                                    (double) rainMax,
+                                    rainMax,
                                     (double) ((float) dz + rainZ) + 0.5D,
-                                    (double) (1.0F * one + uFactor),
-                                    (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                    1.0F * one + uFactor,
+                                    (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                             tessellator.addVertexWithUV(
                                     (double) ((float) dx - rainX) + 0.5D,
-                                    (double) rainMax,
+                                    rainMax,
                                     (double) ((float) dz - rainZ) + 0.5D,
-                                    (double) (0.0F * one + uFactor),
-                                    (double) ((float) rainMax * one / 4.0F + countFactor * one + vFactor));
+                                    0.0F * one + uFactor,
+                                    (float) rainMax * one / 4.0F + countFactor * one + vFactor);
                             tessellator.setTranslation(0.0D, 0.0D, 0.0D);
                         }
                     }
@@ -783,7 +775,7 @@ public class TFWeatherRenderer extends IRenderHandler {
             GL11.glEnable(GL11.GL_CULL_FACE);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-            mc.entityRenderer.disableLightmap((double) partialTicks);
+            mc.entityRenderer.disableLightmap(partialTicks);
 
         }
     }
@@ -813,9 +805,7 @@ public class TFWeatherRenderer extends IRenderHandler {
         for (int z = pz - range; z <= pz + range; ++z) {
             for (int x = px - range; x <= px + range; ++x) {
                 BiomeGenBase biomegenbase = world.getBiomeGenForCoords(x, z);
-                if (biomegenbase instanceof TFBiomeBase && viewEntity instanceof EntityPlayer) {
-                    TFBiomeBase tfBiome = (TFBiomeBase) biomegenbase;
-                    EntityPlayer player = (EntityPlayer) viewEntity;
+                if (biomegenbase instanceof TFBiomeBase tfBiome && viewEntity instanceof EntityPlayer player) {
                     if (!tfBiome.doesPlayerHaveRequiredAchievement(player)) {
                         return true;
                     }

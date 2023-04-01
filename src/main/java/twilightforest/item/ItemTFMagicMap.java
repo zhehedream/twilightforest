@@ -108,9 +108,7 @@ public class ItemTFMagicMap extends ItemMap {
                                         biomeFrequencies[biomeID] += 2;
                                     }
                                     // add in TF features
-                                    if (world.getWorldChunkManager() instanceof TFWorldChunkManager) {
-                                        TFWorldChunkManager tfManager = (TFWorldChunkManager) world
-                                                .getWorldChunkManager();
+                                    if (world.getWorldChunkManager() instanceof TFWorldChunkManager tfManager) {
 
                                         if (tfManager.isInFeatureChunk(world, xDraw2 + xStep2, zDraw2 + zStep2)
                                                 && zStep >= 0
@@ -188,8 +186,7 @@ public class ItemTFMagicMap extends ItemMap {
         if (!world.isRemote) {
             TFMagicMapData mapData = this.getMapData(itemStack, world);
 
-            if (entity instanceof EntityPlayer) {
-                EntityPlayer var7 = (EntityPlayer) entity;
+            if (entity instanceof EntityPlayer var7) {
                 mapData.updateVisiblePlayers(var7, itemStack);
             }
 
@@ -255,9 +252,8 @@ public class ItemTFMagicMap extends ItemMap {
 
     // Add the map number to the tooltip
     public String getItemStackDisplayName(ItemStack itemStack) {
-        return (String.valueOf(
-                StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
-                        + itemStack.getItemDamage())).trim();
+        return (StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(itemStack) + ".name") + " #"
+                + itemStack.getItemDamage()).trim();
     }
 
     // Properly register icon source

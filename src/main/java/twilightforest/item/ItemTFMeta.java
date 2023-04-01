@@ -28,40 +28,30 @@ public class ItemTFMeta extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case 0:
-                return "item.adherentFragment";
-            case 1:
-                return "item.harbingerFragment";
-            default:
-                return "unusedMeta";
-        }
+        return switch (stack.getItemDamage()) {
+            case 0 -> "item.adherentFragment";
+            case 1 -> "item.harbingerFragment";
+            default -> "unusedMeta";
+        };
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case 0:
-            case 1:
-                return EnumRarity.uncommon;
+        return switch (stack.getItemDamage()) {
+            case 0, 1 -> EnumRarity.uncommon;
 
             // return EnumRarity.rare;
-            default:
-                return EnumRarity.common;
-        }
+            default -> EnumRarity.common;
+        };
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         switch (stack.getItemDamage()) {
-            case 0:
-                list.add(StatCollector.translateToLocal("tooltip.tf.adherent"));
-                break;
-            case 1:
-                list.add(StatCollector.translateToLocal("tooltip.tf.harbinger"));
-                break;
+            case 0 -> list.add(StatCollector.translateToLocal("tooltip.tf.adherent"));
+            case 1 -> list.add(StatCollector.translateToLocal("tooltip.tf.harbinger"));
         }
     }
 
@@ -81,7 +71,7 @@ public class ItemTFMeta extends Item {
     }
 
     @Override
-    public void getSubItems(Item id, CreativeTabs tab, List list) {
+    public void getSubItems(Item id, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < textureNames.length; i++) list.add(new ItemStack(id, 1, i));
     }
 

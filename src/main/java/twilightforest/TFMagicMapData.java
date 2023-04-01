@@ -12,7 +12,7 @@ import twilightforest.world.TFWorldChunkManager;
 public class TFMagicMapData extends MapData {
 
     private static final int FEATURE_DATA_BYTE = 18;
-    public List<MapCoord> featuresVisibleOnMap = new ArrayList<MapCoord>();
+    public List<MapCoord> featuresVisibleOnMap = new ArrayList<>();
 
     public TFMagicMapData(String par1Str) {
         super(par1Str);
@@ -92,13 +92,12 @@ public class TFMagicMapData extends MapData {
             int worldX = (coord.centerX << this.scale - 1) + this.xCenter;
             int worldZ = (coord.centerZ << this.scale - 1) + this.zCenter;
 
-            if (world != null && world.getWorldChunkManager() instanceof TFWorldChunkManager) {
-                TFWorldChunkManager tfManager = (TFWorldChunkManager) world.getWorldChunkManager();
+            if (world != null && world.getWorldChunkManager() instanceof TFWorldChunkManager tfManager) {
                 coord.iconSize = (byte) tfManager.getFeatureID(worldX, worldZ, world);
 
                 if (coord.iconSize == 0) {
                     if (toRemove == null) {
-                        toRemove = new ArrayList<MapCoord>();
+                        toRemove = new ArrayList<>();
                     }
                     toRemove.add(coord);
                 }

@@ -35,8 +35,7 @@ public class RenderTFCharm extends Render {
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        if (par1Entity instanceof EntityTFCharmEffect) {
-            EntityTFCharmEffect charm = (EntityTFCharmEffect) par1Entity;
+        if (par1Entity instanceof EntityTFCharmEffect charm) {
             if (charm.getItemID() > 0) {
                 // this.itemIcon = Items.itemsList[charm.getItemID()].getIconFromDamage(0);
                 this.itemIcon = TFItems.charmOfKeeping1.getIconFromDamage(0);
@@ -67,10 +66,10 @@ public class RenderTFCharm extends Render {
         GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
         par1Tessellator.startDrawingQuads();
         par1Tessellator.setNormal(0.0F, 1.0F, 0.0F);
-        par1Tessellator.addVertexWithUV((double) (0.0F - f5), (double) (0.0F - f6), 0.0D, (double) f, (double) f3);
-        par1Tessellator.addVertexWithUV((double) (f4 - f5), (double) (0.0F - f6), 0.0D, (double) f1, (double) f3);
-        par1Tessellator.addVertexWithUV((double) (f4 - f5), (double) (f4 - f6), 0.0D, (double) f1, (double) f2);
-        par1Tessellator.addVertexWithUV((double) (0.0F - f5), (double) (f4 - f6), 0.0D, (double) f, (double) f2);
+        par1Tessellator.addVertexWithUV(0.0F - f5, 0.0F - f6, 0.0D, f, f3);
+        par1Tessellator.addVertexWithUV(f4 - f5, 0.0F - f6, 0.0D, f1, f3);
+        par1Tessellator.addVertexWithUV(f4 - f5, f4 - f6, 0.0D, f1, f2);
+        par1Tessellator.addVertexWithUV(0.0F - f5, f4 - f6, 0.0D, f, f2);
         par1Tessellator.draw();
     }
 

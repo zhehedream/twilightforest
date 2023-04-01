@@ -53,17 +53,12 @@ public class BlockTFCastleBlock extends Block {
      */
     @Override
     public IIcon getIcon(int side, int meta) {
-        switch (meta) {
-            case 0:
-            default:
-                return brickIcon;
-            case 1:
-                return fadedIcon;
-            case 2:
-                return crackIcon;
-            case 3:
-                return roofIcon;
-        }
+        return switch (meta) {
+            default -> brickIcon;
+            case 1 -> fadedIcon;
+            case 2 -> crackIcon;
+            case 3 -> roofIcon;
+        };
     }
 
     @Override
@@ -92,9 +87,8 @@ public class BlockTFCastleBlock extends Block {
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));

@@ -61,7 +61,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         WAITING_FOR_LEADER,
         ATTACK_PLAYER_START,
         ATTACK_PLAYER_ATTACK
-    };
+    }
 
     public EntityTFKnightPhantom(World par1World) {
         super(par1World);
@@ -274,7 +274,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
 
         double factor = moveX * moveX + moveY * moveY + moveZ * moveZ;
 
-        factor = (double) MathHelper.sqrt_double(factor);
+        factor = MathHelper.sqrt_double(factor);
 
         double speed = 0.1D;// this.isChargingAtPlayer() ? 0.1D : 0.05D;
 
@@ -338,9 +338,9 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         if (flag) {
             if (i > 0) {
                 entity.addVelocity(
-                        (double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F),
+                        -MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F,
                         0.1D,
-                        (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
+                        MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
             }
@@ -451,7 +451,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         this.motionY /= 2.0D;
         this.motionZ /= 2.0D;
         this.motionX -= par3 / (double) f * (double) distance;
-        this.motionY += (double) distance;
+        this.motionY += distance;
         this.motionZ -= par5 / (double) f * (double) distance;
 
         if (this.motionY > 0.4000000059604645D) {
@@ -475,15 +475,9 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
             } else {
                 // random weapon switch!
                 switch (rand.nextInt(3)) {
-                    case 0:
-                        this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlySword));
-                        break;
-                    case 1:
-                        this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyAxe));
-                        break;
-                    case 2:
-                        this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyPick));
-                        break;
+                    case 0 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlySword));
+                    case 1 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyAxe));
+                    case 2 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyPick));
                 }
 
                 this.switchToFormation(Formation.ATTACK_PLAYER_START);
@@ -516,7 +510,6 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private List<EntityTFKnightPhantom> getNearbyKnights() {
         List<EntityTFKnightPhantom> nearbyKnights = worldObj.getEntitiesWithinAABB(
                 EntityTFKnightPhantom.class,
@@ -529,31 +522,18 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
     // Pick a random formation. Called by the leader when his current formation duration ends
     protected void pickRandomFormation() {
         switch (rand.nextInt(8)) {
-            case 0:
-                currentFormation = Formation.SMALL_CLOCKWISE;
-                break;
-            case 1:
-                currentFormation = Formation.SMALL_ANTICLOCKWISE;
-                // currentFormation = Formation.LARGE_ANTICLOCKWISE;
-                break;
-            case 2:
-                currentFormation = Formation.SMALL_ANTICLOCKWISE;
-                break;
-            case 3:
-                currentFormation = Formation.CHARGE_PLUSX;
-                break;
-            case 4:
-                currentFormation = Formation.CHARGE_MINUSX;
-                break;
-            case 5:
-                currentFormation = Formation.CHARGE_PLUSZ;
-                break;
-            case 6:
-                currentFormation = Formation.CHARGE_MINUSZ;
-                break;
-            case 7:
-                currentFormation = Formation.SMALL_CLOCKWISE;
-                // currentFormation = Formation.LARGE_CLOCKWISE;
+            case 0 -> currentFormation = Formation.SMALL_CLOCKWISE;
+            case 1 -> currentFormation = Formation.SMALL_ANTICLOCKWISE;
+
+            // currentFormation = Formation.LARGE_ANTICLOCKWISE;
+            case 2 -> currentFormation = Formation.SMALL_ANTICLOCKWISE;
+            case 3 -> currentFormation = Formation.CHARGE_PLUSX;
+            case 4 -> currentFormation = Formation.CHARGE_MINUSX;
+            case 5 -> currentFormation = Formation.CHARGE_PLUSZ;
+            case 6 -> currentFormation = Formation.CHARGE_MINUSZ;
+            case 7 -> currentFormation = Formation.SMALL_CLOCKWISE;
+
+            // currentFormation = Formation.LARGE_CLOCKWISE;
         }
         this.switchToFormation(currentFormation);
     }
@@ -673,29 +653,16 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
     }
 
     public int getMaxTicksForFormation() {
-        switch (currentFormation) {
-            default:
-            case HOVER:
-                return 90;
-            case LARGE_CLOCKWISE:
-                return 180;
-            case SMALL_CLOCKWISE:
-                return 90;
-            case LARGE_ANTICLOCKWISE:
-                return 180;
-            case SMALL_ANTICLOCKWISE:
-                return 90;
-            case CHARGE_PLUSX:
-            case CHARGE_MINUSX:
-            case CHARGE_PLUSZ:
-            case CHARGE_MINUSZ:
-                return 180;
-            case ATTACK_PLAYER_START:
-            case ATTACK_PLAYER_ATTACK:
-                return 50;
-            case WAITING_FOR_LEADER:
-                return 10;
-        }
+        return switch (currentFormation) {
+            default -> 90;
+            case LARGE_CLOCKWISE -> 180;
+            case SMALL_CLOCKWISE -> 90;
+            case LARGE_ANTICLOCKWISE -> 180;
+            case SMALL_ANTICLOCKWISE -> 90;
+            case CHARGE_PLUSX, CHARGE_MINUSX, CHARGE_PLUSZ, CHARGE_MINUSZ -> 180;
+            case ATTACK_PLAYER_START, ATTACK_PLAYER_ATTACK -> 50;
+            case WAITING_FOR_LEADER -> 10;
+        };
     }
 
     private Vec3 getDestination() {
@@ -704,33 +671,20 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
         // hmmm
         // }
 
-        switch (currentFormation) {
-            case LARGE_CLOCKWISE:
-                return getCirclePosition(CIRCLE_LARGE_RADIUS, true);
-            case SMALL_CLOCKWISE:
-                return getCirclePosition(CIRCLE_SMALL_RADIUS, true);
-            case LARGE_ANTICLOCKWISE:
-                return getCirclePosition(CIRCLE_LARGE_RADIUS, false);
-            case SMALL_ANTICLOCKWISE:
-                return getCirclePosition(CIRCLE_SMALL_RADIUS, false);
-            case CHARGE_PLUSX:
-                return getMoveAcrossPosition(true, true);
-            case CHARGE_MINUSX:
-                return getMoveAcrossPosition(false, true);
-            case CHARGE_PLUSZ:
-                return getMoveAcrossPosition(true, false);
-            case ATTACK_PLAYER_START:
-            case HOVER:
-                return getHoverPosition(CIRCLE_LARGE_RADIUS);
-            case CHARGE_MINUSZ:
-                return getMoveAcrossPosition(false, false);
-            case WAITING_FOR_LEADER:
-                return getLoiterPosition();
-            case ATTACK_PLAYER_ATTACK:
-                return getAttackPlayerPosition();
-            default:
-                return getLoiterPosition();
-        }
+        return switch (currentFormation) {
+            case LARGE_CLOCKWISE -> getCirclePosition(CIRCLE_LARGE_RADIUS, true);
+            case SMALL_CLOCKWISE -> getCirclePosition(CIRCLE_SMALL_RADIUS, true);
+            case LARGE_ANTICLOCKWISE -> getCirclePosition(CIRCLE_LARGE_RADIUS, false);
+            case SMALL_ANTICLOCKWISE -> getCirclePosition(CIRCLE_SMALL_RADIUS, false);
+            case CHARGE_PLUSX -> getMoveAcrossPosition(true, true);
+            case CHARGE_MINUSX -> getMoveAcrossPosition(false, true);
+            case CHARGE_PLUSZ -> getMoveAcrossPosition(true, false);
+            case ATTACK_PLAYER_START, HOVER -> getHoverPosition(CIRCLE_LARGE_RADIUS);
+            case CHARGE_MINUSZ -> getMoveAcrossPosition(false, false);
+            case WAITING_FOR_LEADER -> getLoiterPosition();
+            case ATTACK_PLAYER_ATTACK -> getAttackPlayerPosition();
+            default -> getLoiterPosition();
+        };
     }
 
     private Vec3 getMoveAcrossPosition(boolean plus, boolean alongX) {
@@ -831,14 +785,9 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
 
         // set weapon per number
         switch (number % 3) {
-            case 0:
-                this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlySword));
-                break;
-            case 1:
-                this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyAxe));
-                break;
-            case 2:
-                this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyPick));
+            case 0 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlySword));
+            case 1 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyAxe));
+            case 2 -> this.setCurrentItemOrArmor(0, new ItemStack(TFItems.knightlyPick));
         }
     }
 
@@ -846,7 +795,7 @@ public class EntityTFKnightPhantom extends EntityFlying implements IMob {
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         super.writeEntityToNBT(nbttagcompound);
         ChunkCoordinates home = this.getHomePosition();
-        nbttagcompound.setTag("Home", newDoubleNBTList(new double[] { home.posX, home.posY, home.posZ }));
+        nbttagcompound.setTag("Home", newDoubleNBTList(home.posX, home.posY, home.posZ));
         nbttagcompound.setBoolean("HasHome", this.hasHome());
         nbttagcompound.setInteger("MyNumber", this.getNumber());
         nbttagcompound.setInteger("Formation", this.getFormationAsNumber());

@@ -44,24 +44,17 @@ public class ItemTFArcticArmor extends ItemArmor {
      * @return Path of texture to bind, or null to use default
      */
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String layer) {
-        switch (slot) {
-            case 0:
-            case 1:
-            case 3:
-            default:
-                return TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
-            case 2:
-                return TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
-
-        }
+        return switch (slot) {
+            default -> TwilightForestMod.ARMOR_DIR + "arcticarmor_1.png";
+            case 2 -> TwilightForestMod.ARMOR_DIR + "arcticarmor_2.png";
+        };
     }
 
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         ItemStack istack = new ItemStack(par1, 1, 0);
         // istack.addEnchantment(TFEnchantment.reactFire, 2);
         par3List.add(istack);

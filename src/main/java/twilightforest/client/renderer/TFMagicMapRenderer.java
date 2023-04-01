@@ -1,7 +1,6 @@
 package twilightforest.client.renderer;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.Arrays;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -40,9 +39,7 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         this.textureLoc = par2TextureManager.getDynamicTextureLocation("map", this.bufferedImage);
         this.intArray = this.bufferedImage.getTextureData();
 
-        for (int i = 0; i < this.intArray.length; ++i) {
-            this.intArray[i] = 0;
-        }
+        Arrays.fill(this.intArray, 0);
     }
 
     /**
@@ -103,10 +100,9 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void renderMap(EntityPlayer par1EntityPlayer, TextureManager par2TextureManager,
             TFMagicMapData par3MapData) {
-        TFMagicMapData magicMapData = (TFMagicMapData) par3MapData;
+        TFMagicMapData magicMapData = par3MapData;
 
         for (int i = 0; i < 16384; ++i) {
             int colorByte = par3MapData.colors[i] & 0xFF;
@@ -133,26 +129,26 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         tesselator.startDrawingQuads();
         tesselator.addVertexWithUV(
-                (double) ((float) (var15 + 0) + var18),
-                (double) ((float) (var16 + 128) - var18),
+                (float) (var15 + 0) + var18,
+                (float) (var16 + 128) - var18,
                 -0.009999999776482582D,
                 0.0D,
                 1.0D);
         tesselator.addVertexWithUV(
-                (double) ((float) (var15 + 128) - var18),
-                (double) ((float) (var16 + 128) - var18),
+                (float) (var15 + 128) - var18,
+                (float) (var16 + 128) - var18,
                 -0.009999999776482582D,
                 1.0D,
                 1.0D);
         tesselator.addVertexWithUV(
-                (double) ((float) (var15 + 128) - var18),
-                (double) ((float) (var16 + 0) + var18),
+                (float) (var15 + 128) - var18,
+                (float) (var16 + 0) + var18,
                 -0.009999999776482582D,
                 1.0D,
                 0.0D);
         tesselator.addVertexWithUV(
-                (double) ((float) (var15 + 0) + var18),
-                (double) ((float) (var16 + 0) + var18),
+                (float) (var15 + 0) + var18,
+                (float) (var16 + 0) + var18,
                 -0.009999999776482582D,
                 0.0D,
                 0.0D);
@@ -160,7 +156,7 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glDisable(GL11.GL_BLEND);
         par2TextureManager.bindTexture(vanillaMapIcons);
-        for (MapCoord mapCoord : (Collection<MapCoord>) par3MapData.playersVisibleOnMap.values()) {
+        for (MapCoord mapCoord : par3MapData.playersVisibleOnMap.values()) {
             GL11.glPushMatrix();
             GL11.glTranslatef(
                     (float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F,
@@ -174,17 +170,17 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
             float var22 = (float) (mapCoord.iconSize % 4 + 1) / 4.0F;
             float var24 = (float) (mapCoord.iconSize / 4 + 1) / 4.0F;
             tesselator.startDrawingQuads();
-            tesselator.addVertexWithUV(-1.0D, 1.0D, 0.0D, (double) var21, (double) var23);
-            tesselator.addVertexWithUV(1.0D, 1.0D, 0.0D, (double) var22, (double) var23);
-            tesselator.addVertexWithUV(1.0D, -1.0D, 0.0D, (double) var22, (double) var24);
-            tesselator.addVertexWithUV(-1.0D, -1.0D, 0.0D, (double) var21, (double) var24);
+            tesselator.addVertexWithUV(-1.0D, 1.0D, 0.0D, var21, var23);
+            tesselator.addVertexWithUV(1.0D, 1.0D, 0.0D, var22, var23);
+            tesselator.addVertexWithUV(1.0D, -1.0D, 0.0D, var22, var24);
+            tesselator.addVertexWithUV(-1.0D, -1.0D, 0.0D, var21, var24);
             tesselator.draw();
             GL11.glPopMatrix();
         }
 
         par2TextureManager.bindTexture(twilightMapIcons);
 
-        for (MapCoord mapCoord : (List<MapCoord>) magicMapData.featuresVisibleOnMap) {
+        for (MapCoord mapCoord : magicMapData.featuresVisibleOnMap) {
             GL11.glPushMatrix();
             GL11.glTranslatef(
                     (float) var15 + (float) mapCoord.centerX / 2.0F + 64.0F,
@@ -198,10 +194,10 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
             float var22 = (float) (mapCoord.iconSize % 8 + 1) / 8.0F;
             float var24 = (float) (mapCoord.iconSize / 8 + 1) / 8.0F;
             tesselator.startDrawingQuads();
-            tesselator.addVertexWithUV(-1.0D, 1.0D, 0.0D, (double) var21, (double) var23);
-            tesselator.addVertexWithUV(1.0D, 1.0D, 0.0D, (double) var22, (double) var23);
-            tesselator.addVertexWithUV(1.0D, -1.0D, 0.0D, (double) var22, (double) var24);
-            tesselator.addVertexWithUV(-1.0D, -1.0D, 0.0D, (double) var21, (double) var24);
+            tesselator.addVertexWithUV(-1.0D, 1.0D, 0.0D, var21, var23);
+            tesselator.addVertexWithUV(1.0D, 1.0D, 0.0D, var22, var23);
+            tesselator.addVertexWithUV(1.0D, -1.0D, 0.0D, var22, var24);
+            tesselator.addVertexWithUV(-1.0D, -1.0D, 0.0D, var21, var24);
             tesselator.draw();
             GL11.glPopMatrix();
         }
@@ -227,10 +223,10 @@ public class TFMagicMapRenderer implements net.minecraftforge.client.IItemRender
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         byte b0 = 7;
-        tessellator.addVertexWithUV((double) (0 - b0), (double) (128 + b0), 0.0D, 0.0D, 1.0D);
-        tessellator.addVertexWithUV((double) (128 + b0), (double) (128 + b0), 0.0D, 1.0D, 1.0D);
-        tessellator.addVertexWithUV((double) (128 + b0), (double) (0 - b0), 0.0D, 1.0D, 0.0D);
-        tessellator.addVertexWithUV((double) (0 - b0), (double) (0 - b0), 0.0D, 0.0D, 0.0D);
+        tessellator.addVertexWithUV(0 - b0, 128 + b0, 0.0D, 0.0D, 1.0D);
+        tessellator.addVertexWithUV(128 + b0, 128 + b0, 0.0D, 1.0D, 1.0D);
+        tessellator.addVertexWithUV(128 + b0, 0 - b0, 0.0D, 1.0D, 0.0D);
+        tessellator.addVertexWithUV(0 - b0, 0 - b0, 0.0D, 0.0D, 0.0D);
         tessellator.draw();
 
         // push map texture slightly off background

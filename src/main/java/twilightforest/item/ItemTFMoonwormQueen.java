@@ -99,9 +99,9 @@ public class ItemTFMoonwormQueen extends ItemTF {
                 }
 
                 world.playSoundEffect(
-                        (double) (x + 0.5F),
-                        (double) (y + 0.5F),
-                        (double) (z + 0.5F),
+                        x + 0.5F,
+                        y + 0.5F,
+                        z + 0.5F,
                         this.getSound(),
                         TFBlocks.moonworm.stepSound.getVolume() / 2.0F,
                         TFBlocks.moonworm.stepSound.getPitch() * 0.8F);

@@ -49,9 +49,8 @@ public class ItemTFFieryArmor extends ItemArmor {
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         ItemStack istack = new ItemStack(par1, 1, 0);
         // istack.addEnchantment(TFEnchantment.fieryAura, 2);
         par3List.add(istack);
@@ -82,7 +81,8 @@ public class ItemTFFieryArmor extends ItemArmor {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List<String> par3List,
+            boolean par4) {
         super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
         par3List.add(StatCollector.translateToLocal(getUnlocalizedName() + ".tooltip"));
     }

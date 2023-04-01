@@ -15,7 +15,7 @@ public class TFAchievementPage extends net.minecraftforge.common.AchievementPage
             -2,
             1,
             TFBlocks.portal,
-            (Achievement) null)).setSpecial().registerStat();
+            null)).setSpecial().registerStat();
     public static Achievement twilightArrival = (new Achievement(
             TwilightForestMod.ID + 2,
             "twilightArrival",

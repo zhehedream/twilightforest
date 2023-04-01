@@ -77,9 +77,8 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         this.height = par1NBTTagCompound.getInteger("height");
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         // make 4 caves
         for (int i = 0; i < 4; i++) {
             ChunkCoordinates dest = getValidOpening(rand, 5, i);
@@ -243,18 +242,13 @@ public class ComponentTFTrollCaveMain extends StructureTFComponent {
         int dy = getYWithOffset(y);
         int dz = getZWithOffset(x, z);
 
-        switch (direction) {
-            case 0:
-                return new ChunkCoordinates(dx - 1, dy - 1, dz - towerSize / 2);
-            case 1:
-                return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz - 1);
-            case 2:
-                return new ChunkCoordinates(dx + 1, dy - 1, dz + towerSize / 2);
-            case 3:
-                return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz + 1);
-            default:
-                return new ChunkCoordinates(x, y, z);
-        }
+        return switch (direction) {
+            case 0 -> new ChunkCoordinates(dx - 1, dy - 1, dz - towerSize / 2);
+            case 1 -> new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz - 1);
+            case 2 -> new ChunkCoordinates(dx + 1, dy - 1, dz + towerSize / 2);
+            case 3 -> new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz + 1);
+            default -> new ChunkCoordinates(x, y, z);
+        };
     }
 
     public boolean isBoundingBoxOutOfHighlands(World world, StructureBoundingBox sbb) {

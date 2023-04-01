@@ -57,25 +57,16 @@ public class BlockTFMazestone extends Block {
      */
     @Override
     public IIcon getIcon(int side, int meta) {
-        switch (meta) {
-            case 0:
-            default:
-                return TEX_PLAIN;
-            case 1:
-                return TEX_BRICK;
-            case 2:
-                return side > 1 ? TEX_PILLAR : TEX_PLAIN;
-            case 3:
-                return side > 1 ? TEX_DECO : TEX_BRICK;
-            case 4:
-                return TEX_CRACKED;
-            case 5:
-                return TEX_MOSSY;
-            case 6:
-                return side > 1 ? TEX_BRICK : TEX_MOSAIC;
-            case 7:
-                return side > 1 ? TEX_BRICK : TEX_BORDER;
-        }
+        return switch (meta) {
+            default -> TEX_PLAIN;
+            case 1 -> TEX_BRICK;
+            case 2 -> side > 1 ? TEX_PILLAR : TEX_PLAIN;
+            case 3 -> side > 1 ? TEX_DECO : TEX_BRICK;
+            case 4 -> TEX_CRACKED;
+            case 5 -> TEX_MOSSY;
+            case 6 -> side > 1 ? TEX_BRICK : TEX_MOSAIC;
+            case 7 -> side > 1 ? TEX_BRICK : TEX_BORDER;
+        };
     }
 
     @Override
@@ -108,9 +99,8 @@ public class BlockTFMazestone extends Block {
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));

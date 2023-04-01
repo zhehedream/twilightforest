@@ -94,7 +94,6 @@ public abstract class TFBiomeBase extends BiomeGenBase {
      */
     protected List<SpawnListEntry> undergroundMonsterList;
 
-    @SuppressWarnings("unchecked")
     public TFBiomeBase(int i) {
         super(i);
 
@@ -121,7 +120,7 @@ public abstract class TFBiomeBase extends BiomeGenBase {
         spawnableCreatureList.add(new SpawnListEntry(twilightforest.entity.passive.EntityTFBunny.class, 10, 4, 5));
         spawnableCreatureList.add(new SpawnListEntry(twilightforest.entity.passive.EntityTFRaven.class, 10, 1, 2));
 
-        undergroundMonsterList = new ArrayList<SpawnListEntry>();
+        undergroundMonsterList = new ArrayList<>();
 
         undergroundMonsterList.add(new SpawnListEntry(EntitySpider.class, 10, 4, 4));
         undergroundMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 4, 4));
@@ -520,9 +519,7 @@ public abstract class TFBiomeBase extends BiomeGenBase {
     /**
      * Do something bad to a player in the wrong biome.
      */
-    public void enforceProgession(EntityPlayer player, World world) {
-        ;
-    }
+    public void enforceProgession(EntityPlayer player, World world) {}
 
     /**
      * Returns the list of underground creatures.

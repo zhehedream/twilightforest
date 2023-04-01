@@ -51,9 +51,8 @@ public class ComponentTFIceTowerWing extends ComponentTFTowerWing {
         this.treasureFloor = par1NBTTagCompound.getInteger("treasureFloor");
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {
             this.deco = ((StructureTFComponent) parent).deco;
         }
@@ -157,7 +156,7 @@ public class ComponentTFIceTowerWing extends ComponentTFTowerWing {
         // System.out.println("Making tower, index = " + index + ", list.size() = " + list.size());
 
         // stop if out of range
-        if (isOutOfRange((StructureComponent) list.get(0), dx[0], dx[1], dx[2], RANGE)) {
+        if (isOutOfRange(list.get(0), dx[0], dx[1], dx[2], RANGE)) {
             return false;
         }
 
@@ -405,40 +404,18 @@ public class ComponentTFIceTowerWing extends ComponentTFTowerWing {
     private boolean isNoDoorAreaRotated(int minX, int minY, int minZ, int maxX, int maxY, int maxZ, int rotation) {
         boolean isClear = true;
         // make a bounding box of the area
-        StructureBoundingBox exclusionBox;
-        switch (rotation) {
-            case 0:
-            default:
-                exclusionBox = new StructureBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
-                break;
-            case 1:
-                exclusionBox = new StructureBoundingBox(
-                        this.size - 1 - maxZ,
-                        minY,
-                        minX,
-                        this.size - 1 - minZ,
-                        maxY,
-                        maxX);
-                break;
-            case 2:
-                exclusionBox = new StructureBoundingBox(
-                        this.size - 1 - maxX,
-                        minY,
-                        this.size - 1 - maxZ,
-                        this.size - 1 - minX,
-                        maxY,
-                        this.size - 1 - minZ);
-                break;
-            case 3:
-                exclusionBox = new StructureBoundingBox(
-                        minZ,
-                        minY,
-                        this.size - 1 - maxX,
-                        maxZ,
-                        maxY,
-                        this.size - 1 - minX);
-                break;
-        }
+        StructureBoundingBox exclusionBox = switch (rotation) {
+            default -> new StructureBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
+            case 1 -> new StructureBoundingBox(this.size - 1 - maxZ, minY, minX, this.size - 1 - minZ, maxY, maxX);
+            case 2 -> new StructureBoundingBox(
+                    this.size - 1 - maxX,
+                    minY,
+                    this.size - 1 - maxZ,
+                    this.size - 1 - minX,
+                    maxY,
+                    this.size - 1 - minZ);
+            case 3 -> new StructureBoundingBox(minZ, minY, this.size - 1 - maxX, maxZ, maxY, this.size - 1 - minX);
+        };
 
         for (ChunkCoordinates door : this.openings) {
             if (exclusionBox.isVecInside(door.posX, door.posY, door.posZ)) {

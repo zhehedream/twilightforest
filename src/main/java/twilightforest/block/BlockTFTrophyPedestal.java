@@ -66,14 +66,18 @@ public class BlockTFTrophyPedestal extends Block {
             int rotatedSide = ((side - 2) + rotate) % 4;
 
             switch (rotatedSide) {
-                case 0:
+                case 0 -> {
                     return meta > 7 ? sprNagaActive : sprNaga;
-                case 1:
+                }
+                case 1 -> {
                     return meta > 7 ? sprLichActive : sprLich;
-                case 2:
+                }
+                case 2 -> {
                     return meta > 7 ? sprHydraActive : sprHydra;
-                case 3:
+                }
+                case 3 -> {
                     return meta > 7 ? sprUrghastActive : sprUrghast;
+                }
             }
 
         }
@@ -120,7 +124,7 @@ public class BlockTFTrophyPedestal extends Block {
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 15));
     }
@@ -303,7 +307,6 @@ public class BlockTFTrophyPedestal extends Block {
         world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "mob.zombie.infect", 4.0F, 0.1F);
     }
 
-    @SuppressWarnings("unchecked")
     private void rewardNearbyPlayers(World world, int x, int y, int z) {
         // scan for players nearby to give the achievement
         List<EntityPlayer> nearbyPlayers = world.getEntitiesWithinAABB(

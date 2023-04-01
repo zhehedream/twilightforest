@@ -128,13 +128,8 @@ public class EntityTFIceExploder extends EntityMob {
             int i;
 
             boolean flag = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-            this.worldObj.createExplosion(
-                    this,
-                    this.posX,
-                    this.posY,
-                    this.posZ,
-                    (float) EntityTFIceExploder.EXPLOSION_RADIUS,
-                    flag);
+            this.worldObj
+                    .createExplosion(this, this.posX, this.posY, this.posZ, EntityTFIceExploder.EXPLOSION_RADIUS, flag);
 
             if (flag) {
                 this.detonate();

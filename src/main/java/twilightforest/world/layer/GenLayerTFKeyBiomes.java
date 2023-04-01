@@ -23,8 +23,8 @@ public class GenLayerTFKeyBiomes extends GenLayer {
     }
 
     public int[] getInts(int x, int z, int width, int depth) {
-        int src[] = this.parent.getInts(x, z, width, depth);
-        int dest[] = IntCache.getIntCache(width * depth);
+        int[] src = this.parent.getInts(x, z, width, depth);
+        int[] dest = IntCache.getIntCache(width * depth);
         for (int dz = 0; dz < depth; dz++) {
             for (int dx = 0; dx < width; dx++) {
                 // get offsets
@@ -72,16 +72,11 @@ public class GenLayerTFKeyBiomes extends GenLayer {
 
         // do we need to shuffle this better?
         // the current version just "rotates" the 4 key biomes
-        switch ((index + offset) % 4) {
-            case 0:
-            default:
-                return TFBiomeBase.glacier.biomeID;
-            case 1:
-                return TFBiomeBase.fireSwamp.biomeID;
-            case 2:
-                return TFBiomeBase.darkForestCenter.biomeID;
-            case 3:
-                return TFBiomeBase.highlandsCenter.biomeID;
-        }
+        return switch ((index + offset) % 4) {
+            default -> TFBiomeBase.glacier.biomeID;
+            case 1 -> TFBiomeBase.fireSwamp.biomeID;
+            case 2 -> TFBiomeBase.darkForestCenter.biomeID;
+            case 3 -> TFBiomeBase.highlandsCenter.biomeID;
+        };
     }
 }

@@ -60,7 +60,7 @@ public class TFStrongholdPieces {
      * sets up Arrays with the Structure pieces and their weights
      */
     public void prepareStructurePieces() {
-        pieceList = new ArrayList<TFStrongholdPieceWeight>();
+        pieceList = new ArrayList<>();
 
         for (TFStrongholdPieceWeight piece : pieceWeightArray) {
             piece.instancesSpawned = 0;
@@ -90,9 +90,8 @@ public class TFStrongholdPieces {
         return flag;
     }
 
-    @SuppressWarnings("rawtypes")
-    public StructureTFStrongholdComponent getNextComponent(StructureComponent parent, List list, Random random,
-            int index, int facing, int x, int y, int z) {
+    public StructureTFStrongholdComponent getNextComponent(StructureComponent parent, List<StructureComponent> list,
+            Random random, int index, int facing, int x, int y, int z) {
         if (!hasMoreLimitedPieces()) {
             return null;
         } else {
@@ -150,22 +149,8 @@ public class TFStrongholdPieces {
             return (StructureTFStrongholdComponent) pieceClass
                     .getConstructor(int.class, int.class, int.class, int.class, int.class)
                     .newInstance(index, facing, x, y, z);
-        } catch (InstantiationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SecurityException e) {
+        } catch (InstantiationException | SecurityException | NoSuchMethodException | InvocationTargetException
+                | IllegalArgumentException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

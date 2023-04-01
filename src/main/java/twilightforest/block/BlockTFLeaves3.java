@@ -84,9 +84,8 @@ public class BlockTFLeaves3 extends BlockLeaves {
         return Blocks.leaves.getIcon(i, 0 & 3);
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
         for (int meta = 0; meta < names.length; meta++) {
             itemList.add(new ItemStack(item, 1, meta));
         }

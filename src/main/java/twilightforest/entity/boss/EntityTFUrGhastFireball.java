@@ -1,6 +1,5 @@
 package twilightforest.entity.boss;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.util.DamageSource;
@@ -24,7 +23,7 @@ public class EntityTFUrGhastFireball extends EntityLargeFireball {
             }
 
             this.worldObj.newExplosion(
-                    (Entity) null,
+                    null,
                     this.posX,
                     this.posY,
                     this.posZ,

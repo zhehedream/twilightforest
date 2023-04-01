@@ -33,7 +33,7 @@ import twilightforest.structures.lichtower.ComponentTFTowerWing;
 public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
 
     protected boolean keyTower = false;
-    protected ArrayList<EnumDarkTowerDoor> openingTypes = new ArrayList<EnumDarkTowerDoor>();
+    protected ArrayList<EnumDarkTowerDoor> openingTypes = new ArrayList<>();
 
     public ComponentTFDarkTowerWing() {
         super();
@@ -101,9 +101,8 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {
             this.deco = ((StructureTFComponent) parent).deco;
         }
@@ -169,24 +168,12 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
     public void makeARoof(StructureComponent parent, List<StructureComponent> list, Random rand) {
         int index = this.getComponentType();
 
-        ComponentTFTowerRoof roof;
-
-        switch (rand.nextInt(5)) {
-            case 0:
-            case 1:
-            default:
-                roof = new ComponentTFDarkTowerRoofAntenna(index, this);
-                break;
-            case 2:
-                roof = new ComponentTFDarkTowerRoofCactus(index, this);
-                break;
-            case 3:
-                roof = new ComponentTFDarkTowerRoofRings(index, this);
-                break;
-            case 4:
-                roof = new ComponentTFDarkTowerRoofFourPost(index, this);
-                break;
-        }
+        ComponentTFTowerRoof roof = switch (rand.nextInt(5)) {
+            default -> new ComponentTFDarkTowerRoofAntenna(index, this);
+            case 2 -> new ComponentTFDarkTowerRoofCactus(index, this);
+            case 3 -> new ComponentTFDarkTowerRoofRings(index, this);
+            case 4 -> new ComponentTFDarkTowerRoofFourPost(index, this);
+        };
 
         list.add(roof);
         roof.buildComponent(this, list, rand);
@@ -965,8 +952,7 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
         int dz = getZWithOffset(x, z);
         if (sbb.isVecInside(dx, dy, dz)) {
             TileEntity tileEntity = world.getTileEntity(dx, dy, dz);
-            if (tileEntity != null && tileEntity instanceof IInventory) {
-                IInventory inventory = (IInventory) tileEntity;
+            if (tileEntity != null && tileEntity instanceof IInventory inventory) {
 
                 // check to see if the item is there, also count empty slots
                 boolean alreadyPresent = false;
@@ -1204,15 +1190,11 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
      * Pick one of the three specified values at random
      */
     protected int pickFrom(Random rand, int i, int j, int k) {
-        switch (rand.nextInt(3)) {
-            case 0:
-            default:
-                return i;
-            case 1:
-                return j;
-            case 2:
-                return k;
-        }
+        return switch (rand.nextInt(3)) {
+            default -> i;
+            case 1 -> j;
+            case 2 -> k;
+        };
     }
 
     /**
@@ -1241,9 +1223,7 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
         for (int x = minX; x <= maxX; x++) {
             for (int y = minY; y <= maxY; y++) {
                 for (int z = minZ; z <= maxZ; z++) {
-                    if (x != minX && x != maxX && y != minY && y != maxY && z != minZ && z != maxZ) {
-                        ;
-                    } else {
+                    if (x != minX && x != maxX && y != minY && y != maxY && z != minZ && z != maxZ) {} else {
                         // wall
                         if (((x == minY || x == maxX) && ((y == minY || y == maxY) || (z == minZ || z == maxZ)))
                                 || ((y == minY || y == maxY) && ((x == minY || x == maxX) || (z == minZ || z == maxZ)))
@@ -1365,16 +1345,14 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
             }
 
             switch (doorType) {
-                case VANISHING:
-                default:
-                    makeDoorOpening(world, doorCoords.posX, doorCoords.posY, doorCoords.posZ, sbb);
-                    break;
-                case REAPPEARING:
-                    makeReappearingDoorOpening(world, doorCoords.posX, doorCoords.posY, doorCoords.posZ, sbb);
-                    break;
-                case LOCKED:
-                    makeLockedDoorOpening(world, doorCoords.posX, doorCoords.posY, doorCoords.posZ, sbb);
-                    break;
+                default -> makeDoorOpening(world, doorCoords.posX, doorCoords.posY, doorCoords.posZ, sbb);
+                case REAPPEARING -> makeReappearingDoorOpening(
+                        world,
+                        doorCoords.posX,
+                        doorCoords.posY,
+                        doorCoords.posZ,
+                        sbb);
+                case LOCKED -> makeLockedDoorOpening(world, doorCoords.posX, doorCoords.posY, doorCoords.posZ, sbb);
             }
 
         }
@@ -1697,47 +1675,63 @@ public class ComponentTFDarkTowerWing extends ComponentTFTowerWing {
 
         if (rotation == 0) {
             switch (direction) {
-                case 2:
+                case 2 -> {
                     return 4;
-                case 3:
+                }
+                case 3 -> {
                     return 3;
-                case 4:
+                }
+                case 4 -> {
                     return 2;
-                case 5:
+                }
+                case 5 -> {
                     return 1;
+                }
             }
         } else if (rotation == 1) {
             switch (direction) {
-                case 2:
+                case 2 -> {
                     return 1;
-                case 3:
+                }
+                case 3 -> {
                     return 2;
-                case 4:
+                }
+                case 4 -> {
                     return 4;
-                case 5:
+                }
+                case 5 -> {
                     return 3;
+                }
             }
         } else if (rotation == 2) {
             switch (direction) {
-                case 2:
+                case 2 -> {
                     return 3;
-                case 3:
+                }
+                case 3 -> {
                     return 4;
-                case 4:
+                }
+                case 4 -> {
                     return 1;
-                case 5:
+                }
+                case 5 -> {
                     return 2;
+                }
             }
         } else if (rotation == 3) {
             switch (direction) {
-                case 2:
+                case 2 -> {
                     return 2;
-                case 3:
+                }
+                case 3 -> {
                     return 1;
-                case 4:
+                }
+                case 4 -> {
                     return 3;
-                case 5:
+                }
+                case 5 -> {
                     return 4;
+                }
             }
         }
 

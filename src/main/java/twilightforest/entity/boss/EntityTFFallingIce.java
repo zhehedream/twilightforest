@@ -64,7 +64,6 @@ public class EntityTFFallingIce extends Entity {
     /**
      * Called to update the entity's position/logic.
      */
-    @SuppressWarnings("unchecked")
     public void onUpdate() {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -100,12 +99,11 @@ public class EntityTFFallingIce extends Entity {
 
         // kill other nearby blocks if they are not as old as this one
         if (!this.worldObj.isRemote) {
-            ArrayList<Entity> nearby = new ArrayList<Entity>(
+            ArrayList<Entity> nearby = new ArrayList<>(
                     this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox));
 
             for (Entity entity : nearby) {
-                if (entity instanceof EntityTFFallingIce) {
-                    EntityTFFallingIce otherIce = (EntityTFFallingIce) entity;
+                if (entity instanceof EntityTFFallingIce otherIce) {
 
                     if (otherIce.getFallTime() < this.fallTime) {
                         otherIce.setDead();
@@ -132,12 +130,11 @@ public class EntityTFFallingIce extends Entity {
     /**
      * Called when the mob is falling. Calculates and applies fall damage.
      */
-    @SuppressWarnings({ "unchecked" })
     protected void fall(float par1) {
         int distance = MathHelper.ceiling_float_int(par1 - 1.0F);
 
         if (distance > 0) {
-            ArrayList<Entity> nearby = new ArrayList<Entity>(
+            ArrayList<Entity> nearby = new ArrayList<>(
                     this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2, 0, 2)));
             DamageSource damagesource = DamageSource.fallingBlock;
             for (Entity entity : nearby) {

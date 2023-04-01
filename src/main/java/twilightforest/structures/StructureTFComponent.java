@@ -1,6 +1,5 @@
 package twilightforest.structures;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -51,41 +50,34 @@ public abstract class StructureTFComponent extends StructureComponent {
 
     public static StructureBoundingBox getComponentToAddBoundingBox(int x, int y, int z, int minX, int minY, int minZ,
             int maxX, int maxY, int maxZ, int dir) {
-        switch (dir) {
-            default:
-            case 0: // '\0'
-                return new StructureBoundingBox(
+        return switch (dir) {
+            default -> // '\0'
+                new StructureBoundingBox(
                         x + minX,
                         y + minY,
                         z + minZ,
                         x + maxX + minX,
                         y + maxY + minY,
                         z + maxZ + minZ);
-            case 1: // '\001'
-                return new StructureBoundingBox(
+            case 1 -> // '\001'
+                new StructureBoundingBox(
                         x - maxZ + minZ,
                         y + minY,
                         z + minX,
                         x + minZ,
                         y + maxY + minY,
                         z + maxX + minX);
-            case 2: // '\002'
-                return new StructureBoundingBox(
+            case 2 -> // '\002'
+                new StructureBoundingBox(
                         x - maxX - minX,
                         y + minY,
                         z - maxZ - minZ,
                         x - minX,
                         y + maxY + minY,
                         z - minZ);
-            case 3: // '\003'
-                return new StructureBoundingBox(
-                        x + minZ,
-                        y + minY,
-                        z - maxX,
-                        x + maxZ + minZ,
-                        y + maxY + minY,
-                        z + minX);
-        }
+            case 3 -> // '\003'
+                new StructureBoundingBox(x + minZ, y + minY, z - maxX, x + maxZ + minZ, y + maxY + minY, z + minX);
+        };
     }
 
     /**
@@ -93,41 +85,34 @@ public abstract class StructureTFComponent extends StructureComponent {
      */
     public static StructureBoundingBox getComponentToAddBoundingBox2(int x, int y, int z, int minX, int minY, int minZ,
             int maxX, int maxY, int maxZ, int dir) {
-        switch (dir) {
-            default:
-            case 0: // '\0'
-                return new StructureBoundingBox(
+        return switch (dir) {
+            default -> // '\0'
+                new StructureBoundingBox(
                         x + minX,
                         y + minY,
                         z + minZ,
                         x + maxX + minX,
                         y + maxY + minY,
                         z + maxZ + minZ);
-            case 1: // '\001'
-                return new StructureBoundingBox(
+            case 1 -> // '\001'
+                new StructureBoundingBox(
                         x - maxZ - minZ,
                         y + minY,
                         z + minX,
                         x - minZ,
                         y + maxY + minY,
                         z + maxX + minX);
-            case 2: // '\002'
-                return new StructureBoundingBox(
+            case 2 -> // '\002'
+                new StructureBoundingBox(
                         x - maxX - minX,
                         y + minY,
                         z - maxZ - minZ,
                         x - minX,
                         y + maxY + minY,
                         z - minZ);
-            case 3: // '\003'
-                return new StructureBoundingBox(
-                        x + minZ,
-                        y + minY,
-                        z - maxX,
-                        x + maxZ + minZ,
-                        y + maxY + minY,
-                        z - minX);
-        }
+            case 3 -> // '\003'
+                new StructureBoundingBox(x + minZ, y + minY, z - maxX, x + maxZ + minZ, y + maxY + minY, z - minX);
+        };
     }
 
     /**
@@ -266,18 +251,13 @@ public abstract class StructureTFComponent extends StructureComponent {
         int dy = getYWithOffset(y);
         int dz = getZWithOffset(x, z);
 
-        switch (direction) {
-            case 0:
-                return new int[] { dx + 1, dy - 1, dz - towerSize / 2 };
-            case 1:
-                return new int[] { dx + towerSize / 2, dy - 1, dz + 1 };
-            case 2:
-                return new int[] { dx - 1, dy - 1, dz + towerSize / 2 };
-            case 3:
-                return new int[] { dx - towerSize / 2, dy - 1, dz - 1 };
-            default:
-                return new int[] { x, y, z };
-        }
+        return switch (direction) {
+            case 0 -> new int[] { dx + 1, dy - 1, dz - towerSize / 2 };
+            case 1 -> new int[] { dx + towerSize / 2, dy - 1, dz + 1 };
+            case 2 -> new int[] { dx - 1, dy - 1, dz + towerSize / 2 };
+            case 3 -> new int[] { dx - towerSize / 2, dy - 1, dz - 1 };
+            default -> new int[] { x, y, z };
+        };
     }
 
     /**
@@ -289,21 +269,16 @@ public abstract class StructureTFComponent extends StructureComponent {
         int dy = getYWithOffset(y);
         int dz = getZWithOffset(x, z);
 
-        switch (direction) {
-            case 0:
-                return new ChunkCoordinates(dx + 1, dy - 1, dz - towerSize / 2);
-            case 1:
-                return new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz + 1);
-            case 2:
-                return new ChunkCoordinates(dx - 1, dy - 1, dz + towerSize / 2);
-            case 3:
-                return new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz - 1);
-            default:
-                return new ChunkCoordinates(x, y, z);
-        }
+        return switch (direction) {
+            case 0 -> new ChunkCoordinates(dx + 1, dy - 1, dz - towerSize / 2);
+            case 1 -> new ChunkCoordinates(dx + towerSize / 2, dy - 1, dz + 1);
+            case 2 -> new ChunkCoordinates(dx - 1, dy - 1, dz + towerSize / 2);
+            case 3 -> new ChunkCoordinates(dx - towerSize / 2, dy - 1, dz - 1);
+            default -> new ChunkCoordinates(x, y, z);
+        };
     }
 
-    public int[] getOffsetAsIfRotated(int src[], int rotation) {
+    public int[] getOffsetAsIfRotated(int[] src, int rotation) {
         int temp = this.getCoordBaseMode();
         int[] dest = new int[3];
         this.setCoordBaseMode(rotation);
@@ -317,17 +292,17 @@ public abstract class StructureTFComponent extends StructureComponent {
     }
 
     protected int getXWithOffset(int x, int z) {
-        switch (getCoordBaseMode()) {
-            case 0: // '\0'
-                return boundingBox.minX + x;
-            case 1: // '\001'
-                return boundingBox.maxX - z;
-            case 2: // '\002'
-                return boundingBox.maxX - x;
-            case 3: // '\003'
-                return boundingBox.minX + z;
-        }
-        return x;
+        return switch (getCoordBaseMode()) {
+            case 0 -> // '\0'
+                boundingBox.minX + x;
+            case 1 -> // '\001'
+                boundingBox.maxX - z;
+            case 2 -> // '\002'
+                boundingBox.maxX - x;
+            case 3 -> // '\003'
+                boundingBox.minX + z;
+            default -> x;
+        };
     }
 
     protected int getYWithOffset(int par1) {
@@ -335,17 +310,17 @@ public abstract class StructureTFComponent extends StructureComponent {
     }
 
     protected int getZWithOffset(int x, int z) {
-        switch (getCoordBaseMode()) {
-            case 0: // '\0'
-                return boundingBox.minZ + z;
-            case 1: // '\001'
-                return boundingBox.minZ + x;
-            case 2: // '\002'
-                return boundingBox.maxZ - z;
-            case 3: // '\003'
-                return boundingBox.maxZ - x;
-        }
-        return z;
+        return switch (getCoordBaseMode()) {
+            case 0 -> // '\0'
+                boundingBox.minZ + z;
+            case 1 -> // '\001'
+                boundingBox.minZ + x;
+            case 2 -> // '\002'
+                boundingBox.maxZ - z;
+            case 3 -> // '\003'
+                boundingBox.maxZ - x;
+            default -> z;
+        };
     }
 
     /**
@@ -356,34 +331,26 @@ public abstract class StructureTFComponent extends StructureComponent {
             return x;
         }
 
-        switch ((coordBaseMode + rotation) % 4) {
-            case 0:
-                return boundingBox.minX + x;
-            case 1:
-                return boundingBox.maxX - z;
-            case 2:
-                return boundingBox.maxX - x;
-            case 3:
-                return boundingBox.minX + z;
-        }
-        return x;
+        return switch ((coordBaseMode + rotation) % 4) {
+            case 0 -> boundingBox.minX + x;
+            case 1 -> boundingBox.maxX - z;
+            case 2 -> boundingBox.maxX - x;
+            case 3 -> boundingBox.minX + z;
+            default -> x;
+        };
     }
 
     protected int getZWithOffsetAsIfRotated(int x, int z, int rotation) {
         if (coordBaseMode < 0) {
             return x;
         } else {
-            switch ((coordBaseMode + rotation) % 4) {
-                case 0:
-                    return boundingBox.minZ + z;
-                case 1:
-                    return boundingBox.minZ + x;
-                case 2:
-                    return boundingBox.maxZ - z;
-                case 3:
-                    return boundingBox.maxZ - x;
-            }
-            return z;
+            return switch ((coordBaseMode + rotation) % 4) {
+                case 0 -> boundingBox.minZ + z;
+                case 1 -> boundingBox.minZ + x;
+                case 2 -> boundingBox.maxZ - z;
+                case 3 -> boundingBox.maxZ - x;
+                default -> z;
+            };
         }
     }
 
@@ -502,18 +469,13 @@ public abstract class StructureTFComponent extends StructureComponent {
      * @return
      */
     protected int getStairMeta(int dir) {
-        switch ((this.getCoordBaseMode() + dir) % 4) {
-            case 0:
-                return 0;
-            case 1:
-                return 2;
-            case 2:
-                return 1;
-            case 3:
-                return 3;
-            default:
-                return -1; // this is impossible
-        }
+        return switch ((this.getCoordBaseMode() + dir) % 4) {
+            case 0 -> 0;
+            case 1 -> 2;
+            case 2 -> 1;
+            case 3 -> 3;
+            default -> -1; // this is impossible
+        };
     }
 
     /**
@@ -524,18 +486,13 @@ public abstract class StructureTFComponent extends StructureComponent {
      */
     protected int getLadderMeta(int ladderDir) {
         // ladder data values are... dumb.
-        switch ((this.getCoordBaseMode() + ladderDir) % 4) {
-            case 0:
-                return 4;
-            case 1:
-                return 2;
-            case 2:
-                return 5;
-            case 3:
-                return 3;
-            default:
-                return -1; // this is impossible
-        }
+        return switch ((this.getCoordBaseMode() + ladderDir) % 4) {
+            case 0 -> 4;
+            case 1 -> 2;
+            case 2 -> 5;
+            case 3 -> 3;
+            default -> -1; // this is impossible
+        };
     }
 
     /**
@@ -653,21 +610,13 @@ public abstract class StructureTFComponent extends StructureComponent {
     /**
      * Discover if bounding box can fit within the current bounding box object.
      */
-    public static StructureComponent findIntersectingExcluding(List list, StructureBoundingBox toCheck,
-            StructureComponent exclude) {
-        Iterator iterator = list.iterator();
-        StructureComponent structurecomponent;
-
-        do {
-            if (!iterator.hasNext()) {
-                return null;
-            }
-
-            structurecomponent = (StructureComponent) iterator.next();
-        } while (structurecomponent == exclude || structurecomponent.getBoundingBox() == null
-                || !structurecomponent.getBoundingBox().intersectsWith(toCheck));
-
-        return structurecomponent;
+    public static StructureComponent findIntersectingExcluding(List<StructureComponent> list,
+            StructureBoundingBox toCheck, StructureComponent exclude) {
+        return list.stream()
+                .filter(
+                        component -> component != exclude && component.getBoundingBox() != null
+                                && component.getBoundingBox().intersectsWith(toCheck))
+                .findFirst().orElse(null);
     }
 
 }

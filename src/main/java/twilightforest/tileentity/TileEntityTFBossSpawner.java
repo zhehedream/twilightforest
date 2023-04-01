@@ -15,9 +15,7 @@ public abstract class TileEntityTFBossSpawner extends TileEntity {
 
     protected Entity displayCreature = null;
 
-    public TileEntityTFBossSpawner() {
-        ;
-    }
+    public TileEntityTFBossSpawner() {}
 
     /**
      * Is there a player in our detection range?

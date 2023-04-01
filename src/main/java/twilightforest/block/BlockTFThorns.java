@@ -29,8 +29,8 @@ public class BlockTFThorns extends BlockRotatedPillar {
     private static final float THORN_DAMAGE = 4.0F;
 
     private String[] names;
-    private IIcon sideIcons[];
-    private IIcon topIcons[];
+    private IIcon[] sideIcons;
+    private IIcon[] topIcons;
 
     protected BlockTFThorns() {
         super(Material.wood);
@@ -77,33 +77,29 @@ public class BlockTFThorns extends BlockRotatedPillar {
         int rotation = meta & 12;
         float pixel = 0.0625F;
 
-        switch (rotation) {
-            case 0:
-            default:
-                return AxisAlignedBB.getBoundingBox(
-                        x + pixel * 3F,
-                        y,
-                        z + pixel * 3F,
-                        x + 1F - pixel * 3F,
-                        y + 1F,
-                        z + 1F - pixel * 3F);
-            case 4:
-                return AxisAlignedBB.getBoundingBox(
-                        x,
-                        y + pixel * 3F,
-                        z + pixel * 3F,
-                        x + 1F,
-                        y + 1F - pixel * 3F,
-                        z + 1F - pixel * 3F);
-            case 8:
-                return AxisAlignedBB.getBoundingBox(
-                        x + pixel * 3F,
-                        y + pixel * 3F,
-                        z,
-                        x + 1F - pixel * 3F,
-                        y + 1F - pixel * 3F,
-                        z + 1F);
-        }
+        return switch (rotation) {
+            default -> AxisAlignedBB.getBoundingBox(
+                    x + pixel * 3F,
+                    y,
+                    z + pixel * 3F,
+                    x + 1F - pixel * 3F,
+                    y + 1F,
+                    z + 1F - pixel * 3F);
+            case 4 -> AxisAlignedBB.getBoundingBox(
+                    x,
+                    y + pixel * 3F,
+                    z + pixel * 3F,
+                    x + 1F,
+                    y + 1F - pixel * 3F,
+                    z + 1F - pixel * 3F);
+            case 8 -> AxisAlignedBB.getBoundingBox(
+                    x + pixel * 3F,
+                    y + pixel * 3F,
+                    z,
+                    x + 1F - pixel * 3F,
+                    y + 1F - pixel * 3F,
+                    z + 1F);
+        };
 
     }
 
@@ -156,18 +152,18 @@ public class BlockTFThorns extends BlockRotatedPillar {
         int rotation = meta & 12;
 
         switch (rotation) {
-            case 0:
+            case 0 -> {
                 growThorns(world, x, y, z, ForgeDirection.UP);
                 growThorns(world, x, y, z, ForgeDirection.DOWN);
-                break;
-            case 4:
+            }
+            case 4 -> {
                 growThorns(world, x, y, z, ForgeDirection.EAST);
                 growThorns(world, x, y, z, ForgeDirection.WEST);
-                break;
-            case 8:
+            }
+            case 8 -> {
                 growThorns(world, x, y, z, ForgeDirection.NORTH);
                 growThorns(world, x, y, z, ForgeDirection.SOUTH);
-                break;
+            }
         }
 
         // also try three random directions
@@ -218,19 +214,11 @@ public class BlockTFThorns extends BlockRotatedPillar {
      * @return
      */
     public static int getMetaFor(ForgeDirection dir) {
-        switch (dir) {
-            case UNKNOWN:
-            default:
-            case UP:
-            case DOWN:
-                return 0;
-            case EAST:
-            case WEST:
-                return 4;
-            case NORTH:
-            case SOUTH:
-                return 8;
-        }
+        return switch (dir) {
+            default -> 0;
+            case EAST, WEST -> 4;
+            case NORTH, SOUTH -> 8;
+        };
     }
 
     /**
@@ -291,9 +279,8 @@ public class BlockTFThorns extends BlockRotatedPillar {
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         for (int i = 0; i < getNames().length; i++) {
             par3List.add(new ItemStack(par1, 1, i));
         }

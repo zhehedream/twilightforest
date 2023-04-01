@@ -53,7 +53,7 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
     }
 
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         if (parent != null && parent instanceof StructureTFComponent) {
             this.deco = ((StructureTFComponent) parent).deco;
         }
@@ -191,8 +191,7 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
         // go through list. if there are any same size towers within wingSize, return their xyz instead
 
         for (Object obj : list) {
-            if (obj instanceof ComponentTFTowerWing && !(obj instanceof ComponentTFMushroomTowerBridge)) {
-                ComponentTFTowerWing otherWing = (ComponentTFTowerWing) obj;
+            if (obj instanceof ComponentTFTowerWing otherWing && !(obj instanceof ComponentTFMushroomTowerBridge)) {
 
                 if (wingSize == otherWing.size
                         && otherWing.getBoundingBox().intersectsWith(x - 3, z - 3, x + 3, z + 3)) {
@@ -203,14 +202,18 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
                     // otherWing.getBoundingBox().minZ + " other.maxZ = " + otherWing.getBoundingBox().maxZ);
 
                     switch (direction) {
-                        case 0:
+                        case 0 -> {
                             return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().minZ };
-                        case 1:
+                        }
+                        case 1 -> {
                             return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().minZ };
-                        case 2:
+                        }
+                        case 2 -> {
                             return new int[] { otherWing.getBoundingBox().maxX, y, otherWing.getBoundingBox().maxZ };
-                        case 3:
+                        }
+                        case 3 -> {
                             return new int[] { otherWing.getBoundingBox().minX, y, otherWing.getBoundingBox().maxZ };
+                        }
                     }
                 }
             }
@@ -230,9 +233,8 @@ public class ComponentTFMushroomTowerWing extends ComponentTFTowerWing {
         boxAbove.maxY = 256;
 
         for (Object obj : list) {
-            if (this != obj && obj instanceof ComponentTFTowerWing
+            if (this != obj && obj instanceof ComponentTFTowerWing otherWing
                     && !(obj instanceof ComponentTFMushroomTowerBridge)) {
-                ComponentTFTowerWing otherWing = (ComponentTFTowerWing) obj;
 
                 if (size == otherWing.size && otherWing.getBoundingBox().intersectsWith(boxAbove)) {
                     // System.out.println("This tower (" + boundingBox + ") is not the highest, there is " + otherWing +

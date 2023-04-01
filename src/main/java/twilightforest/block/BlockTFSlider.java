@@ -53,33 +53,29 @@ public class BlockTFSlider extends BlockRotatedPillar {
         float pixel = 0.0625F;
         float inset = 5F;
 
-        switch (rotation) {
-            case 0:
-            default:
-                return AxisAlignedBB.getBoundingBox(
-                        x + pixel * inset,
-                        y,
-                        z + pixel * inset,
-                        x + 1F - pixel * inset,
-                        y + 1F,
-                        z + 1F - pixel * inset);
-            case 4:
-                return AxisAlignedBB.getBoundingBox(
-                        x,
-                        y + pixel * inset,
-                        z + pixel * inset,
-                        x + 1F,
-                        y + 1F - pixel * inset,
-                        z + 1F - pixel * inset);
-            case 8:
-                return AxisAlignedBB.getBoundingBox(
-                        x + pixel * inset,
-                        y + pixel * inset,
-                        z,
-                        x + 1F - pixel * inset,
-                        y + 1F - pixel * inset,
-                        z + 1F);
-        }
+        return switch (rotation) {
+            default -> AxisAlignedBB.getBoundingBox(
+                    x + pixel * inset,
+                    y,
+                    z + pixel * inset,
+                    x + 1F - pixel * inset,
+                    y + 1F,
+                    z + 1F - pixel * inset);
+            case 4 -> AxisAlignedBB.getBoundingBox(
+                    x,
+                    y + pixel * inset,
+                    z + pixel * inset,
+                    x + 1F,
+                    y + 1F - pixel * inset,
+                    z + 1F - pixel * inset);
+            case 8 -> AxisAlignedBB.getBoundingBox(
+                    x + pixel * inset,
+                    y + pixel * inset,
+                    z,
+                    x + 1F - pixel * inset,
+                    y + 1F - pixel * inset,
+                    z + 1F);
+        };
 
     }
 
@@ -106,16 +102,9 @@ public class BlockTFSlider extends BlockRotatedPillar {
         float inset = 5F;
 
         switch (rotation) {
-            case 0:
-            default:
-                this.setBlockBounds(pixel * inset, 0, pixel * inset, 1F - pixel * inset, 1F, 1F - pixel * inset);
-                break;
-            case 4:
-                this.setBlockBounds(0, pixel * inset, pixel * inset, 1F, 1F - pixel * inset, 1F - pixel * inset);
-                break;
-            case 8:
-                this.setBlockBounds(pixel * inset, pixel * inset, 0, 1F - pixel * inset, 1F - pixel * inset, 1F);
-                break;
+            default -> this.setBlockBounds(pixel * inset, 0, pixel * inset, 1F - pixel * inset, 1F, 1F - pixel * inset);
+            case 4 -> this.setBlockBounds(0, pixel * inset, pixel * inset, 1F, 1F - pixel * inset, 1F - pixel * inset);
+            case 8 -> this.setBlockBounds(pixel * inset, pixel * inset, 0, 1F - pixel * inset, 1F - pixel * inset, 1F);
         }
     }
 
@@ -149,32 +138,21 @@ public class BlockTFSlider extends BlockRotatedPillar {
         int rotation = meta & 12;
 
         if (rotation == 0) {
-            switch (side) {
-                case 0:
-                case 1:
-                    return this.topIcon;
-                default:
-                    return this.vertIcon;
-            }
+            return switch (side) {
+                case 0, 1 -> this.topIcon;
+                default -> this.vertIcon;
+            };
         } else if (rotation == 4) {
-            switch (side) {
-                case 4:
-                case 5:
-                    return this.topIcon;
-                default:
-                    return this.horiIcon;
-            }
+            return switch (side) {
+                case 4, 5 -> this.topIcon;
+                default -> this.horiIcon;
+            };
         } else { // rotation == 8
-            switch (side) {
-                case 2:
-                case 3:
-                    return this.topIcon;
-                case 0:
-                case 1:
-                    return this.vertIcon;
-                default:
-                    return this.horiIcon;
-            }
+            return switch (side) {
+                case 2, 3 -> this.topIcon;
+                case 0, 1 -> this.vertIcon;
+                default -> this.horiIcon;
+            };
         }
 
         // int type = 0;
@@ -304,7 +282,7 @@ public class BlockTFSlider extends BlockRotatedPillar {
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));

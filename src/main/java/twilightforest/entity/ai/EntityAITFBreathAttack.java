@@ -114,7 +114,6 @@ public class EntityAITFBreathAttack extends EntityAIBase {
     /**
      * What, if anything, is the head currently looking at?
      */
-    @SuppressWarnings("unchecked")
     private Entity getHeadLookTarget() {
         Entity pointedEntity = null;
         double range = 30.0D;
@@ -132,8 +131,7 @@ public class EntityAITFBreathAttack extends EntityAIBase {
         for (Entity possibleEntity : possibleList) {
             if (possibleEntity.canBeCollidedWith() && possibleEntity != this.entityHost) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox
-                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand(borderSize, borderSize, borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {

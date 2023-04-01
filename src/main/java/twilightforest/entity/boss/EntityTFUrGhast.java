@@ -68,8 +68,8 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
         this.noClip = true;
 
-        this.trapLocations = new ArrayList<ChunkCoordinates>();
-        this.travelCoords = new ArrayList<ChunkCoordinates>();
+        this.trapLocations = new ArrayList<>();
+        this.travelCoords = new ArrayList<>();
 
         this.setInTantrum(false);
 
@@ -224,7 +224,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
      */
     protected void spawnGhastsAtTraps() {
         // spawn ghasts around two of the traps
-        ArrayList<ChunkCoordinates> ghastSpawns = new ArrayList<ChunkCoordinates>(this.trapLocations);
+        ArrayList<ChunkCoordinates> ghastSpawns = new ArrayList<>(this.trapLocations);
 
         int numSpawns = Math.min(2, ghastSpawns.size());
 
@@ -290,7 +290,6 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     /**
      * Altered Ghast AI
      */
-    @SuppressWarnings("unchecked")
     protected void updateEntityActionState() {
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
             this.setDead();
@@ -375,7 +374,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         // move?
         if (this.courseChangeCooldown-- <= 0) {
             this.courseChangeCooldown += this.rand.nextInt(5) + 0;
-            distanceToWaypoint = (double) MathHelper.sqrt_double(distanceToWaypoint);
+            distanceToWaypoint = MathHelper.sqrt_double(distanceToWaypoint);
 
             double speed = 0.05D;
             this.motionX += offsetX / distanceToWaypoint * speed;
@@ -428,11 +427,10 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
                 : (this.aggroCounter > 0 || this.isAggressive) ? 1 : 0);
 
         if (currentAggroStatus != newAggroStatus) {
-            this.dataWatcher.updateObject(16, Byte.valueOf(newAggroStatus));
+            this.dataWatcher.updateObject(16, newAggroStatus);
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void doTantrumDamageEffects() {
         // harm player below
         AxisAlignedBB below = this.boundingBox.getOffsetBoundingBox(0, -16, 0).expand(0, 16, 0);
@@ -553,7 +551,6 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
     /**
      * Check if there are at least 4 ghasts near at least 2 traps. Return false if not.
      */
-    @SuppressWarnings("unchecked")
     private boolean checkGhastsAtTraps() {
         int trapsWithEnoughGhasts = 0;
 
@@ -588,9 +585,9 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
 
         if (!this.noTrapMode) {
             // make a copy of the trap locations list
-            potentialPoints = new ArrayList<ChunkCoordinates>(this.trapLocations);
+            potentialPoints = new ArrayList<>(this.trapLocations);
         } else {
-            potentialPoints = new ArrayList<ChunkCoordinates>();
+            potentialPoints = new ArrayList<>();
             potentialPoints.add(new ChunkCoordinates(px + 20, py - HOVER_ALTITUDE, pz));
             potentialPoints.add(new ChunkCoordinates(px, py - HOVER_ALTITUDE, pz - 20));
             potentialPoints.add(new ChunkCoordinates(px - 20, py - HOVER_ALTITUDE, pz));
@@ -626,8 +623,7 @@ public class EntityTFUrGhast extends EntityTFTowerGhast implements IBossDisplayD
         double offsetZ = this.targetedEntity.posZ - this.posZ;
 
         // fireball sound effect
-        this.worldObj
-                .playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+        this.worldObj.playAuxSFXAtEntity(null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
 
         EntityTFUrGhastFireball entityFireball = new EntityTFUrGhastFireball(
                 this.worldObj,

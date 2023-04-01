@@ -146,9 +146,8 @@ public class EntityTFIceBomb extends EntityThrowable {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void hitNearbyEntities() {
-        ArrayList<Entity> nearby = new ArrayList<Entity>(
+        ArrayList<Entity> nearby = new ArrayList<>(
                 this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(3, 2, 3)));
 
         for (Entity entity : nearby) {

@@ -68,7 +68,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class TFEventListener {
 
-    protected HashMap<String, InventoryPlayer> playerKeepsMap = new HashMap<String, InventoryPlayer>();
+    protected HashMap<String, InventoryPlayer> playerKeepsMap = new HashMap<>();
     private boolean isBreakingWithGiantPick = false;
     private boolean shouldMakeGiantCobble = false;
     private int amountOfCobbleToReplace = 0;
@@ -93,21 +93,11 @@ public class TFEventListener {
                 // trophy gives kill achievement
             } else if (item == TFItems.trophy) {
                 switch (event.item.getEntityItem().getItemDamage()) {
-                    case 0:
-                        event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
-                        break;
-                    case 1:
-                        event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
-                        break;
-                    case 2:
-                        event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
-                        break;
-                    case 3:
-                        event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
-                        break;
-                    case 4:
-                        event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
-                        break;
+                    case 0 -> event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillHydra);
+                    case 1 -> event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillNaga);
+                    case 2 -> event.entityPlayer.triggerAchievement(TFAchievementPage.twilightKillLich);
+                    case 3 -> event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressUrghast);
+                    case 4 -> event.entityPlayer.triggerAchievement(TFAchievementPage.twilightProgressGlacier);
                 }
                 // mazebreaker
             } else if (item == TFItems.mazebreakerPick) {
@@ -258,8 +248,8 @@ public class TFEventListener {
         if (event.harvester != null && event.harvester.inventory.getCurrentItem() != null
                 && event.harvester.inventory.getCurrentItem().getItem().func_150897_b(event.block)) {
             if (event.harvester.inventory.getCurrentItem().getItem() == TFItems.fieryPick) {
-                ArrayList<ItemStack> removeThese = new ArrayList<ItemStack>(1);
-                ArrayList<ItemStack> addThese = new ArrayList<ItemStack>(1);
+                ArrayList<ItemStack> removeThese = new ArrayList<>(1);
+                ArrayList<ItemStack> addThese = new ArrayList<>(1);
 
                 for (ItemStack input : event.drops) {
                     // does it smelt?
@@ -496,9 +486,8 @@ public class TFEventListener {
      */
     @SubscribeEvent
     public void livingDies(LivingDeathEvent event) {
-        if (event.entityLiving instanceof EntityPlayer
+        if (event.entityLiving instanceof EntityPlayer player
                 && !event.entityLiving.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             // TODO: Add support for keeping Bauble slot items on all tiers
             if (player.inventory.consumeInventoryItem(TFItems.charmOfKeeping3)) {
@@ -749,8 +738,7 @@ public class TFEventListener {
                                         && blockThere == event.block
                                         && metaThere == event.blockMetadata) {
                                     // try to break that block too!
-                                    if (event.getPlayer() instanceof EntityPlayerMP) {
-                                        EntityPlayerMP playerMP = (EntityPlayerMP) event.getPlayer();
+                                    if (event.getPlayer() instanceof EntityPlayerMP playerMP) {
 
                                         playerMP.theItemInWorldManager.tryHarvestBlock(bx + dx, by + dy, bz + dz);
                                     }
@@ -999,7 +987,7 @@ public class TFEventListener {
     public void commandSent(CommandEvent event) {
         if (event.command instanceof CommandGameRule && event.parameters.length > 1
                 && TwilightForestMod.ENFORCED_PROGRESSION_RULE.equals(event.parameters[0])) {
-            boolean isEnforced = Boolean.valueOf(event.parameters[1]);
+            boolean isEnforced = Boolean.parseBoolean(event.parameters[1]);
             TwilightForestMod.genericChannel
                     .sendToAll(TFGenericPacketHandler.makeEnforcedProgressionStatusPacket(isEnforced));
         }

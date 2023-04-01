@@ -276,9 +276,9 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
         // move bodies
         moveSegments();
 
-        for (int i = 0; i < body.length; i++) {
-            if (!body[i].addedToChunk && !worldObj.isRemote) {
-                worldObj.spawnEntityInWorld(body[i]);
+        for (EntityTFNagaSegment entityTFNagaSegment : body) {
+            if (!entityTFNagaSegment.addedToChunk && !worldObj.isRemote) {
+                worldObj.spawnEntityInWorld(entityTFNagaSegment);
             }
         }
     }
@@ -1010,7 +1010,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
             body[i].motionY = f * diff.yCoord;
             body[i].motionZ = f * diff.zCoord;
 
-            double distance = (double) MathHelper.sqrt_double(diff.xCoord * diff.xCoord + diff.zCoord * diff.zCoord);
+            double distance = MathHelper.sqrt_double(diff.xCoord * diff.xCoord + diff.zCoord * diff.zCoord);
 
             if (i == 0) {
                 diff.yCoord -= 0.15D;
@@ -1038,7 +1038,7 @@ public class EntityTFNaga extends EntityMob implements IMob, IBossDisplayData, I
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         ChunkCoordinates home = this.getHomePosition();
-        nbttagcompound.setTag("Home", newDoubleNBTList(new double[] { home.posX, home.posY, home.posZ }));
+        nbttagcompound.setTag("Home", newDoubleNBTList(home.posX, home.posY, home.posZ));
         nbttagcompound.setBoolean("HasHome", this.hasHome());
         super.writeEntityToNBT(nbttagcompound);
     }

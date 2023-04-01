@@ -1,7 +1,6 @@
 package twilightforest.client.renderer;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -56,42 +55,30 @@ public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
         // wall mounted?
         if (meta != 1) {
             switch (meta) {
-                case 2:
-                    onGround = false;
-                    break;
-                case 3:
+                case 2 -> onGround = false;
+                case 3 -> {
                     onGround = false;
                     rotation = 180.0F;
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     onGround = false;
                     rotation = 270.0F;
-                    break;
-                case 5:
-                default:
+                }
+                default -> {
                     onGround = false;
                     rotation = 90.0F;
+                }
             }
         }
 
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
 
         switch (trophy.func_145904_a()) {
-            case 0:
-                renderHydraHead(rotation, onGround);
-                break;
-            case 1:
-                renderNagaHead(rotation, onGround);
-                break;
-            case 2:
-                renderLichHead(rotation, onGround);
-                break;
-            case 3:
-                renderUrGhastHead(trophy, rotation, onGround, partialTime);
-                break;
-            case 4:
-                renderSnowQueenHead(rotation, onGround);
-                break;
+            case 0 -> renderHydraHead(rotation, onGround);
+            case 1 -> renderNagaHead(rotation, onGround);
+            case 2 -> renderLichHead(rotation, onGround);
+            case 3 -> renderUrGhastHead(trophy, rotation, onGround, partialTime);
+            case 4 -> renderSnowQueenHead(rotation, onGround);
         }
 
         GL11.glPopMatrix();
@@ -119,7 +106,7 @@ public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
         hydraHeadModel.openMouthForTrophy(onGround ? 0F : 0.25F);
 
         // render the hydra head
-        hydraHeadModel.render((Entity) null, 0.0F, 0.0F, 0.0F, rotation, 0.0F, 0.0625F);
+        hydraHeadModel.render(null, 0.0F, 0.0F, 0.0F, rotation, 0.0F, 0.0625F);
     }
 
     private void renderNagaHead(float rotation, boolean onGround) {
@@ -139,7 +126,7 @@ public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0, onGround ? 1F : -0F, onGround ? 0F : 1F);
 
         // render the naga head
-        nagaHeadModel.render((Entity) null, 0.0F, 0.0F, 0.0F, rotation, 0.0F, 0.0625F);
+        nagaHeadModel.render(null, 0.0F, 0.0F, 0.0F, rotation, 0.0F, 0.0625F);
     }
 
     private void renderLichHead(float rotation, boolean onGround) {
@@ -180,7 +167,7 @@ public class TileEntityTFTrophyRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0, onGround ? 1F : 1F, onGround ? 0F : 0F);
 
         // render the naga head
-        urGhastModel.render((Entity) null, 0.0F, 0, trophy.ticksExisted + partialTime, 0, 0.0F, 0.0625F);
+        urGhastModel.render(null, 0.0F, 0, trophy.ticksExisted + partialTime, 0, 0.0F, 0.0625F);
     }
 
     private void renderSnowQueenHead(float rotation, boolean onGround) {

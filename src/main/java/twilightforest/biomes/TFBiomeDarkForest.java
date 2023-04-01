@@ -18,6 +18,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 
@@ -32,9 +33,8 @@ public class TFBiomeDarkForest extends TFBiomeBase {
 
     private static final int MONSTER_SPAWN_RATE = 20;
     Random monsterRNG;
-    ArrayList<SpawnListEntry> emptyList = new ArrayList<SpawnListEntry>();
+    ArrayList<SpawnListEntry> emptyList = new ArrayList<>();
 
-    @SuppressWarnings("unchecked")
     public TFBiomeDarkForest(int i) {
         super(i);
 
@@ -92,8 +92,8 @@ public class TFBiomeDarkForest extends TFBiomeBase {
      */
     @Override
     public int getBiomeGrassColor(int x, int y, int z) {
-        double var1 = (double) MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
-        double var3 = (double) MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
+        double var1 = MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
+        double var3 = MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ((ColorizerGrass.getGrassColor(var1, var3) & 0xFEFEFE) + 0x1E0E4E) / 2;
 
         // return 0x554114;
@@ -104,17 +104,16 @@ public class TFBiomeDarkForest extends TFBiomeBase {
      */
     @Override
     public int getBiomeFoliageColor(int x, int y, int z) {
-        double var1 = (double) MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
-        double var3 = (double) MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
+        double var1 = MathHelper.clamp_float(this.getFloatTemperature(x, y, z), 0.0F, 1.0F);
+        double var3 = MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ((ColorizerFoliage.getFoliageColor(var1, var3) & 0xFEFEFE) + 0x1E0E4E) / 2;
     }
 
     /**
      * Returns the correspondent list of the EnumCreatureType informed.
      */
-    @SuppressWarnings("rawtypes")
     @Override
-    public List getSpawnableList(EnumCreatureType par1EnumCreatureType) {
+    public List<BiomeGenBase.SpawnListEntry> getSpawnableList(EnumCreatureType par1EnumCreatureType) {
         // if is is monster, then only give it the real list 1/MONSTER_SPAWN_RATE of the time
         if (par1EnumCreatureType == EnumCreatureType.monster) {
             return monsterRNG.nextInt(MONSTER_SPAWN_RATE) == 0 ? this.spawnableMonsterList : emptyList;

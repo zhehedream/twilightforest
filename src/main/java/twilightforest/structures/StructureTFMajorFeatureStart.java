@@ -1,7 +1,6 @@
 package twilightforest.structures;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -92,11 +91,11 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         updateBoundingBox();
 
         if (firstComponent instanceof StructureStrongholdPieces.Stairs2) {
-            List var6 = ((StructureStrongholdPieces.Stairs2) firstComponent).field_75026_c;
+            List<StructureComponent> var6 = ((StructureStrongholdPieces.Stairs2) firstComponent).field_75026_c;
 
             while (!var6.isEmpty()) {
                 int var7 = rand.nextInt(var6.size());
-                StructureComponent var8 = (StructureComponent) var6.remove(var7);
+                StructureComponent var8 = var6.remove(var7);
                 var8.buildComponent(firstComponent, this.components, rand);
             }
 
@@ -106,7 +105,7 @@ public class StructureTFMajorFeatureStart extends StructureStart {
 
             boundingBox.offset(0, offY, 0);
 
-            for (StructureComponent com : (LinkedList<StructureComponent>) getComponents()) {
+            for (StructureComponent com : getComponents()) {
                 com.getBoundingBox().offset(0, offY, 0);
             }
 
@@ -201,7 +200,7 @@ public class StructureTFMajorFeatureStart extends StructureStart {
 
                 boundingBox.offset(0, offY, 0);
 
-                for (StructureComponent com : (LinkedList<StructureComponent>) getComponents()) {
+                for (StructureComponent com : getComponents()) {
                     com.getBoundingBox().offset(0, offY, 0);
                 }
             }
@@ -273,7 +272,7 @@ public class StructureTFMajorFeatureStart extends StructureStart {
         shieldBox.maxY++;
         shieldBox.maxZ++;
 
-        ArrayList<StructureComponent> intersecting = new ArrayList<StructureComponent>();
+        ArrayList<StructureComponent> intersecting = new ArrayList<>();
 
         for (StructureComponent other : otherComponents) {
             if (other != component && shieldBox.intersectsWith(other.getBoundingBox())) {

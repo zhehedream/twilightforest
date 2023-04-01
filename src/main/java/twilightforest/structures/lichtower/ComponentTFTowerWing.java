@@ -2,12 +2,10 @@ package twilightforest.structures.lichtower;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.entity.Entity;
@@ -37,7 +35,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
     protected int height;
     protected Class<? extends ComponentTFTowerRoof> roofType;
 
-    protected ArrayList<ChunkCoordinates> openings = new ArrayList<ChunkCoordinates>();
+    protected ArrayList<ChunkCoordinates> openings = new ArrayList<>();
     protected int highestOpening;
     protected boolean[] openingTowards = new boolean[] { false, false, true, false };
 
@@ -126,7 +124,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
     }
 
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         // we should have a door where we started
         addOpening(0, 1, size / 2, 2);
 
@@ -605,7 +603,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         placeSpawnerAtCurrentPosition(world, rand, size / 2, bottom + 2, size / 2, "Skeleton", sbb);
 
         // floor-to-ceiling chains
-        ArrayList<ChunkCoordinates> chainList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> chainList = new ArrayList<>();
         chainList.add(new ChunkCoordinates(size / 2, bottom + 2, size / 2)); // don't block the spawner
         for (int i = 0; i < size + 2; i++) {
             ChunkCoordinates chain = new ChunkCoordinates(
@@ -657,7 +655,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         }
 
         // slab tables
-        ArrayList<ChunkCoordinates> slabList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> slabList = new ArrayList<>();
         slabList.add(new ChunkCoordinates(size / 2, bottom + 2, size / 2)); // don't block the spawner
         for (int i = 0; i < size - 1; i++) {
             ChunkCoordinates slab = new ChunkCoordinates(
@@ -694,7 +692,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         }
 
         // cacti
-        ArrayList<ChunkCoordinates> cactusList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> cactusList = new ArrayList<>();
         cactusList.add(new ChunkCoordinates(size / 2, bottom + 2, size / 2)); // don't block the spawner
         for (int i = 0; i < size + 12; i++) {
             ChunkCoordinates cactus = new ChunkCoordinates(
@@ -814,22 +812,12 @@ public class ComponentTFTowerWing extends StructureTFComponent {
 
         // 20% chance of a spider spawner!
         if (rand.nextInt(5) == 0) {
-            String spiderName;
-            switch (rand.nextInt(4)) {
-                case 3:
-                    spiderName = "CaveSpider";
-                    break;
-                case 2:
-                    spiderName = TFCreatures.getSpawnerNameFor("Swarm Spider");
-                    break;
-                case 1:
-                    spiderName = TFCreatures.getSpawnerNameFor("Hedge Spider");
-                    break;
-                case 0:
-                default:
-                    spiderName = "Spider";
-                    break;
-            }
+            String spiderName = switch (rand.nextInt(4)) {
+                case 3 -> "CaveSpider";
+                case 2 -> TFCreatures.getSpawnerNameFor("Swarm Spider");
+                case 1 -> TFCreatures.getSpawnerNameFor("Hedge Spider");
+                default -> "Spider";
+            };
 
             placeSpawnerAtCurrentPosition(world, rand, size / 2, bottom + 2, size / 2, spiderName, sbb);
 
@@ -1080,9 +1068,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * Although since there's usually only one opening, I guess it's not bad.
      */
     protected boolean isOpeningPos(int x, int y, int z) {
-        Iterator<ChunkCoordinates> itr = openings.iterator();
-        while (itr.hasNext()) {
-            ChunkCoordinates door = itr.next();
+        for (ChunkCoordinates door : openings) {
             // determine which wall we're at
             ChunkCoordinates inside = new ChunkCoordinates(door);
             if (inside.posX == 0) {
@@ -1122,18 +1108,13 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * @return
      */
     protected int getLadderX(int ladderDir) {
-        switch (ladderDir) {
-            case 0:
-                return size - 2;
-            case 1:
-                return size / 2 + 1;
-            case 2:
-                return 1;
-            case 3:
-                return size / 2 - 1;
-            default:
-                return size / 2;
-        }
+        return switch (ladderDir) {
+            case 0 -> size - 2;
+            case 1 -> size / 2 + 1;
+            case 2 -> 1;
+            case 3 -> size / 2 - 1;
+            default -> size / 2;
+        };
     }
 
     /**
@@ -1144,18 +1125,13 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      */
     protected int getLadderZ(int ladderDir) {
 
-        switch (ladderDir) {
-            case 0:
-                return size / 2 - 1;
-            case 1:
-                return size - 2;
-            case 2:
-                return size / 2 + 1;
-            case 3:
-                return 1;
-            default:
-                return size / 2;
-        }
+        return switch (ladderDir) {
+            case 0 -> size / 2 - 1;
+            case 1 -> size - 2;
+            case 2 -> size / 2 + 1;
+            case 3 -> 1;
+            default -> size / 2;
+        };
     }
 
     /**
@@ -1213,48 +1189,26 @@ public class ComponentTFTowerWing extends StructureTFComponent {
             // decorate below the bottom floor, into the stairs
             if (base > 8) {
                 switch (rand.nextInt(4)) {
-                    case 0:
-                        decorateChandelier(world, rand, base + 1, sbb);
-                        break;
-                    case 1:
-                        decorateHangingChains(world, rand, base + 1, sbb);
-                        break;
-                    case 2:
-                        decorateFloatingBooks(world, rand, base + 1, sbb);
-                        break;
-                    case 3:
-                        decorateFloatingVines(world, rand, base + 1, sbb);
-                        break;
+                    case 0 -> decorateChandelier(world, rand, base + 1, sbb);
+                    case 1 -> decorateHangingChains(world, rand, base + 1, sbb);
+                    case 2 -> decorateFloatingBooks(world, rand, base + 1, sbb);
+                    case 3 -> decorateFloatingVines(world, rand, base + 1, sbb);
                 }
             }
         } else {
             // decorate the top normally
             if (size > 5) {
                 switch (rand.nextInt(4)) {
-                    case 0:
-                        decorateChandelier(world, rand, height, sbb);
-                        break;
-                    case 1:
-                        decorateHangingChains(world, rand, height, sbb);
-                        break;
-                    case 2:
-                        decorateFloatingBooks(world, rand, height, sbb);
-                        break;
-                    case 3:
-                        decorateFloatingVines(world, rand, height, sbb);
-                        break;
+                    case 0 -> decorateChandelier(world, rand, height, sbb);
+                    case 1 -> decorateHangingChains(world, rand, height, sbb);
+                    case 2 -> decorateFloatingBooks(world, rand, height, sbb);
+                    case 3 -> decorateFloatingVines(world, rand, height, sbb);
                 }
             } else if (size > 3) {
                 switch (rand.nextInt(3)) {
-                    case 0:
-                        decorateHangingChains(world, rand, height, sbb);
-                        break;
-                    case 1:
-                        decorateFloatingBooks(world, rand, height, sbb);
-                        break;
-                    case 2:
-                        decorateFloatingVines(world, rand, height, sbb);
-                        break;
+                    case 0 -> decorateHangingChains(world, rand, height, sbb);
+                    case 1 -> decorateFloatingBooks(world, rand, height, sbb);
+                    case 2 -> decorateFloatingVines(world, rand, height, sbb);
                 }
             }
         }
@@ -1319,7 +1273,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      */
     protected void decorateHangingChains(World world, Random rand, int decoTop, StructureBoundingBox sbb) {
         // a list of existing chains
-        ArrayList<ChunkCoordinates> chainList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> chainList = new ArrayList<>();
         // try size + 2 times to find a chain that does not collide
         for (int i = 0; i < size + 2; i++) {
             int filled = size < 15 ? 2 : 4;
@@ -1341,9 +1295,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * Return true if the specified coords are orthogonally adjacent to any other coords on the list.
      */
     protected boolean chainCollides(ChunkCoordinates coords, List<ChunkCoordinates> list) {
-        Iterator<ChunkCoordinates> itr = list.iterator();
-        while (itr.hasNext()) {
-            ChunkCoordinates existing = itr.next();
+        for (ChunkCoordinates existing : list) {
             // if x is within 1 and z is equal, we collide
             if (coords.posZ == existing.posZ && Math.abs(coords.posX - existing.posX) <= 1) {
                 return true;
@@ -1374,39 +1326,38 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         Block ballBlock;
         int ballMeta;
         switch (rand.nextInt(10)) {
-            case 0:
+            case 0 -> {
                 ballBlock = Blocks.iron_block;
                 ballMeta = 0;
-                break;
-            case 1:
+            }
+            case 1 -> {
                 ballBlock = Blocks.bookshelf;
                 ballMeta = 0;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 ballBlock = Blocks.netherrack;
                 ballMeta = 0;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 ballBlock = Blocks.soul_sand;
                 ballMeta = 0;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 ballBlock = Blocks.glass;
                 ballMeta = 0;
-                break;
-            case 5:
+            }
+            case 5 -> {
                 ballBlock = Blocks.lapis_block;
                 ballMeta = 0;
-                break;
-            case 6:
+            }
+            case 6 -> {
                 ballBlock = Blocks.monster_egg;
                 ballMeta = 2;
-                break;
-            case 7:
-            default:
+            }
+            default -> {
                 ballBlock = Blocks.glowstone;
                 ballMeta = 0;
-                break;
+            }
         }
         placeBlockAtCurrentPosition(world, ballBlock, ballMeta, dx, decoTop - length - 2, dz, sbb);
     }
@@ -1418,7 +1369,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      */
     protected void decorateFloatingBooks(World world, Random rand, int decoTop, StructureBoundingBox sbb) {
         // a list of existing bookshelves
-        ArrayList<ChunkCoordinates> shelfList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> shelfList = new ArrayList<>();
         // try size + 2 times to find a shelf that does not collide
         for (int i = 0; i < size + 2; i++) {
             int filled = size < 15 ? 2 : 4;
@@ -1445,7 +1396,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      */
     protected void decorateFloatingVines(World world, Random rand, int decoTop, StructureBoundingBox sbb) {
         // a list of existing blocks
-        ArrayList<ChunkCoordinates> mossList = new ArrayList<ChunkCoordinates>();
+        ArrayList<ChunkCoordinates> mossList = new ArrayList<>();
         // try size + 2 times to find a rock pillar that does not collide
         for (int i = 0; i < size + 2; i++) {
             int filled = size < 15 ? 2 : 4;
@@ -1532,18 +1483,13 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * @return
      */
     protected int getVineMeta(int vineDir) {
-        switch ((this.getCoordBaseMode() + vineDir) % 4) {
-            case 0:
-                return 8;
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 4;
-            default:
-                return -1; // this is impossible
-        }
+        return switch ((this.getCoordBaseMode() + vineDir) % 4) {
+            case 0 -> 8;
+            case 1 -> 1;
+            case 2 -> 2;
+            case 3 -> 4;
+            default -> -1; // this is impossible
+        };
     }
 
     /**
@@ -1571,31 +1517,30 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         Block planterBlock;
         int planterMeta;
         switch (rand.nextInt(6)) {
-            case 0:
+            case 0 -> {
                 planterBlock = Blocks.sapling;
                 planterMeta = 0;
-                break;
-            case 1:
+            }
+            case 1 -> {
                 planterBlock = Blocks.sapling;
                 planterMeta = 1;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 planterBlock = Blocks.sapling;
                 planterMeta = 2;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 planterBlock = Blocks.sapling;
                 planterMeta = 3;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 planterBlock = Blocks.brown_mushroom;
                 planterMeta = 0;
-                break;
-            case 5:
-            default:
+            }
+            default -> {
                 planterBlock = Blocks.red_mushroom;
                 planterMeta = 0;
-                break;
+            }
         }
         placeBlockAtCurrentPosition(world, planterBlock, planterMeta, cx + 0, 2, cz + 0, sbb);
 
@@ -1611,7 +1556,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
             int wx = getXWithOffset(cx, cz);
             int wy = getYWithOffset(2);
             int wz = getZWithOffset(cx, cz);
-            ((BlockMushroom) planterBlock).updateTick(world, wx, wy, wz, world.rand);
+            planterBlock.updateTick(world, wx, wy, wz, world.rand);
         }
 
         // otherwise, place the block into a flowerpot
@@ -1810,20 +1755,13 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         if (size == 5) {
             rise = 4;
             // bleh, a switch.
-            switch (direction) {
-                case 0:
-                    base = 3;
-                    break;
-                case 1:
-                    base = 2;
-                    break;
-                case 2:
-                    base = 5;
-                    break;
-                case 3:
-                    base = 4;
-                    break;
-            }
+            base = switch (direction) {
+                case 0 -> 3;
+                case 1 -> 2;
+                case 2 -> 5;
+                case 3 -> 4;
+                default -> base;
+            };
         }
 
         int flights = ((height - 6 - base) / rise) + 1;
@@ -2228,7 +2166,7 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * At least one of the painting's parameters must be the specified size or greater
      */
     protected EnumArt getPaintingOfSize(Random rand, int minSize) {
-        ArrayList<EnumArt> valid = new ArrayList<EnumArt>();
+        ArrayList<EnumArt> valid = new ArrayList<>();
 
         for (EnumArt art : EnumArt.values()) {
             if (art.sizeX >= minSize || art.sizeY >= minSize) {
@@ -2247,7 +2185,6 @@ public class ComponentTFTowerWing extends StructureTFComponent {
      * This is similar to EntityPainting.isOnValidSurface, except that it does not check for a solid wall behind the
      * painting.
      */
-    @SuppressWarnings("unchecked")
     protected boolean checkPainting(World world, EntityPainting painting, StructureBoundingBox sbb) {
 
         if (painting == null) {
@@ -2296,22 +2233,22 @@ public class ComponentTFTowerWing extends StructureTFComponent {
         // these directions correspond to painting facing directions, not necessarily to the structure
         // orienting directions
         switch (direction) {
-            case 0:
+            case 0 -> {
                 minZ = this.boundingBox.minZ;
                 maxZ = this.boundingBox.minZ;
-                break;
-            case 1:
+            }
+            case 1 -> {
                 maxX = this.boundingBox.maxX;
                 minX = this.boundingBox.maxX;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 maxZ = this.boundingBox.maxZ;
                 minZ = this.boundingBox.maxZ;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 minX = this.boundingBox.minX;
                 maxX = this.boundingBox.minX;
-                break;
+            }
         }
 
         // try 30 times to get a proper result

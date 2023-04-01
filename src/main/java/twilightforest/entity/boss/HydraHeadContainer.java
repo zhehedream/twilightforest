@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragonPart;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -769,7 +768,6 @@ public class HydraHeadContainer {
     /**
      * Execute whatever effect we need. Deal damage with the bite, the breath weapon, or launch mortars when appropriate
      */
-    @SuppressWarnings("unchecked")
     protected void executeAttacks() {
         if (this.currentState == HydraHeadContainer.STATE_MORTAR_LAUNCH && this.ticksProgress % 10 == 0) {
             Entity lookTarget = getHeadLookTarget();
@@ -797,7 +795,7 @@ public class HydraHeadContainer {
                 }
 
                 headEntity.worldObj.playAuxSFXAtEntity(
-                        (EntityPlayer) null,
+                        null,
                         1008,
                         (int) headEntity.posX,
                         (int) headEntity.posY,
@@ -854,7 +852,6 @@ public class HydraHeadContainer {
     /**
      * What, if anything, is the head currently looking at?
      */
-    @SuppressWarnings("unchecked")
     private Entity getHeadLookTarget() {
         Entity pointedEntity = null;
         double range = 30.0D;
@@ -874,8 +871,7 @@ public class HydraHeadContainer {
                     && possibleEntity != neckb
                     && possibleEntity != neckc) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox
-                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand(borderSize, borderSize, borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {
@@ -913,7 +909,6 @@ public class HydraHeadContainer {
     /**
      * Search for nearby heads with the string as their name
      */
-    @SuppressWarnings("unchecked")
     private EntityTFHydraHead findNearbyHead(String string) {
 
         List<EntityTFHydraHead> nearbyHeads = hydraObj.worldObj.getEntitiesWithinAABB(
@@ -1092,8 +1087,7 @@ public class HydraHeadContainer {
      */
     public void faceEntity(Entity entity, float yawConstraint, float pitchConstraint) {
         double yTarget;
-        if (entity instanceof EntityLivingBase) {
-            EntityLivingBase entityliving = (EntityLivingBase) entity;
+        if (entity instanceof EntityLivingBase entityliving) {
             yTarget = entityliving.posY + entityliving.getEyeHeight();
         } else {
             yTarget = (entity.boundingBox.minY + entity.boundingBox.maxY) / 2D;

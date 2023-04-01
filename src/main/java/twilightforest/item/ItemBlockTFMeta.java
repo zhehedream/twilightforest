@@ -31,7 +31,7 @@ public class ItemBlockTFMeta extends ItemBlock {
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
         int meta = itemstack.getItemDamage();
-        return (new StringBuilder()).append(super.getUnlocalizedName()).append(".").append(meta).toString();
+        return super.getUnlocalizedName() + "." + meta;
     }
 
     /**
@@ -45,10 +45,10 @@ public class ItemBlockTFMeta extends ItemBlock {
     /**
      * allows items to add custom lines of information to the mouseover description
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List<String> par3List,
+            boolean par4) {
         super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 
         // add warning for [WIP] tag

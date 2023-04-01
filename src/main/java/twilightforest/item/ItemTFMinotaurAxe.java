@@ -37,7 +37,7 @@ public class ItemTFMinotaurAxe extends ItemAxe {
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         ItemStack istack = new ItemStack(par1, 1, 0);
         // istack.addEnchantment(Enchantment.efficiency, 2);
         par3List.add(istack);
@@ -91,7 +91,8 @@ public class ItemTFMinotaurAxe extends ItemAxe {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List<String> par3List,
+            boolean par4) {
         super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
         par3List.add(StatCollector.translateToLocal(getUnlocalizedName() + ".tooltip"));
     }
@@ -109,14 +110,14 @@ public class ItemTFMinotaurAxe extends ItemAxe {
     /**
      * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
      */
-    public Multimap getItemAttributeModifiers() {
-        Multimap multimap = super.getItemAttributeModifiers();
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
         // remove old damage value
         multimap.removeAll(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
         // add new one
         multimap.put(
                 SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-                new AttributeModifier(field_111210_e, "Tool modifier", (double) this.damageVsEntity, 0));
+                new AttributeModifier(field_111210_e, "Tool modifier", this.damageVsEntity, 0));
         return multimap;
     }
 }

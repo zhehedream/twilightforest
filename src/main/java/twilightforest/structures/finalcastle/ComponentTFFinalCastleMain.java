@@ -45,9 +45,8 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {
         // add foundation
         ComponentTFFinalCastleFoundation48 foundation = new ComponentTFFinalCastleFoundation48(rand, 4, this);
         list.add(foundation);
@@ -232,18 +231,10 @@ public class ComponentTFFinalCastleMain extends StructureTFComponent {
         int dz = getZWithOffset(x, z);
 
         switch (direction) {
-            case 0:
-                dx += howFar;
-                break;
-            case 1:
-                dz += howFar;
-                break;
-            case 2:
-                dx -= howFar;
-                break;
-            case 3:
-                dz -= howFar;
-                break;
+            case 0 -> dx += howFar;
+            case 1 -> dz += howFar;
+            case 2 -> dx -= howFar;
+            case 3 -> dz -= howFar;
         }
 
         // ugh?

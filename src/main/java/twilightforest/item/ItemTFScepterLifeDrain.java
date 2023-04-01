@@ -94,8 +94,7 @@ public class ItemTFScepterLifeDrain extends ItemTF {
 
             if (possibleEntity.canBeCollidedWith()) {
                 float borderSize = possibleEntity.getCollisionBorderSize();
-                AxisAlignedBB collisionBB = possibleEntity.boundingBox
-                        .expand((double) borderSize, (double) borderSize, (double) borderSize);
+                AxisAlignedBB collisionBB = possibleEntity.boundingBox.expand(borderSize, borderSize, borderSize);
                 MovingObjectPosition interceptPos = collisionBB.calculateIntercept(srcVec, destVec);
 
                 if (collisionBB.isVecInside(srcVec)) {
@@ -131,8 +130,7 @@ public class ItemTFScepterLifeDrain extends ItemTF {
             // is the player looking at an entity
             Entity pointedEntity = getPlayerLookTarget(worldObj, player);
 
-            if (pointedEntity != null && pointedEntity instanceof EntityLivingBase) {
-                EntityLivingBase target = (EntityLivingBase) pointedEntity;
+            if (pointedEntity != null && pointedEntity instanceof EntityLivingBase target) {
 
                 if (target.getActivePotionEffect(Potion.moveSlowdown) != null || target.getHealth() < 1) {
 
@@ -155,7 +153,7 @@ public class ItemTFScepterLifeDrain extends ItemTF {
                                 "game.player.hurt.fall.big",
                                 1.0F,
                                 ((itemRand.nextFloat() - itemRand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                        animateTargetShatter(worldObj, (EntityLivingBase) target);
+                        animateTargetShatter(worldObj, target);
                         if (!worldObj.isRemote) {
                             target.setDead();
                             target.onDeath(DamageSource.causeIndirectMagicDamage(player, player));
@@ -275,7 +273,8 @@ public class ItemTFScepterLifeDrain extends ItemTF {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List<String> par3List,
+            boolean par4) {
         super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
         par3List.add((par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage()) + " charges left");
     }

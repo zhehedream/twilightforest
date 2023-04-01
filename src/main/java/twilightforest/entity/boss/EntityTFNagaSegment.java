@@ -147,7 +147,6 @@ public class EntityTFNagaSegment extends Entity {
 
     }
 
-    @SuppressWarnings("unchecked")
     protected void collideWithOthers() {
         List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(
                 this,
@@ -224,9 +223,7 @@ public class EntityTFNagaSegment extends Entity {
     /**
      * Plays step sound at given x, y, z for the entity
      */
-    protected void func_145780_a(int par1, int par2, int par3, Block par4) {
-        ;
-    }
+    protected void func_145780_a(int par1, int par2, int par3, Block par4) {}
 
     @SideOnly(Side.CLIENT)
 

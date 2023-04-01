@@ -98,7 +98,6 @@ public class EntityTFHydraMortar extends EntityThrowable {
         return var6;
     }
 
-    @SuppressWarnings("unchecked")
     protected void detonate() {
         // this.worldObj.playAuxSFX(2004, (int)Math.round(this.posX), (int)Math.round(this.posY),
         // (int)Math.round(this.posZ), 32764);
@@ -111,7 +110,7 @@ public class EntityTFHydraMortar extends EntityThrowable {
 
         if (!worldObj.isRemote) {
             // damage nearby things
-            List<Entity> nearbyList = new ArrayList<Entity>(
+            List<Entity> nearbyList = new ArrayList<>(
                     this.worldObj
                             .getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 1.0D, 1.0D)));
 

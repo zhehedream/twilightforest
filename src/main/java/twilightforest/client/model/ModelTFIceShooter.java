@@ -1,6 +1,5 @@
 package twilightforest.client.model;
 
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
@@ -22,7 +21,7 @@ public class ModelTFIceShooter extends ModelTFIceExploder {
             // this.spikes[i].rotateAngleY += i * 2.5f;
             // this.spikes[i].rotateAngleZ += i * 3;
 
-            ((ModelRenderer) this.spikes[i].childModels.get(0)).rotationPointY = 9.5F
+            this.spikes[i].childModels.get(0).rotationPointY = 9.5F
                     + MathHelper.sin((i + par1EntityLiving.ticksExisted + time) / 3F) * 3F;
 
             // ((ModelBox)this.spikes[i].cubeList.get(0)). = 6 + MathHelper.sin((par1EntityLiving.ticksExisted +

@@ -45,7 +45,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
 
     EntityTFLich masterLich;
 
-    private static final ItemStack heldItems[] = { new ItemStack(TFItems.scepterTwilight, 1),
+    private static final ItemStack[] heldItems = { new ItemStack(TFItems.scepterTwilight, 1),
             new ItemStack(TFItems.scepterZombie, 1), new ItemStack(Items.golden_sword, 1) };
     public static final int MAX_SHADOW_CLONES = 2;
     public static final int INITIAL_SHIELD_STRENGTH = 5;
@@ -93,7 +93,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         this.dataWatcher.addObject(DATA_ISCLONE, (byte) 0);
         this.dataWatcher.addObject(DATA_SHIELDSTRENGTH, (byte) 0);
         this.dataWatcher.addObject(DATA_MINIONSLEFT, (byte) 0);
-        this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(EntityTFLich.MAX_HEALTH));
+        this.dataWatcher.addObject(DATA_BOSSHEALTH, EntityTFLich.MAX_HEALTH);
         this.dataWatcher.addObject(DATA_ATTACKTYPE, (byte) 0);
     }
 
@@ -141,36 +141,22 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     private void dropScepter() {
         int scepterType = rand.nextInt(3);
         switch (scepterType) {
-            case 0:
-                this.entityDropItem(new ItemStack(TFItems.scepterZombie), 0);
-                break;
-            case 1:
-                this.entityDropItem(new ItemStack(TFItems.scepterLifeDrain), 0);
-                break;
-            default:
-                this.entityDropItem(new ItemStack(TFItems.scepterTwilight), 0);
+            case 0 -> this.entityDropItem(new ItemStack(TFItems.scepterZombie), 0);
+            case 1 -> this.entityDropItem(new ItemStack(TFItems.scepterLifeDrain), 0);
+            default -> this.entityDropItem(new ItemStack(TFItems.scepterTwilight), 0);
         }
     }
 
     private void dropGoldThing() {
         ItemStack goldThing;
         int thingType = rand.nextInt(5);
-        switch (thingType) {
-            case 0:
-                goldThing = new ItemStack(Items.golden_sword);
-                break;
-            case 1:
-                goldThing = new ItemStack(Items.golden_helmet);
-                break;
-            case 2:
-                goldThing = new ItemStack(Items.golden_chestplate);
-                break;
-            case 3:
-                goldThing = new ItemStack(Items.golden_leggings);
-                break;
-            default:
-                goldThing = new ItemStack(Items.golden_boots);
-        }
+        goldThing = switch (thingType) {
+            case 0 -> new ItemStack(Items.golden_sword);
+            case 1 -> new ItemStack(Items.golden_helmet);
+            case 2 -> new ItemStack(Items.golden_chestplate);
+            case 3 -> new ItemStack(Items.golden_leggings);
+            default -> new ItemStack(Items.golden_boots);
+        };
         // enchant!
         EnchantmentHelper.addRandomEnchantment(rand, goldThing, 10 + rand.nextInt(30));
         this.entityDropItem(goldThing, 0);
@@ -528,7 +514,6 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     /**
      * Check the surrounding area for weaker monsters, and if we find any, magically destroy them.
      */
-    @SuppressWarnings("unchecked")
     protected void popNearbyMob() {
         List<Entity> nearbyMobs = worldObj.getEntitiesWithinAABBExcludingEntity(
                 this,
@@ -536,8 +521,7 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
                         .expand(32.0D, 16.0D, 32.0D));
 
         for (Entity entity : nearbyMobs) {
-            if (entity instanceof EntityLiving && canPop(entity) && canEntityBeSeen(entity)) {
-                EntityLiving mob = (EntityLiving) entity;
+            if (entity instanceof EntityLiving mob && canPop(entity) && canEntityBeSeen(entity)) {
 
                 if (!worldObj.isRemote) {
                     mob.setDead();
@@ -593,7 +577,6 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         }
     }
 
-    @SuppressWarnings("unchecked")
     protected int countMyClones() {
         // check if there are enough clones. we check a 32x16x32 area
         List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
@@ -636,10 +619,9 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     /**
      * Despawn neaby clones
      */
-    @SuppressWarnings("unchecked")
     protected void despawnClones() {
         List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
-                this.getClass(),
+                EntityTFLich.class,
                 AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX + 1, posY + 1, posZ + 1)
                         .expand(32.0D, 16.0D, 32.0D));
 
@@ -663,7 +645,6 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
         // if there's no minions left to summon, we should move into phase 3 naturally
     }
 
-    @SuppressWarnings("unchecked")
     protected int countMyMinions() {
         // check if there are enough clones. we check a 32x16x32 area
         List<EntityTFLichMinion> nearbyMinons = worldObj.getEntitiesWithinAABB(
@@ -737,7 +718,6 @@ public class EntityTFLich extends EntityMob implements IBossDisplayData {
     /**
      * Find a new master for this clone
      */
-    @SuppressWarnings("unchecked")
     private void findNewMaster() {
         List<EntityTFLich> nearbyLiches = worldObj.getEntitiesWithinAABB(
                 EntityTFLich.class,

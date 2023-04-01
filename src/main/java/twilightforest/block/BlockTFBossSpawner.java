@@ -51,22 +51,15 @@ public class BlockTFBossSpawner extends BlockContainer {
      */
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        switch (meta) {
-            case 0:
-                return new TileEntityTFNagaSpawner();
-            case 1:
-                return new TileEntityTFLichSpawner();
-            case 2:
-                return new TileEntityTFHydraSpawner();
-            case 3:
-                return new TileEntityTFTowerBossSpawner();
-            case 4:
-                return new TileEntityTFKnightPhantomsSpawner();
-            case 5:
-                return new TileEntityTFSnowQueenSpawner();
-            default:
-                return null;
-        }
+        return switch (meta) {
+            case 0 -> new TileEntityTFNagaSpawner();
+            case 1 -> new TileEntityTFLichSpawner();
+            case 2 -> new TileEntityTFHydraSpawner();
+            case 3 -> new TileEntityTFTowerBossSpawner();
+            case 4 -> new TileEntityTFKnightPhantomsSpawner();
+            case 5 -> new TileEntityTFSnowQueenSpawner();
+            default -> null;
+        };
     }
 
     @Override
@@ -96,7 +89,7 @@ public class BlockTFBossSpawner extends BlockContainer {
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
         list.add(new ItemStack(item, 1, 2));
@@ -116,6 +109,6 @@ public class BlockTFBossSpawner extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        ; // don't load anything
+        // don't load anything
     }
 }

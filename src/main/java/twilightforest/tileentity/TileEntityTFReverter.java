@@ -46,9 +46,9 @@ public class TileEntityTFReverter extends TileEntity {
             this.tickCount++;
 
             if (this.worldObj.isRemote) {
-                double var1 = (double) ((float) this.xCoord + this.worldObj.rand.nextFloat());
-                double var3 = (double) ((float) this.yCoord + this.worldObj.rand.nextFloat());
-                double var5 = (double) ((float) this.zCoord + this.worldObj.rand.nextFloat());
+                double var1 = (float) this.xCoord + this.worldObj.rand.nextFloat();
+                double var3 = (float) this.yCoord + this.worldObj.rand.nextFloat();
+                double var5 = (float) this.zCoord + this.worldObj.rand.nextFloat();
                 // this.worldObj.spawnParticle("smoke", var1, var3, var5, 0.0D, 0.0D, 0.0D);
                 this.worldObj.spawnParticle("reddust", var1, var3, var5, 0.0D, 0.0D, 0.0D);
 
@@ -110,82 +110,69 @@ public class TileEntityTFReverter extends TileEntity {
         double dz = this.zCoord;
 
         switch (outline) {
-            case 0:
-            case 8:
+            case 0, 8 -> {
                 sx -= radius;
                 dx += radius + 1;
                 sz -= radius;
                 dz -= radius;
-                break;
-            case 1:
-            case 9:
+            }
+            case 1, 9 -> {
                 sx -= radius;
                 dx -= radius;
                 sz -= radius;
                 dz += radius + 1;
-                break;
-            case 2:
-            case 10:
+            }
+            case 2, 10 -> {
                 sx -= radius;
                 dx += radius + 1;
                 sz += radius + 1;
                 dz += radius + 1;
-                break;
-            case 3:
-            case 11:
+            }
+            case 3, 11 -> {
                 sx += radius + 1;
                 dx += radius + 1;
                 sz -= radius;
                 dz += radius + 1;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 sx -= radius;
                 dx -= radius;
                 sz -= radius;
                 dz -= radius;
-                break;
-            case 5:
+            }
+            case 5 -> {
                 sx += radius + 1;
                 dx += radius + 1;
                 sz -= radius;
                 dz -= radius;
-                break;
-            case 6:
+            }
+            case 6 -> {
                 sx += radius + 1;
                 dx += radius + 1;
                 sz += radius + 1;
                 dz += radius + 1;
-                break;
-            case 7:
+            }
+            case 7 -> {
                 sx -= radius;
                 dx -= radius;
                 sz += radius + 1;
                 dz += radius + 1;
-                break;
+            }
         }
 
         switch (outline) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
+            case 0, 1, 2, 3 -> {
                 sy += radius + 1;
                 dy += radius + 1;
-                break;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
+            }
+            case 4, 5, 6, 7 -> {
                 sy -= radius;
                 dy += radius + 1;
-                break;
-            case 8:
-            case 9:
-            case 10:
-            case 11:
+            }
+            case 8, 9, 10, 11 -> {
                 sy -= radius;
                 dy -= radius;
-                break;
+            }
         }
 
         if (rand.nextBoolean()) {
@@ -341,6 +328,6 @@ public class TileEntityTFReverter extends TileEntity {
                 (double) this.xCoord + 0.5D,
                 (double) this.yCoord + 0.5D,
                 (double) this.zCoord + 0.5D,
-                (double) this.requiredPlayerRange) != null;
+                this.requiredPlayerRange) != null;
     }
 }

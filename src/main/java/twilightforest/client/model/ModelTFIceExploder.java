@@ -55,7 +55,7 @@ public class ModelTFIceExploder extends ModelBiped {
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.bipedHead.render(f5);
 
-        for (int i = 0; i < spikes.length; i++) {
+        for (ModelRenderer spike : spikes) {
 
             if (entity.isEntityAlive()) {
                 GL11.glEnable(GL11.GL_BLEND);
@@ -64,7 +64,7 @@ public class ModelTFIceExploder extends ModelBiped {
                 GL11.glColor4f(1F, 1F, 1F, 0.6F);
             }
 
-            this.spikes[i].render(f5);
+            spike.render(f5);
 
             GL11.glDisable(GL11.GL_BLEND);
 
@@ -91,7 +91,7 @@ public class ModelTFIceExploder extends ModelBiped {
                     + MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
             this.spikes[i].rotationPointZ = MathHelper.sin((par1EntityLiving.ticksExisted + time) / (float) i) * 3F;
 
-            ((ModelRenderer) this.spikes[i].childModels.get(0)).rotationPointY = 10
+            this.spikes[i].childModels.get(0).rotationPointY = 10
                     + MathHelper.sin((i + par1EntityLiving.ticksExisted + time) / i) * 3F;
 
         }

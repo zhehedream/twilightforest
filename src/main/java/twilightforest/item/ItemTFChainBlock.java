@@ -2,7 +2,6 @@ package twilightforest.item;
 
 import java.util.HashMap;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,10 +25,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemTFChainBlock extends ItemTool {
 
     // which items have launched which blocks?
-    private HashMap<ItemStack, Entity> launchedBlocksMap = new HashMap<ItemStack, Entity>();
+    private HashMap<ItemStack, Entity> launchedBlocksMap = new HashMap<>();
 
     protected ItemTFChainBlock() {
-        super(6, TFItems.TOOL_KNIGHTLY, Sets.newHashSet(new Block[] { Blocks.stone }));
+        super(6, TFItems.TOOL_KNIGHTLY, Sets.newHashSet(Blocks.stone));
         this.maxStackSize = 1;
         this.setMaxDamage(99);
         this.setCreativeTab(TFItems.creativeTab);

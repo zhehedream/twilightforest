@@ -31,11 +31,8 @@ public class ComponentTFTrollVault extends StructureTFComponent {
         this.boundingBox = StructureTFComponent.getComponentToAddBoundingBox(x, y, z, -8, 0, -8, 12, 12, 12, 0);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void buildComponent(StructureComponent parent, List list, Random rand) {
-        ;
-    }
+    public void buildComponent(StructureComponent parent, List<StructureComponent> list, Random rand) {}
 
     @Override
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox sbb) {

@@ -77,7 +77,7 @@ public class ComponentTFHillMaze extends StructureTFComponent {
         maze.setSeed(world.getSeed() + this.boundingBox.minX * this.boundingBox.minZ);
 
         int nrooms = getMazeSize() / 3;
-        int rcoords[] = new int[nrooms * 2];
+        int[] rcoords = new int[nrooms * 2];
 
         // add rooms, trying to keep them separate from existing rooms
         for (int i = 0; i < nrooms; i++) {
@@ -186,19 +186,11 @@ public class ComponentTFHillMaze extends StructureTFComponent {
         int rx = x + rand.nextInt(diameter) - (diameter / 2);
         int rz = z + rand.nextInt(diameter) - (diameter / 2);
 
-        String mobID;
-
-        switch (rand.nextInt(3)) {
-            case 1:
-                mobID = "Skeleton";
-                break;
-            case 2:
-                mobID = "Zombie";
-                break;
-            case 0:
-            default:
-                mobID = "Spider";
-        }
+        String mobID = switch (rand.nextInt(3)) {
+            case 1 -> "Skeleton";
+            case 2 -> "Zombie";
+            default -> "Spider";
+        };
 
         placeSpawnerAtCurrentPosition(world, rand, rx, FLOOR_LEVEL, rz, mobID, sbb);
     }

@@ -53,17 +53,17 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
     private World worldObj;
-    private double stoneNoise[];
+    private double[] stoneNoise;
     private TFGenCaves caveGenerator;
     private TFGenRavine ravineGenerator;
-    private BiomeGenBase biomesForGeneration[];
-    double noise3[];
-    double noise1[];
-    double noise2[];
-    double noise5[];
-    double noise6[];
-    float squareTable[];
-    int unusedIntArray32x32[][];
+    private BiomeGenBase[] biomesForGeneration;
+    double[] noise3;
+    double[] noise1;
+    double[] noise2;
+    double[] noise5;
+    double[] noise6;
+    float[] squareTable;
+    int[][] unusedIntArray32x32;
 
     private WorldType field_147435_p;
 
@@ -123,8 +123,8 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
     @Override
     public Chunk provideChunk(int cx, int cz) {
         rand.setSeed(cx * 0x4f9939f508L + cz * 0x1ef1565bd5L);
-        Block blockStorage[] = new Block[16 * 16 * TFWorld.CHUNKHEIGHT];
-        byte metaStorage[] = new byte[16 * 16 * TFWorld.CHUNKHEIGHT];
+        Block[] blockStorage = new Block[16 * 16 * TFWorld.CHUNKHEIGHT];
+        byte[] metaStorage = new byte[16 * 16 * TFWorld.CHUNKHEIGHT];
         generateTerrain2(cx, cz, blockStorage);
 
         squishTerrain(blockStorage);
@@ -303,8 +303,8 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
                 }
 
                 ++noiseIndex;
-                double heightCalc = (double) totalHeight;
-                double variationCalc = (double) totalVariation;
+                double heightCalc = totalHeight;
+                double variationCalc = totalVariation;
                 heightCalc += terrainNoise * 0.2D;
                 heightCalc = heightCalc * 8.5D / 8.0D;
                 double d5 = 8.5D + heightCalc * 4.0D;
@@ -322,7 +322,7 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
                     double terrainCalc = MathHelper.denormalizeClamp(d7, d8, d9) - d6;
 
                     if (ay > 29) {
-                        double d11 = (double) ((float) (ay - 29) / 3.0F);
+                        double d11 = (float) (ay - 29) / 3.0F;
                         terrainCalc = terrainCalc * (1.0D - d11) + -10.0D * d11;
                     }
 
@@ -370,15 +370,8 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
         if (event.getResult() == Result.DENY) return;
 
         double d0 = 0.03125D;
-        this.stoneNoise = this.field_147430_m.func_151599_a(
-                this.stoneNoise,
-                (double) (chunkX * 16),
-                (double) (chunkZ * 16),
-                16,
-                16,
-                d0 * 2.0D,
-                d0 * 2.0D,
-                1.0D);
+        this.stoneNoise = this.field_147430_m
+                .func_151599_a(this.stoneNoise, chunkX * 16, chunkZ * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
         for (int z = 0; z < 16; ++z) {
             for (int x = 0; x < 16; ++x) {
@@ -781,7 +774,7 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
      * @param chunkZ
      * @param blocks
      */
-    public void addGlaciers(int chunkX, int chunkZ, Block blocks[], byte meta[], BiomeGenBase biomes[]) {
+    public void addGlaciers(int chunkX, int chunkZ, Block[] blocks, byte[] meta, BiomeGenBase[] biomes) {
         for (int z = 0; z < 16; z++) {
             for (int x = 0; x < 16; x++) {
                 BiomeGenBase biome = biomes[x & 15 | (z & 15) << 4];
@@ -817,7 +810,7 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
      * Adds dark forest canopy. This version uses the "unzoomed" array of biomes used in land generation to determine
      * how many of the nearby blocks are dark forest
      */
-    public void addDarkForestCanopy2(int chunkX, int chunkZ, Block blocks[], byte meta[]) {
+    public void addDarkForestCanopy2(int chunkX, int chunkZ, Block[] blocks, byte[] meta) {
 
         int[] thicks = new int[5 * 5];
 
@@ -1034,7 +1027,6 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
      * 
      * Twilight Forest varient! First check features, then only if we're not in a feature, check the biome.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, int mapX, int mapY, int mapZ) {
         // are the specified coordinates precicely in a feature?
@@ -1119,8 +1111,8 @@ public class ChunkProviderTwilightForest implements IChunkProvider {
 
     @Override
     public void recreateStructures(int var1, int var2) {
-        majorFeatureGenerator.func_151539_a(this, worldObj, var1, var2, (Block[]) null);
-        hollowTreeGenerator.func_151539_a(this, worldObj, var1, var2, (Block[]) null);
+        majorFeatureGenerator.func_151539_a(this, worldObj, var1, var2, null);
+        hollowTreeGenerator.func_151539_a(this, worldObj, var1, var2, null);
     }
 
     @Override

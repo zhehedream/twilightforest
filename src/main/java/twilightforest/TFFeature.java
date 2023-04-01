@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -100,7 +100,7 @@ public class TFFeature {
     public static final TFFeature finalCastle = new TFFeature(19, 3, "Final Castle");
     public static final TFFeature mushroomTower = new TFFeature(20, 2, "Mushroom Tower");
 
-    ArrayList<SpawnListEntry> emptyList = new ArrayList<SpawnListEntry>();
+    ArrayList<SpawnListEntry> emptyList = new ArrayList<>();
 
     static {
         // spawn lists!
@@ -226,9 +226,9 @@ public class TFFeature {
         this.areChunkDecorationsEnabled = false;
         this.isStructureEnabled = true;
         this.isTerrainAltered = false;
-        this.spawnableMonsterLists = new ArrayList<List<SpawnListEntry>>();
-        this.ambientCreatureList = new ArrayList<SpawnListEntry>();
-        this.waterCreatureList = new ArrayList<SpawnListEntry>();
+        this.spawnableMonsterLists = new ArrayList<>();
+        this.ambientCreatureList = new ArrayList<>();
+        this.waterCreatureList = new ArrayList<>();
         this.hasProtectionAura = true;
 
         ambientCreatureList.add(new SpawnListEntry(EntityBat.class, 10, 8, 8));
@@ -258,20 +258,19 @@ public class TFFeature {
     }
 
     // Add a monster to spawn list 0
-    public TFFeature addMonster(Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup,
-            int maxGroup) {
+    public TFFeature addMonster(Class<? extends EntityLiving> monsterClass, int weight, int minGroup, int maxGroup) {
         this.addMonster(0, monsterClass, weight, minGroup, maxGroup);
         return this;
     }
 
     // Add a monster to a specific spawn list
-    public TFFeature addMonster(int listIndex, Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup,
+    public TFFeature addMonster(int listIndex, Class<? extends EntityLiving> monsterClass, int weight, int minGroup,
             int maxGroup) {
         List<SpawnListEntry> monsterList;
         if (this.spawnableMonsterLists.size() > listIndex) {
             monsterList = this.spawnableMonsterLists.get(listIndex);
         } else {
-            monsterList = new ArrayList<SpawnListEntry>();
+            monsterList = new ArrayList<>();
             this.spawnableMonsterLists.add(listIndex, monsterList);
         }
 
@@ -280,7 +279,7 @@ public class TFFeature {
     }
 
     // Add a water creature
-    public TFFeature addWaterCreature(Class<? extends EntityLivingBase> monsterClass, int weight, int minGroup,
+    public TFFeature addWaterCreature(Class<? extends EntityLiving> monsterClass, int weight, int minGroup,
             int maxGroup) {
         this.waterCreatureList.add(new SpawnListEntry(monsterClass, weight, minGroup, maxGroup));
         return this;
@@ -289,8 +288,7 @@ public class TFFeature {
     // @return The type of feature directly at the specified Chunk coordinates
     public static TFFeature getFeatureDirectlyAt(int chunkX, int chunkZ, World world) {
 
-        if (world != null && world.getWorldChunkManager() instanceof TFWorldChunkManager) {
-            TFWorldChunkManager tfManager = (TFWorldChunkManager) world.getWorldChunkManager();
+        if (world != null && world.getWorldChunkManager() instanceof TFWorldChunkManager tfManager) {
 
             if (tfManager.isInFeatureChunk(world, chunkX << 4, chunkZ << 4)) {
                 return tfManager.getFeatureAt(chunkX << 4, chunkZ << 4, world);
@@ -368,32 +366,15 @@ public class TFFeature {
         }
 
         // okay, well that takes care of most special cases
-        switch (randnum) {
-            default:
-            case 0: // oops, I forgot about zero for a long time, now there are too many hill 1s
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-                return hill1;
-            case 7:
-            case 8:
-            case 9:
-                return hill2;
-            case 10:
-                return hill3;
-            case 11:
-            case 12:
-                return hedgeMaze;
-            case 13:
-                return (biomeAt != TFBiomeBase.tfSwamp) ? nagaCourtyard : hydraLair; // hydra in the swamp, naga
-                                                                                     // everywhere else
-            case 14:
-            case 15:
-                return lichTower;
-        }
+        return switch (randnum) { // oops, I forgot about zero for a long time, now there are too many hill 1s
+            default -> hill1;
+            case 7, 8, 9 -> hill2;
+            case 10 -> hill3;
+            case 11, 12 -> hedgeMaze;
+            case 13 -> (biomeAt != TFBiomeBase.tfSwamp) ? nagaCourtyard : hydraLair; // hydra in the swamp, naga
+            // everywhere else
+            case 14, 15 -> lichTower;
+        };
     }
 
     public static TFFeature generateFeatureFor1Point7(int chunkX, int chunkZ, World world) {
@@ -476,31 +457,14 @@ public class TFFeature {
         }
 
         // okay, well that takes care of most special cases
-        switch (randnum) {
-            default:
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return hill1;
-            case 6:
-            case 7:
-            case 8:
-                return hill2;
-            case 9:
-                return hill3;
-            case 10:
-            case 11:
-                return hedgeMaze;
-            case 12:
-            case 13:
-                return nagaCourtyard;
-            case 14:
-            case 15:
-                return lichTower;
-        }
+        return switch (randnum) {
+            default -> hill1;
+            case 6, 7, 8 -> hill2;
+            case 9 -> hill3;
+            case 10, 11 -> hedgeMaze;
+            case 12, 13 -> nagaCourtyard;
+            case 14, 15 -> lichTower;
+        };
     }
 
     /**
@@ -662,16 +626,12 @@ public class TFFeature {
 
     // Returns a list of hostile monsters. Are we ever going to need passive or water creatures?
     public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
-        switch (creatureType) {
-            case monster:
-                return this.getSpawnableList(EnumCreatureType.monster, 0);
-            case ambient:
-                return this.ambientCreatureList;
-            case waterCreature:
-                return this.waterCreatureList;
-            default:
-                return emptyList;
-        }
+        return switch (creatureType) {
+            case monster -> this.getSpawnableList(EnumCreatureType.monster, 0);
+            case ambient -> this.ambientCreatureList;
+            case waterCreature -> this.waterCreatureList;
+            default -> emptyList;
+        };
     }
 
     // Returns a list of hostile monsters in the specified indexed category

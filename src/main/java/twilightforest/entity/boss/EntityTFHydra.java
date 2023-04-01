@@ -46,7 +46,7 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
     private static final int DATA_SPAWNHEADS = 17;
     private static final int DATA_BOSSHEALTH = 18;
 
-    public Entity partArray[];
+    public Entity[] partArray;
     public EntityDragonPart body;
 
     public HydraHeadContainer[] hc;
@@ -75,7 +75,7 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
         }
 
         // re-do partArray
-        ArrayList<Entity> partList = new ArrayList<Entity>();
+        ArrayList<Entity> partList = new ArrayList<>();
         Collections.addAll(partList, partArray);
 
         for (int i = 0; i < numHeads; i++) {
@@ -110,7 +110,6 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void onLivingUpdate() {
         if (hc[0].headEntity == null || hc[1].headEntity == null || hc[2].headEntity == null) {
@@ -293,7 +292,7 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
     protected void entityInit() {
         super.entityInit();
         dataWatcher.addObject(DATA_SPAWNHEADS, (byte) 0);
-        this.dataWatcher.addObject(DATA_BOSSHEALTH, new Integer(MAX_HEALTH));
+        this.dataWatcher.addObject(DATA_BOSSHEALTH, MAX_HEALTH);
     }
 
     public boolean shouldSpawnHeads() {
@@ -630,12 +629,11 @@ public class EntityTFHydra extends EntityLiving implements IBossDisplayData, IEn
      * 
      * Right now just finds the closest living entity that is not exluded by our criteria
      */
-    @SuppressWarnings("unchecked")
     public EntityLivingBase findSecondaryTarget(double range) {
         double closestRange = -1.0D;
         EntityLivingBase closestEntity = null;
 
-        List<EntityLiving> nearbyEntities = this.worldObj.getEntitiesWithinAABB(
+        List<EntityLivingBase> nearbyEntities = this.worldObj.getEntitiesWithinAABB(
                 EntityLivingBase.class,
                 AxisAlignedBB
                         .getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 1, this.posY + 1, this.posZ + 1)

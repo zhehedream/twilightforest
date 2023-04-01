@@ -72,7 +72,7 @@ public class BlockTFPortal extends BlockBreakable {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister) {
-        ; // don't load anything
+        // don't load anything
     }
 
     /**
@@ -268,8 +268,7 @@ public class BlockTFPortal extends BlockBreakable {
     @Override
     public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity) {
         if (entity.ridingEntity == null && entity.riddenByEntity == null && entity.timeUntilPortal <= 0) {
-            if (entity instanceof EntityPlayerMP) {
-                EntityPlayerMP playerMP = (EntityPlayerMP) entity;
+            if (entity instanceof EntityPlayerMP playerMP) {
 
                 if (playerMP.timeUntilPortal > 0) {
                     // do not switch dimensions if the player has any time on this thinger
@@ -393,9 +392,8 @@ public class BlockTFPortal extends BlockBreakable {
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         par3List.add(new ItemStack(par1, 1, 0));
     }
 }

@@ -1,7 +1,6 @@
 package twilightforest.inventory;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.enchantment.Enchantment;
@@ -233,11 +232,11 @@ public class ContainerTFUncrafting extends Container {
                 }
 
                 // check if the input enchantments can even go onto the result item
-                Map inputEnchantments = null;
+                Map<Integer, Integer> inputEnchantments = null;
                 if (input.isItemEnchanted()) {
                     inputEnchantments = EnchantmentHelper.getEnchantments(input);
-                    for (Object key : inputEnchantments.keySet()) {
-                        int enchID = ((Integer) key).intValue();
+                    for (Integer key : inputEnchantments.keySet()) {
+                        int enchID = key;
                         // int level = ((Integer)inputEnchantments.get(key)).intValue();
                         Enchantment ench = Enchantment.enchantmentsList[enchID];
 
@@ -269,8 +268,8 @@ public class ContainerTFUncrafting extends Container {
                 // finally, add any innate enchantments back onto the result
                 if (resultInnateEnchantments != null && resultInnateEnchantments.size() > 0) {
                     for (Object key : resultInnateEnchantments.keySet()) {
-                        int enchID = ((Integer) key).intValue();
-                        int level = ((Integer) resultInnateEnchantments.get(key)).intValue();
+                        int enchID = (Integer) key;
+                        int level = (Integer) resultInnateEnchantments.get(key);
                         Enchantment ench = Enchantment.enchantmentsList[enchID];
 
                         if (EnchantmentHelper.getEnchantmentLevel(enchID, result) > level) {
@@ -300,10 +299,9 @@ public class ContainerTFUncrafting extends Container {
      * @param inputStack
      * @return
      */
-    @SuppressWarnings("unchecked")
     public IRecipe getRecipeFor(ItemStack inputStack) {
         if (inputStack != null) {
-            for (IRecipe recipe : (List<IRecipe>) (CraftingManager.getInstance().getRecipeList())) {
+            for (IRecipe recipe : CraftingManager.getInstance().getRecipeList()) {
                 if ((recipe instanceof ShapedRecipes || recipe instanceof ShapedOreRecipe)
                         && recipe.getRecipeOutput().getItem() == inputStack.getItem()
                         && inputStack.stackSize >= recipe.getRecipeOutput().stackSize
@@ -342,9 +340,8 @@ public class ContainerTFUncrafting extends Container {
             return true;
         }
 
-        if (inputStack.getItem() instanceof ItemArmor && resultStack.getItem() instanceof ItemArmor) {
-            ItemArmor inputArmor = (ItemArmor) inputStack.getItem();
-            ItemArmor resultArmor = (ItemArmor) resultStack.getItem();
+        if (inputStack.getItem() instanceof ItemArmor inputArmor
+                && resultStack.getItem() instanceof ItemArmor resultArmor) {
 
             return inputArmor.armorType == resultArmor.armorType;
         }
@@ -466,23 +463,12 @@ public class ContainerTFUncrafting extends Container {
     }
 
     public int getWeightModifier(Enchantment ench) {
-        switch (ench.getWeight()) {
-            case 1:
-                return 8;
-            case 2:
-                return 4;
-            case 3:
-            case 4:
-            case 5:
-                return 2;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            default:
-            case 10:
-                return 1;
-        }
+        return switch (ench.getWeight()) {
+            case 1 -> 8;
+            case 2 -> 4;
+            case 3, 4, 5 -> 2;
+            default -> 1;
+        };
     }
 
     /**
@@ -494,8 +480,8 @@ public class ContainerTFUncrafting extends Container {
         // if the player is trying to take an item out of the assembly grid, and the assembly grid is empty,
         // take the item from the uncrafting grid.
         if (slotNum > 0 && par4EntityPlayer.inventory.getItemStack() == null
-                && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.assemblyMatrix
-                && !((Slot) this.inventorySlots.get(slotNum)).getHasStack()) {
+                && this.inventorySlots.get(slotNum).inventory == this.assemblyMatrix
+                && !this.inventorySlots.get(slotNum).getHasStack()) {
             // is the assembly matrix empty?
             if (isMatrixEmpty(this.assemblyMatrix)) {
                 slotNum -= 9;
@@ -504,21 +490,21 @@ public class ContainerTFUncrafting extends Container {
 
         // if the player is trying to take the result item and they don't have the XP to pay for it, reject
         // them
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.tinkerResult
+        if (slotNum > 0 && this.inventorySlots.get(slotNum).inventory == this.tinkerResult
                 && calculateRecraftingCost() > par4EntityPlayer.experienceLevel
                 && !par4EntityPlayer.capabilities.isCreativeMode) {
             return null;
         }
 
         // similarly, reject uncrafting if they can't do that either
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
+        if (slotNum > 0 && this.inventorySlots.get(slotNum).inventory == this.uncraftingMatrix
                 && calculateUncraftingCost() > par4EntityPlayer.experienceLevel
                 && !par4EntityPlayer.capabilities.isCreativeMode) {
             return null;
         }
 
         // don't allow uncrafting if the server option is turned off
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
+        if (slotNum > 0 && this.inventorySlots.get(slotNum).inventory == this.uncraftingMatrix
                 && TwilightForestMod.disableUncrafting) {
             // send the player a message
             // par4EntityPlayer.sendChatToPlayer("Uncrafting is disabled in the server configuration.");
@@ -526,9 +512,9 @@ public class ContainerTFUncrafting extends Container {
         }
 
         // finally, don't give them damaged goods
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix
-                && (((Slot) this.inventorySlots.get(slotNum)).getStack() == null
-                        || ((Slot) this.inventorySlots.get(slotNum)).getStack().stackSize == 0)) {
+        if (slotNum > 0 && this.inventorySlots.get(slotNum).inventory == this.uncraftingMatrix
+                && (this.inventorySlots.get(slotNum).getStack() == null
+                        || this.inventorySlots.get(slotNum).getStack().stackSize == 0)) {
             return null;
         }
 
@@ -536,7 +522,7 @@ public class ContainerTFUncrafting extends Container {
         ItemStack ret = super.slotClick(slotNum, mouseButton, shiftHeld, par4EntityPlayer);
 
         // just trigger this event whenever the input slot is clicked for any reason
-        if (slotNum > 0 && ((Slot) this.inventorySlots.get(slotNum)).inventory instanceof InventoryTFGoblinInput) {
+        if (slotNum > 0 && this.inventorySlots.get(slotNum).inventory instanceof InventoryTFGoblinInput) {
             this.onCraftMatrixChanged(this.tinkerInput);
         }
 
@@ -548,7 +534,7 @@ public class ContainerTFUncrafting extends Container {
         // if they are taking something out of the uncrafting matrix, bump the slot number back to the
         // assembly matrix
         // otherwise we lose the stuff in the uncrafting matrix when we shift-click to take multiple things
-        if (((Slot) this.inventorySlots.get(slotNum)).inventory == this.uncraftingMatrix) {
+        if (this.inventorySlots.get(slotNum).inventory == this.uncraftingMatrix) {
             slotNum += 9;
         }
 
@@ -614,7 +600,7 @@ public class ContainerTFUncrafting extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotNum) {
         ItemStack copyItem = null;
-        Slot transferSlot = (Slot) this.inventorySlots.get(slotNum);
+        Slot transferSlot = this.inventorySlots.get(slotNum);
 
         if (transferSlot != null && transferSlot.getHasStack()) {
             ItemStack transferStack = transferSlot.getStack();
@@ -643,7 +629,7 @@ public class ContainerTFUncrafting extends Container {
             }
 
             if (transferStack.stackSize == 0) {
-                transferSlot.putStack((ItemStack) null);
+                transferSlot.putStack(null);
             } else {
                 transferSlot.onSlotChanged();
             }
@@ -738,9 +724,7 @@ public class ContainerTFUncrafting extends Container {
             }
 
             return items;
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
+        } catch (IllegalArgumentException | SecurityException e) {
             e.printStackTrace();
         }
         return null;
@@ -786,11 +770,8 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeWidthOre(ShapedOreRecipe shaped) {
         try {
-            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4)))
-                    .intValue();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
+            return ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4);
+        } catch (IllegalArgumentException | SecurityException e) {
             e.printStackTrace();
         }
         return 0;
@@ -835,11 +816,8 @@ public class ContainerTFUncrafting extends Container {
      */
     public int getRecipeHeightOre(ShapedOreRecipe shaped) {
         try {
-            return ((Integer) (ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5)))
-                    .intValue();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
+            return ObfuscationReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5);
+        } catch (IllegalArgumentException | SecurityException e) {
             e.printStackTrace();
         }
         return 0;
