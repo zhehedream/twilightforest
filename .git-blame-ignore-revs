@@ -1,2 +1,4 @@
 # Ignore spotlessApply reformat
 b8efafadfe8270b11268b155a73baad52a8c5bf7
+# Enabling Jabel and running a lot of automated cleanup inspections in IntelliJ
+d3d3e2a96633401eaf73f036947e52f95c492b42
