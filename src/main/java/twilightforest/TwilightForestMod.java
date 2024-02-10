@@ -10,6 +10,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
+import baubles.api.BaubleType;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -35,6 +36,7 @@ import twilightforest.item.TFItems;
 import twilightforest.item.TFRecipes;
 import twilightforest.structures.StructureTFMajorFeatureStart;
 import twilightforest.tileentity.TileEntityTFCReactorActive;
+import twilightforest.tileentity.TileEntityTFCake;
 import twilightforest.tileentity.TileEntityTFCicada;
 import twilightforest.tileentity.TileEntityTFCinderFurnace;
 import twilightforest.tileentity.TileEntityTFFirefly;
@@ -46,6 +48,8 @@ import twilightforest.tileentity.TileEntityTFKnightPhantomsSpawner;
 import twilightforest.tileentity.TileEntityTFLichSpawner;
 import twilightforest.tileentity.TileEntityTFMoonworm;
 import twilightforest.tileentity.TileEntityTFNagaSpawner;
+import twilightforest.tileentity.TileEntityTFNagastone;
+import twilightforest.tileentity.TileEntityTFNagastoneEtched;
 import twilightforest.tileentity.TileEntityTFPoppingJet;
 import twilightforest.tileentity.TileEntityTFReverter;
 import twilightforest.tileentity.TileEntityTFSmoker;
@@ -84,6 +88,10 @@ public class TwilightForestMod {
     public static boolean disableUncrafting;
     public static boolean oldMapGen;
     public static String portalCreationItemString;
+
+    // integration
+    public static boolean isSkinportLoaded = false;
+    public static boolean areBaublesLoaded = false;
 
     // performance
     public static float canopyCoverage;
@@ -225,6 +233,14 @@ public class TwilightForestMod {
 
         // just call this so that we register structure IDs correctly
         new StructureTFMajorFeatureStart();
+
+        // check if various integrations are required
+        isSkinportLoaded = Loader.isModLoaded("skinport");
+        if (Loader.isModLoaded("Baubles")) {
+            areBaublesLoaded = BaubleType.values().length > 3;
+        } else {
+            areBaublesLoaded = false;
+        }
 
         // check for biome conflicts, load biomes
         TFBiomeBase.assignBlankBiomeIds();
@@ -822,6 +838,9 @@ public class TwilightForestMod {
     }
 
     private void registerTileEntities() {
+        GameRegistry.registerTileEntity(TileEntityTFCake.class, "Experiment 115");
+        GameRegistry.registerTileEntity(TileEntityTFNagastone.class, "Nagastone");
+        GameRegistry.registerTileEntity(TileEntityTFNagastoneEtched.class, "Etched Nagastone");
         GameRegistry.registerTileEntity(TileEntityTFFirefly.class, "Firefly");
         GameRegistry.registerTileEntity(TileEntityTFCicada.class, "Cicada");
         GameRegistry.registerTileEntity(TileEntityTFNagaSpawner.class, "Naga Spawner");
