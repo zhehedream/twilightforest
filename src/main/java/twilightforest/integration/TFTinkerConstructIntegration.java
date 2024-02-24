@@ -56,11 +56,12 @@ import tconstruct.tools.items.TFMaterialItem;
 import tconstruct.util.Reference;
 import tconstruct.util.config.PHConstruct;
 import tconstruct.weaponry.TinkerWeaponry;
-import twilightforest.TwilightForestMod;
 import twilightforest.block.TFBlocks;
 import twilightforest.item.TFItems;
 
 public class TFTinkerConstructIntegration {
+
+    public static boolean hasClay = GameRegistry.findItem("TConstruct", "clayPattern") != null;
 
     public static Item fletching;
     public static Item materials;
@@ -149,10 +150,11 @@ public class TFTinkerConstructIntegration {
                     MaterialID.FieryMetal,
                     "FieryMetal",
                     3,
-                    250,
-                    600,
-                    2,
-                    1.3F,
+                    720, // TiC2 value untouched
+                    720, // TiC2 value untouched
+                    3,
+                    1.2F, // Is 0.8 in TiC2, but in TiC1 metals' modifiers are always ≥1.0, so I used a netherrack value
+                          // to go with the fiery theme
                     0,
                     0f,
                     GOLD.toString(),
@@ -187,10 +189,10 @@ public class TFTinkerConstructIntegration {
                     MaterialID.Knightmetal,
                     "Knightmetal",
                     4,
-                    250,
-                    600,
-                    2,
-                    1.3F,
+                    900, // TiC2 value untouched
+                    700, // TiC2 value untouched
+                    3, // The converted value was 2.75. Might have to decrease later
+                    1.25F, // TiC2 value untouched
                     0,
                     0f,
                     GREEN.toString(),
@@ -363,7 +365,7 @@ public class TFTinkerConstructIntegration {
             for (int iter = 0; iter < TinkerTools.patternOutputs.length; iter++) {
                 if (TinkerTools.patternOutputs[iter] != null) {
                     ItemStack cast = new ItemStack(TinkerSmeltery.metalPattern, 1, iter + 1);
-                    ItemStack clay_cast = new ItemStack(TinkerSmeltery.clayPattern, 1, iter + 1);
+                    ItemStack clay_cast = hasClay ? new ItemStack(TinkerSmeltery.clayPattern, 1, iter + 1) : null;
                     fluidAmount = ((IPattern) TinkerSmeltery.metalPattern).getPatternCost(cast)
                             * TConstruct.ingotLiquidValue
                             / 2;
@@ -372,7 +374,7 @@ public class TFTinkerConstructIntegration {
                         fs = liquids[iterTwo].getFluid();
                         ItemStack metalCast = new ItemStack(TinkerTools.patternOutputs[iter], 1, liquidDamage[iterTwo]);
                         tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), cast, 50);
-                        if (isValidClayCast(iter)) {
+                        if (hasClay && isValidClayCast(iter)) {
                             tableCasting
                                     .addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), clay_cast, true, 50);
                         }
@@ -424,7 +426,7 @@ public class TFTinkerConstructIntegration {
                             new ItemStack(Items.glass_bottle)));
 
             ItemStack ingotcast = new ItemStack(TinkerSmeltery.metalPattern, 1, 0);
-            ItemStack ingotcast_clay = new ItemStack(TinkerSmeltery.clayPattern, 1, 0);
+            ItemStack ingotcast_clay = hasClay ? new ItemStack(TinkerSmeltery.clayPattern, 1, 0) : null;
 
             // Patterns casting
             Item[] ingots = { TFItems.fieryIngot, TFItems.ironwoodIngot, TFItems.knightMetal };
@@ -445,7 +447,7 @@ public class TFTinkerConstructIntegration {
 
             // Nuggets Casting
             ItemStack nuggetcast = new ItemStack(TinkerSmeltery.metalPattern, 1, 27);
-            ItemStack nuggetcast_clay = new ItemStack(TinkerSmeltery.clayPattern, 1, 27);
+            ItemStack nuggetcast_clay = hasClay ? new ItemStack(TinkerSmeltery.clayPattern, 1, 27) : null;
             for (int i = 0; i < materialStrings.length; i++) {
                 tableCasting.addCastingRecipe(
                         nuggetcast,
@@ -470,24 +472,26 @@ public class TFTinkerConstructIntegration {
                     new ItemStack(materials, 1, 0),
                     new FluidStack(moltenFieryMetalFluid, TConstruct.nuggetLiquidValue),
                     nuggetcast,
-                    40);
-            tableCasting.addCastingRecipe(
-                    new ItemStack(materials, 1, 0),
-                    new FluidStack(moltenFieryMetalFluid, TConstruct.nuggetLiquidValue),
-                    nuggetcast_clay,
-                    true,
                     40); // Fiery Metal
             tableCasting.addCastingRecipe(
                     new ItemStack(materials, 1, 1),
                     new FluidStack(moltenKnightmetalFluid, TConstruct.nuggetLiquidValue),
                     nuggetcast,
-                    40);
-            tableCasting.addCastingRecipe(
-                    new ItemStack(materials, 1, 1),
-                    new FluidStack(moltenKnightmetalFluid, TConstruct.nuggetLiquidValue),
-                    nuggetcast_clay,
-                    true,
                     40); // Knightmetal
+            if (hasClay) {
+                tableCasting.addCastingRecipe(
+                        new ItemStack(materials, 1, 0),
+                        new FluidStack(moltenFieryMetalFluid, TConstruct.nuggetLiquidValue),
+                        nuggetcast_clay,
+                        true,
+                        40); // Fiery Metal
+                tableCasting.addCastingRecipe(
+                        new ItemStack(materials, 1, 1),
+                        new FluidStack(moltenKnightmetalFluid, TConstruct.nuggetLiquidValue),
+                        nuggetcast_clay,
+                        true,
+                        40); // Knightmetal
+            }
 
             // Ingots Casting
             tableCasting.addCastingRecipe(
@@ -516,18 +520,20 @@ public class TFTinkerConstructIntegration {
                     50); // Knightmetal
 
             // Clay Casting
-            tableCasting.addCastingRecipe(
-                    new ItemStack(TFItems.fieryIngot, 1, 0),
-                    new FluidStack(moltenFieryMetalFluid, TConstruct.ingotLiquidValue),
-                    ingotcast_clay,
-                    true,
-                    50); // Fiery Metal
-            tableCasting.addCastingRecipe(
-                    new ItemStack(TFItems.knightMetal, 1, 0),
-                    new FluidStack(moltenKnightmetalFluid, TConstruct.ingotLiquidValue),
-                    ingotcast_clay,
-                    true,
-                    50); // Knightmetal
+            if (hasClay) {
+                tableCasting.addCastingRecipe(
+                        new ItemStack(TFItems.fieryIngot, 1, 0),
+                        new FluidStack(moltenFieryMetalFluid, TConstruct.ingotLiquidValue),
+                        ingotcast_clay,
+                        true,
+                        50); // Fiery Metal
+                tableCasting.addCastingRecipe(
+                        new ItemStack(TFItems.knightMetal, 1, 0),
+                        new FluidStack(moltenKnightmetalFluid, TConstruct.ingotLiquidValue),
+                        ingotcast_clay,
+                        true,
+                        50); // Knightmetal
+            }
 
             LiquidCasting basinCasting = TConstructRegistry.getBasinCasting();
 
@@ -571,21 +577,23 @@ public class TFTinkerConstructIntegration {
                             50);
                 }
                 // Register clay part casting for BowLimbs
-                for (int iterTwo = 0; iterTwo < liquids.length; iterTwo++) {
-                    fs = liquids[iterTwo].getFluid();
-                    ItemStack clay_cast = new ItemStack(TinkerWeaponry.clayPattern, 1, 3);
-                    fluidAmount = TinkerWeaponry.clayPattern.getPatternCost(clay_cast) * TConstruct.ingotLiquidValue
-                            / 2;
-                    tableCasting.addCastingRecipe(
-                            new ItemStack(TinkerWeaponry.patternOutputs[3], 1, liquidDamage[iterTwo]),
-                            new FluidStack(fs, fluidAmount),
-                            clay_cast,
-                            true,
-                            50);
+                if (hasClay) {
+                    for (int iterTwo = 0; iterTwo < liquids.length; iterTwo++) {
+                        fs = liquids[iterTwo].getFluid();
+                        ItemStack clay_cast = new ItemStack(TinkerWeaponry.clayPattern, 1, 3);
+                        fluidAmount = TinkerWeaponry.clayPattern.getPatternCost(clay_cast) * TConstruct.ingotLiquidValue
+                                / 2;
+                        tableCasting.addCastingRecipe(
+                                new ItemStack(TinkerWeaponry.patternOutputs[3], 1, liquidDamage[iterTwo]),
+                                new FluidStack(fs, fluidAmount),
+                                clay_cast,
+                                true,
+                                50);
+                    }
                 }
 
                 ItemStack cast = new ItemStack(TinkerSmeltery.metalPattern, 1, 25);
-                ItemStack clay_cast = new ItemStack(TinkerSmeltery.clayPattern, 1, 25);
+                ItemStack clay_cast = hasClay ? new ItemStack(TinkerSmeltery.clayPattern, 1, 25) : null;
                 fluidAmount = ((IPattern) TinkerSmeltery.metalPattern).getPatternCost(cast)
                         * TConstruct.ingotLiquidValue
                         / 2;
@@ -594,7 +602,8 @@ public class TFTinkerConstructIntegration {
                     fs = liquids[iterTwo].getFluid();
                     ItemStack metalCast = new ItemStack(TinkerWeaponry.arrowhead, 1, liquidDamage[iterTwo]);
                     tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), cast, 50);
-                    tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), clay_cast, true, 50);
+                    if (hasClay)
+                        tableCasting.addCastingRecipe(metalCast, new FluidStack(fs, fluidAmount), clay_cast, true, 50);
                     Smeltery.addMelting(FluidType.getFluidType(fs), metalCast, 0, fluidAmount);
                 }
 
@@ -613,10 +622,10 @@ public class TFTinkerConstructIntegration {
                                 6,
                                 TinkerTools.toolRod,
                                 MaterialID.FieryMetal,
-                                1.0f,
-                                1.0f,
-                                0.15f,
-                                0x866526));
+                                1.2f, // Blaze rod stats
+                                2.7f, // Blaze rod stats * 3. That's a metal after all
+                                0.08f, // Blaze rod stats
+                                0xfff32d));
 
                 TConstructRegistry.addBowMaterial(MaterialID.Knightmetal, 54, 5.2f);
                 TConstructRegistry.addArrowMaterial(MaterialID.Knightmetal, 3.3F, 0.8F);
@@ -624,12 +633,6 @@ public class TFTinkerConstructIntegration {
 
             TConstructRegistry.addDefaultToolPartMaterial(MaterialID.FieryMetal);
             TConstructRegistry.addDefaultToolPartMaterial(MaterialID.Knightmetal);
-
-            // Remove certain things from NEI
-            if (TwilightForestMod.isNeiLoaded) {
-                TFNeiIntegration.hideItem(new ItemStack(TinkerWeaponry.patternOutputs[1], 1, MaterialID.Knightmetal));
-                TFNeiIntegration.hideItem(new ItemStack(TinkerWeaponry.patternOutputs[3], 1, MaterialID.Knightmetal));
-            }
         }
 
         // Register rods
@@ -648,10 +651,10 @@ public class TFTinkerConstructIntegration {
                 MaterialID.NagaScale,
                 "NagaScale",
                 1,
-                250,
-                600,
+                460, // TiC2 value untouched
+                890, // TiC2 value untouched
                 2,
-                1.3F,
+                0.5F, // Wasn't originally intended to use as a handle + mining level is like that of a stone
                 0,
                 0f,
                 DARK_GREEN.toString(),
@@ -675,10 +678,11 @@ public class TFTinkerConstructIntegration {
                 MaterialID.Steeleaf,
                 "Steeleaf",
                 2,
-                250,
-                600,
-                2,
-                1.3F,
+                180, // TiC2 value untouched
+                700, // TiC2 value untouched
+                3, // Converted value - 2.75
+                0.8F, // Left untouched since a handle made of leaves is not a very bright idea + it gives imbalance
+                      // regenerating power
                 0,
                 0f,
                 DARK_GREEN.toString(),
@@ -740,15 +744,28 @@ public class TFTinkerConstructIntegration {
             TConstructRegistry.addArrowMaterial(MaterialID.NagaScale, 1.8F, 0.5F);
 
             TConstructRegistry.addCustomMaterial(
-                    ArrowShaftMaterial
-                            .createMaterial(4, TinkerTools.toolRod, MaterialID.NagaScale, 1.0f, 1.0f, 0.15f, 0x866526));
+                    ArrowShaftMaterial.createMaterial(
+                            4,
+                            TinkerTools.toolRod,
+                            MaterialID.NagaScale,
+                            1.4f, // TiC2 value untouched
+                            1.8f, // Bone stats. Scales are close to bones after all
+                            0.02f, // Bone stats
+                            0x53763B));
 
             TConstructRegistry.addBowMaterial(MaterialID.Steeleaf, 35, 4.75f);
             TConstructRegistry.addArrowMaterial(MaterialID.Steeleaf, 1.8F, 0.5F);
 
             TConstructRegistry.addCustomMaterial(
-                    ArrowShaftMaterial
-                            .createMaterial(5, TinkerTools.toolRod, MaterialID.Steeleaf, 1.0f, 1.0f, 0.15f, 0x866526));
+                    ArrowShaftMaterial.createMaterial(
+                            5,
+                            TinkerTools.toolRod,
+                            MaterialID.Steeleaf,
+                            0.6f, // TiC2 value untouched. Not a good idea to make arrows out of leaves, but they do
+                                  // regenerate
+                            0.5f, // Reed stats. Leaves are very light
+                            0.15f, // Stick stats. I don't think that it should break more or less often
+                            0x1F3716));
 
             // Arrow Fletching Materials
             fletching = new TFFletching().setUnlocalizedName("tconstruct.Fletching");
