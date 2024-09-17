@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import twilightforest.TwilightForestMod;
@@ -38,7 +39,11 @@ public class BlockTFThorns extends BlockRotatedPillar {
         this.setNames(new String[] { "brown", "green" });
 
         this.setHardness(50.0F);
-        this.setResistance(2000.0F);
+        if (Loader.isModLoaded("dreamcraft")) {
+            this.setResistance(10.0F);
+        } else {
+            this.setResistance(2000.0F);
+        }
         this.setStepSound(soundTypeWood);
         this.setCreativeTab(TFItems.creativeTab);
     }

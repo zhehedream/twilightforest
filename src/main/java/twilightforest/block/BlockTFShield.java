@@ -18,6 +18,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import twilightforest.TwilightForestMod;
@@ -32,8 +33,12 @@ public class BlockTFShield extends Block {
     public BlockTFShield() {
         super(Material.rock);
         this.setBlockUnbreakable();
-        // this.setResistance(2000.0F);
-        this.setResistance(6000000.0F);
+        if (Loader.isModLoaded("dreamcraft")) {
+            this.setResistance(30.0F);
+        } else {
+            this.setResistance(6000000.0F);
+        }
+
         this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(TFItems.creativeTab);
     }

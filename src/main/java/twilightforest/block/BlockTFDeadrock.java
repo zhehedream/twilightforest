@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import twilightforest.TwilightForestMod;
@@ -23,7 +24,11 @@ public class BlockTFDeadrock extends Block {
     protected BlockTFDeadrock() {
         super(Material.rock);
         this.setHardness(100F);
-        this.setResistance(6000000.0F);
+        if (Loader.isModLoaded("dreamcraft")) {
+            this.setResistance(5.0F);
+        } else {
+            this.setResistance(6000000.0F);
+        }
         this.setStepSound(soundTypePiston);
         this.disableStats();
         this.setCreativeTab(TFItems.creativeTab);
